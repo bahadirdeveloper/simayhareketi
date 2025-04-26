@@ -6,7 +6,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   const [isDecoding, setIsDecoding] = useState(true);
   const [progress, setProgress] = useState(0);
   
-  const fullText = "Initializing Matrix... System online.";
+  const fullText = "Cumhuriyet ile güncelleniyor.. Sistem hazır.";
   
   useEffect(() => {
     let currentIndex = 0;
