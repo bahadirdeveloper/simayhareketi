@@ -36,7 +36,7 @@ export const initAudio = (page: string = 'default'): void => {
     html5: true,
     preload: true,
     autoplay: false,
-    onloaderror: (id, error) => {
+    onloaderror: (id: any, error: any) => {
       console.warn(`Sound file could not be loaded: ${soundPath}`, error);
       // Fallback to default sound if current sound fails
       if (soundPath !== soundtrackPaths.default) {

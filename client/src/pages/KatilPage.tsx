@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import SimpleBurningEarth from "@/components/SimpleBurningEarth";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AudioControl from "@/components/AudioControl";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
@@ -121,7 +121,7 @@ export default function KatilPage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Background */}
-      <SimpleBurningEarth />
+      <SimpleFuturisticTurkish />
       
       <main className="container mx-auto px-4 pb-16 z-10 relative">
         <div className="max-w-3xl mx-auto pt-16 pb-20">

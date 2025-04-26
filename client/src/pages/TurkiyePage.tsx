@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import SimpleBurningEarth from "@/components/SimpleBurningEarth";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AudioControl from "@/components/AudioControl";
 import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
@@ -44,7 +44,7 @@ export default function TurkiyePage() {
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      <SimpleBurningEarth />
+      <SimpleFuturisticTurkish />
       
       {/* Erişilebilirlik Okuyucu */}
       <AccessibilityReader 

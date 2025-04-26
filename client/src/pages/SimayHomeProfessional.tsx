@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import SimpleBurningEarth from "@/components/SimpleBurningEarth";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -72,7 +72,7 @@ export default function SimayHomeProfessional() {
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
       <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
-        <SimpleBurningEarth />
+        <SimpleFuturisticTurkish />
         
         {/* Erişilebilirlik Okuyucu */}
         <AccessibilityReader 
