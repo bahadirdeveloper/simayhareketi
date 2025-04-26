@@ -268,16 +268,6 @@ export default function GorevlerPage() {
 
     // Gerçek görev verilerini kullan
     const gorevlerData = [
-      // Görev 0: Kurucu
-      {
-        id: 0,
-        baslik: "🧩 Görev 0: Kurucunun Eksikleri",
-        cagri: "Cumhuriyet'in temellerini güçlendir ve geleceğini inşa et.",
-        aciklama: "Türkiye Cumhuriyeti'nin ikinci yüzyılında, Cumhuriyet Güncellemesi'nin temellerini güçlendir ve katkıda bulun.",
-        kategori: "kurucu",
-        kontenjan: 1000000,
-        tamamlayan: 33
-      },
       // Görev 1
       {
         id: 1,
