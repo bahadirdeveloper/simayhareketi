@@ -81,31 +81,54 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <h1 className="font-bold text-5xl md:text-7xl mb-6 text-amber-400">
-              HALKLARIN UYANIŞI
-            </h1>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2 }}
+            >
+              <h1 className="font-bold text-5xl md:text-7xl mb-6 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text">
+                CUMHURİYETİN GÜNCELLEME PLATFORMU
+              </h1>
+            </motion.div>
             
-            <div className="flex flex-col items-center justify-center mb-4">
-              <div className="text-2xl text-amber-300 mb-2 flex items-center justify-center">
-                Cumhuriyet ile Güncelleniyoruz
-                <motion.span
-                  className="ml-2 text-green-400"
+            <div className="flex flex-col items-center justify-center mb-6">
+              <div className="relative">
+                <motion.div 
+                  className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full"
                   animate={{ 
-                    opacity: [1, 0.5, 1],
-                    scale: [1, 1.2, 1]
+                    opacity: [0.5, 0.8, 0.5],
+                    scale: [0.8, 1.1, 0.8],
                   }}
                   transition={{
-                    duration: 1.5,
+                    duration: 4,
                     repeat: Infinity,
-                    repeatType: "reverse"
+                    ease: "easeInOut"
                   }}
-                >
-                  ✓
-                </motion.span>
+                />
+                <div className="relative z-10 text-2xl font-semibold bg-black/30 backdrop-blur-sm px-6 py-3 rounded-lg border border-amber-400/50 shadow-[0_0_15px_rgba(251,191,36,0.3)] flex items-center justify-center">
+                  <span className="mr-2 text-amber-300">
+                    Cumhuriyet ile Güncelleniyoruz
+                  </span>
+                  <motion.span
+                    className="text-green-400"
+                    animate={{ 
+                      opacity: [1, 0.5, 1],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    }}
+                  >
+                    ✓
+                  </motion.span>
+                </div>
               </div>
-              <div className="flex justify-center items-center mt-1">
-                <div className="relative w-48 h-8 flex items-center justify-center">
-                  <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
+
+              <div className="flex justify-center items-center mt-5">
+                <div className="relative w-80 h-8 flex items-center justify-center">
+                  <div className="absolute w-full h-1 bg-gray-700/80 rounded-full backdrop-blur-sm"></div>
                   <motion.div 
                     className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
                     initial={{ left: 0 }}
@@ -123,8 +146,8 @@ export default function SimayHomeProfessional() {
               </div>
             </div>
             
-            <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-              Dijital Medeniyet Giriş Sayfası
+            <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg px-6 py-2 bg-black/40 backdrop-blur-sm rounded-lg">
+              Dijital Platformla Halk Güncelleme Süreci
             </p>
           </motion.div>
           
@@ -135,72 +158,100 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <div className="bg-black/60 backdrop-blur-sm border border-amber-500 rounded-xl p-6 text-center hover:border-amber-400 transition-colors duration-300 mb-8">
-              <h3 className="text-3xl font-bold mb-4 text-amber-500">🇹🇷 TÜRKİYE</h3>
-              <p className="text-gray-300 mb-6 text-lg">Halkın Komuta Merkezi</p>
-              <Button 
-                className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-xl"
-                onClick={() => navigate("/turkiye")}
+            <div className="bg-black/50 backdrop-blur-md border border-amber-500 rounded-xl p-8 text-center hover:border-amber-400 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-300 to-amber-500 text-transparent bg-clip-text">TÜRKİYE</h3>
+              <p className="text-gray-300 mb-6 text-lg">Toplumsal Yenileme Merkezi</p>
+              <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                Türkiye Sayfasına Giriş
-              </Button>
+                <Button 
+                  className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-xl shadow-lg"
+                  onClick={() => navigate("/turkiye")}
+                >
+                  Türkiye Platformuna Giriş
+                </Button>
+              </motion.div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button 
-                variant="outline"
-                className="border-blue-500 text-blue-400 hover:bg-blue-900/30 p-4"
-                onClick={() => navigate("/iran")}
-              >
-                🇮🇷 İRAN
-              </Button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-black/40 backdrop-blur-sm border border-blue-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-blue-400">
+                <h4 className="font-medium text-blue-400 mb-2">İRAN</h4>
+                <Button 
+                  variant="outline"
+                  className="w-full border-blue-500 text-blue-400 hover:bg-blue-900/30"
+                  onClick={() => navigate("/iran")}
+                >
+                  Giriş
+                </Button>
+              </div>
               
-              <Button 
-                variant="outline"
-                className="border-yellow-500 text-yellow-400 hover:bg-yellow-900/30 p-4"
-                onClick={() => navigate("/germany")}
-              >
-                🇩🇪 ALMANYA
-              </Button>
+              <div className="bg-black/40 backdrop-blur-sm border border-yellow-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-yellow-400">
+                <h4 className="font-medium text-yellow-400 mb-2">ALMANYA</h4>
+                <Button 
+                  variant="outline"
+                  className="w-full border-yellow-500 text-yellow-400 hover:bg-yellow-900/30"
+                  onClick={() => navigate("/germany")}
+                >
+                  Giriş
+                </Button>
+              </div>
               
-              <Button 
-                variant="outline"
-                className="border-green-500 text-green-400 hover:bg-green-900/30 p-4"
-                onClick={() => navigate("/palestine")}
-              >
-                🇵🇸 FİLİSTİN
-              </Button>
+              <div className="bg-black/40 backdrop-blur-sm border border-green-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-green-400">
+                <h4 className="font-medium text-green-400 mb-2">FİLİSTİN</h4>
+                <Button 
+                  variant="outline"
+                  className="w-full border-green-500 text-green-400 hover:bg-green-900/30"
+                  onClick={() => navigate("/palestine")}
+                >
+                  Giriş
+                </Button>
+              </div>
             </div>
           </motion.div>
           
           {/* Susturulmuş Halklar */}
           <motion.div
-            className="mb-10 w-full max-w-2xl"
+            className="mb-12 w-full max-w-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <Button 
-              className="w-full bg-gradient-to-r from-purple-800 to-purple-600 hover:from-purple-600 hover:to-purple-800 border border-purple-400 text-white py-6 text-xl rounded-xl"
-              onClick={() => navigate("/oppressed")}
-            >
-              🔗 SUSTURULMUŞ HALKLARIN BAŞVURU SAYFASI
-            </Button>
-            <div className="mt-4 text-center">
-              <LanguageSelector />
+            <div className="bg-black/50 backdrop-blur-md border border-purple-500/70 rounded-xl p-5 hover:border-purple-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)]">
+              <h3 className="text-xl text-purple-300 mb-3 font-medium">Uluslararası İletişim Ağı</h3>
+              
+              <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Button 
+                  className="w-full bg-gradient-to-r from-purple-800 to-purple-600 hover:from-purple-600 hover:to-purple-800 text-white py-5 text-lg rounded-lg shadow-md"
+                  onClick={() => navigate("/oppressed")}
+                >
+                  Uluslararası Platform Başvurusu
+                </Button>
+              </motion.div>
+              
+              <div className="mt-6 text-center pb-1">
+                <LanguageSelector />
+              </div>
             </div>
           </motion.div>
           
           {/* Alt Bilgi */}
           <motion.div 
-            className="text-center"
+            className="text-center mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           >
-            <p className="text-sm text-gray-400">
-              19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
-            </p>
+            <div className="inline-block bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full border border-amber-500/30">
+              <p className="text-sm text-gray-300 font-medium">
+                19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
+              </p>
+            </div>
           </motion.div>
         </main>
         
