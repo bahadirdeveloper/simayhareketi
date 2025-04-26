@@ -1232,7 +1232,7 @@ export default function GorevlerPage() {
           
           {/* Görevler Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -1248,13 +1248,13 @@ export default function GorevlerPage() {
               currentGorevler.map(gorev => (
                 <div 
                   key={gorev.id}
-                  className={`relative border-2 aspect-[4/3] ${
+                  className={`relative border-[3px] aspect-[2/3] ${
                     gorev.kategori === 'kurucu' 
                       ? 'border-amber-500 shadow-[0_0_20px_rgba(255,215,0,0.4)]' 
                       : gorev.tamamlayan > 0 
                         ? 'border-green-500 shadow-[0_0_12px_rgba(68,255,68,0.4)]' 
                         : 'border-amber-500'
-                  } rounded-lg hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
+                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: '100% 100%',
