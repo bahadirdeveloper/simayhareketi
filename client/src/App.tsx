@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import SimayHome from "@/pages/SimayHome";
 import SimayHome2 from "@/pages/SimayHome2";
 import SimayHome3 from "@/pages/SimayHome3";
+import SimayHome4 from "@/pages/SimayHome4";
 
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
@@ -20,7 +21,7 @@ import KatilPage from "@/pages/KatilPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHome2} />
+      <Route path="/" component={SimayHome4} />
       <Route path="/matrix" component={Home} />
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />

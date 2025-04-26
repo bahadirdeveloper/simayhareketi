@@ -45,11 +45,6 @@ export default function BurningEarthImage() {
                   animation: 'flameFlicker 3s infinite alternate'
                 }}
               ></div>
-              
-              {/* Additional fire particles */}
-              <div className="absolute -bottom-10 left-0 w-full h-[110%] overflow-hidden">
-                <div className="fire-particles"></div>
-              </div>
             </div>
             
             {/* Glow effect around the Earth */}
@@ -72,7 +67,7 @@ export default function BurningEarthImage() {
       </div>
       
       {/* CSS for animations */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes flameFlicker {
           0% { opacity: 0.8; transform: scaleY(1); }
           25% { opacity: 0.9; transform: scaleY(1.05); }
@@ -80,25 +75,7 @@ export default function BurningEarthImage() {
           75% { opacity: 0.9; transform: scaleY(1.05); }
           100% { opacity: 0.8; transform: scaleY(1); }
         }
-        
-        .fire-particles {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background-image: 
-            radial-gradient(circle, rgba(255,165,0,0.9) 10%, transparent 20%),
-            radial-gradient(circle, rgba(255,69,0,0.8) 15%, transparent 25%),
-            radial-gradient(circle, rgba(255,215,0,0.7) 20%, transparent 30%);
-          background-size: 30px 30px, 40px 40px, 20px 20px;
-          background-position: 0 0, 15px 15px, 5px 5px;
-          animation: moveParticles 4s linear infinite;
-        }
-        
-        @keyframes moveParticles {
-          0% { background-position: 0 0, 15px 15px, 5px 5px; }
-          100% { background-position: 30px 60px, 45px 75px, 35px 65px; }
-        }
-      `}</style>
+      `}} />
     </div>
   );
 }
