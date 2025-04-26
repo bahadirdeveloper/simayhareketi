@@ -208,18 +208,12 @@ export default function SimayHomeProfessional() {
                     </h2>
                   </motion.div>
                   
-                  {/* Basit İlerleme Çubuğu - Resme Benzer */}
+                  {/* Sabit İlerleme Çubuğu - Resme Benzer */}
                   <div className="w-full mt-2 relative">
                     <div className="h-2 w-full bg-green-900/30 rounded-full overflow-hidden">
-                      <motion.div
+                      <div
                         className="h-full bg-green-500"
-                        initial={{ width: "10%" }}
-                        animate={{ width: ["30%", "60%", "30%"] }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
+                        style={{ width: "40%" }}
                       />
                     </div>
                   </div>
