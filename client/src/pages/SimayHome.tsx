@@ -108,7 +108,7 @@ export default function SimayHome() {
             animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 1 }}
           >
-            {t('simay_subtitle', 'Türkiye Dünya Liderliğine Giden Yolda')}
+            {t('simay_subtitle', 'Cumhuriyetin Halk ile Güncellenme Platformu')}
           </motion.h2>
           
           {/* Main Message */}
@@ -119,7 +119,7 @@ export default function SimayHome() {
             transition={{ duration: 2, delay: 1.5 }}
           >
             <p className="font-share-tech text-xl md:text-2xl lg:text-3xl leading-relaxed text-white">
-              {t('simay_message', 'Simay Hareketi, insanlığı ortak bir geleceğe taşıyan, kardeşliği ve adaleti temel alan bir harekettir.')}
+              {t('simay_message', 'Simay Hareketi, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla geleceğe taşıyan, kardeşliği ve adaleti temel alan bir güncellenme platformudur.')}
             </p>
           </motion.div>
 
@@ -191,7 +191,7 @@ export default function SimayHome() {
             transition={{ duration: 2, delay: 4 }}
           >
             <p className="font-roboto-mono text-sm md:text-base text-green-300">
-              {t('simay_launch_date', '19 Mayıs 2025 - Dünya Liderliğine Giden Yolda')}
+              {t('simay_launch_date', '19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu')}
             </p>
           </motion.div>
         </main>
