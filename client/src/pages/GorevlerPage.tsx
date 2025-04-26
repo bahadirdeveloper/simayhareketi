@@ -1201,16 +1201,19 @@ export default function GorevlerPage() {
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="max-w-md bg-black/50 border-red-600 text-white"
+                    className="max-w-md bg-black/60 border-2 border-red-600/70 text-white text-lg px-6 py-6 h-14 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)]"
                   />
                 </div>
                 
-                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                <div className="flex flex-wrap justify-center gap-4 mt-6">
                   {categories.map(category => (
                     <Button
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
-                      className={selectedCategory === category ? "bg-red-600 text-white" : "border-red-600 text-white"}
+                      className={selectedCategory === category 
+                        ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-lg px-6 py-5 border-none shadow-[0_0_15px_rgba(220,38,38,0.3)]" 
+                        : "border-2 border-red-600/70 text-white font-semibold text-lg px-6 py-5 hover:bg-red-600/20"
+                      }
                       onClick={() => {
                         setSelectedCategory(category);
                         setCurrentPage(1); // Kategori değiştiğinde ilk sayfaya dön
@@ -1224,9 +1227,17 @@ export default function GorevlerPage() {
             </motion.div>
             
             {/* Counters */}
-            <div className="text-center mb-6">
-              <p className="text-gray-400">Toplam Görev: {gorevler.length}</p>
-              <p className="text-green-400">Tamamlanan: {gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} kişi katıldı</p>
+            <div className="text-center mb-8 mt-8 bg-black/40 p-5 rounded-lg border-2 border-red-600/40 max-w-2xl mx-auto shadow-lg">
+              <div className="flex flex-col md:flex-row justify-center gap-8">
+                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 flex-1">
+                  <p className="text-white text-xl font-bold">Toplam Görev</p>
+                  <p className="text-red-400 text-3xl font-bold mt-2">{gorevler.length}</p>
+                </div>
+                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 flex-1">
+                  <p className="text-white text-xl font-bold">Katılım Sayısı</p>
+                  <p className="text-red-400 text-3xl font-bold mt-2">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -1248,13 +1259,13 @@ export default function GorevlerPage() {
               currentGorevler.map(gorev => (
                 <div 
                   key={gorev.id}
-                  className={`relative border-[3px] aspect-[2/3] max-w-[200px] mx-auto ${
+                  className={`relative border-[4px] aspect-[2/3] max-w-[280px] mx-auto ${
                     gorev.kategori === 'kurucu' 
-                      ? 'border-red-600 shadow-[0_0_20px_rgba(220,38,38,0.4)]' 
+                      ? 'border-red-600 shadow-[0_0_25px_rgba(220,38,38,0.5)]' 
                       : gorev.tamamlayan > 0 
-                        ? 'border-green-500 shadow-[0_0_12px_rgba(68,255,68,0.4)]' 
+                        ? 'border-green-500 shadow-[0_0_15px_rgba(68,255,68,0.5)]' 
                         : 'border-red-600'
-                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(220,38,38,0.6)] transition-all duration-300 overflow-hidden`}
+                  } rounded-lg hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: '100% 100%',
@@ -1266,27 +1277,27 @@ export default function GorevlerPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/30"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10 p-2 h-full flex flex-col justify-between">
-                    {/* Debug için ID gösterici */}
-                    <div className="absolute top-0 right-0 bg-red-600 text-white px-1 py-0.5 text-[8px] font-bold rounded-bl">
+                  <div className="relative z-10 p-4 h-full flex flex-col justify-between">
+                    {/* Görev ID göstericisi */}
+                    <div className="absolute top-0 right-0 bg-red-600 text-white px-2 py-1 text-xs font-bold rounded-bl shadow-md">
                       {gorev.id}
                     </div>
                     
                     {/* Görev başlık ve açıklaması */}
                     <div>
-                      <h3 className="text-xs md:text-sm font-bold text-red-500 mb-1">{gorev.baslik}</h3>
-                      <p className="text-white mb-1 text-[10px]">{gorev.cagri}</p>
-                      <div className="text-[10px] text-white italic mb-1">{gorev.aciklama && gorev.aciklama.length > 60 ? gorev.aciklama.substring(0, 60) + '...' : gorev.aciklama}</div>
+                      <h3 className="text-sm md:text-base font-bold text-red-500 mb-2">{gorev.baslik}</h3>
+                      <p className="text-white mb-1 text-xs">{gorev.cagri}</p>
+                      <div className="text-xs text-white italic mb-2">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton */}
                     <div>
-                      <div className="flex justify-between items-center text-[9px] text-gray-400 mb-1">
+                      <div className="flex justify-between items-center text-xs text-gray-300 mb-2">
                         <span>Kategori: {gorev.kategori}</span>
                         <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-[10px] h-6 py-0 text-white"
+                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-xs h-8 py-0 text-white font-semibold"
                         onClick={() => openModal(gorev)}
                       >
                         Göreve Katıl
@@ -1300,26 +1311,26 @@ export default function GorevlerPage() {
           
           {/* Pagination - Bottom */}
           {filteredGorevler.length > 0 && (
-            <div className="flex justify-center items-center mt-10 gap-2 border-2 border-red-600/50 bg-black/30 rounded-lg p-4 max-w-lg mx-auto mb-8">
+            <div className="flex justify-center items-center mt-12 gap-4 border-2 border-red-600/50 bg-black/50 rounded-lg p-6 max-w-3xl mx-auto mb-10 shadow-[0_0_20px_rgba(220,38,38,0.15)]">
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-red-600 text-white font-bold"
+                className="border-2 border-red-600/60 text-white font-bold text-lg px-6 hover:bg-red-900/20"
                 onClick={() => changePage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
               >
                 &lt; Önceki
               </Button>
               
-              <div className="flex gap-2 mx-2 flex-wrap justify-center">
+              <div className="flex gap-3 mx-2 flex-wrap justify-center">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <Button
                     key={pageNum}
                     variant={currentPage === pageNum ? "default" : "outline"}
                     size="lg"
                     className={currentPage === pageNum 
-                      ? "bg-red-600 text-white font-bold" 
-                      : "border-red-600 text-white font-bold"}
+                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-lg w-12 h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
+                      : "border-2 border-red-600/60 text-white font-bold text-lg w-12 h-12 hover:bg-red-900/20"}
                     onClick={() => changePage(pageNum)}
                   >
                     {pageNum}
@@ -1330,7 +1341,7 @@ export default function GorevlerPage() {
               <Button 
                 variant="outline"
                 size="lg" 
-                className="border-red-600 text-white font-bold"
+                className="border-2 border-red-600/60 text-white font-bold text-lg px-6 hover:bg-red-900/20"
                 onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
               >
