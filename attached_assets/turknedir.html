@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Türk Nedir?</title>
+  <style>
+    html {
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    html, body {
+      overflow-x: hidden;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('seyiton.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      width: 100vw;
+      min-height: 100vh;
+      color: #FFD700;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #000;
+      }
+    }
+  </style>
+  <style>
+    @media (max-width: 600px) {
+      .main-country-button, .row, .container, .kutucuk, .section, .gorev-kutu, .odeme-paneli {
+        padding: 1rem !important;
+        flex-direction: column;
+        align-items: center;
+      }
+      .country-button, button, input, textarea, .responsive-button {
+        width: 90vw !important;
+        font-size: 1.1rem !important;
+        min-height: 60px;
+        padding: 0.8rem 1.2rem;
+        word-break: break-word;
+      }
+      #title, h1, .header {
+        font-size: 2.4rem !important;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .responsive-button {
+        font-size: 1rem !important;
+        padding: 0.6rem 1rem !important;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .responsive-button {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 0.8rem !important;
+      }
+    }
+  </style>
+  <style>
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 22vw !important;
+      }
+      .responsive-button {
+        font-size: 11vw !important;
+        width: 96vw !important;
+        padding: 3.5rem !important;
+        margin: 1rem auto !important;
+        display: block !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      h1 {
+        font-size: 11vw !important;
+      }
+      .responsive-button {
+        font-size: 5vw !important;
+        width: 85vw !important;
+        padding: 3rem !important;
+        margin: 1rem auto !important;
+        display: block !important;
+      }
+    }
+
+    .responsive-button {
+      background-color: rgba(0,0,0,0.35);
+      border: 2px solid #FFD700;
+      color: #FFD700;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255,215,0,0.5);
+      text-shadow: 2px 2px 8px #000, 0 0 15px #FFD700;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+      font-size: clamp(0.9rem, 5vw, 2rem);
+      width: 90vw;
+      padding: 1.5rem;
+      margin: 1rem auto 2rem;
+      word-break: break-word;
+      white-space: normal;
+      text-align: center;
+    }
+    .responsive-button:hover {
+      background-color: rgba(255, 215, 0, 0.2);
+      box-shadow: 0 0 35px rgba(255,215,0,0.8), 0 0 15px rgba(255,255,255,0.3);
+      transform: scale(1.05);
+    }
+    .container {
+      max-width: 100vw;
+      padding: 5vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .header {
+      font-weight: bold;
+      font-size: clamp(2rem, 6vw, 5rem);
+      color: white;
+      background: none;
+      border: none;
+      text-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .description {
+      font-size: clamp(1rem, 4vw, 2rem);
+      color: #FFD700;
+      max-width: 90vw;
+      text-shadow: 2px 2px 8px #000, 0 0 15px #FFD700;
+      margin-bottom: 3rem;
+      background: rgba(0,0,0,0.18);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      border: 2px solid #FFD700;
+      box-shadow: 0 0 18px rgba(255,215,0,0.35);
+    }
+
+    .content-wrapper {
+      width: 100%;
+      max-width: min(90vw, 1200px);
+      padding: 1rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.55); z-index: 0;"></div>
+  <div class="container">
+    <div class="content-wrapper">
+      <h1 class="header">🇹🇷 TÜRKİYE</h1>
+      <p class="description">
+        Türk, sadece bir ırk ya da coğrafya değildir. Türk; bir duruştur, bir vicdandır, bir direniştir.<br>
+        Adalete susamış halkların yüreğidir, tarihin en derin izidir.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+        <button class="responsive-button" onclick="window.location.href='turk-nedir.html'">
+          ❤️ DAMARLARIMDA HİSSEDİYORUM!
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -150,9 +150,27 @@ export default function SimayHome() {
             </Button>
             <Button 
               className="bg-amber-600 hover:bg-amber-700 text-white font-bold px-6 py-3 rounded-lg text-lg"
-              onClick={() => navigate("/join")}
+              onClick={() => navigate("/katil")}
             >
               {t('simay_join_button', 'Harekete Katıl')}
+            </Button>
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg text-lg"
+              onClick={() => navigate("/anayasa")}
+            >
+              {t('simay_constitution_button', 'Halk Anayasası')}
+            </Button>
+            <Button 
+              className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-lg"
+              onClick={() => navigate("/amaclar")}
+            >
+              {t('simay_goals_button', 'Amaçlarımız')}
+            </Button>
+            <Button 
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3 rounded-lg text-lg"
+              onClick={() => navigate("/gorevler")}
+            >
+              {t('simay_tasks_button', 'Görevler')}
             </Button>
           </motion.div>
           

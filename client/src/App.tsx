@@ -9,6 +9,10 @@ import SimayHome from "@/pages/SimayHome";
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
 import JoinPage from "@/pages/JoinPage";
+import AmacsavasPage from "@/pages/AmacsavasPage";
+import AnayasaPage from "@/pages/AnayasaPage";
+import GorevlerPage from "@/pages/GorevlerPage";
+import KatilPage from "@/pages/KatilPage";
 
 function Router() {
   return (
@@ -17,6 +21,10 @@ function Router() {
       <Route path="/matrix" component={Home} />
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />
+      <Route path="/amaclar" component={AmacsavasPage} />
+      <Route path="/anayasa" component={AnayasaPage} />
+      <Route path="/gorevler" component={GorevlerPage} />
+      <Route path="/katil" component={KatilPage} />
       <Route path="/:lang" component={LanguagePage} />
       <Route component={NotFound} />
     </Switch>

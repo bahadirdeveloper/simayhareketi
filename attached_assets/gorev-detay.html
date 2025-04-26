@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Görev Detayı</title>
+  <style>
+    body {
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+.icerik {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+button, .geri {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 1rem auto;
+}
+
+    h1 {
+      color: #fff;
+      font-size: 2rem;
+      text-shadow: 0 0 8px black;
+    }
+
+    p {
+      color: #ddd;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    }
+
+    .geri {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #d4af37, #a30000);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-shadow: 0 0 6px black;
+    }
+
+    input, button {
+      background: rgba(255, 255, 255, 0.08);
+      color: gold;
+      font-weight: bold;
+      border: 1px solid gold;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      padding: 0.75rem;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+    }
+
+    input::placeholder {
+      color: gold;
+      opacity: 1;
+    }
+
+    button {
+      background: linear-gradient(45deg, #d4af37, #a30000);
+      color: white;
+      font-weight: bold;
+      border: 1px solid gold;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      padding: 0.75rem;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+      cursor: pointer;
+      text-shadow: 0 0 6px black;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #a30000, #d4af37);
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      input, button {
+        width: 100% !important;
+        font-size: 1.2rem;
+      }
+    }
+
+@media (max-width: 375px) {
+  h1 {
+    font-size: 1.4rem !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+    padding: 0.6rem !important;
+  }
+
+  input, button {
+    font-size: 0.95rem !important;
+    padding: 0.6rem !important;
+  }
+
+  .geri {
+    font-size: 0.95rem !important;
+    padding: 0.6rem 1rem !important;
+  }
+
+  #popupMesaj {
+    font-size: 0.95rem !important;
+    padding: 10px 16px !important;
+  }
+}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+  <div class="icerik">
+  <h1 id="gorev-baslik">Görev Yükleniyor...</h1>
+  <p id="gorev-aciklama"></p>
+  
+  <p id="gorev-cagri" style="font-style: italic; color: #88f;"></p>
+  <p id="gorev-kategori" style="color: #ccc;"></p>
+  <p id="gorev-sayac" style="color: #0f0;"></p>
+  <input id="katilimciAd" type="text" placeholder="Ad Soyad" style="margin-top: 1rem; padding: 8px; width: 100%; max-width: 400px; display: block;" />
+  <input id="katilimciEmail" type="email" placeholder="E-posta (isteğe bağlı)" style="margin-top: 0.5rem; padding: 8px; width: 100%; max-width: 400px; display: block;" />
+  <button onclick="indirBelge()" style="margin-top: 1rem; padding: 10px 16px;">🎓 Teşekkür Belgesi Oluştur</button>
+  <p><a id="gorev-dosya" href="#" target="_blank" style="color:#00ffcc; text-decoration:underline;"></a></p>
+
+  <a href="gorev.html" class="geri">← Görev Listesine Dön</a>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const gorevId = urlParams.get("id");
+
+    fetch("gorevler.json")
+      .then(response => response.json())
+      .then(data => {
+        const gorev = data.find(g => g.id == gorevId);
+        if (gorev) {
+          document.title = `${gorev.baslik} - Görev Detayı`;
+          document.getElementById("gorev-baslik").textContent = gorev.baslik;
+          document.getElementById("gorev-aciklama").textContent = gorev.aciklama;
+          document.getElementById("gorev-cagri").textContent = `📣 ${gorev.cagri || ""}`;
+          document.getElementById("gorev-kategori").textContent = `Kategori: ${gorev.kategori || "Belirtilmedi"}`;
+          document.getElementById("gorev-sayac").textContent = `✅ ${gorev.tamamlayanSayisi || 0} kişi bu görevi tamamladı.`;
+          if (gorev.dosya) {
+            const link = document.getElementById("gorev-dosya");
+            link.href = gorev.dosya;
+            link.textContent = "📎 Görev PDF Belgesi";
+          } else {
+            document.getElementById("gorev-dosya").style.display = "none";
+          }
+        } else {
+          document.getElementById("gorev-baslik").textContent = "Görev bulunamadı!";
+        }
+      });
+
+    async function indirBelge() {
+    if (!document.getElementById("katilimciAd").value.trim()) {
+      alert("Lütfen adınızı giriniz.");
+      return;
+    }
+    const title = document.getElementById("gorev-baslik").textContent;
+      const ad = document.getElementById("katilimciAd").value || "Katılımcı";
+      const email = document.getElementById("katilimciEmail").value || "";
+      const date = new Date().toLocaleDateString("tr-TR");
+
+      const emailText = email ? `İletişim: ${email}\n` : "";
+      const content = `Simay Zinciri Katılım Belgesi\n\nSayın ${ad},\n\n"${title}" görevini başarıyla tamamladınız.\nToplum için attığınız bu adım hepimize ilham veriyor.\n\n${emailText}Tarih: ${date}\n\nTeşekkür ederiz.\n\nSimay Ekibi`;
+
+      const { PDFDocument, rgb, StandardFonts } = PDFLib;
+      const pdfDoc = await PDFDocument.create();
+      const page = pdfDoc.addPage([595, 842]); // A4 boyutu
+
+      const { width, height } = page.getSize();
+      const fontUrl = 'https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxM.woff';
+      const fontBytes = await fetch(fontUrl).then(res => res.arrayBuffer());
+      const font = await pdfDoc.embedFont(fontBytes);
+
+      page.drawText("🎓 Simay Zinciri Katılım Belgesi", {
+        x: 50,
+        y: height - 80,
+        size: 20,
+        font,
+        color: rgb(0, 1, 0.8),
+      });
+
+      page.drawText(`Sayın ${ad},`, {
+        x: 50,
+        y: height - 130,
+        size: 14,
+        font,
+        color: rgb(1, 1, 1),
+      });
+
+      page.drawText(`"${title}" görevini başarıyla tamamladınız.\nToplum için attığınız bu adım hepimize ilham veriyor.\n\n${emailText}Tarih: ${date}\n\nTeşekkür ederiz.\n\nSimay Ekibi`, {
+        x: 50,
+        y: height - 180,
+        size: 12,
+        font,
+        color: rgb(0.9, 0.9, 0.9),
+        lineHeight: 18,
+      });
+
+      const pdfBytes = await pdfDoc.save();
+      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${title.replaceAll(" ", "_")}_${ad.replaceAll(" ", "_")}_tesekkur.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+      const popup = document.getElementById("popupMesaj");
+      popup.textContent = `Teşekkür ederiz ${ad}, belgeniz başarıyla indirildi.`;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 4000);
+    }
+  </script>
+  <div id="popupMesaj" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#00ffcc; color:#111; padding:15px 25px; border-radius:8px; font-weight:bold; z-index:9999;">
+    Teşekkür ederiz!
+  </div>
+</body>
+</html>

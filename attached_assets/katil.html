@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cumhuriyet Katılım Sayfası - HALK DEFTERİ</title>
+  <style>
+    body {
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      color: gold;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px black, 0 0 20px gold;
+      font-size: 2.2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 450px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 2px solid gold;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+    input, textarea, button {
+      margin-bottom: 1rem;
+      padding: 0.9rem;
+      border: 1px solid gold;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: gold;
+      font-size: 1.05rem;
+      box-shadow: 0 0 6px rgba(255, 215, 0, 0.2);
+      font-weight: bold;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #ffd700;
+      opacity: 1;
+    }
+    button {
+      background: linear-gradient(45deg, #d4af37, #a30000);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-shadow: 0 0 8px black;
+      font-size: 1.1rem;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #a30000, #d4af37);
+      color: white;
+    }
+    .confirmation {
+      margin-top: 1rem;
+      color: lime;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: none;
+      text-shadow: 0 0 6px black;
+    }
+  @media (max-width: 600px) {
+    body {
+      padding: 1rem;
+    }
+ 
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+ 
+    form {
+      padding: 1.5rem;
+      width: 90%;
+    }
+ 
+    input, textarea, button {
+      font-size: 1rem;
+    }
+ 
+    .confirmation {
+      font-size: 1rem;
+    }
+  }
+  .odeme-paneli {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px dashed gold;
+    border-radius: 12px;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  }
+
+  .odeme-paneli h2 {
+    color: gold;
+    margin-bottom: 1rem;
+  }
+
+  .odeme-paneli p {
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .odeme-paneli button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.05rem;
+    border: 1px solid gold;
+    background: linear-gradient(45deg, #555, #222);
+    color: #aaa;
+    border-radius: 8px;
+    cursor: not-allowed;
+    text-shadow: 0 0 5px black;
+  }
+    /* Mobil uyumluluk için gelişmiş medya sorguları */
+    @media (max-width: 600px) {
+      form, .odeme-paneli {
+        padding: 1rem !important;
+        width: 90% !important;
+      }
+
+      input, textarea, button {
+        font-size: 1rem !important;
+        padding: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      h1 {
+        font-size: 1.6rem !important;
+      }
+
+      .odeme-paneli h2 {
+        font-size: 1.2rem !important;
+      }
+
+      .odeme-paneli p {
+        font-size: 0.95rem !important;
+      }
+
+      .odeme-paneli button {
+        font-size: 1rem !important;
+        padding: 0.6rem 1.2rem !important;
+      }
+    }
+
+    @media (max-width: 375px) {
+      h1 {
+        font-size: 1.4rem !important;
+      }
+
+      input, textarea, button {
+        font-size: 0.95rem !important;
+      }
+
+      .odeme-paneli h2 {
+        font-size: 1.1rem !important;
+      }
+
+      .odeme-paneli button {
+        font-size: 0.95rem !important;
+        padding: 0.5rem 1rem !important;
+      }
+    }
+  .sayaclar {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid gold;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 450px;
+    text-align: left;
+    color: gold;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
+
+  .sayaclar h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: gold;
+    font-size: 1.3rem;
+  }
+
+  .sayaclar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sayaclar li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sayaclar span {
+    font-weight: bold;
+    color: white;
+  }
+  .geri-sayim {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px dotted gold;
+    border-radius: 10px;
+    color: gold;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  }
+
+  .geri-sayim h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 6px black;
+  }
+
+  .geri-sayim p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+    color: white;
+  }
+  </style>
+</head>
+<body>
+
+  <h1>Halk Katılım Formu - Cumhuriyetin 101. Yılı İçin</h1>
+
+  <form id="katilimForm" onsubmit="handleSubmit(event)">
+    <input type="text" name="ad" placeholder="Adınızı yazınız" required />
+    <input type="text" name="soyad" placeholder="Soyadınızı yazınız" required />
+    <input type="email" name="email" placeholder="E-posta adresinizi yazınız" required />
+    <textarea name="mesaj" placeholder="Cumhuriyet için halktan bir mesaj bırakın..." rows="4"></textarea>
+    <button type="submit">Katıldım, Belgeyi Al</button>
+    <div class="confirmation" id="onayMesaji">Katılımınız alınmıştır. Teşekkür ederiz!</div>
+  </form>
+
+  <div class="geri-sayim">
+    <h3>19 Mayıs'ta Cumhuriyet Güncelleniyor - Kalan Süre</h3>
+    <p id="geriSayimText">Hesaplanıyor...</p>
+  </div>
+
+  <div class="sayaclar">
+    <h3>Canlı Sayaçlar</h3>
+    <ul>
+      <li>Katılan Kişi Sayısı: <span id="katilimSayisi">0</span></li>
+      <li>Tamamlanan Cumhuriyet Görevi Sayısı: <span id="hayalSayisi">0</span></li>
+      <li>Türkiye Katılım Oranı: <span id="oranYuzde">0%</span></li>
+    </ul>
+  </div>
+
+  <div class="odeme-paneli">
+    <h2>1 TL ile Cumhuriyetin 101. yılına adınızı yazdırın</h2>
+    <p>Bu sayfa halk tarafından halk için açılmıştır. Ödeme sistemi çok yakında aktif edilecektir.</p>
+    <button disabled>Ödeme Yap (Simülasyon)</button>
+  </div>
+
+  <script>
+    // Google Sheets Web App URL (replace with your actual deployed script URL)
+    const sheetURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const ad = e.target.ad.value;
+      const soyad = e.target.soyad.value;
+      const email = e.target.email.value;
+      const mesaj = e.target.mesaj.value;
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Katılım Belgesi Başlığı
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.text("📜 23 Nisan 2025 Katılım Belgesi - HALK DEFTERİ", 20, 25);
+
+      // Açıklama
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      doc.text("Aşağıda bilgileri yer alan kişi, HALK DEFTERİ'ne resmen katılmıştır.", 20, 35);
+      doc.text("Bu belge, dijital katılımın ve toplumsal sorumluluğun simgesidir.", 20, 42);
+
+      // Bilgi Kutusu Çerçevesi
+      doc.setDrawColor(0, 255, 255);
+      doc.setLineWidth(0.5);
+      doc.rect(15, 50, 180, 90);
+
+      // Kimlik Kartı İçeriği
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(14);
+      doc.text("🪪 23 Nisan Dijital Kimlik Kartı", 20, 60);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      doc.text(`İsim Soyisim     : ${ad} ${soyad}`, 25, 75);
+      doc.text(`E-posta          : ${email}`, 25, 85);
+      doc.text(`Katılım Tarihi   : ${new Date().toLocaleDateString('tr-TR')}`, 25, 95);
+      doc.text(`Kimlik Numarası  : HALK-${Math.floor(100000 + Math.random() * 900000)}`, 25, 105);
+
+      // Logo ekleme (assets/logo.png dosyasını varsayalım)
+      const logo = new Image();
+      logo.src = 'assets/logo.png';
+      logo.onload = () => {
+        doc.addImage(logo, 'PNG', 160, 10, 30, 30); // sağ üst köşe
+        doc.save(`Simay_Katilim_Belgesi_${ad}_${soyad}.pdf`);
+      };
+
+      // QR Code
+      const qrText = `Ad: ${ad} ${soyad}\\nEmail: ${email}\\nTarih: ${new Date().toLocaleDateString('tr-TR')}`;
+      const qrCanvas = document.createElement("canvas");
+      const qr = new QRious({
+        element: qrCanvas,
+        value: qrText,
+        size: 100,
+        background: '#ffffff',
+        foreground: '#000000'
+      });
+      const imgData = qrCanvas.toDataURL("image/png");
+      doc.addImage(imgData, 'PNG', 150, 60, 30, 30);
+
+      // Alt bilgi
+      doc.setFontSize(11);
+      doc.setTextColor(120);
+      doc.text("23 Nisan 2025 Halk Defteri'ne katıldığınız için teşekkür ederiz.", 20, 150);
+
+      // doc.save(...) çağrısı logo yüklenince yapılacak
+
+      // Google Sheets kayıt
+      try {
+        await fetch(sheetURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ad, soyad, email, mesaj })
+        });
+      } catch (err) {
+        console.error('Google Sheet kayıt hatası:', err);
+      }
+
+      document.getElementById("onayMesaji").style.display = "block";
+      e.target.reset();
+    }
+
+    async function guncelleSayaclarGercek() {
+      try {
+        const res = await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec");
+        const data = await res.json();
+
+        const toplam = data.length;
+        const gorevli = data.filter(item => item.gorevId && item.gorevId.trim() !== "").length;
+        const oran = Math.min(100, (toplam / 10000) * 100); // Örnek: hedef 10.000 kişi
+
+        document.getElementById("katilimSayisi").textContent = toplam;
+        document.getElementById("hayalSayisi").textContent = gorevli;
+        document.getElementById("oranYuzde").textContent = oran.toFixed(2) + "%";
+      } catch (e) {
+        console.error("Gerçek sayaç verileri alınamadı:", e);
+      }
+    }
+
+    function guncelleGeriSayim() {
+      const hedefTarih = new Date("2025-05-19T00:00:00");
+      const simdi = new Date();
+      const fark = hedefTarih - simdi;
+
+      if (fark > 0) {
+        const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+        const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+        const dakika = Math.floor((fark / (1000 * 60)) % 60);
+        const saniye = Math.floor((fark / 1000) % 60);
+        document.getElementById("geriSayimText").textContent =
+          `${gun} gün ${saat} saat ${dakika} dakika ${saniye} saniye`;
+      } else {
+        document.getElementById("geriSayimText").textContent = "Sistem Açıldı!";
+      }
+    }
+
+    setInterval(guncelleSayaclarGercek, 5000);
+    setInterval(guncelleGeriSayim, 1000);
+    window.onload = function () {
+      guncelleSayaclarGercek();
+      guncelleGeriSayim();
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+</body>
+</html>

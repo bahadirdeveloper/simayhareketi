@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karma Karışık</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid gold;
+      border-radius: 10px;
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: gold;
+      text-shadow: 2px 2px 5px black;
+    }
+    p.subtitle {
+      text-align: center;
+      font-style: italic;
+      color: #666;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .notlar {
+      margin-top: 30px;
+      white-space: pre-wrap;
+      font-size: 1.3em;
+      line-height: 1.6;
+    }
+
+    .notlar p {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+    }
+    .baslik {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 40px;
+      border-top: 2px solid gold;
+      padding-top: 10px;
+      color: gold;
+      text-shadow: 1px 1px 3px black;
+    }
+  @media screen and (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+
+    .container {
+      padding: 15px;
+      border-radius: 6px;
+    }
+
+    h1 {
+      font-size: 1.5em;
+    }
+
+    .notlar {
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+
+    .baslik {
+      font-size: 1.2em;
+    }
+  }
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px !important;
+  }
+
+  .container {
+    padding: 15px !important;
+    border-radius: 6px !important;
+  }
+
+  h1 {
+    font-size: 1.6rem !important;
+  }
+
+  p.subtitle {
+    font-size: 1rem !important;
+  }
+
+  .notlar {
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .notlar p {
+    font-size: 1rem !important;
+    padding: 0.6rem 1rem !important;
+  }
+
+  .baslik {
+    font-size: 1.2rem !important;
+  }
+
+  button {
+    font-size: 1rem !important;
+    padding: 0.6rem 1.2rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .notlar p {
+    font-size: 0.95rem !important;
+    padding: 0.5rem 0.8rem !important;
+  }
+
+  .baslik {
+    font-size: 1.1rem !important;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌀 KARMA KARIŞIK</h1>
+    <section class="dinle-blok" style="text-align:center; margin-top: 10px;">
+      <button type="button" aria-label="Sayfayı Sesli Dinle" onclick="document.getElementById('dinle-audio').play()" style="padding: 8px 16px; background-color: #00c3ff; border: none; border-radius: 4px; color: white; cursor: pointer;">
+        🔊 Dinle
+      </button>
+      <audio id="dinle-audio" src="dinle.mp3" preload="none"></audio>
+    </section>
+    <p class="subtitle">Bu sayfada düzen yok, zihin var. Satırlar karışık, fikirler özgür.</p>
+    <div class="notlar">
+      <p>• İlk fikir: Sistemi tamamen dağıt ama geri toplayabileceğin yapısal bir iz bırak.</p>
+      <p>• Ne zaman başladığını hatırlamıyorsan, hâlâ başlamış sayılmazsın.</p>
+      <p>• Atatürk bir yazılım mühendisi olsaydı neyi önce kodlardı?</p>
+      <p>• "Ben kimim?" sorusu değil, "Kimi bekliyorum?" sorusu daha tehlikelidir.</p>
+      <p>• Bazen ülke değiştirmek değil, frekans değiştirmek gerekir.</p>
+      <p>• Akıl bir yoldur. Kalp bir yakıttır. Cesaret ise kontağı çevirendir.</p>
+      <p>• Şehir planlamasıyla insan psikolojisi birbirine benzer. Bozuk olanı önce yıkmak gerekir.</p>
+      <p>• Simay bir kız çocuğunun adı değil. Simay bir çağrıdır, kod adı: Uyanış.</p>
+      <p>• Her devrim önce bir deftere yazılır. Bu da onlardan biri olabilir.</p>
+      <p>• Hafızamı yitirmiyorum. Hafızamın yerine yeni bir bilinç yerleştiriyorum.</p>
+      <p>• Halkın sabrı, test edilen en eski mühendislik projesidir.</p>
+      <p>• “Bir gün susarsam değil, konuşursam korkun.” diyen halk artık konuşmaya başladı.</p>
+      <p>• Bu ülkenin sokaklarında umut değil, bastırılmış öfke dolaşıyor.</p>
+      <p>• Fakirliğe alışmamızı isteyenler, halkın zekâsını hiç tanımamış demektir.</p>
+      <p>• Bizi geri bırakan şey yoksulluk değil, susturulmuş doğrulardır.</p>
+      <p>• Halk, artık makas istemiyor. Kendine ait bir yol açmak istiyor.</p>
+      <p>• Direniş bazen afiş değil, bir annenin sessiz bakışıdır.</p>
+      <p>• Bu bir isyan değil, uyanıştır. Çünkü artık uyumak bile lüks oldu.</p>
+      <p>• Onlar korksun diye sustuk. Şimdi biz konuşuyoruz, onlar sessiz.</p>
+      <p>• Bir gün bu sayfa kanatlanırsa, bil ki halk uyanmıştır.</p>
+      <p>• Sokak lambaları yanıyor ama kimse aydınlanmıyor.</p>
+      <p>• Öğretmen aç, öğrenci umutsuz. Bu, bir sınav değil, bir çöküş provasıdır.</p>
+      <p>• Polis, askerin gözü yaşlı. Çünkü korumakla emredilmiş ama susturulmuşlar.</p>
+      <p>• Zengine hukuk, fakire nasihat yazılmış bir sistemde, biz adalet arıyoruz.</p>
+      <p>• Televizyonlardan gelen gürültü, halkın içindeki sessizliği bastıramıyor artık.</p>
+      <p>• Herkesin cebinde telefon var ama kimse aranmıyor: Çünkü kimse duymuyor.</p>
+      <p>• Bu halk aç değil, adaletsizliğe doydu. Şimdi ruhunu doyuracak bir çağ arıyor.</p>
+
+      <p class="baslik">TÜRK NEDİR? TÜRK OLMAK NE DEMEKTİR?</p>
+      <p>• Türk demek, sadece bir etnik kimlik değil; bir duruş, bir bilinç, bir medeniyet taşıyıcısı demektir.</p>
+      <p>• Türk olmak, zulme karşı susmamak, haksızlığa kafa tutmak demektir.</p>
+      <p>• Türk olmak, vicdanı körelmeyen, merhameti unutmayan bir yürekle yürümektir.</p>
+      <p>• Türk, adaletin tarafında durduğu sürece Türktür.</p>
+      <p>• Türk olmak, geçmişini unutmadan geleceği inşa etmeye ant içmektir.</p>
+      <p>• Türk, yalnızca kimliğini değil, karakterini de taşır.</p>
+      <p>• Türk olmak, Mustafa Kemal gibi “Hayır!” diyebilmektir. Korkmadan, susmadan, dimdik.</p>
+      <p>• Türk, öfkesiyle değil, onuruyla savaşır. Düşmanla değil, zulümle savaşa girer.</p>
+      <p>• Türk olmak, sadece doğuştan değil, duruştan gelir.</p>
+    </div>
+  </div>
+</body>
+</html>

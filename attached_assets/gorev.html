@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HALK olarak - 40 Görev</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 30px 0;
+      color: #fff;
+      text-shadow: 0 0 10px black;
+    }
+
+    .gorev-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gorev-kutu {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid gold !important;
+      border-radius: 12px;
+      padding: 12px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
+      transition: transform 0.2s;
+      backdrop-filter: blur(4px);
+      max-height: 420px;
+      overflow-y: auto;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .gorev-kutu::after {
+      content: "";
+      display: block;
+      height: 30px;
+    }
+    
+    .gorev-kutu::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.25);
+      z-index: 0;
+    }
+
+    .gorev-kutu:hover {
+      transform: scale(1.03);
+    }
+
+    .gorev-kutu h2 {
+      font-size: 24px;
+      color: gold;
+      background-color: rgba(0, 0, 0, 0.4);
+      text-shadow: 1px 1px 3px black;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .gorev-kutu p {
+      font-size: 16px;
+      color: #eee;
+      margin: 10px 0 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 6px 10px;
+      border-radius: 6px;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px black;
+      font-weight: 500;
+    }
+
+    .gorev-kutu button {
+      background: linear-gradient(135deg, #d4af37, #a30000);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto 10px;
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #000;
+    }
+
+    .modal-content {
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #00ffcc;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  color: #fff;
+  text-align: left;
+}
+
+    .modal-close {
+      color: #fff;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #00ffcc;
+    }
+
+    #pulseCircle {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin-left: -50px;
+      margin-top: -50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 204, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+      animation: pulseAnim 1.2s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes pulseAnim {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 0.3; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    #whisperText {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5rem;
+      font-style: italic;
+      animation: fadeWhisper 3s infinite;
+      z-index: 2;
+      pointer-events: none;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    @keyframes fadeWhisper {
+      0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      30% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    }
+
+    @media (max-width: 600px) {
+      #pulseCircle {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+      }
+    }
+    .kurucu-kart {
+      border: 2px solid #ffd700 !important;
+      background-color: rgba(255, 215, 0, 0.05);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .tamamlanan-kart {
+      border: 2px solid #44ff44 !important;
+      box-shadow: 0 0 12px rgba(68, 255, 68, 0.4);
+    }
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+    font-size: 14px;
+  }
+  .kutu-icerik {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gorev-kutu {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .gorev-kutu h2 {
+    font-size: 20px;
+  }
+
+  .gorev-kutu p {
+    font-size: 15px;
+  }
+
+  .gorev-kutu button {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+
+  #aramaKutusu {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    margin: 25% auto;
+    font-size: 13px;
+  }
+
+  .gorev-kutu {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .gorev-kutu h2 {
+    font-size: 18px;
+  }
+
+  .gorev-kutu p {
+    font-size: 14px;
+  }
+
+  .gorev-kutu button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  #aramaKutusu {
+    font-size: 14px;
+  }
+
+  select, input, textarea, button {
+    font-size: 14px;
+  }
+  }
+#kategoriButonlari button.active {
+  background-color: #00ffcc;
+  color: #111;
+  font-weight: bold;
+  border: 1px solid #00ffaa;
+}
+
+  .modal-content h2,
+  .modal-content p,
+  .modal-content label,
+  .modal-content textarea,
+  .modal-content input {
+    background-color: rgba(0,0,0,0.4);
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+
+  .modal-close:hover {
+    color: #00ffcc;
+    text-shadow: 0 0 6px #00ffcc;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+
+  .modal::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: -1;
+  }
+    @media (max-width: 600px) {
+      .gorev-grid {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .gorev-kutu {
+        width: 90vw !important;
+        font-size: 1rem !important;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .gorev-kutu h2 {
+        font-size: 1.1rem !important;
+      }
+
+      .gorev-kutu p {
+        font-size: 0.95rem !important;
+      }
+
+      .gorev-kutu button {
+        font-size: 1rem !important;
+        padding: 0.6rem 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.6rem !important;
+        padding: 0 1rem;
+      }
+
+      #pulseCircle {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+      }
+
+      #whisperText {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .gorev-kutu h2 {
+        font-size: 1rem !important;
+      }
+
+      .gorev-kutu p {
+        font-size: 0.9rem !important;
+      }
+
+      .gorev-kutu button {
+        font-size: 0.95rem !important;
+      }
+
+      h1 {
+        font-size: 1.4rem !important;
+      }
+    }
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvyOcx6XIBFRDPHZ8y5IxREZya7CjNnYo",
+      authDomain: "simay-zincir.firebaseapp.com",
+      projectId: "simay-zincir",
+      storageBucket: "simay-zincir.firebasestorage.app",
+      messagingSenderId: "146481265950",
+      appId: "1:146481265950:web:3b9d021e4033f1e94fdd0f"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    window.simaySubmitBasvuru = async function(event, gorev) {
+      event.preventDefault();
+  
+      const ad = document.getElementById("ad").value;
+      const eposta = document.getElementById("eposta").value;
+      const not = document.getElementById("not").value;
+  
+      try {
+        await addDoc(collection(db, "gorevBasvurulari"), {
+          ad,
+          eposta,
+          not,
+          gorevId: gorev.id,
+          gorevBaslik: gorev.baslik,
+          timestamp: serverTimestamp()
+        });
+  
+        alert("Başvurunuz alındı. Teşekkür ederiz.");
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        const now = new Date().toLocaleString("tr-TR");
+        const kod = "SIMAY-" + Math.floor(100000 + Math.random() * 900000);
+
+        pdf.text("GÖREV BAŞVURU BELGESİ", 20, 20);
+        pdf.text(`Görev: ${gorev.baslik}`, 20, 40);
+        pdf.text(`Ad Soyad: ${ad}`, 20, 50);
+        pdf.text(`E-Posta: ${eposta}`, 20, 60);
+        pdf.text(`Not: ${not || "Yok"}`, 20, 70);
+        pdf.text(`Tarih: ${now}`, 20, 80);
+        pdf.text(`Onay Kodu: ${kod}`, 20, 90);
+
+        pdf.save(`basvuru-gorev${gorev.id}.pdf`);
+        closeModal();
+      } catch (e) {
+        alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+        console.error("Hata:", e);
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div id="pulseCircle"></div>
+  <div id="whisperText">Zaman geçiyor...</div>
+  <audio src="tic-tac-loop.mp3" autoplay loop></audio>
+
+  <h1>101. YILINDA HALKIN ANDI: 100 GÖREVLE YENİDEN DOĞUŞ</h1>
+  
+
+  <div style="margin: 40px auto; text-align: center;">
+    <a href="kurucu.html" style="text-decoration: none;">
+      <button style="
+        background: linear-gradient(to right, #ffcc00, #ffaa00);
+        color: #111;
+        font-weight: bold;
+        font-size: 18px;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 10px;
+        box-shadow: 0 0 14px rgba(255, 204, 0, 0.6);
+        cursor: pointer;
+        margin-top: 20px;
+      ">
+        🧩 GÖREV 0: KURUCUNUN EKSİKLERİ
+      </button>
+    </a>
+  </div>
+
+  <div id="gorevSayac" style="margin-bottom: 10px; font-style: italic; color: #ccc;"></div>
+  <div id="tamamlananSayac" style="margin-bottom: 20px; font-style: italic; color: #88ff88;"></div>
+  
+  <div id="gorevGrid" class="gorev-grid"></div>
+  
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <form id="basvuruForm" onsubmit="simaySubmitBasvuru(event, currentGorev)" style="margin-top:20px;">
+        <label for="ad">Adınız Soyadınız:</label><br>
+        <input type="text" id="ad" name="ad" required style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+        <label for="eposta">E-posta:</label><br>
+        <input type="email" id="eposta" name="eposta" required style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+        <label for="not">Not (isteğe bağlı):</label><br>
+        <textarea id="not" name="not" rows="3" style="width: 100%; padding: 8px;"></textarea><br>
+
+        <label for="dosya">Dosya yükle (PDF, JPEG):</label><br>
+        <input type="file" id="dosya" name="dosya" accept=".pdf,.jpg,.jpeg,.png" style="margin-bottom: 10px;" /><br>
+
+        <button type="submit" style="margin-top: 10px; background-color: #00ffcc; color: #111; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold;">Gönder</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const gorevData = [
+        {
+          "id": 1,
+          "baslik": "🧩 1. Görev: Kitapla Bir Hayat Değiştir",
+              "cagri": "Mahallende bir çocuğa kitap hediye et ve onunla okuma saati düzenle.",
+              "aciklama": "Çocukların eğitime olan ilgisini artırmak için bir çocuğa kitap hediye et. Okuma saatini planla, o anları kaydet.",
+              "kategori": "eğitim",
+              "kontenjan": 10,
+              "tamamlayan": 0
+            },
+            {
+              "id": 2,
+              "baslik": "🧩 2. Görev: Değerleri Kaybetme!",
+              "cagri": "Ailende veya çevrende unutulmaya yüz tutmuş bir değeri yazıya dök ve paylaş.",
+              "aciklama": "Unutulmaya yüz tutmuş gelenek, hikaye veya deyimi araştır, dijital ortamda paylaş.",
+              "kategori": "kültür",
+              "kontenjan": 10,
+              "tamamlayan": 0
+            },
+            {
+              "id": 3,
+              "baslik": "🧩 3. Görev: Yeşil Alan Oluştur",
+              "cagri": "Evinizdeki atıl tarım alanı yeşillendir ya da bir saksıda üretime başla.",
+              "aciklama": "Bir yeşil alan yarat, toprakla bağ kur. Saksıda yeşillik yetiştirip foto ile belgeleyebilirsin.",
+              "kategori": "çevre",
+              "kontenjan": 10,
+              "tamamlayan": 0
+            },
+            {
+              "id": 4,
+              "baslik": "🧩 4. Görev: Parklara Geri Dönüşüm Getir",
+              "cagri": "Mahallendeki bir çocuk parkına çevreye uygun geri dönüşüm kutusu yerleştir.",
+              "aciklama": "Parkları daha çevre dostu hale getirmek için geri dönüşüm kutusu yerleştir ve bunu belgeleyerek paylaş.",
+              "kategori": "çevre",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 5,
+              "baslik": "🧩 5. Görev: Müziğe Ses Ver",
+              "cagri": "Ses sistemciler ya da beste yapan birini destekle, mini bir kayıt oluştur.",
+              "aciklama": "Sanatsal üretimi desteklemek için çevrendeki yetenekleri tanıt ve kayıt altına al.",
+              "kategori": "sanat",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 6,
+              "baslik": "🧩 6. Görev: Görsel Yarat",
+              "cagri": "Bir resim ya da tasarım üretip #Gorev6 etiketiyle paylaş.",
+              "aciklama": "Sanatsal ifade özgürlüğünü kullanarak kendi resim veya grafik çalışmanı üret.",
+              "kategori": "sanat",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 7,
+              "baslik": "🧩 7. Görev: Mozaik Duvar",
+              "cagri": "Mahallende bir duvar temizletip gençlerle birlikte mozaik/pano oluştur.",
+              "aciklama": "Toplumsal estetik bilinci oluşturmak için bir duvarı birlikte sanatla dönüştürün.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 8,
+              "baslik": "🧩 8. Görev: Kadınlar İçin Alan Aç",
+              "cagri": "Kadınlara özel bir bilinçlenme toplantısı organize et.",
+              "aciklama": "Kadının toplumdaki rolünü güçlendirmek için eğitici ve dayanışmacı bir ortam oluştur.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 9,
+              "baslik": "🧩 9. Görev: Umut Mesajı",
+              "cagri": "Yaşadığın bir zorluğu yazıya dökerek başkalarına umut olacak şekilde paylaş.",
+              "aciklama": "Zorlukların paylaşıldığında nasıl güce dönüşebildiğini göstermek için kendi hikayeni anlat.",
+              "kategori": "psikoloji",
+              "kontenjan": 5,
+              "tamamlayan": 0
+            },
+            {
+              "id": 10,
+              "baslik": "🧩 10. Görev: Gönüllü Mentor Ol",
+              "cagri": "Gençlik merkezinde gönüllü mentorluk başvurusu yap.",
+              "aciklama": "Bir gencin hayatına dokunmak için mentorluk başvurusunda bulun ve deneyimlerini paylaş.",
+              "kategori": "eğitim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 11,
+              "baslik": "🧩 11. Görev: Kadın Kararlara Dahil",
+              "cagri": "Kadınların katıldığı bir karar toplantısı düzenle ya da bir öneride bulun.",
+              "aciklama": "Kadınların karar süreçlerine katılımını artırmak için toplantı düzenle veya resmi öneri sun.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 12,
+              "baslik": "🧩 12. Görev: Müzik Ruhun Gıdasıdır",
+              "cagri": "Bir çocukla birlikte sanat müziği dinleyin, o anı videoya kaydedin.",
+              "aciklama": "Geleneksel sanat müziklerini yeni nesillere aktarmak için bir çocukla birlikte dinleme etkinliği düzenle.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 13,
+              "baslik": "🧩 13. Görev: Sesi Yükselt",
+              "cagri": "Bu toplum yıllarca sessizce size katlandı. Şimdi sıra sizde!",
+              "aciklama": "Bu sayfalarda yer alan playlistleri sokaklarda çalın, medya engelliyorsa sesinizle duyurun.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 14,
+              "baslik": "🧩 14. Görev: Komşuya El Uzat",
+              "cagri": "Bir komşunun ihtiyacına karşılıksız yardım et.",
+              "aciklama": "Yakın çevrendeki bir komşunun ihtiyacını tespit et ve hiçbir karşılık beklemeden yardım et. Bu dayanışmayı belgeleyin.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 15,
+              "baslik": "🧩 15. Görev: Bilimle İlham Ver",
+              "cagri": "Bir bilim dergisini bir gence hediye et ya da birlikte oku.",
+              "aciklama": "Gençlerin bilimle tanışması için bir bilim yayını satın alıp hediye et veya birlikte okuyarak fikir üretin.",
+              "kategori": "eğitim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 16,
+              "baslik": "🧩 16. Görev: Ahlaki Örnek Ol",
+              "cagri": "Ailende örnek bir ahlaki davranışı görünür hale getir.",
+              "aciklama": "Topluma aktarılması gereken değerli bir davranışı ailende belgeleyerek ya da anlatarak görünür hale getir.",
+              "kategori": "ahlak",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 17,
+              "baslik": "🧩 17. Görev: Karşıt Görüşleri Dinle",
+              "cagri": "Bir fikir tartışmasında karşıt görüşü dinle, özetle.",
+              "aciklama": "Fikir özgürlüğünün temeli karşıt görüşlere kulak vermektir. Bir tartışmada karşıt görüşü anlamaya çalış ve notlar al.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 18,
+              "baslik": "🧩 18. Görev: Engeli Aşan Destek",
+              "cagri": "Bir engelli bireyin ihtiyaçlarını gözlemleyip destek önerisi sun.",
+              "aciklama": "Erişilebilirlik ve farkındalık için engelli bireylerin yaşamını gözlemle ve pratik destek önerileri geliştir.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 19,
+              "baslik": "🧩 19. Görev: Sebze Yetiştir",
+              "cagri": "Balkon ya da bahçede küçük bir sebze yetiştir.",
+              "aciklama": "Gıda bilinci ve üretkenlik için evde ya da balkonda sebze yetiştirin. Süreci belgeleyin.",
+              "kategori": "çevre",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 20,
+              "baslik": "🧩 20. Görev: Tiyatroyla Tanış",
+              "cagri": "Yerel tiyatroya bir gençle birlikte git.",
+              "aciklama": "Sanatın gelişmesine katkı sağlamak için yerel tiyatro etkinliğine bir genci davet et ve deneyimi paylaş.",
+              "kategori": "sanat",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 21,
+              "baslik": "🧩 21. Görev: Geçmişe Kulak Ver",
+              "cagri": "Yaşlı birinden geçmiş bayramları dinle ve kaydet.",
+              "aciklama": "Geçmişteki kutlamaları, gelenekleri ve birlik duygusunu yaşlı birinden dinleyerek araştır. Ses kaydı veya yazılı metin hazırla.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 22,
+              "baslik": "🧩 22. Görev: Özgürlük Sözün Olsun",
+              "cagri": "Özgürlük hakkında kendi sözlerini yaz.",
+              "aciklama": "Öz farkındalık ve ifade özgürlüğünü desteklemek için özgürlük kavramına dair kendi cümlelerini üret.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 23,
+              "baslik": "🧩 23. Görev: Kökenlerini Keşfet",
+              "cagri": "Atalarının yaşadığı bir yerin tarihini araştır.",
+              "aciklama": "Ailene ait tarihi mekanları, köyleri veya şehirleri araştır, belge ve bu mirası paylaş.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 24,
+              "baslik": "🧩 24. Görev: Dijital Detoks Günü",
+              "cagri": "1 gün dijital detoks yapıp üretim odaklı yaşa.",
+              "aciklama": "Telefon, internet ve sosyal medyadan 24 saat uzak durarak daha bilinçli bir güne adım at. Bu süreci günlük olarak yaz.",
+              "kategori": "bilinç",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 25,
+              "baslik": "🧩 25. Görev: Anmayı Unutma",
+              "cagri": "Bir anma törenine katıl ya da organize et.",
+              "aciklama": "Toplumun ortak yas ve anma kültürü için şehit, sanatçı, bilim insanı ya da önemli bir figürü anma etkinliği düzenle.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 26,
+              "baslik": "🧩 26. Görev: Tarihi Canlandır",
+              "cagri": "Tarihi bir olayı resmet ya da video üret.",
+              "aciklama": "Unutulmaması gereken bir tarihi olayı seç, onu sanatla anlat (resim, kısa film, animasyon, tiyatro).",
+              "kategori": "tarih",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          <!-- anahtar-parca1: U0lN -->
+          {
+              "id": 27,
+              "baslik": "🧩 27. Görev: Sanatçı Tanı",
+              "cagri": "Bir sanatçıyı 3 kişiye tanıt.",
+              "aciklama": "Toplumda sanata verilen değeri artırmak için bir yerli sanatçıyı çevrene anlat, eserlerini paylaş.",
+              "kategori": "sanat",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 28,
+              "baslik": "🧩 28. Görev: İnancı Tanı",
+              "cagri": "Farklı inançtan bir arkadaşla karşılıklı öğrenme sohbeti yap.",
+              "aciklama": "Farklılıkları anlamak için saygılı ve meraklı bir sohbet ortamında karşılıklı sorular sorun, öğrenin.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 29,
+              "baslik": "🧩 29. Görev: Özgürlüğü Sor",
+              "cagri": "3 kişiye özgürlük kavramı hakkında soru sor, yanıtlarını kaydet.",
+              "aciklama": "Toplumun özgürlük anlayışını anlamak için 3 farklı insana bu kavramı sor ve cevaplarını yaz.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 30,
+              "baslik": "🧩 30. Görev: Halk Gazetesi",
+              "cagri": "Bir günlüğüne gazete çıkar ya da haber yap.",
+              "aciklama": "Yaşadığın bölgedeki önemli bir olayı haber formatında yazarak veya bir bülten hazırlayarak topluma duyur.",
+              "kategori": "medya",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 31,
+              "baslik": "🧩 31. Görev: Renkli İlham",
+              "cagri": "Birine resim defteri veya boya hediye et.",
+              "aciklama": "Yaratıcılığı desteklemek için birine resim malzemesi hediye et ve onunla birlikte yaratma sürecine katıl.",
+              "kategori": "sanat",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 32,
+              "baslik": "🧩 32. Görev: Hikaye Dinle",
+              "cagri": "Yaşlı birinden geçmişe dair hikaye dinle.",
+              "aciklama": "Kültürel mirası anlamak ve korumak için büyüklerinden bir yaşam hikayesi dinleyip kaydet.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 33,
+              "baslik": "🧩 33. Görev: İlham Sokakta",
+              "cagri": "“İlham nedir?” konulu sokak röportajı yap.",
+              "aciklama": "İlham veren düşünceleri sokakta sor ve gelen yanıtları derleyerek video ya da yazıya dök.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 34,
+              "baslik": "🧩 34. Görev: Halkın Başarısı",
+              "cagri": "Halkın başarılarını anlatan bir içerik paylaş.",
+              "aciklama": "Toplum içindeki gösterilmeyen başarıları yazılı veya görsel olarak paylaşarak motive edici bir içerik üret.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 35,
+              "baslik": "🧩 35. Görev: Büyükanne'nin Anısı",
+              "cagri": "Büyükannenin hayatına dair yazılı bir anı oluştur.",
+              "aciklama": "Aile büyüklerinin yaşam tecrübelerinden yola çıkarak bir anısını yazılı hale getir ve paylaş.",
+              "kategori": "aile",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 36,
+              "baslik": "🧩 36. Görev: Temizlikte Birlik",
+              "cagri": "Komşularla imece usulü temizlik etkinliği yap.",
+              "aciklama": "Sokak, park veya apartman gibi ortak alanlarda çevre temizliği yaparak toplumsal dayanışmayı artır.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 37,
+              "baslik": "🧩 37. Görev: Hakkaniyet Talebi",
+              "cagri": "Belediyeye hakkaniyetli bir hizmet talebi gönder.",
+              "aciklama": "Yerel yönetimlere yapıcı ve adil bir hizmet talebinde bulunarak demokratik katılımı teşvik et.",
+              "kategori": "adalet",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 38,
+              "baslik": "🧩 38. Görev: Aile Ağacı",
+              "cagri": "Aile ağacını çizmeye başla.",
+              "aciklama": "Kendi kökünü ve geçmişini tanımak için aileni kuşaklara ayırarak bir soy ağacı çiz.",
+              "kategori": "aile",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 39,
+              "baslik": "🧩 39. Görev: Anayasa Okuma Saati",
+              "cagri": "Anayasayı oku, anlamadıklarını hukukçuya sor.",
+              "aciklama": "Haklarını öğrenmek ve bilinçli birey olmak için anayasa metnini oku, anlamadığın kısımları uzmana danış.",
+              "kategori": "hukuk",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 40,
+              "baslik": "🧩 40. Görev: Medeniyet Eksiği",
+              "cagri": "Medeniyet eksiğini tespit et, çözüm önerisi yaz.",
+              "aciklama": "Toplumun ilerlemesi için fark ettiğin bir medeniyet eksiğini tanımla ve bunun için uygulanabilir bir çözüm yaz.",
+              "kategori": "medeniyet",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          }
+        ,
+        {
+          "id": 41,
+          "baslik": "🧩 41. Görev: Kitap Zinciri",
+          "cagri": "Bir okul kütüphanesine kitap bağışla.",
+          "aciklama": "Eğitimde fırsat eşitsizliğini azaltmak için yerel bir okula kitap desteğinde bulun.",
+          "kategori": "eğitim",
+          "kontenjan": 5,
+          "tamamlayan": 0,
+          "arkaplan": "gorev-1.jpg"
+        },
+        {
+          "id": 42,
+          "baslik": "🧩 42. Görev: Zafer Filmi",
+          "cagri": "Zafer gününü canlandıran kısa film çek.",
+          "aciklama": "Milli değerleri yaşatmak için bir zaferi anlatan kısa film veya animasyon üret.",
+          "kategori": "tarih",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 43,
+          "baslik": "🧩 43. Görev: Birlik Konuşması",
+          "cagri": "Bir toplulukta birlik temalı konuşma yap.",
+          "aciklama": "Birlik ve beraberlik temasını işleyen bir konuşma yaparak çevrendekileri motive et.",
+          "kategori": "ifade",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 44,
+          "baslik": "🧩 44. Görev: Aile İstişare Saati",
+          "cagri": "Ailende haftalık istişare saati başlat.",
+          "aciklama": "Aile içinde güçlü iletişim kurmak için her hafta belirli bir saati fikir paylaşımı ve dinleme zamanı olarak belirle.",
+          "kategori": "aile",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 45,
+          "baslik": "🧩 45. Görev: Geleceği Hayal Et",
+          "cagri": "Geleceği anlatan bir içerik üret.",
+          "aciklama": "Hayal ettiğin Türkiye’yi ya da dünya geleceğini görsel, yazılı veya sesli olarak anlat.",
+          "kategori": "vizyon",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 46,
+          "baslik": "🧩 46. Görev: Eğitim Eşitsizliğini Belgele",
+          "cagri": "Eğitim eşitsizliği tespiti yap ve bildir.",
+          "aciklama": "Çevrende eğitime erişimde yaşanan bir eşitsizliği gözlemle, belgeleyip yetkililere bildir ya da topluma duyur.",
+          "kategori": "eğitim",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 47,
+          "baslik": "🧩 47. Görev: Türkçülük Kitabı",
+          "cagri": "Türkçülükle ilgili kitap hediye et.",
+          "aciklama": "Milli bilinç kazandırmak için bir gence Türkçülük temasında yazılmış bir kitap hediye et.",
+          "kategori": "kültür",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 48,
+          "baslik": "🧩 48. Görev: Fetih Hikayesi",
+          "cagri": "Fetih hikayesini dramatize et.",
+          "aciklama": "Tarihi bir fethi dramatik bir şekilde anlatan bir hikaye yaz ya da kısa film/video üret.",
+          "kategori": "tarih",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 49,
+          "baslik": "🧩 49. Görev: Hayat Tavsiyesi",
+          "cagri": "Hayat tavsiyesi al ve yazıya dök.",
+          "aciklama": "Etrafındaki büyüklerden bir yaşam tavsiyesi iste, bunu yazılı hale getirerek başkalarına da ilham ver.",
+          "kategori": "aile",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        },
+        {
+          "id": 50,
+          "baslik": "🧩 50. Görev: Yabancı Yayına Tepki",
+          "cagri": "Yabancı bir yayın eleştirisi yap ve yerli çözüm öner.",
+          "aciklama": "Yabancı bir medya yayınının olumsuz etkisini analiz et ve yerine yerli bir alternatif öner.",
+          "kategori": "medya",
+          "kontenjan": 5,
+          "tamamlayan": 0
+        }
+        ,
+{
+  "id": 51,
+  "baslik": "🧩 51. Görev: Zafer Anını Yaz",
+  "cagri": "Zafer dolu anını yazıya dök ve paylaş.",
+  "aciklama": "Başarılı olduğun bir anı, gurur duyduğun bir zamanı yaz ve insanlara ilham ver.",
+  "kategori": "ifade",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 52,
+  "baslik": "🧩 52. Görev: Gerçekten Gerekli",
+  "cagri": "Gerçekten gerekli bir karar al ve uygula.",
+  "aciklama": "Hayatına pozitif etki edecek bir değişiklik yap, bunu planla, uygula ve sonucunu paylaş.",
+  "kategori": "bilinç",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 53,
+  "baslik": "🧩 53. Görev: Onurlu Duruş",
+  "cagri": "Topluluk önünde onurlu duruşu anlat.",
+  "aciklama": "Doğru bildiğin şeyin arkasında durduğun bir anı paylaş ya da böyle birini anlat.",
+  "kategori": "ahlak",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 54,
+  "baslik": "🧩 54. Görev: Gönüllü Öğretmenlik",
+  "cagri": "Okuma yazma bilmeyene gönüllü öğretmenlik yap.",
+  "aciklama": "Etrafında okuma yazma bilmeyen birine gönüllü öğretmenlik yaparak topluma katkıda bulun.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 55,
+  "baslik": "🧩 55. Görev: Adalet Olayı Paylaş",
+  "cagri": "Adaleti anlatan bir olayı paylaş.",
+  "aciklama": "Adalet duygusunu pekiştiren yaşadığın ya da duyduğun bir olayı belgeleyip paylaş.",
+  "kategori": "adalet",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 56,
+  "baslik": "🧩 56. Görev: Ahlaki Duruş Göster",
+  "cagri": "Ahlaki bir davranışı görünür kıl.",
+  "aciklama": "Gördüğün veya sergilediğin ahlaki bir davranışı yazılı ya da görsel şekilde paylaşarak topluma örnek ol.",
+  "kategori": "ahlak",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 57,
+  "baslik": "🧩 57. Görev: Cumhuriyet Panosu",
+  "cagri": "Cumhuriyet değerleri panosu hazırla.",
+  "aciklama": "Atatürk'ün ilke ve inkılaplarını yansıtan bir pano ya da afiş tasarımı yap ve sergile.",
+  "kategori": "kültür",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 58,
+  "baslik": "🧩 58. Görev: Kız Çocuk Eğitimi",
+  "cagri": "Bir kız çocuğunun eğitimi için destek ağı kur.",
+  "aciklama": "Eğitime erişimde zorluk yaşayan bir kız çocuğuna yardım için yerel bir destek sistemi geliştir.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 59,
+  "baslik": "🧩 59. Görev: Tarihi Belgele",
+  "cagri": "Tarihi bir olayı belgeleyip paylaş.",
+  "aciklama": "Yerel veya ulusal öneme sahip bir tarihi olayı arşivlerden, kişilerden ya da mekanlardan araştır ve kaydet.",
+  "kategori": "tarih",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+          {
+              "id": 60,
+              "baslik": "🧩 60. Görev: Toprağa Ses Ver",
+              "cagri": "Köylüyle röportaj yap, toprağın anlamını kaydet.",
+              "aciklama": "Köy hayatında üretimin anlamını, zorluğunu ve önemini anlatan bir röportaj yaparak topluma sun.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 61,
+              "baslik": "🧩 61. Görev: Yazarla Tanış",
+              "cagri": "Bir yazarın eserini gençle birlikte incele.",
+              "aciklama": "Yerel ya da önemli bir yazarın kitabını bir gence tanıt, birlikte okuyun ve tartışın.",
+              "kategori": "eğitim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 62,
+              "baslik": "🧩 62. Görev: Modernleşme Tespiti",
+              "cagri": "Modernleşme ihtiyacını gözlemle ve öner.",
+              "aciklama": "Bir toplumsal alanda (eğitim, trafik, iletişim vb.) modernleşme eksiği tespit et ve çözüm önerisi üret.",
+              "kategori": "vizyon",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 63,
+              "baslik": "🧩 63. Görev: Karşıt Fikri Anla",
+              "cagri": "Tartıştığın konularda karşıt görüşü anlamaya çalış.",
+              "aciklama": "Fikir ayrılıklarında karşındaki kişinin bakış açısını nesnel bir şekilde özetleyerek empati kur.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 64,
+              "baslik": "🧩 64. Görev: Düşünceyi Dijitale Aktar",
+              "cagri": "Düşünce mirasını dijital ortama aktar.",
+              "aciklama": "Ailene, toplumuna ya da yaşamına ait önemli fikirleri belgeleyip dijital ortamda sakla ya da paylaş.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 65,
+              "baslik": "🧩 65. Görev: Cumhuriyet Afişi",
+              "cagri": "Cumhuriyet için şiir/afiş üret.",
+              "aciklama": "Cumhuriyet değerlerine dair bir şiir yaz ya da grafik afiş hazırla. Paylaşarak yayılmasına katkıda bulun.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 66,
+              "baslik": "🧩 66. Görev: Çalışma Alışkanlığı Geliştir",
+              "cagri": "Çalışma azmini artıran bir alışkanlık geliştir.",
+              "aciklama": "Verimliliği artırmak için kendine düzenli tekrar edebileceğin bir çalışma alışkanlığı edin ve deneyimini paylaş.",
+              "kategori": "bilinç",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 67,
+              "baslik": "🧩 67. Görev: Moral Mesajı Yolla",
+              "cagri": "Güvenlik görevlisine moral mesajı gönder.",
+              "aciklama": "Zor şartlarda çalışan bir güvenlik çalışanına moral verici bir mektup ya da mesaj gönder.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 68,
+              "baslik": "🧩 68. Görev: Öğretmen Hikayesi",
+              "cagri": "Bir öğretmenin etkisini anlatan hikaye yaz.",
+              "aciklama": "Seni etkileyen bir öğretmenin hayatına dokunuşunu anlatan yazılı bir anını kaleme al.",
+              "kategori": "eğitim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 69,
+              "baslik": "🧩 69. Görev: Bilimi Halklaştır",
+              "cagri": "Bilimsel gelişmeyi halka anlatan sunum hazırla.",
+              "aciklama": "Bir bilimsel gelişmeyi herkesin anlayabileceği bir şekilde açıklayan sunum ya da görsel içerik oluştur.",
+              "kategori": "bilim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 70,
+              "baslik": "🧩 70. Görev: Kadını Görünür Kıl",
+              "cagri": "Topluma katkı sağlayan bir kadını görünür kıl.",
+              "aciklama": "Çevrende fedakarlığı, bilgisi ya da cesaretiyle özel bir kadını tanıtıcı bir içerikle destekle.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          }
+          ,
+{
+  "id": 71,
+  "baslik": "🧩 71. Görev: İçindeki Toplumu Yaz",
+  "cagri": "İçindeki birey ve toplum yönünü yaz.",
+  "aciklama": "Toplumla bağlantılarını sorgulayan bir yazı kaleme al. Toplumdaki rolünü ve bireysel sorumluluklarını ifade et.",
+  "kategori": "bilinç",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 72,
+  "baslik": "🧩 72. Görev: Hizmet Edeni Anlat",
+  "cagri": "Hizmet eden birini görünür kıl.",
+  "aciklama": "Çevrende sessizce topluma hizmet eden bir kişiyi tanıtıcı bir video, röportaj ya da yazı ile anlat.",
+  "kategori": "toplum",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 73,
+  "baslik": "🧩 73. Görev: Yerel Kahramanı Anlat",
+  "cagri": "Yerel bağımsızlık kahramanını anlat.",
+  "aciklama": "Yöresel tarihinde yer alan bir kahramanı araştır ve onun bağımsızlık mücadelesini toplumla paylaş.",
+  "kategori": "tarih",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 74,
+  "baslik": "🧩 74. Görev: Yerli Çözüm Üret",
+  "cagri": "Dış bağımlılığı azaltan yerli bir çözüm öner.",
+  "aciklama": "Bir alanda (enerji, gıda, teknoloji) dış bağımlılığı azaltacak yerli üretim odaklı bir fikir üret.",
+  "kategori": "vizyon",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 75,
+  "baslik": "🧩 75. Görev: Hayal Kur Yıldızlara Bak",
+  "cagri": "Bir çocukla birlikte yıldızlara bakarak hayal kur.",
+  "aciklama": "Bir çocukla birlikte gece yıldızlara bakarak hayal kurun. O hayali yazılı ya da görsel olarak kaydedin.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 76,
+  "baslik": "🧩 76. Görev: Adil Hizmet Denetimi",
+  "cagri": "Yerel yönetim hizmetini adalet açısından değerlendir.",
+  "aciklama": "Mahallendeki veya şehirdeki bir hizmetin adil dağıtılıp dağıtılmadığını gözlemle ve raporla.",
+  "kategori": "adalet",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 77,
+  "baslik": "🧩 77. Görev: İyi Vatandaşlık",
+  "cagri": "Bir komşunla iyi vatandaşlık pratiği yap.",
+  "aciklama": "Komşuluk ilişkilerini güçlendiren bir davranışta bulun. Bu deneyimi yazılı veya görsel olarak paylaş.",
+  "kategori": "toplum",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 78,
+  "baslik": "🧩 78. Görev: Hak İhlalini Belgele",
+  "cagri": "Bir insan hakkı ihlalini raporla.",
+  "aciklama": "Gözlemlediğin veya şahit olduğun bir hak ihlalini belgeleyerek topluma duyur ya da kurumlara bildir.",
+  "kategori": "hak",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 79,
+  "baslik": "🧩 79. Görev: Dijital Gençlik Kampanyası",
+  "cagri": "Gençler için dijital kampanya başlat.",
+  "aciklama": "Gençleri bilinçli tüketim, eğitim, sanat ya da teknoloji üzerine harekete geçirecek sosyal medya kampanyası düzenle.",
+  "kategori": "bilinç",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 80,
+  "baslik": "🧩 80. Görev: Masal Saati",
+  "cagri": "Çocuklara masal saati organize et.",
+  "aciklama": "Bir okulda, parkta veya evde çocuklara masal okuyarak onlarla hayal gücünü geliştiren bir etkinlik düzenle.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+          },
+{
+  "id": 81,
+  "baslik": "🧩 81. Görev: Milletin Yolunda",
+  "cagri": "Millete adanmış bir hayatı örnek al.",
+  "aciklama": "Toplum için çalışmış, fedakarlık yapmış bir kişinin hayatını incele, o kişiden ilham alarak yaz.",
+  "kategori": "toplum",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 82,
+  "baslik": "🧩 82. Görev: Saygı İle Konuş",
+  "cagri": "Fikirlerini açık ve saygılı şekilde ifade et.",
+  "aciklama": "Tartışmadan kaçmadan, saygı çerçevesinde fikirlerini ifade ettiğin bir ortam yaşadıysan anlat.",
+  "kategori": "ifade",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 83,
+  "baslik": "🧩 83. Görev: Tercüme Özeti",
+  "cagri": "Bir tercüme metni kendi cümlelerinle anlat.",
+  "aciklama": "Başka bir dilden çevrilmiş bir yazı, kitap ya da belgedeki anlamları kendi cümlelerinle özetle ve yay.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 84,
+  "baslik": "🧩 84. Görev: Basın Özgürlüğü",
+  "cagri": "Basın özgürlüğü üzerine içerik üret.",
+  "aciklama": "Basının tarafsızlığı ve özgürlüğünün topluma etkisi hakkında bir yazı ya da görsel içerik hazırla.",
+  "kategori": "ifade",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 85,
+  "baslik": "🧩 85. Görev: Millet Bilinci",
+  "cagri": "Millet bilincine dair hikaye yaz.",
+  "aciklama": "Halk olmanın, millet olmanın önemini anlatan kısa ve anlamlı bir hikaye yazarak yay.",
+  "kategori": "toplum",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 86,
+  "baslik": "🧩 86. Görev: Özgürlüğü Paylaş",
+  "cagri": "Özgürlükle ilgili bir zorluk yaşadıysan paylaş.",
+  "aciklama": "Baskılar, engeller veya yasaklar nedeniyle kendini ifade edemediğin bir anı anlat.",
+  "kategori": "ifade",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 87,
+  "baslik": "🧩 87. Görev: Bilimin Toplumsal Faydası",
+  "cagri": "Bilimin toplumsal faydasını anlatan içerik üret.",
+  "aciklama": "Bir bilimsel gelişimin toplumdaki somut etkilerini açıklayan bir video, grafik ya da yazı hazırla.",
+  "kategori": "bilim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 88,
+  "baslik": "🧩 88. Görev: Ekonomik Sorunu Göster",
+  "cagri": "Ekonomik bir sorun tespiti ve önerisi yap.",
+  "aciklama": "Çevrende gözlemlediğin bir ekonomik sorunu tespit et ve iyileştirme önerilerini paylaş.",
+  "kategori": "ekonomi",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+{
+  "id": 89,
+  "baslik": "🧩 89. Görev: Birine Kitap Oku",
+  "cagri": "Birine kitap oku ya da okuma öğret.",
+  "aciklama": "Bir çocuk, yetişkin ya da yaşlı bireye kitap oku ya da harfleri, heceleri birlikte çalışın.",
+  "kategori": "eğitim",
+  "kontenjan": 5,
+  "tamamlayan": 0
+},
+          {
+              "id": 90,
+              "baslik": "🧩 90. Görev: Geçmişe Hafıza Ol",
+              "cagri": "Geçmişteki bir olayı belgeleyerek hafıza oluştur.",
+              "aciklama": "Toplumun unuttuğu, üstü örtülen ya da bilinmeyen bir olayı belgeleyerek kayıt altına al.",
+              "kategori": "tarih",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 91,
+              "baslik": "🧩 91. Görev: Vatana Hazırla",
+              "cagri": "Bir genci vatani göreve hazırlamada destekle.",
+              "aciklama": "Sorumluluk, dayanışma, tarih bilinci gibi konularda bir genci bilinçli vatandaşlığa yönlendir.",
+              "kategori": "eğitim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 92,
+              "baslik": "🧩 92. Görev: Bilim İnsanını Tanıt",
+              "cagri": "Bir bilim insanını tanıt.",
+              "aciklama": "Ulusal ya da uluslararası bir bilim insanının hayatını ve çalışmalarını anlatan kısa bir biyografi oluştur.",
+              "kategori": "bilim",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 93,
+              "baslik": "🧩 93. Görev: Kültürel Geleneği Aktar",
+              "cagri": "Kültürel gelenekleri gençlere aktar.",
+              "aciklama": "Bir geleneği tanıtmak, anlatmak veya deneyimletmek üzere genç nesillerle etkinlik düzenle.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 94,
+              "baslik": "🧩 94. Görev: Ata Yadigarı Dijital",
+              "cagri": "Ata yadigarı bir nesneyi dijitale aktar.",
+              "aciklama": "Ailene ait eski bir belge, fotoğraf, mektup gibi değerli bir içeriği taratıp dijitalleştirerek koru.",
+              "kategori": "tarih",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 95,
+              "baslik": "🧩 95. Görev: Kültürel Miras Kampanyası",
+              "cagri": "Kültürel miras için kampanya başlat.",
+              "aciklama": "Unutulmaya yüz tutmuş bir kültürel miras unsurunu korumak ya da tanıtmak için sosyal medya kampanyası düzenle.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 96,
+              "baslik": "🧩 96. Görev: Fikir Özgürlüğü Anısı",
+              "cagri": "Fikir özgürlüğüne dair tanıklığını paylaş.",
+              "aciklama": "Kendi fikrini ifade ettiğin ve bir etkiyle karşılaştığın bir olayı yazılı şekilde anlat.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 97,
+              "baslik": "🧩 97. Görev: Kültür Tanıtım İçeriği",
+              "cagri": "Kültürel değer tanıtan bir içerik üret.",
+              "aciklama": "Yöresel bir yemek, giyim, gelenek ya da sanat türünü tanıtıcı bir içerik hazırla.",
+              "kategori": "kültür",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 98,
+              "baslik": "🧩 98. Görev: Özgürlük Mesajı",
+              "cagri": "Özgürlük hakkında düşündüren bir mesaj yaz.",
+              "aciklama": "Bireysel özgürlüğün tanımını yap ve topluma ilham verecek şekilde özgün bir mesaj oluştur.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 99,
+              "baslik": "🧩 99. Görev: İstiklal Nedir?",
+              "cagri": "İstiklal nedir sorusuna kendi cevabını ver.",
+              "aciklama": "Milli bağımsızlık, özgürlük, onur gibi kavramlara dair istiklal tanımını yap ve paylaş.",
+              "kategori": "ifade",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          },
+          {
+              "id": 100,
+              "baslik": "🧩 100. Görev: Başarıyı Paylaş",
+              "cagri": "Emekle kazanılmış bir başarıyı başkasıyla paylaş.",
+              "aciklama": "Kendin ya da çevrendeki birinin azimle elde ettiği başarıyı anlat ve bu motivasyonu başkalarına ulaştır.",
+              "kategori": "toplum",
+              "kontenjan": 5,
+              "tamamlayan": 0
+          }
+          ];
+
+      // Add arkaplan property to each gorev object
+      gorevData.forEach(g => {
+        g.arkaplan = `gorev-${g.id}.webp`;
+      });
+      // Update task counters before rendering tasks
+      document.getElementById("gorevSayac").innerText =
+        `Toplam Görev: ${gorevData.length}`;
+      document.getElementById("tamamlananSayac").innerText =
+        `Toplam Tamamlanan: ${gorevData.reduce((a, b) => a + b.tamamlayan, 0)}`;
+
+      const grid = document.getElementById("gorevGrid");
+      grid.innerHTML = "";
+
+      gorevData.forEach(g => {
+        const div = document.createElement("div");
+        div.className = "gorev-kutu";
+        if (g.arkaplan) {
+          div.style.backgroundImage = `url(${g.arkaplan})`;
+          div.style.backgroundSize = 'cover';
+          div.style.backgroundPosition = 'center';
+          div.style.backgroundRepeat = 'no-repeat';
+        }
+        if (g.id === 0) {
+          div.classList.add("kurucu-kart");
+        }
+        if (g.tamamlayan > 0) {
+          div.classList.add("tamamlanan-kart");
+        }
+        div.innerHTML = `
+          <div class="kutu-icerik">
+          <h2>${g.baslik}</h2>
+          <p><em>${g.cagri}</em></p>
+          <p>${g.aciklama}</p>
+          <p style="color:#0f0; font-size: 13px;">
+            ✅ ${g.tamamlayan} kişi bu görevi tamamladı.
+            ${g.kontenjan === 0 ? ' 🔒 Kontenjan doldu' : ''}
+          </p>
+          ${g.id === 0 ? `<a href="kurucu.html" style="display: inline-block; text-decoration: none;">
+  <button>Göreve Git</button>
+</a>` : `<button onclick='showModal(${JSON.stringify(g)})'>Detay ve Başvur</button>`}
+          </div>
+        `;
+        grid.appendChild(div);
+      });
+    });
+
+  </script>
+  <script>
+    let currentGorev = null;
+    function showModal(gorev) {
+      currentGorev = gorev;
+      document.getElementById("modal-title").innerText = gorev.baslik;
+      document.getElementById("modal-description").innerText = gorev.aciklama;
+      document.getElementById("modal").style.backgroundImage = `url(${gorev.arkaplan})`;
+      document.getElementById("modal").style.backgroundSize = "contain";
+      document.getElementById("modal").style.backgroundRepeat = "no-repeat";
+      document.getElementById("modal").style.backgroundPosition = "center";
+      document.getElementById("modal").style.backgroundColor = "#000";
+      document.getElementById("modal").style.display = "block";
+    }
+  
+    function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+  modal.style.backgroundImage = "";
+}
+
+  </script>
+</body>

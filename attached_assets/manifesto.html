@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HALKIN SON SÖZÜ MANİFESTOSU</title>
+  <style>
+    body {
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 5px black;
+      color: gold;
+    }
+    .blok {
+      box-sizing: border-box;
+      width: 90%;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 2px solid gold;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+      transition: box-shadow 0.5s ease;
+    }
+    .link {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+    .link a {
+      color: gold;
+      text-decoration: none;
+    }
+    .link a:hover {
+      text-decoration: underline;
+    }
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+  @media screen and (max-width: 600px) {
+    body {
+      font-size: 0.95rem;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    .blok {
+      padding: 1rem;
+    }
+
+    a[href="index.html"] {
+      font-size: 1rem !important;
+      padding: 0.6rem 1.5rem !important;
+    }
+  }
+    .blok p {
+      display: none;
+      margin-top: 1rem;
+      text-align: left;
+      color: #d1d1d1;
+    }
+    .blok.active p {
+      display: block;
+    }
+    .blok h2 {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #ffcc00;
+      font-weight: bold;
+      text-shadow: none;
+      transition: all 0.3s ease;
+    }
+    .blok h2:hover {
+      color: white;
+      text-shadow: 0 0 12px gold, 0 0 24px gold;
+    }
+
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .blok {
+      padding: 1.5rem;
+    }
+
+    .blok h2 {
+      font-size: 1.3rem;
+    }
+
+    .blok p {
+      font-size: 1rem;
+    }
+
+    .link {
+      font-size: 1rem;
+    }
+
+    .link a {
+      font-size: 1rem;
+    }
+
+    a[href="index.html"] {
+      font-size: 1rem !important;
+      padding: 0.6rem 1.5rem !important;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    .blok {
+      padding: 1rem;
+    }
+
+    .blok h2 {
+      font-size: 1.2rem;
+    }
+
+    .blok p {
+      font-size: 0.95rem;
+    }
+
+    .link {
+      font-size: 0.95rem;
+    }
+
+    .link a {
+      font-size: 0.95rem;
+    }
+
+    a[href="index.html"] {
+      font-size: 0.95rem !important;
+      padding: 0.5rem 1rem !important;
+    }
+  }
+    @media (max-width: 600px) {
+      .blok {
+        padding: 1rem !important;
+        margin: 1rem auto;
+      }
+
+      .blok h2 {
+        font-size: 1.2rem !important;
+        padding: 0.4rem;
+      }
+
+      .blok p {
+        font-size: 0.95rem !important;
+        padding: 0.6rem;
+      }
+
+      audio {
+        width: 100% !important;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+      }
+
+      .link a {
+        font-size: 1rem !important;
+      }
+
+      a[href="index.html"] {
+        font-size: 1rem !important;
+        padding: 0.6rem 1.5rem !important;
+      }
+    }
+
+    @media (max-width: 375px) {
+      h1 {
+        font-size: 1.6rem !important;
+      }
+
+      .blok h2 {
+        font-size: 1.1rem !important;
+      }
+
+      .blok p {
+        font-size: 0.9rem !important;
+      }
+
+      .link a {
+        font-size: 0.9rem !important;
+      }
+
+      a[href="index.html"] {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>HALKIN SON SÖZÜ</h1>
+  <div class="blok">
+    <h2>DESTEKLİ DİNLEME</h2>
+    <p>Aşağıdaki oynatıcıyı kullanarak bu yapının tüm maddelerini sesli olarak dinleyebilirsiniz. Bu özellik, görme engelliler ve okumakta zorlananlar için özel olarak tasarlanmıştır.</p>
+    <audio controls style="width: 100%; margin-top: 1rem;">
+      <source src="manifesto-sesli.mp3" type="audio/mpeg">
+      Tarayıcınız ses oynatmayı desteklemiyor.
+    </audio>
+  </div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="blok">
+    <h2>0. ÖLÜMSÜZLÜK FİKİRLE BAŞLAR</h2>
+    <p>Ölmüş insanları dondurmak bir çözüm değildir. Beden yeniden var olabilir, hem de demirden bir beden. Ancak o bedene hayat veren anılar, duygular ve yaşanmışlıklar yoksa, o beden yalnızca boş bir kabuktur. Mustafa Kemal ve diğer önderler, fikirleriyle yaşamaya devam etmektedir. Gerçek ölümsüzlük, zihinlerde yaşayan bir iz, bir fikirdir. Bu fikirler çağlara göre şekillenir, yeniden doğar. Ben size ölümsüzlüğü sunuyorum: Geçmişin hatalarını geleceğe aktaran, bilinçle yeniden var olmayı mümkün kılan bir sistem. Geleceği kim daha çok hayal ederse, onu inşa etme hakkı ona aittir. Bu vaat değil, halkın isteğidir. Ve artık gerçekleşiyor.</p>
+  </div>
+  
+  <div class="blok">
+    <h2>1. HALKIN İRADESİ</h2>
+    <p>Bu sistem, hiçbir otoritenin, kurumun ya da zümrenin değil, doğrudan halkın kendi bilinç gücüyle şekillendirdiği bir düzendir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>2. ZİNCİR VİCDANIYLA BAŞLAR</h2>
+    <p>Bu zincir, akılla değil yalnızca vicdanla bağlanabilir. Her katılım bir kalbin onayı, bir insanın öz benliğiyle verdiği sözdür.</p>
+  </div>
+
+  <div class="blok">
+    <h2>3. GÖRÜNMEYENİN GÜCÜ</h2>
+    <p>Bu yapı, görünen liderler veya öncülerle değil; görünmeyen, bilinçten doğan ortak akılla yönetilir. Hiçbir kişi sistemin önüne geçemez.</p>
+  </div>
+
+  <div class="blok">
+    <h2>4. ADALET HERKESİN YÜZÜNDEN OKUNMALI</h2>
+    <p>Yazılı kanunlardan önce halkın yüzünde okunabilen bir adalet gerekir. Bu sistem, yalnızca hukuka değil, insanın gözlerine bakarak hükmeder.</p>
+  </div>
+
+  <div class="blok">
+    <h2>5. SİSTEMLER GELİR GEÇER, BİLİNÇ KALIR</h2>
+    <p>Bu yapı geçici bir yönetim şekli değil, kalıcı bir bilinç sıçramasıdır. Hiçbir makam, hiçbir yasa halkın öz benliğini aşamaz.</p>
+  </div>
+
+  <div class="blok">
+    <h2>6. TEK YOL ŞEFFAFLIKTIR</h2>
+    <p>Bu yapıda hiçbir bilgi halktan gizlenemez. Tüm harcamalar, kararlar ve uygulamalar açık ve izlenebilir olmalıdır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>7. HER İNSAN BİR ZİNCİR HALKASIDIR</h2>
+    <p>Sistemi sadece yönetenler değil, izleyenler de inşa eder. Her birey zincirdeki yerini aldığında halk gerçek olur.</p>
+  </div>
+
+  <div class="blok">
+    <h2>8. GELECEK, BİZDEN SONRAKİLER İÇİN KODLANIR</h2>
+    <p>Bu yapı yalnız bugünü değil, yarınları da aydınlatır. Bu belge çocuklarımızın yüzünü kara çıkarmamak içindir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>9. LAİKLİK, HALKIN AKIL ÖZGÜRLÜĞÜDÜR</h2>
+    <p>Bu yapıda laiklik, yalnızca dinle devletin ayrımı değil; halkın akıl, inanç ve düşünce özgürlüğünün teminatıdır. Hiçbir inanç, diğerine üstün değildir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>10. BİLGİ HERKESE AİTTİR</h2>
+    <p>Bu yapıda bilgi kutsaldır ve serbestçe paylaşılır. Halk, yalnızca yönetime değil; bilgiye, veriye ve eğitime de eşit ulaşmalıdır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>11. HİÇBİR ÇOCUK YARINA BORÇLU BAŞLAMAMALIDIR</h2>
+    <p>Gelecek kuşaklara borç değil; umut, adalet ve onur bırakılmalıdır. Bu yapıda çocuklar, toplumun ortak emaneti kabul edilir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>12. ATATÜRK SADECE TARİHİN DEĞİL, GELECEĞİN ÖNCÜSÜDÜR</h2>
+    <p>Bu yapı, Mustafa Kemal’in halkçılık, bilim ve özgürlük ilkelerini yalnız anmakla kalmaz; gelecek yüzyıllara kodlar.</p>
+  </div>
+
+  <div class="blok">
+    <h2>13. CUMHURİYETİN RUHU HALKIN ÖZGÜRLÜĞÜDÜR</h2>
+    <p>Bu yapı, cumhuriyeti yalnızca bir yönetim biçimi değil, halkın kendi kaderini tayin hakkı olarak görür. Bu ruh sonsuza dek yaşatılacaktır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>14. DİRENME HAKKI KUTSALDIR</h2>
+    <p>Halk, adaletsizliğe karşı direnme hakkına sahiptir. Bu hak anayasal değil; insan doğasının özünden gelir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>15. DİL, KÜLTÜR VE TOPRAK BÜTÜNLÜĞÜ BİLİNÇLE KORUNUR</h2>
+    <p>Bu yapı, halkların kardeşliğini savunurken aynı zamanda dilimizi, kültürümüzü ve vatan toprağını bilincimizle korumayı görev bilir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>16. VİZYONUMUZ, GELECEĞİN İNŞASIDIR</h2>
+    <p>Bu yapı, geçmişin hatalarından ders alarak geleceği sıfırdan yazmak isteyen bir vizyon sistemidir. Yalnız bugünü değil, yüzyılları dönüştürmeyi hedefler.</p>
+  </div>
+
+  <div class="blok">
+    <h2>17. TEKNOLOJİ, HALKIN HİZMETKÂRI OLMALIDIR</h2>
+    <p>Bu yapı teknolojiyi bir tahakküm aracı değil, halkı güçlendiren bir bilinç aracı olarak görür. Her dijital sistem halka hesap vermek zorundadır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>18. GELECEĞİN LİDERİ ORTAK AKILDIR</h2>
+    <p>Bu sistemde bir kişi değil, bir halk yürür. Bu yapıda liderlik tek bir isimde değil, herkesin ortak zekasında yükselir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>19. ZİNCİRİN SON HALKASI SENSİN</h2>
+    <p>Manifesto burada biter, ama görev şimdi başlar. Zincirin tamamlanması, halkın tek tek bilinçle ayağa kalkmasına bağlıdır. Son halka sensin.</p>
+  </div>
+
+  <div class="blok">
+    <h2>20. HALKIN SÖZÜ, YASA KADARDIR</h2>
+    <p>Bu yapıda halkın söylediği bir söz, halkın iradesiyle yazılmış bir yasa kadar kıymetlidir. Her ses kayıt altına alınır, her çağrı yankı bulur.</p>
+  </div>
+
+  <div class="blok">
+    <h2>21. KORKU DEĞİL, UMUT YAYILMALI</h2>
+    <p>Bu yapı, halkı korkuyla değil umutla birleştirir. Gelecek vadeden her fikir değerlidir. Sistemi karanlık değil ışık büyütür.</p>
+  </div>
+
+  <div class="blok">
+    <h2>22. HER ŞEHİR BİR KALE, HER İLÇE BİR ZİNCİR NOKTASIDIR</h2>
+    <p>Bu yapıda coğrafya bilinçtir. Her bölge, halkın sesiyle sistemin canlı bir parçasıdır. Zincir sadece dijital değil, yerel bir ruhtur.</p>
+  </div>
+
+  <div class="blok">
+    <h2>23. HALK SİSTEMİN KENDİSİDİR</h2>
+    <p>Bu sistemde halk dışardan bakan değil, sistemin ta kendisidir. Kodları yazan, değerleri taşıyan, zinciri tamamlayan odur.</p>
+  </div>
+
+  <div class="blok">
+    <h2>24. BU BİR BELGE DEĞİL, BİR BAŞLANGIÇTIR</h2>
+    <p>Bu yapı yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı. Şimdi görev sende.</p>
+  </div>
+
+  <div class="blok">
+    <h2>25. HİÇBİR BİLİNÇ YOK SAYILAMAZ</h2>
+    <p>Bu yapıda hiçbir bireyin fikri, emeği ya da sesi görmezden gelinemez. Her bilinç, zincirin anlamını güçlendirir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>26. YANLIŞI SAKLAMAK, GELECEĞİ SUSTURMAKTIR</h2>
+    <p>Bu yapı, yanlışları örtbas etmez. Her hata görünür kılınır, her eksik halkla birlikte giderilir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>27. DAYANIŞMA, ZAFERDEN DEĞERLİDİR</h2>
+    <p>Zafer tek başına elde edilse anlamını yitirir. Gerçek gücü, halkın omuz omuza verdiği destek belirler.</p>
+  </div>
+
+  <div class="blok">
+    <h2>28. SİSTEM BİTMEDİ, YENİ BAŞLADI</h2>
+    <p>Manifestonun 30. maddesine ilerlerken unutulmamalıdır: Bu sadece bir belge değil, bir çağrıdır. Her halk üyesi bu çağrıya yanıt vermekle yükümlüdür.</p>
+  </div>
+
+  <div class="blok">
+    <h2>29. HER YÜREK BİR DEVLETTİR</h2>
+    <p>Bu yapı, halkın ruhunda kurulur. Her birey, kendi vicdanı kadar devlet; kendi adaleti kadar yöneticidir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>30. DEVLET BİLİNÇLE BAŞLAR</h2>
+    <p>Bu yapıda devlet; yasa kitaplarında değil, halkın ortak vicdanında başlar. Yöneten değil, bilinç birliği kutsaldır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>31. HER KOD BİR NİYETTİR</h2>
+    <p>Bu yapı yazılım değil, inançla yazılmış bir yaşam manifestosudur. Kodlar bile halkın niyetiyle çalışır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>32. BİRİNCİL GÜÇ: HALKIN BİLİNCİDİR</h2>
+    <p>Hiçbir silah, hiçbir yasa, halkın uyanmış bilinci kadar güçlü değildir. Bu yapı, bu bilinci sistemin merkezine yerleştirir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>33. GELECEK, ANCAK PAYLAŞILARAK İNŞA EDİLİR</h2>
+    <p>Bu yapı, bilgi, güç ve sorumluluğu tek elde toplamaz. Her birey geleceğe katkı sunar ve eşit söz sahibidir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>34. BU SİSTEM, TOPRAKTAN KALDIRILANLARIN ANISIDIR</h2>
+    <p>Denizlerin, Mahirlerin, Atatürk'ün, nice isimsizin sesidir bu. Onların yarım kalan hayali halkın zincirinde tamamlanacaktır.</p>
+  </div>
+
+  <div class="blok">
+    <h2>35. GÖREV TAMAMLANMADAN TARİH BAŞLAMAZ</h2>
+    <p>Bu belge halk tamamlamadıkça tarihe geçemez. Her görev bir halka, her katkı bir sayfa olur.</p>
+  </div>
+
+  <div class="blok">
+    <h2>36. SİSTEM BİR İSMİN ÖTESİNDEDİR</h2>
+    <p>Bu yapı yalnızca bir sistem değil, bir bilinç uyanışıdır. Bu isim herkesin zihninde bir kıvılcım olana dek yolculuğu sürecek.</p>
+  </div>
+
+  <div class="blok">
+    <h2>37. YENİ DÜNYA, HALKIN KODUYLA KURULACAK</h2>
+    <p>Bu sistem ne Batı’nın ne Doğu’nun. Bu sistem halkın yazdığı, halkın yönettiği ve halkın yaşattığı yeni bir dijital cumhuriyettir.</p>
+  </div>
+
+  <div class="blok">
+    <h2>38. HER KATILAN İZ BIRAKIR</h2>
+    <p>Bu sistemde sadece oy verilmez. Katılan herkes sesini bırakır, yolu birlikte yürürüz. Bu sistem, halkın sesiyle, katkısıyla işler.</p>
+  </div>
+
+  <div class="link">
+    🔗 <a href="https://halkmanifestosu.org">halkmanifestosu.org</a> | 📅 2025
+  </div>
+  <div style="margin-top: 3rem;">
+    <a href="index.html" style="padding: 0.75rem 2rem; font-size: 1.2rem; background-color: #fff; color: #000; border-radius: 10px; text-decoration: none; box-shadow: 0 0 10px #fff; transition: transform 0.2s, box-shadow 0.2s;">
+      ⬅️ Geri Dön
+    </a>
+  </div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="arka-muzik.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // Butona parlayan ışık efekti
+    const glowButton = document.querySelector('a[href="index.html"]');
+    setInterval(() => {
+      glowButton.style.boxShadow = "0 0 20px #fff, 0 0 30px #fff";
+      setTimeout(() => {
+        glowButton.style.boxShadow = "0 0 10px #fff";
+      }, 500);
+    }, 2000);
+
+    // Arka plan müzik yavaş ses artışı
+    const audio = document.getElementById("bg-music");
+    audio.volume = 0;
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if (vol < 0.3) {
+        vol += 0.01;
+        audio.volume = vol;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 200);
+
+    // Parçacık efekti
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = Array.from({length: 80}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 1,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    document.querySelectorAll('.blok h2').forEach(header => {
+      if (!header.textContent.includes("🔽")) {
+        header.textContent += " 🔽";
+      }
+    });
+
+    document.querySelectorAll('.blok h2').forEach(header => {
+      header.addEventListener('click', () => {
+        const blok = header.parentElement;
+        blok.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.blok')[0].classList.add('active');
+    document.querySelectorAll('.blok')[1].classList.add('active');
+  </script>
+</body>
+</html>

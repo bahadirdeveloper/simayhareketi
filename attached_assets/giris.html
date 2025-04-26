@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+      }
+      .background {
+        background-image: url('halkdefteri.webp');
+        background-size: 70%;
+        background-color: #1c1c1c;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      input[type="password"] {
+        width: 90%;
+        font-size: 5vw;
+        padding: 1vh;
+        box-sizing: border-box;
+      }
+
+      @media (min-width: 768px) {
+        input[type="password"] {
+          font-size: 1.2em;
+        }
+      }
+
+      input#passwordInput,
+      button {
+        position: static;
+        margin-top: 2vh;
+      }
+
+      input#passwordInput {
+        width: 90%;
+        max-width: 400px;
+        height: 5vh;
+        font-size: 1.2em;
+        background-color: rgba(0,0,0,0);
+        border: 2px solid rgba(0,0,0,0);
+        outline: none;
+        color: white;
+        text-align: center;
+        z-index: 999;
+      }
+
+      button {
+        width: 90%;
+        max-width: 420px;
+        height: 5vh;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+      }
+    </style>
+    <script>
+      const correctPassword = "simay2025"; // set your password here
+
+      function checkPassword() {
+        const input = document.getElementById('passwordInput').value;
+        if (input === correctPassword) {
+          window.location.href = "index.html"; // redirect to actual content
+        } else {
+          alert("Yanlış parola!");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="background">
+      <input id="passwordInput" type="password" placeholder="">
+      <button onclick="checkPassword()"></button>
+    </div>
+  </body>
+</html>

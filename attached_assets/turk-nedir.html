@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÜRK NEDİR? | TÜRK OLMANIN ÖNEMİ</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .quote {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 1rem;
+      font-size: 1.4rem;
+      text-align: center;
+      font-weight: bold;
+      border: 2px solid gold;
+      border-radius: 10px;
+      margin: 2rem auto;
+      width: 80%;
+      max-width: 800px;
+    }
+    section {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section h2 {
+      color: #a30000;
+      border-bottom: 2px solid #a30000;
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+    }
+    .highlight {
+      background: #ffd700;
+      font-weight: bold;
+    }
+    .bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to right, #111, #a30000);
+      color: white;
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.95rem;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      header button, header div {
+        display: block;
+        margin: 0.5rem auto;
+        text-align: center;
+      }
+
+      .quote {
+        font-size: 1.2rem;
+        padding: 0.7rem;
+      }
+
+      section {
+        padding: 1rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      section p, section li {
+        font-size: 1rem;
+      }
+
+      .bar {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TÜRK NEDİR?</h1>
+    <button onclick="document.getElementById('audio').play();" style="font-size: 1.5rem; background: none; border: none; cursor: pointer; color: white;">
+      ▶️
+    </button>
+    <div style="color: white; font-size: 1rem; margin-top: 0.5rem; text-align: center;">ÜŞENİYORSAN DİNLE</div>
+  </header>
+
+  <div class="quote">
+    "Size söz… Bu medeniyet arşa yükselecek."
+  </div>
+
+  <section>
+    <h2>1. Türk Olmak Bir Bilinçtir</h2>
+    <p>Türk; yalnızca bir soy değil, bir karakterdir. Adaleti, vicdanı ve üretimi kutsal sayan bir anlayıştır. Dünyanın neresinde olursa olsun; mazluma el uzatan, zalime karşı duran ruhtur.</p>
+
+    <h2>2. Türk’ün Tarihi Durmaz</h2>
+    <p>Göktürk Yazıtları’ndan Anadolu’nun destanlarına, Kurtuluş Savaşı’ndan dijital medeniyetlere... Türk, tarihi sadece yazmaz; yaşar, kurar, taşır.</p>
+
+    <h2>3. Türk Olmanın Sırrı</h2>
+    <ul>
+      <li>Vicdanla hareket etmek</li>
+      <li>Bilgiyle donanmak</li>
+      <li>Adaletin tarafında olmak</li>
+      <li>Üretmek, paylaşmak</li>
+      <li>Geçmişi unutmadan geleceği kurmak</li>
+    </ul>
+
+    <h2>4. Yeni Nesil Türk: Bilinç + Teknoloji + Ruh</h2>
+    <p>Teknoloji, bilim ve sanatla kuşanmış Türk gençliği, geleceğe medeniyet taşıyacak en büyük güçtür. Sadece kendini değil, dünyayı da ayağa kaldırmaya ant içmiştir.</p>
+
+    <h2>5. Halka Söz</h2>
+    <p><strong>“Ve bunu nasıl yapacağımızı adım adım gösterdik...<br>
+    Tüm siyasilerden bir yana, bu işe <span class="highlight">CAN</span> veriyoruz.”</strong></p>
+
+    <p>Bu bir parti değil, bu bir halk sistemidir. Her birey bir tuğla, her fikir bir anahtardır. Sen de bu yapının bir parçası ol!</p>
+  </section>
+
+  <div class="bar">
+    Ve bunu nasıl yapacağımızı adım adım gösterdik. Tüm siyasilerden bir yana, bu işe CAN veriyoruz.
+  </div>
+  <audio id="audio" src="seslendirme.mp3"></audio>
+</body>
+</html>

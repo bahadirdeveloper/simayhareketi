@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<script>
+  if (!localStorage.getItem("girisOnay")) {
+    window.location.href = "giris.html";
+  }
+</script>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://simayhareketi.com" />
+  <title>Halkların Uyanışı | Dijital Medeniyet Giriş Sayfası</title>
+  <style>
+    /* Removed external font to improve performance */
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-image: url('image.png');
+      background-position: top center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    h1 {
+      display: none;
+    }
+    .country-label {
+      font-size: 1.6rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 8px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      color: #fff;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+    }
+  
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto 40px;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+
+    .main-country-button, .country-button {
+      display: block;
+      margin: 10px auto;
+      border: 2px solid rgba(244, 208, 63, 0.5);
+      border-radius: 8px;
+      padding: 48px 24px;
+      min-height: 120px;
+      font-size: 2.6rem;
+      color: white;
+      font-family: system-ui, sans-serif;
+      backdrop-filter: blur(2px);
+      box-shadow: none;
+      transition: transform 0.2s, border-color 0.3s;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+      background-color: transparent;
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 280px;
+      max-width: 100%;
+    }
+
+    .main-country-button {
+      display: flex;
+      margin: 20px auto;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background: none;
+      font-size: 2.6rem; 
+      padding: 48px 24px;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      border-radius: 8px;
+      backdrop-filter: blur(2px);
+      box-shadow: none;
+      transition: transform 0.2s, border-color 0.3s;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.7);
+      min-height: 120px;
+      width: 100%;
+      min-width: 280px;
+      max-width: 100%;
+    }
+    .main-country-button:hover {
+      transform: scale(1.03);
+      border-color: rgba(255, 215, 0, 1);
+    }
+  
+    .country-button:hover {
+      transform: scale(1.03);
+      border-color: rgba(244, 208, 63, 1);
+    }
+
+    .special-button {
+      font-size: 2.6rem;
+      justify-self: center;
+      align-self: center;
+      box-sizing: border-box;
+      margin-top: 10px;
+      padding: 48px 24px;
+      min-height: 120px;
+      width: 100%;
+      min-width: 280px;
+      max-width: 100%;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 32px rgba(255, 215, 0, 1);
+      }
+      100% {
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .country-button {
+        font-size: 2.6rem;
+        padding: 48px 24px;
+        margin: 12px 0;
+        width: 100%;
+        min-height: 120px;
+        min-width: 280px;
+        max-width: 100%;
+      }
+ 
+      .main-country-button {
+        font-size: 2.6rem;
+        padding: 48px 24px;
+        margin: 12px 0;
+        width: 100%;
+        min-height: 120px;
+        min-width: 280px;
+        max-width: 100%;
+      }
+ 
+      .special-button {
+        font-size: 2.6rem;
+        padding: 48px 24px;
+        margin: 12px 0;
+        width: 100%;
+        min-height: 120px;
+        min-width: 280px;
+        max-width: 100%;
+      }
+      
+      /* Removed grid-template-columns */
+      gap: 24px;
+      padding: 0 12px;
+      
+      .country-button, .main-country-button, .special-button {
+        text-align: center;
+        width: 100%;
+      }
+    }
+    
+    .golden-sentence {
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+    @media (max-width: 600px) {
+      .golden-sentence {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+      }
+    }
+    
+    .heritage-quote {
+      margin: 6px auto 20px;
+      font-size: 1rem;
+      line-height: 1.8;
+      font-weight: bold;
+      text-align: center;
+      background: linear-gradient(to right, #ffd700, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      font-family: system-ui, sans-serif;
+      display: block;
+      max-width: 90%;
+    }
+
+    @media (max-width: 600px) {
+      .heritage-quote {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        padding: 0 12px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div style="width: 100%; text-align: center; padding: 10px 20px; background: rgba(0,0,0,0.4); font-size: 1.3rem; font-weight: 600; color: #FFD700; text-shadow: 1px 1px 4px #000;">
+    📌 HALK BİLGİ SİSTEMİ – Ortak Akıl, Ortak Sorumluluk, Ortak Gelecek!
+  </div>
+  <h2 class="country-label">🌐 Ülke Seçimi</h2>
+  <noscript>
+    <h2 style="font-size: 1.6rem; text-align: center; color: white; background-color: black; padding: 10px; border-radius: 8px;">🌐 Ülke Seçimi</h2>
+  </noscript>
+  <p style="font-size: 1.2rem; color: #FFD700; text-align: center; margin-top: -10px; margin-bottom: 20px;">
+    🌍 Dijital Cumhuriyet Giriş Noktası: <strong>simayhareketi.com</strong>
+  </p>
+  <noscript>
+    <p style="font-size: 1.2rem; text-align: center; color: white; background-color: black; padding: 8px;">Giriş Adresi: <strong>simayhareketi.com</strong></p>
+  </noscript>
+  <div class="grid-container">
+      <button class="main-country-button" aria-label="Türkiye sayfasına giriş" title="Türkiye sayfasına giriş" onclick="window.location.href='turkiye.html'">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <span>🇹🇷 TÜRKİYE</span>
+        </div>
+      </button>
+      <div class="heritage-quote">
+        <span style="background: none; -webkit-text-fill-color: initial; font-size: 1.8rem;">🇹🇷</span><br>
+        “Türk, Atasının mirasına sahip çıkamazsa,<br>
+        geleceğini başka milletlerin insafına bırakır.”
+        <span style="background: none; -webkit-text-fill-color: initial; font-size: 1.2rem;">✊</span>
+      </div>
+    <button class="country-button" aria-label="İran sayfasına giriş" title="İran sayfasına giriş" onclick="window.location.href='iran.html'">🇮🇷 İRAN</button>
+    <button class="country-button" aria-label="Almanya sayfasına giriş" title="Almanya sayfasına giriş" onclick="window.location.href='germany.html'">🇩🇪 ALMANYA</button>
+    <button class="country-button" aria-label="Filistin sayfasına giriş" title="Filistin sayfasına giriş" onclick="window.location.href='palestine.html'">🇵🇸 FİLİSTİN</button>
+    <button class="country-button special-button" aria-label="Susturulmuş halkların başvuru sayfasına giriş" title="Susturulmuş halkların başvuru sayfasına giriş" onclick="window.location.href='oppressed.html'">
+      🌍 Susturulmuş Halkların Başvuru Alanı
+    </button>
+  </div>
+  <p class="golden-sentence">Bu sistem, milletin yüreğinden doğmuş, cumhuriyetin iradesiyle yoğrulmuştur. Buradan yükselen her ses, adaletin ve özgürlüğün yankısı olacaktır.</p>
+  <noscript>
+    <p style="font-size: 1.1rem; font-weight: bold; color: white; background-color: black; padding: 10px; border-radius: 8px; text-align: center;">
+      Bu sistem, Türk milletinin kalbinden ve Atatürk’ün dehasından dünyaya uzanan bir armağandır. Bu bir son değil, insanlık için yazılan en adil başlangıçtır.
+    </p>
+  </noscript>
+  <audio id="background-audio" preload="none" loop hidden>
+    <source src="andimiz.mp3" type="audio/mpeg">
+    Tarayıcınız audio etiketini desteklemiyor.
+  </audio>
+  <div id="start-audio-popup" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(0,0,0,0.85); z-index: 99999; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; font-family: system-ui, sans-serif;">
+    <p style="font-size: 1.6rem; margin-bottom: 20px; text-align: center;">🇹🇷 Milli Sorumluluğunuzu Hissetmeye Hazır mısınız?</p>
+    <button onclick="playAndHide()" style="padding: 16px 40px; font-size: 1.4rem; border: none; background-color: #FFD700; color: black; font-weight: bold; border-radius: 10px; cursor: pointer;">Evet, Başla</button>
+  </div>
+  <div id="auto-click-area" style="width:0; height:0; overflow:hidden;"></div>
+  <script>
+    function playAndHide() {
+      const audio = document.getElementById("background-audio");
+
+      function hidePopup() {
+        const popup = document.getElementById("start-audio-popup");
+        if (popup) popup.style.display = "none";
+      }
+
+      audio.load();
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            hidePopup();
+          })
+          .catch(err => {
+            console.warn("Ses başlatılamadı:", err);
+            hidePopup(); // yine de popup'ı kapat
+          });
+      } else {
+        hidePopup(); // playPromise yoksa yine de popup'ı kapat
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("background-audio");
+ 
+      const playAudioOnce = () => {
+        audio.load();
+        audio.play().catch(e => {
+          console.warn("Oynatma engellendi:", e);
+        });
+        document.removeEventListener('click', playAudioOnce);
+        document.removeEventListener('touchstart', playAudioOnce);
+      };
+ 
+      document.addEventListener('click', playAudioOnce);
+      document.addEventListener('touchstart', playAudioOnce);
+    });
+
+    // Ek olarak tetikleme denemesi
+    window.addEventListener("load", function () {
+      const dummy = document.getElementById("auto-click-area");
+      dummy.click(); // Sahte tıklama
+
+      const audio = document.getElementById("background-audio");
+      if (audio) {
+        audio.load();
+        audio.play().catch(err => {
+          console.warn("Tarayıcı engelledi, kullanıcı etkileşimi gerekebilir.", err);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

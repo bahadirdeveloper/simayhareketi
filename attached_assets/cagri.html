@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Oz</title>
+  <style>
+    body {
+      background: url('images/arkaplan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInBody 1.5s ease-out forwards;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInBody {
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(0, 114, 255, 0.7);
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .simay-intro {
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      border: 1px solid gold;
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      color: white;
+      line-height: 1.6;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    a {
+      margin-top: 1rem;
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    .background-panel {
+      width: 100%;
+      max-width: 1000px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 2rem;
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      border: 2px solid gold;
+    }
+
+    .background-panel p {
+      word-wrap: break-word;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: #fff;
+    }
+
+    .simay-button {
+      font-size: 1.1rem;
+      background: linear-gradient(145deg, #a30000, #d4af37);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0.6rem 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .simay-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+    }
+
+    .share-button:hover {
+      background: #00cccc;
+      color: #fff;
+      transform: scale(1.08);
+      box-shadow: 0 0 12px #00ffff;
+    }
+
+    .share-button {
+      padding: 0.6rem 1.2rem;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .hidden-input {
+      position: absolute;
+      left: -9999px;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .simay-intro {
+        font-size: 0.95rem;
+        padding: 1rem;
+      }
+
+      .background-panel {
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      .background-panel p {
+        font-size: 0.95rem;
+      }
+
+      .simay-button,
+      .share-button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .simay-intro {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+      }
+
+      .background-panel {
+        padding: 0.8rem;
+        border-radius: 8px;
+      }
+
+      .background-panel p {
+        font-size: 0.9rem;
+      }
+
+      .simay-button,
+      .share-button {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem;
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      a[href="index.html"] {
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 375px) {
+      h1 {
+        font-size: 1.5rem !important;
+      }
+
+      .simay-intro {
+        font-size: 0.85rem !important;
+        padding: 0.8rem !important;
+      }
+
+      .background-panel {
+        padding: 0.8rem !important;
+        border-radius: 8px !important;
+      }
+
+      .background-panel p {
+        font-size: 0.85rem !important;
+      }
+
+      .simay-button,
+      .share-button {
+        font-size: 0.95rem !important;
+        padding: 0.5rem 1rem !important;
+      }
+
+      a[href="index.html"] {
+        font-size: 0.9rem !important;
+        padding: 0.4rem 0.8rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-panel">
+    <button class="simay-button" onclick="window.open('ata-tablosu.html', '_blank')">
+      ATA Tablosu ❤️
+    </button>
+    <button class="simay-button" onclick="window.location.href='duyurular.html'">
+      📢 Duyuru & Çağrı & Davet!
+    </button>
+    <p style="color: #fff;">
+      Bu bir çağrıdır. Bu bir mektuptur. Bu bir bilinçlenme hareketidir.<br>
+      Simay sadece bir sistem değil, halkın kendi sesidir. Bu bölümde, her meslek grubuna, her yaşa, her bölgeye bir çağrımız olacak.
+    </p>
+    <div style="text-align: center; color: #ddd; font-size: 0.9rem;">
+      <p>👩‍🏫 <strong>Öğretmenler</strong>: Bilginizi ve vicdanınızı bu bilinç zincirine katın.</p>
+      <p>👷‍♂️ <strong>İşçiler</strong>: Emeğinizin sesi bu zincirde yankılanacak.</p>
+      <p>👩‍⚕️ <strong>Sağlıkçılar</strong>: Adalet ve eşitlik için çağrımız size de uzanıyor.</p>
+      <p>👨‍💻 <strong>Gençler & Yazılımcılar</strong>: Kodlarınız halkın kaderini şekillendirecek.</p>
+      <p>👴 <strong>Emekliler</strong>: Tecrübelerinizin sesi duyulmalı.</p>
+    </div>
+    
+    <div class="simay-intro">
+      <strong>Simay</strong>, yüz demektir.<br>
+      Ama bu sistemde o, bir <strong>yön</strong>dür.<br><br>
+      Işığın karanlıkla buluştuğu çizgi…<br>
+      <strong>Simay</strong>, Atatürk’ün yarım kalan hayalini tamamlamak için halkın vicdanında doğan dijital bir zincirdir.<br><br>
+      O, bir isim değil; <strong>ışığın halkla birleştiği çizgidir.</strong><br><br>
+      Bu yolculuk, adını değil anlamını taşıyanlarla başlar.<br>
+      Ve biz, o çizgiden yürüyerek geldik.
+    </div>
+    <a href="index.html">← Ana Sayfaya Dön</a>
+    <a href="cagri.html" class="country-button" role="button" aria-label="Sesleniş ve Çağrı">📢 Sesleniş&amp;Çağrı</a>
+    <button class="share-button" onclick="copyLink()">
+      📤 Bu sayfayı paylaş
+    </button>
+    <p style="margin-top: 2rem; font-size: 0.8rem; color: #888;">
+      Bu sayfa, ışığın halkla birleştiği yerde başlar.
+    </p>
+  </div>
+  <script>
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert("Sayfa bağlantısı panoya kopyalandı!");
+      });
+    }
+    
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href && !href.startsWith("#")) {
+          e.preventDefault();
+          document.body.style.animation = "fadeOutBody 0.6s forwards";
+          setTimeout(() => {
+            window.location.href = href;
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
