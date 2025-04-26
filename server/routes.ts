@@ -4,6 +4,12 @@ import { storage } from "./storage";
 import path from "path";
 import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema } from "@shared/schema";
 import { z } from "zod";
+import { 
+  handleCreatePaymentIntent, 
+  handleCreateSubscription, 
+  handleWebhook,
+  getPaymentPrices
+} from "./routes/stripe";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API endpoints for the application
@@ -115,6 +121,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       next();
     }
   });
+  
+  // Stripe payment routes
+  app.post("/api/create-payment-intent", handleCreatePaymentIntent);
+  app.post("/api/create-subscription", handleCreateSubscription);
+  app.post("/api/webhook", handleWebhook);
+  app.get("/api/payment-prices", getPaymentPrices);
 
   const httpServer = createServer(app);
 
