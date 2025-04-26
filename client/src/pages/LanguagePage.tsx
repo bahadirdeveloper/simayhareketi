@@ -9,6 +9,7 @@ import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { Link } from "wouter";
 import { playSoundtrack } from "@/lib/audio";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function LanguagePage() {
   const [match, params] = useRoute("/:lang");
@@ -23,6 +24,24 @@ export default function LanguagePage() {
       if (i18n.language !== language) {
         i18n.changeLanguage(language);
       }
+      
+      // Record language-specific page visit
+      const recordLanguageVisit = async () => {
+        try {
+          await apiRequest(
+            "POST", 
+            "/api/visits", 
+            {
+              language: language,
+              hasInteracted: true
+            }
+          );
+        } catch (error) {
+          console.error("Failed to record language page visit:", error);
+        }
+      };
+      
+      recordLanguageVisit();
     }
   }, [match, params, i18n]);
 
