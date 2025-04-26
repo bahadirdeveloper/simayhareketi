@@ -1164,7 +1164,7 @@ export default function GorevlerPage() {
         {/* Header */}
         <div className="text-center py-10">
           <motion.h1 
-            className="text-3xl md:text-5xl font-bold text-amber-400 mb-6"
+            className="text-4xl md:text-6xl font-bold text-red-600 mb-8 tracking-wide leading-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -1180,10 +1180,10 @@ export default function GorevlerPage() {
             className="mb-8"
           >
             <Button 
-              className="bg-gradient-to-r from-amber-600 to-amber-400 text-black font-bold text-lg px-8 py-6 shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+              className="bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xl px-10 py-7 shadow-[0_0_20px_rgba(220,38,38,0.4)] rounded-lg"
               onClick={() => navigate("/turkiye")}
             >
-              🧩 GÖREV 0: KURUCUNUN EKSİKLERİ
+              GÖREV 0: KURUCUNUN EKSİKLERİ
             </Button>
           </motion.div>
           
@@ -1340,29 +1340,29 @@ export default function GorevlerPage() {
           )}
           
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-6 gap-4">
+          <div className="flex justify-center mt-8 gap-6">
             <Button 
               variant="outline"
-              className="border-red-600 text-white hover:bg-red-700/20"
+              className="border-2 border-red-600/60 text-white hover:bg-red-700/20 px-8 py-6 text-xl font-bold tracking-wide"
               onClick={() => navigate("/turkiye")}
             >
-              ◀ Türkiye Sayfasına Dön
+              Türkiye Sayfasına Dön
             </Button>
             
             <Button 
               variant="outline"
-              className="border-white text-white hover:bg-white/10"
+              className="border-2 border-red-600/60 text-white hover:bg-red-700/20 px-8 py-6 text-xl font-bold tracking-wide"
               onClick={() => navigate("/")}
             >
-              🏠 Ana Sayfa
+              Ana Sayfa
             </Button>
           </div>
         </div>
         </main>
         
         {/* Bottom animation */}
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/60 text-lg italic animate-pulse z-10">
-          Zaman geçiyor...
+        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/70 text-xl font-semibold tracking-wide animate-pulse z-10 mb-2">
+          CUMHURİYET GÜNCELLENİYOR
         </div>
         
         {/* Görev Modal */}
