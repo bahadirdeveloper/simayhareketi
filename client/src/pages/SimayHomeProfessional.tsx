@@ -136,26 +136,58 @@ export default function SimayHomeProfessional() {
               transition={{ duration: 1.2 }}
             >
               <div className="relative">
-                {/* Türk Deseni Arka Plan */}
-                <div className="absolute inset-0 opacity-15 bg-repeat" style={{ 
-                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwaDIwdjIwSDB6IiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIxMCwxMCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjUiLz48cGF0aCBkPSJNMCAxMGgxME0xMCAwdjEwTTIwIDEwaDEwTTEwIDIwdjEwIiBzdHJva2U9IiNlM2EwMDgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9InVybCgjYSkiLz48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDAgMTB2NjBNMTAgNDBoNjAiIHN0cm9rZT0iI2UzYTAwOCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+')",
+                {/* Teknoloji Deseni Arka Plan */}
+                <div className="absolute inset-0 opacity-10 bg-repeat" style={{ 
+                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMEg0MCBWNDAgSDAgVjAgTTAgMjAgSDQwIE0yMCAwIFYgNDAgTTEwIDAgViA0MCBNMzAgMCBWIDQwIiBzdHJva2U9IiMwMDcwZmYiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2Utb3BhY2l0eT0iMC4yIiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMiIgZmlsbD0iIzAwN2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjIiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIiBmaWxsPSIjMDA3ZmZmIiBmaWxsLW9wYWNpdHk9IjAuMiIvPjxyZWN0IHg9IjE4IiB5PSIxOCIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI2UzMGExNyIgZmlsbC1vcGFjaXR5PSIwLjMiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')",
                   backgroundSize: "80px 80px" 
                 }}></div>
                 
-                {/* Dönen Desen Efekti */}
+                {/* Dönen Devre Efekti */}
                 <motion.div
                   className="absolute inset-0 opacity-5"
                   animate={{ rotate: 360 }}
                   transition={{ 
-                    duration: 120, 
+                    duration: 180, 
                     repeat: Infinity,
                     ease: "linear" 
                   }}
                   style={{ 
-                    backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwaDIwdjIwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMEwyMCAyME0yMCAwTDAgMjAiIHN0cm9rZT0iI2UzYTAwOCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')",
-                    backgroundSize: "60px 60px"
+                    backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDBINDAgVjQwIEgwIHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTAgMEwzMCAyME00MCAxMEwyMCAzME0xMCA0MEwzMCAyME00MCAxMEwyMCAzMCIgc3Ryb2tlPSIjMDA3MGZmIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjUiIHN0cm9rZT0iI2UzMGExNyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjMiIGZpbGw9Im5vbmUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiBmaWxsPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTcwIDBMNzAgMTQwTTAgNzBIMTQwIiBzdHJva2U9IiNlMzBhMTciIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2Utb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSI3MCIgcj0iNDAiIHN0cm9rZT0iI2UzMGExNyIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4yIiBmaWxsPSJub25lIi8+PC9zdmc+')",
+                    backgroundSize: "140px 140px"
                   }}
                 ></motion.div>
+                
+                {/* Türk yıldız motifi overlay */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="w-full h-full relative">
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div 
+                        key={i}
+                        className="absolute"
+                        style={{
+                          top: `${Math.random() * 100}%`,
+                          left: `${Math.random() * 100}%`,
+                          width: `${Math.random() * 20 + 10}px`,
+                          height: `${Math.random() * 20 + 10}px`,
+                        }}
+                        animate={{
+                          opacity: [0.3, 0.7, 0.3],
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                          duration: 3 + Math.random() * 5,
+                          repeat: Infinity,
+                          delay: Math.random() * 5,
+                        }}
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+                            fill="#e30a17" fillOpacity="0.5" />
+                        </svg>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
                 
                 {/* Başlık */}
                 <div className="relative bg-black/40 backdrop-blur-sm py-3 px-4 rounded-full mb-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
