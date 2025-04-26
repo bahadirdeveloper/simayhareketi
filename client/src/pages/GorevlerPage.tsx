@@ -1257,7 +1257,7 @@ export default function GorevlerPage() {
                   } rounded-lg hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
-                    backgroundSize: 'cover',
+                    backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                   } : {}}
