@@ -1172,6 +1172,22 @@ export default function GorevlerPage() {
             101. YILINDA HALKIN ANDI: 100 GÖREVLE YENİDEN DOĞUŞ
           </motion.h1>
           
+          {/* Kimleri Göreve Davet Ediyoruz - Tıklanabilir Başlık */}
+          <motion.div 
+            className="mt-4 mb-8 cursor-pointer"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            onClick={() => navigate("/gorev-davet")}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <h2 className="text-2xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text inline-flex items-center gap-2">
+              Kimleri Göreve Davet Ediyoruz? 
+              <span className="text-red-500 text-base font-normal">(Tıkla)</span>
+            </h2>
+          </motion.div>
+          
           {/* Kurucu görev button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -1226,38 +1242,7 @@ export default function GorevlerPage() {
               </div>
             </motion.div>
             
-            {/* Kimleri Göreve Davet Ediyoruz */}
-            <div className="text-center mb-10 mt-8 bg-black/40 p-6 rounded-lg border-2 border-red-600/40 max-w-3xl mx-auto shadow-lg">
-              <h2 className="text-2xl font-bold text-white mb-4">Kimleri Göreve Davet Ediyoruz?</h2>
-              <p className="text-white text-lg mb-5 max-w-2xl mx-auto">Cumhuriyeti güncellemek için bu yolculukta yanımızda olacak tüm Türk vatandaşlarını göreve davet ediyoruz. Akıl, bilim, vicdan, fen ve sanat temelinde ülkesini seven herkes bu görevlere katılabilir.</p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Eğitimciler</p>
-                  <p className="text-white/90 mt-1">Bilginin gücüyle geleceği şekillendirenler</p>
-                </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Mühendisler</p>
-                  <p className="text-white/90 mt-1">Teknolojiyi ülkemizin hizmetine sunanlar</p>
-                </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Sanatçılar</p>
-                  <p className="text-white/90 mt-1">Kültür mirasımızı yaşatanlar</p>
-                </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Sağlıkçılar</p>
-                  <p className="text-white/90 mt-1">Toplum sağlığını korumak için çalışanlar</p>
-                </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Bilim İnsanları</p>
-                  <p className="text-white/90 mt-1">Araştırma ve yeniliklerle ülkemizi ileriye taşıyanlar</p>
-                </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300">
-                  <p className="text-white text-lg font-bold">Öğrenciler</p>
-                  <p className="text-white/90 mt-1">Yarının büyük Türkiye'sini inşa edecek gençler</p>
-                </div>
-              </div>
-            </div>
+
             
             {/* Counters */}
             <div className="text-center mb-8 mt-8 bg-black/40 p-5 rounded-lg border-2 border-red-600/40 max-w-2xl mx-auto shadow-lg">
