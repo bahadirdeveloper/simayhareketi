@@ -74,26 +74,51 @@ export default function SimayHomeProfessional() {
         <SimpleBurningEarth />
         
         {/* Türk Deseni Üstbilgi */}
-        <div className="w-full bg-black/40 backdrop-blur-sm border-b border-amber-500/30 py-2 z-20 absolute top-0 left-0 overflow-hidden">
+        <div className="w-full bg-gradient-to-r from-black/60 via-black/70 to-black/60 backdrop-blur-sm border-b border-amber-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md">
           <div 
             className="h-10 w-full absolute top-0 left-0 opacity-20" 
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='20' viewBox='0 0 80 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm20 0c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM30 0h20v20H30V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM50 0h20v20H50V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM70 0h20v20H70V0zM80 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23e3a008' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-              backgroundRepeat: "repeat-x"
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C35.5228 5 40 9.47715 40 15C40 20.5228 35.5228 25 30 25C24.4772 25 20 20.5228 20 15C20 9.47715 24.4772 5 30 5ZM30 8C26.134 8 23 11.134 23 15C23 18.866 26.134 22 30 22C33.866 22 37 18.866 37 15C37 11.134 33.866 8 30 8ZM30 11C32.2091 11 34 12.7909 34 15C34 17.2091 32.2091 19 30 19C27.7909 19 26 17.2091 26 15C26 12.7909 27.7909 11 30 11ZM0 15 L60 15 M30 0 L30 30' stroke='%23e3a008' fill='none' /%3E%3C/svg%3E")`,
+              backgroundRepeat: "repeat-x",
+              backgroundSize: "60px 20px"
             }}
           />
           <div className="flex justify-between items-center container mx-auto px-6">
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-red-600 relative flex items-center justify-center">
-                <div className="absolute w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
-                  <span className="text-white text-xs">TR</span>
+            <div className="flex items-center group cursor-pointer" onClick={() => navigate("/")}>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-600 to-red-700 relative flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
+                <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                  <span className="text-white text-xs font-bold group-hover:scale-110 transition-transform duration-300">TR</span>
                 </div>
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-2 border-amber-500/50"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.7, 0, 0.7] 
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut" 
+                  }}
+                />
               </div>
-              <p className="text-xs ml-2 text-amber-300 font-semibold tracking-wide">
-                Bu İcat Türk Yapımıdır
-              </p>
+              <div className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                <p className="text-xs text-amber-300 font-semibold tracking-wide">
+                  Bu İcat Türk Yapımıdır
+                </p>
+                <p className="text-[10px] text-amber-500/60 hidden md:block">
+                  Akıl, Bilim, Fen ve Sanat
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-amber-400/80">Cumhuriyet Güncellemesi v2.0</p>
+            <div className="flex items-center">
+              <p className="text-xs text-amber-400/80 pr-3 border-r border-amber-500/30 mr-3">
+                Cumhuriyet Güncellemesi
+              </p>
+              <div className="bg-black/50 px-2 py-1 rounded text-amber-500 text-xs font-mono">
+                v2.0
+              </div>
+            </div>
           </div>
         </div>
         
@@ -111,20 +136,41 @@ export default function SimayHomeProfessional() {
               transition={{ duration: 1.2 }}
             >
               <div className="relative">
-                <div className="absolute inset-0 opacity-10 bg-repeat" style={{ 
-                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgdmlld0JveD0iMCAwIDUwIDUwIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjEuNSIvPjxjaXJjbGUgY3g9IjI1IiBjeT0iMjUiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlM2EwMDgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHBhdGggZD0iTTI1IDUgVjQ1IE01IDI1IEg0NSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjEuNSIvPjxwYXRoIGQ9Ik0xMi45MyAxMi45MyBMIDM3LjA3IDM3LjA3IE0zNy4wNyAxMi45MyBMIDEyLjkzIDM3LjA3IiBzdHJva2U9IiNlM2EwMDgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PC9zdmc+')",
-                  backgroundSize: "100px 100px" 
+                {/* Türk Deseni Arka Plan */}
+                <div className="absolute inset-0 opacity-15 bg-repeat" style={{ 
+                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwaDIwdjIwSDB6IiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIxMCwxMCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjUiLz48cGF0aCBkPSJNMCAxMGgxME0xMCAwdjEwTTIwIDEwaDEwTTEwIDIwdjEwIiBzdHJva2U9IiNlM2EwMDgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9InVybCgjYSkiLz48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTNhMDA4IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDAgMTB2NjBNMTAgNDBoNjAiIHN0cm9rZT0iI2UzYTAwOCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+')",
+                  backgroundSize: "80px 80px" 
                 }}></div>
-                <h1 className="font-bold text-5xl md:text-7xl mb-6 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text relative">
-                  CUMHURİYETİN GÜNCELLEME PLATFORMU
-                </h1>
+                
+                {/* Dönen Desen Efekti */}
+                <motion.div
+                  className="absolute inset-0 opacity-5"
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    duration: 120, 
+                    repeat: Infinity,
+                    ease: "linear" 
+                  }}
+                  style={{ 
+                    backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZGVmcz48cGF0dGVybiBpZD0iYSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwaDIwdjIwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMEwyMCAyME0yMCAwTDAgMjAiIHN0cm9rZT0iI2UzYTAwOCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')",
+                    backgroundSize: "60px 60px"
+                  }}
+                ></motion.div>
+                
+                {/* Başlık */}
+                <div className="relative bg-black/40 backdrop-blur-sm py-3 px-4 rounded-full mb-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
+                  <h1 className="font-bold text-5xl md:text-7xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text text-center">
+                    CUMHURİYETİN GÜNCELLEME PLATFORMU
+                  </h1>
+                </div>
               </div>
             </motion.div>
             
-            <div className="flex flex-col items-center justify-center mb-6">
+            <div className="flex flex-col items-center justify-center mb-8">
               <div className="relative">
+                {/* Arka plan ışıma efekti */}
                 <motion.div 
-                  className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full"
+                  className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-amber-500/25 to-amber-500/10 blur-xl rounded-full"
                   animate={{ 
                     opacity: [0.5, 0.8, 0.5],
                     scale: [0.8, 1.1, 0.8],
@@ -135,43 +181,81 @@ export default function SimayHomeProfessional() {
                     ease: "easeInOut"
                   }}
                 />
-                <div className="relative z-10 text-2xl font-semibold bg-black/30 backdrop-blur-sm px-6 py-3 rounded-lg border border-amber-400/50 shadow-[0_0_15px_rgba(251,191,36,0.3)] flex items-center justify-center">
-                  <span className="mr-2 text-amber-300">
+                
+                {/* Türk deseni arka plan */}
+                <div className="absolute inset-0 opacity-5 bg-repeat rounded-full" style={{ 
+                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgM0MyMi43MyAzIDI5IDkuMjcgMjkgMTdDMjkgMjQuNzMgMjIuNzMgMzEgMTUgMzFDNy4yNyAzMSAxIDI0LjczIDEgMTdDMSA5LjI3IDcuMjcgMyAxNSAzWk0xNSA1QzguMzg0NSA1IDMgMTAuMzg0NSAzIDE3QzMgMjMuNjE1NSA4LjM4NDUgMjkgMTUgMjlDMjEuNjE1NSAyOSAyNyAyMy42MTU1IDI3IDE3QzI3IDEwLjM4NDUgMjEuNjE1NSA1IDE1IDVaTTIxIDEyLjVMMTggMTRMMTUgMTIuNUwxMiAxNEw5IDEyLjVMOSAxNy41TDEyIDE5TDE1IDE3LjVMMTggMTlMMjEgMTcuNUwyMSAxMi41WiIgZmlsbD0iI2UzYTAwOCIvPjwvc3ZnPg==')"
+                }}></div>
+                
+                {/* Gölge efekti */}
+                <div className="absolute inset-0 rounded-xl shadow-[0_0_30px_rgba(251,191,36,0.3)] pointer-events-none"></div>
+                
+                {/* İçerik kutusu */}
+                <div className="relative z-10 text-2xl font-semibold bg-gradient-to-r from-black/40 via-black/50 to-black/40 backdrop-blur-sm px-7 py-4 rounded-lg border border-amber-400/50 flex items-center justify-center">
+                  <span className="mr-2 text-amber-300 font-semibold drop-shadow-md">
                     Cumhuriyet ile Güncelleniyoruz
                   </span>
-                  <motion.span
-                    className="text-green-400"
-                    animate={{ 
-                      opacity: [1, 0.5, 1],
-                      scale: [1, 1.2, 1]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatType: "reverse"
-                    }}
-                  >
-                    ✓
-                  </motion.span>
+                  <div className="relative">
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-green-500/20 blur-md"
+                      animate={{ 
+                        scale: [1, 1.5, 1],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    />
+                    <motion.span
+                      className="relative text-green-400 font-bold"
+                      animate={{ 
+                        opacity: [1, 0.7, 1],
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    >
+                      ✓
+                    </motion.span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex justify-center items-center mt-5">
-                <div className="relative w-80 h-8 flex items-center justify-center">
-                  <div className="absolute w-full h-1 bg-gray-700/80 rounded-full backdrop-blur-sm"></div>
+              {/* İlerleme çubuğu */}
+              <div className="flex justify-center items-center mt-6 relative">
+                <div className="w-96 h-8 relative">
+                  {/* Arka plan çizgi */}
+                  <div className="absolute w-full h-1.5 bg-gradient-to-r from-gray-700/60 via-gray-700/80 to-gray-700/60 rounded-full backdrop-blur-sm top-1/2 -translate-y-1/2"></div>
+                  
+                  {/* İlerleme göstergesi */}
                   <motion.div 
-                    className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
-                    initial={{ left: 0 }}
-                    animate={{ left: "100%" }}
+                    className="absolute top-0 left-0 w-full h-full flex items-center"
+                    initial={{ x: "-50%" }}
+                    animate={{ x: ["0%", "100%", "0%"] }}
                     transition={{ 
-                      duration: 3,
+                      duration: 15,
                       repeat: Infinity,
-                      repeatType: "mirror",
                       ease: "easeInOut"
                     }}
-                  />
-                  <div className="absolute -bottom-5 left-0 text-xs text-gray-400">0%</div>
-                  <div className="absolute -bottom-5 right-0 text-xs text-gray-400">100%</div>
+                  >
+                    {/* Hareket eden ışık topu */}
+                    <div className="relative">
+                      <div className="absolute -inset-1 bg-amber-500/30 blur-md rounded-full"></div>
+                      <div className="h-4 w-4 bg-amber-400 rounded-full relative shadow-[0_0_10px_rgba(251,191,36,0.7)]"></div>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Yüzde işaretleri */}
+                  <div className="absolute -bottom-6 left-0 text-xs text-amber-500/80 font-medium">0%</div>
+                  <div className="absolute -bottom-6 left-1/4 text-xs text-amber-500/60 font-medium">25%</div>
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-amber-500/80 font-medium">50%</div>
+                  <div className="absolute -bottom-6 left-3/4 text-xs text-amber-500/60 font-medium">75%</div>
+                  <div className="absolute -bottom-6 right-0 text-xs text-amber-500/80 font-medium">100%</div>
                 </div>
               </div>
             </div>
