@@ -25,6 +25,10 @@ import JoinPage from "@/pages/JoinPage";
 import AmacsavasPage from "@/pages/AmacsavasPage";
 import GorevlerPage from "@/pages/GorevlerPage";
 import KatilPage from "@/pages/KatilPage";
+import RussiaPage from "@/pages/RussiaPage";
+import IranPage from "@/pages/IranPage";
+import PalestinePage from "@/pages/PalestinePage";
+import OppressedNationsPage from "@/pages/OppressedNationsPage";
 
 function Router() {
   return (
@@ -42,6 +46,10 @@ function Router() {
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />
       <Route path="/amaclar" component={AmacsavasPage} />
+      <Route path="/russia" component={RussiaPage} />
+      <Route path="/iran" component={IranPage} />
+      <Route path="/palestine" component={PalestinePage} />
+      <Route path="/oppressed" component={OppressedNationsPage} />
       <Route path="/matrix" component={Home} />
       <Route path="/simay" component={SimayHome} />
       <Route path="/simay2" component={SimayHome2} />

@@ -88,10 +88,20 @@ export const insertUserSessionSchema = createInsertSchema(userSessions).omit({
   createdAt: true,
 });
 
-export const insertVisitorStatSchema = createInsertSchema(visitorStats).omit({
-  id: true,
-  visitDate: true,
-});
+export const insertVisitorStatSchema = createInsertSchema(visitorStats)
+  .omit({
+    id: true,
+    visitDate: true,
+  })
+  .extend({
+    page: z.string().optional(),
+    language: z.string().min(2).max(10).default("tr"),
+    hasInteracted: z.boolean().default(false),
+    visitorIp: z.string().optional(),
+    userAgent: z.string().optional(),
+    referrer: z.string().optional(),
+    userId: z.number().optional(),
+  });
 
 export const insertFeedbackSchema = createInsertSchema(feedback).omit({
   id: true,
