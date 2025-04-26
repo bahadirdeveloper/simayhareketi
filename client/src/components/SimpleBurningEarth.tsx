@@ -113,27 +113,36 @@ export default function SimpleBurningEarth() {
       }
     };
     
-    // Draw background - Koyu Mavi Teknoloji Temalı
+    // Draw background - Türk Kültürüne Uygun Tema
     const drawBackground = () => {
       if (!ctx) return;
       
-      // Create deep blue gradient background - representing technological advancement
+      // Türk bayrağı kırmızısı ve milli renklere uygun bir gradient
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, 'rgba(0, 15, 40, 1)');  // Daha koyu mavi
-      gradient.addColorStop(0.7, 'rgba(0, 5, 25, 1)'); // Orta ton
-      gradient.addColorStop(1, 'rgba(0, 0, 15, 1)');   // Koyu lacivert
+      gradient.addColorStop(0, 'rgba(40, 0, 0, 1)');      // Koyu kırmızı - üst kısım
+      gradient.addColorStop(0.5, 'rgba(80, 0, 0, 1)');    // Orta kırmızı ton
+      gradient.addColorStop(1, 'rgba(30, 0, 0, 1)');      // En koyu kırmızı - alt kısım
       
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Add digital code/data flow patterns
-      drawDataFlowLines();
+      // Türk Motifi Arka Plan Deseni (Selçuklu Yıldızı ve Osmanlı Motifleri benzeri)
+      drawTurkishPatternBackground();
       
-      // Add subtle grid pattern - represents digital framework
-      ctx.strokeStyle = 'rgba(255, 215, 0, 0.05)'; // Altın rengi grid
-      ctx.lineWidth = 0.25;
+      // Hilal ve Yıldız motifleri oluşturan ışık çizgileri 
+      drawStarsAndCrescentLines();
       
-      const gridSize = 40;
+      // Atatürk imzası ve tarihsel semboller
+      drawHistoricalSymbols();
+      
+      // Türk geometrik desenleri (geleneksel sanat motifleri)
+      drawGeometricPatterns();
+      
+      // İnce grid yapısıyla tüm deseni birleştir
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)'; // İnce beyaz grid
+      ctx.lineWidth = 0.2;
+      
+      const gridSize = 50;
       for (let x = 0; x < canvas.width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -148,25 +157,249 @@ export default function SimpleBurningEarth() {
         ctx.stroke();
       }
       
-      // Add diagonal grid lines for a more tech feel
-      ctx.strokeStyle = 'rgba(0, 150, 255, 0.025)'; // Açık mavi diagonal grid
-      for (let i = 0; i < canvas.width + canvas.height; i += gridSize * 2) {
-        ctx.beginPath();
-        ctx.moveTo(0, i);
-        ctx.lineTo(i, 0);
-        ctx.stroke();
+      // İnce ışık hüzmeleri
+      ctx.strokeStyle = 'rgba(255, 215, 0, 0.03)'; // Altın rengi ışık hüzmeleri
+      for (let i = 0; i < 15; i++) {
+        const startX = Math.random() * canvas.width;
+        const startY = Math.random() * canvas.height;
+        const angle = Math.random() * Math.PI * 2;
+        const length = Math.max(canvas.width, canvas.height) * 2;
         
         ctx.beginPath();
-        ctx.moveTo(canvas.width, i - canvas.width);
-        ctx.lineTo(i, canvas.height);
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(
+          startX + Math.cos(angle) * length,
+          startY + Math.sin(angle) * length
+        );
         ctx.stroke();
       }
       
-      // Draw faint circuit patterns
-      drawCircuitPatterns();
-      
-      // Draw subtle Turkish flag motifs in the background
+      // Geleneksel Türk motiflerini ekle
       drawTurkishMotifsBackground();
+    };
+    
+    // Türk motifi arka plan deseni
+    const drawTurkishPatternBackground = () => {
+      if (!ctx) return;
+      
+      const patternSize = 80;
+      const rows = Math.ceil(canvas.height / patternSize);
+      const cols = Math.ceil(canvas.width / patternSize);
+      
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const centerX = col * patternSize + patternSize / 2;
+          const centerY = row * patternSize + patternSize / 2;
+          const radius = patternSize * 0.4;
+          
+          // Selçuklu yıldızı benzeri desenler
+          const points = 8; // 8 köşeli yıldız
+          const innerRadius = radius * 0.4;
+          
+          ctx.strokeStyle = 'rgba(255, 215, 0, 0.02)'; // Altın rengi
+          ctx.lineWidth = 0.5;
+          
+          // Yıldız çizimi
+          ctx.beginPath();
+          for (let i = 0; i < points * 2; i++) {
+            const r = i % 2 === 0 ? radius : innerRadius;
+            const angle = (i * Math.PI) / points;
+            const x = centerX + r * Math.cos(angle);
+            const y = centerY + r * Math.sin(angle);
+            
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.stroke();
+          
+          // Osmanlı deseni benzeri iç içe daireler
+          if ((row + col) % 2 === 0) {
+            ctx.strokeStyle = 'rgba(227, 10, 23, 0.02)'; // Türk kırmızısı
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.7, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.5, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+    
+    // Hilal ve yıldız motifleri oluşturan ışık çizgileri
+    const drawStarsAndCrescentLines = () => {
+      if (!ctx) return;
+      
+      const time = Date.now() * 0.0005;
+      const lineCount = 20;
+      
+      for (let i = 0; i < lineCount; i++) {
+        const yPos = (canvas.height * i / lineCount) + Math.sin(time + i * 0.1) * 30;
+        const speed = 0.5 + Math.sin(i * 0.3) * 0.2;
+        const alpha = 0.03 + Math.sin(time + i) * 0.02;
+        
+        ctx.strokeStyle = i % 3 === 0 
+          ? `rgba(255, 255, 255, ${alpha})` // Beyaz
+          : `rgba(227, 10, 23, ${alpha})`; // Türk kırmızısı
+          
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        
+        // Dalgalı çizgi başlangıcı
+        ctx.moveTo(0, yPos);
+        
+        // Dalgalı çizgi oluşturma
+        const segments = 15;
+        const segmentWidth = canvas.width / segments;
+        
+        for (let j = 1; j <= segments; j++) {
+          const segX = j * segmentWidth;
+          const segY = yPos + Math.sin(time * speed + j * 0.3) * 15;
+          
+          ctx.lineTo(segX, segY);
+          
+          // Bazı noktalarda yıldız veya hilal çizimi
+          if (Math.random() > 0.85) {
+            const symbolSize = 2 + Math.random() * 3;
+            
+            if (Math.random() > 0.5) {
+              // Yıldız
+              drawStar(ctx, segX, segY, 5, symbolSize, symbolSize * 0.4);
+            } else {
+              // Hilal
+              ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 5})`;
+              ctx.beginPath();
+              ctx.arc(segX, segY, symbolSize, 0, Math.PI * 2);
+              ctx.fill();
+              
+              ctx.fillStyle = `rgba(80, 0, 0, 1)`;
+              ctx.beginPath();
+              ctx.arc(segX + symbolSize * 0.35, segY, symbolSize * 0.85, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+        
+        ctx.stroke();
+      }
+    };
+    
+    // Tarihsel semboller ve Atatürk imzası benzeri çizimler
+    const drawHistoricalSymbols = () => {
+      if (!ctx) return;
+      
+      // Üslubize edilmiş Atatürk imzası benzeri çizimler
+      const signatureCount = 3;
+      
+      for (let i = 0; i < signatureCount; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const scale = 0.3 + Math.random() * 0.5;
+        const alpha = 0.02 + Math.random() * 0.02;
+        
+        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.lineWidth = 0.5;
+        
+        // Atatürk imzası benzeri bir stil
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.bezierCurveTo(
+          x + 50 * scale, y - 20 * scale,
+          x + 80 * scale, y + 20 * scale,
+          x + 120 * scale, y - 10 * scale
+        );
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(x + 40 * scale, y + 10 * scale);
+        ctx.bezierCurveTo(
+          x + 70 * scale, y - 30 * scale,
+          x + 100 * scale, y + 5 * scale,
+          x + 80 * scale, y + 30 * scale
+        );
+        ctx.stroke();
+      }
+    };
+    
+    // Geleneksel Türk geometrik desenleri
+    const drawGeometricPatterns = () => {
+      if (!ctx) return;
+      
+      const patternCount = 8;
+      
+      for (let i = 0; i < patternCount; i++) {
+        const centerX = Math.random() * canvas.width;
+        const centerY = Math.random() * canvas.height;
+        const radius = 30 + Math.random() * 70;
+        const alpha = 0.01 + Math.random() * 0.02;
+        
+        // Geometrik desenler - altıgen ve çintemani
+        if (Math.random() > 0.5) {
+          // Altıgen
+          ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`; // Altın
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          
+          for (let j = 0; j < 6; j++) {
+            const angle = (j * Math.PI) / 3;
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            
+            if (j === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          
+          ctx.closePath();
+          ctx.stroke();
+          
+          // İç altıgen
+          ctx.beginPath();
+          for (let j = 0; j < 6; j++) {
+            const angle = (j * Math.PI) / 3 + Math.PI / 6;
+            const x = centerX + radius * 0.6 * Math.cos(angle);
+            const y = centerY + radius * 0.6 * Math.sin(angle);
+            
+            if (j === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.stroke();
+        } else {
+          // Çintemani (üç nokta)
+          ctx.fillStyle = `rgba(227, 10, 23, ${alpha * 2})`;
+          const dotRadius = radius / 5;
+          
+          // Üst nokta
+          ctx.beginPath();
+          ctx.arc(centerX, centerY - radius * 0.3, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Alt sol nokta
+          ctx.beginPath();
+          ctx.arc(centerX - radius * 0.3, centerY + radius * 0.2, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Alt sağ nokta
+          ctx.beginPath();
+          ctx.arc(centerX + radius * 0.3, centerY + radius * 0.2, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
     };
     
     // Draw flowing data lines representing digital update concepts
