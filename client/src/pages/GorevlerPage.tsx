@@ -1269,6 +1269,10 @@ export default function GorevlerPage() {
                   
                   {/* Content */}
                   <div className="relative z-10">
+                    {/* Debug için ID gösterici */}
+                    <div className="absolute top-0 right-0 bg-amber-600 text-white px-2 py-1 text-xs font-bold rounded-bl">
+                      ID: {gorev.id}
+                    </div>
                     <h3 className="text-lg md:text-xl font-bold text-amber-400 mb-3">{gorev.baslik}</h3>
                     <p className="text-white mb-2">{gorev.cagri}</p>
                     <div className="flex justify-between items-center text-sm text-gray-400 mb-4">
