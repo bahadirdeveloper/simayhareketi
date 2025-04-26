@@ -1366,8 +1366,9 @@ export default function GorevlerPage() {
         </div>
         
         {/* Görev Modal */}
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="bg-black/85 backdrop-blur-md border border-cyan-500 text-white relative overflow-hidden">
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
+          <DialogContent 
+            className="bg-black/85 backdrop-blur-md border border-cyan-500 text-white relative overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-[90vw] md:w-[500px]">
             {/* Arka plan görseli - seçilen görev için */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-30 z-0">
