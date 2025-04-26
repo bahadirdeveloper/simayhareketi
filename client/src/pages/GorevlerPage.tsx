@@ -1379,7 +1379,7 @@ export default function GorevlerPage() {
         {/* Görev Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
-            className="bg-black/85 backdrop-blur-md border border-red-600 text-white relative overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-[90vw] md:w-[500px]">
+            className="bg-black/85 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
             {/* Arka plan görseli - seçilen görev için - düşük opaklık */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-20 z-0">
@@ -1402,30 +1402,32 @@ export default function GorevlerPage() {
                 </DialogDescription>
               </DialogHeader>
               
-              <form onSubmit={handleFormSubmit} className="space-y-6 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="ad" className="text-base font-semibold">Adınız Soyadınız:</Label>
-                  <Input
-                    id="ad"
-                    name="ad"
-                    value={formData.ad}
-                    onChange={handleInputChange}
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                    required
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="eposta" className="text-base font-semibold">E-posta:</Label>
-                  <Input
-                    id="eposta"
-                    name="eposta"
-                    type="email"
-                    value={formData.eposta}
-                    onChange={handleInputChange}
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                    required
-                  />
+              <form onSubmit={handleFormSubmit} className="space-y-5 mt-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="ad" className="text-base font-semibold">Adınız Soyadınız:</Label>
+                    <Input
+                      id="ad"
+                      name="ad"
+                      value={formData.ad}
+                      onChange={handleInputChange}
+                      className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="eposta" className="text-base font-semibold">E-posta:</Label>
+                    <Input
+                      id="eposta"
+                      name="eposta"
+                      type="email"
+                      value={formData.eposta}
+                      onChange={handleInputChange}
+                      className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                      required
+                    />
+                  </div>
                 </div>
                 
                 <div className="space-y-2">
@@ -1435,7 +1437,7 @@ export default function GorevlerPage() {
                     name="not"
                     value={formData.not}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base min-h-[100px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base min-h-[80px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                     rows={3}
                   />
                 </div>
@@ -1451,14 +1453,14 @@ export default function GorevlerPage() {
                   />
                 </div>
                 
-                <DialogFooter>
+                <div className="flex justify-center mt-4">
                   <Button 
                     type="submit" 
-                    className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-800 hover:to-red-600 text-white font-bold text-lg px-8 py-6 h-auto mt-4 shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+                    className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-800 hover:to-red-600 text-white font-bold text-lg px-8 py-4 h-auto shadow-[0_0_15px_rgba(220,38,38,0.3)]"
                   >
-                    Gönder
+                    Göreve Katıl
                   </Button>
-                </DialogFooter>
+                </div>
               </form>
             </div>
           </DialogContent>
