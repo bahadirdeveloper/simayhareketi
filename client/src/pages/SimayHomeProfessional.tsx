@@ -379,9 +379,27 @@ export default function SimayHomeProfessional() {
                 </div>
               </div>
               
-              <p className="text-center text-xs text-red-500/80 mt-3 italic font-bold">
-                "Bu icat Türk yapımıdır."
-              </p>
+              <div className="flex justify-center mt-4">
+                <div className="turkish-tech-badge group transition-all duration-300 cursor-default">
+                  <span className="inline-flex items-center">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      className="w-3.5 h-3.5 mr-2 text-red-500"
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12.5 3.5a2.5 2.5 0 0 1 0 5h-9a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h10.5a2.5 2.5 0 0 1 0 5c-7 0-10-3-10-10s3-10 10-10z"></path>
+                      <circle cx="17.5" cy="18.5" r="2.5"></circle>
+                      <circle cx="17.5" cy="5.5" r="2.5"></circle>
+                    </svg>
+                    <span>Bu icat Türk yapımıdır</span>
+                  </span>
+                </div>
+              </div>
             </div>
           </motion.div>
           
@@ -392,54 +410,81 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <div className="bg-gradient-to-b from-black/60 to-red-800/40 backdrop-blur-md border-4 border-red-600 rounded-xl p-4 sm:p-8 text-center hover:border-white transition-all duration-300 mb-8 sm:mb-12 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-white shadow-text">TÜRKİYE</h3>
-              <p className="text-white mb-4 sm:mb-8 text-lg sm:text-xl tracking-wide">Toplumsal Yenileme Merkezi</p>
+            <div className="bg-gradient-to-b from-black/70 to-gray-900/60 backdrop-blur-md rounded-xl p-4 sm:p-8 text-center mb-8 sm:mb-12 shadow-[0_8px_30px_rgba(0,0,0,0.25)] border border-gray-800 hover:border-red-500/40 transition-all duration-300 relative overflow-hidden">
+              {/* Alt kısımdaki kırmızı çizgi */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+              
+              {/* Üst kısımdaki teknolojik aksanlar */}
+              <div className="absolute top-0 right-0 w-24 h-24 opacity-40">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-full h-full text-red-500/30" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a4 4 0 0 0 4 4"></path>
+                  <path d="M12 2a4 4 0 1 1-4 4"></path>
+                  <path d="M12 22a4 4 0 0 0 4-4"></path>
+                  <path d="M12 22a4 4 0 1 1-4-4"></path>
+                </svg>
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-white">TÜRKİYE</h3>
+              <p className="text-white/80 mb-6 sm:mb-8 text-lg sm:text-xl tracking-wide font-light">Toplumsal Yenileme Merkezi</p>
+              
               <motion.div
                 initial={{ scale: 1 }}
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Button 
-                  className="w-full bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white py-4 sm:py-8 text-xl sm:text-2xl shadow-xl font-bold tracking-wider border-2 border-white/20"
+                  className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-red-900/80 hover:to-black text-white py-4 sm:py-6 text-xl sm:text-2xl shadow-lg font-medium tracking-wider border border-gray-700 hover:border-red-500/50 rounded-md"
                   onClick={() => navigate("/turkiye")}
                 >
-                  Türkiye Platformuna Giriş
+                  <span className="mr-2 text-red-500">&#x2192;</span> Türkiye Platformuna Giriş
                 </Button>
               </motion.div>
+              
+              <div className="mt-4 flex justify-center">
+                <div className="inline-flex items-center text-xs text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Akıl, bilim ve sanat ile geleceğe
+                </div>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              <div className="bg-gradient-to-b from-black/60 to-red-950/40 backdrop-blur-sm border-2 border-red-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-red-400 shadow-lg">
-                <h4 className="font-medium text-white text-base sm:text-lg mb-2 sm:mb-3">RUSYA</h4>
+              <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-red-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-red-600/50"></div>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">RUSYA</h4>
                 <Button 
                   variant="outline"
-                  className="w-full border-2 border-red-500 text-white hover:bg-red-900/30 py-3 sm:py-6 text-base sm:text-lg font-semibold"
+                  className="w-full border border-gray-700 text-white hover:border-red-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
                   onClick={() => navigate("/russia")}
                 >
-                  Giriş
+                  <span className="text-red-500 mr-1">&#8594;</span> Giriş
                 </Button>
               </div>
               
-              <div className="bg-gradient-to-b from-black/60 to-blue-950/40 backdrop-blur-sm border-2 border-blue-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-blue-400 shadow-lg">
-                <h4 className="font-medium text-white text-base sm:text-lg mb-2 sm:mb-3">İRAN</h4>
+              <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-blue-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-blue-600/50"></div>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">İRAN</h4>
                 <Button 
                   variant="outline"
-                  className="w-full border-2 border-blue-500 text-white hover:bg-blue-900/30 py-3 sm:py-6 text-base sm:text-lg font-semibold"
+                  className="w-full border border-gray-700 text-white hover:border-blue-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
                   onClick={() => navigate("/iran")}
                 >
-                  Giriş
+                  <span className="text-blue-500 mr-1">&#8594;</span> Giriş
                 </Button>
               </div>
               
-              <div className="bg-gradient-to-b from-black/60 to-green-950/40 backdrop-blur-sm border-2 border-green-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-green-400 shadow-lg">
-                <h4 className="font-medium text-white text-base sm:text-lg mb-2 sm:mb-3">FİLİSTİN</h4>
+              <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-green-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-green-600/50"></div>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">FİLİSTİN</h4>
                 <Button 
                   variant="outline"
-                  className="w-full border-2 border-green-500 text-white hover:bg-green-900/30 py-3 sm:py-6 text-base sm:text-lg font-semibold"
+                  className="w-full border border-gray-700 text-white hover:border-green-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
                   onClick={() => navigate("/palestine")}
                 >
-                  Giriş
+                  <span className="text-green-500 mr-1">&#8594;</span> Giriş
                 </Button>
               </div>
             </div>
@@ -452,24 +497,48 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <div className="bg-gradient-to-b from-black/60 to-red-950/40 backdrop-blur-md border-2 border-red-500/70 rounded-xl p-6 hover:border-white/80 transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
-              <h3 className="text-2xl text-white mb-4 font-bold">Uluslararası İletişim Ağı</h3>
+            <div className="bg-black/60 backdrop-blur-md border border-gray-800 hover:border-gray-600 rounded-lg p-5 sm:p-6 transition-all duration-300 shadow-lg relative overflow-hidden">
+              {/* Teknolojik aksanlar */}
+              <div className="absolute -right-12 -top-16 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-40 h-40 text-blue-500" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a4.5 4.5 0 0 0 4.5 4.5"></path>
+                  <path d="M12 2a4.5 4.5 0 0 1-4.5 4.5"></path>
+                  <path d="M12 22a4.5 4.5 0 0 0 4.5-4.5"></path>
+                  <path d="M12 22a4.5 4.5 0 0 1-4.5-4.5"></path>
+                </svg>
+              </div>
               
-              <motion.div
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Button 
-                  className="w-full bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white py-6 text-xl rounded-lg shadow-xl font-semibold tracking-wide border border-white/20"
-                  onClick={() => navigate("/oppressed")}
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-red-500 mr-3"></div>
+                  <h3 className="text-xl sm:text-2xl text-white font-semibold">Uluslararası İletişim Ağı</h3>
+                </div>
+                
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  Uluslararası Platform Başvurusu
-                </Button>
-              </motion.div>
-              
-              <div className="mt-8 text-center pb-1">
-                <LanguageSelector />
+                  <Button 
+                    className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-blue-900/40 hover:to-black text-white py-4 sm:py-5 text-lg sm:text-xl rounded-md shadow-lg font-medium tracking-wide border border-gray-700 hover:border-blue-500/30"
+                    onClick={() => navigate("/oppressed")}
+                  >
+                    <div className="flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 mr-2 text-blue-400">
+                        <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                        <path d="M9 12h6"></path>
+                        <path d="M12 9v6"></path>
+                      </svg>
+                      Uluslararası Platform Başvurusu
+                    </div>
+                  </Button>
+                </motion.div>
+                
+                <div className="mt-6 text-center pb-1">
+                  <div className="mb-2 text-xs text-gray-400">Tercih ettiğiniz dil</div>
+                  <LanguageSelector />
+                </div>
               </div>
             </div>
           </motion.div>
@@ -478,14 +547,19 @@ export default function SimayHomeProfessional() {
           
           {/* Alt Bilgi */}
           <motion.div 
-            className="text-center mt-4"
+            className="text-center mt-6 mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           >
-            <div className="inline-block bg-gradient-to-r from-red-950/60 via-black/40 to-red-950/60 backdrop-blur-sm px-6 py-3 rounded-full border border-red-600/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
-              <p className="text-sm text-gray-300 font-medium">
-                19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
+            <div className="inline-flex items-center justify-center space-x-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-md border border-gray-800">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-500">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8L12 12" />
+                <path d="M12 16h.01" />
+              </svg>
+              <p className="text-xs text-gray-300 font-light tracking-wide">
+                <span className="font-normal text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
             </div>
           </motion.div>
