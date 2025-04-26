@@ -81,22 +81,27 @@ export default function SimpleBurningEarth() {
       }
     };
     
-    // Draw background
+    // Draw background - Koyu Mavi Teknoloji Temalı
     const drawBackground = () => {
-      // Create gradient background - dark blue to black, representing technological advancement
+      if (!ctx) return;
+      
+      // Create deep blue gradient background - representing technological advancement
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, 'rgba(0, 10, 30, 1)');
-      gradient.addColorStop(0.6, 'rgba(0, 0, 10, 1)');
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 1)');
+      gradient.addColorStop(0, 'rgba(0, 15, 40, 1)');  // Daha koyu mavi
+      gradient.addColorStop(0.7, 'rgba(0, 5, 25, 1)'); // Orta ton
+      gradient.addColorStop(1, 'rgba(0, 0, 15, 1)');   // Koyu lacivert
       
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Add subtle grid pattern - represents digital framework
-      ctx.strokeStyle = 'rgba(255, 204, 0, 0.05)';
-      ctx.lineWidth = 0.3;
+      // Add digital code/data flow patterns
+      drawDataFlowLines();
       
-      const gridSize = 50;
+      // Add subtle grid pattern - represents digital framework
+      ctx.strokeStyle = 'rgba(255, 215, 0, 0.05)'; // Altın rengi grid
+      ctx.lineWidth = 0.25;
+      
+      const gridSize = 40;
       for (let x = 0; x < canvas.width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -110,7 +115,253 @@ export default function SimpleBurningEarth() {
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
       }
+      
+      // Add diagonal grid lines for a more tech feel
+      ctx.strokeStyle = 'rgba(0, 150, 255, 0.025)'; // Açık mavi diagonal grid
+      for (let i = 0; i < canvas.width + canvas.height; i += gridSize * 2) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(i, 0);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(canvas.width, i - canvas.width);
+        ctx.lineTo(i, canvas.height);
+        ctx.stroke();
+      }
+      
+      // Draw faint circuit patterns
+      drawCircuitPatterns();
+      
+      // Draw subtle Turkish flag motifs in the background
+      drawTurkishMotifsBackground();
     };
+    
+    // Draw flowing data lines representing digital update concepts
+    const drawDataFlowLines = () => {
+      if (!ctx) return;
+      
+      const time = Date.now() * 0.001;
+      const lineCount = 30;
+      
+      // Create a set of flowing lines
+      for (let i = 0; i < lineCount; i++) {
+        const y = (canvas.height * i / lineCount) + Math.sin(time + i * 0.2) * 20;
+        const speed = 0.5 + Math.sin(i * 0.5) * 0.3;
+        const alpha = 0.05 + Math.sin(time * 0.5 + i) * 0.03;
+        
+        // Randomly determine if this is a Turkish red line or a digital blue line
+        const isTurkishRed = Math.random() > 0.7;
+        
+        ctx.strokeStyle = isTurkishRed ? 
+          `rgba(227, 10, 23, ${alpha * 1.2})` : // Türk bayrağı kırmızısı
+          `rgba(0, 180, 255, ${alpha})`;        // Teknoloji mavisi
+          
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        
+        // Starting point
+        const startX = 0;
+        const endX = canvas.width;
+        ctx.moveTo(startX, y);
+        
+        // Create wavy line with Perlin-like noise effect
+        const segments = 20;
+        const segmentWidth = canvas.width / segments;
+        
+        for (let j = 1; j <= segments; j++) {
+          const segX = j * segmentWidth;
+          const segY = y + Math.sin(time * speed + j * 0.5) * 10;
+          
+          // Digital pattern - occasional straight segments
+          if (j % 4 === 0 && !isTurkishRed) {
+            ctx.lineTo(segX - segmentWidth / 2, segY);
+            ctx.lineTo(segX - segmentWidth / 2, segY + Math.random() * 10 - 5);
+            ctx.lineTo(segX, segY);
+          } else {
+            ctx.lineTo(segX, segY);
+          }
+        }
+        
+        ctx.stroke();
+        
+        // Add data "packets" along the line
+        if (Math.random() > 0.7) {
+          const packetCount = Math.floor(Math.random() * 3) + 1;
+          
+          for (let p = 0; p < packetCount; p++) {
+            const packetX = (Math.sin(time * 0.5 + p) * 0.5 + 0.5) * canvas.width;
+            const baseY = y + Math.sin(time * speed + (packetX / segmentWidth) * 0.5) * 10;
+            
+            // Draw data packet - rectangle or circle
+            if (isTurkishRed) {
+              // Star or crescent for Turkish motifs
+              if (Math.random() > 0.5) {
+                drawStar(ctx, packetX, baseY, 5, 3, 1.5);
+              } else {
+                // Simple crescent
+                ctx.fillStyle = `rgba(227, 10, 23, ${alpha * 3})`;
+                ctx.beginPath();
+                ctx.arc(packetX, baseY, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = 'rgba(0, 15, 40, 1)';
+                ctx.beginPath();
+                ctx.arc(packetX + 1.5, baseY, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            } else {
+              // Binary or data for tech motifs
+              ctx.fillStyle = `rgba(0, 200, 255, ${alpha * 3})`;
+              if (Math.random() > 0.5) {
+                ctx.beginPath();
+                ctx.arc(packetX, baseY, 2, 0, Math.PI * 2);
+                ctx.fill();
+              } else {
+                ctx.fillRect(packetX - 2, baseY - 2, 4, 4);
+              }
+            }
+          }
+        }
+      }
+    };
+    
+    // Draw circuit board-like patterns in the background
+    const drawCircuitPatterns = () => {
+      if (!ctx) return;
+      
+      ctx.strokeStyle = 'rgba(0, 150, 255, 0.03)';
+      ctx.lineWidth = 0.5;
+      
+      const patternCount = 10;
+      const time = Date.now() * 0.0002;
+      
+      for (let i = 0; i < patternCount; i++) {
+        const startX = Math.sin(i * 5 + time) * canvas.width * 0.4 + canvas.width * 0.5;
+        const startY = Math.cos(i * 5 + time) * canvas.height * 0.4 + canvas.height * 0.5;
+        
+        drawCircuitBranch(startX, startY, 5, 0, Math.PI * 2 * Math.random());
+      }
+      
+      // Helper function to recursively draw circuit branches
+      function drawCircuitBranch(x: number, y: number, depth: number, parentAngle: number, angleOffset: number) {
+        if (depth <= 0) return;
+        
+        const length = 20 + Math.random() * 30;
+        const angle = parentAngle + angleOffset;
+        
+        const endX = x + Math.cos(angle) * length;
+        const endY = y + Math.sin(angle) * length;
+        
+        // Draw connection line
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        
+        // Decide if we want right angles (circuit-like) or straight lines
+        if (Math.random() > 0.5 && depth > 1) {
+          // Right angle connection
+          const midX = x + Math.cos(angle) * length / 2;
+          const midY = y + Math.sin(angle) * length / 2;
+          
+          if (Math.random() > 0.5) {
+            ctx.lineTo(midX, y);
+            ctx.lineTo(midX, midY);
+            ctx.lineTo(endX, midY);
+            ctx.lineTo(endX, endY);
+          } else {
+            ctx.lineTo(x, midY);
+            ctx.lineTo(midX, midY);
+            ctx.lineTo(midX, endY);
+            ctx.lineTo(endX, endY);
+          }
+        } else {
+          // Straight line
+          ctx.lineTo(endX, endY);
+        }
+        
+        ctx.stroke();
+        
+        // Add a node/connection point
+        if (Math.random() > 0.7) {
+          ctx.fillStyle = 'rgba(0, 180, 255, 0.05)';
+          ctx.beginPath();
+          ctx.arc(endX, endY, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        
+        // Chance to branch out
+        if (Math.random() > 0.3) {
+          const branchAngle = Math.random() * Math.PI / 2 - Math.PI / 4;
+          drawCircuitBranch(endX, endY, depth - 1, angle, branchAngle);
+        }
+        
+        // Continue main branch
+        if (Math.random() > 0.2) {
+          const newAngleOffset = (Math.random() * Math.PI / 4) - Math.PI / 8;
+          drawCircuitBranch(endX, endY, depth - 1, angle, newAngleOffset);
+        }
+      }
+    };
+    
+    // Draw subtle Turkish flag motifs
+    const drawTurkishMotifsBackground = () => {
+      if (!ctx) return;
+      
+      // Add very faint Turkish flag motifs
+      const motifCount = 5;
+      
+      for (let i = 0; i < motifCount; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = 10 + Math.random() * 15;
+        const alpha = 0.02 + Math.random() * 0.03;
+        
+        // Decide between star or crescent
+        if (Math.random() > 0.5) {
+          // Star
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          drawStar(ctx, x, y, 5, size, size / 2);
+        } else {
+          // Crescent
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = `rgba(0, 10, 30, ${alpha * 10})`;
+          ctx.beginPath();
+          ctx.arc(x + size * 0.5, y, size * 0.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    };
+    
+    // Helper function to draw a star
+    function drawStar(context: CanvasRenderingContext2D, cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) {
+      let rot = Math.PI / 2 * 3;
+      let x = cx;
+      let y = cy;
+      const step = Math.PI / spikes;
+      
+      context.beginPath();
+      context.moveTo(cx, cy - outerRadius);
+      
+      for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        context.lineTo(x, y);
+        rot += step;
+        
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        context.lineTo(x, y);
+        rot += step;
+      }
+      
+      context.lineTo(cx, cy - outerRadius);
+      context.closePath();
+      context.fill();
+    }
     
     // Draw central scene inspired by the image
     const drawCenterScene = (time: number) => {
