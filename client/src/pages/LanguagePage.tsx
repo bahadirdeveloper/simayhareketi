@@ -16,7 +16,10 @@ export default function LanguagePage() {
   useEffect(() => {
     // Change language based on route parameter
     if (match && params?.lang) {
-      i18n.changeLanguage(params.lang);
+      const language = params.lang;
+      if (i18n.language !== language) {
+        i18n.changeLanguage(language);
+      }
     }
   }, [match, params, i18n]);
 
