@@ -451,86 +451,165 @@ export default function GorevlerPage() {
     // Görevlerimizi ayarlayalım - TÜM GÖREVLERİ KULLAN
     setGorevler(fullGorevlerList);
     
-    // Görev başlığı alma fonksiyonu - JSON verilerinden
+    // Görev başlığı alma fonksiyonu - JSON verisinden
     function getGorevTitle(id: number): string {
-      const titles = [
-        "Ahlaki Örnek Ol", "Karşıt Görüşleri Dinle", "Engeli Aşan Destek", 
-        "Sebze Yetiştir", "Tiyatroyla Tanış", "Geçmişe Kulak Ver", 
-        "Özgürlük Sözün Olsun", "Köklerini Keşfet", "Dijital Detoks Günü", 
-        "Anmayı Unutma", "Tarihi Canlandır", "Sanatçı Tanıt", 
-        "İnancı Tanı", "Özgürlüğü Sor", "Halk Gazetesi", 
-        "Renkli İlham", "Hikaye Dinle", "Ortak Karar Al", 
-        "Dijital Vatandaş", "Doğum Günü Hediyesi", "Dijital Zekâ",
-        "Sanal Buluşma", "Akıllı Kullanım", "Kitap Değişimi",
-        "Bilimi Keşfet", "Özel Ders Ver", "Kapalı Kap",
-        "Fen Deneyi", "Empati Geliştir", "Stres Yönet"
-      ];
+      // 16-59 arasındaki görevler için başlıklar (JSON verisinden)
+      const titles = {
+        16: "Ahlaki Örnek Ol",
+        17: "Karşıt Görüşleri Dinle",
+        18: "Engeli Aşan Destek",
+        19: "Sebze Yetiştir",
+        20: "Tiyatroyla Tanış",
+        21: "Geçmişe Kulak Ver",
+        22: "Özgürlük Sözün Olsun",
+        23: "Köklerini Keşfet",
+        24: "Dijital Detoks Günü",
+        25: "Anmayı Unutma",
+        26: "Tarihi Canlandır",
+        27: "Sanatçı Tanıt",
+        28: "İnancı Tanı",
+        29: "Özgürlüğü Sor",
+        30: "Halk Gazetesi",
+        31: "Renkli İlham",
+        32: "Hikaye Dinle",
+        33: "İlham Sokakta",
+        34: "Halkın Başarısı",
+        35: "Büyükannenin Anısı",
+        36: "Temizlikte Birlik",
+        37: "Hakkaniyet Talebi",
+        38: "Aile Ağacı",
+        39: "Anayasa Okuma Saati",
+        40: "Medeniyet Eksiği",
+        41: "Kitap Zinciri",
+        42: "Zafer Filmi",
+        43: "Birlik Konuşması",
+        44: "Aile İstişare Saati",
+        45: "Geleceği Hayal Et",
+        46: "Eğitim Eşitsizliğini Belgele",
+        47: "Türkçülük Kitabı",
+        48: "Fetih Hikayesi",
+        49: "Hayat Tavsiyesi",
+        50: "Yabancı Yayına Tepki",
+        51: "Zafer Anını Yaz",
+        52: "Gerçekten Gerekli",
+        53: "Onurlu Duruş",
+        54: "Gönüllü Öğretmenlik",
+        55: "Adalet Olayı Paylaş"
+      };
       
       // ID'ye göre başlığı seç
-      if (id >= 16 && id < 16 + titles.length) {
-        return titles[id - 16];
+      if (titles[id as keyof typeof titles]) {
+        return titles[id as keyof typeof titles];
       } else {
         // Eğer ID için belirli bir başlık yoksa
         return `Görev ${id}`;
       }
     }
     
-    // Görev çağrısı alma fonksiyonu - JSON verilerinden
+    // Görev çağrısı alma fonksiyonu - JSON verisinden
     function getGorevCagri(id: number): string {
-      const cagrilar = [
-        "Ailende örnek bir ahlaki davranışı görünür hale getir.",
-        "Bir fikir tartışmasında karşıt görüşü dinle, özetle.",
-        "Bir engelli bireyin ihtiyaçlarını gözlemleyip destek önerisi sun.",
-        "Balkon ya da bahçede küçük bir sebze yetiştir.",
-        "Yerel tiyatroya bir gençle birlikte git.",
-        "Yaşlı birinden geçmiş bayramları dinle ve kaydet.",
-        "Özgürlük hakkında kendi sözlerini yaz.",
-        "Atalarının yaşadığı bir yerin tarihini araştır.",
-        "1 gün dijital detoks yapıp üretim odaklı yaşa.",
-        "Bir anma törenine katıl ya da organize et.",
-        "Tarihi bir olayı resmet ya da video üret.",
-        "Bir sanatçıyı 3 kişiye tanıt.",
-        "Farklı inançtan bir arkadaşla karşılıklı öğrenme sohbeti yap.",
-        "3 kişiye özgürlük kavramı hakkında soru sor, yanıtlarını kaydet.",
-        "Bir günlüğüne gazete çıkar ya da haber yap.",
-        "Birine resim defteri veya boya hediye et.",
-        "Yaşlı birinden geçmişe dair hikaye dinle."
-      ];
+      // 16-59 arasındaki görevler için çağrılar (JSON verisinden)
+      const cagrilar = {
+        16: "Ailende örnek bir ahlaki davranışı görünür hale getir.",
+        17: "Bir fikir tartışmasında karşıt görüşü dinle, özetle.",
+        18: "Bir engelli bireyin ihtiyaçlarını gözlemleyip destek önerisi sun.",
+        19: "Balkon ya da bahçede küçük bir sebze yetiştir.",
+        20: "Yerel tiyatroya bir gençle birlikte git.",
+        21: "Yaşlı birinden geçmiş bayramları dinle ve kaydet.",
+        22: "Özgürlük hakkında kendi sözlerini yaz.",
+        23: "Atalarının yaşadığı bir yerin tarihini araştır.",
+        24: "1 gün dijital detoks yapıp üretim odaklı yaşa.",
+        25: "Bir anma törenine katıl ya da organize et.",
+        26: "Tarihi bir olayı resmet ya da video üret.",
+        27: "Bir sanatçıyı 3 kişiye tanıt.",
+        28: "Farklı inançtan bir arkadaşla karşılıklı öğrenme sohbeti yap.",
+        29: "3 kişiye özgürlük kavramı hakkında soru sor, yanıtlarını kaydet.",
+        30: "Bir günlüğüne gazete çıkar ya da haber yap.",
+        31: "Birine resim defteri veya boya hediye et.",
+        32: "Yaşlı birinden geçmişe dair hikaye dinle.",
+        33: "\"İlham nedir?\" konulu sokak röportajı yap.",
+        34: "Halkın başarılarını anlatan bir içerik paylaş.",
+        35: "Büyük annenin hayatına dair yazılı bir anı oluştur.",
+        36: "Komşularla imece usulü temizlik etkinliği yap.",
+        37: "Belediyeye hakkaniyetli bir hizmet talebi gönder.",
+        38: "Aile ağacını çizmeye başla.",
+        39: "Anayasayı oku, anlamadıklarını hukukçuya sor.",
+        40: "Medeniyet eksiğini tespit et, çözüm önerisi yaz.",
+        41: "Bir okul kütüphanesine kitap bağışla.",
+        42: "Zafer gününü canlandıran kısa film çek.",
+        43: "Bir toplulukta birlik temalı konuşma yap.",
+        44: "Ailende haftalık istişare saati başlat.",
+        45: "Geleceği anlatan bir içerik üret.",
+        46: "Eğitim eşitsizliği tespiti yap ve bildir.",
+        47: "Türkçülükle ilgili kitap hediye et.",
+        48: "Fetih hikayesini dramatize et.",
+        49: "Hayat tavsiyesi al ve yazıya dök.",
+        50: "Yabancı bir yayın eleştirisi yap ve yerli çözüm öner.",
+        51: "Zafer dolu anını yazıya dök ve paylaş.",
+        52: "Gerçekten gerekli bir karar al ve uygula.",
+        53: "Topluluk önünde onurlu duruşu anlat.",
+        54: "Okuma yazma bilmeyene gönüllü öğretmenlik yap.",
+        55: "Adaleti anlatan bir olay paylaş."
+      };
       
       // ID'ye göre çağrıyı seç
-      if (id >= 16 && id < 16 + cagrilar.length) {
-        return cagrilar[id - 16];
+      if (cagrilar[id as keyof typeof cagrilar]) {
+        return cagrilar[id as keyof typeof cagrilar];
       } else {
         // Eğer ID için belirli bir çağrı yoksa
         return `${id}. görev için çağrı`;
       }
     }
     
-    // Görev açıklaması alma fonksiyonu - JSON verilerinden
+    // Görev açıklaması alma fonksiyonu - JSON verisinden
     function getGorevAciklama(id: number): string {
-      const aciklamalar = [
-        "Topluma aktarılması gereken değerli bir davranışı ailende belgeleyerek ya da anlatarak görünür hale getir.",
-        "Fikir özgürlüğünün temeli karşıt görüşlere kulak vermektir. Bir tartışmada karşı görüşü anlamaya çalış ve notlar al.",
-        "Erişilebilirlik ve farkındalık için engelli bireylerin hayatını gözlemle ve pratik destek önerileri geliştir.",
-        "Gıda bilinci ve üretkenlik için evde ya da balkonda sebze yetiştirin. Süreci belgeleyin.",
-        "Sanatın gelişmesine katkı sağlamak için yerel tiyatro etkinliğine bir genci davet et ve deneyimi paylaş.",
-        "Geçmişteki kutlamaları, gelenekleri ve birlik duygusunu yaşlı birinden dinleyerek araştır. Ses kaydı veya yazılı metin hazırla.",
-        "Öz farkındalık ve ifade özgürlüğünü desteklemek için özgürlük kavramına dair kendi cümlelerini üret.",
-        "Ailene ait tarihi mekanları, köyleri veya şehirleri araştır, belgele ve bu mirası paylaş.",
-        "Telefon, internet ve sosyal medyadan 24 saat uzak durarak daha bilinçli bir güne adım at. Bu süreci günlük olarak yaz.",
-        "Toplumun ortak yas ve anma kültürü için şehit, sanatçı, bilim insanı ya da önemli bir figürü anma etkinliği düzenle.",
-        "Unutulmaması gereken bir tarihi olayı seç, onu sanatla anlat (resim, kısa film, animasyon, tiyatro).",
-        "Toplumda sanata verilen değeri artırmak için bir yerli sanatçıyı çevrene anlat, eserlerini paylaş.",
-        "Farklılıkları anlamak için saygılı ve meraklı bir sohbet ortamında karşılıklı sorular sorun, öğrenin.",
-        "Toplumun özgürlük anlayışını anlamak için 3 farklı insana bu kavramı sor ve cevaplarını yaz.",
-        "Yaşadığın bölgedeki önemli bir olayı haber formatında yazarak veya bir bülten hazırlayarak topluma duyur.",
-        "Yaratıcılığı desteklemek için birine resim malzemesi hediye et ve onunla birlikte yaratma sürecine katıl.",
-        "Yerel tarihi ve kültürel mirası korumak için yaşlı bir bireyden geçmişe dair anılarını dinle ve kaydet."
-      ];
+      // 16-59 arasındaki görevler için açıklamalar (JSON verisinden)
+      const aciklamalar = {
+        16: "Topluma aktarılması gereken değerli bir davranışı ailende belgeleyerek ya da anlatarak görünür hale getir.",
+        17: "Fikir özgürlüğünün temeli karşıt görüşlere kulak vermektir. Bir tartışmada karşı görüşü anlamaya çalış ve notlar al.",
+        18: "Erişilebilirlik ve farkındalık için engelli bireylerin hayatını gözlemle ve pratik destek önerileri geliştir.",
+        19: "Gıda bilinci ve üretkenlik için evde ya da balkonda sebze yetiştirin. Süreci belgeleyin.",
+        20: "Sanatın gelişmesine katkı sağlamak için yerel tiyatro etkinliğine bir genci davet et ve deneyimi paylaş.",
+        21: "Geçmişteki kutlamaları, gelenekleri ve birlik duygusunu yaşlı birinden dinleyerek araştır. Ses kaydı veya yazılı metin hazırla.",
+        22: "Öz farkındalık ve ifade özgürlüğünü desteklemek için özgürlük kavramına dair kendi cümlelerini üret.",
+        23: "Ailene ait tarihi mekanları, köyleri veya şehirleri araştır, belgele ve bu mirası paylaş.",
+        24: "Telefon, internet ve sosyal medyadan 24 saat uzak durarak daha bilinçli bir güne adım at. Bu süreci günlük olarak yaz.",
+        25: "Toplumun ortak yas ve anma kültürü için şehit, sanatçı, bilim insanı ya da önemli bir figürü anma etkinliği düzenle.",
+        26: "Unutulmaması gereken bir tarihi olayı seç, onu sanatla anlat (resim, kısa film, animasyon, tiyatro).",
+        27: "Toplumda sanata verilen değeri artırmak için bir yerli sanatçıyı çevrene anlat, eserlerini paylaş.",
+        28: "Farklılıkları anlamak için saygılı ve meraklı bir sohbet ortamında karşılıklı sorular sorun, öğrenin.",
+        29: "Toplumun özgürlük anlayışını anlamak için 3 farklı insana bu kavramı sor ve cevaplarını yaz.",
+        30: "Yaşadığın bölgedeki önemli bir olayı haber formatında yazarak veya bir bülten hazırlayarak topluma duyur.",
+        31: "Yaratıcılığı desteklemek için birine resim malzemesi hediye et ve onunla birlikte yaratma sürecine katıl.",
+        32: "Kültürel mirası anlamak ve korumak için büyüklerinden bir yaşam hikayesi dinleyip kaydet.",
+        33: "İlham veren düşünceleri sokakta sor ve gelen yanıtları derleyerek video ya da yazıya dök.",
+        34: "Toplum içindeki gösterilmeyen başarıları yazılı veya görsel olarak paylaşarak motive edici bir içerik üret.",
+        35: "Aile büyüklerinin yaşam tecrübelerinden yola çıkarak bir anısını yazılı hale getir ve paylaş.",
+        36: "Sokak, park veya apartman gibi ortak alanlarda çevre temizliği yaparak toplumsal dayanışmayı artır.",
+        37: "Yerel yönetimlere yapıcı ve adil bir hizmet talebinde bulunarak demokratik katılımı teşvik et.",
+        38: "Kendi kökü ve geçmişini tanımak için aileni kuşaklara ayırarak bir soy ağacı çiz.",
+        39: "Haklarını öğrenmek ve bilinçli birey olmak için anayasa metnini oku, anlamadığın kısımları uzmana danış.",
+        40: "Toplumun ilerlemesi için fark ettiğin bir medeniyet eksiğini tanımla ve bunun için uygulanabilir bir çözüm yaz.",
+        41: "Eğitimde fırsat eşitsizliğini azaltmak için yerel bir okula kitap desteğinde bulun.",
+        42: "Milli değerleri yaşatmak için bir zaferi anlatan kısa film veya animasyon üret.",
+        43: "Birlik ve beraberlik temasını işleyen bir konuşma yaparak çevrendekileri motive et.",
+        44: "Aile içinde güçlü iletişim kurmak için her hafta belirli bir saati fikir paylaşımı ve dinleme zamanı olarak belirle.",
+        45: "Hayal ettiğin Türkiye'yi ya da dünya geleceğini görsel, yazılı veya sesli olarak anlat.",
+        46: "Çevrende eğitime erişimde yaşanan bir eşitsizliği gözlemle, belgeleyip yetkililere bildir ya da topluma duyur.",
+        47: "Milli bilinç kazandırmak için bir gence Türkçülük temasında yazılmış bir kitap hediye et.",
+        48: "Tarihi bir fethi dramatik bir şekilde anlatan bir hikaye yaz ya da kısa film/video üret.",
+        49: "Etrafındaki büyüklerden bir yaşam tavsiyesi iste, bunu yazılı hale getirerek başkalarına da ilham ver.",
+        50: "Yabancı bir medya yayınının olumsuz etkisini analiz et ve yerine yerli bir alternatif öner.",
+        51: "Başarılı olduğun bir anı, gurur duyduğun bir zamanı yaz ve insanlara ilham ver.",
+        52: "Hayatına pozitif etki edecek bir değişiklik yap, bunu planla, uygula ve sonucunu paylaş.",
+        53: "Doğru bildiğin şeyin arkasında durduğun bir anı paylaş ya da böyle birini anlat.",
+        54: "Etrafında okuma yazma bilmeyen birine gönüllü öğretmenlik yaparak topluma katkıda bulun.",
+        55: "Adalet duygusunu pekiştiren yaşadığın ya da duyduğun bir olayı belgeleyip paylaş."
+      };
       
       // ID'ye göre açıklamayı seç
-      if (id >= 16 && id < 16 + aciklamalar.length) {
-        return aciklamalar[id - 16];
+      if (aciklamalar[id as keyof typeof aciklamalar]) {
+        return aciklamalar[id as keyof typeof aciklamalar];
       } else {
         // Eğer ID için belirli bir açıklama yoksa
         return `${id}. görevin detaylı açıklaması`;
