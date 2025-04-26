@@ -1248,7 +1248,7 @@ export default function GorevlerPage() {
               currentGorevler.map(gorev => (
                 <div 
                   key={gorev.id}
-                  className={`relative border-[3px] aspect-[2/3] ${
+                  className={`relative border-[3px] aspect-[2/3] max-w-[200px] mx-auto ${
                     gorev.kategori === 'kurucu' 
                       ? 'border-amber-500 shadow-[0_0_20px_rgba(255,215,0,0.4)]' 
                       : gorev.tamamlayan > 0 
@@ -1266,26 +1266,27 @@ export default function GorevlerPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/30"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10 p-4 h-full flex flex-col justify-between">
+                  <div className="relative z-10 p-2 h-full flex flex-col justify-between">
                     {/* Debug için ID gösterici */}
-                    <div className="absolute top-0 right-0 bg-amber-600 text-white px-2 py-1 text-xs font-bold rounded-bl">
-                      ID: {gorev.id}
+                    <div className="absolute top-0 right-0 bg-amber-600 text-white px-1 py-0.5 text-[8px] font-bold rounded-bl">
+                      {gorev.id}
                     </div>
                     
                     {/* Görev başlık ve açıklaması */}
                     <div>
-                      <h3 className="text-lg md:text-xl font-bold text-amber-400 mb-2">{gorev.baslik}</h3>
-                      <p className="text-white mb-2 text-sm">{gorev.cagri}</p>
+                      <h3 className="text-xs md:text-sm font-bold text-amber-400 mb-1">{gorev.baslik}</h3>
+                      <p className="text-white mb-1 text-[10px]">{gorev.cagri}</p>
+                      <div className="text-[10px] text-cyan-300 italic mb-1">{gorev.aciklama && gorev.aciklama.length > 60 ? gorev.aciklama.substring(0, 60) + '...' : gorev.aciklama}</div>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton */}
                     <div>
-                      <div className="flex justify-between items-center text-sm text-gray-400 mb-3">
+                      <div className="flex justify-between items-center text-[9px] text-gray-400 mb-1">
                         <span>Kategori: {gorev.kategori}</span>
                         <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-amber-600"
+                        className="w-full bg-gradient-to-r from-red-700 to-amber-600 text-[10px] h-6 py-0"
                         onClick={() => openModal(gorev)}
                       >
                         Göreve Katıl
