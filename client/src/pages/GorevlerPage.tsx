@@ -114,60 +114,115 @@ import gorev98 from "@assets/gorev-98.webp";
 import gorev99 from "@assets/gorev-99.webp";
 import gorev100 from "@assets/gorev-100.webp";
 
-// SVG arka plan fonksiyonu - yalnızca 1. sayfa dışındaki görevler için
-const generateBackgroundSVG = (id: number) => {
-  // İlk 10 pattern için önceden tanımlanmış SVG'leri kullan
-  if (id >= 0 && id < 10) {
-    return standardPatterns[id];
-  }
-  
-  // Görev ID'sine göre renk ve pattern seçimi
-  const colorIndex = id % backgroundColors.length;
-  const patternIndex = Math.floor(id / 10) % backgroundPatterns.length;
-  
-  // Renkleri belirle
-  const color1 = backgroundColors[colorIndex][0];
-  const color2 = backgroundColors[colorIndex][1];
-  
-  // Pattern oluştur
-  return backgroundPatterns[patternIndex](color1, color2, id);
-};
+
 
 // Görev arka plan görsellerini döndüren fonksiyon
 const getGorevBackgroundImage = (id: number) => {
-  // Sadece ilk 25 görevi webp görselleriyle değiştir, diğerleri için SVG kullan
-  if (id >= 1 && id <= 25) {
-    switch(id) {
-      case 1: return gorev1;
-      case 2: return gorev2;
-      case 3: return gorev3;
-      case 4: return gorev4;
-      case 5: return gorev5;
-      case 6: return gorev6;
-      case 7: return gorev7;
-      case 8: return gorev8;
-      case 9: return gorev9;
-      case 10: return gorev10;
-      case 11: return gorev11;
-      case 12: return gorev12;
-      case 13: return gorev13;
-      case 14: return gorev14;
-      case 15: return gorev15;
-      case 16: return gorev16;
-      case 17: return gorev17;
-      case 18: return gorev18;
-      case 19: return gorev19;
-      case 20: return gorev20;
-      case 21: return gorev21;
-      case 22: return gorev22;
-      case 23: return gorev23;
-      case 24: return gorev24;
-      case 25: return gorev25;
-    }
+  // Her görev için ilgili webp görseli kullan
+  switch(id) {
+    case 0: return standardPatterns[0]; // Görev 0 için default arka plan
+    case 1: return gorev1;
+    case 2: return gorev2;
+    case 3: return gorev3;
+    case 4: return gorev4;
+    case 5: return gorev5;
+    case 6: return gorev6;
+    case 7: return gorev7;
+    case 8: return gorev8;
+    case 9: return gorev9;
+    case 10: return gorev10;
+    case 11: return gorev11;
+    case 12: return gorev12;
+    case 13: return gorev13;
+    case 14: return gorev14;
+    case 15: return gorev15;
+    case 16: return gorev16;
+    case 17: return gorev17;
+    case 18: return gorev18;
+    case 19: return gorev19;
+    case 20: return gorev20;
+    case 21: return gorev21;
+    case 22: return gorev22;
+    case 23: return gorev23;
+    case 24: return gorev24;
+    case 25: return gorev25;
+    case 26: return gorev26;
+    case 27: return gorev27;
+    case 28: return gorev28;
+    case 29: return gorev29;
+    case 30: return gorev30;
+    case 31: return gorev31;
+    case 32: return gorev32;
+    case 33: return gorev33;
+    case 34: return gorev34;
+    case 35: return gorev35;
+    case 36: return gorev36;
+    case 37: return gorev37;
+    case 38: return gorev38;
+    case 39: return gorev39;
+    case 40: return gorev40;
+    case 41: return gorev41;
+    case 42: return gorev42;
+    case 43: return gorev43;
+    case 44: return gorev44;
+    case 45: return gorev45;
+    case 46: return gorev46;
+    case 47: return gorev47;
+    case 48: return gorev48;
+    case 49: return gorev49;
+    case 50: return gorev50;
+    case 51: return gorev51;
+    case 52: return gorev52;
+    case 53: return gorev53;
+    case 54: return gorev54;
+    case 55: return gorev55;
+    case 56: return gorev56;
+    case 57: return gorev57;
+    case 58: return gorev58;
+    case 59: return gorev59;
+    case 60: return gorev60;
+    case 61: return gorev61;
+    case 62: return gorev62;
+    case 63: return gorev63;
+    case 64: return gorev64;
+    case 65: return gorev65;
+    case 66: return gorev66;
+    case 67: return gorev67;
+    case 68: return gorev68;
+    case 69: return gorev69;
+    case 70: return gorev70;
+    case 71: return gorev71;
+    case 72: return gorev72;
+    case 73: return gorev73;
+    case 74: return gorev74;
+    case 75: return gorev75;
+    case 76: return gorev76;
+    case 77: return gorev77;
+    case 78: return gorev78;
+    case 79: return gorev79;
+    case 80: return gorev80;
+    case 81: return gorev81;
+    case 82: return gorev82;
+    case 83: return gorev83;
+    case 84: return gorev84;
+    case 85: return gorev85;
+    case 86: return gorev86;
+    case 87: return gorev87;
+    case 88: return gorev88;
+    case 89: return gorev89;
+    case 90: return gorev90;
+    case 91: return gorev91;
+    case 92: return gorev92;
+    case 93: return gorev93;
+    case 94: return gorev94;
+    case 95: return gorev95;
+    case 96: return gorev96;
+    case 97: return gorev97;
+    case 98: return gorev98;
+    case 99: return gorev99;
+    case 100: return gorev100;
+    default: return standardPatterns[0]; // Diğer herhangi bir değer için default arka plan
   }
-  
-  // Görev 0 ve diğer görevler için default arka plan
-  return generateBackgroundSVG(id);
 };
 
 // Standart SVG pattern şablonları
