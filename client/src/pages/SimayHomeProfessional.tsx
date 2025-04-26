@@ -236,7 +236,7 @@ export default function SimayHomeProfessional() {
                     </svg>
                   </div>
                   <h4 className="text-amber-400 font-medium">VİCDAN</h4>
-                  <p className="text-xs text-gray-400">✓ güncelleme</p>
+                  <p className="text-xs text-gray-400">Ahlaki Duyarlılık</p>
                 </div>
                 
                 <div className="text-center">
