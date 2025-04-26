@@ -191,77 +191,36 @@ export default function SimayHomeProfessional() {
                 <div className="absolute inset-0 rounded-xl shadow-[0_0_30px_rgba(251,191,36,0.3)] pointer-events-none"></div>
                 
                 {/* İçerik kutusu */}
-                <div className="relative z-10 text-2xl font-semibold bg-gradient-to-r from-black/40 via-black/50 to-black/40 backdrop-blur-sm px-7 py-4 rounded-lg border border-amber-400/50 flex items-center justify-center">
-                  <span className="mr-2 text-amber-300 font-semibold drop-shadow-md">
-                    Cumhuriyet ile Güncelleniyoruz
-                  </span>
-                  <div className="relative">
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-green-500/20 blur-md"
-                      animate={{ 
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    />
-                    <motion.div
-                      className="relative text-green-400 font-bold"
-                      animate={{ 
-                        opacity: [1, 0.7, 1],
-                        scale: [1, 1.2, 1]
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="17 8 12 3 7 8" />
-                        <line x1="12" y1="3" x2="12" y2="15" />
-                      </svg>
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
-
-              {/* İlerleme çubuğu */}
-              <div className="flex justify-center items-center mt-6 relative">
-                <div className="w-96 h-8 relative">
-                  {/* Arka plan çizgi */}
-                  <div className="absolute w-full h-1.5 bg-gradient-to-r from-gray-700/60 via-gray-700/80 to-gray-700/60 rounded-full backdrop-blur-sm top-1/2 -translate-y-1/2"></div>
-                  
-                  {/* İlerleme göstergesi */}
-                  <motion.div 
-                    className="absolute top-0 left-0 w-full h-full flex items-center"
-                    initial={{ x: "-50%" }}
-                    animate={{ x: ["0%", "100%", "0%"] }}
-                    transition={{ 
-                      duration: 15,
+                <div className="relative z-10 bg-black/30 backdrop-blur-sm px-7 py-5 rounded-lg border border-green-500/30 flex flex-col items-center justify-center w-[600px] max-w-full">
+                  <motion.div
+                    className="mb-4 text-center"
+                    animate={{
+                      opacity: [0.9, 1, 0.9],
+                    }}
+                    transition={{
+                      duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
                   >
-                    {/* Hareket eden ışık topu */}
-                    <div className="relative">
-                      <div className="absolute -inset-1 bg-amber-500/30 blur-md rounded-full"></div>
-                      <div className="h-4 w-4 bg-amber-400 rounded-full relative shadow-[0_0_10px_rgba(251,191,36,0.7)]"></div>
-                    </div>
+                    <h2 className="text-3xl font-mono text-green-400 tracking-wide">
+                      Cumhuriyet ile güncelleniyor.. Sistem hazır.|
+                    </h2>
                   </motion.div>
                   
-                  {/* Yüzde işaretleri */}
-                  <div className="absolute -bottom-6 left-0 text-xs text-amber-500/80 font-medium">0%</div>
-                  <div className="absolute -bottom-6 left-1/4 text-xs text-amber-500/60 font-medium">25%</div>
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-amber-500/80 font-medium">50%</div>
-                  <div className="absolute -bottom-6 left-3/4 text-xs text-amber-500/60 font-medium">75%</div>
-                  <div className="absolute -bottom-6 right-0 text-xs text-amber-500/80 font-medium">100%</div>
+                  {/* İlerleme Çubuğu - Resme Benzer */}
+                  <div className="w-full mt-2 relative">
+                    <div className="h-2.5 bg-green-900/50 rounded-sm overflow-hidden mt-2 mb-4">
+                      <div
+                        className="h-full bg-green-500"
+                        style={{ width: "40%" }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
+              
+              {/* Çıkarıldı: Hareketli İlerleme çubuğu */}
             </div>
             
             <div className="max-w-3xl mx-auto px-6 py-4 bg-black/40 backdrop-blur-sm rounded-lg border border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.15)]">
