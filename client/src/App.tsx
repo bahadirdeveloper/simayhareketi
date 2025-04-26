@@ -4,31 +4,41 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { queryClient } from "./lib/queryClient";
+
+// Page imports
 import Home from "@/pages/Home";
 import SimayHome from "@/pages/SimayHome";
 import SimayHome2 from "@/pages/SimayHome2";
 import SimayHome3 from "@/pages/SimayHome3";
 import SimayHome4 from "@/pages/SimayHome4";
-
+import SimayHomeProfessional from "@/pages/SimayHomeProfessional";
+import TurkiyePage from "@/pages/TurkiyePage";
+import TurkNedirPage from "@/pages/TurkNedirPage";
+import AnayasaPage from "@/pages/AnayasaPage";
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
 import JoinPage from "@/pages/JoinPage";
 import AmacsavasPage from "@/pages/AmacsavasPage";
-import AnayasaPage from "@/pages/AnayasaPage";
 import GorevlerPage from "@/pages/GorevlerPage";
 import KatilPage from "@/pages/KatilPage";
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHome4} />
-      <Route path="/matrix" component={Home} />
-      <Route path="/manifesto" component={ManifestoPage} />
-      <Route path="/join" component={JoinPage} />
-      <Route path="/amaclar" component={AmacsavasPage} />
+      <Route path="/" component={SimayHomeProfessional} />
+      <Route path="/turkiye" component={TurkiyePage} />
+      <Route path="/turknedir" component={TurkNedirPage} />
       <Route path="/anayasa" component={AnayasaPage} />
       <Route path="/gorevler" component={GorevlerPage} />
       <Route path="/katil" component={KatilPage} />
+      <Route path="/manifesto" component={ManifestoPage} />
+      <Route path="/join" component={JoinPage} />
+      <Route path="/amaclar" component={AmacsavasPage} />
+      <Route path="/matrix" component={Home} />
+      <Route path="/simay" component={SimayHome} />
+      <Route path="/simay2" component={SimayHome2} />
+      <Route path="/simay3" component={SimayHome3} />
+      <Route path="/simay4" component={SimayHome4} />
       <Route path="/:lang" component={LanguagePage} />
       <Route component={NotFound} />
     </Switch>
