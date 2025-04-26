@@ -324,7 +324,7 @@ export default function GorevlerPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const gorevlerPerPage = 25; // Her sayfada 25 görev göster
+  const gorevlerPerPage = 24; // Her sayfada 24 görev göster (4'erli 6 sıra)
   
   // Form state
   const [formData, setFormData] = useState({
@@ -1230,9 +1230,9 @@ export default function GorevlerPage() {
             </div>
           </div>
           
-          {/* Görevler Grid */}
+          {/* Görevler Grid - Her satırda 4 görev */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
