@@ -103,19 +103,19 @@ export default function SimayHomeProfessional() {
                 />
               </div>
               <div className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
-                <p className="text-xs text-amber-300 font-semibold tracking-wide">
+                <p className="text-xs text-red-500 font-semibold tracking-wide">
                   Bu İcat Türk Yapımıdır
                 </p>
-                <p className="text-[10px] text-amber-500/60 hidden md:block">
+                <p className="text-[10px] text-white/80 hidden md:block">
                   Akıl, Bilim, Fen ve Sanat
                 </p>
               </div>
             </div>
             <div className="flex items-center">
-              <p className="text-xs text-amber-400/80 pr-3 border-r border-amber-500/30 mr-3">
+              <p className="text-xs text-red-500/80 pr-3 border-r border-red-500/30 mr-3">
                 Cumhuriyet Güncellenme
               </p>
-              <div className="bg-black/50 px-2 py-1 rounded text-amber-500 text-xs font-mono">
+              <div className="bg-black/50 px-2 py-1 rounded text-white text-xs font-mono">
                 v2.0
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function SimayHomeProfessional() {
                 
                 {/* Başlık */}
                 <div className="relative bg-black/40 backdrop-blur-sm py-3 px-4 rounded-full mb-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
-                  <h1 className="font-bold text-5xl md:text-7xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text text-center">
+                  <h1 className="font-bold text-5xl md:text-7xl bg-gradient-to-r from-red-600 via-red-500 to-white text-transparent bg-clip-text text-center">
                     CUMHURİYET GÜNCELLENME PLATFORMU
                   </h1>
                 </div>
@@ -220,17 +220,17 @@ export default function SimayHomeProfessional() {
                   >
                     {/* Hareket eden ışık topu */}
                     <div className="relative">
-                      <div className="absolute -inset-1 bg-amber-500/30 blur-md rounded-full"></div>
-                      <div className="h-4 w-4 bg-amber-400 rounded-full relative shadow-[0_0_10px_rgba(251,191,36,0.7)]"></div>
+                      <div className="absolute -inset-1 bg-red-500/30 blur-md rounded-full"></div>
+                      <div className="h-4 w-4 bg-red-500 rounded-full relative shadow-[0_0_10px_rgba(220,38,38,0.7)]"></div>
                     </div>
                   </motion.div>
                   
                   {/* Yüzde işaretleri */}
-                  <div className="absolute -bottom-6 left-0 text-xs text-amber-500/80 font-medium">0%</div>
-                  <div className="absolute -bottom-6 left-1/4 text-xs text-amber-500/60 font-medium">25%</div>
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-amber-500/80 font-medium">50%</div>
-                  <div className="absolute -bottom-6 left-3/4 text-xs text-amber-500/60 font-medium">75%</div>
-                  <div className="absolute -bottom-6 right-0 text-xs text-amber-500/80 font-medium">100%</div>
+                  <div className="absolute -bottom-6 left-0 text-xs text-red-500/80 font-medium">0%</div>
+                  <div className="absolute -bottom-6 left-1/4 text-xs text-white/60 font-medium">25%</div>
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-red-500/80 font-medium">50%</div>
+                  <div className="absolute -bottom-6 left-3/4 text-xs text-white/60 font-medium">75%</div>
+                  <div className="absolute -bottom-6 right-0 text-xs text-red-500/80 font-medium">100%</div>
                 </div>
               </div>
             </div>
@@ -305,8 +305,8 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <div className="bg-gradient-to-b from-black/60 to-blue-950/50 backdrop-blur-md border border-amber-500 rounded-xl p-8 text-center hover:border-amber-400 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(0,100,255,0.2)]">
-              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-300 to-amber-500 text-transparent bg-clip-text">TÜRKİYE</h3>
+            <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-md border border-red-600 rounded-xl p-8 text-center hover:border-red-500 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">TÜRKİYE</h3>
               <p className="text-gray-300 mb-6 text-lg">Toplumsal Yenileme Merkezi</p>
               <motion.div
                 initial={{ scale: 1 }}
@@ -314,7 +314,7 @@ export default function SimayHomeProfessional() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Button 
-                  className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-xl shadow-lg"
+                  className="w-full bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white py-6 text-xl shadow-lg"
                   onClick={() => navigate("/turkiye")}
                 >
                   Türkiye Platformuna Giriş
