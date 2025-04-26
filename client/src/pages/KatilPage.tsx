@@ -9,7 +9,6 @@ import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -28,6 +27,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import PaymentForm from "@/components/PaymentForm";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -133,152 +139,193 @@ export default function KatilPage() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-amber-400 mb-6">
-              KATILIM
+              KATILIM & BAĞIŞ
             </h1>
             <p className="text-xl text-gray-200 mb-12">
-              Cumhuriyetin Halk ile Güncellenme Platformu'na katılmak için formu doldurun
+              Cumhuriyetin Halk ile Güncellenme Platformu'na katılın veya bağış yapın
             </p>
           </motion.div>
           
-          {/* Form */}
+          {/* Tabs for Katilim and Bagis */}
           <motion.div
             className="bg-black/60 backdrop-blur-sm border-2 border-amber-500 rounded-lg p-8 shadow-[0_0_20px_rgba(255,215,0,0.2)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="ad"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Ad Soyad</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Ad ve soyadınızı giriniz" 
-                          {...field} 
-                          className="bg-black/50 border-amber-500 text-white"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">E-posta Adresi</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="ornekmail@adres.com" 
-                            type="email"
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="telefon"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Telefon</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="05XX XXX XX XX" 
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="sehir"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Şehir</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Yaşadığınız şehir" 
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="katilimTipi"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Katılım Tipi</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Tabs defaultValue="katilim" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger 
+                  value="katilim"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+                >
+                  KATILIM
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="bagis"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+                >
+                  BAĞIŞ YAP
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="katilim" className="mt-2">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="ad"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">Ad Soyad</FormLabel>
                           <FormControl>
-                            <SelectTrigger className="bg-black/50 border-amber-500 text-white">
-                              <SelectValue placeholder="Katılım tipi seçin" />
-                            </SelectTrigger>
+                            <Input 
+                              placeholder="Ad ve soyadınızı giriniz" 
+                              {...field} 
+                              className="bg-black/50 border-amber-500 text-white"
+                            />
                           </FormControl>
-                          <SelectContent className="bg-black/90 border-amber-500 text-white">
-                            <SelectItem value="gonullu">Gönüllü Katılımcı</SelectItem>
-                            <SelectItem value="teknik">Teknik Ekip</SelectItem>
-                            <SelectItem value="organizasyon">Organizasyon Ekibi</SelectItem>
-                            <SelectItem value="icerik">İçerik Üretimi</SelectItem>
-                            <SelectItem value="diger">Diğer</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">E-posta Adresi</FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="ornekmail@adres.com" 
+                                type="email"
+                                {...field} 
+                                className="bg-black/50 border-amber-500 text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="telefon"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Telefon</FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="05XX XXX XX XX" 
+                                {...field} 
+                                className="bg-black/50 border-amber-500 text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="sehir"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Şehir</FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="Yaşadığınız şehir" 
+                                {...field} 
+                                className="bg-black/50 border-amber-500 text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="katilimTipi"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Katılım Tipi</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="bg-black/50 border-amber-500 text-white">
+                                  <SelectValue placeholder="Katılım tipi seçin" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent className="bg-black/90 border-amber-500 text-white">
+                                <SelectItem value="gonullu">Gönüllü Katılımcı</SelectItem>
+                                <SelectItem value="teknik">Teknik Ekip</SelectItem>
+                                <SelectItem value="organizasyon">Organizasyon Ekibi</SelectItem>
+                                <SelectItem value="icerik">İçerik Üretimi</SelectItem>
+                                <SelectItem value="diger">Diğer</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    
+                    <FormField
+                      control={form.control}
+                      name="mesaj"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">Mesajınız (Opsiyonel)</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Katılım amacınızı, yeteneklerinizi veya sorularınızı yazabilirsiniz." 
+                              {...field} 
+                              className="bg-black/50 border-amber-500 text-white h-32"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <div className="pt-4">
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-lg font-bold"
+                      >
+                        Katılım Başvurusunu Gönder
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </TabsContent>
+              
+              <TabsContent value="bagis" className="mt-2">
+                <div className="space-y-6">
+                  <div className="text-center mb-4">
+                    <h3 className="text-xl font-semibold text-amber-400 mb-2">
+                      Cumhuriyeti Güncellemek İçin Bağış Yap
+                    </h3>
+                    <p className="text-gray-200">
+                      Bağışınız "Medeniyet için yetecek kadar" hedefimize katkı sağlayacak
+                    </p>
+                  </div>
+                  
+                  <PaymentForm />
+                  
+                  <div className="text-gray-300 text-sm mt-4">
+                    <p>
+                      * Tüm ödemeler güvenli Stripe altyapısı ile gerçekleştirilmektedir.
+                      Kredi kartı bilgileriniz hiçbir şekilde sunucularımızda saklanmaz.
+                    </p>
+                  </div>
                 </div>
-                
-                <FormField
-                  control={form.control}
-                  name="mesaj"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Mesajınız (Opsiyonel)</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Katılım amacınızı, yeteneklerinizi veya sorularınızı yazabilirsiniz." 
-                          {...field} 
-                          className="bg-black/50 border-amber-500 text-white h-32"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="pt-4">
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-lg font-bold"
-                  >
-                    Katılım Başvurusunu Gönder
-                  </Button>
-                </div>
-              </form>
-            </Form>
+              </TabsContent>
+            </Tabs>
           </motion.div>
           
           {/* Information section */}
