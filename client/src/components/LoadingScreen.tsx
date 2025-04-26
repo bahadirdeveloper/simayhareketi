@@ -2,17 +2,25 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
-  const [text, setText] = useState("");
+  const [cumhuriyetText, setCumhuriyetText] = useState("");
+  const [insanlikText, setInsanlikText] = useState("");
   const [isDecoding, setIsDecoding] = useState(true);
   const [progress, setProgress] = useState(0);
   
-  const fullText = "Cumhuriyet ile güncelleniyor.. İnsanlık v2.0";
+  const firstPartText = "Cumhuriyet ile güncelleniyor.. ";
+  const secondPartText = "İnsanlık v2.0";
   
   useEffect(() => {
     let currentIndex = 0;
     const intervalId = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setText(fullText.substring(0, currentIndex));
+      // İlk kısmı bir bütün olarak işle
+      if (currentIndex === 0) {
+        setCumhuriyetText(firstPartText);
+        currentIndex = 1;
+      } 
+      // İkinci kısmı karakter karakter işle
+      else if (currentIndex <= secondPartText.length) {
+        setInsanlikText(secondPartText.substring(0, currentIndex));
         currentIndex++;
       } else {
         clearInterval(intervalId);
@@ -56,12 +64,13 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     >
       <div className="text-center max-w-lg">
         <motion.div 
-          className="text-red-500 font-share-tech text-2xl mb-8"
+          className="font-share-tech text-2xl mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="typing-cursor">{text}</span>
+          <span className="text-red-500">{cumhuriyetText}</span>
+          <span className="text-white typing-cursor">{insanlikText}</span>
         </motion.div>
         
         {!isDecoding && (
