@@ -220,9 +220,9 @@ export default function SimayHomeProfessional() {
                         repeat: Infinity,
                       }}
                     >
-                      67%
+                      8.523.912
                     </motion.div>
-                    <div className="text-[9px] text-gray-400">8.523.912 Vatandaş</div>
+                    <div className="text-[9px] text-gray-400">Vatandaş</div>
                   </div>
                 </div>
                 
