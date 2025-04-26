@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import { queryClient } from "./lib/queryClient";
 import Home from "@/pages/Home";
 import SimayHome from "@/pages/SimayHome";
+import SimayHomeNew from "@/pages/SimayHomeNew";
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
 import JoinPage from "@/pages/JoinPage";

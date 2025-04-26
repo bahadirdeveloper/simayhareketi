@@ -2,27 +2,24 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import HalfBurningEarthBackground from "@/components/HalfBurningEarthBackground";
-import HalfBurningEarthLogo from "@/components/HalfBurningEarthLogo";
-import LanguageSelector from "@/components/LanguageSelector";
-import AudioControl from "@/components/AudioControl";
-import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import HalfBurningEarthBackground from "@/components/HalfBurningEarthBackground";
+import LoadingScreen from "@/components/LoadingScreen";
+import AudioControl from "@/components/AudioControl";
+import LanguageSelector from "@/components/LanguageSelector";
+import { apiRequest } from "@/lib/queryClient";
+import { initAudio, playSoundtrack } from "@/lib/audio";
 
-export default function SimayHome() {
+export default function SimayHomeNew() {
   const { t, i18n } = useTranslation();
-  const [isLoading, setIsLoading] = useState(true);
   const [, navigate] = useLocation();
-  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
   
+  // Record visitor stats
   useEffect(() => {
     // Initialize audio system
     initAudio();
     
-    // Record visitor stats
     const recordVisit = async () => {
       try {
         await apiRequest(
@@ -30,7 +27,8 @@ export default function SimayHome() {
           "/api/visits", 
           {
             language: i18n.language || "tr",
-            hasInteracted: false
+            hasInteracted: false,
+            page: "home"
           }
         );
       } catch (error) {
@@ -40,11 +38,11 @@ export default function SimayHome() {
     
     recordVisit();
   }, [i18n.language]);
-
+  
   const handleToggleAudio = () => {
     playSoundtrack();
     
-    // Record user interaction
+    // Record interaction
     const updateInteraction = async () => {
       try {
         await apiRequest(
@@ -52,7 +50,8 @@ export default function SimayHome() {
           "/api/visits", 
           {
             language: i18n.language || "tr",
-            hasInteracted: true
+            hasInteracted: true,
+            page: "home"
           }
         );
       } catch (error) {
@@ -66,23 +65,15 @@ export default function SimayHome() {
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
-
-  // Manifestation text - words that will appear one by one
-  const manifestationWords = [
-    "Cumhuriyet", "Halk", "Katılım", "Adalet", "Şeffaflık", 
-    "Demokrasi", "Dayanışma", "Güncelleme", "Gelişim", "Değişim"
-  ];
   
   return (
     <>
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
-      <div className="min-h-screen flex flex-col items-center justify-center text-matrix-green overflow-hidden">
+      <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
         <HalfBurningEarthBackground />
         
         <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen">
-          {/* Logo bölümü kaldırıldı */}
-          
           {/* Başlık */}
           <motion.div
             className="mb-16 text-center"
@@ -115,7 +106,7 @@ export default function SimayHome() {
               kardeşliği ve adaleti temel alan bir güncellenme platformu
             </p>
           </motion.div>
-
+          
           {/* Navigasyon */}
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
