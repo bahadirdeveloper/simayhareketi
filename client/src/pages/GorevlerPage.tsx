@@ -1197,7 +1197,7 @@ export default function GorevlerPage() {
           >
             <Button 
               className="bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xl px-10 py-7 shadow-[0_0_20px_rgba(220,38,38,0.4)] rounded-lg"
-              onClick={() => navigate("/turkiye")}
+              onClick={() => navigate("/kurucu-eksikleri")}
             >
               GÖREV 0: KURUCUNUN EKSİKLERİ
             </Button>

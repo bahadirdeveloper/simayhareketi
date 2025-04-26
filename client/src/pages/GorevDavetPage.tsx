@@ -209,47 +209,47 @@ export default function GorevDavetPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
               <ProfileCard 
                 title="Mühendisler" 
-                description="Yazılım, elektrik, inşaat, makine ve daha birçok mühendislik alanından uzmanlar. Kontenjan: 20" 
+                description="Yazılım, elektrik, inşaat, makine ve daha birçok mühendislik alanından uzmanlar." 
                 icon="🔧"
               />
               <ProfileCard 
                 title="Tasarımcılar" 
-                description="Görsel tasarım, UI/UX, endüstriyel tasarım alanlarında yaratıcı fikirler geliştirenler. Kontenjan: 20" 
+                description="Görsel tasarım, UI/UX, endüstriyel tasarım alanlarında yaratıcı fikirler geliştirenler." 
                 icon="🎨"
               />
               <ProfileCard 
                 title="Doktorlar" 
-                description="Sağlık sistemini dönüştürecek, yenilikçi tedavi yöntemleri geliştirecek tıp uzmanları. Kontenjan: 20" 
+                description="Sağlık sistemini dönüştürecek, yenilikçi tedavi yöntemleri geliştirecek tıp uzmanları." 
                 icon="⚕️"
               />
               <ProfileCard 
                 title="Eğitimciler" 
-                description="Yeni nesli yetiştirmek için modern eğitim metodlarıyla çalışan öğretmenler ve eğitim bilimciler. Kontenjan: 20" 
+                description="Yeni nesli yetiştirmek için modern eğitim metodlarıyla çalışan öğretmenler ve eğitim bilimciler." 
                 icon="📚"
               />
               <ProfileCard 
                 title="Ekonomistler" 
-                description="Sürdürülebilir ve adil bir ekonomik sistem için yeni modeller geliştirenler. Kontenjan: 20" 
+                description="Sürdürülebilir ve adil bir ekonomik sistem için yeni modeller geliştirenler." 
                 icon="📊"
               />
               <ProfileCard 
                 title="Sanatçılar" 
-                description="Kültürel mirasımızı geleceğe taşıyacak müzisyenler, ressamlar, heykeltıraşlar, yazarlar. Kontenjan: 20" 
+                description="Kültürel mirasımızı geleceğe taşıyacak müzisyenler, ressamlar, heykeltıraşlar, yazarlar." 
                 icon="🎭"
               />
               <ProfileCard 
                 title="Bilim İnsanları" 
-                description="Temel bilimler ve uygulamalı araştırmalar yapan, yeni keşifler peşinde koşan uzmanlar. Kontenjan: 20" 
+                description="Temel bilimler ve uygulamalı araştırmalar yapan, yeni keşifler peşinde koşan uzmanlar." 
                 icon="🔬"
               />
               <ProfileCard 
                 title="Tarımcılar" 
-                description="Yenilikçi ve sürdürülebilir tarım teknikleri geliştiren, gıda güvenliğini sağlayan uzmanlar. Kontenjan: 20" 
+                description="Yenilikçi ve sürdürülebilir tarım teknikleri geliştiren, gıda güvenliğini sağlayan uzmanlar." 
                 icon="🌱"
               />
               <ProfileCard 
                 title="Hukukçular" 
-                description="Adaleti güçlendirmek için çalışan, hukuk sistemini modernleştiren avukatlar ve hâkimler. Kontenjan: 20" 
+                description="Adaleti güçlendirmek için çalışan, hukuk sistemini modernleştiren avukatlar ve hâkimler." 
                 icon="⚖️"
               />
             </div>
