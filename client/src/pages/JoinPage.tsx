@@ -143,7 +143,7 @@ export default function JoinPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-16 h-16 mr-4">
-                  <SimayNewLogo />
+                  <TurkishGeneFlowLogo />
                 </div>
                 <h2 className="text-2xl font-share-tech text-green-400">
                   {t('simay_title')}
