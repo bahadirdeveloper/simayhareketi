@@ -114,10 +114,10 @@ export default function TurkiyePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-600/50 rounded-lg p-5 max-w-2xl shadow-[0_0_15px_rgba(220,38,38,0.15)]">
-            <p className="text-xl md:text-2xl text-white font-bold">
-              🇹🇷 <strong className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">"Türk, Atasının mirasına sahip çıkamazsa,</strong><br />
-              <strong className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">geleceğini başka milletlerin insafına bırakır."</strong> ✊
+          <div className="bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 rounded-lg p-7 max-w-3xl shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-shadow duration-300">
+            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold">
+              <strong className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">"Türk, Atasının mirasına sahip çıkamazsa,</strong><br />
+              <strong className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">geleceğini başka milletlerin insafına bırakır."</strong>
             </p>
           </div>
         </motion.div>
@@ -129,7 +129,7 @@ export default function TurkiyePage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 tracking-wide">
             TÜRKİYE
           </h1>
           <div className="flex flex-col items-center mb-3">
@@ -234,37 +234,37 @@ export default function TurkiyePage() {
         >
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/turknedir")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">TÜRK Nedir?</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">TÜRK Nedir?</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/anayasa")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">Anayasalarımız</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Anayasalarımız</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/gorevler")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">Cumhuriyetin 2. Yüzyılı: Görev Diriliş</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Cumhuriyetin 2. Yüzyılı: Görev Diriliş</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/karisikfikirler")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">Halk Söz Duvarı</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Halk Söz Duvarı</span>
             </Button>
           </motion.div>
           

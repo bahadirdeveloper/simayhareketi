@@ -45,26 +45,26 @@ export default function AnayasaPage() {
   };
   
   const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl md:text-3xl font-bold text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text mb-4 text-center">
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 text-center">
       {children}
     </h2>
   );
   
   const HighlightText = ({ children }: { children: React.ReactNode }) => (
-    <p className="text-lg font-bold text-red-500 mb-4 text-center">
+    <p className="text-xl md:text-2xl font-bold text-red-500 mb-5 text-center">
       {children}
     </p>
   );
   
   const ParagraphText = ({ children }: { children: React.ReactNode }) => (
-    <p className="text-base md:text-lg text-white mb-3 text-center">
+    <p className="text-lg md:text-xl text-white mb-4 text-center">
       {children}
     </p>
   );
   
   const Section = ({ children }: { children: React.ReactNode }) => (
     <motion.div
-      className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 rounded-lg p-6 mb-8 shadow-[0_0_15px_rgba(220,38,38,0.15)]"
+      className="bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-500/60 rounded-lg p-8 mb-10 shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-shadow duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -148,7 +148,7 @@ export default function AnayasaPage() {
           </button>
           
           <motion.h1
-            className="text-3xl md:text-5xl font-bold text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text mb-10"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-12 tracking-wide"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
