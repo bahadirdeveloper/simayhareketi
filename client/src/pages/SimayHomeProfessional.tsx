@@ -388,7 +388,6 @@ export default function SimayHomeProfessional() {
                     </div>
                     <div className="text-white text-sm font-medium">Bu İcat Türk Yapımıdır</div>
                   </div>
-                  <div className="text-white/80 text-sm">Cumhuriyet Güncellenme</div>
                   <div className="px-3 py-1 bg-black/60 rounded-full border border-gray-700 text-white/90 text-xs">v2.0</div>
                 </div>
               </div>
