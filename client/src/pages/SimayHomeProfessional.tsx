@@ -103,21 +103,23 @@ export default function SimayHomeProfessional() {
                   ✓
                 </motion.span>
               </div>
-              <div className="relative w-48 h-8 flex items-center justify-center">
-                <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
-                <motion.div 
-                  className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
-                  initial={{ left: 0 }}
-                  animate={{ left: "100%" }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                    ease: "easeInOut"
-                  }}
-                />
-                <div className="absolute -bottom-5 left-0 text-xs text-gray-400">0%</div>
-                <div className="absolute -bottom-5 right-0 text-xs text-gray-400">100%</div>
+              <div className="flex justify-center items-center mt-1">
+                <div className="relative w-48 h-8 flex items-center justify-center">
+                  <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
+                  <motion.div 
+                    className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
+                    initial={{ left: 0 }}
+                    animate={{ left: "100%" }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <div className="absolute -bottom-5 left-0 text-xs text-gray-400">0%</div>
+                  <div className="absolute -bottom-5 right-0 text-xs text-gray-400">100%</div>
+                </div>
               </div>
             </div>
             
