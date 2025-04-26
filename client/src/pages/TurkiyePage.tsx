@@ -115,9 +115,9 @@ export default function TurkiyePage() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 rounded-lg p-7 max-w-3xl shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-shadow duration-300">
-            <p className="text-2xl md:text-3xl lg:text-4xl text-white font-bold">
-              <strong className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">"Türk, Atasının mirasına sahip çıkamazsa,</strong><br />
-              <strong className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">geleceğini başka milletlerin insafına bırakır."</strong>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-bold font-poppins">
+              <strong className="text-turkish-red">"Türk, Atasının mirasına sahip çıkamazsa,</strong><br />
+              <strong className="text-turkish-white">geleceğini başka milletlerin insafına bırakır."</strong>
             </p>
           </div>
         </motion.div>
@@ -129,14 +129,14 @@ export default function TurkiyePage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 tracking-wide">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-turkish-red mb-6 tracking-wide font-poppins">
             TÜRKİYE
           </h1>
           <div className="flex flex-col items-center mb-3">
-            <div className="text-2xl md:text-4xl text-red-500 font-bold mb-2 flex items-center justify-center">
+            <div className="text-2xl md:text-4xl text-turkish-red font-bold mb-2 flex items-center justify-center font-poppins">
               Cumhuriyet ile Yeniden Güncelleniyor
               <motion.span
-                className="ml-2 text-white"
+                className="ml-2 text-turkish-white"
                 animate={{ 
                   opacity: [1, 0.5, 1],
                   scale: [1, 1.2, 1]
@@ -155,11 +155,11 @@ export default function TurkiyePage() {
               <div className="absolute left-0 -translate-x-[105%] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)] hidden md:block">
                 <div className="flex flex-col items-center">
                   <div className="flex items-center">
-                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
-                    <h4 className="font-medium text-white text-[10px]">T.C. KATILIM</h4>
+                    <div className="h-2 w-2 bg-turkish-white rounded-full animate-pulse mr-1.5"></div>
+                    <h4 className="font-medium text-turkish-white text-[10px] font-poppins">T.C. KATILIM</h4>
                   </div>
                   <motion.div 
-                    className="text-lg font-bold text-white mt-1"
+                    className="text-lg font-bold text-turkish-white mt-1 font-poppins"
                     animate={{ 
                       opacity: [1, 0.9, 1],
                     }}
@@ -170,7 +170,7 @@ export default function TurkiyePage() {
                   >
                     8.523.912
                   </motion.div>
-                  <div className="text-[9px] text-gray-400">Vatandaş</div>
+                  <div className="text-[9px] text-turkish-white/70 font-poppins">Vatandaş</div>
                 </div>
               </div>
               
@@ -178,11 +178,11 @@ export default function TurkiyePage() {
               <div className="absolute right-0 translate-x-[105%] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)] hidden md:block">
                 <div className="flex flex-col items-center">
                   <div className="flex items-center">
-                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
-                    <h4 className="font-medium text-white text-[10px]">T.C. TOPLAM BAĞIŞ</h4>
+                    <div className="h-2 w-2 bg-turkish-red rounded-full animate-pulse mr-1.5"></div>
+                    <h4 className="font-medium text-turkish-white text-[10px] font-poppins">T.C. TOPLAM BAĞIŞ</h4>
                   </div>
                   <motion.div 
-                    className="text-lg font-bold text-red-500 mt-1"
+                    className="text-lg font-bold text-turkish-red mt-1 font-poppins"
                     animate={{ 
                       opacity: [1, 0.9, 1],
                     }}
@@ -193,17 +193,17 @@ export default function TurkiyePage() {
                   >
                     ₺7.514.892
                   </motion.div>
-                  <div className="text-[9px] text-gray-400">Medeniyet için yetecek kadar.</div>
+                  <div className="text-[9px] text-turkish-white/70 font-poppins">Medeniyet için yetecek kadar.</div>
                 </div>
               </div>
               
               {/* Mobil için katılımcı bilgileri özeti */}
               <div className="md:hidden absolute -bottom-14 left-0 right-0 flex justify-center gap-6">
                 <div className="bg-black/40 backdrop-blur-sm px-2 py-1 rounded border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
-                  <p className="text-white text-xs font-bold">8.523.912 Vatandaş</p>
+                  <p className="text-turkish-white text-xs font-bold font-poppins">8.523.912 Vatandaş</p>
                 </div>
                 <div className="bg-black/40 backdrop-blur-sm px-2 py-1 rounded border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
-                  <p className="text-red-500 text-xs font-bold">₺7.514.892 Bağış</p>
+                  <p className="text-turkish-red text-xs font-bold font-poppins">₺7.514.892 Bağış</p>
                 </div>
               </div>
             
@@ -225,8 +225,8 @@ export default function TurkiyePage() {
                     <div className="h-4 w-4 bg-white rounded-full relative shadow-[0_0_10px_rgba(255,255,255,0.7)]"></div>
                   </div>
                 </motion.div>
-                <div className="absolute -bottom-5 left-0 text-xs text-red-500/80 font-medium">0%</div>
-                <div className="absolute -bottom-5 right-0 text-xs text-red-500/80 font-medium">100%</div>
+                <div className="absolute -bottom-5 left-0 text-xs text-turkish-red/80 font-medium font-poppins">0%</div>
+                <div className="absolute -bottom-5 right-0 text-xs text-turkish-red/80 font-medium font-poppins">100%</div>
               </div>
             </div>
           </div>
