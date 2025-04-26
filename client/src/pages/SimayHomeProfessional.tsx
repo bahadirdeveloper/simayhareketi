@@ -85,20 +85,26 @@ export default function SimayHomeProfessional() {
               HALKLARIN UYANIŞI
             </h1>
             
-            <div className="flex items-center justify-center text-2xl text-amber-300 mb-4">
-              <span>Cumhuriyet ile Güncelleniyoruz</span>
-              <motion.span 
-                className="ml-2 inline-block" 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                  <path d="M3 3v5h5" />
-                  <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-                  <path d="M16 21h5v-5" />
-                </svg>
-              </motion.span>
+            <div className="flex flex-col items-center justify-center mb-4">
+              <div className="text-2xl text-amber-300 mb-2">
+                Cumhuriyet ile Güncelleniyoruz
+              </div>
+              <div className="relative w-48 h-8 flex items-center justify-center">
+                <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
+                <motion.div 
+                  className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
+                  initial={{ left: 0 }}
+                  animate={{ left: "100%" }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="absolute -bottom-5 left-0 text-xs text-gray-400">0%</div>
+                <div className="absolute -bottom-5 right-0 text-xs text-gray-400">100%</div>
+              </div>
             </div>
             
             <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">

@@ -71,9 +71,27 @@ export default function TurkiyePage() {
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             🇹🇷 TÜRKİYE
           </h1>
-          <p className="text-2xl md:text-4xl text-amber-400 font-bold mb-2">
-            📣 Cumhuriyet ile Yeniden Güncelleniyor ⚖️
-          </p>
+          <div className="flex flex-col items-center mb-3">
+            <p className="text-2xl md:text-4xl text-amber-400 font-bold mb-2">
+              📣 Cumhuriyet ile Yeniden Güncelleniyor ⚖️
+            </p>
+            <div className="relative w-64 h-8 flex items-center justify-center">
+              <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
+              <motion.div 
+                className="absolute h-4 w-4 bg-amber-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.7)]"
+                initial={{ left: 0 }}
+                animate={{ left: "100%" }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut"
+                }}
+              />
+              <div className="absolute -bottom-5 left-0 text-xs text-gray-400">0%</div>
+              <div className="absolute -bottom-5 right-0 text-xs text-gray-400">100%</div>
+            </div>
+          </div>
           <p className="text-xl text-gray-300">
             📡 Dijital Koordinasyon Alanı
           </p>
@@ -102,7 +120,7 @@ export default function TurkiyePage() {
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
-            onClick={() => navigate("/gorev")}
+            onClick={() => navigate("/gorevler")}
           >
             🇹🇷 Cumhuriyetin 2. Yüzyılı: 100+1 Görev Diriliş
           </Button>
