@@ -160,8 +160,8 @@ export default function GorevlerPage() {
     
     recordVisit();
     
-    // Load görevler data
-    const mockGorevler: Gorev[] = [
+    // Tüm 101 görev
+    const allGorevler: Gorev[] = [
       {
         id: 0,
         baslik: "🧩 Görev 0: Kurucunun Eksikleri",
@@ -264,11 +264,28 @@ export default function GorevlerPage() {
       // 11-100 arası görevleri getir - zaten eklemiştik
     ];
 
-    // Tüm 100 görevi kullanmak için alttaki kodu etkinleştirin
-    // Ancak şimdilik görselleri test etmek için bu 10 görev yeterli
+    // 100 görevi genişlet
+    const fullGorevlerList = [...allGorevler];
     
-    // Görevlerimizi ayarlayalım
-    setGorevler(mockGorevler);
+    // 11-100 arası görevleri oluştur ve ekle
+    for (let i = 11; i <= 100; i++) {
+      const category = ['çevre', 'toplum', 'kültür', 'sanat', 'eğitim', 'psikoloji'][i % 6];
+      const tamamlayan = Math.floor(Math.random() * 15) * (i % 3 === 0 ? 1 : 0);
+      const kontenjan = (25 + (i % 15) * 3);
+      
+      fullGorevlerList.push({
+        id: i,
+        baslik: `🧩 ${i}. Görev: Görev ${i}`,
+        cagri: `${i}. görevin açıklaması`,
+        aciklama: `${i}. görevin detaylı açıklaması.`,
+        kategori: category,
+        kontenjan,
+        tamamlayan
+      });
+    }
+    
+    // Görevlerimizi ayarlayalım - TÜM GÖREVLERİ KULLAN
+    setGorevler(fullGorevlerList);
     
     // Simüle edilmiş bir yükleme gecikmesi
     setTimeout(() => {
