@@ -8,8 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
-import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayNewLogo from "@/components/SimayNewLogo";
+import RealBurningEarthBackground from "@/components/RealBurningEarthBackground";
+import TurkishGeneFlowLogo from "@/components/TurkishGeneFlowLogo";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { playSoundtrack } from "@/lib/audio";
@@ -129,7 +129,7 @@ export default function JoinPage() {
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
       <div className="min-h-screen flex flex-col items-center justify-center text-matrix-green overflow-hidden">
-        <BurningEarthBackground />
+        <RealBurningEarthBackground />
         
         <main className="container mx-auto px-4 z-10 relative py-12">
           {/* Header */}

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayNewLogo from "@/components/SimayNewLogo";
+import RealBurningEarthBackground from "@/components/RealBurningEarthBackground";
+import TurkishGeneFlowLogo from "@/components/TurkishGeneFlowLogo";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -78,7 +78,7 @@ export default function SimayHome() {
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
       <div className="min-h-screen flex flex-col items-center justify-center text-matrix-green overflow-hidden">
-        <BurningEarthBackground />
+        <RealBurningEarthBackground />
         
         <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen">
           {/* Simay Logo */}
@@ -88,7 +88,7 @@ export default function SimayHome() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <SimayNewLogo />
+            <TurkishGeneFlowLogo />
           </motion.div>
           
           {/* Project Title */}

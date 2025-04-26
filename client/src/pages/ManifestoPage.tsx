@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayNewLogo from "@/components/SimayNewLogo";
+import RealBurningEarthBackground from "@/components/RealBurningEarthBackground";
+import TurkishGeneFlowLogo from "@/components/TurkishGeneFlowLogo";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { playSoundtrack } from "@/lib/audio";
@@ -55,7 +55,7 @@ export default function ManifestoPage() {
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
       <div className="min-h-screen flex flex-col items-center justify-center text-matrix-green overflow-hidden">
-        <BurningEarthBackground />
+        <RealBurningEarthBackground />
         
         <main className="container mx-auto px-4 z-10 relative py-12">
           {/* Header */}
@@ -69,7 +69,7 @@ export default function ManifestoPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-16 h-16 mr-4">
-                  <SimayNewLogo />
+                  <TurkishGeneFlowLogo />
                 </div>
                 <h2 className="text-2xl font-share-tech text-green-400">
                   {t('simay_title')}
