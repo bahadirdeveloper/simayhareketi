@@ -203,6 +203,52 @@ export default function SimayHomeProfessional() {
 
               {/* İlerleme çubuğu */}
               <div className="flex justify-center items-center my-12 relative">
+                {/* SOL TARAF - GENEL KATILIM */}
+                <div className="absolute left-0 -translate-x-[105%] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center">
+                      <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
+                      <h4 className="font-medium text-white text-[10px]">GENEL KATILIM</h4>
+                    </div>
+                    <motion.div 
+                      className="text-lg font-bold text-white mt-1"
+                      animate={{ 
+                        opacity: [1, 0.9, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      67%
+                    </motion.div>
+                    <div className="text-[9px] text-gray-400">8.523.912 Vatandaş</div>
+                  </div>
+                </div>
+                
+                {/* SAĞ TARAF - TOPLAM BAĞIŞ */}
+                <div className="absolute right-0 translate-x-[105%] bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg border border-red-500/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center">
+                      <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
+                      <h4 className="font-medium text-white text-[10px]">TOPLAM BAĞIŞ</h4>
+                    </div>
+                    <motion.div 
+                      className="text-lg font-bold text-red-500 mt-1"
+                      animate={{ 
+                        opacity: [1, 0.9, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      ₺7.514.892
+                    </motion.div>
+                    <div className="text-[9px] text-gray-400">Medeniyet için yetecek kadar.</div>
+                  </div>
+                </div>
+                
                 <div className="w-96 h-8 relative">
                   {/* Arka plan çizgi */}
                   <div className="absolute w-full h-1.5 bg-gradient-to-r from-gray-700/60 via-gray-700/80 to-gray-700/60 rounded-full backdrop-blur-sm top-1/2 -translate-y-1/2"></div>
@@ -396,88 +442,7 @@ export default function SimayHomeProfessional() {
             </div>
           </motion.div>
           
-          {/* Canlı Göstergeler */}
-          <motion.div 
-            className="w-full max-w-2xl mx-auto mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.3 }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* GENEL KATILIM Göstergesi */}
-              <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-500/40 shadow-[0_0_15px_rgba(220,38,38,0.1)]">
-                <div className="flex justify-between items-center mb-2">
-                  <h4 className="font-medium text-white text-sm">GENEL KATILIM</h4>
-                  <div className="flex items-center">
-                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1"></div>
-                    <span className="text-xs text-gray-400">Canlı</span>
-                  </div>
-                </div>
-                
-                <div className="relative h-2 bg-white/20 rounded-full overflow-hidden mb-1">
-                  <motion.div 
-                    className="absolute top-0 left-0 h-full bg-white"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "67%" }}
-                    transition={{ duration: 2 }}
-                  />
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <div className="flex items-baseline">
-                    <span className="text-xl font-bold text-white">67%</span>
-                    <span className="ml-1 text-xs text-gray-400">/ 100%</span>
-                  </div>
-                  <span className="text-xs text-white/80">8.523.912 Vatandaş</span>
-                </div>
-              </div>
-              
-              {/* TOPLAM BAĞIŞ Göstergesi */}
-              <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-500/40 shadow-[0_0_15px_rgba(220,38,38,0.1)]">
-                <div className="flex justify-between items-center mb-2">
-                  <h4 className="font-medium text-white text-sm">TOPLAM BAĞIŞ</h4>
-                  <div className="flex items-center">
-                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1"></div>
-                    <span className="text-xs text-gray-400">Canlı</span>
-                  </div>
-                </div>
-                
-                <div className="relative h-2 bg-white/20 rounded-full overflow-hidden mb-1">
-                  <motion.div 
-                    className="absolute top-0 left-0 h-full bg-red-500"
-                    initial={{ width: "0%" }}
-                    animate={{ 
-                      width: ["42%", "43%", "45%", "44%"],
-                    }}
-                    transition={{ 
-                      duration: 8,
-                      repeat: Infinity,
-                      repeatType: "reverse"
-                    }}
-                  />
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <div className="flex items-baseline">
-                    <motion.span 
-                      className="text-xl font-bold text-red-500"
-                      animate={{ 
-                        opacity: [1, 0.8, 1],
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                    >
-                      ₺7.514.892
-                    </motion.span>
-                    <span className="ml-1 text-xs text-gray-400">TL</span>
-                  </div>
-                  <span className="text-xs text-white/80">Hedef: Medeniyet için yetecek kadar.</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+
           
           {/* Alt Bilgi */}
           <motion.div 
