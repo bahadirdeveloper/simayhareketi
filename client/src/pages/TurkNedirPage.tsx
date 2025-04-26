@@ -42,10 +42,17 @@ export default function TurkNedirPage() {
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Backdrop overlay for better text visibility */}
-      <div className="fixed inset-0 bg-black/55 z-0"></div>
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+        style={{ 
+          backgroundImage: 'url("/images/seyiton.png")',
+          backgroundSize: 'cover' 
+        }}
+      ></div>
       
-      <SimpleBurningEarth />
+      {/* Backdrop overlay for better text visibility */}
+      <div className="fixed inset-0 bg-black/60 z-0"></div>
       
       <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-16">
         {/* Türk Deseni Üstbilgi */}
