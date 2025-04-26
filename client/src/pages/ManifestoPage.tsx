@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayLogo from "@/components/SimayLogo";
+import SimayNewLogo from "@/components/SimayNewLogo";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { playSoundtrack } from "@/lib/audio";
@@ -69,7 +69,7 @@ export default function ManifestoPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-16 h-16 mr-4">
-                  <SimayLogo />
+                  <SimayNewLogo />
                 </div>
                 <h2 className="text-2xl font-share-tech text-green-400">
                   {t('simay_title')}

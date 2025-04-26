@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayLogo from "@/components/SimayLogo";
+import SimayNewLogo from "@/components/SimayNewLogo";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -88,7 +88,7 @@ export default function SimayHome() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <SimayLogo />
+            <SimayNewLogo />
           </motion.div>
           
           {/* Project Title */}

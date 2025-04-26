@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import BurningEarthBackground from "@/components/BurningEarthBackground";
-import SimayLogo from "@/components/SimayLogo";
+import SimayNewLogo from "@/components/SimayNewLogo";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { playSoundtrack } from "@/lib/audio";
@@ -143,7 +143,7 @@ export default function JoinPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-16 h-16 mr-4">
-                  <SimayLogo />
+                  <SimayNewLogo />
                 </div>
                 <h2 className="text-2xl font-share-tech text-green-400">
                   {t('simay_title')}
