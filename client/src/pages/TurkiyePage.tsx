@@ -14,8 +14,8 @@ export default function TurkiyePage() {
   const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    // Initialize audio system with Turkiye page soundtrack
+    initAudio('turkiye');
     
     // Record visitor stats
     const recordVisit = async () => {

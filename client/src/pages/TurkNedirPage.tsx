@@ -13,8 +13,8 @@ export default function TurkNedirPage() {
   const [, navigate] = useLocation();
   
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    // Initialize audio system with turknedir page soundtrack
+    initAudio('turknedir');
     
     // Record visitor stats
     const recordVisit = async () => {

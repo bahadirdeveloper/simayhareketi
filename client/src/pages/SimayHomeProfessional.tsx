@@ -16,8 +16,8 @@ export default function SimayHomeProfessional() {
   const [, navigate] = useLocation();
   
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    // Initialize audio system with home page soundtrack
+    initAudio('home');
     
     // Record visitor stats
     const recordVisit = async () => {
