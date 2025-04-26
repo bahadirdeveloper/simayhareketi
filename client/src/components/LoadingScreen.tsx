@@ -75,7 +75,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         
         {!isDecoding && (
           <motion.div 
-            className="w-64 h-2.5 bg-[rgba(220,38,38,0.2)] rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
+            className="w-64 h-2.5 bg-white/30 rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
