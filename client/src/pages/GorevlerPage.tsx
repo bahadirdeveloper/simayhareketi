@@ -1366,71 +1366,85 @@ export default function GorevlerPage() {
         
         {/* Görev Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="bg-black/85 backdrop-blur-md border border-cyan-500 text-white">
-            <DialogHeader>
-              <DialogTitle className="text-amber-400 text-xl">
-                {selectedGorev?.baslik}
-              </DialogTitle>
-              <DialogDescription className="text-white">
-                {selectedGorev?.aciklama}
-              </DialogDescription>
-            </DialogHeader>
+          <DialogContent className="bg-black/85 backdrop-blur-md border border-cyan-500 text-white relative overflow-hidden">
+            {/* Arka plan görseli - seçilen görev için */}
+            {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
+              <div className="absolute inset-0 opacity-30 z-0">
+                <img 
+                  src={getGorevBackgroundImage(selectedGorev.id)} 
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
             
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="ad">Adınız Soyadınız:</Label>
-                <Input
-                  id="ad"
-                  name="ad"
-                  value={formData.ad}
-                  onChange={handleInputChange}
-                  className="bg-black/60 border-amber-500"
-                  required
-                />
-              </div>
+            {/* İçerik - Z indeksi daha yüksek */}
+            <div className="relative z-10">
+              <DialogHeader>
+                <DialogTitle className="text-amber-400 text-xl">
+                  {selectedGorev?.baslik}
+                </DialogTitle>
+                <DialogDescription className="text-white">
+                  {selectedGorev?.aciklama}
+                </DialogDescription>
+              </DialogHeader>
               
-              <div className="space-y-2">
-                <Label htmlFor="eposta">E-posta:</Label>
-                <Input
-                  id="eposta"
-                  name="eposta"
-                  type="email"
-                  value={formData.eposta}
-                  onChange={handleInputChange}
-                  className="bg-black/60 border-amber-500"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="not">Not (isteğe bağlı):</Label>
-                <Textarea
-                  id="not"
-                  name="not"
-                  value={formData.not}
-                  onChange={handleInputChange}
-                  className="bg-black/60 border-amber-500"
-                  rows={3}
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="dosya">Dosya yükle (PDF, JPEG):</Label>
-                <Input
-                  id="dosya"
-                  name="dosya"
-                  type="file"
-                  accept=".pdf,.jpg,.jpeg,.png"
-                  className="bg-black/60 border-amber-500"
-                />
-              </div>
-              
-              <DialogFooter>
-                <Button type="submit" className="bg-cyan-600 hover:bg-cyan-700">
-                  Gönder
-                </Button>
-              </DialogFooter>
-            </form>
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="ad">Adınız Soyadınız:</Label>
+                  <Input
+                    id="ad"
+                    name="ad"
+                    value={formData.ad}
+                    onChange={handleInputChange}
+                    className="bg-black/60 border-amber-500"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="eposta">E-posta:</Label>
+                  <Input
+                    id="eposta"
+                    name="eposta"
+                    type="email"
+                    value={formData.eposta}
+                    onChange={handleInputChange}
+                    className="bg-black/60 border-amber-500"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="not">Not (isteğe bağlı):</Label>
+                  <Textarea
+                    id="not"
+                    name="not"
+                    value={formData.not}
+                    onChange={handleInputChange}
+                    className="bg-black/60 border-amber-500"
+                    rows={3}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="dosya">Dosya yükle (PDF, JPEG):</Label>
+                  <Input
+                    id="dosya"
+                    name="dosya"
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    className="bg-black/60 border-amber-500"
+                  />
+                </div>
+                
+                <DialogFooter>
+                  <Button type="submit" className="bg-cyan-600 hover:bg-cyan-700">
+                    Gönder
+                  </Button>
+                </DialogFooter>
+              </form>
+            </div>
           </DialogContent>
         </Dialog>
         
