@@ -247,7 +247,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/turknedir")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl lg:text-2xl">TÜRK Nedir?</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">TÜRK Nedir?</span>
             </Button>
           </motion.div>
           
@@ -256,7 +256,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/anayasa")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl lg:text-2xl">Anayasalarımız</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Anayasalarımız</span>
             </Button>
           </motion.div>
           
@@ -274,7 +274,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/karisikfikirler")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl lg:text-2xl">Halk Defteri &amp; Manifestolar</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Halk Defteri &amp; Manifestolar</span>
             </Button>
           </motion.div>
           
@@ -283,7 +283,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/cagri")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl lg:text-2xl">Sesleniş & Çağrı</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Sesleniş & Çağrı</span>
             </Button>
           </motion.div>
           
@@ -292,7 +292,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/katil")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl lg:text-2xl">Katılım &amp; Bağış</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Katılım &amp; Bağış</span>
             </Button>
           </motion.div>
           
@@ -302,8 +302,8 @@ export default function TurkiyePage() {
               onClick={() => navigate("/sertifika")}
             >
               <div className="flex flex-col">
-                <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide text-xl">Cumhuriyet Sertifikası</span>
-                <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-lg mt-1">ve Şefaf Gelir-Gider Tablosu</span>
+                <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Cumhuriyet Sertifikası</span>
+                <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xs sm:text-sm md:text-base lg:text-lg mt-1">ve Şefaf Gelir-Gider Tablosu</span>
               </div>
             </Button>
           </motion.div>
@@ -319,7 +319,7 @@ export default function TurkiyePage() {
         >
           <Button 
             variant="outline"
-            className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-8 py-6 text-xl font-bold tracking-wide"
+            className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-4 sm:px-8 py-4 sm:py-6 text-base sm:text-xl font-bold tracking-wide"
             onClick={() => navigate("/")}
           >
             Ana Sayfa'ya Dön
