@@ -1164,7 +1164,7 @@ export default function GorevlerPage() {
         {/* Header */}
         <div className="text-center py-10">
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-red-600 mb-8 tracking-wide leading-tight"
+            className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-wide leading-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -1285,7 +1285,7 @@ export default function GorevlerPage() {
                     
                     {/* Görev başlık ve açıklaması */}
                     <div>
-                      <h3 className="text-base md:text-lg font-bold text-red-500 mb-2 leading-tight">{gorev.baslik}</h3>
+                      <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-tight">{gorev.baslik}</h3>
                       <p className="text-white mb-2 text-sm font-semibold">{gorev.cagri}</p>
                       <div className="text-sm text-white italic mb-3">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
                     </div>
@@ -1394,7 +1394,7 @@ export default function GorevlerPage() {
             {/* İçerik - Z indeksi daha yüksek */}
             <div className="relative z-10">
               <DialogHeader>
-                <DialogTitle className="text-red-500 text-2xl font-bold mb-2">
+                <DialogTitle className="text-white text-2xl font-bold mb-2">
                   {selectedGorev?.baslik}
                 </DialogTitle>
                 <DialogDescription className="text-white text-base leading-relaxed">
