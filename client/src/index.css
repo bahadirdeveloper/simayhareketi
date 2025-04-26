@@ -1,61 +1,66 @@
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* ShadCN UI colors */
-  --background: 0 0% 0%; /* Pure black background */
-  --foreground: 120 100% 25%; /* Matrix green color */
-  --muted: 0 0% 15%;
-  --muted-foreground: 120 100% 30%;
-  --popover: 0 0% 3%;
-  --popover-foreground: 120 100% 25%;
-  --card: 0 0% 5%;
-  --card-foreground: 120 100% 25%;
-  --border: 120 100% 20%;
-  --input: 120 100% 10%;
-  --primary: 120 100% 25%;
-  --primary-foreground: 0 0% 2%;
-  --secondary: 120 100% 10%;
-  --secondary-foreground: 120 100% 50%;
-  --accent: 120 100% 12%;
-  --accent-foreground: 120 100% 80%;
+  /* Modern Turkish theme - based on flag colors with modern tech twist */
+  --background: 220 70% 5%; /* Deep navy background */
+  --foreground: 0 75% 60%; /* Vibrant red - Turkish flag red */
+  --muted: 220 60% 10%;
+  --muted-foreground: 0 0% 80%;
+  --popover: 220 70% 8%;
+  --popover-foreground: 0 0% 95%;
+  --card: 220 70% 7%;
+  --card-foreground: 0 0% 95%;
+  --border: 0 70% 40%;
+  --input: 220 60% 15%;
+  --primary: 0 75% 55%; /* Turkish flag red */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 65% 30%; /* Deep blue - tech feel */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 220 65% 35%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 120 100% 25%;
-  --radius: 0.25rem;
+  --ring: 0 75% 55%;
+  --radius: 0.5rem;
 
-  /* Matrix theme colors */
-  --matrix-green: rgb(0, 255, 65);
-  --matrix-green-rgb: 0, 255, 65;
-  --faded-green: rgba(0, 255, 65, 0.6);
-  --deep-black: rgb(0, 0, 0);
+  /* Modern Turkish theme colors */
+  --turkish-red: rgb(227, 28, 35);
+  --turkish-red-rgb: 227, 28, 35;
+  --turkish-white: rgb(255, 255, 255);
+  --turkish-white-rgb: 255, 255, 255;
+  --tech-blue: rgb(16, 32, 80);
+  --tech-blue-rgb: 16, 32, 80;
+  --modern-indigo: rgb(45, 55, 135);
+  --modern-indigo-rgb: 45, 55, 135;
 }
 
 .dark {
-  --background: 0 0% 0%;
-  --foreground: 120 100% 25%;
-  --muted: 0 0% 15%;
-  --muted-foreground: 120 100% 30%;
-  --popover: 0 0% 3%;
-  --popover-foreground: 120 100% 25%;
-  --card: 0 0% 5%;
-  --card-foreground: 120 100% 25%;
-  --border: 120 100% 20%;
-  --input: 120 100% 10%;
-  --primary: 120 100% 25%;
-  --primary-foreground: 0 0% 2%;
-  --secondary: 120 100% 10%;
-  --secondary-foreground: 120 100% 50%;
-  --accent: 120 100% 12%;
-  --accent-foreground: 120 100% 80%;
+  /* Modern Turkish theme for dark mode - based on flag colors with modern tech twist */
+  --background: 220 70% 5%; /* Deep navy background */
+  --foreground: 0 75% 60%; /* Vibrant red - Turkish flag red */
+  --muted: 220 60% 10%;
+  --muted-foreground: 0 0% 80%;
+  --popover: 220 70% 8%;
+  --popover-foreground: 0 0% 95%;
+  --card: 220 70% 7%;
+  --card-foreground: 0 0% 95%;
+  --border: 0 70% 40%;
+  --input: 220 60% 15%;
+  --primary: 0 75% 55%; /* Turkish flag red */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 65% 30%; /* Deep blue - tech feel */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 220 65% 35%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 120 100% 25%;
-  --radius: 0.25rem;
+  --ring: 0 75% 55%;
+  --radius: 0.5rem;
 }
 
 @layer base {
@@ -64,26 +69,37 @@
   }
 
   body {
-    @apply font-sans antialiased bg-black text-[#00FF41];
+    @apply font-sans antialiased bg-[var(--tech-blue)] text-[var(--turkish-white)];
+    font-family: 'Inter', sans-serif;
   }
 
   /* Font classes */
-  .font-share-tech {
-    font-family: 'Share Tech Mono', monospace;
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
   }
 
-  .font-roboto-mono {
-    font-family: 'Roboto Mono', monospace;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
   }
 }
 
-/* Matrix animation */
-@keyframes matrixRain {
+/* Modern tech animation */
+@keyframes techPulse {
   0% {
-    transform: translateY(-100%);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
   }
   100% {
-    transform: translateY(100vh);
+    transform: scale(1);
+    opacity: 0.9;
   }
 }
 
@@ -98,25 +114,26 @@
   text-align: right;
 }
 
-/* Matrix-themed buttons with hover effect */
+/* Modern Turkish-themed buttons with hover effect */
 .lang-btn {
-  color: var(--matrix-green);
-  border-color: var(--matrix-green);
+  color: var(--turkish-red);
+  border-color: var(--turkish-red);
   transition: all 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(16, 32, 80, 0.7);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
 .lang-btn:hover {
-  background-color: var(--matrix-green);
-  color: var(--deep-black);
-  text-shadow: none;
-  box-shadow: 0 0 15px rgba(var(--matrix-green-rgb), 0.8);
+  background-color: var(--turkish-red);
+  color: var(--turkish-white);
+  box-shadow: 0 0 15px rgba(var(--turkish-red-rgb), 0.5);
 }
 
-/* Matrix text glow effect */
-.text-matrix-green {
-  color: var(--matrix-green);
-  text-shadow: 0 0 5px rgba(var(--matrix-green-rgb), 0.5);
+/* Turkish theme text glow effect */
+.text-turkish-glow {
+  color: var(--turkish-red);
+  text-shadow: 0 0 5px rgba(var(--turkish-red-rgb), 0.5);
 }
 
 /* Custom scrollbar */
@@ -125,19 +142,19 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(16, 32, 80, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--matrix-green);
-  border-radius: 4px;
+  background: var(--turkish-red);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--faded-green);
+  background: linear-gradient(135deg, var(--turkish-red), var(--modern-indigo));
 }
 
-/* Typing cursor animation */
+/* Modern tech blinking cursor animation */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -147,7 +164,45 @@
   content: '|';
   display: inline-block;
   animation: blink 1s infinite;
-  color: var(--matrix-green);
+  color: var(--turkish-red);
   margin-left: 2px;
+}
+
+/* Modern button styles */
+.modern-button {
+  @apply relative overflow-hidden rounded-lg transition-all duration-300;
+  background: linear-gradient(135deg, var(--modern-indigo), var(--tech-blue));
+  border: 1px solid rgba(var(--turkish-red-rgb), 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(var(--turkish-red-rgb), 0.6);
+}
+
+.modern-button:active {
+  transform: translateY(0);
+}
+
+.modern-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.modern-button:hover::before {
+  left: 100%;
 }
 

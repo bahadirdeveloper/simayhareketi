@@ -244,16 +244,16 @@ export default function TurkiyePage() {
         >
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/turknedir")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">TÜRK Nedir?</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">TÜRK Nedir?</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/anayasa")}
             >
               <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Anayasalarımız</span>
@@ -262,7 +262,7 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/gorevler")}
             >
               <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-xl lg:text-2xl">Cumhuriyetin 2. Yüzyılı:<br className="sm:hidden"/> Görev Diriliş</span>
@@ -271,7 +271,7 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/karisikfikirler")}
             >
               <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Halk Defteri &amp; Manifestolar</span>
@@ -280,7 +280,7 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/cagri")}
             >
               <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Sesleniş & Çağrı</span>
@@ -289,7 +289,7 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/katil")}
             >
               <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Katılım &amp; Bağış</span>
@@ -298,7 +298,7 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }} className="md:col-span-2">
             <Button 
-              className="w-full bg-gradient-to-r from-indigo-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/80 hover:border-red-500 text-white hover:text-white rounded-lg p-6 font-bold shadow-[0_0_25px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]"
+              className="w-full modern-button font-poppins p-5 font-bold"
               onClick={() => navigate("/sertifika")}
             >
               <div className="flex flex-col">
@@ -319,7 +319,7 @@ export default function TurkiyePage() {
         >
           <Button 
             variant="outline"
-            className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-4 sm:px-8 py-4 sm:py-6 text-base sm:text-xl font-bold tracking-wide"
+            className="modern-button px-4 sm:px-8 py-4 sm:py-6 text-base sm:text-xl font-bold tracking-wide font-poppins"
             onClick={() => navigate("/")}
           >
             Ana Sayfa'ya Dön
