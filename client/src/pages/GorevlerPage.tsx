@@ -1259,7 +1259,9 @@ export default function GorevlerPage() {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
+                    backgroundRepeat: 'no-repeat',
+                    // Ekstra transparent border ekleyerek görev sayısı-görsel eşleşmesini gösterelim
+                    borderTop: '3px solid rgba(255, 215, 0, 0.5)'
                   } : {}}
                 >
                   {/* Overlay to make text readable */}
