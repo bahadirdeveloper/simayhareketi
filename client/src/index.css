@@ -206,3 +206,48 @@
   left: 100%;
 }
 
+/* Custom Turkish colors */
+.text-turkish-white {
+  color: var(--turkish-white);
+}
+
+.text-turkish-red {
+  color: var(--turkish-red);
+}
+
+/* Modern Turkish button styles */
+.turkish-flag-button {
+  position: relative;
+  overflow: hidden;
+  background: var(--turkish-red);
+  color: var(--turkish-white);
+  border: 2px solid var(--turkish-white);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.turkish-flag-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.turkish-flag-button:active {
+  transform: translateY(0);
+}
+
+/* Modern content card */
+.modern-card {
+  background: linear-gradient(135deg, rgba(45, 55, 135, 0.8), rgba(16, 32, 80, 0.9));
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(227, 28, 35, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover {
+  border-color: rgba(227, 28, 35, 0.6);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}

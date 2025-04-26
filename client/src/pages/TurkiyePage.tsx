@@ -256,7 +256,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/anayasa")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Anayasalarımız</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Anayasalarımız</span>
             </Button>
           </motion.div>
           
@@ -265,7 +265,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/gorevler")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-xl lg:text-2xl">Cumhuriyetin 2. Yüzyılı:<br className="sm:hidden"/> Görev Diriliş</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Cumhuriyetin 2. Yüzyılı:<br className="sm:hidden"/> Görev Diriliş</span>
             </Button>
           </motion.div>
           
@@ -274,7 +274,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/karisikfikirler")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Halk Defteri &amp; Manifestolar</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Halk Defteri &amp; Manifestolar</span>
             </Button>
           </motion.div>
           
@@ -283,7 +283,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/cagri")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Sesleniş & Çağrı</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Sesleniş & Çağrı</span>
             </Button>
           </motion.div>
           
@@ -292,7 +292,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
               onClick={() => navigate("/katil")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Katılım &amp; Bağış</span>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Katılım &amp; Bağış</span>
             </Button>
           </motion.div>
           
@@ -302,8 +302,8 @@ export default function TurkiyePage() {
               onClick={() => navigate("/sertifika")}
             >
               <div className="flex flex-col">
-                <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide text-sm sm:text-base md:text-lg lg:text-xl">Cumhuriyet Sertifikası</span>
-                <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xs sm:text-sm md:text-base lg:text-lg mt-1">ve Şefaf Gelir-Gider Tablosu</span>
+                <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Cumhuriyet Sertifikası</span>
+                <span className="text-turkish-red tracking-wide text-xs sm:text-sm md:text-base lg:text-lg mt-1 font-poppins">ve Şefaf Gelir-Gider Tablosu</span>
               </div>
             </Button>
           </motion.div>
