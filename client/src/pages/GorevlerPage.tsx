@@ -1182,9 +1182,9 @@ export default function GorevlerPage() {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
-            <h2 className="text-2xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text inline-flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins">
               Kimleri Göreve Davet Ediyoruz? 
-              <span className="text-red-500 text-base font-normal">(Tıkla)</span>
+              <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
             </h2>
           </motion.div>
           
@@ -1196,7 +1196,7 @@ export default function GorevlerPage() {
             className="mb-8"
           >
             <Button 
-              className="bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xl px-10 py-7 shadow-[0_0_20px_rgba(220,38,38,0.4)] rounded-lg"
+              className="turkish-flag-button text-xl px-10 py-7 font-bold font-poppins"
               onClick={() => navigate("/kurucu-eksikleri")}
             >
               GÖREV 0: KURUCUNUN EKSİKLERİ
@@ -1217,7 +1217,7 @@ export default function GorevlerPage() {
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="max-w-md bg-black/60 border-2 border-red-600/70 text-white text-lg px-6 py-6 h-14 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)]"
+                    className="max-w-md turkish-tech-input text-lg px-6 py-6 h-14 font-poppins"
                   />
                 </div>
                 
@@ -1227,8 +1227,8 @@ export default function GorevlerPage() {
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
                       className={selectedCategory === category 
-                        ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-lg px-6 py-5 border-none shadow-[0_0_15px_rgba(220,38,38,0.3)]" 
-                        : "border-2 border-red-600/70 text-white font-semibold text-lg px-6 py-5 hover:bg-red-600/20"
+                        ? "turkish-flag-button font-bold text-lg px-6 py-5 border-none font-poppins" 
+                        : "modern-button text-white font-semibold text-lg px-6 py-5 font-poppins"
                       }
                       onClick={() => {
                         setSelectedCategory(category);
@@ -1245,15 +1245,15 @@ export default function GorevlerPage() {
 
             
             {/* Counters */}
-            <div className="text-center mb-8 mt-8 bg-black/40 p-5 rounded-lg border-2 border-red-600/40 max-w-2xl mx-auto shadow-lg">
+            <div className="text-center mb-8 mt-8 turkish-tech-panel p-5 rounded-lg max-w-2xl mx-auto">
               <div className="flex flex-col md:flex-row justify-center gap-8">
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 flex-1">
-                  <p className="text-white text-xl font-bold">Toplam Görev</p>
-                  <p className="text-red-400 text-3xl font-bold mt-2">{gorevler.length}</p>
+                <div className="turkish-counter-box p-4 rounded-lg flex-1">
+                  <p className="text-turkish-white text-xl font-bold font-poppins">Toplam Görev</p>
+                  <p className="text-turkish-red text-3xl font-bold mt-2 font-poppins">{gorevler.length}</p>
                 </div>
-                <div className="bg-red-950/40 p-4 rounded-lg border border-red-600/30 flex-1">
-                  <p className="text-white text-xl font-bold">Katılım Sayısı</p>
-                  <p className="text-red-400 text-3xl font-bold mt-2">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
+                <div className="turkish-counter-box p-4 rounded-lg flex-1">
+                  <p className="text-turkish-white text-xl font-bold font-poppins">Katılım Sayısı</p>
+                  <p className="text-turkish-red text-3xl font-bold mt-2 font-poppins">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
                 </div>
               </div>
             </div>
@@ -1372,30 +1372,30 @@ export default function GorevlerPage() {
           <div className="flex justify-center mt-8 gap-6">
             <Button 
               variant="outline"
-              className="border-2 border-red-600/60 text-white hover:bg-red-700/20 px-8 py-6 text-xl font-bold tracking-wide"
+              className="modern-button px-8 py-6 text-xl font-bold tracking-wide font-poppins"
               onClick={() => navigate("/turkiye")}
             >
-              Türkiye Sayfasına Dön
+              <span className="text-turkish-white">Türkiye Sayfasına Dön</span>
             </Button>
             
             <Button 
               variant="outline"
-              className="border-2 border-red-600/60 text-white hover:bg-red-700/20 px-8 py-6 text-xl font-bold tracking-wide"
+              className="modern-button px-8 py-6 text-xl font-bold tracking-wide font-poppins"
               onClick={() => navigate("/")}
             >
-              Ana Sayfa
+              <span className="text-turkish-white">Ana Sayfa</span>
             </Button>
           </div>
           
           {/* Cumhuriyet Sertifikası İbaresi */}
           <motion.div
-            className="w-full max-w-3xl mx-auto bg-gradient-to-r from-red-950/40 to-black/60 p-5 rounded-lg border-2 border-red-600/30 mt-14 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(220,38,38,0.15)]"
+            className="w-full max-w-3xl mx-auto turkish-tech-panel p-5 rounded-lg mt-14 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <p className="text-xl font-bold text-white">
-              Tamamlanan görevler <span className="text-red-500">Cumhuriyet Sertifikası</span> kazandıracaktır.
+            <p className="text-xl font-bold text-turkish-white font-poppins">
+              Tamamlanan görevler <span className="text-turkish-red">Cumhuriyet Sertifikası</span> kazandıracaktır.
             </p>
           </motion.div>
         </div>
