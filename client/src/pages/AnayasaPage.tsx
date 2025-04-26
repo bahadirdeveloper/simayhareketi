@@ -209,7 +209,7 @@ export default function AnayasaPage() {
           </Section>
           
           <Section>
-            <SectionTitle>🌍 Halk Küresel Halk Anayasası</SectionTitle>
+            <SectionTitle>Halk Küresel Halk Anayasası</SectionTitle>
             <HighlightText>Dünya bir harita değil, vicdanla örülmüş bir zincirdir.</HighlightText>
             <ParagraphText>Halk Küresel Anayasası, dünya halklarının barış ve eşitlik için bir araya gelmesiyle hazırlanmıştır.</ParagraphText>
             <ParagraphText>Hiçbir halk, sınırlarla ya da ekonomik güçle üstünlük kuramaz. Tüm halklar eşit ses hakkına sahiptir.</ParagraphText>
@@ -237,7 +237,7 @@ export default function AnayasaPage() {
               className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
               onClick={() => navigate("/")}
             >
-              🏠 Ana Sayfa
+              Ana Sayfa
             </Button>
           </motion.div>
         </div>
