@@ -379,8 +379,8 @@ export default function SimayHomeProfessional() {
                 </div>
               </div>
               
-              <div className="flex justify-center mt-4">
-                <div className="turkish-tech-badge group transition-all duration-300 cursor-default">
+              <div className="mt-6 mb-2">
+                <div onClick={() => {}} className="turkish-tech-badge group transition-all duration-300 cursor-pointer mx-auto max-w-fit">
                   <span className="inline-flex items-center">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
@@ -398,6 +398,20 @@ export default function SimayHomeProfessional() {
                     </svg>
                     <span>Bu icat Türk yapımıdır</span>
                   </span>
+                </div>
+                
+                <div className="turkish-content-bg mt-2 mx-auto max-w-md p-4 text-xs text-gray-300 leading-relaxed">
+                  <p className="mb-2">
+                    "23 Nisan 2025'te, Mustafa Kemal Atatürk ve atalarımızın yaktığı ışığın peşinden yürüyerek bu yolu açtık.
+                    Geçmişin öğrettiklerini unutmadık, geleceğin yükünü omuzladık."
+                  </p>
+                  <p className="mb-2">
+                    "Bu iş, bir avuç insanın değil, yüz yıllık bir inancın eseridir."
+                  </p>
+                  <p>
+                    "İsteyen elini uzatsın, isteyen göğsünü gere gere sahiplensin:
+                    <span className="text-red-400 font-medium block mt-1">Bu umut, bu mücadele, bu icat; bu toprakların evlatlarınındır!</span>"
+                  </p>
                 </div>
               </div>
             </div>
