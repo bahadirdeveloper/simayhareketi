@@ -6,5 +6,52 @@
   "toggle_sound": "Toggle Sound",
   "welcome_message": "Welcome to the World Saving Operation",
   "content_description": "This is the starting screen of a global digital consciousness and justice system that will go live on May 19, 2025. It will be built on the brotherhood of peoples and a digital mission system.",
-  "back_to_home": "Back to Home"
+  "back_to_home": "Back to Home",
+
+  "simay_title": "SIMAY MOVEMENT",
+  "simay_subtitle": "Türkiye on the Path to World Leadership",
+  "simay_message": "The Simay Movement is an initiative that carries humanity to a shared future, founded on brotherhood and justice.",
+  "simay_launch_date": "May 19, 2025 - On the Path to World Leadership",
+  "simay_manifesto_button": "Our Manifesto",
+  "simay_join_button": "Join the Movement",
+  
+  "feedback": {
+    "title": "Share Your Thoughts",
+    "placeholder": "Write your thoughts here...",
+    "rating": "Rating:",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "success": "Success!",
+    "thank_you": "Thank you for your feedback.",
+    "error": "Error!",
+    "empty_error": "Please enter a message.",
+    "submit_error": "Failed to submit your feedback. Please try again."
+  },
+  
+  "manifesto": {
+    "title": "Simay Movement Manifesto",
+    "introduction": "As the Simay Movement, we aim to make the world a more just, peaceful, and sustainable place.",
+    "principles": "Our Principles",
+    "principle_1": "Brotherhood of peoples",
+    "principle_2": "Universal justice",
+    "principle_3": "Sustainable development",
+    "principle_4": "Technological advancement",
+    "principle_5": "Cultural diversity",
+    "conclusion": "On Türkiye's path to world leadership, we want to guide humanity's future by upholding these values."
+  },
+  
+  "join": {
+    "title": "Join the Movement",
+    "subtitle": "Work with us for a brighter future",
+    "name": "Your Name",
+    "email": "Email",
+    "interests": "Your Interests",
+    "message": "Your Message",
+    "submit": "Join",
+    "submitting": "Submitting...",
+    "success": "Thank you!",
+    "success_message": "Your application has been received. We will contact you soon.",
+    "error": "Error!",
+    "error_message": "An error occurred. Please try again."
+  }
 }

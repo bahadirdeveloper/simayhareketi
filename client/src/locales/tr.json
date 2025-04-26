@@ -6,5 +6,52 @@
   "toggle_sound": "Sesi Aç/Kapat",
   "welcome_message": "Dünyayı Kurtarma Operasyonu'na Hoş Geldiniz",
   "content_description": "Bu, 19 Mayıs 2025'te yayına girecek olan küresel bir dijital bilinç ve adalet sisteminin başlangıç ekranıdır. Halkların kardeşliği ve dijital görev sistemi üzerine kurulacaktır.",
-  "back_to_home": "Ana Sayfaya Dön"
+  "back_to_home": "Ana Sayfaya Dön",
+  
+  "simay_title": "SİMAY HAREKETİ",
+  "simay_subtitle": "Türkiye Dünya Liderliğine Giden Yolda",
+  "simay_message": "Simay Hareketi, insanlığı ortak bir geleceğe taşıyan, kardeşliği ve adaleti temel alan bir harekettir.",
+  "simay_launch_date": "19 Mayıs 2025 - Dünya Liderliğine Giden Yolda",
+  "simay_manifesto_button": "Manifestomuz",
+  "simay_join_button": "Harekete Katıl",
+  
+  "feedback": {
+    "title": "Görüşlerinizi Paylaşın",
+    "placeholder": "Düşüncelerinizi buraya yazın...",
+    "rating": "Puanlama:",
+    "submit": "Gönder",
+    "submitting": "Gönderiliyor...",
+    "success": "Başarılı!",
+    "thank_you": "Görüşleriniz için teşekkür ederiz.",
+    "error": "Hata!",
+    "empty_error": "Lütfen bir mesaj girin.",
+    "submit_error": "Görüşleriniz gönderilemedi. Lütfen tekrar deneyin."
+  },
+  
+  "manifesto": {
+    "title": "Simay Hareketi Manifestosu",
+    "introduction": "Simay Hareketi olarak, dünyayı daha adil, barışçıl ve sürdürülebilir bir yer haline getirmeyi amaçlıyoruz.",
+    "principles": "İlkelerimiz",
+    "principle_1": "Halkların kardeşliği",
+    "principle_2": "Evrensel adalet",
+    "principle_3": "Sürdürülebilir kalkınma",
+    "principle_4": "Teknolojik ilerleme",
+    "principle_5": "Kültürel çeşitlilik",
+    "conclusion": "Türkiye'nin dünya liderliğine giden yolda, bu değerleri savunarak insanlığın geleceğine yön vermek istiyoruz."
+  },
+  
+  "join": {
+    "title": "Harekete Katılın",
+    "subtitle": "Daha aydınlık bir gelecek için bizimle çalışın",
+    "name": "Adınız",
+    "email": "E-posta",
+    "interests": "İlgi Alanlarınız",
+    "message": "Mesajınız",
+    "submit": "Katıl",
+    "submitting": "Gönderiliyor...",
+    "success": "Teşekkürler!",
+    "success_message": "Başvurunuz alındı. En kısa sürede sizinle iletişime geçeceğiz.",
+    "error": "Hata!",
+    "error_message": "Bir hata oluştu. Lütfen tekrar deneyin."
+  }
 }
