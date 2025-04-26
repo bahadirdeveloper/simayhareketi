@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import SimpleBurningEarth from "@/components/SimpleBurningEarth";
+import TurkeyPuzzleBg from "@/components/TurkeyPuzzleBg";
 import AudioControl from "@/components/AudioControl";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
@@ -1158,7 +1158,7 @@ export default function GorevlerPage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Background */}
-      <SimpleBurningEarth />
+      <TurkeyPuzzleBg />
       
       <main className="container mx-auto px-4 pb-16 z-10 relative">
         {/* Header */}

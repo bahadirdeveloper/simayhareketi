@@ -1,14 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-interface Particle {
+// TypeScript interfaces for the background elements
+interface Point {
   x: number;
   y: number;
-  radius: number;
-  color: string;
-  velocity: { x: number; y: number };
-  life: number;
-  maxLife: number;
 }
 
 interface DataParticle {
@@ -17,23 +13,19 @@ interface DataParticle {
   size: number;
   color: string;
   value: string;
-  velocity: { x: number; y: number };
+  velocity: { x: number, y: number };
   life: number;
   maxLife: number;
 }
 
-interface PatternSymbol {
-  x: number;
-  y: number;
-  size: number;
-  rotation: number;
+interface PuzzlePiece {
+  name: string;
   color: string;
-  symbol: 'star' | 'crescent';
-  velocity: { x: number; y: number };
-  rotationSpeed: number;
+  points: [number, number][];
+  pulse: number;
 }
 
-export default function SimpleBurningEarth() {
+export default function TurkeyPuzzleBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   useEffect(() => {
@@ -52,32 +44,13 @@ export default function SimpleBurningEarth() {
     setCanvasDimensions();
     window.addEventListener('resize', setCanvasDimensions);
     
-    // Setup particles
-    const particles: Particle[] = [];
+    // Setup data particles
     const dataParticles: DataParticle[] = [];
-    const turkishPatternSymbols: PatternSymbol[] = [];
     
     // Create particles
     const createParticles = () => {
-      // Regular particles
-      const particleCount = Math.floor(window.innerWidth * window.innerHeight / 10000);
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          color: `rgba(255, ${150 + Math.floor(Math.random() * 105)}, ${Math.floor(Math.random() * 100)}, ${0.2 + Math.random() * 0.6})`,
-          velocity: {
-            x: (Math.random() - 0.5) * 0.2,
-            y: (Math.random() - 0.5) * 0.2,
-          },
-          life: Math.random() * 100 + 100,
-          maxLife: 200,
-        });
-      }
-      
       // Data particles (represent digital/tech elements)
-      const dataCount = Math.floor(particleCount / 3);
+      const dataCount = Math.floor(window.innerWidth * window.innerHeight / 20000);
       for (let i = 0; i < dataCount; i++) {
         dataParticles.push({
           x: Math.random() * canvas.width,
@@ -91,24 +64,6 @@ export default function SimpleBurningEarth() {
           },
           life: Math.random() * 300 + 200,
           maxLife: 500,
-        });
-      }
-      
-      // Turkish pattern symbols (represents cultural elements)
-      const patternCount = 20;
-      for (let i = 0; i < patternCount; i++) {
-        turkishPatternSymbols.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 15 + 10,
-          rotation: Math.random() * Math.PI * 2,
-          color: `rgba(255, 215, 0, ${0.1 + Math.random() * 0.2})`,
-          symbol: Math.random() > 0.5 ? 'star' : 'crescent',
-          velocity: {
-            x: (Math.random() - 0.5) * 0.1,
-            y: (Math.random() - 0.5) * 0.1,
-          },
-          rotationSpeed: (Math.random() - 0.5) * 0.01,
         });
       }
     };
@@ -164,9 +119,6 @@ export default function SimpleBurningEarth() {
       
       // Draw faint circuit patterns
       drawCircuitPatterns();
-      
-      // Draw subtle Turkish flag motifs in the background
-      drawTurkishMotifsBackground();
     };
     
     // Draw flowing data lines representing digital update concepts
@@ -285,9 +237,11 @@ export default function SimpleBurningEarth() {
         const endX = x + Math.cos(angle) * length;
         const endY = y + Math.sin(angle) * length;
         
+        if (!ctx) return;
+        
         // Draw connection line
-        ctx!.beginPath();
-        ctx!.moveTo(x, y);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
         
         // Decide if we want right angles (circuit-like) or straight lines
         if (Math.random() > 0.5 && depth > 1) {
@@ -296,29 +250,29 @@ export default function SimpleBurningEarth() {
           const midY = y + Math.sin(angle) * length / 2;
           
           if (Math.random() > 0.5) {
-            ctx!.lineTo(midX, y);
-            ctx!.lineTo(midX, midY);
-            ctx!.lineTo(endX, midY);
-            ctx!.lineTo(endX, endY);
+            ctx.lineTo(midX, y);
+            ctx.lineTo(midX, midY);
+            ctx.lineTo(endX, midY);
+            ctx.lineTo(endX, endY);
           } else {
-            ctx!.lineTo(x, midY);
-            ctx!.lineTo(midX, midY);
-            ctx!.lineTo(midX, endY);
-            ctx!.lineTo(endX, endY);
+            ctx.lineTo(x, midY);
+            ctx.lineTo(midX, midY);
+            ctx.lineTo(midX, endY);
+            ctx.lineTo(endX, endY);
           }
         } else {
           // Straight line
-          ctx!.lineTo(endX, endY);
+          ctx.lineTo(endX, endY);
         }
         
-        ctx!.stroke();
+        ctx.stroke();
         
         // Add a node/connection point
         if (Math.random() > 0.7) {
-          ctx!.fillStyle = 'rgba(0, 180, 255, 0.05)';
-          ctx!.beginPath();
-          ctx!.arc(endX, endY, 2, 0, Math.PI * 2);
-          ctx!.fill();
+          ctx.fillStyle = 'rgba(0, 180, 255, 0.05)';
+          ctx.beginPath();
+          ctx.arc(endX, endY, 2, 0, Math.PI * 2);
+          ctx.fill();
         }
         
         // Chance to branch out
@@ -335,37 +289,256 @@ export default function SimpleBurningEarth() {
       }
     };
     
-    // Draw subtle Turkish flag motifs
-    const drawTurkishMotifsBackground = () => {
+    // Draw Turkey map made of puzzle pieces
+    const drawTurkeyMap = () => {
       if (!ctx) return;
       
-      // Add very faint Turkish flag motifs
-      const motifCount = 5;
+      const time = Date.now() * 0.001;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = Math.min(canvas.width, canvas.height) * 0.4;
       
-      for (let i = 0; i < motifCount; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = 10 + Math.random() * 15;
-        const alpha = 0.02 + Math.random() * 0.03;
+      ctx.save();
+      ctx.globalAlpha = 0.3 + Math.sin(time * 0.001) * 0.05;
+      
+      // Scales and positions for Turkey map
+      const mapScale = 1.2;
+      const mapOffsetX = 0; // Center the map
+      const mapOffsetY = 0; // Center the map
+      
+      // Draw technological circuit lines surrounding Turkey
+      drawTurkeyCircuits(centerX + mapOffsetX, centerY + mapOffsetY, radius * mapScale, time);
+      
+      // Draw Turkey as puzzle pieces
+      drawTurkeyPuzzle(centerX + mapOffsetX, centerY + mapOffsetY, radius * mapScale, time);
+      
+      ctx.restore();
+    };
+    
+    // Draw circuit pattern around Turkey
+    const drawTurkeyCircuits = (centerX: number, centerY: number, radius: number, time: number) => {
+      if (!ctx) return;
+      
+      ctx.strokeStyle = 'rgba(0, 150, 255, 0.15)';
+      ctx.lineWidth = 1;
+      
+      // Draw surrounding circuit pattern
+      const circuitPoints = 15;
+      for (let i = 0; i < circuitPoints; i++) {
+        const angle = (i / circuitPoints) * Math.PI * 2;
+        const x = centerX + Math.cos(angle) * (radius * 1.2);
+        const y = centerY + Math.sin(angle) * (radius * 1.2);
         
-        // Decide between star or crescent
-        if (Math.random() > 0.5) {
-          // Star
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-          drawStar(ctx, x, y, 5, size, size / 2);
-        } else {
-          // Crescent
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-          ctx.beginPath();
-          ctx.arc(x, y, size, 0, Math.PI * 2);
-          ctx.fill();
+        // Circuit paths radiating from the map
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        
+        // Create angled circuit paths
+        if (i % 2 === 0) {
+          const controlX = centerX + Math.cos(angle) * (radius * 0.6);
+          const controlY = centerY + Math.sin(angle) * (radius * 0.6);
           
-          ctx.fillStyle = `rgba(0, 10, 30, ${alpha * 10})`;
-          ctx.beginPath();
-          ctx.arc(x + size * 0.5, y, size * 0.8, 0, Math.PI * 2);
-          ctx.fill();
+          // Add a right-angle style circuit
+          ctx.lineTo(controlX, centerY);
+          ctx.lineTo(controlX, controlY);
+          ctx.lineTo(x, controlY);
+          ctx.lineTo(x, y);
+        } else {
+          // Create a data flow connection
+          ctx.lineTo(x, y);
         }
+        
+        ctx.stroke();
+        
+        // Add connection nodes
+        ctx.fillStyle = 'rgba(0, 200, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
       }
+    };
+    
+    // Draw Turkey made of puzzle pieces
+    const drawTurkeyPuzzle = (centerX: number, centerY: number, radius: number, time: number) => {
+      if (!ctx) return;
+      
+      // Define regions of Turkey as puzzle pieces
+      const regions: PuzzlePiece[] = [
+        // Black Sea region (Karadeniz)
+        {
+          name: "Karadeniz",
+          color: "rgba(100, 180, 255, 0.3)",
+          points: [
+            [0.2, -0.2], [0.5, -0.3], [0.8, -0.2], 
+            [0.7, -0.1], [0.5, -0.1], [0.3, -0.15]
+          ],
+          pulse: Math.sin(time * 0.5 + 0) * 0.03
+        },
+        // Marmara region
+        {
+          name: "Marmara",
+          color: "rgba(255, 180, 100, 0.3)",
+          points: [
+            [0.0, -0.1], [0.3, -0.15], [0.3, 0.0], 
+            [0.1, 0.1], [-0.1, 0.0]
+          ],
+          pulse: Math.sin(time * 0.5 + 1) * 0.03
+        },
+        // Aegean region (Ege)
+        {
+          name: "Ege",
+          color: "rgba(100, 255, 180, 0.3)",
+          points: [
+            [-0.1, 0.0], [0.1, 0.1], [0.2, 0.3], 
+            [0.0, 0.3], [-0.2, 0.1]
+          ],
+          pulse: Math.sin(time * 0.5 + 2) * 0.03
+        },
+        // Mediterranean region (Akdeniz)
+        {
+          name: "Akdeniz",
+          color: "rgba(180, 100, 255, 0.3)",
+          points: [
+            [0.0, 0.3], [0.2, 0.3], [0.5, 0.2], 
+            [0.7, 0.3], [0.2, 0.4]
+          ],
+          pulse: Math.sin(time * 0.5 + 3) * 0.03
+        },
+        // Central Anatolia (İç Anadolu)
+        {
+          name: "İç Anadolu",
+          color: "rgba(255, 100, 100, 0.3)",
+          points: [
+            [0.3, 0.0], [0.5, -0.1], [0.6, 0.1], 
+            [0.5, 0.2], [0.2, 0.3], [0.1, 0.1]
+          ],
+          pulse: Math.sin(time * 0.5 + 4) * 0.03
+        },
+        // Eastern Anatolia (Doğu Anadolu)
+        {
+          name: "Doğu Anadolu",
+          color: "rgba(255, 215, 0, 0.3)",
+          points: [
+            [0.6, 0.1], [0.7, -0.1], [0.8, -0.2], 
+            [1.0, -0.1], [0.9, 0.1], [0.7, 0.3], [0.5, 0.2]
+          ],
+          pulse: Math.sin(time * 0.5 + 5) * 0.03
+        },
+        // Southeastern Anatolia (Güneydoğu Anadolu)
+        {
+          name: "Güneydoğu Anadolu",
+          color: "rgba(255, 150, 0, 0.3)",
+          points: [
+            [0.7, 0.3], [0.9, 0.1], [1.0, 0.2], 
+            [0.8, 0.3], [0.7, 0.3]
+          ],
+          pulse: Math.sin(time * 0.5 + 6) * 0.03
+        }
+      ];
+      
+      // Draw each region as a puzzle piece
+      regions.forEach(region => {
+        ctx.save();
+        
+        // Apply subtle animation
+        const scale = 0.5 + region.pulse;
+        
+        // Draw the region
+        ctx.fillStyle = region.color;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 2;
+        
+        ctx.beginPath();
+        region.points.forEach((point, index) => {
+          const x = centerX + point[0] * radius * scale;
+          const y = centerY + point[1] * radius * scale;
+          
+          if (index === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+        ctx.closePath();
+        ctx.fill();
+        
+        // Add puzzle connectors between pieces
+        region.points.forEach((point, index) => {
+          if (index < region.points.length - 1) {
+            const x1 = centerX + point[0] * radius * scale;
+            const y1 = centerY + point[1] * radius * scale;
+            const x2 = centerX + region.points[index + 1][0] * radius * scale;
+            const y2 = centerY + region.points[index + 1][1] * radius * scale;
+            
+            // Draw puzzle connector
+            const midX = (x1 + x2) / 2;
+            const midY = (y1 + y2) / 2;
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+            const perpAngle = angle + Math.PI / 2;
+            const bumpSize = 5 + Math.sin(time * 0.5 + index) * 2;
+            
+            // Only add bumps on some edges for a puzzle-like look
+            if (index % 2 === 0) {
+              ctx.beginPath();
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(midX - Math.cos(perpAngle) * bumpSize, midY - Math.sin(perpAngle) * bumpSize);
+              ctx.quadraticCurveTo(midX, midY, midX + Math.cos(perpAngle) * bumpSize, midY + Math.sin(perpAngle) * bumpSize);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+            }
+          }
+        });
+        
+        // Calculate center of region
+        let centerRegionX = 0, centerRegionY = 0;
+        region.points.forEach(point => {
+          centerRegionX += centerX + point[0] * radius * scale;
+          centerRegionY += centerY + point[1] * radius * scale;
+        });
+        centerRegionX /= region.points.length;
+        centerRegionY /= region.points.length;
+        
+        // Add tech pattern inside each region
+        drawRegionTexture(centerRegionX, centerRegionY, radius * 0.2, region.color);
+        
+        ctx.restore();
+      });
+    };
+    
+    // Draw tech pattern inside puzzle pieces
+    const drawRegionTexture = (x: number, y: number, size: number, baseColor: string) => {
+      if (!ctx) return;
+      
+      // Add circuit-like patterns
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.lineWidth = 0.5;
+      
+      const lineCount = 5;
+      for (let i = 0; i < lineCount; i++) {
+        const angle = (i / lineCount) * Math.PI * 2;
+        const startX = x + Math.cos(angle) * (size * 0.3);
+        const startY = y + Math.sin(angle) * (size * 0.3);
+        const endX = x + Math.cos(angle) * size;
+        const endY = y + Math.sin(angle) * size;
+        
+        // Draw circuit line
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        
+        // Add connection node
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.beginPath();
+        ctx.arc(endX, endY, 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Add center node
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fill();
     };
     
     // Helper function to draw a star
@@ -397,23 +570,6 @@ export default function SimpleBurningEarth() {
     
     // Update particles
     const updateParticles = () => {
-      // Update regular particles
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        
-        // Update position
-        p.x += p.velocity.x;
-        p.y += p.velocity.y;
-        
-        // Decrease life
-        p.life -= 1;
-        
-        // Remove dead particles
-        if (p.life <= 0) {
-          particles.splice(i, 1);
-        }
-      }
-      
       // Update data particles
       for (let i = dataParticles.length - 1; i >= 0; i--) {
         const p = dataParticles[i];
@@ -431,24 +587,8 @@ export default function SimpleBurningEarth() {
         }
       }
       
-      // Update Turkish pattern symbols
-      for (let i = turkishPatternSymbols.length - 1; i >= 0; i--) {
-        const s = turkishPatternSymbols[i];
-        
-        // Update position and rotation
-        s.x += s.velocity.x;
-        s.y += s.velocity.y;
-        s.rotation += s.rotationSpeed;
-        
-        // Keep in bounds
-        if (s.x < -100 || s.x > canvas.width + 100 || s.y < -100 || s.y > canvas.height + 100) {
-          s.x = Math.random() * canvas.width;
-          s.y = Math.random() * canvas.height;
-        }
-      }
-      
       // Add new particles if needed
-      if (particles.length < 100) {
+      if (dataParticles.length < 100) {
         createParticles();
       }
     };
@@ -456,14 +596,6 @@ export default function SimpleBurningEarth() {
     // Draw particles
     const drawParticles = () => {
       if (!ctx) return;
-      
-      // Draw regular particles
-      particles.forEach(p => {
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
       
       // Draw data particles
       ctx.font = '8px monospace';
@@ -473,31 +605,6 @@ export default function SimpleBurningEarth() {
       dataParticles.forEach(p => {
         ctx.fillStyle = p.color;
         ctx.fillText(p.value, p.x, p.y);
-      });
-      
-      // Draw Turkish pattern symbols
-      turkishPatternSymbols.forEach(s => {
-        ctx.save();
-        ctx.translate(s.x, s.y);
-        ctx.rotate(s.rotation);
-        
-        ctx.fillStyle = s.color;
-        
-        if (s.symbol === 'star') {
-          drawStar(ctx, 0, 0, 5, s.size, s.size / 2);
-        } else {
-          // Crescent
-          ctx.beginPath();
-          ctx.arc(0, 0, s.size, 0, Math.PI * 2);
-          ctx.fill();
-          
-          ctx.fillStyle = 'rgba(0, 10, 30, 1)';
-          ctx.beginPath();
-          ctx.arc(s.size * 0.3, 0, s.size * 0.8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        
-        ctx.restore();
       });
     };
     
@@ -510,6 +617,9 @@ export default function SimpleBurningEarth() {
       
       // Draw the background elements
       drawBackground();
+      
+      // Draw Turkey map
+      drawTurkeyMap();
       
       // Update and draw particles
       updateParticles();
