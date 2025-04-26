@@ -1401,6 +1401,18 @@ export default function GorevlerPage() {
               Ana Sayfa
             </Button>
           </div>
+          
+          {/* Cumhuriyet Sertifikası İbaresi */}
+          <motion.div
+            className="w-full max-w-3xl mx-auto bg-gradient-to-r from-red-950/40 to-black/60 p-5 rounded-lg border-2 border-red-600/30 mt-14 text-center backdrop-blur-sm shadow-[0_0_20px_rgba(220,38,38,0.15)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <p className="text-xl font-bold text-white">
+              Tamamlanan görevler <span className="text-red-500">Cumhuriyet Sertifikası</span> kazandıracaktır.
+            </p>
+          </motion.div>
         </div>
         </main>
         
