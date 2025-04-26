@@ -128,7 +128,7 @@ export default function TurkNedirPage() {
         </motion.div>
         
         <motion.div
-          className="max-w-4xl mx-auto text-center mb-16 turkish-tech-panel p-10 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-shadow duration-300"
+          className="max-w-4xl mx-auto text-center mb-16 turkish-content-bg p-10 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-all duration-300"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
