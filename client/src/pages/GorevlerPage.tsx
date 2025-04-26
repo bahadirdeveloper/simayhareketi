@@ -445,7 +445,7 @@ export default function GorevlerPage() {
     
     // Görev başlığı alma fonksiyonu - JSON verisinden
     function getGorevTitle(id: number): string {
-      // 16-59 arasındaki görevler için başlıklar (JSON verisinden)
+      // 16-75 arasındaki görevler için başlıklar (JSON verisinden)
       const titles = {
         16: "Ahlaki Örnek Ol",
         17: "Karşıt Görüşleri Dinle",
@@ -486,7 +486,27 @@ export default function GorevlerPage() {
         52: "Gerçekten Gerekli",
         53: "Onurlu Duruş",
         54: "Gönüllü Öğretmenlik",
-        55: "Adalet Olayı Paylaş"
+        55: "Adalet Olayı Paylaş",
+        56: "Ahlaki Duruş Göster",
+        57: "Cumhuriyet Panosu",
+        58: "Kız Çocuk Eğitimi",
+        59: "Tarihi Belgele",
+        60: "Toprağa Ses Ver",
+        61: "Yazarla Tanış", 
+        62: "Modernleşme Tespiti",
+        63: "Karşıt Fikri Anla",
+        64: "Düşünceyi Dijitale Aktar",
+        65: "Cumhuriyet Afişi", 
+        66: "Çalışma Alışkanlığı Geliştir",
+        67: "Moral Mesajı Yolla",
+        68: "Öğretmen Hikayesi",
+        69: "Bilimi Halklaştır",
+        70: "Kadını Görünür Kıl",
+        71: "İçindeki Toplumu Yaz",
+        72: "Hizmet Edeni Anlat",
+        73: "Yerel Kahramanı Anlat",
+        74: "Yerli Çözüm Üret",
+        75: "Hayal Kur Yıldızlara Bak"
       };
       
       // ID'ye göre başlığı seç
@@ -500,7 +520,7 @@ export default function GorevlerPage() {
     
     // Görev çağrısı alma fonksiyonu - JSON verisinden
     function getGorevCagri(id: number): string {
-      // 16-59 arasındaki görevler için çağrılar (JSON verisinden)
+      // 16-75 arasındaki görevler için çağrılar (JSON verisinden)
       const cagrilar = {
         16: "Ailende örnek bir ahlaki davranışı görünür hale getir.",
         17: "Bir fikir tartışmasında karşıt görüşü dinle, özetle.",
@@ -541,7 +561,27 @@ export default function GorevlerPage() {
         52: "Gerçekten gerekli bir karar al ve uygula.",
         53: "Topluluk önünde onurlu duruşu anlat.",
         54: "Okuma yazma bilmeyene gönüllü öğretmenlik yap.",
-        55: "Adaleti anlatan bir olay paylaş."
+        55: "Adaleti anlatan bir olay paylaş.",
+        56: "Ahlaki bir davranışı görünür kıl.",
+        57: "Cumhuriyet değerleri panosu hazırla.",
+        58: "Bir kız çocuğunun eğitimi için destek ağı kur.",
+        59: "Tarihi bir olayı belgeleyip paylaş.",
+        60: "Köylüyle röportaj yap, toprağın anlamını kaydet.",
+        61: "Bir yazarın eserini gençle birlikte incele.",
+        62: "Modernleşme ihtiyacını gözlemle ve öner.",
+        63: "Tartıştığın konularda karşıt görüşü anlamaya çalış.",
+        64: "Düşünce mirasını dijital ortama aktar.",
+        65: "Cumhuriyet için şiir/afiş üret.",
+        66: "Çalışma azmini artıran bir alışkanlık geliştir.",
+        67: "Güvenlik görevlisine moral mesajı gönder.",
+        68: "Bir öğretmenin etkisini anlatan hikaye yaz.",
+        69: "Bilimsel gelişmeyi halka anlatan sunum hazırla.",
+        70: "Topluma katkı sağlayan bir kadını görünür kıl.",
+        71: "İçindeki birey ve toplum yönünü yaz.",
+        72: "Hizmet eden birini görünür kıl.",
+        73: "Yerel bağımsızlık kahramanını anlat.",
+        74: "Dış bağımlılığı azaltan yerli bir çözüm öner.",
+        75: "Bir çocukla birlikte yıldızlara bakarak hayal kur."
       };
       
       // ID'ye göre çağrıyı seç
@@ -555,7 +595,7 @@ export default function GorevlerPage() {
     
     // Görev açıklaması alma fonksiyonu - JSON verisinden
     function getGorevAciklama(id: number): string {
-      // 16-59 arasındaki görevler için açıklamalar (JSON verisinden)
+      // 16-75 arasındaki görevler için açıklamalar (JSON verisinden)
       const aciklamalar = {
         16: "Topluma aktarılması gereken değerli bir davranışı ailende belgeleyerek ya da anlatarak görünür hale getir.",
         17: "Fikir özgürlüğünün temeli karşıt görüşlere kulak vermektir. Bir tartışmada karşı görüşü anlamaya çalış ve notlar al.",
@@ -596,7 +636,27 @@ export default function GorevlerPage() {
         52: "Hayatına pozitif etki edecek bir değişiklik yap, bunu planla, uygula ve sonucunu paylaş.",
         53: "Doğru bildiğin şeyin arkasında durduğun bir anı paylaş ya da böyle birini anlat.",
         54: "Etrafında okuma yazma bilmeyen birine gönüllü öğretmenlik yaparak topluma katkıda bulun.",
-        55: "Adalet duygusunu pekiştiren yaşadığın ya da duyduğun bir olayı belgeleyip paylaş."
+        55: "Adalet duygusunu pekiştiren yaşadığın ya da duyduğun bir olayı belgeleyip paylaş.",
+        56: "Görülen veya sergilenen ahlaki bir davranışı yazılı ya da görsel şekilde paylaşarak topluma örnek ol.",
+        57: "Atatürk'ün ilke ve inkilaplarını yansıtan bir pano ya da afiş tasarımı yap ve sergile.",
+        58: "Eğitime erişimde zorluk yaşayan bir kız çocuğuna yardım için yerel bir destek sistemi geliştir.",
+        59: "Yerel veya ulusal öneme sahip bir tarihi olayı arşivlerden, kişilerden ya da mekanlardan araştır ve kaydet.",
+        60: "Köy hayatında üretimin anlamını, zorluğunu ve önemini anlatan bir röportaj yaparak topluma sun.",
+        61: "Yerel ya da önemli bir yazarın kitabını bir gence tanıt, birlikte okuyun ve tartışın.",
+        62: "Bir toplumsal alanda (eğitim, trafik, iletişim vb.) modernleşme eksiği tespit et ve çözüm önerisi üret.",
+        63: "Fikir ayrılıklarında karşındaki kişinin bakış açısını nesnel bir şekilde özetleyerek empati kur.",
+        64: "Ailene, toplumuna ya da yaşamına ait önemli fikirleri belgeleyip dijital ortamda sakla ya da paylaş.",
+        65: "Cumhuriyet değerlerine dair bir şiir yaz ya da grafik afiş hazırla. Paylaşarak yayılmasına katkıda bulun.",
+        66: "Verimliliği artırmak için kendine düzenli tekrar edebileceğin bir çalışma alışkanlığı edin ve deneyimini paylaş.",
+        67: "Zor şartlarda çalışan bir güvenlik çalışanına moral verici bir mektup ya da mesaj gönder.",
+        68: "Seni etkileyen bir öğretmenin hayatına dokunuşunu anlatan yazılı bir anını kaleme al.",
+        69: "Bir bilimsel gelişmeyi herkesin anlayabileceği bir şekilde açıklayan sunum ya da görsel içerik oluştur.",
+        70: "Çevrende fedakarlığı, bilgisi ya da cesaretiyle özel bir kadını tanıtıcı bir içerikle destekle.",
+        71: "Toplumla bağlantılarını sorgulayan bir yazı kaleme al. Toplumdaki rolünü ve bireysel sorumluluklarını ifade et.",
+        72: "Çevrende sessizce topluma hizmet eden bir kişiyi tanıtıcı bir video, röportaj ya da yazı ile anlat.",
+        73: "Yöresel tarihinde yer alan bir kahramanı araştır ve onun bağımsızlık mücadelesini toplumla paylaş.",
+        74: "Bir alanda (enerji, gıda, teknoloji) dış bağımlılığı azaltacak yerli üretim odaklı bir fikir üret.",
+        75: "Bir çocukla birlikte gece yıldızlara bakarak hayal kurun. O hayali yazılı ya da görsel olarak kaydedin."
       };
       
       // ID'ye göre açıklamayı seç
@@ -611,15 +671,72 @@ export default function GorevlerPage() {
     // Görev kategorisi alma fonksiyonu
     function getGorevKategori(id: number): string {
       // JSON'dan gelen kategoriler
-      const kategoriler = [
-        "ahlak", "ifade", "toplum", "çevre", "sanat", "kültür", 
-        "ifade", "kültür", "bilinç", "toplum", "tarih", "sanat", 
-        "toplum", "ifade", "medya", "sanat", "kültür"
-      ];
+      const kategoriler: { [key: number]: string } = {
+        16: "ahlak",
+        17: "ifade",
+        18: "toplum",
+        19: "çevre",
+        20: "sanat",
+        21: "kültür",
+        22: "ifade",
+        23: "kültür",
+        24: "bilinç",
+        25: "toplum",
+        26: "tarih",
+        27: "sanat",
+        28: "toplum",
+        29: "ifade",
+        30: "medya",
+        31: "sanat",
+        32: "kültür",
+        33: "ifade",
+        34: "toplum",
+        35: "kültür",
+        36: "toplum",
+        37: "adalet",
+        38: "kültür",
+        39: "eğitim",
+        40: "vizyon",
+        41: "eğitim",
+        42: "kültür",
+        43: "toplum",
+        44: "toplum",
+        45: "vizyon",
+        46: "eğitim",
+        47: "kültür",
+        48: "tarih",
+        49: "kültür",
+        50: "vizyon",
+        51: "ifade",
+        52: "bilinç",
+        53: "ahlak",
+        54: "eğitim",
+        55: "adalet",
+        56: "ahlak",
+        57: "kültür",
+        58: "eğitim",
+        59: "tarih",
+        60: "toplum",
+        61: "eğitim",
+        62: "vizyon",
+        63: "ifade",
+        64: "kültür",
+        65: "kültür",
+        66: "bilinç",
+        67: "toplum",
+        68: "eğitim",
+        69: "bilim",
+        70: "toplum",
+        71: "bilinç",
+        72: "toplum",
+        73: "tarih",
+        74: "vizyon",
+        75: "eğitim"
+      };
       
       // ID'ye göre kategoriyi seç
-      if (id >= 16 && id < 16 + kategoriler.length) {
-        return kategoriler[id - 16];
+      if (kategoriler[id]) {
+        return kategoriler[id];
       } else {
         // Eğer ID için belirli bir kategori yoksa, döngüsel olarak ana kategorilerden seç
         const anaKategoriler = ["eğitim", "kültür", "çevre", "toplum", "sanat", "psikoloji"];
