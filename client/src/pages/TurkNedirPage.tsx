@@ -109,7 +109,7 @@ export default function TurkNedirPage() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <h1 className="text-4xl md:text-6xl font-bold text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">
-            🇹🇷 TÜRKİYE
+            TÜRKİYE
           </h1>
         </motion.div>
         
@@ -135,7 +135,7 @@ export default function TurkNedirPage() {
               className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white text-xl px-8 py-6 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-300"
               onClick={() => navigate("/turk-nedir-detay")}
             >
-              ❤️ DAMARLARIMDA HİSSEDİYORUM!
+              DAMARLARIMDA HİSSEDİYORUM
             </Button>
           </motion.div>
         </motion.div>
@@ -153,7 +153,7 @@ export default function TurkNedirPage() {
               className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
               onClick={() => navigate("/turkiye")}
             >
-              ◀ Türkiye Sayfasına Dön
+              Türkiye Sayfasına Dön
             </Button>
           </motion.div>
           
@@ -163,7 +163,7 @@ export default function TurkNedirPage() {
               className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
               onClick={() => navigate("/")}
             >
-              🏠 Ana Sayfa
+              Ana Sayfa
             </Button>
           </motion.div>
         </motion.div>
