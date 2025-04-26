@@ -232,12 +232,12 @@ export default function SimpleFuturisticTurkish() {
     
     // Draw Turkish technology and scientific elements
     function drawTurkishTechElements() {
-      if (!ctx) return;
+      if (!ctx || !canvasRef2) return;
       
       // TURKSAT satellite symbol
-      const satX = canvas.width * 0.2;
-      const satY = canvas.height * 0.7;
-      const satSize = Math.min(canvas.width, canvas.height) * 0.06;
+      const satX = canvasRef2.width * 0.2;
+      const satY = canvasRef2.height * 0.7;
+      const satSize = Math.min(canvasRef2.width, canvasRef2.height) * 0.06;
       
       ctx.fillStyle = 'rgba(227, 10, 23, 0.8)';
       ctx.beginPath();
@@ -269,9 +269,9 @@ export default function SimpleFuturisticTurkish() {
       }
       
       // TUBITAK-like quantum computing symbol
-      const quanX = canvas.width * 0.82;
-      const quanY = canvas.height * 0.25;
-      const quanSize = Math.min(canvas.width, canvas.height) * 0.05;
+      const quanX = canvasRef2.width * 0.82;
+      const quanY = canvasRef2.height * 0.25;
+      const quanSize = Math.min(canvasRef2.width, canvasRef2.height) * 0.05;
       
       // Quantum particle orbits
       for (let i = 0; i < 3; i++) {
@@ -312,12 +312,12 @@ export default function SimpleFuturisticTurkish() {
     
     // Draw Turkish engineering symbols
     function drawEngineeringSymbols() {
-      if (!ctx) return;
+      if (!ctx || !canvasRef2) return;
       
       const time = Date.now() * 0.001;
-      const engX = canvas.width * 0.3;
-      const engY = canvas.height * 0.2;
-      const size = Math.min(canvas.width, canvas.height) * 0.07;
+      const engX = canvasRef2.width * 0.3;
+      const engY = canvasRef2.height * 0.2;
+      const size = Math.min(canvasRef2.width, canvasRef2.height) * 0.07;
       
       // Draw gear
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
@@ -356,28 +356,28 @@ export default function SimpleFuturisticTurkish() {
     
     // Animation loop
     function animate() {
-      if (!ctx || !canvas) return;
+      if (!ctx || !canvasRef2) return;
       
       // Clear canvas with a very dark blue background for tech feel
       ctx.fillStyle = 'rgba(5, 10, 30, 0.2)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvasRef2.width, canvasRef2.height);
       
       // Digital grid pattern
       const gridSize = 50;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
       ctx.lineWidth = 0.5;
       
-      for (let x = 0; x < canvas.width; x += gridSize) {
+      for (let x = 0; x < canvasRef2.width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
+        ctx.lineTo(x, canvasRef2.height);
         ctx.stroke();
       }
       
-      for (let y = 0; y < canvas.height; y += gridSize) {
+      for (let y = 0; y < canvasRef2.height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
+        ctx.lineTo(canvasRef2.width, y);
         ctx.stroke();
       }
       
