@@ -6,7 +6,9 @@ import NotFound from "@/pages/not-found";
 import { queryClient } from "./lib/queryClient";
 import Home from "@/pages/Home";
 import SimayHome from "@/pages/SimayHome";
-import SimayHomeNew from "@/pages/SimayHomeNew";
+import SimayHome2 from "@/pages/SimayHome2";
+import SimayHome3 from "@/pages/SimayHome3";
+
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
 import JoinPage from "@/pages/JoinPage";
@@ -18,7 +20,7 @@ import KatilPage from "@/pages/KatilPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHome} />
+      <Route path="/" component={SimayHome2} />
       <Route path="/matrix" component={Home} />
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />
