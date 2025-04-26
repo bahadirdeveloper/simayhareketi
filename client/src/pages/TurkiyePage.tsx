@@ -149,7 +149,7 @@ export default function TurkiyePage() {
                 <div className="flex flex-col items-center">
                   <div className="flex items-center">
                     <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
-                    <h4 className="font-medium text-white text-[10px]">GENEL KATILIM</h4>
+                    <h4 className="font-medium text-white text-[10px]">T.C. KATILIM</h4>
                   </div>
                   <motion.div 
                     className="text-lg font-bold text-white mt-1"
@@ -172,7 +172,7 @@ export default function TurkiyePage() {
                 <div className="flex flex-col items-center">
                   <div className="flex items-center">
                     <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1.5"></div>
-                    <h4 className="font-medium text-white text-[10px]">TOPLAM BAĞIŞ</h4>
+                    <h4 className="font-medium text-white text-[10px]">T.C. TOPLAM BAĞIŞ</h4>
                   </div>
                   <motion.div 
                     className="text-lg font-bold text-red-500 mt-1"
