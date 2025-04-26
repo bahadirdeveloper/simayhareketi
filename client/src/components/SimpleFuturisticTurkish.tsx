@@ -13,6 +13,7 @@ export default function SimpleFuturisticTurkish() {
     
     // Safe reference to canvas within closure
     const canvasRef2 = canvas;
+    const safeCtx = ctx;
     
     // Set canvas to fullscreen
     const handleResize = () => {
@@ -58,10 +59,10 @@ export default function SimpleFuturisticTurkish() {
       
       update() {
         // Boundary check and position update
-        if (this.x > canvas.width || this.x < 0) {
+        if (this.x > canvasRef2.width || this.x < 0) {
           this.speedX = -this.speedX;
         }
-        if (this.y > canvas.height || this.y < 0) {
+        if (this.y > canvasRef2.height || this.y < 0) {
           this.speedY = -this.speedY;
         }
         

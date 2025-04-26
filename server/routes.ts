@@ -53,6 +53,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
       
       const validatedVisitData = insertVisitorStatSchema.parse(visitData);
+      
+      // Implement rate limiting for the same IP
+      const recentVisits = await storage.getVisitStats(100);
+      const ipVisits = recentVisits.filter(v => 
+        v.visitorIp === validatedVisitData.visitorIp && 
+        (Date.now() - new Date(v.createdAt).getTime()) < 10000 // 10 seconds
+      );
+      
+      // If more than 3 visits in 10 seconds from same IP, limit
+      if (ipVisits.length > 3) {
+        res.status(429).json({ error: "Too many requests", message: "Please wait before submitting again" });
+        return;
+      }
+      
       const visit = await storage.recordVisit(validatedVisitData);
       
       res.status(201).json(visit);

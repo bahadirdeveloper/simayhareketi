@@ -48,11 +48,11 @@ export default function TurkiyePage() {
       
       {/* Erişilebilirlik Okuyucu */}
       <AccessibilityReader 
-        pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Cumhuriyet ile yeniden güncelleniyor. Genel katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Manifesto bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
+        pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Cumhuriyet ile yeniden güncelleniyor. Genel katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Halk Defteri & Manifestolar bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
         pageName="turkiye" 
       />
       
-      <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen">
+      <main className="container mx-auto px-4 sm:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen">
         {/* Türk Deseni Üstbilgi */}
         <motion.div 
           className="w-full bg-gradient-to-r from-red-950/70 via-black/60 to-red-950/70 backdrop-blur-sm border-b border-red-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md"
@@ -227,7 +227,7 @@ export default function TurkiyePage() {
         
         {/* Navigation Buttons */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl w-full mx-auto mb-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl w-full mx-auto mb-8 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
