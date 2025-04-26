@@ -9,9 +9,9 @@
   "back_to_home": "Back to Home",
 
   "simay_title": "SIMAY MOVEMENT",
-  "simay_subtitle": "Türkiye on the Path to World Leadership",
-  "simay_message": "The Simay Movement is an initiative that carries humanity to a shared future, founded on brotherhood and justice.",
-  "simay_launch_date": "May 19, 2025 - On the Path to World Leadership",
+  "simay_subtitle": "The Platform for Updating the Republic with the People",
+  "simay_message": "The Simay Movement is a platform that preserves the core values of the republic while carrying it into the future through people's participation, founded on brotherhood and justice.",
+  "simay_launch_date": "May 19, 2025 - The Journey of Updating the Republic with the People",
   "simay_manifesto_button": "Our Manifesto",
   "simay_join_button": "Join the Movement",
   
@@ -30,14 +30,19 @@
   
   "manifesto": {
     "title": "Simay Movement Manifesto",
-    "introduction": "As the Simay Movement, we aim to make the world a more just, peaceful, and sustainable place.",
+    "introduction": "As the Simay Movement, we aim to preserve the core values of the republic while carrying it into the future through people's participation and strengthening social bonds.",
     "principles": "Our Principles",
-    "principle_1": "Brotherhood of peoples",
-    "principle_2": "Universal justice",
-    "principle_3": "Sustainable development",
-    "principle_4": "Technological advancement",
-    "principle_5": "Cultural diversity",
-    "conclusion": "On Türkiye's path to world leadership, we want to guide humanity's future by upholding these values."
+    "principle_1": "Preservation of republican values",
+    "principle_2": "Public participation and transparency",
+    "principle_3": "Social justice and solidarity",
+    "principle_4": "Democratic updating",
+    "principle_5": "Cultural richness and diversity",
+    "principle_1_desc": "Preserving and strengthening the fundamental values of the republic by honoring Atatürk's legacy",
+    "principle_2_desc": "A transparent governance approach where all decisions are made with public participation",
+    "principle_3_desc": "A fair social order where all segments of society are equally represented",
+    "principle_4_desc": "Continuous renewal of democracy according to the current needs of the people",
+    "principle_5_desc": "An understanding of diversity where different cultures and values are seen as richness",
+    "conclusion": "In the journey of updating and carrying the republic into the future with the people, we want to shape the future of society by implementing these values together."
   },
   
   "join": {

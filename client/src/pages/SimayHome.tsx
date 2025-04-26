@@ -69,8 +69,8 @@ export default function SimayHome() {
 
   // Manifestation text - words that will appear one by one
   const manifestationWords = [
-    "Barış", "Adalet", "Eşitlik", "Özgürlük", "Dayanışma", 
-    "Kardeşlik", "Sevgi", "Umut", "Cesaret", "Bilgelik"
+    "Cumhuriyet", "Halk", "Katılım", "Adalet", "Şeffaflık", 
+    "Demokrasi", "Dayanışma", "Güncelleme", "Gelişim", "Değişim"
   ];
   
   return (

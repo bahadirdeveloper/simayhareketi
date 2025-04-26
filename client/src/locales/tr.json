@@ -9,9 +9,9 @@
   "back_to_home": "Ana Sayfaya Dön",
   
   "simay_title": "SİMAY HAREKETİ",
-  "simay_subtitle": "Türkiye Dünya Liderliğine Giden Yolda",
-  "simay_message": "Simay Hareketi, insanlığı ortak bir geleceğe taşıyan, kardeşliği ve adaleti temel alan bir harekettir.",
-  "simay_launch_date": "19 Mayıs 2025 - Dünya Liderliğine Giden Yolda",
+  "simay_subtitle": "Cumhuriyetin Halk ile Güncellenme Platformu",
+  "simay_message": "Simay Hareketi, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla geleceğe taşıyan, kardeşliği ve adaleti temel alan bir güncellenme platformudur.",
+  "simay_launch_date": "19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu",
   "simay_manifesto_button": "Manifestomuz",
   "simay_join_button": "Harekete Katıl",
   
@@ -30,14 +30,19 @@
   
   "manifesto": {
     "title": "Simay Hareketi Manifestosu",
-    "introduction": "Simay Hareketi olarak, dünyayı daha adil, barışçıl ve sürdürülebilir bir yer haline getirmeyi amaçlıyoruz.",
+    "introduction": "Simay Hareketi olarak, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla onu geleceğe taşımayı ve toplumsal bağları güçlendirmeyi amaçlıyoruz.",
     "principles": "İlkelerimiz",
-    "principle_1": "Halkların kardeşliği",
-    "principle_2": "Evrensel adalet",
-    "principle_3": "Sürdürülebilir kalkınma",
-    "principle_4": "Teknolojik ilerleme",
-    "principle_5": "Kültürel çeşitlilik",
-    "conclusion": "Türkiye'nin dünya liderliğine giden yolda, bu değerleri savunarak insanlığın geleceğine yön vermek istiyoruz."
+    "principle_1": "Cumhuriyet değerlerinin korunması",
+    "principle_2": "Halk katılımı ve şeffaflık",
+    "principle_3": "Toplumsal adalet ve dayanışma",
+    "principle_4": "Demokratik güncellenme",
+    "principle_5": "Kültürel zenginlik ve çeşitlilik",
+    "principle_1_desc": "Atatürk'ün mirasını koruyarak cumhuriyetin temel değerlerini yaşatmak ve güçlendirmek",
+    "principle_2_desc": "Tüm kararların halkın katılımıyla alındığı şeffaf bir yönetim anlayışı",
+    "principle_3_desc": "Toplumun her kesiminin eşit şekilde temsil edildiği adil bir sosyal düzen",
+    "principle_4_desc": "Demokrasinin halkın güncel ihtiyaçlarına göre sürekli yenilenmesi",
+    "principle_5_desc": "Farklı kültürlerin ve değerlerin zenginlik olarak görüldüğü çeşitlilik anlayışı", 
+    "conclusion": "Cumhuriyetin halk ile güncellenerek geleceğe taşınması yolunda, bu değerleri hep birlikte hayata geçirerek toplumun geleceğine yön vermek istiyoruz."
   },
   
   "join": {
