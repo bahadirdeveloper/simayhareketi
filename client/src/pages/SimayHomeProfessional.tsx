@@ -129,7 +129,7 @@ export default function SimayHomeProfessional() {
           </div>
         </div>
         
-        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-14">
+        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-20">
           {/* Ana Başlık */}
           <motion.div
             className="mb-12 text-center"
@@ -379,40 +379,33 @@ export default function SimayHomeProfessional() {
                 </div>
               </div>
               
-              <div className="mt-6 mb-2">
-                <div onClick={() => {}} className="turkish-tech-badge group transition-all duration-300 cursor-pointer mx-auto max-w-fit">
-                  <span className="inline-flex items-center">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      className="w-3.5 h-3.5 mr-2 text-red-500"
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    >
-                      <path d="M12.5 3.5a2.5 2.5 0 0 1 0 5h-9a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h10.5a2.5 2.5 0 0 1 0 5c-7 0-10-3-10-10s3-10 10-10z"></path>
-                      <circle cx="17.5" cy="18.5" r="2.5"></circle>
-                      <circle cx="17.5" cy="5.5" r="2.5"></circle>
-                    </svg>
-                    <span>Bu icat Türk yapımıdır</span>
-                  </span>
+              {/* Modern başlık çubuğu - Görseldeki tasarımdan esinlenildi */}
+              <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-red-900/90 to-black/90 backdrop-blur-md border-b border-red-900/50 shadow-lg">
+                <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-b from-red-600 to-red-700 border border-red-500/70 mr-3">
+                      <span className="text-white text-xs font-bold">TR</span>
+                    </div>
+                    <div className="text-white text-sm font-medium">Bu İcat Türk Yapımıdır</div>
+                  </div>
+                  <div className="text-white/80 text-sm">Cumhuriyet Güncellenme</div>
+                  <div className="px-3 py-1 bg-black/60 rounded-full border border-gray-700 text-white/90 text-xs">v2.0</div>
                 </div>
-                
-                <div className="turkish-content-bg mt-2 mx-auto max-w-md p-4 text-xs text-gray-300 leading-relaxed">
-                  <p className="mb-2">
-                    "23 Nisan 2025'te, Mustafa Kemal Atatürk ve atalarımızın yaktığı ışığın peşinden yürüyerek bu yolu açtık.
-                    Geçmişin öğrettiklerini unutmadık, geleceğin yükünü omuzladık."
-                  </p>
-                  <p className="mb-2">
-                    "Bu iş, bir avuç insanın değil, yüz yıllık bir inancın eseridir."
-                  </p>
-                  <p>
-                    "İsteyen elini uzatsın, isteyen göğsünü gere gere sahiplensin:
-                    <span className="text-red-400 font-medium block mt-1">Bu umut, bu mücadele, bu icat; bu toprakların evlatlarınındır!</span>"
-                  </p>
-                </div>
+              </div>
+              
+              {/* Metni sayfanın içeriğine taşıdım */}
+              <div className="max-w-md mx-auto text-xs text-gray-300 leading-relaxed mt-4 mb-6 turkish-content-bg p-3 border border-gray-800">
+                <p className="mb-2">
+                  "23 Nisan 2025'te, Mustafa Kemal Atatürk ve atalarımızın yaktığı ışığın peşinden yürüyerek bu yolu açtık.
+                  Geçmişin öğrettiklerini unutmadık, geleceğin yükünü omuzladık."
+                </p>
+                <p className="mb-2">
+                  "Bu iş, bir avuç insanın değil, yüz yıllık bir inancın eseridir."
+                </p>
+                <p>
+                  "İsteyen elini uzatsın, isteyen göğsünü gere gere sahiplensin:
+                  <span className="text-red-400 font-medium block mt-1">Bu umut, bu mücadele, bu icat; bu toprakların evlatlarınındır!</span>"
+                </p>
               </div>
             </div>
           </motion.div>
