@@ -1201,7 +1201,7 @@ export default function GorevlerPage() {
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="max-w-md bg-black/50 border-cyan-500 text-white"
+                    className="max-w-md bg-black/50 border-red-600 text-white"
                   />
                 </div>
                 
@@ -1210,7 +1210,7 @@ export default function GorevlerPage() {
                     <Button
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
-                      className={selectedCategory === category ? "bg-cyan-500 text-black" : "border-cyan-500 text-cyan-400"}
+                      className={selectedCategory === category ? "bg-red-600 text-white" : "border-red-600 text-white"}
                       onClick={() => {
                         setSelectedCategory(category);
                         setCurrentPage(1); // Kategori değiştiğinde ilk sayfaya dön
@@ -1286,7 +1286,7 @@ export default function GorevlerPage() {
                         <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-amber-600 text-[10px] h-6 py-0"
+                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-[10px] h-6 py-0 text-white"
                         onClick={() => openModal(gorev)}
                       >
                         Göreve Katıl
@@ -1399,7 +1399,7 @@ export default function GorevlerPage() {
                     name="ad"
                     value={formData.ad}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-amber-500"
+                    className="bg-black/60 border-red-600"
                     required
                   />
                 </div>
@@ -1412,7 +1412,7 @@ export default function GorevlerPage() {
                     type="email"
                     value={formData.eposta}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-amber-500"
+                    className="bg-black/60 border-red-600"
                     required
                   />
                 </div>
@@ -1424,7 +1424,7 @@ export default function GorevlerPage() {
                     name="not"
                     value={formData.not}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-amber-500"
+                    className="bg-black/60 border-red-600"
                     rows={3}
                   />
                 </div>
@@ -1436,12 +1436,12 @@ export default function GorevlerPage() {
                     name="dosya"
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    className="bg-black/60 border-amber-500"
+                    className="bg-black/60 border-red-600"
                   />
                 </div>
                 
                 <DialogFooter>
-                  <Button type="submit" className="bg-cyan-600 hover:bg-cyan-700">
+                  <Button type="submit" className="bg-red-600 hover:bg-red-700 text-white">
                     Gönder
                   </Button>
                 </DialogFooter>
