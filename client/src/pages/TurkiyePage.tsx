@@ -69,11 +69,11 @@ export default function TurkiyePage() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            🇹🇷 TÜRKİYE
+            TÜRKİYE
           </h1>
           <div className="flex flex-col items-center mb-3">
             <div className="text-2xl md:text-4xl text-amber-400 font-bold mb-2 flex items-center justify-center">
-              📣 Cumhuriyet ile Yeniden Güncelleniyor ⚖️
+              Cumhuriyet ile Yeniden Güncelleniyor
               <motion.span
                 className="ml-2 text-green-400"
                 animate={{ 
@@ -109,7 +109,7 @@ export default function TurkiyePage() {
             </div>
           </div>
           <p className="text-xl text-gray-300">
-            📡 Dijital Koordinasyon Alanı
+            Dijital Koordinasyon Alanı
           </p>
         </motion.div>
         
@@ -124,49 +124,49 @@ export default function TurkiyePage() {
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/turknedir")}
           >
-            🇹🇷 TÜRK Nedir?
+            TÜRK Nedir?
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/anayasa")}
           >
-            🏛️ Anayasalarımız
+            Anayasalarımız
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/gorevler")}
           >
-            🇹🇷 Cumhuriyetin 2. Yüzyılı: 100+1 Görev Diriliş
+            Cumhuriyetin 2. Yüzyılı: Görev Diriliş
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/karisikfikirler")}
           >
-            🗣️ Halk Söz Duvarı
+            Halk Söz Duvarı
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/katil")}
           >
-            🤝 Katılım
+            Katılım
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold"
             onClick={() => navigate("/cagri")}
           >
-            📢 Sesleniş & Çağrı
+            Sesleniş & Çağrı
           </Button>
           
           <Button 
             className="bg-black/60 backdrop-blur-sm border border-amber-500 hover:border-amber-400 text-amber-400 hover:text-amber-300 rounded-lg p-6 text-xl font-bold md:col-span-2"
             onClick={() => navigate("/yonetim")}
           >
-            🧭 Yönetim Paneli
+            Yönetim Paneli
           </Button>
         </motion.div>
         
@@ -182,7 +182,7 @@ export default function TurkiyePage() {
             className="border-white text-white hover:bg-white/10"
             onClick={() => navigate("/")}
           >
-            🏠 Ana Sayfa'ya Dön
+            Ana Sayfa'ya Dön
           </Button>
         </motion.div>
       </main>
