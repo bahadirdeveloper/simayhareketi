@@ -342,23 +342,23 @@ export default function SimayHomeProfessional() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-black/40 backdrop-blur-sm border border-red-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-red-400">
+                <h4 className="font-medium text-red-400 mb-2">RUSYA</h4>
+                <Button 
+                  variant="outline"
+                  className="w-full border-red-500 text-red-400 hover:bg-red-900/30"
+                  onClick={() => navigate("/russia")}
+                >
+                  Giriş
+                </Button>
+              </div>
+              
               <div className="bg-black/40 backdrop-blur-sm border border-blue-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-blue-400">
                 <h4 className="font-medium text-blue-400 mb-2">İRAN</h4>
                 <Button 
                   variant="outline"
                   className="w-full border-blue-500 text-blue-400 hover:bg-blue-900/30"
                   onClick={() => navigate("/iran")}
-                >
-                  Giriş
-                </Button>
-              </div>
-              
-              <div className="bg-black/40 backdrop-blur-sm border border-yellow-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-yellow-400">
-                <h4 className="font-medium text-yellow-400 mb-2">ALMANYA</h4>
-                <Button 
-                  variant="outline"
-                  className="w-full border-yellow-500 text-yellow-400 hover:bg-yellow-900/30"
-                  onClick={() => navigate("/germany")}
                 >
                   Giriş
                 </Button>
