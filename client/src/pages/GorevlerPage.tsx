@@ -1163,29 +1163,36 @@ export default function GorevlerPage() {
       <main className="container mx-auto px-4 pb-16 z-10 relative">
         {/* Header */}
         <div className="text-center py-10">
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-wide leading-tight"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.div 
+            className="turkish-content-bg p-8 rounded-lg mb-10 max-w-4xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            101. YILINDA HALKIN ANDI: 100 GÖREVLE YENİDEN DOĞUŞ
-          </motion.h1>
-          
-          {/* Kimleri Göreve Davet Ediyoruz - Tıklanabilir Başlık */}
-          <motion.div 
-            className="mt-4 mb-8 cursor-pointer"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            onClick={() => navigate("/gorev-davet")}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <h2 className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins">
-              Kimleri Göreve Davet Ediyoruz? 
-              <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
-            </h2>
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-wide leading-tight"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              101. YILINDA HALKIN ANDI: 100 GÖREVLE YENİDEN DOĞUŞ
+            </motion.h1>
+            
+            {/* Kimleri Göreve Davet Ediyoruz - Tıklanabilir Başlık */}
+            <motion.div 
+              className="mt-4 mb-3 cursor-pointer"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              onClick={() => navigate("/gorev-davet")}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <h2 className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins">
+                Kimleri Göreve Davet Ediyoruz? 
+                <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
+              </h2>
+            </motion.div>
           </motion.div>
           
           {/* Kurucu görev button */}
@@ -1209,6 +1216,7 @@ export default function GorevlerPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+              className="turkish-content-bg p-6 rounded-lg"
             >
               <div className="flex flex-col gap-4">
                 <div className="flex justify-center">
@@ -1245,7 +1253,7 @@ export default function GorevlerPage() {
 
             
             {/* Counters */}
-            <div className="text-center mb-8 mt-8 turkish-tech-panel p-5 rounded-lg max-w-2xl mx-auto">
+            <div className="text-center mb-8 mt-8 turkish-content-bg p-5 rounded-lg max-w-2xl mx-auto">
               <div className="flex flex-col md:flex-row justify-center gap-8">
                 <div className="turkish-counter-box p-4 rounded-lg flex-1">
                   <p className="text-turkish-white text-xl font-bold font-poppins">Toplam Görev</p>
@@ -1329,7 +1337,7 @@ export default function GorevlerPage() {
           
           {/* Pagination - Bottom */}
           {filteredGorevler.length > 0 && (
-            <div className="flex justify-center items-center mt-12 gap-4 border-2 border-red-600/50 bg-black/50 rounded-lg p-6 max-w-3xl mx-auto mb-10 shadow-[0_0_20px_rgba(220,38,38,0.15)]">
+            <div className="flex justify-center items-center mt-12 gap-4 turkish-content-bg p-6 max-w-3xl mx-auto mb-10">
               <Button 
                 variant="outline" 
                 size="lg"
@@ -1389,7 +1397,7 @@ export default function GorevlerPage() {
           
           {/* Cumhuriyet Sertifikası İbaresi */}
           <motion.div
-            className="w-full max-w-3xl mx-auto turkish-tech-panel p-5 rounded-lg mt-14 text-center"
+            className="w-full max-w-3xl mx-auto turkish-content-bg p-5 rounded-lg mt-14 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
