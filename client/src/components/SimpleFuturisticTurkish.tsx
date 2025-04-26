@@ -132,12 +132,12 @@ export default function SimpleFuturisticTurkish() {
     
     // Draw star and crescent (stylized for futuristic look)
     function drawStarAndCrescent() {
-      if (!ctx) return;
+      if (!ctx || !canvasRef2) return;
       
       // Holographic Star
-      const centerX = canvas.width * 0.5;
-      const centerY = canvas.height * 0.3;
-      const starSize = Math.min(canvas.width, canvas.height) * 0.12;
+      const centerX = canvasRef2.width * 0.5;
+      const centerY = canvasRef2.height * 0.3;
+      const starSize = Math.min(canvasRef2.width, canvasRef2.height) * 0.12;
       
       // Star glow
       const gradient = ctx.createRadialGradient(
@@ -201,12 +201,12 @@ export default function SimpleFuturisticTurkish() {
     
     // Draw Atatürk's digital signature
     function drawAtaturkSignature() {
-      if (!ctx) return;
+      if (!ctx || !canvasRef2) return;
       
       const time = Date.now() * 0.001;
-      const signatureX = canvas.width * 0.8;
-      const signatureY = canvas.height * 0.85;
-      const signatureSize = Math.min(canvas.width, canvas.height) * 0.15;
+      const signatureX = canvasRef2.width * 0.8;
+      const signatureY = canvasRef2.height * 0.85;
+      const signatureSize = Math.min(canvasRef2.width, canvasRef2.height) * 0.15;
       
       // Signature glow effect
       ctx.shadowColor = 'rgba(227, 10, 23, 0.8)';

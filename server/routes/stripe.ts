@@ -8,8 +8,37 @@ if (!process.env.STRIPE_SECRET_KEY) {
 // @ts-ignore - Stripe API version might be different
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// In-memory cache for rate limiting
+const paymentRequestsMap = new Map<string, number[]>();
+const subscriptionRequestsMap = new Map<string, number[]>();
+
 export async function handleCreatePaymentIntent(req: Request, res: Response) {
   try {
+    // Rate limiting: Check IP to prevent abuse
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
+    
+    // In a production environment, you would use Redis or a similar service for rate limiting
+    // For now, we'll use a simple in-memory implementation
+    const now = Date.now();
+    const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+    const MAX_REQUESTS = 5; // 5 requests per minute
+    
+    // This should be stored in a persistent store in production
+    const ipRequests = paymentRequestsMap.get(ipString) || [];
+    const recentRequests = ipRequests.filter(time => now - time < RATE_LIMIT_WINDOW);
+    
+    if (recentRequests.length >= MAX_REQUESTS) {
+      return res.status(429).json({
+        success: false,
+        message: "Çok fazla ödeme isteği gönderildi. Lütfen daha sonra tekrar deneyin."
+      });
+    }
+    
+    // Update request tracking
+    recentRequests.push(now);
+    paymentRequestsMap.set(ipString, recentRequests);
+    
     const { amount, description } = req.body;
     
     if (!amount || amount < 5) {
@@ -26,6 +55,7 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
       description: description || "Cumhuriyet Güncellenme Platformu Bağışı",
       metadata: {
         integration_check: 'accept_a_payment',
+        ip: ipString.substr(0, 15) // Store partial IP for fraud detection
       },
     });
 
@@ -44,6 +74,31 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
 
 export async function handleCreateSubscription(req: Request, res: Response) {
   try {
+    // Rate limiting: Check IP to prevent abuse
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
+    
+    // In a production environment, you would use Redis or a similar service for rate limiting
+    // For now, we'll use a simple in-memory implementation
+    const now = Date.now();
+    const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+    const MAX_REQUESTS = 3; // 3 requests per minute for subscriptions (more restrictive)
+    
+    // This should be stored in a persistent store in production
+    const ipRequests = subscriptionRequestsMap.get(ipString) || [];
+    const recentRequests = ipRequests.filter((time: number) => now - time < RATE_LIMIT_WINDOW);
+    
+    if (recentRequests.length >= MAX_REQUESTS) {
+      return res.status(429).json({
+        success: false,
+        message: "Çok fazla abonelik isteği gönderildi. Lütfen daha sonra tekrar deneyin."
+      });
+    }
+    
+    // Update request tracking
+    recentRequests.push(now);
+    subscriptionRequestsMap.set(ipString, recentRequests);
+    
     const { email, name, priceId } = req.body;
     
     if (!email || !priceId) {
@@ -58,7 +113,8 @@ export async function handleCreateSubscription(req: Request, res: Response) {
       email,
       name,
       metadata: {
-        source: "Cumhuriyet Güncellenme Platformu"
+        source: "Cumhuriyet Güncellenme Platformu",
+        ip: ipString.substr(0, 15) // Store partial IP for fraud detection
       }
     });
     
@@ -139,15 +195,31 @@ export async function handleWebhook(req: Request, res: Response) {
   res.json({ received: true });
 }
 
+// Price cache to reduce Stripe API calls
+let cachedPrices: any = null;
+let lastCacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export async function getPaymentPrices(req: Request, res: Response) {
   try {
+    const now = Date.now();
+    
+    // Use cached prices if available and not expired
+    if (cachedPrices && (now - lastCacheTime < CACHE_DURATION)) {
+      return res.json({ success: true, prices: cachedPrices, cached: true });
+    }
+    
     const prices = await stripe.prices.list({
       active: true,
       limit: 10,
       expand: ['data.product']
     });
     
-    res.json({ success: true, prices: prices.data });
+    // Update cache
+    cachedPrices = prices.data;
+    lastCacheTime = now;
+    
+    res.json({ success: true, prices: prices.data, cached: false });
   } catch (error: any) {
     console.error("Error fetching Stripe prices:", error);
     res.status(500).json({ 

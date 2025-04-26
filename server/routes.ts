@@ -58,7 +58,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const recentVisits = await storage.getVisitStats(100);
       const ipVisits = recentVisits.filter(v => 
         v.visitorIp === validatedVisitData.visitorIp && 
-        (Date.now() - new Date(v.createdAt).getTime()) < 10000 // 10 seconds
+        (Date.now() - new Date(v.visitDate).getTime()) < 10000 // 10 seconds
       );
       
       // If more than 3 visits in 10 seconds from same IP, limit
