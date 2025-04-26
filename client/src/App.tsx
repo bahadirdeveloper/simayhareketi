@@ -15,6 +15,7 @@ import SimayHomeProfessional from "@/pages/SimayHomeProfessional";
 import TurkiyePage from "@/pages/TurkiyePage";
 import TurkNedirPage from "@/pages/TurkNedirPage";
 import TurkNedirDetayPage from "@/pages/TurkNedirDetayPage";
+import GorevDavetPage from "@/pages/GorevDavetPage";
 import AnayasaPage from "@/pages/AnayasaPage";
 import LanguagePage from "@/pages/LanguagePage";
 import ManifestoPage from "@/pages/ManifestoPage";
@@ -32,6 +33,7 @@ function Router() {
       <Route path="/turk-nedir-detay" component={TurkNedirDetayPage} />
       <Route path="/anayasa" component={AnayasaPage} />
       <Route path="/gorevler" component={GorevlerPage} />
+      <Route path="/gorev-davet" component={GorevDavetPage} />
       <Route path="/katil" component={KatilPage} />
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />
