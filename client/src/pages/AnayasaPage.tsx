@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import SimpleBurningEarth from "@/components/SimpleBurningEarth";
 import AudioControl from "@/components/AudioControl";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -14,8 +15,8 @@ export default function AnayasaPage() {
   const [isPulsing, setIsPulsing] = useState(false);
   
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    // Initialize audio system with anayasa page soundtrack
+    initAudio('anayasa');
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -77,6 +78,12 @@ export default function AnayasaPage() {
     <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <SimpleBurningEarth />
       
+      {/* Erişilebilirlik Okuyucu */}
+      <AccessibilityReader 
+        pageContent="Anayasalar sayfasına hoş geldiniz. Bu sayfada Türkiye Cumhuriyeti'nin anayasa metinlerini ve halk bildirgelerini bulabilirsiniz. İlk anayasamız Türkiye Cumhuriyeti Anayasasıdır. Bu topraklarda halkın kaderini yeniden yazan ilk büyük sözleşmedir. Eşitliğin, adaletin, özgürlüğün ve halk egemenliğinin teminatıdır. Bu sayfada ayrıca Halk Barış ve Dayanışma Bildirgesi, Halk Bireysel Haklar Sözleşmesi, Halk Dijital Bilinç Anayasası ve Halk Küresel Halk Anayasası'nı inceleyebilirsiniz."
+        pageName="anayasa" 
+      />
+      
       <main className="container mx-auto px-4 z-10 relative py-16">
         {/* Türk Deseni Üstbilgi */}
         <motion.div 
@@ -137,7 +144,7 @@ export default function AnayasaPage() {
             className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white px-6 py-3 rounded-lg shadow-lg font-bold mb-6"
             onClick={handleToggleAudio}
           >
-            {isPulsing ? "🔊 HİSSEDİYORUM!" : "▶ HİSSET"}
+            {isPulsing ? "HİSSEDİYORUM!" : "HİSSET"}
           </button>
           
           <motion.h1
@@ -146,13 +153,13 @@ export default function AnayasaPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            🛡️ HALK ANAYASALAR
+            HALK ANAYASALAR
           </motion.h1>
         </div>
         
         <div className="max-w-4xl mx-auto space-y-10">
           <Section>
-            <SectionTitle>🇹🇷 İlk Anayasamız: TÜRKİYE CUMHURİYETİ ANAYASASIDIR!</SectionTitle>
+            <SectionTitle>İlk Anayasamız: TÜRKİYE CUMHURİYETİ ANAYASASIDIR!</SectionTitle>
             <ParagraphText>Bu topraklarda halkın kaderini yeniden yazan ilk büyük sözleşmedir.</ParagraphText>
             <ParagraphText>Eşitliğin, adaletin, özgürlüğün ve halk egemenliğinin teminatıdır.</ParagraphText>
             <ParagraphText>Milletin iradesiyle yazılmış, kanla mühürlenmiş, gelecek nesillere bırakılmış bir onur belgesidir.</ParagraphText>
@@ -170,7 +177,7 @@ export default function AnayasaPage() {
           </Section>
           
           <Section>
-            <SectionTitle>🤝 Halk Barış ve Dayanışma Bildirgesi</SectionTitle>
+            <SectionTitle>Halk Barış ve Dayanışma Bildirgesi</SectionTitle>
             <HighlightText>Barış, halkların birlikte yaşamasıdır.</HighlightText>
             <ParagraphText>Halk sisteminde barış, yalnızca silahların susması değil; seslerin ve dillerin bir arada yükselmesidir.</ParagraphText>
             <ParagraphText>Dayanışma, ihtiyaçta değil; umutta, hayalde ve birlikte olmaktır.</ParagraphText>
@@ -181,7 +188,7 @@ export default function AnayasaPage() {
           </Section>
           
           <Section>
-            <SectionTitle>🧍 Halk Bireysel Haklar Sözleşmesi</SectionTitle>
+            <SectionTitle>Halk Bireysel Haklar Sözleşmesi</SectionTitle>
             <HighlightText>Bir bireyin yeri, yalnızca potansiyeliyle belirlenir.</HighlightText>
             <ParagraphText>Halk bireysel haklar sözleşmesi, her kişinin ruhunu ve özgürlüğünü korumak için yazılmıştır.</ParagraphText>
             <ParagraphText>Her birey, ifade özgürlüğüne ve katkı sağlama hakkına sahiptir.</ParagraphText>
@@ -191,7 +198,7 @@ export default function AnayasaPage() {
           </Section>
           
           <Section>
-            <SectionTitle>💾 Halk Dijital Bilinç Anayasası</SectionTitle>
+            <SectionTitle>Halk Dijital Bilinç Anayasası</SectionTitle>
             <HighlightText>Veri önemlidir. Ancak halk bilinciyle birleşince özgürdür.</HighlightText>
             <ParagraphText>Halk dijital bilinç anayasası, yapay zekâ ve veri haklarına dayanır.</ParagraphText>
             <ParagraphText>Her birey kendi verisinin sahibidir. Bu veri, izinsiz kullanılamaz.</ParagraphText>
