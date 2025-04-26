@@ -81,15 +81,7 @@ export default function SimayHome() {
         <HalfBurningEarthBackground />
         
         <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen">
-          {/* Simay Logo */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            <HalfBurningEarthLogo />
-          </motion.div>
+          {/* Logo bölümü kaldırıldı */}
           
           {/* Project Title */}
           <motion.h1 
