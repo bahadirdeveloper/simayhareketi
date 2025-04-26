@@ -48,24 +48,78 @@ export default function TurkNedirPage() {
       <SimpleBurningEarth />
       
       <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-16">
-        <motion.div
-          className="text-center mb-10"
+        {/* Türk Deseni Üstbilgi */}
+        <motion.div 
+          className="w-full bg-gradient-to-r from-red-950/70 via-black/60 to-red-950/70 backdrop-blur-sm border-b border-red-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white">
+          <div 
+            className="h-10 w-full absolute top-0 left-0 opacity-20" 
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C35.5228 5 40 9.47715 40 15C40 20.5228 35.5228 25 30 25C24.4772 25 20 20.5228 20 15C20 9.47715 24.4772 5 30 5ZM30 8C26.134 8 23 11.134 23 15C23 18.866 26.134 22 30 22C33.866 22 37 18.866 37 15C37 11.134 33.866 8 30 8ZM30 11C32.2091 11 34 12.7909 34 15C34 17.2091 32.2091 19 30 19C27.7909 19 26 17.2091 26 15C26 12.7909 27.7909 11 30 11ZM0 15 L60 15 M30 0 L30 30' stroke='%23e3a008' fill='none' /%3E%3C/svg%3E")`,
+              backgroundRepeat: "repeat-x",
+              backgroundSize: "60px 20px"
+            }}
+          />
+          <div className="flex justify-between items-center container mx-auto px-6">
+            <div className="flex items-center group cursor-pointer" onClick={() => navigate("/")}>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-600 to-red-700 relative flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
+                <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                  <span className="text-white text-xs font-bold group-hover:scale-110 transition-transform duration-300">TR</span>
+                </div>
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-2 border-red-500/50"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.7, 0, 0.7] 
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut" 
+                  }}
+                />
+              </div>
+              <div className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                <p className="text-xs text-red-500 font-semibold tracking-wide">
+                  Bu İcat Türk Yapımıdır
+                </p>
+                <p className="text-[10px] text-white/80 hidden md:block">
+                  Akıl, Bilim, Fen ve Sanat
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <p className="text-xs text-red-500/80 pr-3 border-r border-red-500/30 mr-3">
+                Cumhuriyet Güncellenme
+              </p>
+              <div className="bg-black/50 px-2 py-1 rounded text-white text-xs font-mono">
+                v2.0
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        
+        <motion.div
+          className="text-center mb-10 mt-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">
             🇹🇷 TÜRKİYE
           </h1>
         </motion.div>
         
         <motion.div
-          className="max-w-3xl mx-auto text-center mb-16 bg-black/40 backdrop-blur-sm p-8 rounded-lg border-2 border-amber-500 shadow-[0_0_15px_rgba(255,215,0,0.3)]"
+          className="max-w-3xl mx-auto text-center mb-16 bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-8 rounded-lg border border-red-500/50 shadow-[0_0_15px_rgba(220,38,38,0.15)]"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <p className="text-xl md:text-2xl text-amber-400 leading-relaxed mb-8">
+          <p className="text-xl md:text-2xl text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text leading-relaxed mb-8 font-semibold">
             Türk, sadece bir ırk ya da coğrafya değildir. Türk; bir duruştur, bir vicdandır, bir direniştir.<br />
             Adalete susamış halkların yüreğidir, tarihin en derin izidir.
           </p>
@@ -75,9 +129,10 @@ export default function TurkNedirPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex justify-center"
+            whileHover={{ scale: 1.03 }}
           >
             <Button
-              className="bg-gradient-to-r from-amber-600 to-red-700 hover:from-red-700 hover:to-amber-600 text-white text-xl px-8 py-6 rounded-lg shadow-[0_0_25px_rgba(255,215,0,0.5)] transform hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white text-xl px-8 py-6 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-300"
               onClick={() => navigate("/turk-nedir-detay")}
             >
               ❤️ DAMARLARIMDA HİSSEDİYORUM!
@@ -92,21 +147,25 @@ export default function TurkNedirPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <Button 
-            variant="outline"
-            className="border-amber-500 text-amber-400 hover:bg-amber-900/20"
-            onClick={() => navigate("/turkiye")}
-          >
-            ◀ Türkiye Sayfasına Dön
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
+            <Button 
+              variant="outline"
+              className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
+              onClick={() => navigate("/turkiye")}
+            >
+              ◀ Türkiye Sayfasına Dön
+            </Button>
+          </motion.div>
           
-          <Button 
-            variant="outline"
-            className="border-white text-white hover:bg-white/10"
-            onClick={() => navigate("/")}
-          >
-            🏠 Ana Sayfa
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
+            <Button 
+              variant="outline"
+              className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
+              onClick={() => navigate("/")}
+            >
+              🏠 Ana Sayfa
+            </Button>
+          </motion.div>
         </motion.div>
       </main>
       
