@@ -12,8 +12,28 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-// Görev arka plan görselleri için SVG URL'ler
-const gorevImages: Record<number, string> = {
+// Görev arka plan görselleri için arka plan fonksiyonu
+const generateBackgroundSVG = (id: number) => {
+  // İlk 10 pattern için önceden tanımlanmış SVG'leri kullan
+  if (id >= 0 && id < 10) {
+    return standardPatterns[id];
+  }
+  
+  // Görev ID'sine göre renk ve pattern seçimi
+  const colorIndex = id % backgroundColors.length;
+  const patternIndex = Math.floor(id / 10) % backgroundPatterns.length;
+  
+  // Renkleri belirle
+  const color1 = backgroundColors[colorIndex][0];
+  const color2 = backgroundColors[colorIndex][1];
+  
+  // Pattern oluştur
+  return backgroundPatterns[patternIndex](color1, color2, id);
+};
+
+// Standart SVG pattern şablonları
+const standardPatterns: Record<number, string> = {
+  0: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMTFhMzYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTEwMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U2MGUwZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIiBzdHJva2UtZGFzaGFycmF5PSI1LDIiPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMTUwIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMjUwIiByPSIxMDAiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjUwIi8+PC9nPjwvc3ZnPg==",
   1: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxOTY0OGEiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzIwNDI3YSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE1MjU0MCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTJlOGYwIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE1Ij48Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjEwMCIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMTUwIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMjUwIiByPSIyMDAiLz48L2c+PC9zdmc+",
   2: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzMDRkOTMiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzIwMzI3MyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE1MWU0MCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PGcgZmlsbD0iI2U1ZTdlYiIgZmlsbC1vcGFjaXR5PSIwLjAzIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iMTAwIiByPSIyMCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjQwMCIgcj0iMjAiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI0MDAiIHI9IjIwIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMjUwIiByPSI5OSIgc3Ryb2tlPSIjZTllM2ZmIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiLz48L2c+PC9zdmc+",
   3: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyMDQyN2EiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMjIyM2MiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U0ZTRmZiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wOCI+PGxpbmUgeDE9IjEwMCIgeTE9IjEwMCIgeDI9IjQwMCIgeTI9IjQwMCIgLz48bGluZSB4MT0iNDAwIiB5MT0iMTAwIiB4Mj0iMTAwIiB5Mj0iNDAwIiAvPjxsaW5lIHgxPSIyNTAiIHkxPSI1MCIgeDI9IjI1MCIgeTI9IjQ1MCIgLz48bGluZSB4MT0iNTAiIHkxPSIyNTAiIHgyPSI0NTAiIHkyPSIyNTAiIC8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMjUwIiByPSIxNTAiIHN0cm9rZT0iI2ZmZjVlZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PC9nPjwvc3ZnPg==",
@@ -22,9 +42,73 @@ const gorevImages: Record<number, string> = {
   6: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMDFlMmEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTBkMWQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iNTAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSI1MCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iNTAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSI1MCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iNTAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjEwMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSIyMDAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjI1MCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMzAwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSIzNTAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjQwMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMTAwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMTUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMjAwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMjUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMzAwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iMzUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iNDAwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iNDUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==",
   7: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMjIxNDUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYjE0MjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U2MGUwZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNSI+PGxpbmUgeDE9IjUwIiB5MT0iNTAiIHgyPSI0NTAiIHkyPSI1MCIvPjxsaW5lIHgxPSI1MCIgeTE9IjEwMCIgeDI9IjQ1MCIgeTI9IjEwMCIvPjxsaW5lIHgxPSI1MCIgeTE9IjE1MCIgeDI9IjQ1MCIgeTI9IjE1MCIvPjxsaW5lIHgxPSI1MCIgeTE9IjIwMCIgeDI9IjQ1MCIgeTI9IjIwMCIvPjxsaW5lIHgxPSI1MCIgeTE9IjI1MCIgeDI9IjQ1MCIgeTI9IjI1MCIvPjxsaW5lIHgxPSI1MCIgeTE9IjMwMCIgeDI9IjQ1MCIgeTI9IjMwMCIvPjxsaW5lIHgxPSI1MCIgeTE9IjM1MCIgeDI9IjQ1MCIgeTI9IjM1MCIvPjxsaW5lIHgxPSI1MCIgeTE9IjQwMCIgeDI9IjQ1MCIgeTI9IjQwMCIvPjxsaW5lIHgxPSI1MCIgeTE9IjQ1MCIgeDI9IjQ1MCIgeTI9IjQ1MCIvPjxsaW5lIHgxPSI1MCIgeTE9IjUwIiB4Mj0iNTAiIHkyPSI0NTAiLz48bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSIxMDAiIHkyPSI0NTAiLz48bGluZSB4MT0iMTUwIiB5MT0iNTAiIHgyPSIxNTAiIHkyPSI0NTAiLz48bGluZSB4MT0iMjAwIiB5MT0iNTAiIHgyPSIyMDAiIHkyPSI0NTAiLz48bGluZSB4MT0iMjUwIiB5MT0iNTAiIHgyPSIyNTAiIHkyPSI0NTAiLz48bGluZSB4MT0iMzAwIiB5MT0iNTAiIHgyPSIzMDAiIHkyPSI0NTAiLz48bGluZSB4MT0iMzUwIiB5MT0iNTAiIHgyPSIzNTAiIHkyPSI0NTAiLz48bGluZSB4MT0iNDAwIiB5MT0iNTAiIHgyPSI0MDAiIHkyPSI0NTAiLz48bGluZSB4MT0iNDUwIiB5MT0iNTAiIHgyPSI0NTAiIHkyPSI0NTAiLz48L2c+PC9zdmc+",
   8: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMDFiMzYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTEwMjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMjAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNTAiIHI9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iMC4wMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMjUwIiByPSIxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMDMiIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMDMiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==",
-  9: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwZjI0NDciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwOTEzMmEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNCIgPjxwYXRoIGQ9Ik0gNTAsMTAwIFEgMjUwLDUwIDQ1MCwyMDAiLz48cGF0aCBkPSJNIDUwLDE1MCBRIDI1MCwxMDAgNDUwLDI1MCIvPjxwYXRoIGQ9Ik0gNTAsMjAwIFEgMjUwLDE1MCA0NTAsMzAwIi8+PHBhdGggZD0iTSA1MCwyNTAgUSAyNTAsMjAwIDQ1MCwzNTAiLz48cGF0aCBkPSJNIDUwLDMwMCBRIDI1MCwyNTAgNDUwLDQwMCIvPjxwYXRoIGQ9Ik0gNTAsMzUwIFEgMjUwLDMwMCA0NTAsNDUwIi8+PHBhdGggZD0iTSA1MCw0MDAgUSAyNTAsMzUwIDQ1MCw1MDAiLz48L2c+PC9zdmc+",
-  10: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMDI2NGMiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwOTEzMmEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U2MGUwZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4wNCIgc3Ryb2tlLWRhc2hhcnJheT0iNSwyIj48bGluZSB4MT0iMTAwIiB5MT0iMTAwIiB4Mj0iNDAwIiB5Mj0iMTAwIi8+PGxpbmUgeDE9IjEwMCIgeTE9IjIwMCIgeDI9IjQwMCIgeTI9IjIwMCIvPjxsaW5lIHgxPSIxMDAiIHkxPSIzMDAiIHgyPSI0MDAiIHkyPSIzMDAiLz48bGluZSB4MT0iMTAwIiB5MT0iNDAwIiB4Mj0iNDAwIiB5Mj0iNDAwIi8+PC9nPjwvc3ZnPg=="
+  9: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwZjI0NDciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwOTEzMmEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNCIgPjxwYXRoIGQ9Ik0gNTAsMTAwIFEgMjUwLDUwIDQ1MCwyMDAiLz48cGF0aCBkPSJNIDUwLDE1MCBRIDI1MCwxMDAgNDUwLDI1MCIvPjxwYXRoIGQ9Ik0gNTAsMjAwIFEgMjUwLDE1MCA0NTAsMzAwIi8+PHBhdGggZD0iTSA1MCwyNTAgUSAyNTAsMjAwIDQ1MCwzNTAiLz48cGF0aCBkPSJNIDUwLDMwMCBRIDI1MCwyNTAgNDUwLDQwMCIvPjxwYXRoIGQ9Ik0gNTAsMzUwIFEgMjUwLDMwMCA0NTAsNDUwIi8+PHBhdGggZD0iTSA1MCw0MDAgUSAyNTAsMzUwIDQ1MCw1MDAiLz48L2c+PC9zdmc+"
 };
+
+// Arka plan renkleri (koyu tonlar)
+const backgroundColors = [
+  ['#0f2942', '#081421'], // Koyu mavi
+  ['#181F3A', '#0D1117'], // Koyu lacivert
+  ['#251E26', '#0D0D0F'], // Koyu mor
+  ['#2A1E21', '#150F10'], // Koyu kırmızı
+  ['#1B2728', '#0A1213'], // Koyu yeşil
+  ['#292624', '#141210'], // Koyu kahverengi
+  ['#25292B', '#0D0F10'], // Koyu gri
+  ['#232921', '#101510'], // Koyu orman yeşili
+];
+
+// Farklı arka plan desenleri (pattern)
+const backgroundPatterns = [
+  // Pattern 1: Dairesel desenler
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#e60e0e" stroke-width="1" stroke-opacity="0.08"><circle cx="250" cy="250" r="${(id % 10) * 15 + 50}"/><circle cx="250" cy="250" r="${(id % 10) * 10 + 100}"/><circle cx="250" cy="250" r="${(id % 10) * 5 + 150}"/></g></svg>`)}`;
+  },
+  
+  // Pattern 2: Grid deseni
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.05"><line x1="50" y1="50" x2="450" y2="50"/><line x1="50" y1="150" x2="450" y2="150"/><line x1="50" y1="250" x2="450" y2="250"/><line x1="50" y1="350" x2="450" y2="350"/><line x1="50" y1="450" x2="450" y2="450"/><line x1="50" y1="50" x2="50" y2="450"/><line x1="150" y1="50" x2="150" y2="450"/><line x1="250" y1="50" x2="250" y2="450"/><line x1="350" y1="50" x2="350" y2="450"/><line x1="450" y1="50" x2="450" y2="450"/></g></svg>`)}`;
+  },
+  
+  // Pattern 3: Dots deseni
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="#ffffff" fill-opacity="0.05"><circle cx="100" cy="100" r="4"/><circle cx="200" cy="100" r="4"/><circle cx="300" cy="100" r="4"/><circle cx="400" cy="100" r="4"/><circle cx="100" cy="200" r="4"/><circle cx="200" cy="200" r="4"/><circle cx="300" cy="200" r="4"/><circle cx="400" cy="200" r="4"/><circle cx="100" cy="300" r="4"/><circle cx="200" cy="300" r="4"/><circle cx="300" cy="300" r="4"/><circle cx="400" cy="300" r="4"/><circle cx="100" cy="400" r="4"/><circle cx="200" cy="400" r="4"/><circle cx="300" cy="400" r="4"/><circle cx="400" cy="400" r="4"/></g></svg>`)}`;
+  },
+
+  // Pattern 4: Diagonal çizgiler
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#e60e0e" stroke-width="1" stroke-opacity="0.07"><line x1="0" y1="0" x2="500" y2="500"/><line x1="100" y1="0" x2="500" y2="400"/><line x1="0" y1="100" x2="400" y2="500"/><line x1="200" y1="0" x2="500" y2="300"/><line x1="0" y1="200" x2="300" y2="500"/><line x1="300" y1="0" x2="500" y2="200"/><line x1="0" y1="300" x2="200" y2="500"/><line x1="400" y1="0" x2="500" y2="100"/><line x1="0" y1="400" x2="100" y2="500"/></g></svg>`)}`;
+  },
+  
+  // Pattern 5: Yıldız deseni
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="#ffffff" fill-opacity="0.05"><polygon points="250,50 279,154 390,154 300,216 329,320 250,260 171,320 200,216 110,154 221,154"/><path d="M250,250 L250,350" stroke="#e60e0e" stroke-width="1.5" stroke-opacity="0.1"/><path d="M250,250 L300,300" stroke="#e60e0e" stroke-width="1.5" stroke-opacity="0.1"/><path d="M250,250 L200,300" stroke="#e60e0e" stroke-width="1.5" stroke-opacity="0.1"/></g></svg>`)}`;
+  },
+  
+  // Pattern 6: Data flow
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.07"><path d="M 50,150 C 200,50 300,250 450,150"/><path d="M 50,250 C 200,150 300,350 450,250"/><path d="M 50,350 C 200,250 300,450 450,350"/></g></svg>`)}`;
+  },
+  
+  // Pattern 7: Circuit board
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#e60e0e" stroke-width="1" stroke-opacity="0.08" stroke-linecap="round"><path d="M100,100 L400,100 L400,400 L100,400 Z"/><path d="M250,100 L250,400"/><path d="M100,250 L400,250"/><path d="M175,175 L325,175 L325,325 L175,325 Z"/><path d="M175,175 L250,100"/><path d="M325,175 L400,100"/><path d="M175,325 L100,400"/><path d="M325,325 L400,400"/></g></svg>`)}`;
+  },
+  
+  // Pattern 8: Dalga
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.05"><path d="M 0,100 C 125,50 250,150 500,100"/><path d="M 0,200 C 125,150 250,250 500,200"/><path d="M 0,300 C 125,250 250,350 500,300"/><path d="M 0,400 C 125,350 250,450 500,400"/></g></svg>`)}`;
+  },
+  
+  // Pattern 9: Türk Bayrağı motifi
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="#e60e0e" fill-opacity="0.05"><circle cx="240" cy="250" r="60"/><polygon points="350,220 370,270 320,240 380,240 330,270" /></g></svg>`)}`;
+  },
+  
+  // Pattern 10: Teknoloji deseni
+  (color1: string, color2: string, id: number) => {
+    return `data:image/svg+xml;base64,${btoa(`<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="500" height="500" fill="url(#grad)"/><g fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.05"><rect x="100" y="100" width="300" height="300" rx="15"/><rect x="150" y="150" width="200" height="200" rx="10"/><rect x="200" y="200" width="100" height="100" rx="5"/><circle cx="250" cy="250" r="30"/></g></svg>`)}`;
+  }
+];
 
 interface Gorev {
   id: number;
@@ -385,7 +469,7 @@ export default function GorevlerPage() {
                         : 'border-amber-500'
                   } rounded-lg p-5 hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
-                    backgroundImage: gorevImages[gorev.id] ? `url(${gorevImages[gorev.id]})` : `linear-gradient(to bottom right, #172554, #0f172a)`, 
+                    backgroundImage: `url(${generateBackgroundSVG(gorev.id)})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
