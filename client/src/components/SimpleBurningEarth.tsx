@@ -524,6 +524,8 @@ export default function SimpleBurningEarth() {
     
     // Draw light rays from center
     const drawLightRays = (centerX: number, centerY: number, radius: number, time: number) => {
+      if (!ctx) return;
+      
       ctx.save();
       
       const rayCount = 12;
@@ -551,6 +553,8 @@ export default function SimpleBurningEarth() {
     
     // Draw particles
     const drawParticles = () => {
+      if (!ctx) return;
+      
       // Regular particles
       particles.forEach(particle => {
         ctx.fillStyle = particle.color;
@@ -696,6 +700,8 @@ export default function SimpleBurningEarth() {
     
     const animate = () => {
       time++;
+      if (!ctx) return;
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Save context for clipping
