@@ -74,7 +74,7 @@ export default function SimayHomeProfessional() {
         <SimpleBurningEarth />
         
         {/* Türk Deseni Üstbilgi */}
-        <div className="w-full bg-gradient-to-r from-black/60 via-black/70 to-black/60 backdrop-blur-sm border-b border-amber-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md">
+        <div className="w-full bg-gradient-to-r from-blue-950/70 via-black/60 to-blue-950/70 backdrop-blur-sm border-b border-amber-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md">
           <div 
             className="h-10 w-full absolute top-0 left-0 opacity-20" 
             style={{
@@ -235,7 +235,7 @@ export default function SimayHomeProfessional() {
               </div>
             </div>
             
-            <div className="max-w-3xl mx-auto px-6 py-4 bg-black/40 backdrop-blur-sm rounded-lg border border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.15)]">
+            <div className="max-w-3xl mx-auto px-6 py-4 bg-gradient-to-b from-black/60 to-blue-950/50 backdrop-blur-sm rounded-lg border border-amber-500/30 shadow-[0_0_15px_rgba(0,100,255,0.15)]">
               <p className="text-gray-300 leading-relaxed text-lg mb-4">
                 Dijital Platformla Halk Güncelleme Süreci
               </p>
@@ -305,7 +305,7 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <div className="bg-black/50 backdrop-blur-md border border-amber-500 rounded-xl p-8 text-center hover:border-amber-400 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+            <div className="bg-gradient-to-b from-black/60 to-blue-950/50 backdrop-blur-md border border-amber-500 rounded-xl p-8 text-center hover:border-amber-400 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(0,100,255,0.2)]">
               <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-300 to-amber-500 text-transparent bg-clip-text">TÜRKİYE</h3>
               <p className="text-gray-300 mb-6 text-lg">Toplumsal Yenileme Merkezi</p>
               <motion.div
@@ -323,7 +323,7 @@ export default function SimayHomeProfessional() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-black/40 backdrop-blur-sm border border-red-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-red-400">
+              <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-red-400">
                 <h4 className="font-medium text-red-400 mb-2">RUSYA</h4>
                 <Button 
                   variant="outline"
@@ -334,7 +334,7 @@ export default function SimayHomeProfessional() {
                 </Button>
               </div>
               
-              <div className="bg-black/40 backdrop-blur-sm border border-blue-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-blue-400">
+              <div className="bg-gradient-to-b from-black/60 to-blue-950/30 backdrop-blur-sm border border-blue-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-blue-400">
                 <h4 className="font-medium text-blue-400 mb-2">İRAN</h4>
                 <Button 
                   variant="outline"
@@ -345,7 +345,7 @@ export default function SimayHomeProfessional() {
                 </Button>
               </div>
               
-              <div className="bg-black/40 backdrop-blur-sm border border-green-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-green-400">
+              <div className="bg-gradient-to-b from-black/60 to-green-950/30 backdrop-blur-sm border border-green-500/70 rounded-lg p-4 text-center transition-all duration-300 hover:bg-black/50 hover:border-green-400">
                 <h4 className="font-medium text-green-400 mb-2">FİLİSTİN</h4>
                 <Button 
                   variant="outline"
@@ -365,7 +365,7 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <div className="bg-black/50 backdrop-blur-md border border-purple-500/70 rounded-xl p-5 hover:border-purple-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)]">
+            <div className="bg-gradient-to-b from-black/60 to-purple-950/30 backdrop-blur-md border border-purple-500/70 rounded-xl p-5 hover:border-purple-400/80 transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)]">
               <h3 className="text-xl text-purple-300 mb-3 font-medium">Uluslararası İletişim Ağı</h3>
               
               <motion.div
@@ -394,7 +394,7 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           >
-            <div className="inline-block bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full border border-amber-500/30">
+            <div className="inline-block bg-gradient-to-r from-blue-950/60 via-black/40 to-blue-950/60 backdrop-blur-sm px-6 py-3 rounded-full border border-amber-500/30 shadow-[0_0_10px_rgba(0,100,255,0.1)]">
               <p className="text-sm text-gray-300 font-medium">
                 19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
