@@ -396,6 +396,89 @@ export default function SimayHomeProfessional() {
             </div>
           </motion.div>
           
+          {/* Canlı Göstergeler */}
+          <motion.div 
+            className="w-full max-w-2xl mx-auto mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.3 }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* GENEL KATILIM Göstergesi */}
+              <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-500/40 shadow-[0_0_15px_rgba(220,38,38,0.1)]">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="font-medium text-white text-sm">GENEL KATILIM</h4>
+                  <div className="flex items-center">
+                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1"></div>
+                    <span className="text-xs text-gray-400">Canlı</span>
+                  </div>
+                </div>
+                
+                <div className="relative h-2 bg-white/20 rounded-full overflow-hidden mb-1">
+                  <motion.div 
+                    className="absolute top-0 left-0 h-full bg-white"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "67%" }}
+                    transition={{ duration: 2 }}
+                  />
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <div className="flex items-baseline">
+                    <span className="text-xl font-bold text-white">67%</span>
+                    <span className="ml-1 text-xs text-gray-400">/ 100%</span>
+                  </div>
+                  <span className="text-xs text-white/80">8.523.912 Vatandaş</span>
+                </div>
+              </div>
+              
+              {/* TOPLAM BAĞIŞ Göstergesi */}
+              <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-500/40 shadow-[0_0_15px_rgba(220,38,38,0.1)]">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="font-medium text-white text-sm">TOPLAM BAĞIŞ</h4>
+                  <div className="flex items-center">
+                    <div className="h-2 w-2 bg-white rounded-full animate-pulse mr-1"></div>
+                    <span className="text-xs text-gray-400">Canlı</span>
+                  </div>
+                </div>
+                
+                <div className="relative h-2 bg-white/20 rounded-full overflow-hidden mb-1">
+                  <motion.div 
+                    className="absolute top-0 left-0 h-full bg-red-500"
+                    initial={{ width: "0%" }}
+                    animate={{ 
+                      width: ["42%", "43%", "45%", "44%"],
+                    }}
+                    transition={{ 
+                      duration: 8,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    }}
+                  />
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <div className="flex items-baseline">
+                    <motion.span 
+                      className="text-xl font-bold text-red-500"
+                      animate={{ 
+                        opacity: [1, 0.8, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      ₺7.514.892
+                    </motion.span>
+                    <span className="ml-1 text-xs text-gray-400">TL</span>
+                  </div>
+                  <span className="text-xs text-white/80">Hedef: ₺17.500.000</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          
           {/* Alt Bilgi */}
           <motion.div 
             className="text-center mt-4"
