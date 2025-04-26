@@ -1250,11 +1250,11 @@ export default function GorevlerPage() {
                   key={gorev.id}
                   className={`relative border-[3px] aspect-[2/3] max-w-[200px] mx-auto ${
                     gorev.kategori === 'kurucu' 
-                      ? 'border-amber-500 shadow-[0_0_20px_rgba(255,215,0,0.4)]' 
+                      ? 'border-red-600 shadow-[0_0_20px_rgba(220,38,38,0.4)]' 
                       : gorev.tamamlayan > 0 
                         ? 'border-green-500 shadow-[0_0_12px_rgba(68,255,68,0.4)]' 
-                        : 'border-amber-500'
-                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-300 overflow-hidden`}
+                        : 'border-red-600'
+                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(220,38,38,0.6)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: '100% 100%',
@@ -1268,15 +1268,15 @@ export default function GorevlerPage() {
                   {/* Content */}
                   <div className="relative z-10 p-2 h-full flex flex-col justify-between">
                     {/* Debug için ID gösterici */}
-                    <div className="absolute top-0 right-0 bg-amber-600 text-white px-1 py-0.5 text-[8px] font-bold rounded-bl">
+                    <div className="absolute top-0 right-0 bg-red-600 text-white px-1 py-0.5 text-[8px] font-bold rounded-bl">
                       {gorev.id}
                     </div>
                     
                     {/* Görev başlık ve açıklaması */}
                     <div>
-                      <h3 className="text-xs md:text-sm font-bold text-amber-400 mb-1">{gorev.baslik}</h3>
+                      <h3 className="text-xs md:text-sm font-bold text-red-500 mb-1">{gorev.baslik}</h3>
                       <p className="text-white mb-1 text-[10px]">{gorev.cagri}</p>
-                      <div className="text-[10px] text-cyan-300 italic mb-1">{gorev.aciklama && gorev.aciklama.length > 60 ? gorev.aciklama.substring(0, 60) + '...' : gorev.aciklama}</div>
+                      <div className="text-[10px] text-white italic mb-1">{gorev.aciklama && gorev.aciklama.length > 60 ? gorev.aciklama.substring(0, 60) + '...' : gorev.aciklama}</div>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton */}
@@ -1300,11 +1300,11 @@ export default function GorevlerPage() {
           
           {/* Pagination - Bottom */}
           {filteredGorevler.length > 0 && (
-            <div className="flex justify-center items-center mt-10 gap-2 border-2 border-cyan-500/30 bg-black/30 rounded-lg p-4 max-w-lg mx-auto mb-8">
+            <div className="flex justify-center items-center mt-10 gap-2 border-2 border-red-600/50 bg-black/30 rounded-lg p-4 max-w-lg mx-auto mb-8">
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-cyan-500 text-cyan-400 font-bold"
+                className="border-red-600 text-white font-bold"
                 onClick={() => changePage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
               >
@@ -1318,8 +1318,8 @@ export default function GorevlerPage() {
                     variant={currentPage === pageNum ? "default" : "outline"}
                     size="lg"
                     className={currentPage === pageNum 
-                      ? "bg-cyan-600 text-white font-bold" 
-                      : "border-cyan-500 text-cyan-400 font-bold"}
+                      ? "bg-red-600 text-white font-bold" 
+                      : "border-red-600 text-white font-bold"}
                     onClick={() => changePage(pageNum)}
                   >
                     {pageNum}
@@ -1330,7 +1330,7 @@ export default function GorevlerPage() {
               <Button 
                 variant="outline"
                 size="lg" 
-                className="border-cyan-500 text-cyan-400 font-bold"
+                className="border-red-600 text-white font-bold"
                 onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
               >
@@ -1343,7 +1343,7 @@ export default function GorevlerPage() {
           <div className="flex justify-center mt-6 gap-4">
             <Button 
               variant="outline"
-              className="border-amber-500 text-amber-400 hover:bg-amber-900/20"
+              className="border-red-600 text-white hover:bg-red-700/20"
               onClick={() => navigate("/turkiye")}
             >
               ◀ Türkiye Sayfasına Dön
@@ -1368,7 +1368,7 @@ export default function GorevlerPage() {
         {/* Görev Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
-            className="bg-black/85 backdrop-blur-md border border-cyan-500 text-white relative overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-[90vw] md:w-[500px]">
+            className="bg-black/85 backdrop-blur-md border border-red-600 text-white relative overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-[90vw] md:w-[500px]">
             {/* Arka plan görseli - seçilen görev için */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-30 z-0">
@@ -1383,7 +1383,7 @@ export default function GorevlerPage() {
             {/* İçerik - Z indeksi daha yüksek */}
             <div className="relative z-10">
               <DialogHeader>
-                <DialogTitle className="text-amber-400 text-xl">
+                <DialogTitle className="text-red-500 text-xl">
                   {selectedGorev?.baslik}
                 </DialogTitle>
                 <DialogDescription className="text-white">
