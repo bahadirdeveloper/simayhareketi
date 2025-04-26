@@ -220,8 +220,8 @@ export default function SimayHomeProfessional() {
                   >
                     {/* Hareket eden ışık topu */}
                     <div className="relative">
-                      <div className="absolute -inset-1 bg-red-500/30 blur-md rounded-full"></div>
-                      <div className="h-4 w-4 bg-red-500 rounded-full relative shadow-[0_0_10px_rgba(220,38,38,0.7)]"></div>
+                      <div className="absolute -inset-1 bg-white/30 blur-md rounded-full"></div>
+                      <div className="h-4 w-4 bg-white rounded-full relative shadow-[0_0_10px_rgba(255,255,255,0.7)]"></div>
                     </div>
                   </motion.div>
                   
@@ -315,7 +315,7 @@ export default function SimayHomeProfessional() {
             transition={{ duration: 1, delay: 0.8 }}
           >
             <div className="bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-md border border-red-600 rounded-xl p-8 text-center hover:border-red-500 transition-all duration-300 mb-12 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
-              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">TÜRKİYE</h3>
+              <h3 className="text-3xl font-bold mb-4 text-white">TÜRKİYE</h3>
               <p className="text-gray-300 mb-6 text-lg">Toplumsal Yenileme Merkezi</p>
               <motion.div
                 initial={{ scale: 1 }}
