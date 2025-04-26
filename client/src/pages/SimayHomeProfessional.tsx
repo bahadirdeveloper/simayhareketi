@@ -473,7 +473,7 @@ export default function SimayHomeProfessional() {
                     </motion.span>
                     <span className="ml-1 text-xs text-gray-400">TL</span>
                   </div>
-                  <span className="text-xs text-white/80">Hedef: ₺17.500.000</span>
+                  <span className="text-xs text-white/80">Hedef: Medeniyet için yetecek kadar.</span>
                 </div>
               </div>
             </div>
