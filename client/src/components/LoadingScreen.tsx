@@ -6,7 +6,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   const [isDecoding, setIsDecoding] = useState(true);
   const [progress, setProgress] = useState(0);
   
-  const fullText = "Cumhuriyet ile güncelleniyor.. Sistem hazır.";
+  const fullText = "Cumhuriyet ile güncelleniyor.. İnsanlık v2.0";
   
   useEffect(() => {
     let currentIndex = 0;
@@ -66,7 +66,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         
         {!isDecoding && (
           <motion.div 
-            className="w-64 h-2 bg-[rgba(0,255,65,0.2)] rounded-full overflow-hidden mt-4"
+            className="w-64 h-2.5 bg-[rgba(0,255,65,0.2)] rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -74,6 +74,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             <motion.div 
               className="h-full bg-matrix-green"
               initial={{ width: "0%" }}
+              style={{ marginLeft: "40%" }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.1 }}
             />
