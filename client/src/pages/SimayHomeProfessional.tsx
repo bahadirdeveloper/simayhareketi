@@ -235,7 +235,7 @@ export default function SimayHomeProfessional() {
               </div>
             </div>
             
-            <div className="max-w-3xl mx-auto px-6 py-4 bg-gradient-to-b from-black/60 to-blue-950/50 backdrop-blur-sm rounded-lg border border-amber-500/30 shadow-[0_0_15px_rgba(0,100,255,0.15)]">
+            <div className="max-w-3xl mx-auto px-6 py-4 bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm rounded-lg border border-red-600/30 shadow-[0_0_15px_rgba(220,38,38,0.15)]">
               <p className="text-gray-300 leading-relaxed text-lg mb-4">
                 Dijital Platformla Halk Güncelleme Süreci
               </p>
@@ -243,56 +243,56 @@ export default function SimayHomeProfessional() {
               <div className="grid grid-cols-5 gap-4 mt-2">
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-red-900/40 flex items-center justify-center border border-red-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.25v-3.5m8 8h-3.5m-11 0H2m11 8v-3.5m4.4-10.4l-2.5 2.5m-11 11l2.5-2.5m11 0l-2.5-2.5M6.5 8.3l-2.5-2.5" />
                     </svg>
                   </div>
-                  <h4 className="text-amber-400 font-medium">AKIL</h4>
+                  <h4 className="text-red-500 font-medium">AKIL</h4>
                   <p className="text-xs text-gray-400">Mantıksal Düşünce</p>
                 </div>
                 
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-blue-900/40 flex items-center justify-center border border-blue-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
-                  <h4 className="text-amber-400 font-medium">BİLİM</h4>
+                  <h4 className="text-white font-medium">BİLİM</h4>
                   <p className="text-xs text-gray-400">Kanıta Dayalı</p>
                 </div>
                 
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-yellow-900/40 flex items-center justify-center border border-yellow-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </div>
-                  <h4 className="text-amber-400 font-medium">VİCDAN</h4>
+                  <h4 className="text-red-500 font-medium">VİCDAN</h4>
                   <p className="text-xs text-gray-400">Ahlaki Duyarlılık</p>
                 </div>
                 
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-green-900/40 flex items-center justify-center border border-green-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                   </div>
-                  <h4 className="text-amber-400 font-medium">FEN</h4>
+                  <h4 className="text-white font-medium">FEN</h4>
                   <p className="text-xs text-gray-400">Teknik Gelişim</p>
                 </div>
                 
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-purple-900/40 flex items-center justify-center border border-purple-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h4 className="text-amber-400 font-medium">SANAT</h4>
+                  <h4 className="text-red-500 font-medium">SANAT</h4>
                   <p className="text-xs text-gray-400">Kültürel İfade</p>
                 </div>
               </div>
               
-              <p className="text-center text-xs text-amber-300/70 mt-3 italic">
+              <p className="text-center text-xs text-red-500/80 mt-3 italic">
                 "Bu icat Türk yapımıdır."
               </p>
             </div>
@@ -394,7 +394,7 @@ export default function SimayHomeProfessional() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           >
-            <div className="inline-block bg-gradient-to-r from-blue-950/60 via-black/40 to-blue-950/60 backdrop-blur-sm px-6 py-3 rounded-full border border-amber-500/30 shadow-[0_0_10px_rgba(0,100,255,0.1)]">
+            <div className="inline-block bg-gradient-to-r from-red-950/60 via-black/40 to-red-950/60 backdrop-blur-sm px-6 py-3 rounded-full border border-red-600/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]">
               <p className="text-sm text-gray-300 font-medium">
                 19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>

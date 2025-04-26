@@ -56,7 +56,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     >
       <div className="text-center max-w-lg">
         <motion.div 
-          className="text-matrix-green font-share-tech text-2xl mb-8"
+          className="text-red-500 font-share-tech text-2xl mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -66,13 +66,13 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         
         {!isDecoding && (
           <motion.div 
-            className="w-64 h-2.5 bg-[rgba(0,255,65,0.2)] rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
+            className="w-64 h-2.5 bg-[rgba(220,38,38,0.2)] rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div 
-              className="h-full bg-matrix-green"
+              className="h-full bg-red-600"
               initial={{ width: "0%" }}
               style={{ marginLeft: "40%" }}
               animate={{ width: `${progress}%` }}
