@@ -884,8 +884,49 @@ export default function GorevlerPage() {
             )}
           </motion.div>
           
+          {/* Pagination - Bottom */}
+          {filteredGorevler.length > 0 && (
+            <div className="flex justify-center items-center mt-10 gap-2 border-2 border-cyan-500/30 bg-black/30 rounded-lg p-4 max-w-lg mx-auto mb-8">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-cyan-500 text-cyan-400 font-bold"
+                onClick={() => changePage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+              >
+                &lt; Önceki
+              </Button>
+              
+              <div className="flex gap-2 mx-2 flex-wrap justify-center">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                  <Button
+                    key={pageNum}
+                    variant={currentPage === pageNum ? "default" : "outline"}
+                    size="lg"
+                    className={currentPage === pageNum 
+                      ? "bg-cyan-600 text-white font-bold" 
+                      : "border-cyan-500 text-cyan-400 font-bold"}
+                    onClick={() => changePage(pageNum)}
+                  >
+                    {pageNum}
+                  </Button>
+                ))}
+              </div>
+              
+              <Button 
+                variant="outline"
+                size="lg" 
+                className="border-cyan-500 text-cyan-400 font-bold"
+                onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+              >
+                Sonraki &gt;
+              </Button>
+            </div>
+          )}
+          
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-12 gap-4">
+          <div className="flex justify-center mt-6 gap-4">
             <Button 
               variant="outline"
               className="border-amber-500 text-amber-400 hover:bg-amber-900/20"
