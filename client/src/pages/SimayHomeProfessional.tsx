@@ -167,71 +167,10 @@ export default function SimayHomeProfessional() {
             </motion.div>
             
             <div className="flex flex-col items-center justify-center mb-8">
-              <div className="relative">
-                {/* Arka plan ışıma efekti */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-amber-500/25 to-amber-500/10 blur-xl rounded-full"
-                  animate={{ 
-                    opacity: [0.5, 0.8, 0.5],
-                    scale: [0.8, 1.1, 0.8],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                {/* Türk deseni arka plan */}
-                <div className="absolute inset-0 opacity-5 bg-repeat rounded-full" style={{ 
-                  backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgM0MyMi43MyAzIDI5IDkuMjcgMjkgMTdDMjkgMjQuNzMgMjIuNzMgMzEgMTUgMzFDNy4yNyAzMSAxIDI0LjczIDEgMTdDMSA5LjI3IDcuMjcgMyAxNSAzWk0xNSA1QzguMzg0NSA1IDMgMTAuMzg0NSAzIDE3QzMgMjMuNjE1NSA4LjM4NDUgMjkgMTUgMjlDMjEuNjE1NSAyOSAyNyAyMy42MTU1IDI3IDE3QzI3IDEwLjM4NDUgMjEuNjE1NSA1IDE1IDVaTTIxIDEyLjVMMTggMTRMMTUgMTIuNUwxMiAxNEw5IDEyLjVMOSAxNy41TDEyIDE5TDE1IDE3LjVMMTggMTlMMjEgMTcuNUwyMSAxMi41WiIgZmlsbD0iI2UzYTAwOCIvPjwvc3ZnPg==')"
-                }}></div>
-                
-                {/* Gölge efekti */}
-                <div className="absolute inset-0 rounded-xl shadow-[0_0_30px_rgba(251,191,36,0.3)] pointer-events-none"></div>
-                
-                {/* İçerik kutusu */}
-                <div className="relative z-10 text-2xl font-semibold bg-gradient-to-r from-black/40 via-black/50 to-black/40 backdrop-blur-sm px-7 py-4 rounded-lg border border-amber-400/50 flex items-center justify-center">
-                  <span className="mr-2 text-amber-300 font-semibold drop-shadow-md">
-                    Cumhuriyet ile Güncelleniyoruz
-                  </span>
-                  <div className="relative">
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-green-500/20 blur-md"
-                      animate={{ 
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    />
-                    <motion.div
-                      className="relative text-green-400 font-bold"
-                      animate={{ 
-                        opacity: [1, 0.7, 1],
-                        scale: [1, 1.2, 1]
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="17 8 12 3 7 8" />
-                        <line x1="12" y1="3" x2="12" y2="15" />
-                      </svg>
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
+
 
               {/* İlerleme çubuğu */}
-              <div className="flex justify-center items-center mt-6 relative">
+              <div className="flex justify-center items-center my-12 relative">
                 <div className="w-96 h-8 relative">
                   {/* Arka plan çizgi */}
                   <div className="absolute w-full h-1.5 bg-gradient-to-r from-gray-700/60 via-gray-700/80 to-gray-700/60 rounded-full backdrop-blur-sm top-1/2 -translate-y-1/2"></div>
@@ -265,8 +204,11 @@ export default function SimayHomeProfessional() {
             </div>
             
             <div className="max-w-3xl mx-auto px-6 py-4 bg-black/40 backdrop-blur-sm rounded-lg border border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.15)]">
+              <p className="text-gray-300 leading-relaxed text-lg mb-4">
+                Dijital Platformla Halk Güncelleme Süreci
+              </p>
               
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-4 mt-2">
                 <div className="text-center">
                   <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-red-900/40 flex items-center justify-center border border-red-500/50">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
