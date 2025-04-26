@@ -160,7 +160,7 @@ export default function SimayHomeProfessional() {
                 {/* Başlık */}
                 <div className="relative bg-black/40 backdrop-blur-sm py-3 px-4 rounded-full mb-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
                   <h1 className="font-bold text-5xl md:text-7xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text text-center">
-                    CUMHURİYETİN GÜNCELLENME PLATFORMU
+                    CUMHURİYET GÜNCELLENME PLATFORMU
                   </h1>
                 </div>
               </div>
