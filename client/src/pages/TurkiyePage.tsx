@@ -271,18 +271,18 @@ export default function TurkiyePage() {
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
-              onClick={() => navigate("/katil")}
+              onClick={() => navigate("/cagri")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Katılım &amp; Bağış</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Sesleniş & Çağrı</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
-              onClick={() => navigate("/cagri")}
+              onClick={() => navigate("/katil")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Sesleniş & Çağrı</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Katılım &amp; Bağış</span>
             </Button>
           </motion.div>
           
