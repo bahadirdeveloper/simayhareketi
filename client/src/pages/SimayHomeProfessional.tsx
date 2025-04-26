@@ -113,7 +113,7 @@ export default function SimayHomeProfessional() {
             </div>
             <div className="flex items-center">
               <p className="text-xs text-amber-400/80 pr-3 border-r border-amber-500/30 mr-3">
-                Cumhuriyet Güncellemesi
+                Cumhuriyet Güncellenme
               </p>
               <div className="bg-black/50 px-2 py-1 rounded text-amber-500 text-xs font-mono">
                 v2.0
@@ -160,7 +160,7 @@ export default function SimayHomeProfessional() {
                 {/* Başlık */}
                 <div className="relative bg-black/40 backdrop-blur-sm py-3 px-4 rounded-full mb-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
                   <h1 className="font-bold text-5xl md:text-7xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 text-transparent bg-clip-text text-center">
-                    CUMHURİYETİN GÜNCELLEME PLATFORMU
+                    CUMHURİYETİN GÜNCELLENME PLATFORMU
                   </h1>
                 </div>
               </div>
@@ -208,7 +208,7 @@ export default function SimayHomeProfessional() {
                         repeatType: "reverse"
                       }}
                     />
-                    <motion.span
+                    <motion.div
                       className="relative text-green-400 font-bold"
                       animate={{ 
                         opacity: [1, 0.7, 1],
@@ -220,8 +220,12 @@ export default function SimayHomeProfessional() {
                         repeatType: "reverse"
                       }}
                     >
-                      ✓
-                    </motion.span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                      </svg>
+                    </motion.div>
                   </div>
                 </div>
               </div>
