@@ -105,6 +105,7 @@ export default function ModernLayout({
         </main>
         
         <AudioControl onToggle={handleToggleAudio} />
+        <AccessibilityReader pageContent={pageContent} pageName={pageName} />
       </div>
     </>
   );

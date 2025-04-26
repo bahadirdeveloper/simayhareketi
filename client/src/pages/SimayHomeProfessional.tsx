@@ -89,7 +89,7 @@ export default function SimayHomeProfessional() {
                 
                 {/* Başlık - Daha büyük ve canlı */}
                 <div className="relative bg-gradient-to-r from-black/60 via-red-900/30 to-black/60 backdrop-blur-sm py-4 px-4 sm:px-6 rounded-full mb-8 shadow-[0_0_40px_rgba(0,0,0,0.5)] border-2 border-red-600/30">
-                  <h1 className="font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-red-600 via-white to-red-500 text-transparent bg-clip-text text-center tracking-tight">
+                  <h1 className="font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-red-600 via-white to-red-500 text-transparent bg-clip-text text-center tracking-tight text-4xl-responsive readable-text">
                     CUMHURİYET GÜNCELLENİYOR
                   </h1>
                 </div>
@@ -206,7 +206,7 @@ export default function SimayHomeProfessional() {
               <div className="flex justify-center mb-6">
                 <div className="relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 blur-md"></div>
-                  <h3 className="text-base sm:text-xl font-medium text-white relative z-10 bg-black/50 px-6 py-2 rounded-full border border-red-500/20">
+                  <h3 className="text-base sm:text-xl font-medium text-white relative z-10 bg-black/50 px-6 py-2 rounded-full border border-red-500/20 text-xl-responsive readable-text enhanced-text">
                     Dijital Platformla Halk Güncelleme Süreci
                   </h3>
                 </div>
@@ -298,8 +298,8 @@ export default function SimayHomeProfessional() {
                 </svg>
               </div>
               
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-white">TÜRKİYE</h3>
-              <p className="text-white/80 mb-6 sm:mb-8 text-lg sm:text-xl tracking-wide font-light">Toplumsal Yenileme Merkezi</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-white text-3xl-responsive readable-text high-contrast-text">TÜRKİYE</h3>
+              <p className="text-white/80 mb-6 sm:mb-8 text-lg sm:text-xl tracking-wide font-light text-lg-responsive readable-text">Toplumsal Yenileme Merkezi</p>
               
               <motion.div
                 initial={{ scale: 1 }}
