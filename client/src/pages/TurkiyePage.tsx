@@ -289,9 +289,9 @@ export default function TurkiyePage() {
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }} className="md:col-span-2">
             <Button 
               className="w-full bg-gradient-to-b from-black/70 to-red-950/50 backdrop-blur-sm border-2 border-red-600/80 hover:border-red-500 text-white hover:text-white rounded-lg p-8 text-3xl font-bold shadow-[0_0_25px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]"
-              onClick={() => navigate("/yonetim")}
+              onClick={() => navigate("/sertifika")}
             >
-              <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide">Yönetim Paneli</span>
+              <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide">Cumhuriyet Sertifikası ve Şefaf Gelir-Gider Tablosu</span>
             </Button>
           </motion.div>
         </motion.div>
