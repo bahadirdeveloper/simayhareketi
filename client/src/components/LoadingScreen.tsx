@@ -81,7 +81,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             transition={{ duration: 0.3 }}
           >
             <motion.div 
-              className="h-full bg-red-600"
+              className="h-full bg-white"
               initial={{ width: "0%" }}
               style={{ marginLeft: "40%" }}
               animate={{ width: `${progress}%` }}
