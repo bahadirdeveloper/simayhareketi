@@ -12,23 +12,217 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+// Görev arka plan görselleri
+import gorev1 from "@assets/gorev-1.webp";
+import gorev2 from "@assets/gorev-2.webp";
+import gorev3 from "@assets/gorev-3.webp";
+import gorev4 from "@assets/gorev-4.webp";
+import gorev5 from "@assets/gorev-5.webp";
+import gorev6 from "@assets/gorev-6.webp";
+import gorev7 from "@assets/gorev-7.webp";
+import gorev8 from "@assets/gorev-8.webp";
+import gorev9 from "@assets/gorev-9.webp";
+import gorev10 from "@assets/gorev-10.webp";
+import gorev11 from "@assets/gorev-11.webp";
+import gorev12 from "@assets/gorev-12.webp";
+import gorev13 from "@assets/gorev-13.webp";
+import gorev14 from "@assets/gorev-14.webp";
+import gorev15 from "@assets/gorev-15.webp";
+import gorev16 from "@assets/gorev-16.webp";
+import gorev17 from "@assets/gorev-17.webp";
+import gorev18 from "@assets/gorev-18.webp";
+import gorev19 from "@assets/gorev-19.webp";
+import gorev20 from "@assets/gorev-20.webp";
+import gorev21 from "@assets/gorev-21.webp";
+import gorev22 from "@assets/gorev-22.webp";
+import gorev23 from "@assets/gorev-23.webp";
+import gorev24 from "@assets/gorev-24.webp";
+import gorev25 from "@assets/gorev-25.webp";
+import gorev26 from "@assets/gorev-26.webp";
+import gorev27 from "@assets/gorev-27.webp";
+import gorev28 from "@assets/gorev-28.webp";
+import gorev29 from "@assets/gorev-29.webp";
+import gorev30 from "@assets/gorev-30.webp";
+import gorev31 from "@assets/gorev-31.webp";
+import gorev32 from "@assets/gorev-32.webp";
+import gorev33 from "@assets/gorev-33.webp";
+import gorev34 from "@assets/gorev-34.webp";
+import gorev35 from "@assets/gorev-35.webp";
+import gorev36 from "@assets/gorev-36.webp";
+import gorev37 from "@assets/gorev-37.webp";
+import gorev38 from "@assets/gorev-38.webp";
+import gorev39 from "@assets/gorev-39.webp";
+import gorev40 from "@assets/gorev-40.webp";
+import gorev41 from "@assets/gorev-41.webp";
+import gorev42 from "@assets/gorev-42.webp";
+import gorev43 from "@assets/gorev-43.webp";
+import gorev44 from "@assets/gorev-44.webp";
+import gorev45 from "@assets/gorev-45.webp";
+import gorev46 from "@assets/gorev-46.webp";
+import gorev47 from "@assets/gorev-47.webp";
+import gorev48 from "@assets/gorev-48.webp";
+import gorev49 from "@assets/gorev-49.webp";
+import gorev50 from "@assets/gorev-50.webp";
+import gorev51 from "@assets/gorev-51.webp";
+import gorev52 from "@assets/gorev-52.webp";
+import gorev53 from "@assets/gorev-53.webp";
+import gorev54 from "@assets/gorev-54.webp";
+import gorev55 from "@assets/gorev-55.webp";
+import gorev56 from "@assets/gorev-56.webp";
+import gorev57 from "@assets/gorev-57.webp";
+import gorev58 from "@assets/gorev-58.webp";
+import gorev59 from "@assets/gorev-59.webp";
+import gorev60 from "@assets/gorev-60.webp";
+import gorev61 from "@assets/gorev-61.webp";
+import gorev62 from "@assets/gorev-62.webp";
+import gorev63 from "@assets/gorev-63.webp";
+import gorev64 from "@assets/gorev-64.webp";
+import gorev65 from "@assets/gorev-65.webp";
+import gorev66 from "@assets/gorev-66.webp";
+import gorev67 from "@assets/gorev-67.webp";
+import gorev68 from "@assets/gorev-68.webp";
+import gorev69 from "@assets/gorev-69.webp";
+import gorev70 from "@assets/gorev-70.webp";
+import gorev71 from "@assets/gorev-71.webp";
+import gorev72 from "@assets/gorev-72.webp";
+import gorev73 from "@assets/gorev-73.webp";
+import gorev74 from "@assets/gorev-74.webp";
+import gorev75 from "@assets/gorev-75.webp";
+import gorev76 from "@assets/gorev-76.webp";
+import gorev77 from "@assets/gorev-77.webp";
+import gorev78 from "@assets/gorev-78.webp";
+import gorev79 from "@assets/gorev-79.webp";
+import gorev80 from "@assets/gorev-80.webp";
+import gorev81 from "@assets/gorev-81.webp";
+import gorev82 from "@assets/gorev-82.webp";
+import gorev83 from "@assets/gorev-83.webp";
+import gorev84 from "@assets/gorev-84.webp";
+import gorev85 from "@assets/gorev-85.webp";
+import gorev86 from "@assets/gorev-86.webp";
+import gorev87 from "@assets/gorev-87.webp";
+import gorev88 from "@assets/gorev-88.webp";
+import gorev89 from "@assets/gorev-89.webp";
+import gorev90 from "@assets/gorev-90.webp";
+import gorev91 from "@assets/gorev-91.webp";
+import gorev92 from "@assets/gorev-92.webp";
+import gorev93 from "@assets/gorev-93.webp";
+import gorev94 from "@assets/gorev-94.webp";
+import gorev95 from "@assets/gorev-95.webp";
+import gorev96 from "@assets/gorev-96.webp";
+import gorev97 from "@assets/gorev-97.webp";
+import gorev98 from "@assets/gorev-98.webp";
+import gorev99 from "@assets/gorev-99.webp";
+import gorev100 from "@assets/gorev-100.webp";
+
 // Görev arka plan görselleri için arka plan fonksiyonu
-const generateBackgroundSVG = (id: number) => {
-  // İlk 10 pattern için önceden tanımlanmış SVG'leri kullan
-  if (id >= 0 && id < 10) {
-    return standardPatterns[id];
+const getGorevBackgroundImage = (id: number) => {
+  // ID'ye göre uygun görsel dosyasını döndür
+  switch(id) {
+    case 1: return gorev1;
+    case 2: return gorev2;
+    case 3: return gorev3;
+    case 4: return gorev4;
+    case 5: return gorev5;
+    case 6: return gorev6;
+    case 7: return gorev7;
+    case 8: return gorev8;
+    case 9: return gorev9;
+    case 10: return gorev10;
+    case 11: return gorev11;
+    case 12: return gorev12;
+    case 13: return gorev13;
+    case 14: return gorev14;
+    case 15: return gorev15;
+    case 16: return gorev16;
+    case 17: return gorev17;
+    case 18: return gorev18;
+    case 19: return gorev19;
+    case 20: return gorev20;
+    case 21: return gorev21;
+    case 22: return gorev22;
+    case 23: return gorev23;
+    case 24: return gorev24;
+    case 25: return gorev25;
+    case 26: return gorev26;
+    case 27: return gorev27;
+    case 28: return gorev28;
+    case 29: return gorev29;
+    case 30: return gorev30;
+    case 31: return gorev31;
+    case 32: return gorev32;
+    case 33: return gorev33;
+    case 34: return gorev34;
+    case 35: return gorev35;
+    case 36: return gorev36;
+    case 37: return gorev37;
+    case 38: return gorev38;
+    case 39: return gorev39;
+    case 40: return gorev40;
+    case 41: return gorev41;
+    case 42: return gorev42;
+    case 43: return gorev43;
+    case 44: return gorev44;
+    case 45: return gorev45;
+    case 46: return gorev46;
+    case 47: return gorev47;
+    case 48: return gorev48;
+    case 49: return gorev49;
+    case 50: return gorev50;
+    case 51: return gorev51;
+    case 52: return gorev52;
+    case 53: return gorev53;
+    case 54: return gorev54;
+    case 55: return gorev55;
+    case 56: return gorev56;
+    case 57: return gorev57;
+    case 58: return gorev58;
+    case 59: return gorev59;
+    case 60: return gorev60;
+    case 61: return gorev61;
+    case 62: return gorev62;
+    case 63: return gorev63;
+    case 64: return gorev64;
+    case 65: return gorev65;
+    case 66: return gorev66;
+    case 67: return gorev67;
+    case 68: return gorev68;
+    case 69: return gorev69;
+    case 70: return gorev70;
+    case 71: return gorev71;
+    case 72: return gorev72;
+    case 73: return gorev73;
+    case 74: return gorev74;
+    case 75: return gorev75;
+    case 76: return gorev76;
+    case 77: return gorev77;
+    case 78: return gorev78;
+    case 79: return gorev79;
+    case 80: return gorev80;
+    case 81: return gorev81;
+    case 82: return gorev82;
+    case 83: return gorev83;
+    case 84: return gorev84;
+    case 85: return gorev85;
+    case 86: return gorev86;
+    case 87: return gorev87;
+    case 88: return gorev88;
+    case 89: return gorev89;
+    case 90: return gorev90;
+    case 91: return gorev91;
+    case 92: return gorev92;
+    case 93: return gorev93;
+    case 94: return gorev94;
+    case 95: return gorev95;
+    case 96: return gorev96;
+    case 97: return gorev97;
+    case 98: return gorev98;
+    case 99: return gorev99;
+    case 100: return gorev100;
+    // Görev 0 için default arka plan
+    case 0: 
+    default: 
+      return standardPatterns[0];
   }
-  
-  // Görev ID'sine göre renk ve pattern seçimi
-  const colorIndex = id % backgroundColors.length;
-  const patternIndex = Math.floor(id / 10) % backgroundPatterns.length;
-  
-  // Renkleri belirle
-  const color1 = backgroundColors[colorIndex][0];
-  const color2 = backgroundColors[colorIndex][1];
-  
-  // Pattern oluştur
-  return backgroundPatterns[patternIndex](color1, color2, id);
 };
 
 // Standart SVG pattern şablonları
