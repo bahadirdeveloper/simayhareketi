@@ -1,24 +1,68 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
 import MatrixBackground from "@/components/MatrixBackground";
 import MatrixLogo from "@/components/MatrixLogo";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { initAudio, playSoundtrack } from "@/lib/audio";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
+  const [, navigate] = useLocation();
+  const { toast } = useToast();
   
   useEffect(() => {
     // Initialize audio system
     initAudio();
-  }, []);
+    
+    // Record visitor stats
+    const recordVisit = async () => {
+      try {
+        await apiRequest(
+          "POST", 
+          "/api/visits", 
+          {
+            language: i18n.language || "tr",
+            hasInteracted: false
+          }
+        );
+      } catch (error) {
+        console.error("Failed to record visit:", error);
+        // Don't show errors to the user for analytics
+      }
+    };
+    
+    recordVisit();
+  }, [i18n.language]);
 
   const handleToggleAudio = () => {
     playSoundtrack();
+    
+    // Record user interaction
+    const updateInteraction = async () => {
+      try {
+        await apiRequest("/api/visits", {
+          method: "POST",
+          body: JSON.stringify({
+            language: i18n.language || "tr",
+            hasInteracted: true
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (error) {
+        console.error("Failed to record interaction:", error);
+      }
+    };
+    
+    updateInteraction();
   };
 
   const handleLoadingComplete = () => {
