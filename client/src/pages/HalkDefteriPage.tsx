@@ -12,6 +12,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+interface ManifestoEntry {
+  id: number;
+  title: string;
+  content: string;
+}
 
 interface FeedbackEntry {
   id: number;
@@ -35,13 +42,77 @@ export default function HalkDefteriPage() {
     message: ""
   });
   
-  // Feedback entries state
-  const [entries, setEntries] = useState<FeedbackEntry[]>([
+  // Manifesto entries
+  const [manifestoEntries] = useState<ManifestoEntry[]>([
+    {
+      id: 1,
+      title: "ÖLÜMSÜZLÜK FİKİRLE BAŞLAR",
+      content: "Ölmüş insanları dondurmak bir çözüm değildir. Beden yeniden var olabilir, hem de demirden bir beden. Ancak o bedene hayat veren anılar, duygular ve yaşanmışlıklar yoksa, o beden yalnızca boş bir kabuktur. Mustafa Kemal ve diğer önderler, fikirleriyle yaşamaya devam etmektedir. Gerçek ölümsüzlük, zihinlerde yaşayan bir iz, bir fikirdir."
+    },
+    {
+      id: 2,
+      title: "HALKIN İRADESİ",
+      content: "Bu sistem, hiçbir otoritenin, kurumun ya da zümrenin değil, doğrudan halkın kendi bilinç gücüyle şekillendirdiği bir düzendir."
+    },
+    {
+      id: 3,
+      title: "ZİNCİR VİCDANIYLA BAŞLAR",
+      content: "Bu zincir, akılla değil yalnızca vicdanla bağlanabilir. Her katılım bir kalbin onayı, bir insanın öz benliğiyle verdiği sözdür."
+    },
+    {
+      id: 4,
+      title: "GÖRÜNMEYENİN GÜCÜ",
+      content: "Bu yapı, görünen liderler veya öncülerle değil; görünmeyen, bilinçten doğan ortak akılla yönetilir. Hiçbir kişi sistemin önüne geçemez."
+    },
+    {
+      id: 5,
+      title: "ADALET HERKESİN YÜZÜNDEN OKUNMALI",
+      content: "Yazılı kanunlardan önce halkın yüzünde okunabilen bir adalet gerekir. Bu sistem, yalnızca hukuka değil, insanın gözlerine bakarak hükmeder."
+    },
+    {
+      id: 6,
+      title: "SİSTEMLER GELİR GEÇER, BİLİNÇ KALIR",
+      content: "Bu yapı geçici bir yönetim şekli değil, kalıcı bir bilinç sıçramasıdır. Hiçbir makam, hiçbir yasa halkın öz benliğini aşamaz."
+    },
+    {
+      id: 7,
+      title: "TEK YOL ŞEFFAFLIKTIR",
+      content: "Bu yapıda hiçbir bilgi halktan gizlenemez. Tüm harcamalar, kararlar ve uygulamalar açık ve izlenebilir olmalıdır."
+    },
+    {
+      id: 8,
+      title: "HER İNSAN BİR ZİNCİR HALKASIDIR",
+      content: "Sistemi sadece yönetenler değil, izleyenler de inşa eder. Her birey zincirdeki yerini aldığında halk gerçek olur."
+    },
+    {
+      id: 9, 
+      title: "LAİKLİK, HALKIN AKIL ÖZGÜRLÜĞÜDÜR",
+      content: "Bu yapıda laiklik, yalnızca dinle devletin ayrımı değil; halkın akıl, inanç ve düşünce özgürlüğünün teminatıdır. Hiçbir inanç, diğerine üstün değildir."
+    },
+    {
+      id: 10,
+      title: "ATATÜRK SADECE TARİHİN DEĞİL, GELECEĞİN ÖNCÜSÜDÜR",
+      content: "Bu yapı, Mustafa Kemal'in halkçılık, bilim ve özgürlük ilkelerini yalnız anmakla kalmaz; gelecek yüzyıllara kodlar."
+    },
+    {
+      id: 11,
+      title: "CUMHURİYETİN RUHU HALKIN ÖZGÜRLÜĞÜDÜR",
+      content: "Bu yapı, cumhuriyeti yalnızca bir yönetim biçimi değil, halkın kendi kaderini tayin hakkı olarak görür. Bu ruh sonsuza dek yaşatılacaktır."
+    },
+    {
+      id: 12,
+      title: "ZİNCİRİN SON HALKASI SENSİN",
+      content: "Manifesto burada biter, ama görev şimdi başlar. Zincirin tamamlanması, halkın tek tek bilinçle ayağa kalkmasına bağlıdır. Son halka sensin."
+    },
+  ]);
+  
+  // Halk Defteri entries
+  const [entries] = useState<FeedbackEntry[]>([
     {
       id: 1,
       name: "Ahmet Yılmaz",
       city: "İstanbul",
-      message: "Atatürk'ün izinde mücadeleye devam. Cumhuriyet değerlerimizi korumak ve geliştirmek için hep birlikte çalışmalıyız.",
+      message: "İlk fikir: Sistemi tamamen dağıt ama geri toplayabileceğin yapısal bir iz bırak.",
       date: "15 Mart 2025",
       approved: true
     },
@@ -49,7 +120,7 @@ export default function HalkDefteriPage() {
       id: 2,
       name: "Ayşe Kaya",
       city: "Ankara",
-      message: "Bu platform sayesinde fikirlerimizi özgürce paylaşabileceğimiz bir alan oluştu. Cumhuriyetin değerini bilen ve koruyan herkes için minnettarım.",
+      message: "Ne zaman başladığını hatırlamıyorsan, hâlâ başlamış sayılmazsın.",
       date: "28 Mart 2025",
       approved: true
     },
@@ -57,7 +128,7 @@ export default function HalkDefteriPage() {
       id: 3,
       name: "Mehmet Demir",
       city: "İzmir",
-      message: "Türkiye'nin geleceğini şekillendirmek için bilim ve aklın ışığında ilerlemeliyiz. Bu platformun vizyonu tam olarak bunu yansıtıyor.",
+      message: "Atatürk bir yazılım mühendisi olsaydı neyi önce kodlardı?",
       date: "5 Nisan 2025",
       approved: true
     },
@@ -65,7 +136,7 @@ export default function HalkDefteriPage() {
       id: 4,
       name: "Zeynep Şahin",
       city: "Antalya",
-      message: "Fen, bilim ve vicdanın ışığında ilerleyen bir Türkiye görmek istiyorum. Çocuklarımıza böyle bir ülke bırakmak en büyük sorumluluğumuz.",
+      message: "Ben kimim? sorusu değil, Kimi bekliyorum? sorusu daha tehlikelidir.",
       date: "12 Nisan 2025",
       approved: true
     },
@@ -73,8 +144,32 @@ export default function HalkDefteriPage() {
       id: 5,
       name: "Mustafa Özcan",
       city: "Eskişehir",
-      message: "Gençlerin sesine kulak veren bir sistem olması çok önemli. Artık geleceğimizi kendi ellerimizle şekillendirme zamanı.",
+      message: "Bazen ülke değiştirmek değil, frekans değiştirmek gerekir.",
       date: "19 Nisan 2025",
+      approved: true
+    },
+    {
+      id: 6,
+      name: "Kemal Yıldız",
+      city: "Bursa",
+      message: "Akıl bir yoldur. Kalp bir yakıttır. Cesaret ise kontağı çevirendir.",
+      date: "22 Nisan 2025",
+      approved: true
+    },
+    {
+      id: 7,
+      name: "Elif Çetin",
+      city: "Adana",
+      message: "Türk olmak, vicdanı körelmeyen, merhameti unutmayan bir yürekle yürümektir.",
+      date: "25 Nisan 2025",
+      approved: true
+    },
+    {
+      id: 8,
+      name: "Ali Kara",
+      city: "Samsun",
+      message: "Türk olmak, Mustafa Kemal gibi 'Hayır!' diyebilmektir. Korkmadan, susmadan, dimdik.",
+      date: "26 Nisan 2025",
       approved: true
     }
   ]);
@@ -182,7 +277,7 @@ export default function HalkDefteriPage() {
       
       {/* Erişilebilirlik Okuyucu */}
       <AccessibilityReader 
-        pageContent="Halk Defteri sayfasına hoş geldiniz. Bu sayfada, vatandaşların düşünce ve önerilerini paylaştığı bir platform bulunmaktadır. İnsanların Cumhuriyet değerleri ile ilgili görüşlerini okuyabilir ve kendi mesajınızı da ekleyebilirsiniz."
+        pageContent="Halk Defteri ve Manifestolar sayfasına hoş geldiniz. Bu sayfada, vatandaşların düşünce ve önerilerini paylaştığı bir platform ve Cumhuriyet'in manifestolarını bulacaksınız. Fikirlerinizi paylaşabilir ve diğer vatandaşların görüşlerini okuyabilirsiniz."
         pageName="halk-defteri" 
       />
       
@@ -241,24 +336,24 @@ export default function HalkDefteriPage() {
       </motion.div>
       
       <main className="container mx-auto px-4 pb-24 pt-16 z-10 relative">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Header Section */}
           <motion.div 
-            className="text-center mb-12"
+            className="text-center mb-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4">
-              HALK DEFTERİ
+              HALK DEFTERİ & MANİFESTOLAR
             </h1>
-            <h2 className="text-2xl md:text-3xl font-medium text-white/90 mb-8">
-              Vatandaşların Sesi ve Düşünceleri
+            <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-4">
+              Geleceğin Sözleri, Halkın Sesleri
             </h2>
             
             {/* Intro Section */}
             <motion.div
-              className="relative flex justify-center mb-10"
+              className="relative flex justify-center mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -266,117 +361,164 @@ export default function HalkDefteriPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-lg blur-xl"></div>
               <div className="bg-gradient-to-r from-red-950/60 to-black/70 backdrop-blur-sm p-6 border-2 border-red-600/50 rounded-lg shadow-[0_0_30px_rgba(220,38,38,0.25)] max-w-3xl relative z-10">
                 <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4">
-                  Halk Defteri, vatandaşların düşüncelerini, önerilerini ve dileklerini paylaşabilecekleri bir platformdur. Burada yazdıklarınız, geleceğin Türkiyesi'nin inşasında bir tuğla olacak ve tarihe tanıklık edecektir.
+                  Bu sayfa, vatandaşların değerli düşüncelerini ve geleceğe dair manifestoları bir araya getiriyor. Aşağıda, Cumhuriyet değerlerini koruyan ve geliştiren fikirler ve manifestolar bulacaksınız.
                 </p>
                 <p className="text-white/80 text-lg">
-                  Aşağıdaki forma düşüncelerinizi yazın, Cumhuriyet'in güncellenmesine katkıda bulunun!
+                  Her düşünce bir tohum, her manifesto bir gelecek vizyonudur. Siz de katkıda bulunun!
                 </p>
-              </div>
-            </motion.div>
-          </motion.div>
-          
-          {/* Main Content Grid - Form and Entries side by side on larger screens */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Message Form Section */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="order-2 lg:order-1"
-            >
-              <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                <h3 className="text-2xl font-bold text-white mb-6 text-center">Mesajınızı Bırakın</h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-white text-lg">Adınız Soyadınız:</Label>
-                    <Input 
-                      id="name" 
-                      name="name" 
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                      placeholder="Adınız ve soyadınız"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="city" className="text-white text-lg">Şehriniz:</Label>
-                    <Input 
-                      id="city" 
-                      name="city" 
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                      placeholder="Yaşadığınız şehir"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-white text-lg">Mesajınız:</Label>
-                    <Textarea 
-                      id="message" 
-                      name="message" 
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={6}
-                      className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                      placeholder="Düşüncelerinizi ve önerilerinizi yazın..."
-                    />
-                    <p className="text-white/60 text-sm italic">
-                      En az 20 karakter yazınız. Mesajınız incelendikten sonra Halk Defteri'ne eklenecektir.
-                    </p>
-                  </div>
-                  
-                  <div className="flex justify-center mt-6">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button 
-                        type="submit"
-                        className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-800 text-white px-10 py-5 rounded-lg shadow-lg font-bold text-lg"
-                      >
-                        MESAJI GÖNDER
-                      </Button>
-                    </motion.div>
-                  </div>
-                </form>
               </div>
             </motion.div>
             
-            {/* Entries Display Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="order-1 lg:order-2"
-            >
-              <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                <h3 className="text-2xl font-bold text-white mb-6 text-center">Vatandaş Mesajları</h3>
+            <div className="flex justify-center mt-8 mb-2">
+              <Tabs defaultValue="manifesto" className="w-full max-w-4xl">
+                <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-black/60 to-red-950/50 backdrop-blur-sm border border-red-500/30">
+                  <TabsTrigger value="manifesto" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Manifestolar</TabsTrigger>
+                  <TabsTrigger value="halkdefteri" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Halk Defteri</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </motion.div>
+          
+          <TabsContent value="manifesto" className="mt-6">
+            <div className="space-y-6">
+              {/* Manifestolar */}
+              <motion.div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">HALKIN SON SÖZÜ MANİFESTOSU</h3>
                 
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                  {entries.map(entry => (
+                <p className="text-white/80 text-center italic mb-6">
+                  "Bu bir belge değil, bir başlangıçtır. Manifesto burada biter, ama görev şimdi başlar."
+                </p>
+                
+                <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+                  {manifestoEntries.map(entry => (
                     <motion.div 
                       key={entry.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.1 * entry.id }}
-                      className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-4 rounded-lg border border-red-600/30 hover:border-red-500/50 transition-all duration-300 shadow-md"
+                      transition={{ duration: 0.5, delay: 0.05 * entry.id }}
+                      className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-5 rounded-lg border border-red-600/30 hover:border-red-500/50 transition-all duration-300 shadow-md"
                     >
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <p className="text-lg font-bold text-white">{entry.name}</p>
-                          <p className="text-sm text-red-400">{entry.city}</p>
-                        </div>
-                        <p className="text-xs text-white/60">{entry.date}</p>
-                      </div>
+                      <h4 className="text-xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-3">
+                        {entry.id}. {entry.title}
+                      </h4>
                       <p className="text-white/90 leading-relaxed">
-                        {entry.message}
+                        {entry.content}
                       </p>
                     </motion.div>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          </div>
+                
+                <div className="mt-6 text-center">
+                  <p className="text-red-500 font-bold">ZİNCİRİN SON HALKASI SENSİN</p>
+                  <p className="text-white/70 text-sm mt-1">Bu belge yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı.</p>
+                </div>
+              </motion.div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="halkdefteri" className="mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Message Form Section */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="order-2 lg:order-1"
+              >
+                <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Mesajınızı Bırakın</h3>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white text-lg">Adınız Soyadınız:</Label>
+                      <Input 
+                        id="name" 
+                        name="name" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        placeholder="Adınız ve soyadınız"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="city" className="text-white text-lg">Şehriniz:</Label>
+                      <Input 
+                        id="city" 
+                        name="city" 
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        placeholder="Yaşadığınız şehir"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-white text-lg">Mesajınız:</Label>
+                      <Textarea 
+                        id="message" 
+                        name="message" 
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={6}
+                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        placeholder="Düşüncelerinizi ve önerilerinizi yazın..."
+                      />
+                      <p className="text-white/60 text-sm italic">
+                        En az 20 karakter yazınız. Mesajınız incelendikten sonra Halk Defteri'ne eklenecektir.
+                      </p>
+                    </div>
+                    
+                    <div className="flex justify-center mt-6">
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Button 
+                          type="submit"
+                          className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-800 text-white px-10 py-5 rounded-lg shadow-lg font-bold text-lg"
+                        >
+                          MESAJI GÖNDER
+                        </Button>
+                      </motion.div>
+                    </div>
+                  </form>
+                </div>
+              </motion.div>
+              
+              {/* Entries Display Section */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="order-1 lg:order-2"
+              >
+                <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Vatandaş Mesajları</h3>
+                  
+                  <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                    {entries.map(entry => (
+                      <motion.div 
+                        key={entry.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 * entry.id }}
+                        className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-4 rounded-lg border border-red-600/30 hover:border-red-500/50 transition-all duration-300 shadow-md"
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <p className="text-lg font-bold text-white">{entry.name}</p>
+                            <p className="text-sm text-red-400">{entry.city}</p>
+                          </div>
+                          <p className="text-xs text-white/60">{entry.date}</p>
+                        </div>
+                        <p className="text-white/90 leading-relaxed">
+                          {entry.message}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </TabsContent>
           
           {/* Bottom Quote */}
           <motion.div
