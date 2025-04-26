@@ -122,18 +122,18 @@ export default function TurkNedirPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">
-            TÜRKİYE
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">
+            TÜRK NEDİR?
           </h1>
         </motion.div>
         
         <motion.div
-          className="max-w-3xl mx-auto text-center mb-16 bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm p-8 rounded-lg border border-red-500/50 shadow-[0_0_15px_rgba(220,38,38,0.15)]"
+          className="max-w-4xl mx-auto text-center mb-16 bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm p-10 rounded-lg border-2 border-red-600/60 shadow-[0_0_20px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)] transition-shadow duration-300"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <p className="text-xl md:text-2xl text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text leading-relaxed mb-8 font-semibold">
+          <p className="text-2xl md:text-3xl lg:text-4xl text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text leading-relaxed mb-10 font-bold tracking-wide">
             Türk, sadece bir ırk ya da coğrafya değildir. Türk; bir duruştur, bir vicdandır, bir direniştir.<br />
             Adalete susamış halkların yüreğidir, tarihin en derin izidir.
           </p>
@@ -146,7 +146,7 @@ export default function TurkNedirPage() {
             whileHover={{ scale: 1.03 }}
           >
             <Button
-              className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-700 text-white text-xl px-8 py-6 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all duration-300"
+              className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-800 text-white text-2xl px-10 py-8 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition-all duration-300 font-bold tracking-wide"
               onClick={() => navigate("/turk-nedir-detay")}
             >
               DAMARLARIMDA HİSSEDİYORUM
@@ -164,7 +164,7 @@ export default function TurkNedirPage() {
           <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               variant="outline"
-              className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
+              className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-8 py-6 text-xl font-bold tracking-wide"
               onClick={() => navigate("/turkiye")}
             >
               Türkiye Sayfasına Dön
@@ -174,7 +174,7 @@ export default function TurkNedirPage() {
           <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               variant="outline"
-              className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
+              className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-8 py-6 text-xl font-bold tracking-wide"
               onClick={() => navigate("/")}
             >
               Ana Sayfa

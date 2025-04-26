@@ -270,28 +270,28 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/katil")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">Katılım</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Katılım</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm border border-red-500/50 hover:border-red-400 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.1)] hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/cagri")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-500 to-white text-transparent bg-clip-text">Sesleniş & Çağrı</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Sesleniş & Çağrı</span>
             </Button>
           </motion.div>
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }} className="md:col-span-2">
             <Button 
-              className="w-full bg-gradient-to-b from-black/60 to-red-950/40 backdrop-blur-sm border border-red-600/70 hover:border-red-500 text-white hover:text-white rounded-lg p-6 text-xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
+              className="w-full bg-gradient-to-b from-black/70 to-red-950/50 backdrop-blur-sm border-2 border-red-600/80 hover:border-red-500 text-white hover:text-white rounded-lg p-8 text-3xl font-bold shadow-[0_0_25px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]"
               onClick={() => navigate("/yonetim")}
             >
-              <span className="text-gradient bg-gradient-to-r from-white to-red-500 text-transparent bg-clip-text">Yönetim Paneli</span>
+              <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide">Yönetim Paneli</span>
             </Button>
           </motion.div>
         </motion.div>
@@ -306,7 +306,7 @@ export default function TurkiyePage() {
         >
           <Button 
             variant="outline"
-            className="border-red-500/50 text-red-500 hover:bg-red-950/20 hover:text-white"
+            className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white px-8 py-6 text-xl font-bold tracking-wide"
             onClick={() => navigate("/")}
           >
             Ana Sayfa'ya Dön
