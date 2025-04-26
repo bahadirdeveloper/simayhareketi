@@ -371,9 +371,10 @@ export default function GorevlerPage() {
                         : 'border-amber-500'
                   } rounded-lg p-5 hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
                   style={gorev.id > 0 && gorev.id <= 100 ? {
-                    backgroundImage: `url('/images/images/gorev-${gorev.id}.webp')`,
+                    backgroundImage: `url('/images/gorev-${gorev.id}.webp')`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
                   } : {}}
                 >
                   {/* Overlay to make text readable */}
