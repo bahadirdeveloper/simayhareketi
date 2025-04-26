@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import SimpleBurningEarth from "@/components/SimpleBurningEarth";
 import AudioControl from "@/components/AudioControl";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,12 @@ export default function TurkiyePage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <SimpleBurningEarth />
+      
+      {/* Erişilebilirlik Okuyucu */}
+      <AccessibilityReader 
+        pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Cumhuriyet ile yeniden güncelleniyor. Genel katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Manifesto bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
+        pageName="turkiye" 
+      />
       
       <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen">
         {/* Türk Deseni Üstbilgi */}

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import SimpleBurningEarth from "@/components/SimpleBurningEarth";
 import AudioControl from "@/components/AudioControl";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -53,6 +54,12 @@ export default function TurkNedirPage() {
       
       {/* Backdrop overlay for better text visibility */}
       <div className="fixed inset-0 bg-black/60 z-0"></div>
+      
+      {/* Erişilebilirlik Okuyucu */}
+      <AccessibilityReader 
+        pageContent="Türk Nedir sayfasına hoş geldiniz. Türk, sadece bir ırk ya da coğrafya değildir. Türk; bir duruştur, bir vicdandır, bir direniştir. Adalete susamış halkların yüreğidir, tarihin en derin izidir. Bu sayfada Türklük kavramının derin anlamını keşfedebilirsiniz. Damarlarımda hissediyorum butonuna tıklayarak daha fazla bilgi edinebilirsiniz."
+        pageName="turknedir" 
+      />
       
       <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-16">
         {/* Türk Deseni Üstbilgi */}

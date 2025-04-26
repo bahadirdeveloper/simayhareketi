@@ -6,6 +6,7 @@ import SimpleBurningEarth from "@/components/SimpleBurningEarth";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -72,6 +73,12 @@ export default function SimayHomeProfessional() {
       
       <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
         <SimpleBurningEarth />
+        
+        {/* Erişilebilirlik Okuyucu */}
+        <AccessibilityReader 
+          pageContent="Cumhuriyet Güncellenme Platformu ana sayfasına hoş geldiniz. Bu platformda Türkiye Cumhuriyeti'nin 2. Yüzyılına dair görevleri görebilir, Türk kültürü ve tarihi hakkında bilgi edinebilir, anayasa metinlerine ulaşabilirsiniz. Mevcut katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada Görevler, Katıl, Türkiye, Anayasa ve Çağrı bölümlerini ziyaret edebilirsiniz."
+          pageName="home" 
+        />
         
         {/* Türk Deseni Üstbilgi */}
         <div className="w-full bg-gradient-to-r from-blue-950/70 via-black/60 to-blue-950/70 backdrop-blur-sm border-b border-amber-500/40 py-2 z-20 absolute top-0 left-0 overflow-hidden shadow-md">
