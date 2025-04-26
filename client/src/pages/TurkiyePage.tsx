@@ -72,9 +72,23 @@ export default function TurkiyePage() {
             🇹🇷 TÜRKİYE
           </h1>
           <div className="flex flex-col items-center mb-3">
-            <p className="text-2xl md:text-4xl text-amber-400 font-bold mb-2">
+            <div className="text-2xl md:text-4xl text-amber-400 font-bold mb-2 flex items-center justify-center">
               📣 Cumhuriyet ile Yeniden Güncelleniyor ⚖️
-            </p>
+              <motion.span
+                className="ml-2 text-green-400"
+                animate={{ 
+                  opacity: [1, 0.5, 1],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              >
+                ✓
+              </motion.span>
+            </div>
             <div className="relative w-64 h-8 flex items-center justify-center">
               <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
               <motion.div 

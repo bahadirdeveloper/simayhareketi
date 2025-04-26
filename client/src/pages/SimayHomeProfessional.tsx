@@ -86,8 +86,22 @@ export default function SimayHomeProfessional() {
             </h1>
             
             <div className="flex flex-col items-center justify-center mb-4">
-              <div className="text-2xl text-amber-300 mb-2">
+              <div className="text-2xl text-amber-300 mb-2 flex items-center justify-center">
                 Cumhuriyet ile Güncelleniyoruz
+                <motion.span
+                  className="ml-2 text-green-400"
+                  animate={{ 
+                    opacity: [1, 0.5, 1],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
+                  ✓
+                </motion.span>
               </div>
               <div className="relative w-48 h-8 flex items-center justify-center">
                 <div className="absolute w-full h-1 bg-gray-600 rounded-full"></div>
