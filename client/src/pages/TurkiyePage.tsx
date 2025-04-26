@@ -288,12 +288,12 @@ export default function TurkiyePage() {
           
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }} className="md:col-span-2">
             <Button 
-              className="w-full bg-gradient-to-r from-emerald-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/80 hover:border-red-500 text-white hover:text-white rounded-lg p-6 text-3xl font-bold shadow-[0_0_25px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]"
+              className="w-full bg-gradient-to-r from-emerald-900/80 to-red-900/50 backdrop-blur-sm border-2 border-red-600/80 hover:border-red-500 text-white hover:text-white rounded-lg p-6 font-bold shadow-[0_0_25px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]"
               onClick={() => navigate("/sertifika")}
             >
               <div className="flex flex-col">
-                <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide">Cumhuriyet Sertifikası</span>
-                <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-xl mt-1">ve Şefaf Gelir-Gider Tablosu</span>
+                <span className="text-gradient bg-gradient-to-r from-white to-red-600 text-transparent bg-clip-text tracking-wide text-xl">Cumhuriyet Sertifikası</span>
+                <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide text-lg mt-1">ve Şefaf Gelir-Gider Tablosu</span>
               </div>
             </Button>
           </motion.div>
