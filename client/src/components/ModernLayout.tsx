@@ -3,31 +3,33 @@ import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
 import AudioControl from './AudioControl';
-import { initAudio, playSoundtrack } from '@/lib/audio';
 import LanguageSelector from './LanguageSelector';
+import AccessibilityReader from './AccessibilityReader';
+import { initAudio, playSoundtrack } from '@/lib/audio';
 
-interface PageLayoutProps {
+interface ModernLayoutProps {
   children: ReactNode;
   audioKey?: string;
   showLanguageSelector?: boolean;
-  showBackNavigation?: boolean;
-  className?: string;
+  showBackButton?: boolean;
+  pageContent?: string;
+  pageName?: string;
 }
 
-export default function PageLayout({
+export default function ModernLayout({
   children,
   audioKey = 'home',
   showLanguageSelector = false,
-  showBackNavigation = false,
-  className = ''
-}: PageLayoutProps) {
+  showBackButton = false,
+  pageContent = "Cumhuriyet Güncellenme Platformuna hoş geldiniz. Bu platformda güncel bilgilere erişebilir, Türkiye'nin dijital dönüşümüne katkıda bulunabilirsiniz.",
+  pageName = "Anasayfa"
+}: ModernLayoutProps) {
   const [, navigate] = useLocation();
 
   useEffect(() => {
-    // Initialize audio system
     initAudio(audioKey);
     
-    // Record page visit
+    // Record visit
     const recordVisit = async () => {
       try {
         await fetch('/api/visits', {
@@ -37,7 +39,7 @@ export default function PageLayout({
           },
           body: JSON.stringify({
             path: window.location.pathname,
-            referrer: document.referrer || "",
+            referrer: document.referrer || '',
           }),
         });
       } catch (error) {
@@ -48,9 +50,8 @@ export default function PageLayout({
     recordVisit();
   }, [audioKey]);
 
-  const handleToggleAudio = (isPlaying = false) => {
-    // Audio toggle logic is handled within the AudioControl component
-    console.log('Audio is now', isPlaying ? 'playing' : 'paused');
+  const handleToggleAudio = () => {
+    playSoundtrack();
   };
 
   return (
@@ -58,50 +59,38 @@ export default function PageLayout({
       <SimpleFuturisticTurkish />
       
       <div className="min-h-screen text-white relative overflow-x-hidden">
-        {/* Sayfa içeriği */}
-        <main className={`container mx-auto z-10 relative flex flex-col items-center justify-center min-h-screen ${className}`}>
-          {showBackNavigation && (
-            <motion.div 
-              className="fixed top-4 left-4 z-50"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+        {showBackButton && (
+          <motion.div 
+            className="fixed top-4 left-4 z-50"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <button 
+              onClick={() => navigate("/")}
+              className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-3 py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
             >
-              <button 
-                onClick={() => navigate("/")}
-                className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-3 py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                <span className="text-sm">Geri</span>
-              </button>
-            </motion.div>
-          )}
-          
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span className="text-sm">Geri</span>
+            </button>
+          </motion.div>
+        )}
+        
+        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-12">
           {children}
           
           {showLanguageSelector && (
-            <motion.div 
-              className="mt-6 mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
+            <div className="mt-8 mb-4">
               <div className="text-center">
                 <div className="mb-2 text-xs text-gray-400">Tercih ettiğiniz dil</div>
                 <LanguageSelector />
               </div>
-            </motion.div>
+            </div>
           )}
           
-          {/* Alt Bilgi */}
-          <motion.div 
-            className="text-center mt-6 mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
+          <div className="text-center mt-8 mb-4">
             <div className="inline-flex items-center justify-center space-x-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-md border border-gray-800">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-500">
                 <circle cx="12" cy="12" r="10" />
@@ -112,7 +101,7 @@ export default function PageLayout({
                 <span className="font-normal text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
             </div>
-          </motion.div>
+          </div>
         </main>
         
         <AudioControl onToggle={handleToggleAudio} />

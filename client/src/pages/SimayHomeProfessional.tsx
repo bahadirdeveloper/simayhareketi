@@ -1,67 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
-import LanguageSelector from "@/components/LanguageSelector";
-import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
-import AccessibilityReader from "@/components/AccessibilityReader";
-import { initAudio, playSoundtrack } from "@/lib/audio";
-import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import ModernLayout from "@/components/ModernLayout";
 
 export default function SimayHomeProfessional() {
   const { t, i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [, navigate] = useLocation();
-  
-  useEffect(() => {
-    // Initialize audio system with home page soundtrack
-    initAudio('home');
-    
-    // Record visitor stats
-    const recordVisit = async () => {
-      try {
-        await apiRequest(
-          "POST", 
-          "/api/visits", 
-          {
-            language: i18n.language || "tr",
-            hasInteracted: false,
-            page: "home"
-          }
-        );
-      } catch (error) {
-        console.error("Failed to record visit:", error);
-      }
-    };
-    
-    recordVisit();
-  }, [i18n.language]);
-  
-  const handleToggleAudio = () => {
-    playSoundtrack();
-    
-    // Record interaction
-    const updateInteraction = async () => {
-      try {
-        await apiRequest(
-          "POST", 
-          "/api/visits", 
-          {
-            language: i18n.language || "tr",
-            hasInteracted: true,
-            page: "home"
-          }
-        );
-      } catch (error) {
-        console.error("Failed to record interaction:", error);
-      }
-    };
-    
-    updateInteraction();
-  };
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -71,65 +19,8 @@ export default function SimayHomeProfessional() {
     <>
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       
-      <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
-        <SimpleFuturisticTurkish />
-        
-        {/* Erişilebilirlik Okuyucu */}
-        <AccessibilityReader 
-          pageContent="Cumhuriyet Güncellenme Platformu ana sayfasına hoş geldiniz. Bu platformda Türkiye Cumhuriyeti'nin 2. Yüzyılına dair görevleri görebilir, Türk kültürü ve tarihi hakkında bilgi edinebilir, anayasa metinlerine ulaşabilirsiniz. Mevcut katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada Görevler, Katıl, Türkiye, Anayasa ve Çağrı bölümlerini ziyaret edebilirsiniz."
-          pageName="home" 
-        />
-        
-        {/* Türk Deseni Üstbilgi - Daha canlı bayrak renkleri */}
-        <div className="w-full bg-gradient-to-r from-red-800/80 via-black/70 to-red-800/80 backdrop-blur-sm border-b border-white/40 py-3 z-20 absolute top-0 left-0 overflow-hidden shadow-lg">
-          <div 
-            className="h-10 w-full absolute top-0 left-0 opacity-25" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='20' viewBox='0 0 60 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C35.5228 5 40 9.47715 40 15C40 20.5228 35.5228 25 30 25C24.4772 25 20 20.5228 20 15C20 9.47715 24.4772 5 30 5ZM30 8C26.134 8 23 11.134 23 15C23 18.866 26.134 22 30 22C33.866 22 37 18.866 37 15C37 11.134 33.866 8 30 8ZM30 11C32.2091 11 34 12.7909 34 15C34 17.2091 32.2091 19 30 19C27.7909 19 26 17.2091 26 15C26 12.7909 27.7909 11 30 11ZM0 15 L60 15 M30 0 L30 30' stroke='%23ffffff' fill='none' /%3E%3C/svg%3E")`,
-              backgroundRepeat: "repeat-x",
-              backgroundSize: "60px 20px"
-            }}
-          />
-          <div className="flex justify-between items-center container mx-auto px-4 sm:px-6">
-            <div className="flex items-center group cursor-pointer" onClick={() => navigate("/")}>
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-red-700 relative flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-                <div className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
-                  <span className="text-white text-sm font-bold group-hover:scale-110 transition-transform duration-300">TR</span>
-                </div>
-                <motion.div 
-                  className="absolute inset-0 rounded-full border-2 border-white/60"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.7, 0, 0.7] 
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut" 
-                  }}
-                />
-              </div>
-              <div className="ml-3 group-hover:translate-x-1 transition-transform duration-300">
-                <p className="text-sm text-white font-bold tracking-wide">
-                  Bu İcat Türk Yapımıdır
-                </p>
-                <p className="text-xs text-white/90 hidden md:block">
-                  Akıl, Bilim, Fen ve Sanat
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <p className="text-sm text-white/90 pr-3 border-r border-white/40 mr-3 font-medium">
-                Cumhuriyet Güncellenme
-              </p>
-              <div className="bg-black/50 px-3 py-1 rounded-full text-white text-sm font-mono border border-white/20">
-                v2.0
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-20">
+      <ModernLayout audioKey="home" showLanguageSelector={true}>
+        <div className="w-full">
           {/* Ana Başlık */}
           <motion.div
             className="mb-12 text-center"
@@ -206,8 +97,6 @@ export default function SimayHomeProfessional() {
             </motion.div>
             
             <div className="flex flex-col items-center justify-center mb-8">
-
-
               {/* İlerleme çubuğu - Mobil uyumlu */}
               <div className="my-12 relative w-full">
                 {/* Mobil görünüm için bilgi kartları */}
@@ -280,7 +169,7 @@ export default function SimayHomeProfessional() {
                       >
                         ₺7.514.892
                       </motion.div>
-                      <div className="text-[9px] text-gray-400">Medeniyet için yetecek kadar.</div>
+                      <div className="text-[9px] text-gray-400">Medeniyet için yetecek kadar</div>
                     </div>
                   </div>
                   
@@ -313,94 +202,83 @@ export default function SimayHomeProfessional() {
               </div>
             </div>
             
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 bg-gradient-to-b from-black/60 to-red-950/30 backdrop-blur-sm rounded-lg border border-red-600/30 shadow-[0_0_15px_rgba(220,38,38,0.15)]">
-              <p className="text-gray-300 leading-relaxed text-base sm:text-lg mb-4 text-center">
-                Dijital Platformla Halk Güncelleme Süreci
-              </p>
-              
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-4 mt-2">
-                <div className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full bg-red-900/40 flex items-center justify-center border border-red-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.25v-3.5m8 8h-3.5m-11 0H2m11 8v-3.5m4.4-10.4l-2.5 2.5m-11 11l2.5-2.5m11 0l-2.5-2.5M6.5 8.3l-2.5-2.5" />
-                    </svg>
-                  </div>
-                  <h4 className="text-red-500 font-medium text-sm sm:text-base">AKIL</h4>
-                  <p className="text-[8px] xs:text-xs text-gray-400 hidden sm:block">Mantıksal Düşünce</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full bg-blue-900/40 flex items-center justify-center border border-blue-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="2" />
-                      <path d="M12 2v2" />
-                      <path d="M12 20v2" />
-                      <path d="M20 12h2" />
-                      <path d="M2 12h2" />
-                      <path d="M19.07 4.93l-1.41 1.41" />
-                      <path d="M6.34 17.66l-1.41 1.41" />
-                      <path d="M19.07 19.07l-1.41-1.41" />
-                      <path d="M6.34 6.34l-1.41-1.41" />
-                      <circle cx="12" cy="12" r="8" strokeDasharray="1 2" />
-                    </svg>
-                  </div>
-                  <h4 className="text-white font-medium text-sm sm:text-base">BİLİM</h4>
-                  <p className="text-[8px] xs:text-xs text-gray-400 hidden sm:block">Kanıta Dayalı</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full bg-yellow-900/40 flex items-center justify-center border border-yellow-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-red-500 font-medium text-sm sm:text-base">VİCDAN</h4>
-                  <p className="text-[8px] xs:text-xs text-gray-400 hidden sm:block">Ahlaki Duyarlılık</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full bg-green-900/40 flex items-center justify-center border border-green-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-white font-medium text-sm sm:text-base">FEN</h4>
-                  <p className="text-[8px] xs:text-xs text-gray-400 hidden sm:block">Teknik Gelişim</p>
-                </div>
-                
-                <div className="text-center sm:col-span-1 col-span-3">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full bg-purple-900/40 flex items-center justify-center border border-purple-500/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-red-500 font-medium text-sm sm:text-base">SANAT</h4>
-                  <p className="text-[8px] xs:text-xs text-gray-400 hidden sm:block">Kültürel İfade</p>
+            <div className="max-w-3xl mx-auto px-5 sm:px-8 py-6 bg-gradient-to-b from-black/70 to-red-950/20 backdrop-blur-sm rounded-2xl border border-red-600/20 shadow-[0_0_30px_rgba(0,0,0,0.3)]">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 blur-md"></div>
+                  <h3 className="text-base sm:text-xl font-medium text-white relative z-10 bg-black/50 px-6 py-2 rounded-full border border-red-500/20">
+                    Dijital Platformla Halk Güncelleme Süreci
+                  </h3>
                 </div>
               </div>
               
-              {/* Başlık çubuğu kaldırıldı */}
-              
-              {/* Metni sayfanın içeriğine taşıdım */}
-              <div className="max-w-md mx-auto text-xs text-gray-300 leading-relaxed mt-4 mb-6 turkish-content-bg p-3 border border-gray-800">
-                <p className="mb-2">
-                  "23 Nisan 2025'te, Mustafa Kemal Atatürk ve atalarımızın yaktığı ışığın peşinden yürüyerek bu yolu açtık.
-                  Geçmişin öğrettiklerini unutmadık, geleceğin yükünü omuzladık."
-                </p>
-                <p className="mb-2">
-                  "Bu iş, bir avuç insanın değil, yüz yıllık bir inancın eseridir."
-                </p>
-                <p>
-                  "İsteyen elini uzatsın, isteyen göğsünü gere gere sahiplensin:
-                  <span className="text-red-400 font-medium block mt-1">Bu umut, bu mücadele, bu icat; bu toprakların evlatlarınındır!</span>"
-                </p>
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 sm:gap-5 mt-4">
+                <div className="text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-black/80 to-red-900/30 flex items-center justify-center border border-red-500/30 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:border-red-500/60 group-hover:shadow-red-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <h5 className="text-sm sm:text-base text-white font-medium mb-1 transition-all duration-300 group-hover:text-red-400">
+                    Akıl
+                  </h5>
+                  <p className="text-[10px] sm:text-xs text-gray-400 transition-all duration-300 group-hover:text-gray-300">Mantıksal Analiz</p>
+                </div>
+                
+                <div className="text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-black/80 to-red-900/30 flex items-center justify-center border border-red-500/30 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:border-red-500/60 group-hover:shadow-red-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                  </div>
+                  <h5 className="text-sm sm:text-base text-white font-medium mb-1 transition-all duration-300 group-hover:text-red-400">
+                    Bilim
+                  </h5>
+                  <p className="text-[10px] sm:text-xs text-gray-400 transition-all duration-300 group-hover:text-gray-300">Teknolojik Gelişim</p>
+                </div>
+                
+                <div className="text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-black/80 to-red-900/30 flex items-center justify-center border border-red-500/30 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:border-red-500/60 group-hover:shadow-red-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <h5 className="text-sm sm:text-base text-white font-medium mb-1 transition-all duration-300 group-hover:text-red-400">
+                    Vicdan
+                  </h5>
+                  <p className="text-[10px] sm:text-xs text-gray-400 transition-all duration-300 group-hover:text-gray-300">Etik Değerler</p>
+                </div>
+                
+                <div className="text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-black/80 to-red-900/30 flex items-center justify-center border border-red-500/30 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:border-red-500/60 group-hover:shadow-red-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <h5 className="text-sm sm:text-base text-white font-medium mb-1 transition-all duration-300 group-hover:text-red-400">
+                    Fen
+                  </h5>
+                  <p className="text-[10px] sm:text-xs text-gray-400 transition-all duration-300 group-hover:text-gray-300">İnovasyonel Atılım</p>
+                </div>
+                
+                <div className="text-center group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-xl bg-gradient-to-br from-black/80 to-red-900/30 flex items-center justify-center border border-red-500/30 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:border-red-500/60 group-hover:shadow-red-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                  </div>
+                  <h5 className="text-sm sm:text-base text-white font-medium mb-1 transition-all duration-300 group-hover:text-red-400">
+                    Sanat
+                  </h5>
+                  <p className="text-[10px] sm:text-xs text-gray-400 transition-all duration-300 group-hover:text-gray-300">Kültürel İfade</p>
+                </div>
               </div>
             </div>
           </motion.div>
           
           {/* Ülke Seçimleri */}
           <motion.div 
-            className="mb-12 w-full max-w-2xl"
+            className="mb-12 w-full max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -435,15 +313,6 @@ export default function SimayHomeProfessional() {
                   <span className="mr-2 text-red-500">&#x2192;</span> Türkiye Platformuna Giriş
                 </Button>
               </motion.div>
-              
-              <div className="mt-4 flex justify-center">
-                <div className="inline-flex items-center text-xs text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Akıl, bilim ve sanat ile geleceğe
-                </div>
-              </div>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -487,7 +356,7 @@ export default function SimayHomeProfessional() {
           
           {/* Uluslararası İletişim */}
           <motion.div
-            className="mb-12 w-full max-w-2xl"
+            className="mb-12 w-full max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
@@ -529,39 +398,11 @@ export default function SimayHomeProfessional() {
                     </div>
                   </Button>
                 </motion.div>
-                
-                <div className="mt-6 text-center pb-1">
-                  <div className="mb-2 text-xs text-gray-400">Tercih ettiğiniz dil</div>
-                  <LanguageSelector />
-                </div>
               </div>
             </div>
           </motion.div>
-          
-
-          
-          {/* Alt Bilgi */}
-          <motion.div 
-            className="text-center mt-6 mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-          >
-            <div className="inline-flex items-center justify-center space-x-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-md border border-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-500">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8L12 12" />
-                <path d="M12 16h.01" />
-              </svg>
-              <p className="text-xs text-gray-300 font-light tracking-wide">
-                <span className="font-normal text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
-              </p>
-            </div>
-          </motion.div>
-        </main>
-        
-        <AudioControl onToggle={handleToggleAudio} />
-      </div>
+        </div>
+      </ModernLayout>
     </>
   );
 }
