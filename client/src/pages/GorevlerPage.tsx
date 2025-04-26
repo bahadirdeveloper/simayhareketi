@@ -1248,43 +1248,49 @@ export default function GorevlerPage() {
               currentGorevler.map(gorev => (
                 <div 
                   key={gorev.id}
-                  className={`relative bg-black/60 backdrop-blur-sm border-2 ${
+                  className={`relative border-2 aspect-[4/3] ${
                     gorev.kategori === 'kurucu' 
                       ? 'border-amber-500 shadow-[0_0_20px_rgba(255,215,0,0.4)]' 
                       : gorev.tamamlayan > 0 
                         ? 'border-green-500 shadow-[0_0_12px_rgba(68,255,68,0.4)]' 
                         : 'border-amber-500'
-                  } rounded-lg p-5 hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
+                  } rounded-lg hover:scale-[1.03] transition-transform duration-200 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    // Ekstra transparent border ekleyerek görev sayısı-görsel eşleşmesini gösterelim
-                    borderTop: '3px solid rgba(255, 215, 0, 0.5)'
+                    backgroundRepeat: 'no-repeat'
                   } : {}}
                 >
-                  {/* Overlay to make text readable */}
-                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  {/* Overlay to make text readable - Gradyan ile blur kaldırıldı */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/30"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 p-4 h-full flex flex-col justify-between">
                     {/* Debug için ID gösterici */}
                     <div className="absolute top-0 right-0 bg-amber-600 text-white px-2 py-1 text-xs font-bold rounded-bl">
                       ID: {gorev.id}
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-amber-400 mb-3">{gorev.baslik}</h3>
-                    <p className="text-white mb-2">{gorev.cagri}</p>
-                    <div className="flex justify-between items-center text-sm text-gray-400 mb-4">
-                      <span>Kategori: {gorev.kategori}</span>
-                      <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
+                    
+                    {/* Görev başlık ve açıklaması */}
+                    <div>
+                      <h3 className="text-lg md:text-xl font-bold text-amber-400 mb-2">{gorev.baslik}</h3>
+                      <p className="text-white mb-2 text-sm">{gorev.cagri}</p>
                     </div>
-                    <Button 
-                      className="w-full bg-gradient-to-r from-red-700 to-amber-600"
-                      onClick={() => openModal(gorev)}
-                    >
-                      Göreve Katıl
-                    </Button>
+                    
+                    {/* Alt kısımdaki bilgiler ve buton */}
+                    <div>
+                      <div className="flex justify-between items-center text-sm text-gray-400 mb-3">
+                        <span>Kategori: {gorev.kategori}</span>
+                        <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
+                      </div>
+                      <Button 
+                        className="w-full bg-gradient-to-r from-red-700 to-amber-600"
+                        onClick={() => openModal(gorev)}
+                      >
+                        Göreve Katıl
+                      </Button>
+                    </div>
                   </div>
                 </div>
               ))
