@@ -707,7 +707,6 @@ export default function GorevlerPage() {
   // Arama terimini güncelle
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Arama yapıldığında ilk sayfaya dön
   };
   
   // Tüm filtreleri temizle
@@ -810,10 +809,7 @@ export default function GorevlerPage() {
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
                       className={selectedCategory === category ? "bg-cyan-500 text-black" : "border-cyan-500 text-cyan-400"}
-                      onClick={() => {
-                        setSelectedCategory(category);
-                        setCurrentPage(1); // Kategori değiştiğinde ilk sayfaya dön
-                      }}
+                      onClick={() => setSelectedCategory(category)}
                     >
                       {category.charAt(0).toUpperCase() + category.slice(1)}
                     </Button>
@@ -884,8 +880,50 @@ export default function GorevlerPage() {
             )}
           </motion.div>
           
+          {/* Pagination */}
+          {filteredGorevler.length > 0 && totalPages > 1 && (
+            <div className="flex justify-center items-center mt-10 gap-2">
+              <Button 
+                variant="outline" 
+                className="border-cyan-500 text-cyan-400"
+                onClick={() => changePage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+              >
+                &lt; Önceki
+              </Button>
+              
+              <div className="flex gap-2 mx-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                  <Button
+                    key={pageNum}
+                    variant={currentPage === pageNum ? "default" : "outline"}
+                    className={currentPage === pageNum 
+                      ? "bg-cyan-600 text-white" 
+                      : "border-cyan-500 text-cyan-400"}
+                    onClick={() => changePage(pageNum)}
+                  >
+                    {pageNum}
+                  </Button>
+                ))}
+              </div>
+              
+              <Button 
+                variant="outline" 
+                className="border-cyan-500 text-cyan-400"
+                onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+              >
+                Sonraki &gt;
+              </Button>
+              
+              <div className="ml-4 text-gray-400">
+                Sayfa {currentPage}/{totalPages}
+              </div>
+            </div>
+          )}
+          
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-12 gap-4">
+          <div className="flex justify-center mt-8 gap-4">
             <Button 
               variant="outline"
               className="border-amber-500 text-amber-400 hover:bg-amber-900/20"
