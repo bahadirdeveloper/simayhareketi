@@ -379,21 +379,7 @@ export default function SimayHomeProfessional() {
                 </div>
               </div>
               
-              {/* Görseldeki tasarıma uygun başlık çubuğu */}
-              <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-red-900 to-red-800 backdrop-blur-md border-b border-red-900/70 shadow-lg">
-                <div className="container mx-auto py-2.5 px-4 flex justify-between items-center">
-                  <div className="flex items-center">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-full bg-red-600 border border-red-400/70 mr-3">
-                      <span className="text-white text-sm font-bold">TR</span>
-                    </div>
-                    <div className="text-white font-medium">Bu İcat Türk Yapımıdır</div>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-white/80 mr-3 hidden sm:inline-block">Cumhuriyet Güncellenme</span>
-                    <div className="px-3 py-1 bg-black/60 rounded-full border border-gray-700 text-white/90 text-xs">v2.0</div>
-                  </div>
-                </div>
-              </div>
+              {/* Başlık çubuğu kaldırıldı */}
               
               {/* Metni sayfanın içeriğine taşıdım */}
               <div className="max-w-md mx-auto text-xs text-gray-300 leading-relaxed mt-4 mb-6 turkish-content-bg p-3 border border-gray-800">
