@@ -1273,8 +1273,8 @@ export default function GorevlerPage() {
                     backgroundRepeat: 'no-repeat'
                   } : {}}
                 >
-                  {/* Overlay to make text readable - Gradyan ile blur kaldırıldı */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/30"></div>
+                  {/* Overlay to make text readable - Düşük opaklık ile görseller daha belirgin */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
                   
                   {/* Content */}
                   <div className="relative z-10 p-4 h-full flex flex-col justify-between">
@@ -1285,19 +1285,19 @@ export default function GorevlerPage() {
                     
                     {/* Görev başlık ve açıklaması */}
                     <div>
-                      <h3 className="text-sm md:text-base font-bold text-red-500 mb-2">{gorev.baslik}</h3>
-                      <p className="text-white mb-1 text-xs">{gorev.cagri}</p>
-                      <div className="text-xs text-white italic mb-2">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
+                      <h3 className="text-base md:text-lg font-bold text-red-500 mb-2 leading-tight">{gorev.baslik}</h3>
+                      <p className="text-white mb-2 text-sm font-semibold">{gorev.cagri}</p>
+                      <div className="text-sm text-white italic mb-3">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton */}
                     <div>
-                      <div className="flex justify-between items-center text-xs text-gray-300 mb-2">
+                      <div className="flex justify-between items-center text-sm text-gray-200 mb-3">
                         <span>Kategori: {gorev.kategori}</span>
                         <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-xs h-8 py-0 text-white font-semibold"
+                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-sm h-10 py-0 text-white font-bold"
                         onClick={() => openModal(gorev)}
                       >
                         Göreve Katıl
@@ -1380,9 +1380,9 @@ export default function GorevlerPage() {
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
             className="bg-black/85 backdrop-blur-md border border-red-600 text-white relative overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-[90vw] md:w-[500px]">
-            {/* Arka plan görseli - seçilen görev için */}
+            {/* Arka plan görseli - seçilen görev için - düşük opaklık */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
-              <div className="absolute inset-0 opacity-30 z-0">
+              <div className="absolute inset-0 opacity-20 z-0">
                 <img 
                   src={getGorevBackgroundImage(selectedGorev.id)} 
                   alt=""
@@ -1394,65 +1394,68 @@ export default function GorevlerPage() {
             {/* İçerik - Z indeksi daha yüksek */}
             <div className="relative z-10">
               <DialogHeader>
-                <DialogTitle className="text-red-500 text-xl">
+                <DialogTitle className="text-red-500 text-2xl font-bold mb-2">
                   {selectedGorev?.baslik}
                 </DialogTitle>
-                <DialogDescription className="text-white">
+                <DialogDescription className="text-white text-base leading-relaxed">
                   {selectedGorev?.aciklama}
                 </DialogDescription>
               </DialogHeader>
               
-              <form onSubmit={handleFormSubmit} className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-6 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="ad">Adınız Soyadınız:</Label>
+                  <Label htmlFor="ad" className="text-base font-semibold">Adınız Soyadınız:</Label>
                   <Input
                     id="ad"
                     name="ad"
                     value={formData.ad}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-red-600"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                     required
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="eposta">E-posta:</Label>
+                  <Label htmlFor="eposta" className="text-base font-semibold">E-posta:</Label>
                   <Input
                     id="eposta"
                     name="eposta"
                     type="email"
                     value={formData.eposta}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-red-600"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                     required
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="not">Not (isteğe bağlı):</Label>
+                  <Label htmlFor="not" className="text-base font-semibold">Not (isteğe bağlı):</Label>
                   <Textarea
                     id="not"
                     name="not"
                     value={formData.not}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-red-600"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base min-h-[100px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                     rows={3}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="dosya">Dosya yükle (PDF, JPEG):</Label>
+                  <Label htmlFor="dosya" className="text-base font-semibold">Dosya yükle (PDF, JPEG):</Label>
                   <Input
                     id="dosya"
                     name="dosya"
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    className="bg-black/60 border-red-600"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                   />
                 </div>
                 
                 <DialogFooter>
-                  <Button type="submit" className="bg-red-600 hover:bg-red-700 text-white">
+                  <Button 
+                    type="submit" 
+                    className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-800 hover:to-red-600 text-white font-bold text-lg px-8 py-6 h-auto mt-4 shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+                  >
                     Gönder
                   </Button>
                 </DialogFooter>
