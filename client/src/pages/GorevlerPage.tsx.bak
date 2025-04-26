@@ -364,7 +364,7 @@ export default function GorevlerPage() {
         cagri: "Simay'ın eksiklerini tamamla ve geleceğini inşa et.",
         aciklama: "Türkiye Cumhuriyeti'nin ikinci yüzyılında, Simay hareketinin temellerini güçlendir ve katkıda bulun.",
         kategori: "kurucu",
-        kontenjan: 25,
+        kontenjan: 1,
         tamamlayan: 0
       },
       {
@@ -373,7 +373,7 @@ export default function GorevlerPage() {
         cagri: "Mahallende bir çocuğa kitap hediye et ve onunla okuma saati düzenle.",
         aciklama: "Çocukların eğitime olan ilgisini artırmak için bir çocuğa kitap hediye et. Okuma saatini planla, o anları kaydet.",
         kategori: "eğitim",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       {
@@ -382,7 +382,7 @@ export default function GorevlerPage() {
         cagri: "Ailende veya çevrende unutulmaya yüz tutmuş bir değeri yazıya dök ve paylaş.",
         aciklama: "Unutulmaya yüz tutmuş gelenek, hikaye veya deyimi araştır, dijital ortamda paylaş.",
         kategori: "kültür",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       {
@@ -391,7 +391,7 @@ export default function GorevlerPage() {
         cagri: "Evinizdeki atıl tarım alanı yeşillendir ya da bir saksıda üretime başla.",
         aciklama: "Bir yeşil alan yarat, toprakla bağ kur. Saksıda yeşillik yetiştirip foto ile belgeleyebilirsin.",
         kategori: "çevre",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       {
@@ -400,7 +400,7 @@ export default function GorevlerPage() {
         cagri: "Mahallendeki bir çocuk parkına çevreye uygun geri dönüşüm kutusu yerleştir.",
         aciklama: "Parkları daha çevre dostu hale getirmek için geri dönüşüm kutusu yerleştir ve bunu belgeleyerek paylaş.",
         kategori: "çevre",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -409,7 +409,7 @@ export default function GorevlerPage() {
         cagri: "Ses sistemciler ya da beste yapan birini destekle, mini bir kayıt oluştur.",
         aciklama: "Sanatsal üretimi desteklemek için çevrendeki yetenekleri tanıt ve kayıt altına al.",
         kategori: "sanat",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -418,7 +418,7 @@ export default function GorevlerPage() {
         cagri: "Bir resim ya da tasarım üretip #Gorev6 etiketiyle paylaş.",
         aciklama: "Sanatsal ifade özgürlüğünü kullanarak kendi resim veya grafik çalışmanı üret.",
         kategori: "sanat",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -427,7 +427,7 @@ export default function GorevlerPage() {
         cagri: "Mahallende bir duvar temizletip gençlerle birlikte mozaik/pano oluştur.",
         aciklama: "Toplumsal estetik bilinci oluşturmak için bir duvarı birlikte sanatla dönüştürün.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -436,7 +436,7 @@ export default function GorevlerPage() {
         cagri: "Kadınlara özel bir bilinçlenme toplantısı organize et.",
         aciklama: "Kadının toplumdaki rolünü güçlendirmek için eğitici ve dayanışmacı bir ortam oluştur.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -445,7 +445,7 @@ export default function GorevlerPage() {
         cagri: "Yaşadığın bir zorluğu yazıya dökerek başkalarına umut olacak şekilde paylaş.",
         aciklama: "Zorlukların paylaşıldığında nasıl güce dönüşebildiğini göstermek için kendi hikayeni anlat.",
         kategori: "psikoloji",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       {
@@ -454,7 +454,7 @@ export default function GorevlerPage() {
         cagri: "Bir okul kütüphanesine kitap bağışı ve düzenleme desteği ver.",
         aciklama: "Yerel bir okul kütüphanesini kitap bağışı ve düzenleme çalışması ile zenginleştir.",
         kategori: "eğitim",
-        kontenjan: 25,
+        kontenjan: 8,
         tamamlayan: 0
       }
       // 11-100 arası görevleri getir - zaten eklemiştik
@@ -469,7 +469,7 @@ export default function GorevlerPage() {
         cagri: "Mahallende bir çocuğa kitap hediye et ve onunla okuma saati düzenle.",
         aciklama: "Çocukların eğitime olan ilgisini artırmak için bir çocuğa kitap hediye et. Okuma saatini planla, o anları kaydet.",
         kategori: "eğitim",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       // Görev 2
@@ -479,7 +479,7 @@ export default function GorevlerPage() {
         cagri: "Ailende veya çevrende unutulmaya yüz tutmuş bir değeri yazıya dök ve paylaş.",
         aciklama: "Unutulmaya yüz tutmuş gelenek, hikaye veya deyimi araştır, dijital ortamda paylaş.",
         kategori: "kültür",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       // Görev 3
@@ -489,7 +489,7 @@ export default function GorevlerPage() {
         cagri: "Evinizdeki atıl tarım alanı yeşillendir ya da bir saksıda üretime başla.",
         aciklama: "Bir yeşil alan yarat, toprakla bağ kur. Saksıda yeşillik yetiştirip foto ile belgeleyebilirsin.",
         kategori: "çevre",
-        kontenjan: 25,
+        kontenjan: 10,
         tamamlayan: 0
       },
       // Görev 4
@@ -499,7 +499,7 @@ export default function GorevlerPage() {
         cagri: "Mahallendeki bir çocuk parkına çevreye uygun geri dönüşüm kutusu yerleştir.",
         aciklama: "Parkları daha çevre dostu hale getirmek için geri dönüşüm kutusu yerleştir ve bunu belgeleyerek paylaş.",
         kategori: "çevre",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 5
@@ -509,7 +509,7 @@ export default function GorevlerPage() {
         cagri: "Ses sistemciler ya da beste yapan birini destekle, mini bir kayıt oluştur.",
         aciklama: "Sanatsal üretimi desteklemek için çevrendeki yetenekleri tanıt ve kayıt altına al.",
         kategori: "sanat",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 6
@@ -519,7 +519,7 @@ export default function GorevlerPage() {
         cagri: "Bir resim ya da tasarım üretip #Gorev6 etiketiyle paylaş.",
         aciklama: "Sanatsal ifade özgürlüğünü kullanarak kendi resim veya grafik çalışmanı üret.",
         kategori: "sanat",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 7
@@ -529,7 +529,7 @@ export default function GorevlerPage() {
         cagri: "Mahallende bir duvar temizletip gençlerle birlikte mozaik/pano oluştur.",
         aciklama: "Toplumsal estetik bilinci oluşturmak için bir duvarı birlikte sanatla dönüştürün.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 8
@@ -539,7 +539,7 @@ export default function GorevlerPage() {
         cagri: "Kadınlara özel bir bilinçlenme toplantısı organize et.",
         aciklama: "Kadının toplumdaki rolünü güçlendirmek için eğitici ve dayanışmacı bir ortam oluştur.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 9
@@ -549,7 +549,7 @@ export default function GorevlerPage() {
         cagri: "Yaşadığın bir zorluğu yazıya dökerek başkalarına umut olacak şekilde paylaş.",
         aciklama: "Zorlukların paylaşıldığında nasıl güce dönüşebildiğini göstermek için kendi hikayeni anlat.",
         kategori: "psikoloji",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 10
@@ -559,7 +559,7 @@ export default function GorevlerPage() {
         cagri: "Gençlik merkezinde gönüllü mentorluk başvurusu yap.",
         aciklama: "Bir gencin hayatına dokunmak için mentorluk başvurusunda bulun ve deneyimlerini paylaş.",
         kategori: "eğitim",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 11
@@ -569,7 +569,7 @@ export default function GorevlerPage() {
         cagri: "Kadınların katıldığı bir karar toplantısı düzenle ya da bir öneride bulun.",
         aciklama: "Toplumun yarısı olan kadınların karar süreçlerine katılması için yerel bir toplantıda yer al ya da bir kurum/kuruluşa resmi öneride bulun.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 12
@@ -579,7 +579,7 @@ export default function GorevlerPage() {
         cagri: "Bir çocukla birlikte sanat müziği dinleyin, o an videoya kaydedin.",
         aciklama: "Geleneksel sanat müziklerinin nesiller arası aktarımını desteklemek için bir çocukla birlikte dinleme deneyimi yaşayın ve kaydedin.",
         kategori: "kültür",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 13
@@ -589,7 +589,7 @@ export default function GorevlerPage() {
         cagri: "Ses sistemciler sahneye!",
         aciklama: "Bu toplum yıllarca sessizce size katlandı. Şimdi sıra sizde! Bu sayfalarda yer alan playlistleri sokaklara taşıyın, medya engelliyorsa sesimizle duyuracağız kendimizi!",
         kategori: "ifade",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 14
@@ -599,7 +599,7 @@ export default function GorevlerPage() {
         cagri: "Bir komşunun ihtiyacına karşılıksız yardım et.",
         aciklama: "Yakın çevrenizdeki bir komşunun ihtiyacını tespit edin ve hiçbir karşılık beklemeden yardım edin. Bu dayanışmayı belgeleyin.",
         kategori: "toplum",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
       // Görev 15
@@ -609,7 +609,7 @@ export default function GorevlerPage() {
         cagri: "Bir bilim dergisini bir gence hediye et ya da birlikte oku.",
         aciklama: "Gençlerin bilimle tanışması için bir bilim yayını satın alıp hediye edin veya birlikte okuyarak fikir üretin.",
         kategori: "eğitim",
-        kontenjan: 25,
+        kontenjan: 5,
         tamamlayan: 0
       },
     ];
@@ -626,7 +626,7 @@ export default function GorevlerPage() {
         cagri: getGorevCagri(gorevIndex),
         aciklama: getGorevAciklama(gorevIndex),
         kategori: getGorevKategori(gorevIndex),
-        kontenjan: 25 + Math.floor(Math.random() * 10),
+        kontenjan: 5 + Math.floor(Math.random() * 10),
         tamamlayan: Math.floor(Math.random() * 5) * (gorevIndex % 4 === 0 ? 1 : 0)
       };
     });

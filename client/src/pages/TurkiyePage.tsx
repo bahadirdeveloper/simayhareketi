@@ -273,7 +273,7 @@ export default function TurkiyePage() {
               className="w-full bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm border-2 border-red-600/60 hover:border-red-500 text-white hover:text-white rounded-lg p-7 text-2xl font-bold shadow-[0_0_20px_rgba(220,38,38,0.15)] hover:shadow-[0_0_25px_rgba(220,38,38,0.25)]"
               onClick={() => navigate("/katil")}
             >
-              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Katılım</span>
+              <span className="text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide">Katılım &amp; Bağış</span>
             </Button>
           </motion.div>
           

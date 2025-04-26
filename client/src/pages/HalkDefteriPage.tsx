@@ -427,7 +427,8 @@ export default function HalkDefteriPage() {
       
       <AudioControl onToggle={handleToggleAudio} />
       
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
         }
@@ -445,7 +446,8 @@ export default function HalkDefteriPage() {
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: rgba(220, 38, 38, 0.8);
         }
-      `}</style>
+        `
+      }} />
     </div>
   );
 }
