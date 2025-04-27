@@ -68,17 +68,17 @@ export default function ModernLayout({
           >
             <button 
               onClick={() => navigate("/")}
-              className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-3 py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
+              className="flex items-center space-x-1 sm:space-x-2 bg-black/60 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span className="text-sm">Geri</span>
+              <span className="text-xs sm:text-sm">Geri</span>
             </button>
           </motion.div>
         )}
         
-        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-12">
+        <main className="container mx-auto px-3 sm:px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-8 sm:pt-12">
           {children}
           
           {showLanguageSelector && (
@@ -91,13 +91,13 @@ export default function ModernLayout({
           )}
           
           <div className="text-center mt-8 mb-4">
-            <div className="inline-flex items-center justify-center space-x-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-md border border-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-500">
+            <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-black/40 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-md border border-gray-800">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 8L12 12" />
                 <path d="M12 16h.01" />
               </svg>
-              <p className="text-xs text-gray-300 font-light tracking-wide">
+              <p className="text-xs sm:text-xs text-gray-300 font-light tracking-wide">
                 <span className="font-normal text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
             </div>

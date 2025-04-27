@@ -388,31 +388,31 @@ export default function KatilPage() {
                     </p>
                     
                     {/* Özet Finansal Görünüm */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      <div className="bg-gradient-to-r from-green-900/30 to-black/40 p-4 rounded-lg border border-green-500/30 flex items-center justify-between">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8">
+                      <div className="bg-gradient-to-r from-green-900/30 to-black/40 p-3 md:p-4 rounded-lg border border-green-500/30 flex items-center justify-between">
                         <div>
-                          <h4 className="text-white text-sm mb-1">Toplam Gelir</h4>
-                          <p className="text-green-400 text-xl font-medium">{formatCurrency(totalIncome)}</p>
+                          <h4 className="text-white text-xs sm:text-sm mb-1">Toplam Gelir</h4>
+                          <p className="text-green-400 text-base sm:text-lg md:text-xl font-medium">{formatCurrency(totalIncome)}</p>
                         </div>
-                        <ArrowUpRight className="w-8 h-8 text-green-500/60" />
+                        <ArrowUpRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-green-500/60" />
                       </div>
                       
-                      <div className="bg-gradient-to-r from-red-900/30 to-black/40 p-4 rounded-lg border border-red-500/30 flex items-center justify-between">
+                      <div className="bg-gradient-to-r from-red-900/30 to-black/40 p-3 md:p-4 rounded-lg border border-red-500/30 flex items-center justify-between">
                         <div>
-                          <h4 className="text-white text-sm mb-1">Toplam Gider</h4>
-                          <p className="text-red-400 text-xl font-medium">{formatCurrency(totalExpense)}</p>
+                          <h4 className="text-white text-xs sm:text-sm mb-1">Toplam Gider</h4>
+                          <p className="text-red-400 text-base sm:text-lg md:text-xl font-medium">{formatCurrency(totalExpense)}</p>
                         </div>
-                        <ArrowDownRight className="w-8 h-8 text-red-500/60" />
+                        <ArrowDownRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-red-500/60" />
                       </div>
                       
-                      <div className="bg-gradient-to-r from-amber-900/30 to-black/40 p-4 rounded-lg border border-amber-500/30 flex items-center justify-between">
+                      <div className="bg-gradient-to-r from-amber-900/30 to-black/40 p-3 md:p-4 rounded-lg border border-amber-500/30 flex items-center justify-between sm:col-span-2 md:col-span-1">
                         <div>
-                          <h4 className="text-white text-sm mb-1">Net Bakiye</h4>
-                          <p className={`text-xl font-medium ${balance >= 0 ? 'text-amber-400' : 'text-red-400'}`}>
+                          <h4 className="text-white text-xs sm:text-sm mb-1">Net Bakiye</h4>
+                          <p className={`text-base sm:text-lg md:text-xl font-medium ${balance >= 0 ? 'text-amber-400' : 'text-red-400'}`}>
                             {formatCurrency(balance)}
                           </p>
                         </div>
-                        <BarChart4 className="w-8 h-8 text-amber-500/60" />
+                        <BarChart4 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-amber-500/60" />
                       </div>
                     </div>
                     
@@ -422,18 +422,18 @@ export default function KatilPage() {
                       
                       <Tabs defaultValue="income" className="w-full">
                         <TabsList className="grid w-full grid-cols-2 bg-black/30 border border-gray-800 mb-4">
-                          <TabsTrigger value="income" className="data-[state=active]:bg-green-900/20 data-[state=active]:text-white">Gelirler</TabsTrigger>
-                          <TabsTrigger value="expense" className="data-[state=active]:bg-red-900/20 data-[state=active]:text-white">Giderler</TabsTrigger>
+                          <TabsTrigger value="income" className="data-[state=active]:bg-green-900/20 data-[state=active]:text-white text-xs sm:text-sm md:text-base">Gelirler</TabsTrigger>
+                          <TabsTrigger value="expense" className="data-[state=active]:bg-red-900/20 data-[state=active]:text-white text-xs sm:text-sm md:text-base">Giderler</TabsTrigger>
                         </TabsList>
                         
                         <TabsContent value="income">
-                          <div className="overflow-x-auto">
+                          <div className="overflow-x-auto rounded-lg">
                             <Table className="w-full border-collapse">
                               <TableHeader>
                                 <TableRow className="border-b border-green-500/30 bg-black/40">
-                                  <TableHead className="text-white font-medium py-3">Tarih</TableHead>
-                                  <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
-                                  <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base">Tarih</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base">Açıklama</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-right text-xs sm:text-sm md:text-base">Tutar</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
@@ -442,14 +442,14 @@ export default function KatilPage() {
                                     key={item.id} 
                                     className="border-b border-green-500/20 hover:bg-green-900/10"
                                   >
-                                    <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
-                                    <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
-                                    <TableCell className="py-3 text-green-400 text-right font-medium">{formatCurrency(item.amount)}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-gray-300 text-xs sm:text-sm">{item.date}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-gray-300 text-xs sm:text-sm">{item.description}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-green-400 text-right font-medium text-xs sm:text-sm">{formatCurrency(item.amount)}</TableCell>
                                   </TableRow>
                                 ))}
                                 <TableRow className="bg-green-900/20 border-t border-green-500/40">
-                                  <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gelir</TableCell>
-                                  <TableCell className="py-3 text-green-400 text-right font-bold">₺{(totalIncome / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                  <TableCell colSpan={2} className="py-2 sm:py-3 px-2 sm:px-4 text-white font-bold text-xs sm:text-sm">Toplam Gelir</TableCell>
+                                  <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-green-400 text-right font-bold text-xs sm:text-sm">{formatCurrency(totalIncome)}</TableCell>
                                 </TableRow>
                               </TableBody>
                             </Table>
@@ -457,13 +457,13 @@ export default function KatilPage() {
                         </TabsContent>
                         
                         <TabsContent value="expense">
-                          <div className="overflow-x-auto">
+                          <div className="overflow-x-auto rounded-lg">
                             <Table className="w-full border-collapse">
                               <TableHeader>
                                 <TableRow className="border-b border-red-500/30 bg-black/40">
-                                  <TableHead className="text-white font-medium py-3">Tarih</TableHead>
-                                  <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
-                                  <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base">Tarih</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base">Açıklama</TableHead>
+                                  <TableHead className="text-white font-medium py-3 px-2 sm:px-4 text-right text-xs sm:text-sm md:text-base">Tutar</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
@@ -472,14 +472,14 @@ export default function KatilPage() {
                                     key={item.id} 
                                     className="border-b border-red-500/20 hover:bg-red-900/10"
                                   >
-                                    <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
-                                    <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
-                                    <TableCell className="py-3 text-red-400 text-right font-medium">₺{(item.amount / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-gray-300 text-xs sm:text-sm">{item.date}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-gray-300 text-xs sm:text-sm">{item.description}</TableCell>
+                                    <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-red-400 text-right font-medium text-xs sm:text-sm">{formatCurrency(item.amount)}</TableCell>
                                   </TableRow>
                                 ))}
                                 <TableRow className="bg-red-900/20 border-t border-red-500/40">
-                                  <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gider</TableCell>
-                                  <TableCell className="py-3 text-red-400 text-right font-bold">₺{(totalExpense / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                  <TableCell colSpan={2} className="py-2 sm:py-3 px-2 sm:px-4 text-white font-bold text-xs sm:text-sm">Toplam Gider</TableCell>
+                                  <TableCell className="py-2 sm:py-3 px-2 sm:px-4 text-red-400 text-right font-bold text-xs sm:text-sm">{formatCurrency(totalExpense)}</TableCell>
                                 </TableRow>
                               </TableBody>
                             </Table>
