@@ -52,9 +52,10 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
       currency: "try", // Turkish Lira
-      description: description || "Cumhuriyet Güncellenme Platformu Bağışı",
+      description: description || (isRegistrationFee ? "Cumhuriyet Güncellenme Platformu Kayıt Ücreti" : "Cumhuriyet Güncellenme Platformu Bağışı"),
       metadata: {
         integration_check: 'accept_a_payment',
+        payment_type: isRegistrationFee ? 'registration_fee' : 'donation',
         ip: ipString.substr(0, 15) // Store partial IP for fraud detection
       },
     });
