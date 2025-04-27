@@ -66,6 +66,11 @@ export default function KatilPage() {
   const [, navigate] = useLocation();
   const { toast } = useToast();
   
+  // Para biçimlendirme fonksiyonu
+  const formatCurrency = (amount: number) => {
+    return `₺${(amount / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+  
   // Gelir-gider bilgileri
   const incomeData = [
     { id: 1, date: '05 Şubat 2025', description: 'Bireysel Bağışlar', amount: 124500, type: 'income' },
@@ -188,7 +193,7 @@ export default function KatilPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <Tabs defaultValue="katilim" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger 
                   value="katilim"
                   className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
@@ -200,6 +205,12 @@ export default function KatilPage() {
                   className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
                 >
                   BAĞIŞ YAP
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="financial"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+                >
+                  ŞEFFAF GELİR-GİDER
                 </TabsTrigger>
               </TabsList>
               
@@ -358,6 +369,142 @@ export default function KatilPage() {
                     </p>
                   </div>
                 </div>
+              </TabsContent>
+              
+              {/* Şeffaf Gelir-Gider Sekmesi */}
+              <TabsContent value="financial" className="mt-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-gradient-to-b from-black/70 to-amber-950/20 backdrop-blur-sm rounded-lg border border-amber-500/30 p-6 shadow-lg"
+                >
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-4 readable-text">Finansal Şeffaflık İlkemiz</h3>
+                    <p className="text-gray-300 mb-6 readable-text">
+                      Cumhuriyet Güncellenme Platformu olarak, mali şeffaflığı temel ilkelerimizden biri olarak benimsiyoruz. 
+                      Tüm gelir ve giderlerimizi detaylı bir şekilde raporlayarak, vatandaşlarımıza karşı hesap verebilirliğimizi 
+                      en üst düzeyde tutuyoruz. Aşağıda, platformumuzun güncel gelir ve gider tablosunu görebilirsiniz.
+                    </p>
+                    
+                    {/* Özet Finansal Görünüm */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      <div className="bg-gradient-to-r from-green-900/30 to-black/40 p-4 rounded-lg border border-green-500/30 flex items-center justify-between">
+                        <div>
+                          <h4 className="text-white text-sm mb-1">Toplam Gelir</h4>
+                          <p className="text-green-400 text-xl font-medium">{formatCurrency(totalIncome)}</p>
+                        </div>
+                        <ArrowUpRight className="w-8 h-8 text-green-500/60" />
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-red-900/30 to-black/40 p-4 rounded-lg border border-red-500/30 flex items-center justify-between">
+                        <div>
+                          <h4 className="text-white text-sm mb-1">Toplam Gider</h4>
+                          <p className="text-red-400 text-xl font-medium">{formatCurrency(totalExpense)}</p>
+                        </div>
+                        <ArrowDownRight className="w-8 h-8 text-red-500/60" />
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-amber-900/30 to-black/40 p-4 rounded-lg border border-amber-500/30 flex items-center justify-between">
+                        <div>
+                          <h4 className="text-white text-sm mb-1">Net Bakiye</h4>
+                          <p className={`text-xl font-medium ${balance >= 0 ? 'text-amber-400' : 'text-red-400'}`}>
+                            {formatCurrency(balance)}
+                          </p>
+                        </div>
+                        <BarChart4 className="w-8 h-8 text-amber-500/60" />
+                      </div>
+                    </div>
+                    
+                    {/* Gelir-Gider Tabloları */}
+                    <div className="mt-8">
+                      <h3 className="text-2xl font-bold text-white mb-4 readable-text">Gelir ve Gider Detayları</h3>
+                      
+                      <Tabs defaultValue="income" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 bg-black/30 border border-gray-800 mb-4">
+                          <TabsTrigger value="income" className="data-[state=active]:bg-green-900/20 data-[state=active]:text-white">Gelirler</TabsTrigger>
+                          <TabsTrigger value="expense" className="data-[state=active]:bg-red-900/20 data-[state=active]:text-white">Giderler</TabsTrigger>
+                        </TabsList>
+                        
+                        <TabsContent value="income">
+                          <div className="overflow-x-auto">
+                            <Table className="w-full border-collapse">
+                              <TableHeader>
+                                <TableRow className="border-b border-green-500/30 bg-black/40">
+                                  <TableHead className="text-white font-medium py-3">Tarih</TableHead>
+                                  <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
+                                  <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {incomeData.map((item) => (
+                                  <TableRow 
+                                    key={item.id} 
+                                    className="border-b border-green-500/20 hover:bg-green-900/10"
+                                  >
+                                    <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
+                                    <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
+                                    <TableCell className="py-3 text-green-400 text-right font-medium">{formatCurrency(item.amount)}</TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="bg-green-900/20 border-t border-green-500/40">
+                                  <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gelir</TableCell>
+                                  <TableCell className="py-3 text-green-400 text-right font-bold">₺{(totalIncome / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+                        </TabsContent>
+                        
+                        <TabsContent value="expense">
+                          <div className="overflow-x-auto">
+                            <Table className="w-full border-collapse">
+                              <TableHeader>
+                                <TableRow className="border-b border-red-500/30 bg-black/40">
+                                  <TableHead className="text-white font-medium py-3">Tarih</TableHead>
+                                  <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
+                                  <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {expenseData.map((item) => (
+                                  <TableRow 
+                                    key={item.id} 
+                                    className="border-b border-red-500/20 hover:bg-red-900/10"
+                                  >
+                                    <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
+                                    <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
+                                    <TableCell className="py-3 text-red-400 text-right font-medium">₺{(item.amount / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="bg-red-900/20 border-t border-red-500/40">
+                                  <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gider</TableCell>
+                                  <TableCell className="py-3 text-red-400 text-right font-bold">₺{(totalExpense / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
+                    </div>
+                    
+                    <div className="mt-10 text-center">
+                      <h3 className="text-2xl font-bold text-white mb-4 readable-text">Mali Şeffaflık Taahhüdümüz</h3>
+                      <p className="text-gray-300 mb-6 readable-text">
+                        Cumhuriyet Güncellenme Platformu olarak, tüm mali faaliyetlerimizi şeffaf bir şekilde raporlamayı ve 
+                        vatandaşlarımıza hesap verebilir olmayı taahhüt ediyoruz. Finansal tablolarımız düzenli olarak güncellenmekte 
+                        ve herkesin erişimine açık tutulmaktadır.
+                      </p>
+                      
+                      <div className="bg-gradient-to-r from-amber-950/30 to-black/30 p-4 rounded-lg border border-amber-500/30 mt-6">
+                        <p className="text-white/90 italic readable-text">
+                          "Şeffaflık, güvenin temelidir. Cumhuriyet'in güncellenmesi sürecinde, mali açıklık ve hesap verebilirlik 
+                          en temel ilkelerimizdendir. Her kuruş, halkın emaneti olarak bilinçle ve sorumlulukla kullanılmaktadır."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </TabsContent>
             </Tabs>
           </motion.div>
