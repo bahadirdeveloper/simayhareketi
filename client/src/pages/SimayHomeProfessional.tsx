@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function SimayHomeProfessional() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
+  const [showLoading, setShowLoading] = useState(true);
   
   return (
     <ModernLayout audioKey="home" showLanguageSelector={true}>
