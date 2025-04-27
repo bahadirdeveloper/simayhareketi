@@ -77,71 +77,71 @@ export default function SimayHomeProfessional() {
             {/* Responsive Grid - Küçük ekranlarda 2 sütun, büyük ekranlarda 4 sütun */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
               {/* GÖREV 0 Butonu */}
-              <Link to="/gorevler" className="group relative flex flex-col items-center bg-gradient-to-br from-red-700/20 to-red-900/30 hover:from-red-700/30 hover:to-red-900/40 backdrop-blur-md border border-red-700/20 hover:border-red-500/40 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/gorevler" className="group relative flex flex-col items-center bg-gradient-to-br from-red-700/20 to-red-900/30 hover:from-red-700/30 hover:to-red-900/40 backdrop-blur-md border border-red-700/20 hover:border-red-500/40 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">GÖREV 0</span>
-                <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center">
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">GÖREV 0</span>
+                <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-red-600"></span>
                 </div>
               </Link>
               
               {/* GÖREVLER Butonu */}
-              <Link to="/gorevler" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/gorevler" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">GÖREVLER</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">GÖREVLER</span>
               </Link>
               
               {/* TÜRK NEDİR? Butonu */}
-              <Link to="/turknedir" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/turknedir" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">TÜRK NEDİR?</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">TÜRK NEDİR?</span>
               </Link>
               
               {/* TÜRKİYE Butonu */}
-              <Link to="/turkiye" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/turkiye" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">TÜRKİYE</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">TÜRKİYE</span>
               </Link>
               
               {/* ANAYASA Butonu */}
-              <Link to="/anayasa" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/anayasa" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">ANAYASA</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">ANAYASA</span>
               </Link>
               
               {/* AMAÇLAR Butonu */}
-              <Link to="/amaclar" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/amaclar" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">AMAÇLAR</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">AMAÇLAR</span>
               </Link>
               
               {/* MANİFESTOLAR Butonu */}
-              <Link to="/halk-manifestolar" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/halk-manifestolar" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">MANİFESTOLAR</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">MANİFESTOLAR</span>
               </Link>
               
               {/* HALK KOORDİNASYON Butonu */}
-              <Link to="/halk-koordinasyon" className="group relative flex flex-col items-center bg-gradient-to-br from-red-700/20 to-red-900/30 hover:from-red-700/30 hover:to-red-900/40 backdrop-blur-md border border-red-700/20 hover:border-red-500/40 p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Link to="/halk-koordinasyon" className="group relative flex flex-col items-center bg-gradient-to-br from-red-700/20 to-red-900/30 hover:from-red-700/30 hover:to-red-900/40 backdrop-blur-md border border-red-700/20 hover:border-red-500/40 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <span className="mt-2 text-xs sm:text-sm text-center text-white font-medium tracking-wide">HALK KOORDİNASYON</span>
+                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">HALK KOORDİNASYON</span>
                 <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
@@ -155,29 +155,29 @@ export default function SimayHomeProfessional() {
         <div className="mt-4 max-w-3xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {/* Hızlı Erişim Butonları */}
-            <Link to="/katil" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-2 py-3 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-xs sm:text-sm font-medium transition-all duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <Link to="/katil" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-3 py-4 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-sm sm:text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
               Katıl
             </Link>
             
-            <Link to="/sertifika" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-2 py-3 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-xs sm:text-sm font-medium transition-all duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <Link to="/sertifika" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-3 py-4 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-sm sm:text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
               </svg>
               Sertifika
             </Link>
             
-            <Link to="/cagri" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-2 py-3 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-xs sm:text-sm font-medium transition-all duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <Link to="/cagri" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-3 py-4 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-sm sm:text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
               </svg>
               Çağrı
             </Link>
             
-            <Link to="/entegrasyon" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-2 py-3 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-xs sm:text-sm font-medium transition-all duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <Link to="/entegrasyon" className="flex items-center justify-center bg-black/40 hover:bg-black/50 backdrop-blur-sm px-3 py-4 rounded-lg border border-red-500/30 hover:border-red-500/50 text-white text-sm sm:text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               Entegrasyon
@@ -239,10 +239,10 @@ export default function SimayHomeProfessional() {
           
           {/* Katılım butonu - tüm cihazlarda tutarlı görünüm */}
           <Link to="/katil" className="inline-block w-full sm:w-auto">
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-red-600/80 to-red-800/80 hover:from-red-500/80 hover:to-red-700/80 px-6 py-4 text-white shadow-lg">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-red-600/80 to-red-800/80 hover:from-red-500/80 hover:to-red-700/80 px-6 py-5 text-white shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="relative flex flex-col items-center justify-center">
-                <h3 className="text-lg font-bold tracking-wide">KATIL</h3>
-                <p className="text-xs text-center max-w-sm mt-1">Cumhuriyet'i güncelleyecek olan bu yolculuğa katılmak için tıklayın.</p>
+                <h3 className="text-xl sm:text-2xl font-bold tracking-wide">KATIL</h3>
+                <p className="text-sm sm:text-base text-center max-w-sm mt-2">Cumhuriyet'i güncelleyecek olan bu yolculuğa katılmak için tıklayın.</p>
               </div>
             </div>
           </Link>
