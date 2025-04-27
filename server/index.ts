@@ -8,6 +8,9 @@ import cookieParser from "cookie-parser";
 // Uygulamayı başlat
 const app = express();
 
+// Trust proxy - express-rate-limit hatasını çözmek için
+app.set('trust proxy', 1);
+
 // Güvenlik önlemleri
 // Helmet ile temel güvenlik başlıkları ekle
 app.use(

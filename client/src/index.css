@@ -679,7 +679,15 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
 }
 
 .text-lg-responsive {
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-size: clamp(1rem, 3vw, 1.125rem);
+}
+
+/* Modern ızgara deseni */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 .text-xl-responsive {
