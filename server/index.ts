@@ -6,6 +6,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// SPA yönlendirmesi için (react router yönlendirmesini desteklemek için)
+// API olmayan GET istekleri için HTML dosyasını sun
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.includes('.')) {
+    // Vite development modunda bu işlemi zaten yapıyor. Sadece API dışı istekleri işle
+    next();
+  } else {
+    next();
+  }
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
