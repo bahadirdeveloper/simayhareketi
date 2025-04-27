@@ -7,7 +7,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   const [isDecoding, setIsDecoding] = useState(true);
   const [progress, setProgress] = useState(0);
   
-  const firstPartText = "Cumhuriyet ile güncelleniyor.. ";
+  const firstPartText = "Cumhuriyet Güncelleniyor... ";
   const secondPartText = "İnsanlık v2.0";
   
   useEffect(() => {
