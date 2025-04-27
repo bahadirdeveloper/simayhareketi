@@ -24,8 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // SPA yönlendirmeleri için catch-all route
-  app.get('/:path*', (req, res, next) => {
-    const path = req.params.path;
+  app.get('*', (req, res, next) => {
     // API istekleri hariç tüm GET isteklerini SPA'ya yönlendir
     if (!req.path.startsWith('/api') && req.method === 'GET') {
       console.log(`[SPA Route Handler] ${req.path} -> Frontend'e yönlendiriliyor`);

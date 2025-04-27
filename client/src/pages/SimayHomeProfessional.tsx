@@ -102,7 +102,7 @@ export default function SimayHomeProfessional() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <button 
-                    onClick={() => navigate(`/${i18n.language}/tr`)}
+                    onClick={() => navigate("/turkiye")}
                     className="px-7 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20 flex items-center font-medium text-base"
                   >
                     <span className="mr-2">🇹🇷</span>
