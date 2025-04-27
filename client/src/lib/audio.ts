@@ -6,13 +6,19 @@ let isInitialized = false;
 let isPlaying = false;
 let currentPage: string = '';
 
-// Define sound paths by page
+// Define sound paths by page - kullanım için vite baseUrl ile tam yolu belirtiyoruz
+const BASE_PATH = import.meta.env.BASE_URL || '';
 const soundtrackPaths = {
-  home: "/sounds/home-soundtrack.mp3",
-  turkiye: "/sounds/turkiye-soundtrack.mp3",
-  turknedir: "/sounds/turknedir-soundtrack.mp3",
-  anayasa: "/sounds/anayasa-soundtrack.mp3",
-  default: "/sounds/default-soundtrack.mp3"
+  home: `${BASE_PATH}sounds/home-soundtrack.mp3`,
+  turkiye: `${BASE_PATH}sounds/turkiye-soundtrack.mp3`, 
+  turknedir: `${BASE_PATH}sounds/turknedir-soundtrack.mp3`,
+  anayasa: `${BASE_PATH}sounds/anayasa-soundtrack.mp3`,
+  default: `${BASE_PATH}sounds/default-soundtrack.mp3`
+};
+
+// Önbelleğe alma sorunlarını önlemek için zaman damgası ekliyoruz
+const addTimestamp = (url: string): string => {
+  return `${url}?v=${Date.now()}`;
 };
 
 // Initialize audio system for specific page
@@ -20,7 +26,8 @@ export const initAudio = (page: string = 'default'): void => {
   currentPage = page;
   
   // Always initialize a soundtrack for the current page
-  const soundPath = soundtrackPaths[page as keyof typeof soundtrackPaths] || soundtrackPaths.default;
+  let soundPath = soundtrackPaths[page as keyof typeof soundtrackPaths] || soundtrackPaths.default;
+  soundPath = addTimestamp(soundPath);
   
   // Destroy previous soundtrack if exists
   if (soundtrack) {
@@ -29,6 +36,9 @@ export const initAudio = (page: string = 'default'): void => {
     soundtrack = null;
   }
   
+  // Ses dosyalarının varlığını kontrol etmek için
+  console.log(`Attempting to load sound: ${soundPath}`);
+  
   soundtrack = new Howl({
     src: [soundPath],
     loop: true,
@@ -36,22 +46,36 @@ export const initAudio = (page: string = 'default'): void => {
     html5: true,
     preload: true,
     autoplay: false,
+    xhr: {
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    },
     onloaderror: (id: any, error: any) => {
       console.warn(`Sound file could not be loaded: ${soundPath}`, error);
       // Fallback to default sound if current sound fails
-      if (soundPath !== soundtrackPaths.default) {
+      if (soundPath !== addTimestamp(soundtrackPaths.default)) {
+        const defaultSoundPath = addTimestamp(soundtrackPaths.default);
+        console.log(`Falling back to default sound: ${defaultSoundPath}`);
         soundtrack = new Howl({
-          src: [soundtrackPaths.default],
+          src: [defaultSoundPath],
           loop: true,
           volume: 0.2,
           html5: true,
           preload: true,
           autoplay: false,
+          xhr: {
+            method: 'GET',
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         });
       }
     }
   });
-  
+
   isInitialized = true;
 };
 
