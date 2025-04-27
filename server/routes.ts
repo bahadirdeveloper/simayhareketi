@@ -17,15 +17,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", message: "Dünyayı Kurtarma Operasyonu API çalışıyor" });
   });
 
+  // Add health check endpoint
+  app.get('/', (req, res) => {
+    res.status(200).send('OK');
+  });
+
   // Register a new user
   app.post("/api/users", async (req, res) => {
     try {
       const userData = insertUserSchema.parse(req.body);
       const user = await storage.createUser(userData);
-      
+
       // Strip out password for security
       const { password, ...userWithoutPassword } = user;
-      
+
       res.status(201).json(userWithoutPassword);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -43,7 +48,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Get IP from request
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const userAgent = req.headers['user-agent'];
-      
+
       // Prepare visitor data with request info
       const visitData = {
         ...req.body,
@@ -51,24 +56,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         userAgent: typeof userAgent === 'string' ? userAgent : undefined,
         referrer: req.headers.referer,
       };
-      
+
       const validatedVisitData = insertVisitorStatSchema.parse(visitData);
-      
+
       // Implement rate limiting for the same IP
       const recentVisits = await storage.getVisitStats(100);
       const ipVisits = recentVisits.filter(v => 
         v.visitorIp === validatedVisitData.visitorIp && 
         (Date.now() - new Date(v.visitDate).getTime()) < 10000 // 10 seconds
       );
-      
+
       // If more than 3 visits in 10 seconds from same IP, limit
       if (ipVisits.length > 3) {
         res.status(429).json({ error: "Too many requests", message: "Please wait before submitting again" });
         return;
       }
-      
+
       const visit = await storage.recordVisit(validatedVisitData);
-      
+
       res.status(201).json(visit);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -85,7 +90,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const feedbackData = insertFeedbackSchema.parse(req.body);
       const feedback = await storage.submitFeedback(feedbackData);
-      
+
       res.status(201).json(feedback);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -102,7 +107,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const visits = await storage.getVisitStats(limit);
-      
+
       res.json({ visits, count: visits.length });
     } catch (error) {
       console.error("Error fetching visit stats:", error);
@@ -115,7 +120,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const feedbacks = await storage.getAllFeedback(limit);
-      
+
       res.json({ feedbacks, count: feedbacks.length });
     } catch (error) {
       console.error("Error fetching feedback:", error);
@@ -127,7 +132,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/:lang", (req, res, next) => {
     const supportedLanguages = ["tr", "en", "ar", "ru", "es", "de"];
     const lang = req.params.lang;
-    
+
     if (supportedLanguages.includes(lang)) {
       // For SPA, let the frontend routing handle this
       next();
@@ -135,7 +140,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       next();
     }
   });
-  
+
   // Stripe payment routes
   app.post("/api/create-payment-intent", handleCreatePaymentIntent);
   app.post("/api/create-subscription", handleCreateSubscription);
