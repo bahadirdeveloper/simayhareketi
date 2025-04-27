@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -19,13 +17,39 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error("VITE_STRIPE_PUBLIC_KEY is not defined");
-}
+// Stripe bileşenlerini ve loadStripe fonksiyonunu dinamik olarak import ediyoruz
+// Bu sayede sayfa ilk yüklendiğinde Stripe.js yüklenmeyecek ve hatadan kaçınacağız
+let stripePromise: any = null;
+let Elements: any = null;
+let PaymentElement: any = null;
+let useStripe: any = null;
+let useElements: any = null;
 
-// Make sure to call loadStripe outside of a component's render to avoid
-// recreating the Stripe object on every render
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+const initStripe = async () => {
+  if (!stripePromise) {
+    try {
+      const stripeJs = await import('@stripe/stripe-js');
+      const reactStripe = await import('@stripe/react-stripe-js');
+      
+      if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
+        throw new Error("VITE_STRIPE_PUBLIC_KEY is not defined");
+      }
+      
+      // Stripe bileşenlerini yükle
+      stripePromise = stripeJs.loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+      Elements = reactStripe.Elements;
+      PaymentElement = reactStripe.PaymentElement;
+      useStripe = reactStripe.useStripe;
+      useElements = reactStripe.useElements;
+      
+      return true;
+    } catch (error) {
+      console.error("Failed to load Stripe:", error);
+      return false;
+    }
+  }
+  return true;
+};
 
 const amountSchema = z.object({
   amount: z
@@ -326,27 +350,47 @@ export default function PaymentForm({
   if (paymentCompleted) {
     return (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-black/60 backdrop-blur-sm border-2 border-green-500 rounded-lg p-8 text-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative overflow-hidden bg-gradient-to-b from-black/80 to-red-950/30 backdrop-blur-sm border border-red-700/50 rounded-lg p-8 text-center shadow-lg"
       >
-        <div className="text-5xl mb-6">🎉</div>
-        <h2 className="text-2xl font-bold text-green-400 mb-4">
-          {isRegistrationFee ? "Üyelik Tamamlandı!" : "Bağışınız için Teşekkürler!"}
-        </h2>
-        <p className="text-white mb-6">
-          {isRegistrationFee ? (
-            "Cumhuriyet Güncellenme Platformu'na üyeliğiniz başarıyla tamamlandı. Artık platformun tüm özelliklerini kullanabilirsiniz."
-          ) : (
-            "Cumhuriyet Güncellenme Platformu'na katkınız için teşekkür ederiz. Desteğiniz, daha güçlü bir gelecek için çok değerli."
-          )}
-        </p>
-        <Button
-          onClick={handleReset}
-          className="bg-gradient-to-r from-green-700 to-green-500 hover:from-green-600 hover:to-green-400 text-white"
-        >
-          {isRegistrationFee ? "Kapat" : "Yeni Bağış Yap"}
-        </Button>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-red-400 to-red-600"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+        
+        <div className="relative z-10">
+          <svg 
+            className="w-16 h-16 mx-auto mb-6 text-red-500" 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="1" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          
+          <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-amber-500 mb-4">
+            {isRegistrationFee ? "İşlem Tamamlandı" : "Bağış İşlemi Tamamlandı"}
+          </h2>
+          
+          <p className="text-white mb-6">
+            {isRegistrationFee ? (
+              "Cumhuriyet Güncellenme Platformu'na üyeliğiniz başarıyla tamamlandı. Artık platformun tüm özelliklerini kullanabilirsiniz."
+            ) : (
+              "Cumhuriyet Güncellenme Platformu'na katkınız için teşekkür ederiz. Desteğiniz, daha güçlü bir gelecek için çok değerli."
+            )}
+          </p>
+          
+          <Button
+            onClick={handleReset}
+            className="bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-medium px-6 py-2 rounded-md shadow-md transition-all duration-300"
+          >
+            {isRegistrationFee ? "Kapat" : "Yeni Bağış Yap"}
+          </Button>
+        </div>
       </motion.div>
     );
   }
