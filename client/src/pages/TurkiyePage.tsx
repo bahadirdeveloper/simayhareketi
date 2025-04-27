@@ -272,7 +272,7 @@ export default function TurkiyePage() {
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               className="w-full modern-button font-poppins p-5 text-2xl font-bold"
-              onClick={() => navigate("/karisikfikirler")}
+              onClick={() => navigate("/halk-manifestolar")}
             >
               <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Halk Defteri &amp; Manifestolar</span>
             </Button>
