@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { Flag, Heart, Map, History, ChevronRight, ChevronLeft, BookOpen, Quote } from "lucide-react";
 
 export default function TurkNedirPage() {
   const { t, i18n } = useTranslation();
@@ -59,6 +60,12 @@ export default function TurkNedirPage() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
+                  <div className="inline-flex items-center justify-center mb-6">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-lg shadow-red-900/20">
+                      <Flag className="h-10 w-10 text-white" />
+                    </div>
+                  </div>
+                
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-700 pb-2">
                     TÜRK NEDİR?
                   </h1>
@@ -74,33 +81,48 @@ export default function TurkNedirPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="mb-10 text-center space-y-6">
-                <motion.p 
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-white"
+              <div className="mb-10 text-center space-y-10">
+                <motion.div 
+                  className="flex flex-col items-center"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Türk, sadece bir ırk ya da coğrafya değildir.
-                </motion.p>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-lg shadow-red-900/20 mb-4">
+                    <Map className="h-6 w-6 text-white" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-white">
+                    Türk, sadece bir ırk ya da coğrafya değildir.
+                  </p>
+                </motion.div>
                 
-                <motion.p 
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-red-500"
+                <motion.div 
+                  className="flex flex-col items-center"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Türk; bir duruştur, bir vicdandır, bir direniştir.
-                </motion.p>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-lg shadow-red-900/20 mb-4">
+                    <Heart className="h-6 w-6 text-white" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-red-500">
+                    Türk; bir duruştur, bir vicdandır, bir direniştir.
+                  </p>
+                </motion.div>
                 
-                <motion.p 
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-white"
+                <motion.div 
+                  className="flex flex-col items-center"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  Adalete susamış halkların yüreğidir, tarihin en derin izidir.
-                </motion.p>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-lg shadow-red-900/20 mb-4">
+                    <History className="h-6 w-6 text-white" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold leading-relaxed text-white">
+                    Adalete susamış halkların yüreğidir, tarihin en derin izidir.
+                  </p>
+                </motion.div>
               </div>
               
               <motion.div
@@ -111,36 +133,45 @@ export default function TurkNedirPage() {
               >
                 <Button
                   onClick={() => navigate("/turkdetay")}
-                  className="px-10 py-6 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white text-xl sm:text-2xl font-bold rounded-xl shadow-lg hover:shadow-red-700/20 transition-all duration-300"
+                  className="px-10 py-6 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white text-xl sm:text-2xl font-bold rounded-xl shadow-lg hover:shadow-red-700/20 transition-all duration-300 flex items-center gap-3"
                 >
-                  DAMARLARIMDA HİSSEDİYORUM
+                  <Heart className="h-6 w-6 fill-white animate-pulse" />
+                  <span>DAMARLARIMDA HİSSEDİYORUM</span>
                 </Button>
               </motion.div>
             </motion.div>
             
             {/* Quote Section */}
             <motion.div
-              className="bg-black/40 backdrop-blur-lg rounded-xl border border-red-800/20 p-6 sm:p-8 max-w-4xl mx-auto mb-12"
+              className="bg-gradient-to-br from-black/60 to-red-950/10 backdrop-blur-lg rounded-xl border border-red-900/20 p-6 sm:p-8 max-w-4xl mx-auto mb-12 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              <blockquote className="border-l-4 border-red-500 pl-4 my-6">
-                <p className="text-xl sm:text-2xl italic text-white/90">
+              <div className="flex flex-col items-center mb-6">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center shadow-lg shadow-red-900/20 mb-3">
+                  <Quote className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              
+              <blockquote className="border-l-4 border-red-500 pl-6 my-6 bg-black/20 p-4 rounded-r-lg">
+                <p className="text-xl sm:text-2xl italic text-white/90 font-medium">
                   "Ne mutlu Türküm diyene!"
                 </p>
-                <footer className="text-right text-white/70 mt-2">
+                <footer className="text-right text-white/70 mt-3 font-medium">
                   — Mustafa Kemal Atatürk
                 </footer>
               </blockquote>
               
-              <p className="text-white/90 mt-6">
-                Türklük bir kültürdür, bir medeniyettir, bir yaşam biçimidir. Türklük, insanlık tarihinin en eski ve en köklü medeniyet anlayışlarından biridir. Bu medeniyet, yüzyıllar boyunca dünya tarihine yön vermiştir.
-              </p>
-              
-              <p className="text-white/90 mt-4">
-                Türk olmak; bağımsızlığa âşık olmak, adaleti savunmak, farklılıklara saygı duymak ve insanlığın gelişimine katkıda bulunmak demektir. Türk olmak, bir yaşam felsefesidir; bir duruştur; bir bilinçtir.
-              </p>
+              <div className="mt-8 space-y-4 bg-black/20 p-5 rounded-lg border border-red-900/10">
+                <p className="text-white/90 readable-text enhanced-text">
+                  Türklük bir kültürdür, bir medeniyettir, bir yaşam biçimidir. Türklük, insanlık tarihinin en eski ve en köklü medeniyet anlayışlarından biridir. Bu medeniyet, yüzyıllar boyunca dünya tarihine yön vermiştir.
+                </p>
+                
+                <p className="text-white/90 readable-text enhanced-text">
+                  Türk olmak; bağımsızlığa âşık olmak, adaleti savunmak, farklılıklara saygı duymak ve insanlığın gelişimine katkıda bulunmak demektir. Türk olmak, bir yaşam felsefesidir; bir duruştur; bir bilinçtir.
+                </p>
+              </div>
             </motion.div>
             
             {/* Navigation Buttons */}
@@ -152,16 +183,18 @@ export default function TurkNedirPage() {
             >
               <Button 
                 onClick={() => navigate("/turkiye")}
-                className="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white rounded-lg hover:from-gray-800 hover:to-gray-950 transition-all shadow-lg hover:shadow-gray-700/20"
+                className="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white rounded-lg hover:from-gray-800 hover:to-gray-950 transition-all shadow-lg hover:shadow-gray-700/20 flex items-center gap-2"
               >
-                ◀ Türkiye Sayfasına Dön
+                <ChevronLeft className="h-5 w-5" />
+                <span>Türkiye Sayfasına Dön</span>
               </Button>
               
               <Button 
                 onClick={() => navigate("/turkdetay")}
-                className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20"
+                className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20 flex items-center gap-2"
               >
-                Daha Fazla Detay ▶
+                <span>Daha Fazla Detay</span>
+                <ChevronRight className="h-5 w-5" />
               </Button>
             </motion.div>
           </motion.div>
