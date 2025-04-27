@@ -154,7 +154,7 @@ export default function AccessibilityReader({ pageContent, pageName }: Accessibi
       {/* Accessibility Panel */}
       {isOpen && (
         <motion.div 
-          className="absolute bottom-16 right-0 w-72 bg-black/90 backdrop-blur-md text-white rounded-lg shadow-xl border border-red-600/20 p-4"
+          className="absolute bottom-16 right-0 w-64 sm:w-72 bg-black/90 backdrop-blur-md text-white rounded-lg shadow-xl border border-red-600/20 p-3 sm:p-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
