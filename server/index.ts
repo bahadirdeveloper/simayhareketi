@@ -77,12 +77,11 @@ app.use(cookieParser()); // Cookie işlemleri için
 // SPA yönlendirmesi için (react router yönlendirmesini desteklemek için)
 // API olmayan GET istekleri için HTML dosyasını sun
 app.use((req, res, next) => {
+  // İstekleri logla - sorun gidermek için
   if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.includes('.')) {
-    // Vite development modunda bu işlemi zaten yapıyor. Sadece API dışı istekleri işle
-    next();
-  } else {
-    next();
+    console.log(`[SPA Route] ${req.path} -> Forwarding to frontend router`);
   }
+  next();
 });
 
 app.use((req, res, next) => {

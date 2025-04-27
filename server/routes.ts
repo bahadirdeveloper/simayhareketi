@@ -17,9 +17,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", message: "Dünyayı Kurtarma Operasyonu API çalışıyor" });
   });
 
-  // Kök rotası için SPA yapılandırması - React uygulaması için yönlendirme
+  // Kök rotası ve SPA yönlendirmeleri için yapılandırma
   app.get('/', (req, res, next) => {
     // Vite tarafından işlenmesi için middleware zincirini devam ettir
+    next();
+  });
+  
+  // SPA yönlendirmeleri için catch-all route
+  app.get('/:path*', (req, res, next) => {
+    const path = req.params.path;
+    // API istekleri hariç tüm GET isteklerini SPA'ya yönlendir
+    if (!req.path.startsWith('/api') && req.method === 'GET') {
+      console.log(`[SPA Route Handler] ${req.path} -> Frontend'e yönlendiriliyor`);
+    }
     next();
   });
 
