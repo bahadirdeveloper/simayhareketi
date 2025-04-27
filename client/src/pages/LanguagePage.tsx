@@ -59,7 +59,7 @@ export default function LanguagePage() {
 
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen flex flex-col items-center justify-center text-matrix-green overflow-hidden" lang={lang}>
         <MatrixBackground />
