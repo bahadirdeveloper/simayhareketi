@@ -17,8 +17,7 @@ export default function SimayHomeProfessional() {
   
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      
+      {/* Yükleme ekranını geçici olarak kaldırdık */}
       <ModernLayout audioKey="home" showLanguageSelector={true}>
         <div className="w-full">
           {/* Ana Başlık */}

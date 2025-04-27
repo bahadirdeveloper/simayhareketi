@@ -40,6 +40,8 @@ export default function ModernLayout({
           body: JSON.stringify({
             path: window.location.pathname,
             referrer: document.referrer || '',
+            language: 'tr', // Gerekli alan
+            hasInteracted: false
           }),
         });
       } catch (error) {
