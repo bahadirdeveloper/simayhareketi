@@ -41,7 +41,7 @@ function Router() {
       <Route path="/" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
       <Route path="/turknedir" component={TurkNedirPage} />
-      <Route path="/turk-nedir-detay" component={TurkNedirDetayPage} />
+      <Route path="/turkdetay" component={TurkNedirDetayPage} />
       <Route path="/anayasa" component={AnayasaPage} />
       <Route path="/gorevler" component={GorevlerPage} />
       <Route path="/gorev-davet" component={GorevDavetPage} />

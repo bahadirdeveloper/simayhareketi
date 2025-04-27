@@ -395,16 +395,43 @@ export default function PaymentForm({
     );
   }
 
+  // Stripe bileşenlerini yüklemeyi dene (Elements, PaymentElement, vs.)
+  useEffect(() => {
+    if (clientSecret) {
+      initStripe();
+    }
+  }, [clientSecret]);
+
   return (
     <div className="w-full">
       {clientSecret ? (
-        <Elements stripe={stripePromise} options={{ clientSecret, locale: 'tr' }}>
-          <CheckoutForm 
-            clientSecret={clientSecret} 
-            onSuccess={handlePaymentSuccess}
-            isRegistrationFee={isRegistrationFee} 
-          />
-        </Elements>
+        <>
+          {Elements && PaymentElement && useStripe && useElements ? (
+            <Elements stripe={stripePromise} options={{ clientSecret, locale: 'tr' }}>
+              <CheckoutForm 
+                clientSecret={clientSecret} 
+                onSuccess={handlePaymentSuccess}
+                isRegistrationFee={isRegistrationFee} 
+              />
+            </Elements>
+          ) : (
+            <div className="text-center py-8">
+              <div className="bg-red-950/30 backdrop-blur-sm border border-red-700/30 rounded-lg p-6 shadow-md">
+                <svg className="w-10 h-10 text-red-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <h3 className="text-xl font-semibold text-red-400 mb-2">Ödeme Sistemi Yüklenemedi</h3>
+                <p className="text-white/80 mb-4">Ödeme sistemi şu anda yüklenemedi. Lütfen daha sonra tekrar deneyiniz.</p>
+                <Button 
+                  onClick={handleReset}
+                  className="bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white"
+                >
+                  Geri Dön
+                </Button>
+              </div>
+            </div>
+          )}
+        </>
       ) : (
         <AmountForm 
           onProceed={handleProceedToPayment}

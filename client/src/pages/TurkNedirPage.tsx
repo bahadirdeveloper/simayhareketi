@@ -110,7 +110,7 @@ export default function TurkNedirPage() {
                 transition={{ duration: 0.8, delay: 1 }}
               >
                 <Button
-                  onClick={() => navigate("/turk-nedir-detay")}
+                  onClick={() => navigate("/turkdetay")}
                   className="px-10 py-6 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white text-xl sm:text-2xl font-bold rounded-xl shadow-lg hover:shadow-red-700/20 transition-all duration-300"
                 >
                   DAMARLARIMDA HİSSEDİYORUM
@@ -158,7 +158,7 @@ export default function TurkNedirPage() {
               </Button>
               
               <Button 
-                onClick={() => navigate("/turk-nedir-detay")}
+                onClick={() => navigate("/turkdetay")}
                 className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20"
               >
                 Daha Fazla Detay ▶
