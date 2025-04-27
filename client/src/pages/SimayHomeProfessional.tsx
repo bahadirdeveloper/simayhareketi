@@ -109,21 +109,21 @@ export default function SimayHomeProfessional() {
                     {t('turkiye_button', 'Türkiye')}
                   </button>
                   <button 
-                    onClick={() => navigate(`/${i18n.language}/manifesto`)}
+                    onClick={() => navigate("/manifesto")}
                     className="px-7 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20 flex items-center font-medium text-base"
                   >
                     <span className="mr-2">📜</span>
                     {t('simay_manifesto_button', 'Manifestomuz')}
                   </button>
                   <button 
-                    onClick={() => navigate(`/${i18n.language}/katil`)}
+                    onClick={() => navigate("/katil")}
                     className="px-7 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20 flex items-center font-medium text-base"
                   >
                     <span className="mr-2">👥</span>
                     {t('simay_join_button', 'Harekete Katıl')}
                   </button>
                   <button 
-                    onClick={() => navigate(`/${i18n.language}/gorevler`)}
+                    onClick={() => navigate("/gorevler")}
                     className="px-7 py-3.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20 flex items-center font-medium text-base"
                   >
                     <span className="mr-2">🎯</span>
