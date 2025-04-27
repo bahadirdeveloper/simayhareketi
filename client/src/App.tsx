@@ -29,6 +29,7 @@ import RussiaPage from "@/pages/RussiaPage";
 import IranPage from "@/pages/IranPage";
 import PalestinePage from "@/pages/PalestinePage";
 import OppressedNationsPage from "@/pages/OppressedNationsPage";
+import HalkManifestolarPage from "@/pages/HalkManifestolarPage";
 
 function Router() {
   return (
@@ -50,6 +51,7 @@ function Router() {
       <Route path="/iran" component={IranPage} />
       <Route path="/palestine" component={PalestinePage} />
       <Route path="/oppressed" component={OppressedNationsPage} />
+      <Route path="/halk-manifestolar" component={HalkManifestolarPage} />
       <Route path="/matrix" component={Home} />
       <Route path="/simay" component={SimayHome} />
       <Route path="/simay2" component={SimayHome2} />
