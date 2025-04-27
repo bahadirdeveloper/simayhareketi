@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
 import { Button } from "@/components/ui/button";
+import { Flag, Settings, Scale, Vote, Users } from "lucide-react";
 
-// Ana değerler için veri - türkiye sayfası için özelleştirilmiş
+// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (emojiler yerine Lucide ikonları kullanarak modernleştirildi)
 const turkishValues = [
-  { id: 'milli', name: 'MİLLİ', icon: '🇹🇷', description: 'Özgür ve bağımsız' },
-  { id: 'muasir', name: 'MUASIR', icon: '⚙️', description: 'Çağdaş uygarlık' },
-  { id: 'laik', name: 'LAİK', icon: '⚖️', description: 'Vicdan özgürlüğü' },
-  { id: 'demokratik', name: 'DEMOKRATİK', icon: '🗳️', description: 'Halk egemenliği' },
-  { id: 'sosyal', name: 'SOSYAL', icon: '🤝', description: 'Toplumsal dayanışma' }
+  { id: 'milli', name: 'MİLLİ', icon: Flag, description: 'Özgür ve bağımsız' },
+  { id: 'muasir', name: 'MUASIR', icon: Settings, description: 'Çağdaş uygarlık' },
+  { id: 'laik', name: 'LAİK', icon: Scale, description: 'Vicdan özgürlüğü' },
+  { id: 'demokratik', name: 'DEMOKRATİK', icon: Vote, description: 'Halk egemenliği' },
+  { id: 'sosyal', name: 'SOSYAL', icon: Users, description: 'Toplumsal dayanışma' }
 ];
 
 export default function TurkiyePage() {
@@ -81,11 +82,11 @@ export default function TurkiyePage() {
               >
                 <div className="text-xl sm:text-2xl md:text-3xl text-white font-bold mb-2 flex items-center justify-center">
                   Cumhuriyet ile Yeniden Güncelleniyor
-                  <motion.span
-                    className="ml-2 text-red-500"
+                  <motion.div
+                    className="ml-2 text-red-500 inline-flex"
                     animate={{ 
-                      opacity: [1, 0.5, 1],
-                      scale: [1, 1.2, 1]
+                      opacity: [1, 0.7, 1],
+                      scale: [1, 1.1, 1]
                     }}
                     transition={{
                       duration: 1.5,
@@ -93,8 +94,10 @@ export default function TurkiyePage() {
                       repeatType: "reverse"
                     }}
                   >
-                    ✓
-                  </motion.span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-7 md:w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </motion.div>
                 </div>
               </motion.div>
               
@@ -105,73 +108,112 @@ export default function TurkiyePage() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl border border-red-800/20 p-4 shadow-lg">
+                {/* Katılım kartı */}
+                <motion.div 
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-                      <h4 className="font-semibold text-white text-xs sm:text-sm uppercase tracking-wider">GENEL KATILIM</h4>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
                     </div>
+                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GENEL KATILIM</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white mt-2"
+                      className="text-xl sm:text-2xl font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       8.523.912
                     </motion.div>
-                    <div className="text-xs sm:text-sm text-gray-400">Vatandaş</div>
+                    <div className="text-xs text-gray-400 mt-1">Vatandaş</div>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl border border-red-800/20 p-4 shadow-lg">
+                {/* Bağış kartı */}
+                <motion.div 
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-                      <h4 className="font-semibold text-white text-xs sm:text-sm uppercase tracking-wider">TOPLAM BAĞIŞ</h4>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                        <circle cx="12" cy="12" r="2"></circle>
+                        <path d="M6 12h.01M18 12h.01"></path>
+                      </svg>
                     </div>
+                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-red-500 mt-2"
+                      className="text-xl sm:text-2xl font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       ₺7.514.892
                     </motion.div>
-                    <div className="text-xs sm:text-sm text-gray-400">Medeniyet için</div>
+                    <div className="text-xs text-gray-400 mt-1">Medeniyet için</div>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl border border-red-800/20 p-4 shadow-lg">
+                {/* Görev kartı */}
+                <motion.div 
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-                      <h4 className="font-semibold text-white text-xs sm:text-sm uppercase tracking-wider">AKTİF GÖREV</h4>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                      </svg>
                     </div>
+                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white mt-2"
+                      className="text-xl sm:text-2xl font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       100
                     </motion.div>
-                    <div className="text-xs sm:text-sm text-gray-400">Görev</div>
+                    <div className="text-xs text-gray-400 mt-1">Görev</div>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-black/30 backdrop-blur-lg rounded-xl border border-red-800/20 p-4 shadow-lg">
+                {/* Güncelleme kartı */}
+                <motion.div 
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-                      <h4 className="font-semibold text-white text-xs sm:text-sm uppercase tracking-wider">GÜNCELLEME</h4>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
                     </div>
+                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white mt-2"
+                      className="text-xl sm:text-2xl font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       %73
                     </motion.div>
-                    <div className="text-xs sm:text-sm text-gray-400">Tamamlandı</div>
+                    <div className="text-xs text-gray-400 mt-1">Tamamlandı</div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
               
               {/* Cumhuriyet Değerleri */}
@@ -193,7 +235,11 @@ export default function TurkiyePage() {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
                     >
-                      <div className="text-2xl mb-2">{value.icon}</div>
+                      <div className="flex justify-center mb-3">
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/20">
+                          {React.createElement(value.icon, { className: "w-7 h-7 text-white" })}
+                        </div>
+                      </div>
                       <h3 className="text-lg font-semibold text-white mb-1">{value.name}</h3>
                       <p className="text-xs text-gray-400">{value.description}</p>
                     </motion.div>
@@ -213,27 +259,74 @@ export default function TurkiyePage() {
             
             {/* Navigation Buttons - Modern Grid Layout */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 w-full mx-auto mb-8"
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mx-auto mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {/* TÜRK NEDİR? Button */}
-              <Link to="/turknedir" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">TÜRK NEDİR?</span>
-              </Link>
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to="/turknedir" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">TÜRK NEDİR?</h3>
+                  <p className="text-xs text-gray-400 text-center">Türk kimliği ve tanımının tarihsel incelemesi</p>
+                </Link>
+              </motion.div>
               
               {/* Anayasa Button */}
-              <Link to="/anayasa" className="group relative flex flex-col items-center bg-gradient-to-br from-black/60 to-red-950/30 hover:from-black/70 hover:to-red-950/40 backdrop-blur-md border border-red-700/10 hover:border-red-500/30 p-4 sm:p-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-9 sm:w-9 md:h-10 md:w-10 text-red-500 group-hover:text-red-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                </svg>
-                <span className="mt-3 text-sm sm:text-base md:text-lg text-center text-white font-medium tracking-wide">ANAYASALARIMIZ</span>
-              </Link>
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to="/anayasa" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">ANAYASALARIMIZ</h3>
+                  <p className="text-xs text-gray-400 text-center">Cumhuriyet anayasalarının tarihsel arşivi</p>
+                </Link>
+              </motion.div>
               
+              {/* Görevler Button */}
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to="/gorevler" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">GÖREVLER</h3>
+                  <p className="text-xs text-gray-400 text-center">Cumhuriyet için yapılacak görevler listesi</p>
+                </Link>
+              </motion.div>
+              
+              {/* Katıl Button */}
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link to="/katil" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">HAREKETE KATIL</h3>
+                  <p className="text-xs text-gray-400 text-center">Cumhuriyet güncellemesi katılım sistemi</p>
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         </AnimatePresence>

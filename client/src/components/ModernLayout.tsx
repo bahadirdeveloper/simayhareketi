@@ -60,7 +60,13 @@ export default function ModernLayout({
     <>
       <SimpleFuturisticTurkish />
       
-      <div className="min-h-screen text-white relative overflow-x-hidden">
+      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-black to-gray-950">
+        {/* Background elements */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600/20 via-red-500/40 to-red-600/20"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600/20 via-red-500/40 to-red-600/20"></div>
+        
+        {/* Back button */}
         {showBackButton && (
           <motion.div 
             className="fixed top-4 left-4 z-50"
@@ -70,42 +76,63 @@ export default function ModernLayout({
           >
             <button 
               onClick={() => navigate("/")}
-              className="flex items-center space-x-1 sm:space-x-2 bg-black/60 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
+              className="relative px-3 py-2 bg-gradient-to-br from-red-800/80 to-red-900/80 text-white rounded-full hover:from-red-700/90 hover:to-red-800/90 transition-all shadow-lg hover:shadow-red-900/30 flex items-center text-sm overflow-hidden group"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-red-700/50 to-red-900/50 backdrop-filter backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span className="text-xs sm:text-sm">Geri</span>
+              <span className="relative z-10">Anasayfaya Dön</span>
             </button>
           </motion.div>
         )}
         
-        <main className="container mx-auto px-3 sm:px-4 z-10 relative flex flex-col items-center justify-center min-h-screen pt-8 sm:pt-12">
+        {/* Main content */}
+        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16">
           {children}
           
+          {/* Language selector */}
           {showLanguageSelector && (
-            <div className="mt-8 mb-4">
+            <motion.div 
+              className="mt-8 mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="text-center">
-                <div className="mb-2 text-xs text-gray-400">Tercih ettiğiniz dil</div>
-                <LanguageSelector />
+                <div className="mb-2 text-xs text-red-400 font-medium uppercase tracking-wide">Tercih ettiğiniz dil</div>
+                <div className="bg-black/40 backdrop-blur-md p-2 rounded-lg border border-red-900/20">
+                  <LanguageSelector />
+                </div>
               </div>
-            </div>
+            </motion.div>
           )}
           
-          <div className="text-center mt-8 mb-4">
-            <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-black/40 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-md border border-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8L12 12" />
-                <path d="M12 16h.01" />
-              </svg>
-              <p className="text-xs sm:text-xs text-gray-300 font-light tracking-wide">
-                <span className="font-normal text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
+          {/* Footer info with launch date */}
+          <motion.div 
+            className="text-center mt-8 mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-gradient-to-r from-black/60 to-black/80 backdrop-blur-md px-4 py-2.5 rounded-full border border-red-900/30 shadow-lg">
+              <div className="h-2 w-2 rounded-full bg-red-500 mr-2 animate-pulse"></div>
+              <p className="text-xs sm:text-sm text-gray-300 font-light tracking-wide">
+                <span className="font-medium text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
+            </div>
+          </motion.div>
+          
+          {/* Technical indicators */}
+          <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
+            <div className="bg-black/70 backdrop-blur-md px-2 py-1 rounded-md border border-red-900/20 shadow-lg flex items-center">
+              <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-1.5"></div>
+              <span className="text-xs text-gray-400">v2.0</span>
             </div>
           </div>
         </main>
         
+        {/* Controls */}
         <AudioControl onToggle={handleToggleAudio} />
         <AccessibilityReader pageContent={pageContent} pageName={pageName} />
       </div>
