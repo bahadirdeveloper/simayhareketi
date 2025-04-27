@@ -34,10 +34,11 @@ const amountSchema = z.object({
     .refine((val) => !isNaN(Number(val)), {
       message: "Geçerli bir sayı giriniz",
     })
-    .refine((val) => Number(val) >= 5, {
-      message: "Bağış miktarı en az 5 TL olmalıdır",
+    .refine((val) => Number(val) >= 1, {
+      message: "Tutar en az 1 TL olmalıdır",
     }),
   description: z.string().optional(),
+  isRegistrationFee: z.boolean().optional(),
 });
 
 type AmountFormValues = z.infer<typeof amountSchema>;
@@ -201,7 +202,15 @@ function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string, onSuc
 }
 
 // Main payment component that manages the flow
-export default function PaymentForm() {
+export default function PaymentForm({ 
+  isRegistrationFee = false, 
+  fixedAmount = null, 
+  fixedDescription = null 
+}: { 
+  isRegistrationFee?: boolean, 
+  fixedAmount?: number | null, 
+  fixedDescription?: string | null 
+}) {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
@@ -211,10 +220,14 @@ export default function PaymentForm() {
   const handleProceedToPayment = async (data: AmountFormValues) => {
     setIsLoading(true);
     
+    const amountToCharge = fixedAmount !== null ? fixedAmount : parseFloat(data.amount);
+    const description = fixedDescription || data.description || "Ödeme";
+    
     try {
       const response = await apiRequest("POST", "/api/create-payment-intent", {
-        amount: parseFloat(data.amount),
-        description: data.description,
+        amount: amountToCharge,
+        description: description,
+        isRegistrationFee: isRegistrationFee,
       });
       
       const result = await response.json();
