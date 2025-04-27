@@ -60,14 +60,7 @@ export default function SertifikaPage() {
     { icon: <FileText className="w-8 h-8 text-red-500" />, title: 'Resmi Belge', description: 'Cumhuriyet\'e katkınızı belgeleyen resmi bir kanıt elde edersiniz.' }
   ];
   
-  // Sertifika seviyeleri
-  const certificateLevels = [
-    { level: 'Bronz', contribution: '100-500 TL', benefits: 'Temel erişim hakları, dijital rozet' },
-    { level: 'Gümüş', contribution: '501-1,000 TL', benefits: 'Bronz haklar + aylık özel içerik erişimi' },
-    { level: 'Altın', contribution: '1,001-5,000 TL', benefits: 'Gümüş haklar + çevrimiçi etkinliklere katılım' },
-    { level: 'Platin', contribution: '5,001-10,000 TL', benefits: 'Altın haklar + özel davetler, yıllık kitap seti' },
-    { level: 'Elmas', contribution: '10,000+ TL', benefits: 'Platin haklar + VIP etkinlikler, özel ağ erişimi' }
-  ];
+  // Sertifika seviyeleri kaldırıldı
   
   // Erişilebilirlik metninin tanımı
   const pageContent = `Cumhuriyet Sertifikası Bilgilendirme ve Şeffaf Gelir-Gider Tablosu sayfasına hoş geldiniz. 
@@ -171,32 +164,7 @@ export default function SertifikaPage() {
                   </div>
                 </div>
                 
-                <div className="mt-10">
-                  <h3 className="text-2xl font-bold text-white mb-6 readable-text">Sertifika Seviyeleri ve Haklar</h3>
-                  <div className="overflow-x-auto">
-                    <Table className="w-full border-collapse">
-                      <TableHeader>
-                        <TableRow className="border-b border-red-500/30 bg-black/40">
-                          <TableHead className="text-white font-medium py-3">Seviye</TableHead>
-                          <TableHead className="text-white font-medium py-3">Katkı Miktarı</TableHead>
-                          <TableHead className="text-white font-medium py-3">Sağlanan Haklar</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {certificateLevels.map((level, index) => (
-                          <TableRow 
-                            key={index} 
-                            className={`border-b border-red-500/20 ${index % 2 === 0 ? 'bg-black/20' : 'bg-black/40'}`}
-                          >
-                            <TableCell className="py-3 font-medium text-white">{level.level}</TableCell>
-                            <TableCell className="py-3 text-gray-300">{level.contribution}</TableCell>
-                            <TableCell className="py-3 text-gray-300">{level.benefits}</TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
+                {/* Sertifika seviyeleri tablosu kaldırıldı */}
                 
                 <div className="mt-10 text-center">
                   <h3 className="text-2xl font-bold text-white mb-4 readable-text">Nasıl Sertifika Alabilirsiniz?</h3>
