@@ -66,6 +66,7 @@ function Router() {
       <Route path="/simay2" component={SimayHome2} />
       <Route path="/simay3" component={SimayHome3} />
       <Route path="/simay4" component={SimayHome4} />
+      <Route path="/tr" component={TurkiyePage} />
       <Route path="/:lang" component={LanguagePage} />
       <Route component={NotFound} />
     </Switch>
