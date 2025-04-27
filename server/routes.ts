@@ -17,9 +17,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", message: "Dünyayı Kurtarma Operasyonu API çalışıyor" });
   });
 
-  // Kök rotası için SPA yapılandırması - index.html'e yönlendir
-  app.get('/', (req, res, next) => {
-    next();
+  // Health check endpoint for the root route
+  app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', message: 'Dünyayı Kurtarma Operasyonu API çalışıyor' });
   });
 
   // Register a new user
