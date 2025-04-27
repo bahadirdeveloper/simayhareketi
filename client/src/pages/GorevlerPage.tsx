@@ -1229,14 +1229,14 @@ export default function GorevlerPage() {
                   />
                 </div>
                 
-                <div className="flex flex-wrap justify-center gap-4 mt-6">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6">
                   {categories.map(category => (
                     <Button
                       key={category}
                       variant={selectedCategory === category ? "default" : "outline"}
                       className={selectedCategory === category 
-                        ? "turkish-flag-button font-bold text-lg px-6 py-5 border-none font-poppins" 
-                        : "modern-button text-white font-semibold text-lg px-6 py-5 font-poppins"
+                        ? "turkish-flag-button font-bold text-xs sm:text-sm md:text-lg px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 border-none font-poppins" 
+                        : "modern-button text-white font-semibold text-xs sm:text-sm md:text-lg px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 font-poppins"
                       }
                       onClick={() => {
                         setSelectedCategory(category);
