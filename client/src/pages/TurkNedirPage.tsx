@@ -133,9 +133,11 @@ export default function TurkNedirPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <p className="text-2xl md:text-3xl lg:text-4xl leading-relaxed mb-10 font-bold tracking-wide font-poppins turkish-accent-container">
-            <span className="text-turkish-white">Türk, sadece bir ırk ya da coğrafya değildir. <span className="text-turkish-red">Türk; bir duruştur, bir vicdandır, bir direniştir.</span><br />
-            Adalete susamış halkların yüreğidir, tarihin en derin izidir.</span>
+          <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed mb-10 font-bold tracking-wide font-poppins turkish-accent-container">
+            <span className="text-turkish-white">Türk, sadece bir ırk ya da coğrafya değildir. <span className="text-turkish-red">Türk; bir duruştur, bir vicdandır, bir direniştir.</span></span>
+          </p>
+          <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed mb-10 font-bold tracking-wide font-poppins">
+            <span className="text-turkish-white">Adalete susamış halkların yüreğidir, tarihin en derin izidir.</span>
           </p>
           
           <motion.div
@@ -146,7 +148,7 @@ export default function TurkNedirPage() {
             whileHover={{ scale: 1.03 }}
           >
             <Button
-              className="turkish-flag-button text-2xl px-10 py-8 font-bold tracking-wide font-poppins"
+              className="turkish-flag-button text-lg xs:text-xl sm:text-2xl px-4 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8 font-bold tracking-wide font-poppins"
               onClick={() => navigate("/turk-nedir-detay")}
             >
               DAMARLARIMDA HİSSEDİYORUM
