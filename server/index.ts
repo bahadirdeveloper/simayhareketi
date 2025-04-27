@@ -11,6 +11,61 @@ const app = express();
 // Trust proxy - express-rate-limit hatasını çözmek için
 app.set('trust proxy', 1);
 
+// Kara listeye alınmış IP'ler için koruma (güvenlik ihlali durumunda dinamik olarak güncellenebilir)
+const blockedIPs: Set<string> = new Set();
+const suspiciousActivityCounts: Record<string, number> = {};
+
+// IP'lerin kara listeye alınması için middleware
+app.use((req, res, next) => {
+  const clientIP = req.ip || req.socket.remoteAddress || '';
+  
+  // Kara listedeki IP'leri engelle
+  if (blockedIPs.has(clientIP)) {
+    return res.status(403).json({
+      error: 'Access Denied',
+      message: 'IP adresiniz güvenlik nedeniyle engellendi.'
+    });
+  }
+  
+  // Şüpheli aktiviteleri izle
+  if (!suspiciousActivityCounts[clientIP]) {
+    suspiciousActivityCounts[clientIP] = 0;
+  }
+  
+  // Şüpheli API istekleri için kontrol
+  const isSuspiciousPath = 
+    req.path.includes('admin') || 
+    req.path.includes('shell') || 
+    req.path.includes('config') ||
+    req.path.includes('wp-') ||
+    req.path.includes('eval');
+  
+  // Şüpheli sorgu parametreleri veya istekler için skor artır
+  if (isSuspiciousPath || req.path.includes('.php')) {
+    suspiciousActivityCounts[clientIP] += 1;
+    
+    // Eğer 5 veya daha fazla şüpheli istek varsa IP'yi kara listeye al
+    if (suspiciousActivityCounts[clientIP] >= 5) {
+      console.warn(`[SECURITY] Blocking IP address ${clientIP} due to suspicious activity`);
+      blockedIPs.add(clientIP);
+      
+      return res.status(403).json({
+        error: 'Access Denied',
+        message: 'Şüpheli aktivite tespit edildi. IP adresiniz engellendi.'
+      });
+    }
+  }
+  
+  // IP'nin şüpheli aktivite skorunu her saat temizle
+  setTimeout(() => {
+    if (suspiciousActivityCounts[clientIP]) {
+      suspiciousActivityCounts[clientIP] = 0;
+    }
+  }, 60 * 60 * 1000); // 1 saat
+  
+  next();
+});
+
 // GELİŞMİŞ GÜVENLİK ÖNLEMLERİ
 // Helmet ile kapsamlı güvenlik başlıkları ekle
 app.use(
@@ -146,27 +201,76 @@ app.use(express.json({ limit: "1mb" })); // JSON body boyutunu sınırla
 app.use(express.urlencoded({ extended: false, limit: "1mb" }));
 
 // Güvenli cookie yapılandırması
+// Güvenli rastgele anahtar oluştur
 const COOKIE_SECRET = process.env.COOKIE_SECRET || "guclu_guvenli_simay_hareketi_secret_" + Math.random().toString(36).substring(2);
 app.use(cookieParser(COOKIE_SECRET)); // Cookie işlemleri için
+
+// CSRF koruma - kritik operasyonlar için referrer ve origin kontrolü
+app.use((req, res, next) => {
+  // Sadece POST, PUT, PATCH veya DELETE istekleri için kontrol et
+  const dangerousMethods = ['POST', 'PUT', 'PATCH', 'DELETE'];
+  
+  if (dangerousMethods.includes(req.method)) {
+    // Stripe webhook isteklerini bu kontrolden muaf tut (bu istekler genellikle referrer içermez)
+    if (req.path === '/api/webhook') {
+      return next();
+    }
+    
+    const referrer = req.headers.referer || '';
+    const origin = req.headers.origin || '';
+    const host = req.headers.host || '';
+    
+    // API istekleri için CSRF koruması
+    if (req.path.startsWith('/api')) {
+      // Referrer veya Origin olmayan istekleri reddet (CSRF olabilir)
+      if (!referrer && !origin) {
+        console.warn(`[SECURITY] Potential CSRF attempt: Missing referrer and origin headers`);
+        return res.status(403).json({ 
+          error: 'Access Denied', 
+          message: 'CSRF koruması: Geçersiz kaynak.'
+        });
+      }
+      
+      // Basit referrer kontrolü - kendi sitemizden gelmeyen istekleri reddet
+      // Production'da daha kesin domain kontrolü yapılabilir
+      if (referrer && !referrer.includes(host) && !referrer.includes('localhost') && !referrer.includes('simayhareketi.com')) {
+        console.warn(`[SECURITY] Potential CSRF attempt from referrer: ${referrer}`);
+        return res.status(403).json({ 
+          error: 'Access Denied', 
+          message: 'CSRF koruması: İzin verilmeyen kaynaktan istek.'
+        });
+      }
+    }
+  }
+  
+  next();
+});
 
 // Cookie güvenlik ayarları 
 app.use((req, res, next) => {
   // Tüm çerezler için güvenli ayarları yap
-  res.cookie = function(originalCookie) {
-    return function(name, value, options = {}) {
-      // Varsayılan güvenlik ayarlarını ekle
-      const secureOptions = {
-        httpOnly: true, // JavaScript erişimini engelle
-        secure: process.env.NODE_ENV === 'production', // Sadece HTTPS üzerinden
-        sameSite: 'strict', // CSRF koruması
-        maxAge: 7200000, // 2 saat (ms)
-        ...options, // Özel ayarları koruyarak birleştir
-      };
-      
-      // Orijinal cookie metodunu güvenli ayarlarla çağır
-      return originalCookie.call(this, name, value, secureOptions);
+  const originalCookie = res.cookie;
+  
+  // Tip güvenli cookie fonksiyonu
+  res.cookie = function(
+    name: string, 
+    value: string, 
+    options: any = {}
+  ) {
+    // Varsayılan güvenlik ayarlarını ekle
+    const secureOptions = {
+      httpOnly: true, // JavaScript erişimini engelle
+      secure: process.env.NODE_ENV === 'production', // Sadece HTTPS üzerinden
+      sameSite: 'strict' as const, // CSRF koruması
+      maxAge: 7200000, // 2 saat (ms)
     };
-  }(res.cookie);
+    
+    // Seçenekleri birleştir
+    const mergedOptions = Object.assign({}, secureOptions, options || {});
+    
+    // Orijinal cookie metodunu güvenli ayarlarla çağır
+    return originalCookie.call(res, name, value, mergedOptions);
+  };
   
   next();
 });
@@ -239,11 +343,11 @@ app.use((req, res, next) => {
     }
   }
 
-  // Normal API loglama
+  // Normal API loglama - type-safe monkeypatching
   const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  res.json = function (bodyJson: any) {
     capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
+    return originalResJson.call(res, bodyJson);
   };
 
   res.on("finish", () => {
@@ -258,19 +362,48 @@ app.use((req, res, next) => {
                            path.includes('/user');
       
       if (isCriticalAPI || res.statusCode >= 400) {
-        logLine += ` || IP: ${ip.substr(0, 15)}... | UA: ${userAgent.substr(0, 20)}...`;
+        const safeIp = typeof ip === 'string' ? ip.substr(0, 15) : 'unknown';
+        const safeUA = typeof userAgent === 'string' ? userAgent.substr(0, 20) : 'unknown';
+        logLine += ` || IP: ${safeIp}... | UA: ${safeUA}...`;
       }
       
       if (capturedJsonResponse) {
-        // Hassas veri filtrele
-        const sanitizedResponse = { ...capturedJsonResponse };
-        if (typeof sanitizedResponse === 'object' && sanitizedResponse !== null) {
-          // Hassas alanları maske
-          ['password', 'token', 'secret', 'key', 'credit', 'card'].forEach(field => {
-            if (sanitizedResponse[field]) sanitizedResponse[field] = '*****';
-          });
+        // Hassas veri filtreleme
+        let sanitizedResponse: any = null;
+        
+        try {
+          // Güvenli obje kopyalama
+          if (typeof capturedJsonResponse === 'object' && capturedJsonResponse !== null) {
+            sanitizedResponse = JSON.parse(JSON.stringify(capturedJsonResponse));
+            
+            // Hassas alanları maske
+            const sensitiveFields = ['password', 'token', 'secret', 'key', 'credit', 'card', 'cvv', 'pin'];
+            
+            // Recursive masking function
+            const maskSensitiveData = (obj: any) => {
+              if (typeof obj !== 'object' || obj === null) return;
+              
+              Object.keys(obj).forEach(key => {
+                // Hassas alan adlarını maske 
+                if (sensitiveFields.some(field => key.toLowerCase().includes(field))) {
+                  obj[key] = '*****';
+                } 
+                // Nesne içinde gezinmeye devam et
+                else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                  maskSensitiveData(obj[key]);
+                }
+              });
+            };
+            
+            maskSensitiveData(sanitizedResponse);
+          } else {
+            sanitizedResponse = capturedJsonResponse;
+          }
+          
+          logLine += ` :: ${JSON.stringify(sanitizedResponse)}`;
+        } catch (e) {
+          logLine += ' :: [Response logging failed]';
         }
-        logLine += ` :: ${JSON.stringify(sanitizedResponse)}`;
       }
 
       // Log boyutu sınırla

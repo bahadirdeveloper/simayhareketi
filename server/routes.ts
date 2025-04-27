@@ -1,4 +1,4 @@
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from "path";
@@ -11,7 +11,59 @@ import {
   getPaymentPrices
 } from "./routes/stripe";
 
+// SQL Enjeksiyon Koruma Middleware
+function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
+  // SQL enjeksiyon kalıpları
+  const sqlPatterns = [
+    /(\%27)|(\')|(\-\-)|(\%23)|(#)/i,
+    /((\%3D)|(=))[^\n]*((\%27)|(\')|(\-\-)|(\%3B)|(;))/i,
+    /\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))/i,
+    /((\%27)|(\'))union/i,
+    /exec(\s|\+)+(s|x)p/i,
+    /UNION(\s+)ALL(\s+)SELECT/i,
+    /INSERT|UPDATE|DELETE|DROP|ALTER|TRUNCATE/i
+  ];
+
+  // SQL enjeksiyon bulunması durumunda
+  const checkForSqlInjection = (obj: any): boolean => {
+    if (!obj) return false;
+    
+    if (typeof obj === 'string') {
+      return sqlPatterns.some(pattern => pattern.test(obj));
+    }
+    
+    if (typeof obj === 'object') {
+      return Object.values(obj).some(value => checkForSqlInjection(value));
+    }
+    
+    return false;
+  };
+  
+  // Tüm giriş kaynaklarını kontrol et
+  const hasSQLInjection = 
+    checkForSqlInjection(req.query) || 
+    checkForSqlInjection(req.body) || 
+    checkForSqlInjection(req.params);
+  
+  if (hasSQLInjection) {
+    console.warn(`[SECURITY] SQL Injection attempt detected from ${req.ip}`);
+    console.warn(`Path: ${req.path}`);
+    console.warn(`Query: ${JSON.stringify(req.query)}`);
+    console.warn(`Body: ${JSON.stringify(req.body)}`);
+    
+    return res.status(403).json({ 
+      error: 'Access Denied', 
+      message: 'Sistem güvenlik politikalarına aykırı istek tespit edildi.'
+    });
+  }
+  
+  next();
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Tüm API endpointleri için SQL enjeksiyon koruma middleware'i uygula
+  app.use('/api', sqlInjectionProtection);
+  
   // API endpoints for the application
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", message: "Dünyayı Kurtarma Operasyonu API çalışıyor" });
