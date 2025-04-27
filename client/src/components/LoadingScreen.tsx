@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 
-export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+export default function LoadingScreen() {
   const [cumhuriyetText, setCumhuriyetText] = useState("");
   const [insanlikText, setInsanlikText] = useState("");
   const [isDecoding, setIsDecoding] = useState(true);
@@ -35,9 +34,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             
             if (loadProgress >= 100) {
               clearInterval(progressInterval);
-              setTimeout(() => {
-                onComplete();
-              }, 500);
             }
           }, 150);
         }, 800);
@@ -47,14 +43,15 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     return () => {
       clearInterval(intervalId);
     };
-  }, [onComplete]);
+  }, []);
   
   return (
-    <div className="loading-screen">
+    <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="loading-message mb-4">
+        <h1 className="text-2xl md:text-3xl mb-4">
           <span className="text-red-500">{cumhuriyetText}</span>
-          <span className="text-white typing-cursor">{insanlikText}</span>
+          <span className="text-white">{insanlikText}</span>
+          <span className="text-white animate-pulse">|</span>
         </h1>
         
         {!isDecoding && (

@@ -75,7 +75,7 @@ export default function ManifestoPage() {
   }, [i18n.language]);
   
   if (showLoading) {
-    return <LoadingScreen onComplete={() => setShowLoading(false)} />;
+    return <LoadingScreen />;
   }
 
   return (

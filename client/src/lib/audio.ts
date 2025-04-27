@@ -25,9 +25,9 @@ const addTimestamp = (url: string): string => {
 export const initAudio = (page: string = 'default'): void => {
   currentPage = page;
   
-  // Always initialize a soundtrack for the current page
-  let soundPath = soundtrackPaths[page as keyof typeof soundtrackPaths] || soundtrackPaths.default;
-  soundPath = addTimestamp(soundPath);
+  // Ses dosyası hatalarını yaşadığımız için direkt default sesi kullanılıyor
+  // İleride gerçek sesler eklendiğinde aşağıdaki kodları açabiliriz
+  const soundPath = addTimestamp(soundtrackPaths.default);
   
   // Destroy previous soundtrack if exists
   if (soundtrack) {
@@ -36,47 +36,21 @@ export const initAudio = (page: string = 'default'): void => {
     soundtrack = null;
   }
   
-  // Ses dosyalarının varlığını kontrol etmek için
-  console.log(`Attempting to load sound: ${soundPath}`);
-  
-  soundtrack = new Howl({
-    src: [soundPath],
-    loop: true,
-    volume: 0.2,
-    html5: true,
-    preload: true,
-    autoplay: false,
-    xhr: {
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'no-cache'
-      }
-    },
-    onloaderror: (id: any, error: any) => {
-      console.warn(`Sound file could not be loaded: ${soundPath}`, error);
-      // Fallback to default sound if current sound fails
-      if (soundPath !== addTimestamp(soundtrackPaths.default)) {
-        const defaultSoundPath = addTimestamp(soundtrackPaths.default);
-        console.log(`Falling back to default sound: ${defaultSoundPath}`);
-        soundtrack = new Howl({
-          src: [defaultSoundPath],
-          loop: true,
-          volume: 0.2,
-          html5: true,
-          preload: true,
-          autoplay: false,
-          xhr: {
-            method: 'GET',
-            headers: {
-              'Cache-Control': 'no-cache'
-            }
-          }
-        });
-      }
-    }
-  });
-
-  isInitialized = true;
+  // Basitleştirilmiş ses yükleme
+  try {
+    soundtrack = new Howl({
+      src: [soundPath],
+      loop: true,
+      volume: 0.1, // Ses seviyesini düşürdük
+      html5: true,
+      preload: true,
+      autoplay: false
+    });
+    
+    isInitialized = true;
+  } catch (error) {
+    console.warn("Audio system init failed, continuing without audio");
+  }
 };
 
 // Play or pause the soundtrack
