@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
@@ -6,33 +6,39 @@ import ModernLayout from "@/components/ModernLayout";
 import LoadingScreen from "@/components/LoadingScreen";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { Flag, Scale, Users, Microscope, Palette } from "lucide-react";
 
-// Manifesto prensiplerini tanımla
+// Manifesto prensiplerini tanımla (emojiler yerine Lucide ikonları kullanılarak modernize edildi)
 const principles = [
   { 
     key: "principle_1", 
-    icon: "🇹🇷", 
-    color: "from-red-700/40 to-red-950/30"
+    icon: Flag, 
+    title: "ÖZGÜRLÜK",
+    color: "from-black/60 to-red-950/30"
   },
   { 
     key: "principle_2", 
-    icon: "⚖️", 
-    color: "from-red-700/40 to-red-950/30" 
+    icon: Scale, 
+    title: "ADALET",
+    color: "from-black/60 to-red-950/30" 
   },
   { 
     key: "principle_3", 
-    icon: "👥", 
-    color: "from-red-700/40 to-red-950/30" 
+    icon: Users, 
+    title: "DEMOKRASİ",
+    color: "from-black/60 to-red-950/30" 
   },
   { 
     key: "principle_4", 
-    icon: "🔬", 
-    color: "from-red-700/40 to-red-950/30" 
+    icon: Microscope, 
+    title: "BİLİM",
+    color: "from-black/60 to-red-950/30" 
   },
   { 
     key: "principle_5", 
-    icon: "🎭", 
-    color: "from-red-700/40 to-red-950/30" 
+    icon: Palette, 
+    title: "SANAT",
+    color: "from-black/60 to-red-950/30" 
   }
 ];
 
@@ -132,9 +138,13 @@ export default function ManifestoPage() {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.5 + (index * 0.1) }}
                     >
-                      <div className="text-3xl mb-4">{principle.icon}</div>
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/20">
+                          {React.createElement(principle.icon, { className: "w-8 h-8 text-white" })}
+                        </div>
+                      </div>
                       <h3 className="text-xl font-bold text-white mb-3">
-                        {t(`manifesto.${principle.key}`, `Prensip ${index + 1}`)}
+                        {principle.title || t(`manifesto.${principle.key}`, `Prensip ${index + 1}`)}
                       </h3>
                       <p className="text-gray-300 text-sm leading-relaxed">
                         {t(`manifesto.${principle.key}_desc`, `Bu ilkenin açıklaması buraya gelecek. Şu an için hazırlanıyor.`)}
@@ -146,17 +156,24 @@ export default function ManifestoPage() {
               
               {/* Manifesto Full Text */}
               <motion.div
-                className="bg-black/40 backdrop-blur-lg rounded-xl border border-red-800/20 p-6 sm:p-8"
+                className="bg-gradient-to-br from-black/70 to-black/50 backdrop-blur-lg rounded-xl border border-red-800/20 p-6 sm:p-8 shadow-xl"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">
-                  {t('manifesto.full_text', 'MANİFESTO TAM METİN')}
-                </h3>
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/20 mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    {t('manifesto.full_text', 'MANİFESTO TAM METİN')}
+                  </h3>
+                </div>
                 
                 <div className="prose prose-invert prose-red max-w-none">
-                  <p className="text-white/90">
+                  <p className="text-white/90 bg-black/20 p-4 rounded-lg backdrop-blur-sm border-l-4 border-red-700/30">
                     {t('manifesto.paragraph_1', 'Bugün bir dönüm noktasındayız. Teknoloji, toplum ve devlet arasındaki ilişkiler yeniden tanımlanırken, Cumhuriyet\'in bir asrı aşan değerlerini günümüz dünyasına taşıma sorumluluğu ile karşı karşıyayız.')}
                   </p>
                   
@@ -172,13 +189,15 @@ export default function ManifestoPage() {
                     {t('manifesto.paragraph_4', 'Akıl, bilim, vicdan, fen ve sanat; Cumhuriyetimizin güncellenmesinde temel alacağımız değerlerdir. Bu değerler ışığında, daha adil, daha özgür ve daha müreffeh bir Türkiye inşa edeceğiz.')}
                   </p>
                   
-                  <blockquote className="border-l-4 border-red-500 pl-4 my-6">
-                    <p className="text-xl italic text-white/90">
-                      {t('manifesto.quote', '"Egemenlik kayıtsız şartsız milletindir. Bu egemenliği günümüzün dijital dünyasında yeniden tanımlamak ve güçlendirmek zorundayız."')}
-                    </p>
-                  </blockquote>
+                  <div className="bg-gradient-to-r from-red-950/30 to-black/30 p-5 rounded-xl border border-red-800/20 my-6">
+                    <blockquote className="border-l-4 border-red-500 pl-4">
+                      <p className="text-xl italic text-white/90">
+                        {t('manifesto.quote', '"Egemenlik kayıtsız şartsız milletindir. Bu egemenliği günümüzün dijital dünyasında yeniden tanımlamak ve güçlendirmek zorundayız."')}
+                      </p>
+                    </blockquote>
+                  </div>
                   
-                  <p className="text-white/90 mt-4">
+                  <p className="text-white/90 mt-4 bg-black/20 p-4 rounded-lg backdrop-blur-sm border-l-4 border-red-700/30">
                     {t('manifesto.conclusion', 'Bu manifestoyu destekleyen sizleri, Cumhuriyetimizin güncellenmesi yolculuğunda bizimle birlikte adım atmaya davet ediyoruz. Geleceğimiz, ancak birlikte inşa edebileceğimiz kadar parlak olacaktır.')}
                   </p>
                 </div>
@@ -187,24 +206,37 @@ export default function ManifestoPage() {
             
             {/* Call to Action */}
             <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-4 mb-10"
+              className="flex flex-col sm:flex-row justify-center gap-5 mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              <Button 
-                onClick={() => navigate("/")}
-                className="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white rounded-lg hover:from-gray-800 hover:to-gray-950 transition-all shadow-lg hover:shadow-gray-700/20"
-              >
-                {t('back_to_home', 'Ana Sayfaya Dön')}
-              </Button>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <button 
+                  onClick={() => navigate("/")}
+                  className="relative px-7 py-3.5 bg-gradient-to-br from-black/80 to-gray-800/80 text-white rounded-lg hover:from-black/90 hover:to-gray-800/90 transition-all shadow-xl hover:shadow-black/20 flex items-center font-medium text-base overflow-hidden group"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-black/80 to-gray-800/80 backdrop-filter backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 stroke-[2] relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span className="relative z-10">{t('back_to_home', 'Ana Sayfaya Dön')}</span>
+                </button>
+              </motion.div>
               
-              <Button 
-                onClick={() => navigate("/katil")}
-                className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg hover:shadow-red-700/20"
-              >
-                {t('simay_join_button', 'Harekete Katıl')}
-              </Button>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <button 
+                  onClick={() => navigate("/katil")}
+                  className="relative px-7 py-3.5 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg hover:from-red-500 hover:to-red-700 transition-all shadow-xl hover:shadow-red-700/30 flex items-center font-medium text-base overflow-hidden group"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-red-600/80 to-red-800/80 backdrop-filter backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="absolute -inset-1 bg-gradient-to-r from-red-600/20 to-red-700/0 opacity-0 group-hover:opacity-100 transition-opacity blur-md"></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 stroke-[2] relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                  <span className="relative z-10">{t('simay_join_button', 'Harekete Katıl')}</span>
+                </button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </AnimatePresence>
