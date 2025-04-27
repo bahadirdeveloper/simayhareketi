@@ -59,130 +59,190 @@ export default function SimayHomeProfessional() {
   return (
     <ModernLayout audioKey="home" showLanguageSelector={true} pageContent={pageContent}>
       <div className="w-full">
-        {/* Hero Section - Simplified */}
-        <div className="relative rounded-xl overflow-hidden mb-16">
-          <div className="absolute inset-0 bg-black/40 z-0"></div>
+        {/* Hero Section - Enhanced Design */}
+        <div className="relative rounded-xl overflow-hidden mb-16 bg-gradient-to-r from-indigo-950 via-blue-950 to-indigo-950 border border-blue-900/30 shadow-2xl">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-red-900/10 z-0"></div>
           
-          <div className="relative z-10 py-24 px-6 sm:px-12 text-center">
-            <div className="inline-flex mb-2 border-b border-red-500/30 px-4 py-1">
-              <div className="text-xs font-medium text-red-400 tracking-wider uppercase">Türkiye Cumhuriyeti</div>
+          {/* Grid pattern for technological look */}
+          <div className="absolute inset-0 opacity-5">
+            {[...Array(10)].map((_, i) => (
+              <div key={`grid-h-${i}`} className="absolute h-px bg-red-400 w-full" style={{ top: `${i * 10}%` }} />
+            ))}
+            {[...Array(10)].map((_, i) => (
+              <div key={`grid-v-${i}`} className="absolute w-px bg-red-400 h-full" style={{ left: `${i * 10}%` }} />
+            ))}
+          </div>
+          
+          <div className="relative z-10 py-28 px-8 sm:px-12 text-center">
+            <div className="inline-flex mb-4 border-b border-red-500/50 px-4 py-1">
+              <div className="text-xs font-medium text-red-400 tracking-widest uppercase bg-black/30 px-3 py-1 rounded-sm">Türkiye Cumhuriyeti</div>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-red-500">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 text-red-500 drop-shadow-md">
               {t('simay_subtitle', 'CUMHURİYET GÜNCELLENİYOR')}
             </h1>
             
-            <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-md">
               {t('content_description', 'Türkiye Cumhuriyeti\'nin yeni dijital dönüşüm platformuna hoş geldiniz. Geleceğin inşasında birlikte yürüyelim.')}
             </p>
             
-            <div className="inline-flex items-center border border-red-500/40 bg-black/60 rounded-full px-6 py-2 mb-10">
-              <div className="h-2 w-2 rounded-full bg-red-500 mr-3"></div>
-              <p className="text-sm text-gray-300">
+            <div className="inline-flex items-center border border-red-500/40 bg-black/60 backdrop-blur-sm rounded-full px-6 py-3 mb-10 shadow-lg">
+              <div className="h-3 w-3 rounded-full bg-red-500 mr-3 animate-pulse"></div>
+              <p className="text-sm text-gray-200 font-medium">
                 {t('simay_launch_date', '19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu')}
               </p>
             </div>
             
-            {/* Ana Navigasyon Butonları - Simplified */}
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            {/* Ana Navigasyon Butonları - Enhanced 3D Buttons */}
+            <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
               <button 
                 onClick={() => navigate("/turkiye")}
-                className="px-7 py-3.5 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center font-medium text-base"
+                className="px-8 py-4 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg hover:from-red-500 hover:to-red-700 transition-all shadow-lg hover:shadow-red-700/30 flex items-center font-medium text-base transform hover:-translate-y-1 active:translate-y-0 active:shadow-inner border border-red-600/20"
               >
-                <Flag className="w-5 h-5 mr-3" />
-                <span>{t('turkiye_button', 'TÜRKİYE')}</span>
+                <Flag className="w-5 h-5 mr-3 filter drop-shadow" />
+                <span className="tracking-wide">{t('turkiye_button', 'TÜRKİYE')}</span>
               </button>
               
               <button 
                 onClick={() => navigate("/manifesto")}
-                className="px-7 py-3.5 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center font-medium text-base"
+                className="px-8 py-4 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg hover:from-red-500 hover:to-red-700 transition-all shadow-lg hover:shadow-red-700/30 flex items-center font-medium text-base transform hover:-translate-y-1 active:translate-y-0 active:shadow-inner border border-red-600/20"
               >
-                <Scroll className="w-5 h-5 mr-3" />
-                <span>{t('manifesto_button', 'MANİFESTO')}</span>
+                <Scroll className="w-5 h-5 mr-3 filter drop-shadow" />
+                <span className="tracking-wide">{t('manifesto_button', 'MANİFESTO')}</span>
               </button>
               
               <button 
                 onClick={() => navigate("/halkmanifestolari")}
-                className="px-7 py-3.5 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center font-medium text-base"
+                className="px-8 py-4 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg hover:from-red-500 hover:to-red-700 transition-all shadow-lg hover:shadow-red-700/30 flex items-center font-medium text-base transform hover:-translate-y-1 active:translate-y-0 active:shadow-inner border border-red-600/20"
               >
-                <Users className="w-5 h-5 mr-3" />
-                <span>{t('peoples_manifestos', 'HALK MANİFESTOLARI')}</span>
+                <Users className="w-5 h-5 mr-3 filter drop-shadow" />
+                <span className="tracking-wide">{t('peoples_manifestos', 'HALK MANİFESTOLARI')}</span>
               </button>
               
               <button 
                 onClick={() => navigate("/gorevler")}
-                className="px-7 py-3.5 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center font-medium text-base"
+                className="px-8 py-4 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg hover:from-red-500 hover:to-red-700 transition-all shadow-lg hover:shadow-red-700/30 flex items-center font-medium text-base transform hover:-translate-y-1 active:translate-y-0 active:shadow-inner border border-red-600/20"
               >
-                <Target className="w-5 h-5 mr-3" />
-                <span>{t('missions_button', 'GÖREVLER')}</span>
+                <Target className="w-5 h-5 mr-3 filter drop-shadow" />
+                <span className="tracking-wide">{t('missions_button', 'GÖREVLER')}</span>
               </button>
             </div>
           </div>
         </div>
         
-        {/* Core Values Section - Simplified */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-red-500 mb-4">{t('core_values', 'TEMEL DEĞERLER')}</h2>
-            <p className="text-white/80 max-w-3xl mx-auto">
+        {/* Core Values Section - Advanced Design */}
+        <div className="mb-20 relative">
+          {/* Background gradient for section */}
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-950/30 to-transparent rounded-3xl -z-10"></div>
+          
+          <div className="text-center mb-12 pt-10">
+            <div className="inline-block mb-3 relative">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 drop-shadow-sm">{t('core_values', 'TEMEL DEĞERLER')}</h2>
+              <div className="h-1 w-24 bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto mt-2"></div>
+            </div>
+            <p className="text-white/90 max-w-3xl mx-auto px-4 font-light text-lg">
               {t('core_values_desc', 'Cumhuriyetin güncellenmesi, bu beş temel değer etrafında şekillenecektir.')}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto px-4 pb-10">
             {coreValues.map(value => (
               <div 
                 key={value.id}
-                className="bg-black border border-red-900/20 rounded-xl p-5 text-center hover:border-red-500/40 transition-colors"
+                className="bg-gradient-to-br from-gray-900 to-black border border-red-900/20 rounded-xl p-6 text-center hover:border-red-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-red-900/20 hover:-translate-y-1 group"
               >
-                <div className="w-12 h-12 flex items-center justify-center bg-red-900 rounded-full mx-auto mb-4 text-white font-bold text-xl">
+                <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full mx-auto mb-5 text-white font-bold text-2xl shadow-md group-hover:shadow-red-700/30 group-hover:from-red-600 group-hover:to-red-800 transition-all">
                   {value.symbol}
                 </div>
-                <h3 className="text-lg font-bold text-red-500 mb-2">{value.name}</h3>
-                <p className="text-white/70 text-sm">{value.description}</p>
+                <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400 transition-colors">{value.name}</h3>
+                <p className="text-white/80 text-base font-light leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
         
-        {/* Stats Section - Simplified */}
-        <div className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-black border border-red-900/10 rounded-xl p-6 text-center"
-              >
-                <div className="text-3xl sm:text-4xl font-bold text-red-500 mb-1">{stat.value}</div>
-                <div className="text-white/60 font-medium text-sm uppercase tracking-wider">{stat.label}</div>
-                <div className="text-white/40 text-xs mt-1">{stat.suffix}</div>
-              </div>
-            ))}
+        {/* Stats Section - Modern Digital Counter Look */}
+        <div className="mb-24 mx-auto px-4 max-w-5xl">
+          <div className="relative">
+            {/* Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/50 via-blue-950/30 to-indigo-950/50 rounded-2xl -z-10 transform -skew-y-1"></div>
+            
+            {/* Grid pattern for tech effect */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden -z-10">
+              {[...Array(5)].map((_, i) => (
+                <div key={`stat-h-${i}`} className="absolute h-px bg-blue-500/10 w-full" style={{ top: `${i * 25}%` }} />
+              ))}
+              {[...Array(12)].map((_, i) => (
+                <div key={`stat-v-${i}`} className="absolute w-px bg-blue-500/10 h-full" style={{ left: `${i * 8.33}%` }} />
+              ))}
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+              {stats.map((stat, index) => (
+                <div 
+                  key={index}
+                  className="backdrop-blur-sm bg-gradient-to-br from-black/80 to-gray-900/80 border border-red-900/20 rounded-xl p-8 text-center shadow-lg hover:shadow-red-900/20 transition-all duration-500 hover:-translate-y-1 relative group overflow-hidden"
+                >
+                  {/* Subtle animated gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-900/0 via-red-900/5 to-red-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                  
+                  <div className="relative">
+                    <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-500 mb-3 font-mono tracking-tight">{stat.value}</div>
+                    <div className="text-white/80 font-medium text-sm uppercase tracking-widest mb-1 group-hover:text-white transition-colors">{stat.label}</div>
+                    <div className="text-white/50 text-xs mt-1 group-hover:text-white/70 transition-colors">{stat.suffix}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         
-        {/* CTA - Simplified */}
-        <div className="text-center mb-12">
-          <div className="bg-black border border-red-900/20 rounded-xl p-8 max-w-3xl mx-auto">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
-              {t('journey_title', 'Bu Yolculuğa Katılın')}
-            </h3>
-            <p className="text-white/70 mb-6">
-              {t('journey_desc', 'Türkiye Cumhuriyeti\'nin geleceğini birlikte şekillendirelim. Görevleri keşfedin ve katılın.')}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button 
-                onClick={() => navigate("/gorevler")}
-                className="px-6 py-3 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors font-medium"
-              >
-                {t('missions_button', 'GÖREVLER')}
-              </button>
+        {/* CTA - Full Featured Call to Action */}
+        <div className="text-center mb-20 mx-auto max-w-5xl px-4">
+          <div className="relative bg-gradient-to-br from-blue-950 to-black border border-red-900/30 rounded-2xl p-12 mx-auto overflow-hidden shadow-2xl">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+            
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+              <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+              <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
+            </div>
+            
+            <div className="relative z-10">
+              {/* Flag icon with glowing effect */}
+              <div className="w-16 h-16 rounded-full bg-red-900/30 flex items-center justify-center mx-auto mb-6 relative">
+                <Flag className="w-8 h-8 text-red-500 filter drop-shadow-lg" />
+                <div className="absolute inset-0 rounded-full border border-red-500/30 animate-pulse"></div>
+              </div>
               
-              <button 
-                onClick={() => navigate("/katil")}
-                className="px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
-              >
-                {t('participate_button', 'KATIL')}
-              </button>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-sm">
+                {t('journey_title', 'Bu Yolculuğa Katılın')}
+              </h3>
+              <p className="text-white/90 mb-8 max-w-xl mx-auto text-lg font-light leading-relaxed">
+                {t('journey_desc', 'Türkiye Cumhuriyeti\'nin geleceğini birlikte şekillendirelim. Görevleri keşfedin ve katılın.')}
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-6">
+                <button 
+                  onClick={() => navigate("/gorevler")}
+                  className="px-8 py-4 bg-gradient-to-br from-red-600 to-red-800 text-white text-lg rounded-lg hover:from-red-500 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-red-700/30 flex items-center font-medium transform hover:-translate-y-1 border border-red-600/20"
+                >
+                  <Target className="w-5 h-5 mr-3" />
+                  <span className="tracking-wide">{t('missions_button', 'GÖREVLER')}</span>
+                </button>
+                
+                <button 
+                  onClick={() => navigate("/katil")}
+                  className="px-8 py-4 bg-gradient-to-br from-gray-700 to-gray-900 text-white text-lg rounded-lg hover:from-gray-600 hover:to-gray-800 transition-all duration-300 shadow-lg hover:shadow-gray-600/20 flex items-center font-medium transform hover:-translate-y-1 border border-red-600/10"
+                >
+                  <Users className="w-5 h-5 mr-3" />
+                  <span className="tracking-wide">{t('participate_button', 'KATIL')}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
