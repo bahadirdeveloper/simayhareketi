@@ -50,46 +50,22 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   }, [onComplete]);
   
   return (
-    <motion.div 
-      className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center"
-      initial={{ opacity: 1 }}
-      animate={{ 
-        opacity: isDecoding ? 1 : 0,
-        y: isDecoding ? 0 : -50 
-      }}
-      transition={{ 
-        opacity: { duration: 0.8, delay: 2.5 },
-        y: { duration: 0.5, delay: 2.5 }
-      }}
-    >
-      <div className="text-center max-w-lg">
-        <motion.div 
-          className="font-share-tech text-2xl mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+    <div className="loading-screen">
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="loading-message mb-4">
           <span className="text-red-500">{cumhuriyetText}</span>
           <span className="text-white typing-cursor">{insanlikText}</span>
-        </motion.div>
+        </h1>
         
         {!isDecoding && (
-          <motion.div 
-            className="w-64 h-2.5 bg-white/30 rounded-sm overflow-hidden mt-4 ml-auto mr-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div 
-              className="h-full bg-white"
-              initial={{ width: "0%" }}
-              style={{ marginLeft: "40%" }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.1 }}
+          <div className="w-64 h-3 bg-gray-900 rounded-sm overflow-hidden mt-4">
+            <div 
+              className="h-full bg-red-600 transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
             />
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
