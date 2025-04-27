@@ -148,7 +148,15 @@ function AmountForm({
 }
 
 // Payment form using Stripe Elements
-function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string, onSuccess: () => void }) {
+function CheckoutForm({ 
+  clientSecret, 
+  onSuccess, 
+  isRegistrationFee = false 
+}: { 
+  clientSecret: string, 
+  onSuccess: () => void,
+  isRegistrationFee?: boolean
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
@@ -183,7 +191,9 @@ function CheckoutForm({ clientSecret, onSuccess }: { clientSecret: string, onSuc
     } else {
       toast({
         title: "Ödeme Başarılı",
-        description: "Bağışınız için teşekkür ederiz!",
+        description: isRegistrationFee 
+          ? "Kayıt ücretiniz başarıyla alındı!" 
+          : "Bağışınız için teşekkür ederiz!",
       });
       onSuccess();
     }
@@ -345,7 +355,11 @@ export default function PaymentForm({
     <div className="w-full">
       {clientSecret ? (
         <Elements stripe={stripePromise} options={{ clientSecret, locale: 'tr' }}>
-          <CheckoutForm clientSecret={clientSecret} onSuccess={handlePaymentSuccess} />
+          <CheckoutForm 
+            clientSecret={clientSecret} 
+            onSuccess={handlePaymentSuccess}
+            isRegistrationFee={isRegistrationFee} 
+          />
         </Elements>
       ) : (
         <AmountForm 

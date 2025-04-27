@@ -47,6 +47,7 @@ function Router() {
       <Route path="/kurucu-eksikleri" component={KurucuEksikleriPage} />
       <Route path="/halk-defteri" component={HalkDefteriPage} />
       <Route path="/katil" component={KatilPage} />
+      <Route path="/katil/success" component={KatilPage} />
       <Route path="/manifesto" component={ManifestoPage} />
       <Route path="/join" component={JoinPage} />
       <Route path="/amaclar" component={AmacsavasPage} />
