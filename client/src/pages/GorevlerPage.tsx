@@ -1200,10 +1200,10 @@ export default function GorevlerPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
             <Button 
-              className="turkish-flag-button text-xl px-10 py-7 font-bold font-poppins"
+              className="turkish-flag-button text-base sm:text-lg md:text-xl px-5 sm:px-8 md:px-10 py-4 sm:py-6 md:py-7 font-bold font-poppins"
               onClick={() => navigate("/kurucu-eksikleri")}
             >
               GÖREV 0: KURUCUNUN EKSİKLERİ
@@ -1225,7 +1225,7 @@ export default function GorevlerPage() {
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="max-w-md turkish-tech-input text-lg px-6 py-6 h-14 font-poppins"
+                    className="max-w-md turkish-tech-input text-sm sm:text-base md:text-lg px-4 sm:px-5 md:px-6 py-4 sm:py-5 md:py-6 h-10 sm:h-12 md:h-14 font-poppins"
                   />
                 </div>
                 
@@ -1253,15 +1253,15 @@ export default function GorevlerPage() {
 
             
             {/* Counters */}
-            <div className="text-center mb-8 mt-8 turkish-content-bg p-5 rounded-lg max-w-2xl mx-auto">
-              <div className="flex flex-col md:flex-row justify-center gap-8">
-                <div className="turkish-counter-box p-4 rounded-lg flex-1">
-                  <p className="text-turkish-white text-xl font-bold font-poppins">Toplam Görev</p>
-                  <p className="text-turkish-red text-3xl font-bold mt-2 font-poppins">{gorevler.length}</p>
+            <div className="text-center mb-6 sm:mb-8 mt-6 sm:mt-8 turkish-content-bg p-4 sm:p-5 rounded-lg max-w-2xl mx-auto">
+              <div className="flex flex-col md:flex-row justify-center gap-4 sm:gap-6 md:gap-8">
+                <div className="turkish-counter-box p-3 sm:p-4 rounded-lg flex-1">
+                  <p className="text-turkish-white text-base sm:text-lg md:text-xl font-bold font-poppins">Toplam Görev</p>
+                  <p className="text-turkish-red text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2 font-poppins">{gorevler.length}</p>
                 </div>
-                <div className="turkish-counter-box p-4 rounded-lg flex-1">
-                  <p className="text-turkish-white text-xl font-bold font-poppins">Katılım Sayısı</p>
-                  <p className="text-turkish-red text-3xl font-bold mt-2 font-poppins">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
+                <div className="turkish-counter-box p-3 sm:p-4 rounded-lg flex-1">
+                  <p className="text-turkish-white text-base sm:text-lg md:text-xl font-bold font-poppins">Katılım Sayısı</p>
+                  <p className="text-turkish-red text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2 font-poppins">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
                 </div>
               </div>
             </div>
@@ -1337,26 +1337,26 @@ export default function GorevlerPage() {
           
           {/* Pagination - Bottom */}
           {filteredGorevler.length > 0 && (
-            <div className="flex justify-center items-center mt-12 gap-4 turkish-content-bg p-6 max-w-3xl mx-auto mb-10">
+            <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-10 md:mt-12 gap-3 sm:gap-4 turkish-content-bg p-4 sm:p-5 md:p-6 max-w-3xl mx-auto mb-6 sm:mb-10">
               <Button 
                 variant="outline" 
-                size="lg"
-                className="border-2 border-red-600/60 text-white font-bold text-lg px-6 hover:bg-red-900/20"
+                size="default"
+                className="border-2 border-red-600/60 text-white font-bold text-sm sm:text-base md:text-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2 md:py-3 hover:bg-red-900/20"
                 onClick={() => changePage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
               >
                 &lt; Önceki
               </Button>
               
-              <div className="flex gap-3 mx-2 flex-wrap justify-center">
+              <div className="flex gap-2 sm:gap-3 mx-1 sm:mx-2 flex-wrap justify-center my-3 sm:my-0">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <Button
                     key={pageNum}
                     variant={currentPage === pageNum ? "default" : "outline"}
-                    size="lg"
+                    size="sm"
                     className={currentPage === pageNum 
-                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-lg w-12 h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
-                      : "border-2 border-red-600/60 text-white font-bold text-lg w-12 h-12 hover:bg-red-900/20"}
+                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xs sm:text-sm md:text-base w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
+                      : "border-2 border-red-600/60 text-white font-bold text-xs sm:text-sm md:text-base w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 hover:bg-red-900/20"}
                     onClick={() => changePage(pageNum)}
                   >
                     {pageNum}
@@ -1366,8 +1366,8 @@ export default function GorevlerPage() {
               
               <Button 
                 variant="outline"
-                size="lg" 
-                className="border-2 border-red-600/60 text-white font-bold text-lg px-6 hover:bg-red-900/20"
+                size="default" 
+                className="border-2 border-red-600/60 text-white font-bold text-sm sm:text-base md:text-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2 md:py-3 hover:bg-red-900/20"
                 onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
               >
@@ -1377,10 +1377,10 @@ export default function GorevlerPage() {
           )}
           
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-8 gap-6">
+          <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4 sm:gap-6">
             <Button 
               variant="outline"
-              className="modern-button px-8 py-6 text-xl font-bold tracking-wide font-poppins"
+              className="modern-button px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-bold tracking-wide font-poppins"
               onClick={() => navigate("/turkiye")}
             >
               <span className="text-turkish-white">Türkiye Sayfasına Dön</span>
@@ -1388,7 +1388,7 @@ export default function GorevlerPage() {
             
             <Button 
               variant="outline"
-              className="modern-button px-8 py-6 text-xl font-bold tracking-wide font-poppins"
+              className="modern-button px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-bold tracking-wide font-poppins"
               onClick={() => navigate("/")}
             >
               <span className="text-turkish-white">Ana Sayfa</span>
@@ -1397,12 +1397,12 @@ export default function GorevlerPage() {
           
           {/* Cumhuriyet Sertifikası İbaresi */}
           <motion.div
-            className="w-full max-w-3xl mx-auto turkish-content-bg p-5 rounded-lg mt-14 text-center"
+            className="w-full max-w-3xl mx-auto turkish-content-bg p-4 sm:p-5 rounded-lg mt-8 sm:mt-10 md:mt-14 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <p className="text-xl font-bold text-turkish-white font-poppins">
+            <p className="text-base sm:text-lg md:text-xl font-bold text-turkish-white font-poppins">
               Tamamlanan görevler <span className="text-turkish-red">Cumhuriyet Sertifikası</span> kazandıracaktır.
             </p>
           </motion.div>
@@ -1410,14 +1410,14 @@ export default function GorevlerPage() {
         </main>
         
         {/* Bottom animation */}
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/70 text-xl font-semibold tracking-wide animate-pulse z-10 mb-2">
+        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/70 text-sm sm:text-base md:text-xl font-semibold tracking-wide animate-pulse z-10 mb-2">
           CUMHURİYET GÜNCELLENİYOR
         </div>
         
         {/* Görev Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
-            className="bg-black/85 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
+            className="bg-black/85 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-4 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
             {/* Arka plan görseli - seçilen görev için - düşük opaklık */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-20 z-0">
@@ -1432,10 +1432,10 @@ export default function GorevlerPage() {
             {/* İçerik - Z indeksi daha yüksek */}
             <div className="relative z-10">
               <DialogHeader>
-                <DialogTitle className="text-white text-2xl font-bold mb-2">
+                <DialogTitle className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
                   {selectedGorev?.baslik}
                 </DialogTitle>
-                <DialogDescription className="text-white text-base leading-relaxed">
+                <DialogDescription className="text-white text-sm sm:text-base leading-relaxed">
                   {selectedGorev?.aciklama}
                 </DialogDescription>
               </DialogHeader>
@@ -1443,13 +1443,13 @@ export default function GorevlerPage() {
               <form onSubmit={handleFormSubmit} className="space-y-5 mt-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="ad" className="text-base font-semibold">Adınız Soyadınız:</Label>
+                    <Label htmlFor="ad" className="text-sm sm:text-base font-semibold">Adınız Soyadınız:</Label>
                     <Input
                       id="ad"
                       name="ad"
                       value={formData.ad}
                       onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                      className="bg-black/60 border-2 border-red-600/70 text-white text-sm sm:text-base h-10 sm:h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                       required
                     />
                   </div>
