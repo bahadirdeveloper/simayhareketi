@@ -301,10 +301,7 @@ export default function TurkiyePage() {
               className="w-full modern-button font-poppins p-5 font-bold"
               onClick={() => navigate("/sertifika")}
             >
-              <div className="flex flex-col">
-                <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Cumhuriyet Sertifikası</span>
-                <span className="text-turkish-red tracking-wide text-xs sm:text-sm md:text-base lg:text-lg mt-1 font-poppins">ve Şefaf Gelir-Gider Tablosu</span>
-              </div>
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Cumhuriyet Sertifikası</span>
             </Button>
           </motion.div>
           
