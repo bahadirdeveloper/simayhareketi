@@ -32,6 +32,7 @@ import OppressedNationsPage from "@/pages/OppressedNationsPage";
 import HalkManifestolarPage from "@/pages/HalkManifestolarPage";
 import CagriPage from "@/pages/CagriPage";
 import SertifikaPage from "@/pages/SertifikaPage";
+import EntegrasyonPage from "@/pages/EntegrasyonPage";
 
 function Router() {
   return (
@@ -56,6 +57,7 @@ function Router() {
       <Route path="/halk-manifestolar" component={HalkManifestolarPage} />
       <Route path="/cagri" component={CagriPage} />
       <Route path="/sertifika" component={SertifikaPage} />
+      <Route path="/entegrasyon" component={EntegrasyonPage} />
       <Route path="/matrix" component={Home} />
       <Route path="/simay" component={SimayHome} />
       <Route path="/simay2" component={SimayHome2} />

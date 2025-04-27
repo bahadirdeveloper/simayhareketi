@@ -296,7 +296,7 @@ export default function TurkiyePage() {
             </Button>
           </motion.div>
           
-          <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }} className="md:col-span-2">
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
             <Button 
               className="w-full modern-button font-poppins p-5 font-bold"
               onClick={() => navigate("/sertifika")}
@@ -305,6 +305,15 @@ export default function TurkiyePage() {
                 <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Cumhuriyet Sertifikası</span>
                 <span className="text-turkish-red tracking-wide text-xs sm:text-sm md:text-base lg:text-lg mt-1 font-poppins">ve Şefaf Gelir-Gider Tablosu</span>
               </div>
+            </Button>
+          </motion.div>
+          
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 400 }}>
+            <Button 
+              className="w-full modern-button font-poppins p-5 text-2xl font-bold"
+              onClick={() => navigate("/entegrasyon")}
+            >
+              <span className="text-turkish-white tracking-wide text-sm sm:text-base md:text-lg lg:text-xl font-poppins">Entegrasyon Sürecimiz</span>
             </Button>
           </motion.div>
         </motion.div>
