@@ -63,7 +63,7 @@ export default function SertifikaPage() {
   // Sertifika seviyeleri kaldırıldı
   
   // Erişilebilirlik metninin tanımı
-  const pageContent = `Cumhuriyet Sertifikası Bilgilendirme ve Şeffaf Gelir-Gider Tablosu sayfasına hoş geldiniz. 
+  const pageContent = `Cumhuriyet Sertifikası Bilgilendirme sayfasına hoş geldiniz. 
     Bu sayfada, Cumhuriyet Sertifikası'nın ne olduğu, nasıl elde edileceği ve sağladığı faydalar hakkında bilgiler bulacaksınız. 
     Ayrıca platformun gelir ve giderlerini gösteren şeffaf bir finansal tablo da sunulmaktadır. 
     Bu şeffaflık, vatandaşların güvenini kazanmak ve mali açıklık sağlamak için önemlidir.`;
@@ -99,7 +99,7 @@ export default function SertifikaPage() {
       showBackButton={true}
       showLanguageSelector={true}
       pageContent={pageContent}
-      pageName="Cumhuriyet Sertifikası ve Mali Şeffaflık"
+      pageName="Cumhuriyet Sertifikası"
     >
       <div className="w-full max-w-5xl mx-auto">
         {/* Header Section */}
@@ -113,7 +113,7 @@ export default function SertifikaPage() {
             CUMHURİYET SERTİFİKASI
           </h1>
           <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-6 readable-text text-xl-responsive">
-            Mali Şeffaflık ve Katılım Belgesi
+            Katılım Belgesi
           </h2>
         </motion.div>
         
