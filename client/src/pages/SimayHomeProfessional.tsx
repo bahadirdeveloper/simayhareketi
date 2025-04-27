@@ -318,11 +318,11 @@ export default function SimayHomeProfessional() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-red-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-red-600/50"></div>
-                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">RUSYA</h4>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">GÖREVLER</h4>
                 <Button 
                   variant="outline"
                   className="w-full border border-gray-700 text-white hover:border-red-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
-                  onClick={() => navigate("/russia")}
+                  onClick={() => navigate("/gorevler")}
                 >
                   <span className="text-red-500 mr-1">&#8594;</span> Giriş
                 </Button>
@@ -330,11 +330,11 @@ export default function SimayHomeProfessional() {
               
               <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-blue-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-blue-600/50"></div>
-                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">İRAN</h4>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">KATILIM</h4>
                 <Button 
                   variant="outline"
                   className="w-full border border-gray-700 text-white hover:border-blue-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
-                  onClick={() => navigate("/iran")}
+                  onClick={() => navigate("/katil")}
                 >
                   <span className="text-blue-500 mr-1">&#8594;</span> Giriş
                 </Button>
@@ -342,11 +342,11 @@ export default function SimayHomeProfessional() {
               
               <div className="bg-black/50 backdrop-blur-sm border border-gray-800 hover:border-green-500/40 rounded-lg p-4 text-center transition-all duration-300 shadow-lg relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-green-600/50"></div>
-                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">FİLİSTİN</h4>
+                <h4 className="font-medium text-white text-base sm:text-lg mb-3 sm:mb-4">SERTİFİKA</h4>
                 <Button 
                   variant="outline"
                   className="w-full border border-gray-700 text-white hover:border-green-500/50 hover:bg-black/60 py-3 sm:py-4 text-base font-medium"
-                  onClick={() => navigate("/palestine")}
+                  onClick={() => navigate("/sertifika")}
                 >
                   <span className="text-green-500 mr-1">&#8594;</span> Giriş
                 </Button>
