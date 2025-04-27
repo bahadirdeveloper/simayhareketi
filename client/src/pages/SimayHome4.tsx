@@ -68,7 +68,7 @@ export default function SimayHome4() {
   
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
         <SimpleFuturisticTurkish />
