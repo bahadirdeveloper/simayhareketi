@@ -17,10 +17,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", message: "Dünyayı Kurtarma Operasyonu API çalışıyor" });
   });
 
-  // Kök rotası için SPA yapılandırması - sağlık kontrolü için doğrudan yanıt
-  app.get('/', (req, res) => {
-    // 200 durum kodu ile basit bir yanıt döndür - deployment sağlık kontrolünü geçmesi için
-    res.status(200).send('OK');
+  // Kök rotası için SPA yapılandırması - React uygulaması için yönlendirme
+  app.get('/', (req, res, next) => {
+    // Vite tarafından işlenmesi için middleware zincirini devam ettir
+    next();
   });
 
   // Register a new user
