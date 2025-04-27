@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" width="3840" height="2160">
+  <!-- Türk Bayrağı G-Şartnamesi Ölçülerine Uygun 4K (UHD) SVG -->
+  <!-- Arka plan kırmızı - Pantone 186 C -->
+  <rect width="3840" height="2160" fill="#E30A17"/>
+  
+  <!-- Ay -->
+  <circle cx="1440" cy="1080" r="540" fill="white"/>
+  
+  <!-- İç daire (kırmızı) -->
+  <circle cx="1620" cy="1080" r="432" fill="#E30A17"/>
+  
+  <!-- Yıldız (Beyaz) -->
+  <g fill="white">
+    <polygon points="2160,1080 2218.4,1235.5 2381.6,1235.5 2249.6,1330.5 2308,1486 2160,1384.2 2012,1486 2070.4,1330.5 1938.4,1235.5 2101.6,1235.5"/>
+  </g>
+</svg>

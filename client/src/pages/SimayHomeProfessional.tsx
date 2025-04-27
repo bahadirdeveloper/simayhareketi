@@ -3,6 +3,7 @@ import { Link, useLocation, useRoute } from "wouter";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
 import LoadingScreen from "@/components/LoadingScreen";
+import TurkishFlagBackground from "@/components/TurkishFlagBackground";
 import { 
   Flag, 
   Scroll, 
@@ -58,6 +59,8 @@ export default function SimayHomeProfessional() {
 
   return (
     <ModernLayout audioKey="home" showLanguageSelector={true} pageContent={pageContent}>
+      {/* 4K Dalgalanan Türk Bayrağı Arkaplanı */}
+      <TurkishFlagBackground />
       <div className="w-full">
         {/* Hero Section - Simplified */}
         <div className="relative rounded-xl overflow-hidden mb-16">
