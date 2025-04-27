@@ -367,12 +367,25 @@ export default function KatilPage() {
                   <h4 className="text-xl font-semibold text-amber-400 mb-4 text-center">
                     Kayıt Ücreti Ödemesi
                   </h4>
-                  <div className="bg-black/40 backdrop-blur-sm border border-amber-500/50 rounded-lg p-5">
+                  <div className="bg-black/40 backdrop-blur-sm border border-amber-500/50 rounded-lg p-4 md:p-5">
+                    <div className="mb-4 text-center">
+                      <div className="inline-block bg-amber-900/50 px-4 py-2 rounded-lg border border-amber-500/30">
+                        <span className="text-white text-sm md:text-base">Katılım ücreti:</span>
+                        <span className="text-amber-400 font-bold text-xl md:text-2xl ml-2">1 TL</span>
+                      </div>
+                    </div>
+                    
                     <PaymentForm 
                       isRegistrationFee={true}
                       fixedAmount={1}
                       fixedDescription="Cumhuriyet Güncellenme Platformu Kayıt Ücreti"
                     />
+                    
+                    <div className="mt-3 text-center">
+                      <p className="text-gray-300 text-xs sm:text-sm italic">
+                        * Ödeme bilgileriniz güvenli bir şekilde işlenmektedir. Kredi kartı veya banka bilgileriniz sistemimizde saklanmaz.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </TabsContent>
@@ -388,13 +401,27 @@ export default function KatilPage() {
                     </p>
                   </div>
                   
-                  <PaymentForm />
-                  
-                  <div className="text-gray-300 text-sm mt-4">
-                    <p>
-                      * Tüm ödemeler güvenli Stripe altyapısı ile gerçekleştirilmektedir.
-                      Kredi kartı bilgileriniz hiçbir şekilde sunucularımızda saklanmaz.
-                    </p>
+                  <div className="bg-gradient-to-b from-black/50 to-amber-950/10 backdrop-blur-sm border border-amber-500/40 rounded-lg p-4 md:p-5">
+                    <div className="mb-4 border-b border-amber-500/20 pb-4">
+                      <div className="text-center">
+                        <h4 className="text-lg font-medium text-amber-400 mb-2">Bağış Hedefi</h4>
+                        <div className="relative h-4 bg-black/50 rounded-full overflow-hidden w-full max-w-md mx-auto">
+                          <div className="absolute top-0 left-0 h-full bg-gradient-to-r from-red-600 to-amber-500 w-[65%]"></div>
+                        </div>
+                        <p className="text-white text-sm mt-2">
+                          <span className="text-amber-400 font-semibold">8,523,912</span> vatandaş katılımı
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <PaymentForm />
+                    
+                    <div className="mt-4 text-center">
+                      <p className="text-gray-300 text-xs sm:text-sm italic">
+                        * Bağışlarınız güvenli bir şekilde işlenmektedir. Kredi kartı bilgileriniz 
+                        hiçbir şekilde sunucularımızda saklanmaz ve Stripe tarafından şifrelenir.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </TabsContent>
