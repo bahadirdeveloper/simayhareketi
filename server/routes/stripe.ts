@@ -39,12 +39,12 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
     recentRequests.push(now);
     paymentRequestsMap.set(ipString, recentRequests);
     
-    const { amount, description } = req.body;
+    const { amount, description, isRegistrationFee } = req.body;
     
-    if (!amount || amount < 5) {
+    if (!amount || (isRegistrationFee ? amount < 1 : amount < 5)) {
       return res.status(400).json({ 
         success: false,
-        message: "Bağış miktarı en az 5 TL olmalıdır." 
+        message: isRegistrationFee ? "Kayıt ücreti en az 1 TL olmalıdır." : "Bağış miktarı en az 5 TL olmalıdır." 
       });
     }
     

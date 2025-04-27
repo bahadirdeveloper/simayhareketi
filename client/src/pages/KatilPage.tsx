@@ -215,6 +215,21 @@ export default function KatilPage() {
               </TabsList>
               
               <TabsContent value="katilim" className="mt-2">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-semibold text-amber-400 mb-4">
+                    Cumhuriyet Güncellenme Platformu Katılımı
+                  </h3>
+                  <p className="text-gray-200 mb-4">
+                    Platformumuza katılmak için aşağıdaki formu doldurduktan sonra
+                    1 TL'lik sembolik kayıt ücretini ödemeniz gerekmektedir.
+                  </p>
+                  <div className="bg-amber-900/30 border border-amber-500/50 rounded-lg p-4 mb-6">
+                    <p className="text-amber-300 text-sm">
+                      Kayıt ücreti, platform maliyetlerinin karşılanması ve sisteme olan bağlılığın sembolik bir göstergesi olarak alınmaktadır.
+                    </p>
+                  </div>
+                </div>
+                
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
@@ -342,11 +357,24 @@ export default function KatilPage() {
                         type="submit" 
                         className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-lg font-bold"
                       >
-                        Katılım Başvurusunu Gönder
+                        Bilgilerimi Kaydet ve Ödemeye Geç
                       </Button>
                     </div>
                   </form>
                 </Form>
+                
+                <div className="mt-6 pt-6 border-t border-amber-500/30">
+                  <h4 className="text-xl font-semibold text-amber-400 mb-4 text-center">
+                    Kayıt Ücreti Ödemesi
+                  </h4>
+                  <div className="bg-black/40 backdrop-blur-sm border border-amber-500/50 rounded-lg p-5">
+                    <PaymentForm 
+                      isRegistrationFee={true}
+                      fixedAmount={1}
+                      fixedDescription="Cumhuriyet Güncellenme Platformu Kayıt Ücreti"
+                    />
+                  </div>
+                </div>
               </TabsContent>
               
               <TabsContent value="bagis" className="mt-2">

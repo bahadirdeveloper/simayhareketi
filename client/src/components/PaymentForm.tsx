@@ -44,61 +44,103 @@ const amountSchema = z.object({
 type AmountFormValues = z.infer<typeof amountSchema>;
 
 // Form component for entering the amount
-function AmountForm({ onProceed }: { onProceed: (data: AmountFormValues) => void }) {
+function AmountForm({ 
+  onProceed, 
+  isRegistrationFee = false, 
+  fixedAmount = null, 
+  fixedDescription = null 
+}: { 
+  onProceed: (data: AmountFormValues) => void,
+  isRegistrationFee?: boolean,
+  fixedAmount?: number | null,
+  fixedDescription?: string | null
+}) {
   const form = useForm<AmountFormValues>({
     resolver: zodResolver(amountSchema),
     defaultValues: {
-      amount: "100",
-      description: "Cumhuriyet Güncellenme Platformu Bağışı",
+      amount: fixedAmount !== null ? fixedAmount.toString() : "100",
+      description: fixedDescription || "Cumhuriyet Güncellenme Platformu Bağışı",
+      isRegistrationFee,
     },
   });
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onProceed)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="amount"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-white text-lg">Bağış Miktarı (TL)</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="number"
-                  min="5"
-                  placeholder="100"
-                  className="bg-black/50 border-amber-500 text-white text-lg"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* Show amount field only if it's not a fixed amount */}
+        {fixedAmount === null && (
+          <FormField
+            control={form.control}
+            name="amount"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-white text-lg">
+                  {isRegistrationFee ? "Katılım Ücreti (TL)" : "Bağış Miktarı (TL)"}
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    type="number"
+                    min={isRegistrationFee ? "1" : "5"}
+                    placeholder={isRegistrationFee ? "1" : "100"}
+                    className="bg-black/50 border-amber-500 text-white text-lg"
+                    disabled={isRegistrationFee && fixedAmount !== null}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-white text-lg">Açıklama (Opsiyonel)</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Cumhuriyet Güncellenme Platformu Bağışı"
-                  className="bg-black/50 border-amber-500 text-white"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* If there's a fixed amount, show it as display only */}
+        {fixedAmount !== null && (
+          <div className="mb-4">
+            <div className="text-white text-lg mb-2">
+              {isRegistrationFee ? "Katılım Ücreti (TL)" : "Bağış Miktarı (TL)"}
+            </div>
+            <div className="text-2xl font-bold text-amber-500 border border-amber-500 bg-black/50 p-3 rounded-md">
+              {fixedAmount} TL
+            </div>
+          </div>
+        )}
+        
+        {/* Only show description field if it's not a registration fee */}
+        {!isRegistrationFee && fixedDescription === null && (
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-white text-lg">Açıklama (Opsiyonel)</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Cumhuriyet Güncellenme Platformu Bağışı"
+                    className="bg-black/50 border-amber-500 text-white"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+        
+        {/* If there's a fixed description, show it */}
+        {fixedDescription !== null && (
+          <div className="mb-4">
+            <div className="text-white text-lg mb-2">Açıklama</div>
+            <div className="text-amber-500 border border-amber-500 bg-black/50 p-3 rounded-md">
+              {fixedDescription}
+            </div>
+          </div>
+        )}
         
         <Button 
           type="submit" 
           className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-lg font-bold"
         >
-          Ödemeye Devam Et
+          {isRegistrationFee ? "Katılım Ücretini Öde" : "Ödemeye Devam Et"}
         </Button>
       </form>
     </Form>
@@ -279,16 +321,21 @@ export default function PaymentForm({
         className="bg-black/60 backdrop-blur-sm border-2 border-green-500 rounded-lg p-8 text-center"
       >
         <div className="text-5xl mb-6">🎉</div>
-        <h2 className="text-2xl font-bold text-green-400 mb-4">Bağışınız için Teşekkürler!</h2>
+        <h2 className="text-2xl font-bold text-green-400 mb-4">
+          {isRegistrationFee ? "Üyelik Tamamlandı!" : "Bağışınız için Teşekkürler!"}
+        </h2>
         <p className="text-white mb-6">
-          Cumhuriyet Güncellenme Platformu'na katkınız için teşekkür ederiz. 
-          Desteğiniz, daha güçlü bir gelecek için çok değerli.
+          {isRegistrationFee ? (
+            "Cumhuriyet Güncellenme Platformu'na üyeliğiniz başarıyla tamamlandı. Artık platformun tüm özelliklerini kullanabilirsiniz."
+          ) : (
+            "Cumhuriyet Güncellenme Platformu'na katkınız için teşekkür ederiz. Desteğiniz, daha güçlü bir gelecek için çok değerli."
+          )}
         </p>
         <Button
           onClick={handleReset}
           className="bg-gradient-to-r from-green-700 to-green-500 hover:from-green-600 hover:to-green-400 text-white"
         >
-          Yeni Bağış Yap
+          {isRegistrationFee ? "Kapat" : "Yeni Bağış Yap"}
         </Button>
       </motion.div>
     );
@@ -301,7 +348,12 @@ export default function PaymentForm({
           <CheckoutForm clientSecret={clientSecret} onSuccess={handlePaymentSuccess} />
         </Elements>
       ) : (
-        <AmountForm onProceed={handleProceedToPayment} />
+        <AmountForm 
+          onProceed={handleProceedToPayment}
+          isRegistrationFee={isRegistrationFee}
+          fixedAmount={fixedAmount}
+          fixedDescription={fixedDescription}
+        />
       )}
     </div>
   );
