@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, memo } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
@@ -60,31 +60,24 @@ export default function ModernLayout({
     <>
       <SimpleFuturisticTurkish />
       
-      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-black to-gray-950">
-        {/* Background elements */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600/20 via-red-500/40 to-red-600/20"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-600/20 via-red-500/40 to-red-600/20"></div>
+      <div className="min-h-screen text-white relative overflow-x-hidden bg-black">
+        {/* Background elements - simplified */}
+        <div className="absolute top-0 left-0 w-full h-px bg-red-600/20"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-red-600/20"></div>
         
         {/* Back button */}
         {showBackButton && (
-          <motion.div 
-            className="fixed top-4 left-4 z-50"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="fixed top-4 left-4 z-50">
             <button 
               onClick={() => navigate("/")}
-              className="relative px-3 py-2 bg-gradient-to-br from-red-800/80 to-red-900/80 text-white rounded-full hover:from-red-700/90 hover:to-red-800/90 transition-all shadow-lg hover:shadow-red-900/30 flex items-center text-sm overflow-hidden group"
+              className="px-3 py-2 bg-gradient-to-br from-red-800/80 to-red-900/80 text-white rounded-full hover:from-red-700/90 hover:to-red-800/90 transition-colors shadow-sm hover:shadow-md flex items-center text-sm"
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-red-700/50 to-red-900/50 backdrop-filter backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span className="relative z-10">Anasayfaya Dön</span>
+              <span>Anasayfaya Dön</span>
             </button>
-          </motion.div>
+          </div>
         )}
         
         {/* Main content */}
@@ -93,39 +86,29 @@ export default function ModernLayout({
           
           {/* Language selector */}
           {showLanguageSelector && (
-            <motion.div 
-              className="mt-8 mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+            <div className="mt-8 mb-4">
               <div className="text-center">
                 <div className="mb-2 text-xs text-red-400 font-medium uppercase tracking-wide">Tercih ettiğiniz dil</div>
-                <div className="bg-black/40 backdrop-blur-md p-2 rounded-lg border border-red-900/20">
+                <div className="bg-black/40 backdrop-blur-sm p-2 rounded-lg border border-red-900/20">
                   <LanguageSelector />
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
           
           {/* Footer info with launch date */}
-          <motion.div 
-            className="text-center mt-8 mb-4"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-gradient-to-r from-black/60 to-black/80 backdrop-blur-md px-4 py-2.5 rounded-full border border-red-900/30 shadow-lg">
-              <div className="h-2 w-2 rounded-full bg-red-500 mr-2 animate-pulse"></div>
+          <div className="text-center mt-8 mb-4">
+            <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-black/40 px-4 py-2.5 rounded-full border border-red-900/20 shadow-sm">
+              <div className="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
               <p className="text-xs sm:text-sm text-gray-300 font-light tracking-wide">
                 <span className="font-medium text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
               </p>
             </div>
-          </motion.div>
+          </div>
           
           {/* Technical indicators */}
           <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
-            <div className="bg-black/70 backdrop-blur-md px-2 py-1 rounded-md border border-red-900/20 shadow-lg flex items-center">
+            <div className="bg-black/50 px-2 py-1 rounded-md border border-red-900/10 shadow-sm flex items-center">
               <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-1.5"></div>
               <span className="text-xs text-gray-400">v2.0</span>
             </div>
