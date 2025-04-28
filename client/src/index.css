@@ -5,6 +5,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Modern teknoloji temalı animasyonlar */
+@layer utilities {
+  /* Yatay sweep animasyonu (soldan sağa) */
+  @keyframes sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Pulse animasyon */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(66, 153, 225, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(66, 153, 225, 0.6);
+    }
+  }
+  
+  /* Buton içinde parlama efekti için */
+  .animate-sweep {
+    animation: sweep 1.5s ease-in-out;
+  }
+  
+  /* Buton çevresinde pulse ışıma efekti */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+  
+  /* Arka plan ızgara deseni */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(66, 153, 225, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(66, 153, 225, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
 /* Modern Turkish background */
 body {
   background: linear-gradient(135deg, #0a1128 0%, #0f1b36 50%, #121a40 100%);

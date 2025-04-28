@@ -79,10 +79,37 @@ export default {
             height: "0",
           },
         },
+        "sweep": {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+        "pulse-glow": {
+          "0%, 100%": {
+            boxShadow: "0 0 15px rgba(66, 153, 225, 0.2)",
+          },
+          "50%": {
+            boxShadow: "0 0 25px rgba(66, 153, 225, 0.6)",
+          },
+        },
+        "border-pulse": {
+          "0%, 100%": {
+            borderColor: "rgba(66, 153, 225, 0.3)",
+          },
+          "50%": {
+            borderColor: "rgba(66, 153, 225, 0.8)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "sweep": "sweep 1.5s ease-in-out",
+        "pulse-glow": "pulse-glow 2s infinite",
+        "border-pulse": "border-pulse 3s infinite",
       },
     },
   },

@@ -6,6 +6,7 @@ import ModernLayout from "@/components/ModernLayout";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { ModernTechButton } from "@/components/ModernTechButton";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -338,12 +339,16 @@ export default function KatilPage() {
                 />
                 
                 <div className="pt-4">
-                  <Button 
+                  <ModernTechButton 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-red-700 to-amber-600 hover:from-amber-600 hover:to-red-700 text-white py-6 text-lg font-bold"
+                    variant="turkish"
+                    size="xl"
+                    glow="subtle"
+                    border="glowing"
+                    className="w-full text-lg font-bold"
                   >
                     Bilgilerimi Kaydet ve Ödemeye Geç
-                  </Button>
+                  </ModernTechButton>
                 </div>
               </form>
             </Form>
@@ -486,21 +491,23 @@ export default function KatilPage() {
         </Tabs>
         
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-10">
-          <Button 
-            variant="outline"
-            className="border-amber-500 text-amber-400 hover:bg-amber-900/20"
+          <ModernTechButton 
+            variant="futuristic"
+            glow="subtle"
+            border="subtle"
             onClick={() => navigate("/turkiye")}
           >
             ◀ Türkiye Sayfasına Dön
-          </Button>
+          </ModernTechButton>
           
-          <Button 
-            variant="outline"
-            className="border-white text-white hover:bg-white/10"
+          <ModernTechButton 
+            variant="primary"
+            glow="subtle"
+            border="glowing"
             onClick={() => navigate("/")}
           >
-            🏠 Ana Sayfa
-          </Button>
+            Ana Sayfa
+          </ModernTechButton>
         </div>
       </div>
     </ModernLayout>
