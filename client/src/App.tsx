@@ -57,6 +57,7 @@ function Router() {
       <Route path="/palestine" component={PalestinePage} />
       <Route path="/oppressed" component={OppressedNationsPage} />
       <Route path="/halk-manifestolar" component={HalkManifestolarPage} />
+      <Route path="/halkmanifestolari" component={HalkManifestolarPage} />
       <Route path="/cagri" component={CagriPage} />
       <Route path="/sertifika" component={SertifikaPage} />
       <Route path="/entegrasyon" component={EntegrasyonPage} />
