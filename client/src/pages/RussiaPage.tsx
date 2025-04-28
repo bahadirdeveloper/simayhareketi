@@ -5,6 +5,7 @@ import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import ModernLayout from '@/components/ModernLayout';
 import { apiRequest } from '@/lib/queryClient';
+import { Flag } from 'lucide-react';
 
 export default function RussiaPage() {
   const { t, i18n } = useTranslation();
@@ -74,7 +75,14 @@ export default function RussiaPage() {
           <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-blue-500/20 shadow-lg">
             <div className="flex flex-col md:flex-row items-start md:items-center mb-8 gap-4">
               <div className="w-full md:w-1/3 aspect-video bg-gradient-to-br from-blue-950 to-black rounded-lg overflow-hidden flex items-center justify-center border border-blue-500/30">
-                <span className="text-6xl">🇷🇺</span>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <div className="absolute inset-0 flex flex-col">
+                    <div className="h-1/3 w-full bg-white"></div>
+                    <div className="h-1/3 w-full bg-blue-600"></div>
+                    <div className="h-1/3 w-full bg-red-600"></div>
+                  </div>
+                  <Flag className="w-12 h-12 text-blue-100 z-10 drop-shadow-md" />
+                </div>
               </div>
               
               <div className="flex-1 space-y-4">

@@ -76,21 +76,21 @@ export default function ModernLayout({
           
           {/* Modernized grid pattern - more tech-focused */}
           <div className="absolute inset-0 opacity-5">
-            {/* Horizontal grid lines - more precise and uniform */}
-            {[...Array(30)].map((_, i) => (
+            {/* Horizontal grid lines - reduced for performance */}
+            {[...Array(10)].map((_, i) => (
               <div 
                 key={`grid-h-${i}`} 
                 className="absolute w-full h-[0.5px] bg-red-500" 
-                style={{ top: `${i * 3.33}%` }} 
+                style={{ top: `${i * 10}%` }} 
               />
             ))}
             
-            {/* Vertical grid lines - more precise and uniform */}
-            {[...Array(30)].map((_, i) => (
+            {/* Vertical grid lines - reduced for performance */}
+            {[...Array(10)].map((_, i) => (
               <div 
                 key={`grid-v-${i}`} 
                 className="absolute h-full w-[0.5px] bg-red-500" 
-                style={{ left: `${i * 3.33}%` }} 
+                style={{ left: `${i * 10}%` }} 
               />
             ))}
           </div>
@@ -193,8 +193,7 @@ export default function ModernLayout({
                 </ModernTechButton>
               </a>
               
-              {/* Decorative pulse effect */}
-              <div className="absolute -inset-1.5 bg-red-500/5 rounded-lg -z-10 animate-pulse"></div>
+              {/* Removed decorative pulse effect for performance */}
             </div>
           </div>
           
