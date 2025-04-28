@@ -6,10 +6,12 @@ import ModernLayout from "@/components/ModernLayout";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { ModernTechButton } from "@/components/ModernTechButton";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ChevronLeft, ChevronRight, ListFilter, Star, Send, ExternalLink } from "lucide-react";
 
 // Görev arka plan görselleri
 import gorev1 from "@assets/gorev-1.webp";
@@ -1385,21 +1387,23 @@ export default function GorevlerPage() {
           
           {/* Navigation Buttons */}
           <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4 sm:gap-6">
-            <Button 
+            <ModernTechButton 
               variant="outline"
-              className="modern-button px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-bold tracking-wide font-poppins"
+              size="lg"
+              leftIcon={<ChevronLeft className="w-5 h-5" />}
               onClick={() => navigate("/turkiye")}
             >
-              <span className="text-turkish-white">Türkiye Sayfasına Dön</span>
-            </Button>
+              Türkiye Sayfasına Dön
+            </ModernTechButton>
             
-            <Button 
-              variant="outline"
-              className="modern-button px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-base sm:text-lg md:text-xl font-bold tracking-wide font-poppins"
+            <ModernTechButton 
+              variant="futuristic"
+              size="lg"
+              glow="subtle"
               onClick={() => navigate("/")}
             >
-              <span className="text-turkish-white">Ana Sayfa</span>
-            </Button>
+              Ana Sayfa
+            </ModernTechButton>
           </div>
           
           {/* Cumhuriyet Sertifikası İbaresi */}
@@ -1499,12 +1503,16 @@ export default function GorevlerPage() {
                 </div>
                 
                 <div className="flex justify-center mt-4">
-                  <Button 
+                  <ModernTechButton 
                     type="submit" 
-                    className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-800 hover:to-red-600 text-white font-bold text-lg px-8 py-4 h-auto shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+                    variant="turkish"
+                    size="lg"
+                    glow="strong"
+                    border="glowing"
+                    rightIcon={<Send className="w-5 h-5 ml-1" />}
                   >
                     Göreve Katıl
-                  </Button>
+                  </ModernTechButton>
                 </div>
               </form>
             </div>
