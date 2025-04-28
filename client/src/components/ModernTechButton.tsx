@@ -1,118 +1,179 @@
-import React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { ReactNode, ButtonHTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
-import { Button as ShadcnButton } from "@/components/ui/button";
+import { cva, type VariantProps } from "class-variance-authority";
 
-/**
- * Teknolojik, modern buton bileşeni
- * Türk Cumhuriyeti Güncellenme Platformu için özel tasarlanmış buton
- */
-
+// Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı
 const buttonVariants = cva(
-  "relative overflow-hidden group inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:translate-y-0.5",
   {
     variants: {
       variant: {
-        // Ana buton stili (Yeni, parlak, modern görünüm)
-        primary: "bg-gradient-to-r from-blue-700 to-indigo-800 text-white hover:shadow-[0_0_15px_rgba(66,153,225,0.5)] shadow-lg hover:shadow-blue-500/20",
-        
-        // İkincil buton stili (Kırmızı temalı Türk renkleri)
-        secondary: "bg-gradient-to-r from-red-700 to-red-900 text-white hover:shadow-[0_0_15px_rgba(229,62,62,0.5)] shadow-lg hover:shadow-red-500/20",
-        
-        // Daha nötr, minimal buton 
-        outline: "border-2 border-gray-300 bg-transparent hover:bg-gray-100/10 text-gray-100",
-        
-        // Hayalet buton
-        ghost: "bg-transparent text-gray-300 hover:bg-gray-800/30 hover:text-white",
-        
-        // Teknolojik, gelecek temalı buton
-        futuristic: "bg-black border border-blue-500/50 text-blue-400 hover:border-blue-400 hover:text-blue-300 shadow-[0_0_10px_rgba(66,153,225,0.2)] hover:shadow-[0_0_15px_rgba(66,153,225,0.4)]",
-        
-        // İptal/Sil butonları için
-        destructive: "bg-red-900/80 text-white hover:bg-red-800",
-
-        // Türk bayrağı renklerinde
-        turkish: "bg-gradient-to-r from-red-600 to-red-800 text-white hover:shadow-[0_0_15px_rgba(229,62,62,0.5)] shadow-lg hover:shadow-red-500/20",
+        primary: "bg-gradient-to-br from-blue-600 to-blue-800 text-white border border-blue-500/20 hover:from-blue-500 hover:to-blue-700",
+        secondary: "bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-blue-500/10 hover:border-blue-500/30",
+        turkish: "bg-gradient-to-br from-red-600 to-red-800 text-white border border-red-500/20 hover:from-red-500 hover:to-red-700",
+        futuristic: "bg-gradient-to-br from-indigo-600 to-violet-800 text-white border border-indigo-400/20 hover:from-indigo-500 hover:to-violet-700",
+        outline: "bg-transparent border border-white/30 text-white hover:bg-white/10",
+        ghost: "bg-transparent text-white hover:bg-white/10 border-none"
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-12 rounded-md px-8 text-base",
-        icon: "h-10 w-10",
-        xl: "h-14 rounded-md px-10 text-lg",
+        sm: "h-9 px-3 py-2 text-xs",
+        md: "h-10 px-4 py-2",
+        lg: "h-11 px-6 py-2.5 text-base",
+        xl: "h-12 px-8 py-3 text-lg"
       },
       glow: {
         none: "",
-        subtle: "after:content-[''] after:absolute after:inset-0 after:z-[-1] after:rounded-md after:bg-gradient-to-r after:from-blue-500/30 after:to-indigo-500/30 after:blur-xl after:opacity-0 hover:after:opacity-100 after:transition-opacity",
-        strong: "after:content-[''] after:absolute after:inset-0 after:z-[-1] after:rounded-md after:bg-gradient-to-r after:from-blue-500/50 after:to-indigo-500/50 after:blur-xl after:opacity-0 hover:after:opacity-100 after:transition-opacity",
+        subtle: "shadow-lg",
+        strong: "shadow-lg",
       },
       border: {
         none: "",
-        subtle: "before:content-[''] before:absolute before:inset-0 before:rounded-md before:border before:border-blue-500/50 before:transition-colors hover:before:border-blue-400",
-        glowing: "before:content-[''] before:absolute before:inset-0 before:rounded-md before:border before:border-blue-500/50 before:transition-all hover:before:border-blue-400 hover:before:shadow-[0_0_10px_rgba(66,153,225,0.5)]",
+        subtle: "",
+        glowing: "",
+        animated: "animate-border-pulse",
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "default",
+      size: "md",
       glow: "none",
       border: "none",
     },
+    compoundVariants: [
+      // Parlama efekti varyant kombinasyonları
+      {
+        glow: "subtle",
+        variant: "primary",
+        className: "shadow-blue-500/30",
+      },
+      {
+        glow: "subtle",
+        variant: "turkish",
+        className: "shadow-red-500/30",
+      },
+      {
+        glow: "subtle",
+        variant: "futuristic",
+        className: "shadow-indigo-500/30",
+      },
+      {
+        glow: "strong",
+        variant: "primary",
+        className: "shadow-blue-500/50 hover:shadow-blue-400/60",
+      },
+      {
+        glow: "strong",
+        variant: "turkish",
+        className: "shadow-red-500/50 hover:shadow-red-400/60",
+      },
+      {
+        glow: "strong",
+        variant: "futuristic",
+        className: "shadow-indigo-500/50 hover:shadow-indigo-400/60 hover:shadow-lg",
+      },
+      
+      // Border efekti varyantları
+      {
+        border: "glowing",
+        variant: "primary",
+        className: "border border-blue-400/30 animate-border-pulse-blue",
+      },
+      {
+        border: "glowing",
+        variant: "turkish",
+        className: "border border-red-400/30 animate-border-pulse-red",
+      },
+      {
+        border: "glowing",
+        variant: "futuristic",
+        className: "border border-indigo-400/30 animate-border-pulse-indigo",
+      },
+      {
+        border: "subtle",
+        className: "border-opacity-30 hover:border-opacity-60",
+      },
+    ],
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+// ModernTechButton props interfacei
+export interface ModernTechButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  glassmorphism?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  isLoading?: boolean;
 }
 
-/**
- * Modern, teknolojik buton bileşeni
- */
-const ModernTechButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant, 
-    size, 
-    glow,
-    border,
-    leftIcon, 
-    rightIcon,
-    glassmorphism = false,
-    children, 
-    ...props 
-  }, ref) => {
-    // Buton içeriğini hazırla
-    const buttonContent = (
-      <>
-        {leftIcon && <span className="mr-2">{leftIcon}</span>}
-        <span className="relative z-10">{children}</span>
-        {rightIcon && <span className="ml-2">{rightIcon}</span>}
-        
-        {/* Animasyon efekti için gizli div */}
-        <span className="absolute inset-0 z-0 bg-gradient-to-r from-black/0 via-white/10 to-black/0 opacity-0 group-hover:opacity-100 group-hover:animate-sweep transition-opacity duration-1000"></span>
-      </>
-    );
-
+// ModernTechButton bileşeni
+export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonProps>(
+  (
+    {
+      className, 
+      variant,
+      size,
+      glow,
+      border,
+      leftIcon,
+      rightIcon,
+      isLoading = false,
+      children,
+      ...props
+    }, 
+    ref
+  ) => {
     return (
-      <ShadcnButton
+      <button
         className={cn(
-          buttonVariants({ variant, size, glow, border, className }),
-          glassmorphism && "backdrop-blur-sm bg-opacity-70",
+          buttonVariants({ 
+            variant, 
+            size, 
+            glow,
+            border,
+            className 
+          })
         )}
         ref={ref}
+        disabled={isLoading || props.disabled}
         {...props}
       >
-        {buttonContent}
-      </ShadcnButton>
+        {isLoading && (
+          <span className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg backdrop-blur-sm z-10">
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              ></path>
+            </svg>
+          </span>
+        )}
+        
+        {/* Parlama efektleri */}
+        {glow === "strong" && (
+          <span className="absolute inset-0 rounded-lg filter blur-md opacity-30 bg-inherit -z-10"></span>
+        )}
+        
+        {/* İçerik */}
+        <span className="relative z-1 flex items-center">
+          {leftIcon && <span className="mr-2">{leftIcon}</span>}
+          {children}
+          {rightIcon && <span className="ml-2">{rightIcon}</span>}
+        </span>
+      </button>
     );
   }
 );
-
-ModernTechButton.displayName = "ModernTechButton";
-
-export { ModernTechButton, buttonVariants };

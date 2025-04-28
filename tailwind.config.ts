@@ -103,6 +103,22 @@ export default {
             borderColor: "rgba(66, 153, 225, 0.8)",
           },
         },
+        "border-pulse-red": {
+          "0%, 100%": {
+            borderColor: "rgba(245, 101, 101, 0.3)",
+          },
+          "50%": {
+            borderColor: "rgba(245, 101, 101, 0.8)",
+          },
+        },
+        "border-pulse-indigo": {
+          "0%, 100%": {
+            borderColor: "rgba(102, 126, 234, 0.3)",
+          },
+          "50%": {
+            borderColor: "rgba(102, 126, 234, 0.8)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,6 +126,8 @@ export default {
         "sweep": "sweep 1.5s ease-in-out",
         "pulse-glow": "pulse-glow 2s infinite",
         "border-pulse": "border-pulse 3s infinite",
+        "border-pulse-red": "border-pulse-red 3s infinite",
+        "border-pulse-indigo": "border-pulse-indigo 3s infinite",
       },
     },
   },

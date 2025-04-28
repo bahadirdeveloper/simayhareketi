@@ -23,7 +23,8 @@ export default function ModernLayout({
   showLanguageSelector = false,
   showBackButton = false,
   pageContent = "Cumhuriyet Güncellenme Platformuna hoş geldiniz. Bu platformda güncel bilgilere erişebilir, Türkiye'nin dijital dönüşümüne katkıda bulunabilirsiniz.",
-  pageName = "Anasayfa"
+  pageName = "Anasayfa",
+  onAudioToggle
 }: ModernLayoutProps) {
   const [, navigate] = useLocation();
 
@@ -55,6 +56,11 @@ export default function ModernLayout({
 
   const handleToggleAudio = () => {
     playSoundtrack();
+    
+    // Eğer özel bir onAudioToggle fonksiyonu sağlanmışsa, onu da çağır
+    if (onAudioToggle) {
+      onAudioToggle();
+    }
   };
 
   return (
