@@ -1154,12 +1154,20 @@ export default function GorevlerPage() {
   const categoriesSet = new Set(gorevler.map(gorev => gorev.kategori));
   const categories = Array.from(categoriesSet);
   
+  // Erişilebilirlik için sayfa içeriğini hazırla
+  const pageContent = `Görevler sayfasına hoş geldiniz. Bu sayfada, Simay Hareketi'nin belirlediği 100 görevi bulabilirsiniz. 
+    Görevler çeşitli kategorilere ayrılmıştır ve tamamladığınız görevleri işaretleyebilirsiniz. 
+    Her görevin detaylı açıklaması ve tamamlanması için gereken adımlar görev kartında yer almaktadır.`;
+
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Background */}
-      <TurkeyPuzzleBg />
-      
-      <main className="container mx-auto px-4 pb-16 z-10 relative">
+    <ModernLayout 
+      audioKey="mission" 
+      showBackButton={true}
+      showLanguageSelector={true}
+      pageContent={pageContent}
+      pageName="Görevler"
+    >
+      <main className="max-w-6xl mx-auto px-4 pb-16 z-10 relative">
         {/* Header */}
         <div className="text-center py-10">
           <motion.div 
@@ -1503,7 +1511,6 @@ export default function GorevlerPage() {
           </DialogContent>
         </Dialog>
         
-        <AudioControl onToggle={handleToggleAudio} />
-      </div>
+      </ModernLayout>
     );
 }
