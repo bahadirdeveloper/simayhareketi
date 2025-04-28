@@ -113,7 +113,7 @@ export default function TurkiyePage() {
                 className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 {/* Katılım kartı */}
                 <motion.div 
@@ -228,19 +228,28 @@ export default function TurkiyePage() {
                 className="mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-center mb-6 text-white">
-                  CUMHURİYET DEĞERLERİ
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                <div className="relative mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent h-px top-1/2 transform -translate-y-1/2"></div>
+                  <h2 className="text-2xl font-bold text-center mb-6 text-white relative inline-block bg-black px-4 mx-auto block w-auto">
+                    <div className="flex items-center gap-2 justify-center">
+                      <Star className="w-5 h-5 text-red-500" />
+                      CUMHURİYET DEĞERLERİ
+                      <Star className="w-5 h-5 text-red-500" />
+                    </div>
+                  </h2>
+                </div>
+                
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
                   {turkishValues.map((value, index) => (
                     <motion.div 
                       key={value.id}
-                      className="bg-gradient-to-b from-black/60 to-red-950/20 backdrop-blur-sm rounded-xl p-4 text-center border border-red-700/20 hover:border-red-500/40 transition-all duration-300 shadow-[0_2px_10px_rgba(185,28,28,0.05)] hover:shadow-[0_4px_20px_rgba(185,28,28,0.1)]"
-                      initial={{ y: 20, opacity: 0 }}
+                      className="bg-gradient-to-b from-black/80 to-red-950/10 backdrop-blur-sm rounded-xl p-4 text-center border border-red-700/20 hover:border-red-500/40 transition-all duration-300 shadow-[0_2px_10px_rgba(185,28,28,0.05)] hover:shadow-[0_4px_20px_rgba(185,28,28,0.1)]"
+                      initial={{ y: 10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
                     >
                       <div className="flex justify-center mb-3">
                         <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-[0_4px_20px_rgba(185,28,28,0.15)]">
@@ -254,14 +263,26 @@ export default function TurkiyePage() {
                 </div>
               </motion.div>
               
-              <motion.p 
-                className="text-white/90 mt-6 text-lg sm:text-xl max-w-3xl mx-auto bg-black/20 p-3 rounded-lg backdrop-blur-sm"
+              <motion.div 
+                className="text-white/90 mt-6 max-w-3xl mx-auto relative"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
               >
-                Türkiye Cumhuriyeti Dijital Koordinasyon Alanı
-              </motion.p>
+                <div className="bg-gradient-to-r from-black/80 via-black/90 to-black/80 p-4 rounded-lg backdrop-blur-sm border border-red-900/20 shadow-lg relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                  
+                  <div className="flex items-center gap-3 mb-2">
+                    <Landmark className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <h3 className="text-white font-semibold">Türkiye Cumhuriyeti Dijital Koordinasyon Alanı</h3>
+                  </div>
+                  
+                  <p className="text-white/70 text-sm">
+                    Cumhuriyetin güncellenme sürecinde tüm vatandaşların koordineli bir şekilde görevlere katılmasını ve Türkiye'nin geleceğine katkıda bulunmasını amaçlayan dijital platform.
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
             
             {/* Navigation Buttons - Modern Grid Layout */}
@@ -269,7 +290,7 @@ export default function TurkiyePage() {
               className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mx-auto mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               {/* TÜRK NEDİR? Button */}
               <div className="flex flex-col">
