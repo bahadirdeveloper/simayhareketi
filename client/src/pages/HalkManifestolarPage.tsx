@@ -306,7 +306,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
         </motion.div>
         
         <Tabs defaultValue="view" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-gradient-to-b from-gray-900 to-black border border-red-500/30 rounded-md shadow-md">
+          <TabsList className="grid w-full grid-cols-2 bg-gradient-to-b from-gray-900 to-black border border-red-500/30 rounded-md shadow-[0_4px_15px_rgba(0,0,0,0.3)]">
             <TabsTrigger value="view" className="text-lg font-medium data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-800 data-[state=active]:to-red-950 data-[state=active]:text-white data-[state=active]:shadow-md rounded-sm">Manifestoları Görüntüle</TabsTrigger>
             <TabsTrigger value="create" className="text-lg font-medium data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-800 data-[state=active]:to-red-950 data-[state=active]:text-white data-[state=active]:shadow-md rounded-sm">Yeni Manifesto Oluştur</TabsTrigger>
           </TabsList>
@@ -314,7 +314,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
           {/* Manifestoları Görüntüleme Sekmesi */}
           <TabsContent value="view" className="mt-6">
             {/* Filtre ve Sıralama Alanı */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 bg-gradient-to-b from-gray-900 to-black p-4 rounded-lg border border-red-500/30 shadow-md backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 bg-gradient-to-b from-gray-900 to-black p-4 rounded-lg border border-red-500/30 shadow-[0_4px_15px_rgba(0,0,0,0.25)] backdrop-blur-sm">
               <div className="space-y-2">
                 <h3 className="text-white font-medium text-sm">Kategori Filtresi</h3>
                 <div className="flex flex-wrap gap-2">
@@ -385,7 +385,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                       viewport={{ once: true }}
-                      className="bg-gradient-to-b from-black/70 to-gray-900/40 backdrop-blur-sm rounded-lg overflow-hidden border border-red-500/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-red-500/50"
+                      className="bg-gradient-to-b from-black/70 to-gray-900/40 backdrop-blur-sm rounded-lg overflow-hidden border border-red-500/30 shadow-[0_4px_20px_rgba(220,38,38,0.15)] hover:shadow-[0_8px_30px_rgba(220,38,38,0.25)] transition-all duration-300 hover:border-red-500/50"
                     >
                       <div className={`h-1 w-full bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'}`}></div>
                       
@@ -398,19 +398,19 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                               <span>|</span>
                               <span>{entry.date}</span>
                               <span>|</span>
-                              <span className={`px-2 py-0.5 rounded-full text-xs bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'} bg-opacity-20`}>
+                              <span className={`px-2 py-0.5 rounded-full text-xs shadow-sm bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'} text-white/90`}>
                                 {category?.name || 'Genel'}
                               </span>
                             </div>
                           </div>
                           
-                          <div className="flex items-center space-x-1 bg-gradient-to-r from-red-950 to-red-900/40 px-3 py-1 rounded-full shadow-inner border border-red-500/30">
+                          <div className="flex items-center space-x-1 bg-gradient-to-r from-red-950 to-red-900/40 px-3 py-1 rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.3)] border border-red-500/30">
                             <Heart className="h-4 w-4 text-red-500" />
                             <span className="text-white text-sm">{entry.likes}</span>
                           </div>
                         </div>
                         
-                        <div className="bg-gradient-to-b from-gray-900/70 to-black/50 p-4 rounded-lg border border-red-500/20 my-4 shadow-inner">
+                        <div className="bg-gradient-to-b from-gray-900/70 to-black/50 p-4 rounded-lg border border-red-500/20 my-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]">
                           <p className="text-white/95 whitespace-pre-line readable-text enhanced-text leading-relaxed">
                             {entry.content}
                           </p>
@@ -440,7 +440,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-b from-gray-900/80 to-black/60 backdrop-blur-sm rounded-lg border border-red-500/40 p-6 shadow-lg"
+              className="bg-gradient-to-b from-gray-900/80 to-black/60 backdrop-blur-sm rounded-lg border border-red-500/40 p-6 shadow-[0_4px_20px_rgba(220,38,38,0.15)]"
             >
               <h3 className="text-2xl font-bold text-white mb-6 readable-text">Yeni Manifesto Oluştur</h3>
               
@@ -514,7 +514,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
               </form>
             </motion.div>
             
-            <div className="mt-8 bg-gradient-to-b from-gray-900/70 to-black/60 p-4 rounded-lg border border-red-500/30 shadow-md">
+            <div className="mt-8 bg-gradient-to-b from-gray-900/70 to-black/60 p-4 rounded-lg border border-red-500/30 shadow-[0_4px_12px_rgba(220,38,38,0.1)]">
               <h4 className="text-white font-medium mb-2">Manifesto Yazım Kuralları</h4>
               <ul className="text-gray-300 text-sm space-y-2 list-disc list-inside">
                 <li>Manifestonuz, Türkiye Cumhuriyeti değerlerine ve ilkelerine uygun olmalıdır.</li>
