@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
 import { Button } from "@/components/ui/button";
-import { Flag, Settings, Scale, Vote, Users } from "lucide-react";
+import { ModernTechButton } from "@/components/ModernTechButton";
+import { Flag, Settings, Scale, Vote, Users, BookOpen, Target, FileText, MessageSquare } from "lucide-react";
 
 // Ana değerler için veri - türkiye sayfası için özelleştirilmiş (emojiler yerine Lucide ikonları kullanarak modernleştirildi)
 const turkishValues = [
@@ -265,36 +266,36 @@ export default function TurkiyePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {/* TÜRK NEDİR? Button */}
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link to="/turknedir" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">TÜRK NEDİR?</h3>
-                  <p className="text-xs text-gray-400 text-center">Türk kimliği ve tanımının tarihsel incelemesi</p>
-                </Link>
-              </motion.div>
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="subtle"
+                  border="glowing"
+                  leftIcon={<BookOpen className="h-5 w-5" />}
+                  className="mb-2 justify-center py-4"
+                  onClick={() => navigate("/turknedir")}
+                >
+                  TÜRK NEDİR?
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+              </div>
               
               {/* Anayasa Button */}
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link to="/anayasa" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">ANAYASALARIMIZ</h3>
-                  <p className="text-xs text-gray-400 text-center">Cumhuriyet anayasalarının tarihsel arşivi</p>
-                </Link>
-              </motion.div>
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="subtle"
+                  border="glowing"
+                  icon={<FileText className="h-5 w-5 mr-2" />}
+                  className="mb-2 justify-center py-4"
+                  onClick={() => navigate("/anayasa")}
+                >
+                  ANAYASALARIMIZ
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet anayasalarının tarihsel arşivi</p>
+              </div>
               
               {/* Görevler Button */}
               <motion.div 
