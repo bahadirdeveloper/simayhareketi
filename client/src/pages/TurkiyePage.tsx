@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "wouter";
+import React from "react";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
-import { Button } from "@/components/ui/button";
 import { ModernTechButton } from "@/components/ModernTechButton";
-import { Flag, Settings, Scale, Vote, Users, BookOpen, Target, FileText, MessageSquare } from "lucide-react";
+import { Flag, Settings, Scale, Vote, Users, BookOpen, Target, FileText, MessageSquare, Award, Star, Landmark, Shield, Clock } from "lucide-react";
 
-// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (emojiler yerine Lucide ikonları kullanarak modernleştirildi)
+// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (Lucide ikonları kullanarak)
 const turkishValues = [
   { id: 'milli', name: 'MİLLİ', icon: Flag, description: 'Özgür ve bağımsız' },
   { id: 'muasir', name: 'MUASIR', icon: Settings, description: 'Çağdaş uygarlık' },
@@ -40,17 +39,24 @@ export default function TurkiyePage() {
               className="relative rounded-xl overflow-hidden mb-8"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm z-0 shadow-[0_8px_30px_rgba(185,28,28,0.12)]"></div>
-              <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-red-950/30 backdrop-blur-sm z-0 shadow-[0_8px_30px_rgba(185,28,28,0.12)]"></div>
+              <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+              <div className="absolute inset-0 border border-red-900/20 z-0"></div>
               
               <div className="relative z-10 py-10 px-6 sm:px-10 text-center">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                
                 <motion.div
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.4 }}
                 >
+                  <div className="inline-block mb-2">
+                    <Shield className="w-10 h-10 text-red-500 mx-auto" />
+                  </div>
                   <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed">
                     <span className="text-red-500 block mb-3">"Türk, Atasının mirasına sahip çıkamazsa,</span>
                     <span className="text-white block">geleceğini başka milletlerin insafına bırakır."</span>
