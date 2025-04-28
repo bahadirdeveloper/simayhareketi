@@ -8,6 +8,7 @@ import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { Wrench, Paintbrush, Stethoscope, BookOpen, BarChart3, Palette, Code, Brain, Beaker, Library, Globe, Shield } from "lucide-react";
 
 export default function GorevDavetPage() {
   const { t, i18n } = useTranslation();
@@ -94,7 +95,7 @@ export default function GorevDavetPage() {
     </motion.li>
   );
   
-  const ProfileCard = ({ title, description, icon }: { title: string, description: string, icon: string }) => (
+  const ProfileCard = ({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) => (
     <motion.div 
       className="flex flex-col items-center p-4 rounded-lg bg-gradient-to-b from-red-950/40 to-black/50 border border-red-900/30 backdrop-blur-sm shadow-lg mb-4"
       initial={{ opacity: 0, y: 30 }}
@@ -103,7 +104,7 @@ export default function GorevDavetPage() {
       viewport={{ once: true }}
       whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.25)" }}
     >
-      <div className="w-20 h-20 flex items-center justify-center text-4xl bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full mb-3 shadow-md">
+      <div className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full mb-3 shadow-md">
         {icon}
       </div>
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
@@ -210,47 +211,47 @@ export default function GorevDavetPage() {
               <ProfileCard 
                 title="Mühendisler" 
                 description="Yazılım, elektrik, inşaat, makine ve daha birçok mühendislik alanından uzmanlar." 
-                icon="🔧"
+                icon={<Wrench className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Tasarımcılar" 
                 description="Görsel tasarım, UI/UX, endüstriyel tasarım alanlarında yaratıcı fikirler geliştirenler." 
-                icon="🎨"
+                icon={<Paintbrush className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Doktorlar" 
                 description="Sağlık sistemini dönüştürecek, yenilikçi tedavi yöntemleri geliştirecek tıp uzmanları." 
-                icon="⚕️"
+                icon={<Stethoscope className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Eğitimciler" 
                 description="Yeni nesli yetiştirmek için modern eğitim metodlarıyla çalışan öğretmenler ve eğitim bilimciler." 
-                icon="📚"
+                icon={<BookOpen className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Ekonomistler" 
                 description="Sürdürülebilir ve adil bir ekonomik sistem için yeni modeller geliştirenler." 
-                icon="📊"
+                icon={<BarChart3 className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Sanatçılar" 
                 description="Kültürel mirasımızı geleceğe taşıyacak müzisyenler, ressamlar, heykeltıraşlar, yazarlar." 
-                icon="🎭"
+                icon={<Palette className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Bilim İnsanları" 
                 description="Temel bilimler ve uygulamalı araştırmalar yapan, yeni keşifler peşinde koşan uzmanlar." 
-                icon="🔬"
+                icon={<Beaker className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Tarımcılar" 
                 description="Yenilikçi ve sürdürülebilir tarım teknikleri geliştiren, gıda güvenliğini sağlayan uzmanlar." 
-                icon="🌱"
+                icon={<Globe className="w-10 h-10" />}
               />
               <ProfileCard 
                 title="Hukukçular" 
                 description="Adaleti güçlendirmek için çalışan, hukuk sistemini modernleştiren avukatlar ve hâkimler." 
-                icon="⚖️"
+                icon={<Shield className="w-10 h-10" />}
               />
             </div>
             
