@@ -112,7 +112,7 @@ export default function SimayHomeModern() {
               transition={{ duration: 0.8 }}
               className="mb-2"
             >
-              <div className="inline-block px-3 py-1 bg-red-950/20 border border-red-500/30 rounded-sm mb-4">
+              <div className="inline-block px-3 py-1 bg-red-950/20 border border-red-500/30 rounded-sm mb-4 shadow-[0_2px_8px_rgba(220,38,38,0.1)]">
                 <span className="text-xs font-medium text-red-400 tracking-widest uppercase">Türkiye Cumhuriyeti</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-red-500 mb-4">
@@ -135,7 +135,7 @@ export default function SimayHomeModern() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="mb-6"
             >
-              <div className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-red-500/40 rounded-full px-6 py-3 shadow-lg">
+              <div className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-red-500/40 rounded-full px-6 py-3 shadow-[0_4px_15px_rgba(220,38,38,0.12)]">
                 <div className="h-3 w-3 rounded-full bg-red-500 mr-3 animate-pulse"></div>
                 <p className="text-sm text-gray-200 font-medium">
                   {t('simay_launch_date', '19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu')}
@@ -259,7 +259,7 @@ export default function SimayHomeModern() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 1.7 + (index * 0.1) }}
-                    className="backdrop-blur-sm bg-gradient-to-br from-black/80 to-gray-900/80 border border-red-900/20 rounded-xl p-8 text-center shadow-lg hover:shadow-red-900/20 transition-all duration-500 hover:-translate-y-1 relative group overflow-hidden"
+                    className="backdrop-blur-sm bg-gradient-to-br from-black/80 to-gray-900/80 border border-red-900/20 rounded-xl p-8 text-center shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-500 hover:-translate-y-1 relative group overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-red-900/0 via-red-900/5 to-red-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                     
@@ -281,7 +281,7 @@ export default function SimayHomeModern() {
             transition={{ duration: 0.8, delay: 2 }}
             className="text-center mb-24 mx-auto max-w-5xl px-4"
           >
-            <div className="relative bg-gradient-to-br from-blue-950 to-black border border-red-900/30 rounded-2xl p-10 mx-auto overflow-hidden shadow-2xl">
+            <div className="relative bg-gradient-to-br from-blue-950 to-black border border-red-900/30 rounded-2xl p-10 mx-auto overflow-hidden shadow-[0_8px_30px_rgba(185,28,28,0.12)]">
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
