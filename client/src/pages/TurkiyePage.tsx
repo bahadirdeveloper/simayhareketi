@@ -288,7 +288,7 @@ export default function TurkiyePage() {
                   size="lg"
                   glow="subtle"
                   border="glowing"
-                  icon={<FileText className="h-5 w-5 mr-2" />}
+                  leftIcon={<FileText className="h-5 w-5" />}
                   className="mb-2 justify-center py-4"
                   onClick={() => navigate("/anayasa")}
                 >
@@ -298,36 +298,36 @@ export default function TurkiyePage() {
               </div>
               
               {/* Görevler Button */}
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link to="/gorevler" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">GÖREVLER</h3>
-                  <p className="text-xs text-gray-400 text-center">Cumhuriyet için yapılacak görevler listesi</p>
-                </Link>
-              </motion.div>
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="subtle"
+                  border="glowing"
+                  leftIcon={<Target className="h-5 w-5" />}
+                  className="mb-2 justify-center py-4"
+                  onClick={() => navigate("/gorevler")}
+                >
+                  GÖREVLER
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet için yapılacak görevler listesi</p>
+              </div>
               
               {/* Katıl Button */}
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link to="/katil" className="group h-full relative flex flex-col items-center justify-center bg-gradient-to-br from-black/70 to-red-950/20 backdrop-blur-md border border-red-900/10 hover:border-red-700/40 p-5 sm:p-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-900/20">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-800 to-red-900 flex items-center justify-center shadow-md mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg sm:text-xl text-white font-semibold mb-1">HAREKETE KATIL</h3>
-                  <p className="text-xs text-gray-400 text-center">Cumhuriyet güncellemesi katılım sistemi</p>
-                </Link>
-              </motion.div>
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="turkish"
+                  size="lg"
+                  glow="strong"
+                  border="glowing"
+                  leftIcon={<MessageSquare className="h-5 w-5" />}
+                  className="mb-2 justify-center py-4"
+                  onClick={() => navigate("/katil")}
+                >
+                  HAREKETE KATIL
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet güncellemesi katılım sistemi</p>
+              </div>
             </motion.div>
           </motion.div>
         </AnimatePresence>
