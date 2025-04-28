@@ -42,7 +42,7 @@ export default function TurkiyePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm z-0 shadow-[0_8px_30px_rgba(185,28,28,0.12)]"></div>
               <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
               
               <div className="relative z-10 py-10 px-6 sm:px-10 text-center">
@@ -111,7 +111,7 @@ export default function TurkiyePage() {
               >
                 {/* Katılım kartı */}
                 <motion.div 
-                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-300 hover:border-red-800/30"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -138,7 +138,7 @@ export default function TurkiyePage() {
                 
                 {/* Bağış kartı */}
                 <motion.div 
-                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-300 hover:border-red-800/30"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -164,7 +164,7 @@ export default function TurkiyePage() {
                 
                 {/* Görev kartı */}
                 <motion.div 
-                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-300 hover:border-red-800/30"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -193,7 +193,7 @@ export default function TurkiyePage() {
                 
                 {/* Güncelleme kartı */}
                 <motion.div 
-                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-lg hover:shadow-red-900/10 transition-all duration-300 hover:border-red-800/30"
+                  className="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-lg rounded-xl border border-red-900/20 p-4 shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-300 hover:border-red-800/30"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -231,13 +231,13 @@ export default function TurkiyePage() {
                   {turkishValues.map((value, index) => (
                     <motion.div 
                       key={value.id}
-                      className="bg-gradient-to-b from-black/60 to-red-950/20 backdrop-blur-sm rounded-xl p-4 text-center border border-red-700/20 hover:border-red-500/40 transition-all duration-300"
+                      className="bg-gradient-to-b from-black/60 to-red-950/20 backdrop-blur-sm rounded-xl p-4 text-center border border-red-700/20 hover:border-red-500/40 transition-all duration-300 shadow-[0_2px_10px_rgba(185,28,28,0.05)] hover:shadow-[0_4px_20px_rgba(185,28,28,0.1)]"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
                     >
                       <div className="flex justify-center mb-3">
-                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-900/20">
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-[0_4px_20px_rgba(185,28,28,0.15)]">
                           {React.createElement(value.icon, { className: "w-7 h-7 text-white" })}
                         </div>
                       </div>
