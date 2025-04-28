@@ -12,6 +12,7 @@ import SimayHome2 from "@/pages/SimayHome2";
 import SimayHome3 from "@/pages/SimayHome3";
 import SimayHome4 from "@/pages/SimayHome4";
 import SimayHomeProfessional from "@/pages/SimayHomeProfessional";
+import SimayHomeModern from "@/pages/SimayHomeModern";
 import TurkiyePage from "@/pages/TurkiyePage";
 import TurkNedirPage from "@/pages/TurkNedirPage";
 import TurkNedirDetayPage from "@/pages/TurkNedirDetayPage";
@@ -38,7 +39,8 @@ import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHomeProfessional} />
+      <Route path="/" component={SimayHomeModern} />
+      <Route path="/professional" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
       <Route path="/turknedir" component={TurkNedirPage} />
       <Route path="/turkdetay" component={TurkNedirDetayPage} />

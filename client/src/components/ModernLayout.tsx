@@ -14,6 +14,7 @@ interface ModernLayoutProps {
   showBackButton?: boolean;
   pageContent?: string;
   pageName?: string;
+  onAudioToggle?: () => void;
 }
 
 export default function ModernLayout({
