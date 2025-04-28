@@ -361,7 +361,7 @@ export default function GorevlerPage() {
     const allGorevler: Gorev[] = [
       {
         id: 0,
-        baslik: "🧩 Görev 0: Kurucunun Eksikleri",
+        baslik: "Görev 0: Kurucunun Eksikleri",
         cagri: "Simay'ın eksiklerini tamamla ve geleceğini inşa et.",
         aciklama: "Türkiye Cumhuriyeti'nin ikinci yüzyılında, Simay hareketinin temellerini güçlendir ve katkıda bulun.",
         kategori: "kurucu",
@@ -370,7 +370,7 @@ export default function GorevlerPage() {
       },
       {
         id: 1,
-        baslik: "🧩 1. Görev: Kitapla Bir Hayat Değiştir",
+        baslik: "1. Görev: Kitapla Bir Hayat Değiştir",
         cagri: "Mahallende bir çocuğa kitap hediye et ve onunla okuma saati düzenle.",
         aciklama: "Çocukların eğitime olan ilgisini artırmak için bir çocuğa kitap hediye et. Okuma saatini planla, o anları kaydet.",
         kategori: "eğitim",
@@ -379,7 +379,7 @@ export default function GorevlerPage() {
       },
       {
         id: 2,
-        baslik: "🧩 2. Görev: Değerleri Kaybetme!",
+        baslik: "2. Görev: Değerleri Kaybetme!",
         cagri: "Ailende veya çevrende unutulmaya yüz tutmuş bir değeri yazıya dök ve paylaş.",
         aciklama: "Unutulmaya yüz tutmuş gelenek, hikaye veya deyimi araştır, dijital ortamda paylaş.",
         kategori: "kültür",
@@ -388,7 +388,7 @@ export default function GorevlerPage() {
       },
       {
         id: 3,
-        baslik: "🧩 3. Görev: Yeşil Alan Oluştur",
+        baslik: "3. Görev: Yeşil Alan Oluştur",
         cagri: "Evinizdeki atıl tarım alanı yeşillendir ya da bir saksıda üretime başla.",
         aciklama: "Bir yeşil alan yarat, toprakla bağ kur. Saksıda yeşillik yetiştirip foto ile belgeleyebilirsin.",
         kategori: "çevre",
@@ -397,7 +397,7 @@ export default function GorevlerPage() {
       },
       {
         id: 4,
-        baslik: "🧩 4. Görev: Parklara Geri Dönüşüm Getir",
+        baslik: "4. Görev: Parklara Geri Dönüşüm Getir",
         cagri: "Mahallendeki bir çocuk parkına çevreye uygun geri dönüşüm kutusu yerleştir.",
         aciklama: "Parkları daha çevre dostu hale getirmek için geri dönüşüm kutusu yerleştir ve bunu belgeleyerek paylaş.",
         kategori: "çevre",
@@ -406,7 +406,7 @@ export default function GorevlerPage() {
       },
       {
         id: 5,
-        baslik: "🧩 5. Görev: Müziğe Ses Ver",
+        baslik: "5. Görev: Müziğe Ses Ver",
         cagri: "Ses sistemciler ya da beste yapan birini destekle, mini bir kayıt oluştur.",
         aciklama: "Sanatsal üretimi desteklemek için çevrendeki yetenekleri tanıt ve kayıt altına al.",
         kategori: "sanat",
@@ -415,7 +415,7 @@ export default function GorevlerPage() {
       },
       {
         id: 6,
-        baslik: "🧩 6. Görev: Görsel Yarat",
+        baslik: "6. Görev: Görsel Yarat",
         cagri: "Bir resim ya da tasarım üretip #Gorev6 etiketiyle paylaş.",
         aciklama: "Sanatsal ifade özgürlüğünü kullanarak kendi resim veya grafik çalışmanı üret.",
         kategori: "sanat",
@@ -424,7 +424,7 @@ export default function GorevlerPage() {
       },
       {
         id: 7,
-        baslik: "🧩 7. Görev: Mozaik Duvar",
+        baslik: "7. Görev: Mozaik Duvar",
         cagri: "Mahallende bir duvar temizletip gençlerle birlikte mozaik/pano oluştur.",
         aciklama: "Toplumsal estetik bilinci oluşturmak için bir duvarı birlikte sanatla dönüştürün.",
         kategori: "toplum",
@@ -433,7 +433,7 @@ export default function GorevlerPage() {
       },
       {
         id: 8,
-        baslik: "🧩 8. Görev: Kadınlar İçin Alan Aç",
+        baslik: "8. Görev: Kadınlar İçin Alan Aç",
         cagri: "Kadınlara özel bir bilinçlenme toplantısı organize et.",
         aciklama: "Kadının toplumdaki rolünü güçlendirmek için eğitici ve dayanışmacı bir ortam oluştur.",
         kategori: "toplum",
@@ -442,7 +442,7 @@ export default function GorevlerPage() {
       },
       {
         id: 9,
-        baslik: "🧩 9. Görev: Umut Mesajı",
+        baslik: "9. Görev: Umut Mesajı",
         cagri: "Yaşadığın bir zorluğu yazıya dökerek başkalarına umut olacak şekilde paylaş.",
         aciklama: "Zorlukların paylaşıldığında nasıl güce dönüşebildiğini göstermek için kendi hikayeni anlat.",
         kategori: "psikoloji",
@@ -451,7 +451,7 @@ export default function GorevlerPage() {
       },
       {
         id: 10,
-        baslik: "🧩 10. Görev: Okul Kütüphanesi Yenileme",
+        baslik: "10. Görev: Okul Kütüphanesi Yenileme",
         cagri: "Bir okul kütüphanesine kitap bağışı ve düzenleme desteği ver.",
         aciklama: "Yerel bir okul kütüphanesini kitap bağışı ve düzenleme çalışması ile zenginleştir.",
         kategori: "eğitim",
@@ -466,7 +466,7 @@ export default function GorevlerPage() {
       // Görev 1
       {
         id: 1,
-        baslik: "🧩 1. Görev: Kitapla Bir Hayat Değiştir",
+        baslik: "1. Görev: Kitapla Bir Hayat Değiştir",
         cagri: "Mahallende bir çocuğa kitap hediye et ve onunla okuma saati düzenle.",
         aciklama: "Çocukların eğitime olan ilgisini artırmak için bir çocuğa kitap hediye et. Okuma saatini planla, o anları kaydet.",
         kategori: "eğitim",
@@ -476,7 +476,7 @@ export default function GorevlerPage() {
       // Görev 2
       {
         id: 2,
-        baslik: "🧩 2. Görev: Değerleri Kaybetme!",
+        baslik: "2. Görev: Değerleri Kaybetme!",
         cagri: "Ailende veya çevrende unutulmaya yüz tutmuş bir değeri yazıya dök ve paylaş.",
         aciklama: "Unutulmaya yüz tutmuş gelenek, hikaye veya deyimi araştır, dijital ortamda paylaş.",
         kategori: "kültür",
@@ -486,7 +486,7 @@ export default function GorevlerPage() {
       // Görev 3
       {
         id: 3,
-        baslik: "🧩 3. Görev: Yeşil Alan Oluştur",
+        baslik: "3. Görev: Yeşil Alan Oluştur",
         cagri: "Evinizdeki atıl tarım alanı yeşillendir ya da bir saksıda üretime başla.",
         aciklama: "Bir yeşil alan yarat, toprakla bağ kur. Saksıda yeşillik yetiştirip foto ile belgeleyebilirsin.",
         kategori: "çevre",
@@ -496,7 +496,7 @@ export default function GorevlerPage() {
       // Görev 4
       {
         id: 4,
-        baslik: "🧩 4. Görev: Parklara Geri Dönüşüm Getir",
+        baslik: "4. Görev: Parklara Geri Dönüşüm Getir",
         cagri: "Mahallendeki bir çocuk parkına çevreye uygun geri dönüşüm kutusu yerleştir.",
         aciklama: "Parkları daha çevre dostu hale getirmek için geri dönüşüm kutusu yerleştir ve bunu belgeleyerek paylaş.",
         kategori: "çevre",
@@ -506,7 +506,7 @@ export default function GorevlerPage() {
       // Görev 5
       {
         id: 5,
-        baslik: "🧩 5. Görev: Müziğe Ses Ver",
+        baslik: "5. Görev: Müziğe Ses Ver",
         cagri: "Ses sistemciler ya da beste yapan birini destekle, mini bir kayıt oluştur.",
         aciklama: "Sanatsal üretimi desteklemek için çevrendeki yetenekleri tanıt ve kayıt altına al.",
         kategori: "sanat",
@@ -516,7 +516,7 @@ export default function GorevlerPage() {
       // Görev 6
       {
         id: 6,
-        baslik: "🧩 6. Görev: Görsel Yarat",
+        baslik: "6. Görev: Görsel Yarat",
         cagri: "Bir resim ya da tasarım üretip #Gorev6 etiketiyle paylaş.",
         aciklama: "Sanatsal ifade özgürlüğünü kullanarak kendi resim veya grafik çalışmanı üret.",
         kategori: "sanat",
@@ -526,7 +526,7 @@ export default function GorevlerPage() {
       // Görev 7
       {
         id: 7,
-        baslik: "🧩 7. Görev: Mozaik Duvar",
+        baslik: "7. Görev: Mozaik Duvar",
         cagri: "Mahallende bir duvar temizletip gençlerle birlikte mozaik/pano oluştur.",
         aciklama: "Toplumsal estetik bilinci oluşturmak için bir duvarı birlikte sanatla dönüştürün.",
         kategori: "toplum",
@@ -536,7 +536,7 @@ export default function GorevlerPage() {
       // Görev 8
       {
         id: 8,
-        baslik: "🧩 8. Görev: Kadınlar İçin Alan Aç",
+        baslik: "8. Görev: Kadınlar İçin Alan Aç",
         cagri: "Kadınlara özel bir bilinçlenme toplantısı organize et.",
         aciklama: "Kadının toplumdaki rolünü güçlendirmek için eğitici ve dayanışmacı bir ortam oluştur.",
         kategori: "toplum",
@@ -546,7 +546,7 @@ export default function GorevlerPage() {
       // Görev 9
       {
         id: 9,
-        baslik: "🧩 9. Görev: Umut Mesajı",
+        baslik: "9. Görev: Umut Mesajı",
         cagri: "Yaşadığın bir zorluğu yazıya dökerek başkalarına umut olacak şekilde paylaş.",
         aciklama: "Zorlukların paylaşıldığında nasıl güce dönüşebildiğini göstermek için kendi hikayeni anlat.",
         kategori: "psikoloji",
@@ -556,7 +556,7 @@ export default function GorevlerPage() {
       // Görev 10
       {
         id: 10,
-        baslik: "🧩 10. Görev: Gönüllü Mentor Ol",
+        baslik: "10. Görev: Gönüllü Mentor Ol",
         cagri: "Gençlik merkezinde gönüllü mentorluk başvurusu yap.",
         aciklama: "Bir gencin hayatına dokunmak için mentorluk başvurusunda bulun ve deneyimlerini paylaş.",
         kategori: "eğitim",
@@ -566,7 +566,7 @@ export default function GorevlerPage() {
       // Görev 11
       {
         id: 11,
-        baslik: "🧩 11. Görev: Kadın Kararlara Dahil",
+        baslik: "11. Görev: Kadın Kararlara Dahil",
         cagri: "Kadınların katıldığı bir karar toplantısı düzenle ya da bir öneride bulun.",
         aciklama: "Toplumun yarısı olan kadınların karar süreçlerine katılması için yerel bir toplantıda yer al ya da bir kurum/kuruluşa resmi öneride bulun.",
         kategori: "toplum",
@@ -576,7 +576,7 @@ export default function GorevlerPage() {
       // Görev 12
       {
         id: 12,
-        baslik: "🧩 12. Görev: Müzik Ruhun Gıdasıdır",
+        baslik: "12. Görev: Müzik Ruhun Gıdasıdır",
         cagri: "Bir çocukla birlikte sanat müziği dinleyin, o an videoya kaydedin.",
         aciklama: "Geleneksel sanat müziklerinin nesiller arası aktarımını desteklemek için bir çocukla birlikte dinleme deneyimi yaşayın ve kaydedin.",
         kategori: "kültür",
@@ -586,7 +586,7 @@ export default function GorevlerPage() {
       // Görev 13
       {
         id: 13,
-        baslik: "🧩 13. Görev: Sesi Yükselt!",
+        baslik: "13. Görev: Sesi Yükselt!",
         cagri: "Ses sistemciler sahneye!",
         aciklama: "Bu toplum yıllarca sessizce size katlandı. Şimdi sıra sizde! Bu sayfalarda yer alan playlistleri sokaklara taşıyın, medya engelliyorsa sesimizle duyuracağız kendimizi!",
         kategori: "ifade",
@@ -596,7 +596,7 @@ export default function GorevlerPage() {
       // Görev 14
       {
         id: 14,
-        baslik: "🧩 14. Görev: Komşuya El Uzat",
+        baslik: "14. Görev: Komşuya El Uzat",
         cagri: "Bir komşunun ihtiyacına karşılıksız yardım et.",
         aciklama: "Yakın çevrenizdeki bir komşunun ihtiyacını tespit edin ve hiçbir karşılık beklemeden yardım edin. Bu dayanışmayı belgeleyin.",
         kategori: "toplum",
@@ -606,7 +606,7 @@ export default function GorevlerPage() {
       // Görev 15
       {
         id: 15,
-        baslik: "🧩 15. Görev: Bilimle İlham Ver",
+        baslik: "15. Görev: Bilimle İlham Ver",
         cagri: "Bir bilim dergisini bir gence hediye et ya da birlikte oku.",
         aciklama: "Gençlerin bilimle tanışması için bir bilim yayını satın alıp hediye edin veya birlikte okuyarak fikir üretin.",
         kategori: "eğitim",
@@ -623,7 +623,7 @@ export default function GorevlerPage() {
       const gorevIndex = index + 16; // 16'dan başlayarak
       return {
         id: gorevIndex,
-        baslik: `🧩 ${gorevIndex}. Görev: ${getGorevTitle(gorevIndex)}`,
+        baslik: `${gorevIndex}. Görev: ${getGorevTitle(gorevIndex)}`,
         cagri: getGorevCagri(gorevIndex),
         aciklama: getGorevAciklama(gorevIndex),
         kategori: getGorevKategori(gorevIndex),
