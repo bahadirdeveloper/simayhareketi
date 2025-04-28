@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import HalfBurningEarthBackground from "@/components/HalfBurningEarthBackground";
 import { apiRequest } from "@/lib/queryClient";
+import { Target, Shield } from "lucide-react";
 
 export default function AmacsavasPage() {
   const { t, i18n } = useTranslation();
@@ -79,7 +80,8 @@ export default function AmacsavasPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <h2 className="text-2xl font-bold text-center mb-8 text-yellow-400">
+          <h2 className="text-2xl font-bold text-center mb-8 text-yellow-400 flex items-center justify-center">
+            <Target className="mr-2 h-6 w-6" />
             {t('amaclar.amaclar_title', 'AMAÇLARIMIZ')}
           </h2>
           
@@ -178,7 +180,8 @@ export default function AmacsavasPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.8 }}
         >
-          <h2 className="text-2xl font-bold text-center mb-8 text-red-500">
+          <h2 className="text-2xl font-bold text-center mb-8 text-red-500 flex items-center justify-center">
+            <Shield className="mr-2 h-6 w-6" />
             {t('amaclar.savaslar_title', 'SAVAŞLARIMIZ')}
           </h2>
           
@@ -190,7 +193,7 @@ export default function AmacsavasPage() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <span className="text-red-500 text-2xl mr-4">⚔️</span>
+                <Shield className="text-red-500 h-6 w-6 mr-4" />
                 <span className="text-white">{t('amaclar.savas1', 'Cehalet ve bilinçsizlikle')}</span>
               </motion.li>
               <motion.li 
@@ -199,7 +202,7 @@ export default function AmacsavasPage() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.9, duration: 0.5 }}
               >
-                <span className="text-red-500 text-2xl mr-4">⚔️</span>
+                <Shield className="text-red-500 h-6 w-6 mr-4" />
                 <span className="text-white">{t('amaclar.savas2', 'Yoksulluğu yöneten yapılarla')}</span>
               </motion.li>
               <motion.li 
@@ -208,7 +211,7 @@ export default function AmacsavasPage() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.0, duration: 0.5 }}
               >
-                <span className="text-red-500 text-2xl mr-4">⚔️</span>
+                <Shield className="text-red-500 h-6 w-6 mr-4" />
                 <span className="text-white">{t('amaclar.savas3', 'Adaletsizlik ve cezasızlıkla')}</span>
               </motion.li>
               <motion.li 
@@ -217,7 +220,7 @@ export default function AmacsavasPage() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.1, duration: 0.5 }}
               >
-                <span className="text-red-500 text-2xl mr-4">⚔️</span>
+                <Shield className="text-red-500 h-6 w-6 mr-4" />
                 <span className="text-white">{t('amaclar.savas4', 'Medya manipülasyonu ve algı operasyonlarıyla')}</span>
               </motion.li>
               <motion.li 
@@ -226,7 +229,7 @@ export default function AmacsavasPage() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
               >
-                <span className="text-red-500 text-2xl mr-4">⚔️</span>
+                <Shield className="text-red-500 h-6 w-6 mr-4" />
                 <span className="text-white">{t('amaclar.savas5', 'Sansür, baskı ve korku ile')}</span>
               </motion.li>
             </ul>
@@ -240,7 +243,8 @@ export default function AmacsavasPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.8 }}
         >
-          <h2 className="text-2xl font-bold text-center mb-8 text-green-500">
+          <h2 className="text-2xl font-bold text-center mb-8 text-green-500 flex items-center justify-center">
+            <Target className="mr-2 h-6 w-6" />
             {t('amaclar.sistemsel_title', 'SİSTEMSEL ARAÇLARIMIZ')}
           </h2>
           
