@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Heart, Clock, ThumbsUp, Filter, Calendar } from "lucide-react";
+import { Heart, ThumbsUp, Filter, Calendar, BookOpen, FileText, Star, Landmark, Shield, FilePen, MessageSquare, Bookmark } from "lucide-react";
 
 interface ManifestoEntry {
   id: number;
@@ -277,28 +277,41 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
           className="text-center mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4 text-4xl-responsive readable-text">
-            HALK MANİFESTOLAR
-          </h1>
-          <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-6 text-xl-responsive readable-text">
+          <div className="relative inline-block">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4 text-4xl-responsive readable-text">
+              HALK MANİFESTOLAR
+            </h1>
+            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+          </div>
+          
+          <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-6 text-xl-responsive readable-text flex items-center justify-center gap-2">
+            <Star className="h-5 w-5 text-red-500" />
             Geleceğin Vizyonu, Halkın Sesiyle
+            <Star className="h-5 w-5 text-red-500" />
           </h2>
           
           {/* Intro Section */}
           <motion.div
-            className="relative flex justify-center mb-12"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="relative flex justify-center mb-10"
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.4 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-lg blur-xl"></div>
-            <div className="bg-gradient-to-r from-red-950/60 to-black/70 backdrop-blur-sm p-6 border-2 border-red-600/50 rounded-lg shadow-[0_0_30px_rgba(220,38,38,0.25)] max-w-3xl relative z-10 enhanced-text">
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4 readable-text">
+            <div className="bg-gradient-to-r from-black/80 via-black/90 to-black/80 p-6 border border-red-900/20 rounded-lg shadow-lg max-w-3xl relative z-10 enhanced-text overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+              
+              <div className="flex items-center gap-3 mb-3">
+                <Bookmark className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <h3 className="text-white font-semibold text-lg">Ulusal Manifesto Platformu</h3>
+              </div>
+              
+              <p className="text-lg text-white/90 leading-relaxed mb-4 readable-text">
                 Bu platform, Türkiye Cumhuriyeti vatandaşlarının geleceğe dair manifestolarını paylaşabilecekleri, fikir alışverişi yapabilecekleri ve ortak bir vizyon oluşturabilecekleri dijital bir alandır.
               </p>
-              <p className="text-white/80 text-lg readable-text">
+              <p className="text-white/80 text-base readable-text">
                 Her manifesto, bir gelecek vizyonu, her fikir bir yapı taşıdır. Siz de kendi manifestonuzu yazın, geleceği birlikte şekillendirelim!
               </p>
             </div>
@@ -306,25 +319,33 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
         </motion.div>
         
         <Tabs defaultValue="view" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-gradient-to-b from-gray-900 to-black border border-red-500/30 rounded-md shadow-[0_4px_15px_rgba(0,0,0,0.3)]">
-            <TabsTrigger value="view" className="text-lg font-medium data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-800 data-[state=active]:to-red-950 data-[state=active]:text-white data-[state=active]:shadow-md rounded-sm">Manifestoları Görüntüle</TabsTrigger>
-            <TabsTrigger value="create" className="text-lg font-medium data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-800 data-[state=active]:to-red-950 data-[state=active]:text-white data-[state=active]:shadow-md rounded-sm">Yeni Manifesto Oluştur</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 bg-black border border-red-500/30 rounded-md shadow-md overflow-hidden">
+            <TabsTrigger value="view" className="text-base font-medium py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-red-900 data-[state=active]:text-white data-[state=active]:shadow-md rounded-none">
+              <BookOpen className="h-4 w-4 mr-2" />
+              Manifestoları Görüntüle
+            </TabsTrigger>
+            <TabsTrigger value="create" className="text-base font-medium py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-red-900 data-[state=active]:text-white data-[state=active]:shadow-md rounded-none">
+              <FilePen className="h-4 w-4 mr-2" />
+              Yeni Manifesto Oluştur
+            </TabsTrigger>
           </TabsList>
           
           {/* Manifestoları Görüntüleme Sekmesi */}
           <TabsContent value="view" className="mt-6">
             {/* Filtre ve Sıralama Alanı */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 bg-gradient-to-b from-gray-900 to-black p-4 rounded-lg border border-red-500/30 shadow-[0_4px_15px_rgba(0,0,0,0.25)] backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 bg-black p-4 rounded-lg border border-red-500/20 shadow-md">
               <div className="space-y-2">
-                <h3 className="text-white font-medium text-sm">Kategori Filtresi</h3>
+                <h3 className="text-white/90 font-medium text-sm flex items-center gap-2">
+                  <Filter className="h-4 w-4 text-red-500" />
+                  Kategori Filtresi
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className={`text-xs border-white/20 ${!activeCategory ? 'bg-red-600/20 text-white' : 'bg-transparent'}`}
+                    className={`text-xs border-white/10 ${!activeCategory ? 'bg-gradient-to-r from-red-900/40 to-red-800/30 text-white border-red-500/20' : 'bg-black/50 hover:bg-red-950/30'}`}
                     onClick={() => setActiveCategory(null)}
                   >
-                    <Filter className="h-3.5 w-3.5 mr-1" />
                     Tümü
                   </Button>
                   
@@ -333,7 +354,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                       key={category.id}
                       variant="outline" 
                       size="sm"
-                      className={`text-xs border-white/20 ${activeCategory === category.id ? `bg-gradient-to-r ${category.color} text-white` : 'bg-transparent'}`}
+                      className={`text-xs border-white/10 ${activeCategory === category.id ? `bg-gradient-to-r ${category.color} text-white border-white/20` : 'bg-black/50 hover:bg-black/80'}`}
                       onClick={() => setActiveCategory(category.id)}
                     >
                       {category.name}
@@ -343,12 +364,15 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
               </div>
               
               <div className="space-y-2">
-                <h3 className="text-white font-medium text-sm">Sıralama</h3>
+                <h3 className="text-white/90 font-medium text-sm flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4 text-red-500" />
+                  Sıralama
+                </h3>
                 <div className="flex gap-2">
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className={`text-xs border-white/20 ${sortBy === 'date' ? 'bg-blue-600/20 text-white' : 'bg-transparent'}`}
+                    className={`text-xs border-white/10 ${sortBy === 'date' ? 'bg-gradient-to-r from-blue-900/40 to-blue-800/30 text-white border-blue-500/30' : 'bg-black/50 hover:bg-blue-950/30'}`}
                     onClick={() => setSortBy('date')}
                   >
                     <Calendar className="h-3.5 w-3.5 mr-1" />
@@ -358,7 +382,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className={`text-xs border-white/20 ${sortBy === 'likes' ? 'bg-green-600/20 text-white' : 'bg-transparent'}`}
+                    className={`text-xs border-white/10 ${sortBy === 'likes' ? 'bg-gradient-to-r from-red-900/40 to-red-800/30 text-white border-red-500/30' : 'bg-black/50 hover:bg-red-950/30'}`}
                     onClick={() => setSortBy('likes')}
                   >
                     <ThumbsUp className="h-3.5 w-3.5 mr-1" />
@@ -381,48 +405,67 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                   return (
                     <motion.div 
                       key={entry.id}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.4 }}
                       viewport={{ once: true }}
-                      className="bg-gradient-to-b from-black/70 to-gray-900/40 backdrop-blur-sm rounded-lg overflow-hidden border border-red-500/30 shadow-[0_4px_20px_rgba(220,38,38,0.15)] hover:shadow-[0_8px_30px_rgba(220,38,38,0.25)] transition-all duration-300 hover:border-red-500/50"
+                      className="bg-black rounded-lg overflow-hidden border border-red-500/20 shadow-md hover:shadow-lg transition-all duration-200 hover:border-red-500/40 relative"
                     >
-                      <div className={`h-1 w-full bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'}`}></div>
+                      <div className={`absolute top-0 right-0 h-full w-1 bg-gradient-to-b ${category?.color || 'from-red-600 to-red-900'}`}></div>
                       
-                      <div className="p-6">
+                      <div className="p-5">
                         <div className="flex justify-between items-start mb-4">
                           <div>
-                            <h3 className="text-xl md:text-2xl font-bold text-white mb-2 readable-text">{entry.title}</h3>
-                            <div className="flex items-center text-sm text-gray-400 space-x-4">
-                              <span>{entry.author}</span>
-                              <span>|</span>
-                              <span>{entry.date}</span>
-                              <span>|</span>
-                              <span className={`px-2 py-0.5 rounded-full text-xs shadow-sm bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'} text-white/90`}>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'}`}></span>
+                              <h3 className="text-lg md:text-xl font-bold text-white readable-text">{entry.title}</h3>
+                            </div>
+                            <div className="flex items-center text-sm text-gray-400 gap-2 ml-4">
+                              <span className="text-white/80">{entry.author}</span>
+                              <span className="text-red-500/50">•</span>
+                              <span className="text-white/60">{entry.date}</span>
+                              <span className="text-red-500/50">•</span>
+                              <span className={`px-1.5 py-0.5 rounded text-xs bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'} text-white/90`}>
                                 {category?.name || 'Genel'}
                               </span>
                             </div>
                           </div>
                           
-                          <div className="flex items-center space-x-1 bg-gradient-to-r from-red-950 to-red-900/40 px-3 py-1 rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.3)] border border-red-500/30">
-                            <Heart className="h-4 w-4 text-red-500" />
-                            <span className="text-white text-sm">{entry.likes}</span>
+                          <div className="flex items-center gap-1 bg-black px-2 py-1 rounded-md shadow-sm border border-red-500/30">
+                            <Heart className="h-3.5 w-3.5 text-red-500" fill="rgba(220,38,38,0.2)" />
+                            <span className="text-white/90 text-sm">{entry.likes}</span>
                           </div>
                         </div>
                         
-                        <div className="bg-gradient-to-b from-gray-900/70 to-black/50 p-4 rounded-lg border border-red-500/20 my-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]">
-                          <p className="text-white/95 whitespace-pre-line readable-text enhanced-text leading-relaxed">
-                            {entry.content}
+                        <div className="bg-black/70 p-4 rounded-md border border-red-500/10 my-3">
+                          <p className="text-white/95 whitespace-pre-line readable-text enhanced-text leading-relaxed text-sm">
+                            {entry.content.length > 300 
+                              ? entry.content.substring(0, 300) + "..." 
+                              : entry.content}
                           </p>
+                          
+                          {entry.content.length > 300 && (
+                            <Button 
+                              variant="link"
+                              size="sm"
+                              className="text-red-400 hover:text-red-300 p-0 h-auto mt-2 text-xs"
+                            >
+                              Devamını Gör
+                            </Button>
+                          )}
                         </div>
                         
-                        <div className="flex justify-end">
+                        <div className="flex justify-between items-center">
+                          <span className="text-white/40 text-xs flex items-center gap-1">
+                            <Shield className="h-3 w-3 text-red-500/60" /> TC Onaylı Manifesto
+                          </span>
+                          
                           <Button 
                             variant="outline" 
                             size="sm"
-                            className="text-xs border-red-500/30 hover:bg-red-500/10 space-x-1"
+                            className="text-xs border-red-500/20 hover:bg-red-900/10 flex items-center gap-1 h-8 px-3"
                           >
-                            <Heart className="h-4 w-4 text-red-500" />
+                            <Heart className="h-3.5 w-3.5 text-red-500" />
                             <span>Beğen</span>
                           </Button>
                         </div>
@@ -439,46 +482,58 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-b from-gray-900/80 to-black/60 backdrop-blur-sm rounded-lg border border-red-500/40 p-6 shadow-[0_4px_20px_rgba(220,38,38,0.15)]"
+              transition={{ duration: 0.4 }}
+              className="bg-black rounded-lg border border-red-500/20 p-5 shadow-md"
             >
-              <h3 className="text-2xl font-bold text-white mb-6 readable-text">Yeni Manifesto Oluştur</h3>
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="h-5 w-5 text-red-500" />
+                <h3 className="text-xl font-bold text-white readable-text">Yeni Manifesto Oluştur</h3>
+              </div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <Label htmlFor="title" className="text-white">Manifesto Başlığı <span className="text-red-500">*</span></Label>
+                    <Label htmlFor="title" className="text-white/90 text-sm flex items-center gap-1.5">
+                      <Landmark className="h-3.5 w-3.5 text-red-500" />
+                      Manifesto Başlığı <span className="text-red-500">*</span>
+                    </Label>
                     <Input 
                       id="title"
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
-                      className="bg-black/50 border-gray-700 focus:border-red-500/50 text-white"
+                      className="bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
                       placeholder="Örn: DİJİTAL ÇAĞDA TÜRK KİMLİĞİ"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="author" className="text-white">Yazar <span className="text-red-500">*</span></Label>
+                    <Label htmlFor="author" className="text-white/90 text-sm flex items-center gap-1.5">
+                      <Shield className="h-3.5 w-3.5 text-red-500" />
+                      Yazar <span className="text-red-500">*</span>
+                    </Label>
                     <Input 
                       id="author"
                       name="author"
                       value={formData.author}
                       onChange={handleInputChange}
-                      className="bg-black/50 border-gray-700 focus:border-red-500/50 text-white"
+                      className="bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
                       placeholder="Adınız ve Soyadınız"
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="category" className="text-white">Kategori</Label>
+                  <Label htmlFor="category" className="text-white/90 text-sm flex items-center gap-1.5">
+                    <Bookmark className="h-3.5 w-3.5 text-red-500" />
+                    Kategori
+                  </Label>
                   <select 
                     id="category"
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="w-full rounded-md bg-black/50 border border-gray-700 focus:border-red-500/50 text-white p-2"
+                    className="w-full rounded-md bg-black border border-gray-800 focus:border-red-500/40 text-white p-2 shadow-sm"
                   >
                     {categories.map(category => (
                       <option key={category.id} value={category.id}>
@@ -489,40 +544,55 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="content" className="text-white">Manifesto Metni <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="content" className="text-white/90 text-sm flex items-center gap-1.5">
+                    <MessageSquare className="h-3.5 w-3.5 text-red-500" />
+                    Manifesto Metni <span className="text-red-500">*</span>
+                  </Label>
                   <Textarea 
                     id="content"
                     name="content"
                     value={formData.content}
                     onChange={handleInputChange}
-                    className="min-h-[200px] bg-black/50 border-gray-700 focus:border-red-500/50 text-white"
+                    className="min-h-[180px] bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
                     placeholder="Manifestonuzu buraya yazın..."
                   />
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-400 flex items-center gap-1 mt-1">
+                    <Star className="h-3 w-3 text-red-500/60" />
                     En az 100 karakter olmalıdır. Manifestonuz incelendikten sonra yayınlanacaktır.
                   </p>
                 </div>
                 
-                <div className="pt-4">
+                <div className="pt-2">
                   <Button 
                     type="submit"
-                    className="w-full md:w-auto bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white font-medium py-2"
+                    className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-700 hover:to-red-800 text-white font-medium py-2 px-4 rounded-md shadow-sm flex items-center gap-2"
                   >
+                    <FileText className="h-4 w-4" />
                     Manifestoyu Gönder
                   </Button>
                 </div>
               </form>
             </motion.div>
             
-            <div className="mt-8 bg-gradient-to-b from-gray-900/70 to-black/60 p-4 rounded-lg border border-red-500/30 shadow-[0_4px_12px_rgba(220,38,38,0.1)]">
-              <h4 className="text-white font-medium mb-2">Manifesto Yazım Kuralları</h4>
-              <ul className="text-gray-300 text-sm space-y-2 list-disc list-inside">
-                <li>Manifestonuz, Türkiye Cumhuriyeti değerlerine ve ilkelerine uygun olmalıdır.</li>
-                <li>Nefret söylemi, şiddet çağrısı veya ayrımcılık içeren manifestolar yayınlanmayacaktır.</li>
-                <li>Manifestonuz özgün olmalı ve başkalarının fikirlerini içermemelidir.</li>
-                <li>Açık, anlaşılır ve düzgün bir Türkçe kullanılmalıdır.</li>
-                <li>Manifestonuz, bir vizyonu, bir ideali veya bir hedefi ifade etmelidir.</li>
-                <li>Kişisel saldırılar, hakaret veya iftira içeren manifestolar kabul edilmeyecektir.</li>
+            <div className="mt-5 bg-black p-4 rounded-lg border border-red-500/20 shadow-md">
+              <div className="flex items-center gap-2 mb-3">
+                <Shield className="h-4 w-4 text-red-500" />
+                <h4 className="text-white font-medium text-sm">Manifesto Yazım Kuralları</h4>
+              </div>
+              <ul className="text-white/80 text-sm space-y-1.5 list-none ml-5">
+                {[
+                  "Manifestonuz, Türkiye Cumhuriyeti değerlerine ve ilkelerine uygun olmalıdır.",
+                  "Nefret söylemi, şiddet çağrısı veya ayrımcılık içeren manifestolar yayınlanmayacaktır.",
+                  "Manifestonuz özgün olmalı ve başkalarının fikirlerini içermemelidir.",
+                  "Açık, anlaşılır ve düzgün bir Türkçe kullanılmalıdır.",
+                  "Manifestonuz, bir vizyonu, bir ideali veya bir hedefi ifade etmelidir.",
+                  "Kişisel saldırılar, hakaret veya iftira içeren manifestolar kabul edilmeyecektir."
+                ].map((rule, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full flex-shrink-0 mt-1"></span>
+                    <span>{rule}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </TabsContent>
@@ -531,10 +601,15 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 mb-8 text-center"
+          className="mt-12 mb-6 text-center"
         >
+          <div className="flex justify-center items-center gap-2 mb-3">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+            <Star className="h-4 w-4 text-red-500" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+          </div>
           <p className="text-gray-400 text-sm">
             © 2025 Cumhuriyet Güncellenme Platformu | Halk Manifestolar
           </p>
