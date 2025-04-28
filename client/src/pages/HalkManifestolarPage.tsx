@@ -439,20 +439,8 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                         
                         <div className="bg-black/70 p-4 rounded-md border border-red-500/10 my-3">
                           <p className="text-white/95 whitespace-pre-line readable-text enhanced-text leading-relaxed text-sm">
-                            {entry.content.length > 300 
-                              ? entry.content.substring(0, 300) + "..." 
-                              : entry.content}
+                            {entry.content}
                           </p>
-                          
-                          {entry.content.length > 300 && (
-                            <Button 
-                              variant="link"
-                              size="sm"
-                              className="text-red-400 hover:text-red-300 p-0 h-auto mt-2 text-xs"
-                            >
-                              Devamını Gör
-                            </Button>
-                          )}
                         </div>
                         
                         <div className="flex justify-between items-center">
