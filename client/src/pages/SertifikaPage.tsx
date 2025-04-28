@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'wouter';
 import ModernLayout from '@/components/ModernLayout';
 import { apiRequest } from '@/lib/queryClient';
-import { Button } from '@/components/ui/button';
+import { ModernTechButton } from '@/components/ModernTechButton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { 
@@ -21,6 +22,7 @@ import {
 
 export default function SertifikaPage() {
   const { t, i18n } = useTranslation();
+  const [, navigate] = useLocation();
   
   // Gelir-gider bilgileri
   const incomeData = [
@@ -174,21 +176,24 @@ export default function SertifikaPage() {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-                    <Button 
-                      className="bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white"
-                      onClick={() => window.location.href="/katil"}
+                    <ModernTechButton 
+                      variant="turkish"
+                      size="lg"
+                      glow="strong"
+                      border="glowing"
+                      onClick={() => navigate("/katil")}
                     >
                       Sertifika Al
-                    </Button>
+                    </ModernTechButton>
                     
-                    <Button 
-                      variant="outline" 
-                      className="border-red-500/30 hover:bg-red-900/20 gap-2"
-                      onClick={() => window.location.href="/gorevler"}
+                    <ModernTechButton 
+                      variant="outline"
+                      size="lg"
+                      rightIcon={<Download className="w-4 h-4" />}
+                      onClick={() => navigate("/gorevler")}
                     >
-                      <span>Örnek Sertifika</span>
-                      <Download className="w-4 h-4" />
-                    </Button>
+                      Örnek Sertifika
+                    </ModernTechButton>
                   </div>
                 </div>
               </div>
