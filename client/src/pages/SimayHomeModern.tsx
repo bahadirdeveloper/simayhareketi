@@ -244,11 +244,12 @@ export default function SimayHomeModern() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/50 via-blue-950/30 to-indigo-950/50 rounded-2xl -z-10 transform -skew-y-1"></div>
               
               <div className="absolute inset-0 rounded-2xl overflow-hidden -z-10">
-                {[...Array(5)].map((_, i) => (
-                  <div key={`stat-h-${i}`} className="absolute h-px bg-blue-500/10 w-full" style={{ top: `${i * 25}%` }} />
+                {/* Reduced grid lines for better performance */}
+                {[...Array(3)].map((_, i) => (
+                  <div key={`stat-h-${i}`} className="absolute h-px bg-blue-500/10 w-full" style={{ top: `${(i+1) * 33}%` }} />
                 ))}
-                {[...Array(12)].map((_, i) => (
-                  <div key={`stat-v-${i}`} className="absolute w-px bg-blue-500/10 h-full" style={{ left: `${i * 8.33}%` }} />
+                {[...Array(4)].map((_, i) => (
+                  <div key={`stat-v-${i}`} className="absolute w-px bg-blue-500/10 h-full" style={{ left: `${(i+1) * 25}%` }} />
                 ))}
               </div>
               
@@ -258,7 +259,7 @@ export default function SimayHomeModern() {
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.7 + (index * 0.1) }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                     className="backdrop-blur-sm bg-gradient-to-br from-black/80 to-gray-900/80 border border-red-900/20 rounded-xl p-8 text-center shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-500 hover:-translate-y-1 relative group overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-red-900/0 via-red-900/5 to-red-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
@@ -278,7 +279,7 @@ export default function SimayHomeModern() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="text-center mb-24 mx-auto max-w-5xl px-4"
           >
             <div className="relative bg-gradient-to-br from-blue-950 to-black border border-red-900/30 rounded-2xl p-10 mx-auto overflow-hidden shadow-[0_8px_30px_rgba(185,28,28,0.12)]">
@@ -286,19 +287,16 @@ export default function SimayHomeModern() {
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
               
-              {/* Background pattern */}
+              {/* Simplified background pattern for performance */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
-                <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
                 <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
-                <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-400 to-transparent"></div>
               </div>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-full bg-red-900/30 flex items-center justify-center mx-auto mb-6 relative">
-                  <RefreshCw className="w-8 h-8 text-red-500 filter drop-shadow-lg animate-spin" style={{ animationDuration: '4s' }} />
-                  <div className="absolute inset-0 rounded-full border border-red-500/30 animate-pulse"></div>
+                  <RefreshCw className="w-8 h-8 text-red-500 filter drop-shadow-lg" />
                 </div>
                 
                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-sm">
