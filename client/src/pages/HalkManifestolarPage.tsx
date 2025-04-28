@@ -324,6 +324,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                     className={`text-xs border-white/20 ${!activeCategory ? 'bg-red-600/20 text-white' : 'bg-transparent'}`}
                     onClick={() => setActiveCategory(null)}
                   >
+                    <Filter className="h-3.5 w-3.5 mr-1" />
                     Tümü
                   </Button>
                   
@@ -350,6 +351,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                     className={`text-xs border-white/20 ${sortBy === 'date' ? 'bg-blue-600/20 text-white' : 'bg-transparent'}`}
                     onClick={() => setSortBy('date')}
                   >
+                    <Calendar className="h-3.5 w-3.5 mr-1" />
                     Tarihe Göre
                   </Button>
                   
@@ -359,6 +361,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                     className={`text-xs border-white/20 ${sortBy === 'likes' ? 'bg-green-600/20 text-white' : 'bg-transparent'}`}
                     onClick={() => setSortBy('likes')}
                   >
+                    <ThumbsUp className="h-3.5 w-3.5 mr-1" />
                     Beğeniye Göre
                   </Button>
                 </div>
@@ -402,9 +405,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                           </div>
                           
                           <div className="flex items-center space-x-1 bg-black/30 px-3 py-1 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
+                            <Heart className="h-4 w-4 text-red-500" />
                             <span className="text-white text-sm">{entry.likes}</span>
                           </div>
                         </div>
@@ -421,9 +422,7 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
                             size="sm"
                             className="text-xs border-red-500/30 hover:bg-red-500/10 space-x-1"
                           >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
+                            <Heart className="h-4 w-4 text-red-500" />
                             <span>Beğen</span>
                           </Button>
                         </div>
