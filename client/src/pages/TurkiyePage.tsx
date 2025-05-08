@@ -143,11 +143,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-                        <circle cx="12" cy="12" r="2"></circle>
-                        <path d="M6 12h.01M18 12h.01"></path>
-                      </svg>
+                      <Landmark className="h-5 w-5 text-red-500" />
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
                     <motion.div 
@@ -169,14 +165,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                      </svg>
+                      <Target className="h-5 w-5 text-red-500" />
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
                     <motion.div 
@@ -198,10 +187,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
+                      <Clock className="h-5 w-5 text-red-500" />
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
                     <motion.div 
