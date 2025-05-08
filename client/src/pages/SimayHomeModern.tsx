@@ -155,7 +155,6 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                leftIcon={<Flag className="w-5 h-5" />}
                 onClick={() => navigate("/turkiye")}
                 className="min-w-[150px]"
               >
@@ -167,7 +166,6 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                leftIcon={<Scroll className="w-5 h-5" />}
                 onClick={() => navigate("/manifesto")}
                 className="min-w-[150px]"
               >
@@ -179,7 +177,6 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                leftIcon={<Users className="w-5 h-5" />}
                 onClick={() => navigate("/halkmanifestolari")}
                 className="min-w-[240px]"
               >
@@ -191,7 +188,6 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                leftIcon={<Target className="w-5 h-5" />}
                 onClick={() => navigate("/gorevler")}
                 className="min-w-[150px]"
               >
@@ -319,7 +315,6 @@ export default function SimayHomeModern() {
                     size="lg"
                     glow="none"
                     border="subtle"
-                    leftIcon={<Target className="w-5 h-5" />}
                     onClick={() => navigate("/gorevler")}
                     className="min-w-[200px]"
                   >
@@ -331,7 +326,6 @@ export default function SimayHomeModern() {
                     size="lg"
                     glow="none"
                     border="subtle"
-                    leftIcon={<BookOpen className="w-5 h-5" />}
                     onClick={() => navigate("/anayasa")}
                     className="min-w-[200px]"
                   >
