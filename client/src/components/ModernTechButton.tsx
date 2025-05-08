@@ -2,35 +2,35 @@ import { ReactNode, ButtonHTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
-// Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı
+// Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı - daha formal görünüm için güncellendi
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "bg-blue-800 text-white border border-blue-700/40 hover:bg-blue-700",
-        secondary: "bg-gray-900 text-white border border-gray-800 hover:bg-gray-800",
-        turkish: "bg-red-800 text-white border border-red-700/40 hover:bg-red-700",
-        futuristic: "bg-indigo-800 text-white border border-indigo-700/40 hover:bg-indigo-700",
-        outline: "bg-black border border-white/10 text-white hover:bg-black/80 hover:border-white/20",
+        primary: "bg-blue-800 text-white border-[1px] border-blue-700/40 hover:bg-blue-700/90",
+        secondary: "bg-gray-900 text-white border-[1px] border-gray-800 hover:bg-gray-800/90",
+        turkish: "bg-red-800 text-white border-[1px] border-red-700/40 hover:bg-red-700/90",
+        futuristic: "bg-indigo-800 text-white border-[1px] border-indigo-700/40 hover:bg-indigo-700/90",
+        outline: "bg-black/80 border-[1px] border-white/20 text-white hover:bg-black/70",
         ghost: "bg-transparent text-white hover:bg-white/5 border-none"
       },
       size: {
-        sm: "h-8 rounded px-3 py-1.5 text-xs",
-        md: "h-9 rounded-sm px-4 py-2",
-        lg: "h-10 rounded-sm px-5 py-2 text-base",
-        xl: "h-11 rounded-sm px-6 py-2.5 text-lg"
+        sm: "h-8 rounded-[2px] px-3 py-1.5 text-xs",
+        md: "h-9 rounded-[2px] px-4 py-2",
+        lg: "h-10 rounded-[2px] px-5 py-2 text-sm tracking-wide",
+        xl: "h-11 rounded-[2px] px-6 py-2.5 text-base tracking-wide"
       },
       glow: {
         none: "",
-        subtle: "shadow-sm",
-        strong: "shadow-sm",
+        subtle: "shadow-none",
+        strong: "shadow-none",
       },
       border: {
         none: "",
-        subtle: "border-opacity-10",
+        subtle: "border-opacity-20",
         glowing: "",
-        animated: "animate-border-pulse",
+        animated: "",
       },
     },
     defaultVariants: {
@@ -40,57 +40,39 @@ const buttonVariants = cva(
       border: "none",
     },
     compoundVariants: [
-      // Parlama efekti varyant kombinasyonları
+      // Daha ciddi ve düz renkli varyantlar için renkler
       {
-        glow: "subtle",
         variant: "primary",
-        className: "shadow-blue-500/20",
+        className: "bg-blue-700 border-blue-600/60",
       },
       {
-        glow: "subtle",
         variant: "turkish",
-        className: "shadow-red-500/20",
+        className: "bg-red-700 border-red-600/60",
       },
       {
-        glow: "subtle",
         variant: "futuristic",
-        className: "shadow-indigo-500/20",
-      },
-      {
-        glow: "strong",
-        variant: "primary",
-        className: "shadow-blue-500/30 hover:shadow-blue-400/40",
-      },
-      {
-        glow: "strong",
-        variant: "turkish",
-        className: "shadow-red-500/30 hover:shadow-red-400/40",
-      },
-      {
-        glow: "strong",
-        variant: "futuristic",
-        className: "shadow-indigo-500/30 hover:shadow-indigo-400/40",
+        className: "bg-indigo-700 border-indigo-600/60",
       },
       
-      // Border efekti varyantları
+      // Border efekti varyantları - daha ince ve daha profesyonel
       {
         border: "glowing",
         variant: "primary",
-        className: "border border-blue-400/20",
+        className: "border-[1px] border-blue-500/40",
       },
       {
         border: "glowing",
         variant: "turkish",
-        className: "border border-red-400/20",
+        className: "border-[1px] border-red-500/40",
       },
       {
         border: "glowing",
         variant: "futuristic",
-        className: "border border-indigo-400/20",
+        className: "border-[1px] border-indigo-500/40",
       },
       {
         border: "subtle",
-        className: "border-opacity-20 hover:border-opacity-30",
+        className: "border-opacity-30 hover:border-opacity-40",
       },
     ],
   }
@@ -105,7 +87,7 @@ export interface ModernTechButtonProps
   isLoading?: boolean;
 }
 
-// ModernTechButton bileşeni
+// ModernTechButton bileşeni - daha profesyonel görünüm için güncellendi
 export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonProps>(
   (
     {
@@ -162,12 +144,20 @@ export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonPr
           </span>
         )}
         
-        {/* İçerik */}
-        <span className="relative z-1 flex items-center">
-          {leftIcon && <span className="mr-2 opacity-80">{leftIcon}</span>}
-          {children}
-          {rightIcon && <span className="ml-2 opacity-80">{rightIcon}</span>}
-        </span>
+        {/* İçerik - daha profesyonel görünüm için güncellendi */}
+        <div className="relative z-1 flex items-center justify-center">
+          {leftIcon && (
+            <span className="mr-2.5 flex items-center justify-center">
+              {leftIcon}
+            </span>
+          )}
+          <span className="font-medium tracking-wide">{children}</span>
+          {rightIcon && (
+            <span className="ml-2.5 flex items-center justify-center">
+              {rightIcon}
+            </span>
+          )}
+        </div>
       </button>
     );
   }

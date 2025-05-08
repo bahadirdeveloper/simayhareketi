@@ -153,10 +153,11 @@ export default function SimayHomeModern() {
               <ModernTechButton 
                 variant="turkish"
                 size="lg"
-                glow="subtle"
-                border="glowing"
+                glow="none"
+                border="subtle"
                 leftIcon={<Flag className="w-5 h-5" />}
                 onClick={() => navigate("/turkiye")}
+                className="min-w-[150px]"
               >
                 TÜRKİYE
               </ModernTechButton>
@@ -164,9 +165,11 @@ export default function SimayHomeModern() {
               <ModernTechButton 
                 variant="primary"
                 size="lg"
-                glow="subtle"
+                glow="none"
+                border="subtle"
                 leftIcon={<Scroll className="w-5 h-5" />}
                 onClick={() => navigate("/manifesto")}
+                className="min-w-[150px]"
               >
                 MANİFESTO
               </ModernTechButton>
@@ -174,8 +177,11 @@ export default function SimayHomeModern() {
               <ModernTechButton 
                 variant="primary"
                 size="lg"
+                glow="none"
+                border="subtle"
                 leftIcon={<Users className="w-5 h-5" />}
                 onClick={() => navigate("/halkmanifestolari")}
+                className="min-w-[240px]"
               >
                 HALK MANİFESTOLARI
               </ModernTechButton>
@@ -183,10 +189,11 @@ export default function SimayHomeModern() {
               <ModernTechButton 
                 variant="futuristic"
                 size="lg"
-                glow="strong"
+                glow="none"
                 border="subtle"
                 leftIcon={<Target className="w-5 h-5" />}
                 onClick={() => navigate("/gorevler")}
+                className="min-w-[150px]"
               >
                 GÖREVLER
               </ModernTechButton>
@@ -310,10 +317,11 @@ export default function SimayHomeModern() {
                   <ModernTechButton 
                     variant="futuristic"
                     size="lg"
-                    glow="strong"
+                    glow="none"
                     border="subtle"
                     leftIcon={<Target className="w-5 h-5" />}
                     onClick={() => navigate("/gorevler")}
+                    className="min-w-[200px]"
                   >
                     GÖREVLERE KATIL
                   </ModernTechButton>
@@ -321,9 +329,11 @@ export default function SimayHomeModern() {
                   <ModernTechButton 
                     variant="primary"
                     size="lg"
-                    glow="subtle"
+                    glow="none"
+                    border="subtle"
                     leftIcon={<BookOpen className="w-5 h-5" />}
                     onClick={() => navigate("/anayasa")}
+                    className="min-w-[200px]"
                   >
                     ANAYASAYI OKU
                   </ModernTechButton>
