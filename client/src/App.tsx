@@ -39,7 +39,8 @@ import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHomeModern} />
+      <Route path="/" component={LanguagePage} />
+      <Route path="/home" component={SimayHomeModern} />
       <Route path="/professional" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
       <Route path="/turknedir" component={TurkNedirPage} />

@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Flag, ArrowRight } from "lucide-react";
 import { ModernTechButton } from "@/components/ModernTechButton";
-import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
 import { initAudio, playSoundtrack } from "@/lib/audio";
@@ -91,7 +90,7 @@ export default function LanguagePage() {
       {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
-        <SimpleFuturisticTurkish />
+        {/* Background grid pattern */}
         
         {/* Subtle digital noise texture */}
         <div className="absolute inset-0 bg-noise opacity-5 z-0"></div>
