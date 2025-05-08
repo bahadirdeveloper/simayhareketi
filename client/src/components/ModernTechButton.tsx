@@ -4,31 +4,31 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 // Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:translate-y-0",
+  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "bg-gradient-to-b from-blue-700 to-blue-800 text-white border border-blue-600/30 hover:from-blue-600 hover:to-blue-700",
-        secondary: "bg-gradient-to-b from-gray-800 to-gray-900 text-white border border-gray-700 hover:border-blue-500/40",
-        turkish: "bg-gradient-to-b from-red-700 to-red-800 text-white border border-red-600/30 hover:from-red-600 hover:to-red-700",
-        futuristic: "bg-gradient-to-b from-indigo-700 to-indigo-800 text-white border border-indigo-600/30 hover:from-indigo-600 hover:to-indigo-700",
-        outline: "bg-black/40 backdrop-blur-sm border border-white/20 text-white hover:bg-black/60 hover:border-white/30",
+        primary: "bg-blue-800 text-white border border-blue-700/40 hover:bg-blue-700",
+        secondary: "bg-gray-900 text-white border border-gray-800 hover:bg-gray-800",
+        turkish: "bg-red-800 text-white border border-red-700/40 hover:bg-red-700",
+        futuristic: "bg-indigo-800 text-white border border-indigo-700/40 hover:bg-indigo-700",
+        outline: "bg-black border border-white/10 text-white hover:bg-black/80 hover:border-white/20",
         ghost: "bg-transparent text-white hover:bg-white/5 border-none"
       },
       size: {
-        sm: "h-8 px-3 py-1.5 text-xs",
-        md: "h-9 px-4 py-2",
-        lg: "h-10 px-5 py-2 text-base",
-        xl: "h-11 px-6 py-2.5 text-lg"
+        sm: "h-8 rounded px-3 py-1.5 text-xs",
+        md: "h-9 rounded-sm px-4 py-2",
+        lg: "h-10 rounded-sm px-5 py-2 text-base",
+        xl: "h-11 rounded-sm px-6 py-2.5 text-lg"
       },
       glow: {
         none: "",
-        subtle: "shadow-md",
-        strong: "shadow-md",
+        subtle: "shadow-sm",
+        strong: "shadow-sm",
       },
       border: {
         none: "",
-        subtle: "border-opacity-20",
+        subtle: "border-opacity-10",
         glowing: "",
         animated: "animate-border-pulse",
       },
@@ -138,9 +138,9 @@ export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonPr
         {...props}
       >
         {isLoading && (
-          <span className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg backdrop-blur-sm z-10">
+          <span className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-10">
             <svg
-              className="animate-spin h-5 w-5 text-white"
+              className="animate-spin h-4 w-4 text-white/80"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -162,16 +162,11 @@ export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonPr
           </span>
         )}
         
-        {/* Parlama efektleri */}
-        {glow === "strong" && (
-          <span className="absolute inset-0 rounded-md filter blur-sm opacity-20 bg-inherit -z-10"></span>
-        )}
-        
         {/* İçerik */}
         <span className="relative z-1 flex items-center">
-          {leftIcon && <span className="mr-2">{leftIcon}</span>}
+          {leftIcon && <span className="mr-2 opacity-80">{leftIcon}</span>}
           {children}
-          {rightIcon && <span className="ml-2">{rightIcon}</span>}
+          {rightIcon && <span className="ml-2 opacity-80">{rightIcon}</span>}
         </span>
       </button>
     );
