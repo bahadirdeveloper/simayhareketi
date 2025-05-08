@@ -4,31 +4,31 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 // Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:translate-y-0.5",
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:translate-y-0",
   {
     variants: {
       variant: {
-        primary: "bg-gradient-to-br from-blue-600 to-blue-800 text-white border border-blue-500/20 hover:from-blue-500 hover:to-blue-700",
-        secondary: "bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-blue-500/10 hover:border-blue-500/30",
-        turkish: "bg-gradient-to-br from-red-600 to-red-800 text-white border border-red-500/20 hover:from-red-500 hover:to-red-700",
-        futuristic: "bg-gradient-to-br from-indigo-600 to-violet-800 text-white border border-indigo-400/20 hover:from-indigo-500 hover:to-violet-700",
-        outline: "bg-transparent border border-white/30 text-white hover:bg-white/10",
-        ghost: "bg-transparent text-white hover:bg-white/10 border-none"
+        primary: "bg-gradient-to-b from-blue-700 to-blue-800 text-white border border-blue-600/30 hover:from-blue-600 hover:to-blue-700",
+        secondary: "bg-gradient-to-b from-gray-800 to-gray-900 text-white border border-gray-700 hover:border-blue-500/40",
+        turkish: "bg-gradient-to-b from-red-700 to-red-800 text-white border border-red-600/30 hover:from-red-600 hover:to-red-700",
+        futuristic: "bg-gradient-to-b from-indigo-700 to-indigo-800 text-white border border-indigo-600/30 hover:from-indigo-600 hover:to-indigo-700",
+        outline: "bg-black/40 backdrop-blur-sm border border-white/20 text-white hover:bg-black/60 hover:border-white/30",
+        ghost: "bg-transparent text-white hover:bg-white/5 border-none"
       },
       size: {
-        sm: "h-9 px-3 py-2 text-xs",
-        md: "h-10 px-4 py-2",
-        lg: "h-11 px-6 py-2.5 text-base",
-        xl: "h-12 px-8 py-3 text-lg"
+        sm: "h-8 px-3 py-1.5 text-xs",
+        md: "h-9 px-4 py-2",
+        lg: "h-10 px-5 py-2 text-base",
+        xl: "h-11 px-6 py-2.5 text-lg"
       },
       glow: {
         none: "",
-        subtle: "shadow-lg",
-        strong: "shadow-lg",
+        subtle: "shadow-md",
+        strong: "shadow-md",
       },
       border: {
         none: "",
-        subtle: "",
+        subtle: "border-opacity-20",
         glowing: "",
         animated: "animate-border-pulse",
       },
@@ -44,53 +44,53 @@ const buttonVariants = cva(
       {
         glow: "subtle",
         variant: "primary",
-        className: "shadow-blue-500/30",
+        className: "shadow-blue-500/20",
       },
       {
         glow: "subtle",
         variant: "turkish",
-        className: "shadow-red-500/30",
+        className: "shadow-red-500/20",
       },
       {
         glow: "subtle",
         variant: "futuristic",
-        className: "shadow-indigo-500/30",
+        className: "shadow-indigo-500/20",
       },
       {
         glow: "strong",
         variant: "primary",
-        className: "shadow-blue-500/50 hover:shadow-blue-400/60",
+        className: "shadow-blue-500/30 hover:shadow-blue-400/40",
       },
       {
         glow: "strong",
         variant: "turkish",
-        className: "shadow-red-500/50 hover:shadow-red-400/60",
+        className: "shadow-red-500/30 hover:shadow-red-400/40",
       },
       {
         glow: "strong",
         variant: "futuristic",
-        className: "shadow-indigo-500/50 hover:shadow-indigo-400/60 hover:shadow-lg",
+        className: "shadow-indigo-500/30 hover:shadow-indigo-400/40",
       },
       
       // Border efekti varyantları
       {
         border: "glowing",
         variant: "primary",
-        className: "border border-blue-400/30 animate-border-pulse-blue",
+        className: "border border-blue-400/20",
       },
       {
         border: "glowing",
         variant: "turkish",
-        className: "border border-red-400/30 animate-border-pulse-red",
+        className: "border border-red-400/20",
       },
       {
         border: "glowing",
         variant: "futuristic",
-        className: "border border-indigo-400/30 animate-border-pulse-indigo",
+        className: "border border-indigo-400/20",
       },
       {
         border: "subtle",
-        className: "border-opacity-30 hover:border-opacity-60",
+        className: "border-opacity-20 hover:border-opacity-30",
       },
     ],
   }
@@ -164,7 +164,7 @@ export const ModernTechButton = forwardRef<HTMLButtonElement, ModernTechButtonPr
         
         {/* Parlama efektleri */}
         {glow === "strong" && (
-          <span className="absolute inset-0 rounded-lg filter blur-md opacity-30 bg-inherit -z-10"></span>
+          <span className="absolute inset-0 rounded-md filter blur-sm opacity-20 bg-inherit -z-10"></span>
         )}
         
         {/* İçerik */}
