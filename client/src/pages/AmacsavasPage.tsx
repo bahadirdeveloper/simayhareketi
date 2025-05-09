@@ -2,16 +2,21 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
-import HalfBurningEarthBackground from "@/components/HalfBurningEarthBackground";
-import { apiRequest } from "@/lib/queryClient";
 import { Target, Shield } from "lucide-react";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
+import { apiRequest } from "@/lib/queryClient";
+import { ModernTechButton } from "@/components/ModernTechButton";
+import AccessibilityReader from "@/components/AccessibilityReader";
+import { initAudio } from "@/lib/audio";
 
 export default function AmacsavasPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
   
   useEffect(() => {
+    // Initialize audio system
+    initAudio('amaclar');
+    
     // Record visitor stats
     const recordVisit = async () => {
       try {
@@ -36,8 +41,15 @@ export default function AmacsavasPage() {
   }, [i18n.language]);
   
   return (
-    <div className="min-h-screen flex flex-col items-center">
-      <HalfBurningEarthBackground />
+    <div className="min-h-screen flex flex-col items-center relative overflow-x-hidden">
+      {/* Background */}
+      <SimpleFuturisticTurkish />
+      
+      {/* Erişilebilirlik Okuyucu */}
+      <AccessibilityReader 
+        pageContent="Amaçlarımız ve savaşlarımız sayfasına hoş geldiniz. Bu sayfada, Cumhuriyet Güncellenme hareketinin temel hedefleri ve mücadele ettiğimiz zorluklar açıklanmaktadır. Amaçlarımız, halkı bilgi ve bilinçle donatmak, eğitim sağlamak ve cumhuriyeti dijital çağa taşımaktır. Mücadele ettiğimiz sorunlar ise cehalet, adaletsizlik ve baskı sistemleridir."
+        pageName="amaclar" 
+      />
       
       <motion.div
         className="container mx-auto px-4 py-8 z-10 relative"
@@ -46,17 +58,21 @@ export default function AmacsavasPage() {
         transition={{ duration: 0.8 }}
       >
         <div className="flex justify-between items-center mb-8">
-          <Button
+          <ModernTechButton
             onClick={() => navigate("/")}
-            className="bg-green-700 hover:bg-green-600 text-white"
+            variant="turkish"
+            size="md"
+            glow="subtle"
+            border="subtle"
+            className="text-base-responsive min-h-[44px]"
           >
             ← {t('back_to_home')}
-          </Button>
+          </ModernTechButton>
         </div>
         
         <header className="text-center mb-12">
           <motion.h1 
-            className="text-3xl md:text-4xl font-bold mb-4 text-red-500"
+            className="text-3xl-responsive md:text-4xl-responsive font-bold mb-4 text-red-500"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -64,7 +80,7 @@ export default function AmacsavasPage() {
             {t('amaclar.title', 'Amaçlarımız & Savaşlarımız')}
           </motion.h1>
           <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            className="text-xl-responsive text-gray-300 max-w-3xl mx-auto"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -307,33 +323,41 @@ export default function AmacsavasPage() {
         
         {/* Katılım Çağrısı */}
         <motion.div 
-          className="mt-12 bg-gradient-to-r from-green-900/80 to-blue-900/80 backdrop-blur-sm border border-yellow-500 rounded-lg p-6 text-center"
+          className="mt-12 bg-gradient-to-r from-red-900/40 to-black/60 backdrop-blur-sm border border-red-500/30 rounded-lg p-6 text-center"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <h3 className="text-xl font-bold text-yellow-400 mb-4">{t('join.title', 'Harekete Katılın')}</h3>
-          <p className="text-gray-300 mb-4">
+          <h3 className="text-xl-responsive font-bold text-red-400 mb-4">{t('join.title', 'Harekete Katılın')}</h3>
+          <p className="text-gray-300 text-base-responsive mb-4">
             {t('join.subtitle', 'Daha aydınlık bir gelecek için bizimle çalışın')}
           </p>
-          <div className="flex justify-center gap-4">
-            <Button 
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <ModernTechButton 
               onClick={() => navigate("/gorevler")}
-              className="bg-yellow-600 hover:bg-yellow-500 text-white font-bold"
+              variant="turkish"
+              size="lg"
+              glow="subtle"
+              border="glowing"
+              className="text-base-responsive min-h-[44px]"
             >
               {t('simay_tasks_button', 'Görevler')}
-            </Button>
-            <Button 
+            </ModernTechButton>
+            <ModernTechButton 
               onClick={() => navigate("/katil")}
-              className="bg-red-600 hover:bg-red-500 text-white font-bold"
+              variant="turkish"
+              size="lg"
+              glow="subtle"
+              border="glowing"
+              className="text-base-responsive min-h-[44px]"
             >
               {t('simay_join_button', 'Harekete Katıl')}
-            </Button>
+            </ModernTechButton>
           </div>
         </motion.div>
         
-        <footer className="mt-12 text-center text-gray-400 text-sm">
-          &copy; 2025 Simay Hareketi — {t('amaclar.footer', 'Halkın geleceğini inşa eden bilinç zinciri')}
+        <footer className="mt-12 text-center text-gray-400 text-base-responsive pb-4">
+          &copy; 2025 Cumhuriyet Güncellenme Platformu — {t('amaclar.footer', 'Halkın geleceğini inşa eden bilinç zinciri')}
         </footer>
       </motion.div>
     </div>
