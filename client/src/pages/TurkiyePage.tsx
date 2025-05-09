@@ -6,13 +6,13 @@ import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import { Flag, Settings, Scale, Vote, Users, BookOpen, Target, FileText, MessageSquare, Award, Star, Landmark, Shield, Clock } from "lucide-react";
 
-// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (Lucide ikonları kullanarak)
+// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (ikonsuz)
 const turkishValues = [
-  { id: 'milli', name: 'MİLLİ', icon: Flag, description: 'Özgür ve bağımsız' },
-  { id: 'muasir', name: 'MUASIR', icon: Settings, description: 'Çağdaş uygarlık' },
-  { id: 'laik', name: 'LAİK', icon: Scale, description: 'Vicdan özgürlüğü' },
-  { id: 'demokratik', name: 'DEMOKRATİK', icon: Vote, description: 'Halk egemenliği' },
-  { id: 'sosyal', name: 'SOSYAL', icon: Users, description: 'Toplumsal dayanışma' }
+  { id: 'milli', name: 'MİLLİ', description: 'Özgür ve bağımsız' },
+  { id: 'muasir', name: 'MUASIR', description: 'Çağdaş uygarlık' },
+  { id: 'laik', name: 'LAİK', description: 'Vicdan özgürlüğü' },
+  { id: 'demokratik', name: 'DEMOKRATİK', description: 'Halk egemenliği' },
+  { id: 'sosyal', name: 'SOSYAL', description: 'Toplumsal dayanışma' }
 ];
 
 export default function TurkiyePage() {
@@ -55,7 +55,7 @@ export default function TurkiyePage() {
                   transition={{ duration: 0.4 }}
                 >
                   <div className="inline-block mb-2">
-                    <Shield className="w-10 h-10 text-red-500 mx-auto" />
+                    <div className="w-10 h-10 mx-auto text-red-500 font-bold text-sm border border-red-500/50 rounded-full flex items-center justify-center">TC</div>
                   </div>
                   <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed">
                     <span className="text-red-500 block mb-3">"Türk, Atasının mirasına sahip çıkamazsa,</span>
@@ -121,7 +121,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <Users className="h-5 w-5 text-red-500" />
+                      <div className="text-red-500 font-bold text-xs">TR</div>
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GENEL KATILIM</h4>
                     <motion.div 
@@ -143,7 +143,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <Landmark className="h-5 w-5 text-red-500" />
+                      <div className="text-red-500 font-bold text-xs">₺</div>
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
                     <motion.div 
@@ -165,7 +165,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <Target className="h-5 w-5 text-red-500" />
+                      <div className="text-red-500 font-bold text-xs">100</div>
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
                     <motion.div 
@@ -187,7 +187,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <Clock className="h-5 w-5 text-red-500" />
+                      <div className="text-red-500 font-bold text-xs">73%</div>
                     </div>
                     <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
                     <motion.div 
@@ -213,9 +213,7 @@ export default function TurkiyePage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent h-px top-1/2 transform -translate-y-1/2"></div>
                   <h2 className="text-2xl font-bold text-center mb-6 text-white relative inline-block bg-black px-4 mx-auto block w-auto">
                     <div className="flex items-center gap-2 justify-center">
-                      <Star className="w-5 h-5 text-red-500" />
                       CUMHURİYET DEĞERLERİ
-                      <Star className="w-5 h-5 text-red-500" />
                     </div>
                   </h2>
                 </div>
@@ -232,7 +230,7 @@ export default function TurkiyePage() {
                     >
                       <div className="flex justify-center mb-3">
                         <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-[0_4px_20px_rgba(185,28,28,0.15)]">
-                          {React.createElement(value.icon, { className: "w-7 h-7 text-white" })}
+                          <div className="text-white font-bold">{value.name.charAt(0)}</div>
                         </div>
                       </div>
                       <h3 className="text-lg font-semibold text-white mb-1">{value.name}</h3>
@@ -253,7 +251,6 @@ export default function TurkiyePage() {
                   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
                   
                   <div className="flex items-center gap-3 mb-2">
-                    <Landmark className="w-5 h-5 text-red-500 flex-shrink-0" />
                     <h3 className="text-white font-semibold">Türkiye Cumhuriyeti Dijital Koordinasyon Alanı</h3>
                   </div>
                   
