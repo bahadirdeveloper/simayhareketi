@@ -276,9 +276,8 @@ export default function TurkiyePage() {
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
-                  glow="subtle"
-                  border="glowing"
-                  leftIcon={<BookOpen className="h-5 w-5" />}
+                  glow="none"
+                  border="subtle"
                   className="mb-2 justify-center py-4"
                   onClick={() => navigate("/turknedir")}
                 >
@@ -292,9 +291,8 @@ export default function TurkiyePage() {
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
-                  glow="subtle"
-                  border="glowing"
-                  leftIcon={<FileText className="h-5 w-5" />}
+                  glow="none"
+                  border="subtle"
                   className="mb-2 justify-center py-4"
                   onClick={() => navigate("/anayasa")}
                 >
@@ -308,9 +306,8 @@ export default function TurkiyePage() {
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
-                  glow="subtle"
-                  border="glowing"
-                  leftIcon={<Target className="h-5 w-5" />}
+                  glow="none"
+                  border="subtle"
                   className="mb-2 justify-center py-4"
                   onClick={() => navigate("/gorevler")}
                 >
@@ -324,9 +321,8 @@ export default function TurkiyePage() {
                 <ModernTechButton 
                   variant="turkish"
                   size="lg"
-                  glow="strong"
-                  border="glowing"
-                  leftIcon={<MessageSquare className="h-5 w-5" />}
+                  glow="none"
+                  border="subtle"
                   className="mb-2 justify-center py-4"
                   onClick={() => navigate("/katil")}
                 >
