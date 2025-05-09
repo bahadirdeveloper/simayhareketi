@@ -179,22 +179,22 @@ export default function KatilPage() {
     >
       <div className="w-full max-w-3xl mx-auto">
         <Tabs defaultValue="katilim" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-3 mb-6 min-h-[44px]">
             <TabsTrigger 
               value="katilim"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
             >
               KATILIM
             </TabsTrigger>
             <TabsTrigger 
               value="bagis"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
             >
               BAĞIŞ YAP
             </TabsTrigger>
             <TabsTrigger 
               value="financial"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
             >
               ŞEFFAF GELİR-GİDER
             </TabsTrigger>
@@ -223,35 +223,35 @@ export default function KatilPage() {
                   name="ad"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Ad Soyad</FormLabel>
+                      <FormLabel className="text-white text-base-responsive">Ad Soyad</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="Ad ve soyadınızı giriniz" 
                           {...field} 
-                          className="bg-black/50 border-amber-500 text-white"
+                          className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-base-responsive" />
                     </FormItem>
                   )}
                 />
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">E-posta Adresi</FormLabel>
+                        <FormLabel className="text-white text-base-responsive">E-posta Adresi</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="ornekmail@adres.com" 
                             type="email"
                             {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
+                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-base-responsive" />
                       </FormItem>
                     )}
                   />
@@ -261,35 +261,35 @@ export default function KatilPage() {
                     name="telefon"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Telefon</FormLabel>
+                        <FormLabel className="text-white text-base-responsive">Telefon</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="05XX XXX XX XX" 
                             {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
+                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-base-responsive" />
                       </FormItem>
                     )}
                   />
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <FormField
                     control={form.control}
                     name="sehir"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Şehir</FormLabel>
+                        <FormLabel className="text-white text-base-responsive">Şehir</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="Yaşadığınız şehir" 
                             {...field} 
-                            className="bg-black/50 border-amber-500 text-white"
+                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-base-responsive" />
                       </FormItem>
                     )}
                   />
@@ -299,22 +299,22 @@ export default function KatilPage() {
                     name="katilimTipi"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Katılım Tipi</FormLabel>
+                        <FormLabel className="text-white text-base-responsive">Katılım Tipi</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="bg-black/50 border-amber-500 text-white">
+                            <SelectTrigger className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]">
                               <SelectValue placeholder="Katılım tipi seçin" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-black/90 border-amber-500 text-white">
-                            <SelectItem value="gonullu">Gönüllü Katılımcı</SelectItem>
-                            <SelectItem value="teknik">Teknik Ekip</SelectItem>
-                            <SelectItem value="organizasyon">Organizasyon Ekibi</SelectItem>
-                            <SelectItem value="icerik">İçerik Üretimi</SelectItem>
-                            <SelectItem value="diger">Diğer</SelectItem>
+                          <SelectContent className="bg-black/90 border-amber-500 text-white text-base-responsive">
+                            <SelectItem value="gonullu" className="min-h-[44px] flex items-center">Gönüllü Katılımcı</SelectItem>
+                            <SelectItem value="teknik" className="min-h-[44px] flex items-center">Teknik Ekip</SelectItem>
+                            <SelectItem value="organizasyon" className="min-h-[44px] flex items-center">Organizasyon Ekibi</SelectItem>
+                            <SelectItem value="icerik" className="min-h-[44px] flex items-center">İçerik Üretimi</SelectItem>
+                            <SelectItem value="diger" className="min-h-[44px] flex items-center">Diğer</SelectItem>
                           </SelectContent>
                         </Select>
-                        <FormMessage />
+                        <FormMessage className="text-base-responsive" />
                       </FormItem>
                     )}
                   />
@@ -325,15 +325,15 @@ export default function KatilPage() {
                   name="mesaj"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Mesajınız (Opsiyonel)</FormLabel>
+                      <FormLabel className="text-white text-base-responsive">Mesajınız (Opsiyonel)</FormLabel>
                       <FormControl>
                         <Textarea 
                           placeholder="Katılım amacınızı, yeteneklerinizi veya sorularınızı yazabilirsiniz." 
                           {...field} 
-                          className="bg-black/50 border-amber-500 text-white h-32"
+                          className="bg-black/50 border-amber-500 text-white text-base-responsive h-32"
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-base-responsive" />
                     </FormItem>
                   )}
                 />
@@ -345,7 +345,7 @@ export default function KatilPage() {
                     size="xl"
                     glow="subtle"
                     border="glowing"
-                    className="w-full text-lg font-bold"
+                    className="w-full text-lg-responsive font-bold min-h-[54px] py-3"
                   >
                     Bilgilerimi Kaydet ve Ödemeye Geç
                   </ModernTechButton>
@@ -432,11 +432,11 @@ export default function KatilPage() {
             </div>
             
             <Tabs defaultValue="income">
-              <TabsList className="grid w-full grid-cols-2 mb-4">
-                <TabsTrigger value="income">
+              <TabsList className="grid w-full grid-cols-2 mb-4 min-h-[44px]">
+                <TabsTrigger value="income" className="text-base-responsive min-h-[44px] py-2">
                   Gelirler
                 </TabsTrigger>
-                <TabsTrigger value="expense">
+                <TabsTrigger value="expense" className="text-base-responsive min-h-[44px] py-2">
                   Giderler
                 </TabsTrigger>
               </TabsList>
@@ -446,17 +446,17 @@ export default function KatilPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-amber-400">Tarih</TableHead>
-                        <TableHead className="text-amber-400">Açıklama</TableHead>
-                        <TableHead className="text-amber-400 text-right">Tutar</TableHead>
+                        <TableHead className="text-amber-400 text-base-responsive">Tarih</TableHead>
+                        <TableHead className="text-amber-400 text-base-responsive">Açıklama</TableHead>
+                        <TableHead className="text-amber-400 text-right text-base-responsive">Tutar</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {incomeData.map((item) => (
                         <TableRow key={item.id} className="border-b border-amber-900/20">
-                          <TableCell className="text-gray-300">{item.date}</TableCell>
-                          <TableCell className="text-gray-300">{item.description}</TableCell>
-                          <TableCell className="text-green-400 text-right">{formatCurrency(item.amount)}</TableCell>
+                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.date}</TableCell>
+                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.description}</TableCell>
+                          <TableCell className="text-green-400 text-right text-base-responsive py-3">{formatCurrency(item.amount)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -469,17 +469,17 @@ export default function KatilPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-amber-400">Tarih</TableHead>
-                        <TableHead className="text-amber-400">Açıklama</TableHead>
-                        <TableHead className="text-amber-400 text-right">Tutar</TableHead>
+                        <TableHead className="text-amber-400 text-base-responsive">Tarih</TableHead>
+                        <TableHead className="text-amber-400 text-base-responsive">Açıklama</TableHead>
+                        <TableHead className="text-amber-400 text-right text-base-responsive">Tutar</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {expenseData.map((item) => (
                         <TableRow key={item.id} className="border-b border-amber-900/20">
-                          <TableCell className="text-gray-300">{item.date}</TableCell>
-                          <TableCell className="text-gray-300">{item.description}</TableCell>
-                          <TableCell className="text-red-400 text-right">{formatCurrency(item.amount)}</TableCell>
+                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.date}</TableCell>
+                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.description}</TableCell>
+                          <TableCell className="text-red-400 text-right text-base-responsive py-3">{formatCurrency(item.amount)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
