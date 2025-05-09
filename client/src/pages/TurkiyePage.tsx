@@ -57,7 +57,7 @@ export default function TurkiyePage() {
                   <div className="inline-block mb-2">
                     <div className="w-10 h-10 mx-auto text-red-500 font-bold text-sm border border-red-500/50 rounded-full flex items-center justify-center">TC</div>
                   </div>
-                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed">
+                  <p className="text-2xl-responsive font-bold leading-relaxed">
                     <span className="text-red-500 block mb-3">"Türk, Atasının mirasına sahip çıkamazsa,</span>
                     <span className="text-white block">geleceğini başka milletlerin insafına bırakır."</span>
                   </p>

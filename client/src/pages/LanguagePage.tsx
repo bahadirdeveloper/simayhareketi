@@ -137,7 +137,7 @@ export default function LanguagePage() {
                 <div className="inline-block px-3 py-1 bg-red-950/20 border border-red-500/30 rounded-sm mb-4 shadow-[0_2px_8px_rgba(220,38,38,0.1)]">
                   <span className="text-xs font-medium text-red-400 tracking-widest uppercase">Türkiye Cumhuriyeti</span>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold text-red-500 mb-4">
+                <h1 className="text-5xl-responsive font-bold text-red-500 mb-6">
                   CUMHURİYET GÜNCELLENİYOR
                 </h1>
               </motion.div>
@@ -154,8 +154,8 @@ export default function LanguagePage() {
                     <div className="text-white font-bold text-xs">DİL</div>
                   </div>
                 </div>
-                <h2 className="text-3xl font-semibold text-white mb-2">Dil Seçiniz</h2>
-                <p className="text-gray-400 max-w-lg mx-auto">
+                <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
+                <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
                   Cumhuriyet Güncellenme Platformuna hoş geldiniz. Lütfen tercih ettiğiniz dili seçin.
                 </p>
               </motion.div>
@@ -175,12 +175,12 @@ export default function LanguagePage() {
                     transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                   >
                     <div 
-                      className="bg-black/50 backdrop-blur-sm border border-red-900/30 rounded-xl p-4 cursor-pointer hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1"
+                      className="mobile-card bg-black/50 backdrop-blur-sm border border-red-900/30 rounded-xl p-5 cursor-pointer hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 touch-target"
                       onClick={() => handleLanguageSelect(language.code)}
                     >
-                      <div className="text-2xl mb-2">{language.flag}</div>
-                      <h3 className="font-semibold text-white">{language.nativeName}</h3>
-                      <div className="text-xs text-gray-400">{language.name}</div>
+                      <div className="text-3xl mb-3">{language.flag}</div>
+                      <h3 className="text-xl-responsive font-semibold text-white mb-1">{language.nativeName}</h3>
+                      <div className="text-base-responsive text-gray-400">{language.name}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -198,6 +198,7 @@ export default function LanguagePage() {
                   size="lg"
                   glow="strong"
                   border="glowing"
+                  className="btn-mobile-optimized py-6 px-8 text-lg-responsive font-bold tracking-wide"
                   onClick={() => handleLanguageSelect("tr")}
                 >
                   HEMEN TÜRKÇE İLE DEVAM ET
@@ -211,9 +212,9 @@ export default function LanguagePage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="mt-16"
               >
-                <div className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-red-500/40 rounded-full px-6 py-3 shadow-[0_4px_15px_rgba(220,38,38,0.12)]">
-                  <div className="h-3 w-3 rounded-full bg-red-500 mr-3 animate-pulse"></div>
-                  <p className="text-sm text-gray-200 font-medium">
+                <div className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-red-500/40 rounded-full px-6 py-4 shadow-[0_4px_15px_rgba(220,38,38,0.12)]">
+                  <div className="h-4 w-4 rounded-full bg-red-500 mr-4 animate-pulse"></div>
+                  <p className="text-base-responsive text-gray-200 font-medium tracking-wide">
                     19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
                   </p>
                 </div>
