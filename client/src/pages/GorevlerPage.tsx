@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronLeft, ChevronRight, ListFilter, Star, Send, ExternalLink } from "lucide-react";
+// No icons needed for formal appearance
 
 // Görev arka plan görselleri
 import gorev1 from "@assets/gorev-1.webp";
@@ -1508,7 +1508,6 @@ export default function GorevlerPage() {
                     size="lg"
                     glow="strong"
                     border="glowing"
-                    rightIcon={<Send className="w-5 h-5 ml-1" />}
                   >
                     Göreve Katıl
                   </ModernTechButton>

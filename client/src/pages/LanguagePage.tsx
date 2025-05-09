@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, Flag, ArrowRight } from "lucide-react";
+// No icons needed for formal appearance
 import { ModernTechButton } from "@/components/ModernTechButton";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -151,7 +151,7 @@ export default function LanguagePage() {
               >
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3">
-                    <Globe className="w-5 h-5 text-white" />
+                    <div className="text-white font-bold text-xs">DİL</div>
                   </div>
                 </div>
                 <h2 className="text-3xl font-semibold text-white mb-2">Dil Seçiniz</h2>
@@ -198,8 +198,6 @@ export default function LanguagePage() {
                   size="lg"
                   glow="strong"
                   border="glowing"
-                  leftIcon={<Flag className="w-5 h-5" />}
-                  rightIcon={<ArrowRight className="w-4 h-4" />}
                   onClick={() => handleLanguageSelect("tr")}
                 >
                   HEMEN TÜRKÇE İLE DEVAM ET
