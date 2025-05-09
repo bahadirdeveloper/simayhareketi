@@ -5,9 +5,9 @@ import { useLocation } from "wouter";
 import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AudioControl from "@/components/AudioControl";
 import AccessibilityReader from "@/components/AccessibilityReader";
+import { ModernTechButton } from "@/components/ModernTechButton";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
-import { Button } from "@/components/ui/button";
 import { Wrench, Paintbrush, Stethoscope, BookOpen, BarChart3, Palette, Code, Brain, Beaker, Library, Globe, Shield } from "lucide-react";
 
 export default function GorevDavetPage() {
@@ -46,7 +46,7 @@ export default function GorevDavetPage() {
   
   const SectionTitle = ({ children }: { children: React.ReactNode }) => (
     <motion.h2 
-      className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 mt-10 border-b-2 border-red-600/30 pb-2"
+      className="text-2xl-responsive md:text-3xl-responsive lg:text-4xl-responsive font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 mt-10 border-b-2 border-red-600/30 pb-2"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
@@ -58,7 +58,7 @@ export default function GorevDavetPage() {
   
   const ParagraphText = ({ children }: { children: React.ReactNode }) => (
     <motion.p 
-      className="text-lg md:text-xl text-white/90 mb-6"
+      className="text-base-responsive md:text-lg-responsive text-white/90 mb-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
@@ -76,7 +76,7 @@ export default function GorevDavetPage() {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <p className="text-xl md:text-2xl font-bold text-white">
+      <p className="text-lg-responsive md:text-xl-responsive lg:text-2xl-responsive font-bold text-white">
         {children}
       </p>
     </motion.div>
@@ -91,7 +91,7 @@ export default function GorevDavetPage() {
       viewport={{ once: true }}
     >
       <span className="inline-block mr-2 mt-1 text-red-500">•</span>
-      <span className="text-white/90">{children}</span>
+      <span className="text-white/90 text-base-responsive">{children}</span>
     </motion.li>
   );
   
@@ -107,8 +107,8 @@ export default function GorevDavetPage() {
       <div className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full mb-3 shadow-md">
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-white/80 text-center">{description}</p>
+      <h3 className="text-lg-responsive md:text-xl-responsive font-bold text-white mb-2">{title}</h3>
+      <p className="text-white/80 text-center text-sm-responsive md:text-base-responsive">{description}</p>
     </motion.div>
   );
   
@@ -186,7 +186,7 @@ export default function GorevDavetPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-8">
+            <h1 className="text-3xl-responsive md:text-4xl-responsive lg:text-5xl-responsive font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-8">
               KİMLERİ GÖREVE DAVET EDİYORUZ?
             </h1>
             
@@ -278,36 +278,46 @@ export default function GorevDavetPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-800 text-white px-10 py-6 rounded-lg shadow-lg font-bold text-xl"
+                <ModernTechButton 
+                  variant="turkish"
+                  size="xl"
+                  glow="subtle"
+                  border="glowing"
+                  className="text-xl-responsive font-bold min-h-[54px] px-10 py-3"
                   onClick={() => navigate("/gorevler")}
                 >
                   GÖREVLERE GİT
-                </Button>
+                </ModernTechButton>
               </motion.div>
             </div>
           </motion.div>
           
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-10 gap-4">
+          <div className="flex flex-col sm:flex-row justify-center mt-10 gap-4 mb-6">
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
+              <ModernTechButton 
+                variant="futuristic"
+                size="md"
+                glow="subtle"
+                border="subtle"
+                className="text-base-responsive min-h-[50px] py-3"
                 onClick={() => navigate("/gorevler")}
               >
                 ◀ Görevlere Dön
-              </Button>
+              </ModernTechButton>
             </motion.div>
             
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
+              <ModernTechButton 
+                variant="primary"
+                size="md"
+                glow="subtle"
+                border="glowing"
+                className="text-base-responsive min-h-[50px] py-3"
                 onClick={() => navigate("/")}
               >
                 Ana Sayfa
-              </Button>
+              </ModernTechButton>
             </motion.div>
           </div>
         </div>
