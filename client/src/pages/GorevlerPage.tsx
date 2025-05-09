@@ -1278,61 +1278,61 @@ export default function GorevlerPage() {
           
           {/* Görevler Grid - Her satırda 4 görev */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 md:gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             {isLoading ? (
-              // Loader
+              // Loader - mobile-optimized
               Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-black/40 rounded-lg p-5 animate-pulse h-64"></div>
+                <div key={i} className="bg-black/40 rounded-lg p-5 animate-pulse h-[300px] sm:h-64 mx-auto w-full max-w-[350px] sm:max-w-none"></div>
               ))
             ) : filteredGorevler.length === 0 ? (
-              <p className="text-center col-span-full">Aranan kriterlere uygun görev bulunamadı.</p>
+              <p className="text-center col-span-full text-base-responsive">Aranan kriterlere uygun görev bulunamadı.</p>
             ) : (
               currentGorevler.map(gorev => (
                 <div 
                   key={gorev.id}
-                  className={`relative border-[4px] aspect-[2/3] max-w-[280px] mx-auto ${
+                  className={`relative border-[4px] aspect-[2/3] w-full max-w-[350px] sm:max-w-none mx-auto ${
                     gorev.kategori === 'kurucu' 
                       ? 'border-red-600 shadow-[0_0_25px_rgba(220,38,38,0.5)]' 
                       : gorev.tamamlayan > 0 
                         ? 'border-green-500 shadow-[0_0_15px_rgba(68,255,68,0.5)]' 
                         : 'border-red-600'
-                  } rounded-lg hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
+                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
                     backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
-                    backgroundSize: '100% 100%',
+                    backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                   } : {}}
                 >
                   {/* Overlay to make text readable - Düşük opaklık ile görseller daha belirgin */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
                   
                   {/* Content */}
-                  <div className="relative z-10 p-4 h-full flex flex-col justify-between">
-                    {/* Görev ID göstericisi */}
-                    <div className="absolute top-0 right-0 bg-red-600 text-white px-2 py-1 text-xs font-bold rounded-bl shadow-md">
+                  <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
+                    {/* Görev ID göstericisi - mobil için daha büyük */}
+                    <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded-bl shadow-md min-w-[32px] min-h-[28px] flex items-center justify-center">
                       {gorev.id}
                     </div>
                     
-                    {/* Görev başlık ve açıklaması */}
+                    {/* Görev başlık ve açıklaması - mobil için daha iyi okunabilirlik */}
                     <div>
-                      <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-tight">{gorev.baslik}</h3>
-                      <p className="text-white mb-2 text-sm font-semibold">{gorev.cagri}</p>
-                      <div className="text-sm text-white italic mb-3">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
+                      <h3 className="text-lg-responsive font-bold text-white mb-2 leading-tight">{gorev.baslik}</h3>
+                      <p className="text-white mb-2 text-base-responsive font-semibold">{gorev.cagri}</p>
+                      <div className="text-base-responsive text-white italic mb-3">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
                     </div>
                     
-                    {/* Alt kısımdaki bilgiler ve buton */}
+                    {/* Alt kısımdaki bilgiler ve buton - dokunmatik için iyileştirilmiş */}
                     <div>
-                      <div className="flex justify-between items-center text-sm text-gray-200 mb-3">
+                      <div className="flex justify-between items-center text-base-responsive text-gray-200 mb-3">
                         <span>Kategori: {gorev.kategori}</span>
                         <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-sm h-10 py-0 text-white font-bold"
+                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-base-responsive h-12 py-0 text-white font-bold"
                         onClick={() => openModal(gorev)}
                       >
                         Göreve Katıl
@@ -1344,28 +1344,28 @@ export default function GorevlerPage() {
             )}
           </motion.div>
           
-          {/* Pagination - Bottom */}
+          {/* Pagination - Bottom - Enhanced Mobile Optimization */}
           {filteredGorevler.length > 0 && (
-            <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-10 md:mt-12 gap-3 sm:gap-4 turkish-content-bg p-4 sm:p-5 md:p-6 max-w-3xl mx-auto mb-6 sm:mb-10">
+            <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-10 md:mt-12 gap-4 sm:gap-4 turkish-content-bg p-5 sm:p-5 md:p-6 max-w-3xl mx-auto mb-6 sm:mb-10 rounded-lg">
               <Button 
                 variant="outline" 
                 size="default"
-                className="border-2 border-red-600/60 text-white font-bold text-sm sm:text-base md:text-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2 md:py-3 hover:bg-red-900/20"
+                className="border-2 border-red-600/60 text-white font-bold text-base-responsive w-full sm:w-auto sm:min-w-[120px] px-3 sm:px-4 md:px-6 py-3 hover:bg-red-900/20 min-h-[44px]"
                 onClick={() => changePage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
               >
                 &lt; Önceki
               </Button>
               
-              <div className="flex gap-2 sm:gap-3 mx-1 sm:mx-2 flex-wrap justify-center my-3 sm:my-0">
+              <div className="flex gap-2 sm:gap-3 mx-1 sm:mx-2 flex-wrap justify-center my-3 sm:my-0 w-full sm:w-auto">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <Button
                     key={pageNum}
                     variant={currentPage === pageNum ? "default" : "outline"}
                     size="sm"
                     className={currentPage === pageNum 
-                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-xs sm:text-sm md:text-base w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
-                      : "border-2 border-red-600/60 text-white font-bold text-xs sm:text-sm md:text-base w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 hover:bg-red-900/20"}
+                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-base-responsive min-w-[44px] min-h-[44px] sm:w-10 sm:h-10 md:w-12 md:h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
+                      : "border-2 border-red-600/60 text-white font-bold text-base-responsive min-w-[44px] min-h-[44px] sm:w-10 sm:h-10 md:w-12 md:h-12 hover:bg-red-900/20"}
                     onClick={() => changePage(pageNum)}
                   >
                     {pageNum}
@@ -1376,7 +1376,7 @@ export default function GorevlerPage() {
               <Button 
                 variant="outline"
                 size="default" 
-                className="border-2 border-red-600/60 text-white font-bold text-sm sm:text-base md:text-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2 md:py-3 hover:bg-red-900/20"
+                className="border-2 border-red-600/60 text-white font-bold text-base-responsive w-full sm:w-auto sm:min-w-[120px] px-3 sm:px-4 md:px-6 py-3 hover:bg-red-900/20 min-h-[44px]"
                 onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
               >
@@ -1385,12 +1385,13 @@ export default function GorevlerPage() {
             </div>
           )}
           
-          {/* Navigation Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4 sm:gap-6">
+          {/* Navigation Buttons - Mobile Optimized */}
+          <div className="flex flex-col sm:flex-row justify-center mt-8 md:mt-10 gap-4 sm:gap-6">
             <ModernTechButton 
               variant="outline"
               size="lg"
               onClick={() => navigate("/turkiye")}
+              className="text-base-responsive min-h-[50px] py-3"
             >
               Türkiye Sayfasına Dön
             </ModernTechButton>
@@ -1400,19 +1401,20 @@ export default function GorevlerPage() {
               size="lg"
               glow="subtle"
               onClick={() => navigate("/")}
+              className="text-base-responsive min-h-[50px] py-3"
             >
               Ana Sayfa
             </ModernTechButton>
           </div>
           
-          {/* Cumhuriyet Sertifikası İbaresi */}
+          {/* Cumhuriyet Sertifikası İbaresi - Mobil Optimizasyonu */}
           <motion.div
-            className="w-full max-w-3xl mx-auto turkish-content-bg p-4 sm:p-5 rounded-lg mt-8 sm:mt-10 md:mt-14 text-center"
+            className="w-full max-w-3xl mx-auto turkish-content-bg p-5 sm:p-5 rounded-lg mt-8 sm:mt-10 md:mt-14 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <p className="text-base sm:text-lg md:text-xl font-bold text-turkish-white font-poppins">
+            <p className="text-lg-responsive font-bold text-turkish-white font-poppins">
               Tamamlanan görevler <span className="text-turkish-red">Cumhuriyet Sertifikası</span> kazandıracaktır.
             </p>
           </motion.div>
@@ -1424,10 +1426,10 @@ export default function GorevlerPage() {
           CUMHURİYET GÜNCELLENİYOR
         </div>
         
-        {/* Görev Modal */}
+        {/* Görev Modal - Mobil Optimizasyonlu */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
-            className="bg-black/85 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-4 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
+            className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-5 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
             {/* Arka plan görseli - seçilen görev için - düşük opaklık */}
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-20 z-0">
@@ -1442,72 +1444,73 @@ export default function GorevlerPage() {
             {/* İçerik - Z indeksi daha yüksek */}
             <div className="relative z-10">
               <DialogHeader>
-                <DialogTitle className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
+                <DialogTitle className="text-white text-xl-responsive font-bold mb-2 sm:mb-2">
                   {selectedGorev?.baslik}
                 </DialogTitle>
-                <DialogDescription className="text-white text-sm sm:text-base leading-relaxed">
+                <DialogDescription className="text-white text-base-responsive leading-relaxed">
                   {selectedGorev?.aciklama}
                 </DialogDescription>
               </DialogHeader>
               
-              <form onSubmit={handleFormSubmit} className="space-y-5 mt-5">
+              <form onSubmit={handleFormSubmit} className="space-y-5 mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="ad" className="text-sm sm:text-base font-semibold">Adınız Soyadınız:</Label>
+                    <Label htmlFor="ad" className="text-base-responsive font-semibold">Adınız Soyadınız:</Label>
                     <Input
                       id="ad"
                       name="ad"
                       value={formData.ad}
                       onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/70 text-white text-sm sm:text-base h-10 sm:h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                      className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                       required
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="eposta" className="text-base font-semibold">E-posta:</Label>
+                    <Label htmlFor="eposta" className="text-base-responsive font-semibold">E-posta:</Label>
                     <Input
                       id="eposta"
                       name="eposta"
                       type="email"
                       value={formData.eposta}
                       onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/70 text-white text-base h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                      className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                       required
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="not" className="text-base font-semibold">Not (isteğe bağlı):</Label>
+                  <Label htmlFor="not" className="text-base-responsive font-semibold">Not (isteğe bağlı):</Label>
                   <Textarea
                     id="not"
                     name="not"
                     value={formData.not}
                     onChange={handleInputChange}
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base min-h-[80px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive min-h-[100px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                     rows={3}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="dosya" className="text-base font-semibold">Dosya yükle (PDF, JPEG):</Label>
+                  <Label htmlFor="dosya" className="text-base-responsive font-semibold">Dosya yükle (PDF, JPEG):</Label>
                   <Input
                     id="dosya"
                     name="dosya"
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                    className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
                   />
                 </div>
                 
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-6">
                   <ModernTechButton 
                     type="submit" 
                     variant="turkish"
                     size="lg"
                     glow="strong"
                     border="glowing"
+                    className="text-base-responsive min-h-[50px] px-8"
                   >
                     Göreve Katıl
                   </ModernTechButton>
