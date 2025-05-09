@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
-import { Flag, Settings, Scale, Vote, Users, BookOpen, Target, FileText, MessageSquare, Award, Star, Landmark, Shield, Clock } from "lucide-react";
+// No icons needed for formal appearance
 
 // Ana değerler için veri - türkiye sayfası için özelleştirilmiş (ikonsuz)
 const turkishValues = [
@@ -101,7 +101,7 @@ export default function TurkiyePage() {
                       repeatType: "reverse"
                     }}
                   >
-                    <Clock className="h-6 w-6 md:h-7 md:w-7" />
+                    <div className="text-red-500 font-bold">%</div>
                   </motion.div>
                 </div>
               </motion.div>

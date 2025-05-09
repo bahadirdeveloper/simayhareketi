@@ -1390,7 +1390,6 @@ export default function GorevlerPage() {
             <ModernTechButton 
               variant="outline"
               size="lg"
-              leftIcon={<ChevronLeft className="w-5 h-5" />}
               onClick={() => navigate("/turkiye")}
             >
               Türkiye Sayfasına Dön
