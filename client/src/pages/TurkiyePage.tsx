@@ -73,7 +73,7 @@ export default function TurkiyePage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.h1 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700 tracking-wide"
+                className="text-5xl-responsive font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700 tracking-wide"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -87,7 +87,7 @@ export default function TurkiyePage() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <div className="text-xl sm:text-2xl md:text-3xl text-white font-bold mb-2 flex items-center justify-center">
+                <div className="text-2xl-responsive text-white font-bold mb-4 flex items-center justify-center">
                   Cumhuriyet ile Yeniden Güncelleniyor
                   <motion.div
                     className="ml-2 text-red-500 inline-flex"
@@ -123,15 +123,15 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">TR</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GENEL KATILIM</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">GENEL KATILIM</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white"
+                      className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       8.523.912
                     </motion.div>
-                    <div className="text-xs text-gray-400 mt-1">Vatandaş</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">Vatandaş</div>
                   </div>
                 </motion.div>
                 
@@ -145,15 +145,15 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">₺</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white"
+                      className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       ₺7.514.892
                     </motion.div>
-                    <div className="text-xs text-gray-400 mt-1">Medeniyet için</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">Medeniyet için</div>
                   </div>
                 </motion.div>
                 
@@ -167,15 +167,15 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">100</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white"
+                      className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       100
                     </motion.div>
-                    <div className="text-xs text-gray-400 mt-1">Görev</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">Görev</div>
                   </div>
                 </motion.div>
                 
@@ -189,15 +189,15 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">73%</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-xs sm:text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
                     <motion.div 
-                      className="text-xl sm:text-2xl font-bold text-white"
+                      className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       %73
                     </motion.div>
-                    <div className="text-xs text-gray-400 mt-1">Tamamlandı</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">Tamamlandı</div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -211,7 +211,7 @@ export default function TurkiyePage() {
               >
                 <div className="relative mb-8">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent h-px top-1/2 transform -translate-y-1/2"></div>
-                  <h2 className="text-2xl font-bold text-center mb-6 text-white relative inline-block bg-black px-4 mx-auto block w-auto">
+                  <h2 className="text-2xl-responsive font-bold text-center mb-6 text-white relative inline-block bg-black px-6 py-2 mx-auto block w-auto">
                     <div className="flex items-center gap-2 justify-center">
                       CUMHURİYET DEĞERLERİ
                     </div>
@@ -233,8 +233,8 @@ export default function TurkiyePage() {
                           <div className="text-white font-bold">{value.name.charAt(0)}</div>
                         </div>
                       </div>
-                      <h3 className="text-lg font-semibold text-white mb-1">{value.name}</h3>
-                      <p className="text-xs text-gray-400">{value.description}</p>
+                      <h3 className="text-lg-responsive font-semibold text-white mb-2">{value.name}</h3>
+                      <p className="text-base-responsive text-gray-400">{value.description}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -250,11 +250,11 @@ export default function TurkiyePage() {
                   <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
                   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
                   
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-white font-semibold">Türkiye Cumhuriyeti Dijital Koordinasyon Alanı</h3>
+                  <div className="flex items-center gap-3 mb-3">
+                    <h3 className="text-xl-responsive text-white font-semibold">Türkiye Cumhuriyeti Dijital Koordinasyon Alanı</h3>
                   </div>
                   
-                  <p className="text-white/70 text-sm">
+                  <p className="text-base-responsive text-white/70">
                     Cumhuriyetin güncellenme sürecinde tüm vatandaşların koordineli bir şekilde görevlere katılmasını ve Türkiye'nin geleceğine katkıda bulunmasını amaçlayan dijital platform.
                   </p>
                 </div>
