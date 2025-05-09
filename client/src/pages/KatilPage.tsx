@@ -202,15 +202,15 @@ export default function KatilPage() {
           
           <TabsContent value="katilim" className="mt-2">
             <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-amber-400 mb-4">
+              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-4">
                 Cumhuriyet Güncellenme Platformu Katılımı
               </h3>
-              <p className="text-gray-200 mb-4">
+              <p className="text-gray-200 text-base-responsive mb-4">
                 Platformumuza katılmak için aşağıdaki formu doldurduktan sonra
                 1 TL'lik sembolik kayıt ücretini ödemeniz gerekmektedir.
               </p>
               <div className="bg-amber-900/30 border border-amber-500/50 rounded-lg p-4 mb-6">
-                <p className="text-amber-300 text-sm">
+                <p className="text-amber-300 text-base-responsive">
                   Kayıt ücreti, platform maliyetlerinin karşılanması ve sisteme olan bağlılığın sembolik bir göstergesi olarak alınmaktadır.
                 </p>
               </div>
@@ -354,14 +354,14 @@ export default function KatilPage() {
             </Form>
             
             <div className="mt-6 pt-6 border-t border-amber-500/30">
-              <h4 className="text-xl font-semibold text-amber-400 mb-4 text-center">
+              <h4 className="text-xl-responsive font-semibold text-amber-400 mb-4 text-center">
                 Kayıt Ücreti Ödemesi
               </h4>
               <div className="bg-black/40 backdrop-blur-sm border border-amber-500/50 rounded-lg p-4 md:p-5">
                 <div className="mb-4 text-center">
-                  <div className="inline-block bg-amber-900/50 px-4 py-2 rounded-lg border border-amber-500/30">
-                    <span className="text-white text-sm md:text-base">Katılım ücreti:</span>
-                    <span className="text-amber-400 font-bold text-xl md:text-2xl ml-2">1 TL</span>
+                  <div className="inline-block bg-amber-900/50 px-4 py-3 rounded-lg border border-amber-500/30">
+                    <span className="text-white text-base-responsive">Katılım ücreti:</span>
+                    <span className="text-amber-400 font-bold text-xl-responsive ml-2">1 TL</span>
                   </div>
                 </div>
                 
@@ -372,7 +372,7 @@ export default function KatilPage() {
                 />
                 
                 <div className="mt-3 text-center">
-                  <p className="text-gray-300 text-xs sm:text-sm italic">
+                  <p className="text-gray-300 text-base-responsive italic">
                     * Ödeme bilgileriniz güvenli bir şekilde işlenmektedir. Kredi kartı veya banka bilgileriniz sistemimizde saklanmaz.
                   </p>
                 </div>
@@ -382,10 +382,10 @@ export default function KatilPage() {
           
           <TabsContent value="bagis" className="mt-2">
             <div className="text-center mb-4">
-              <h3 className="text-xl font-semibold text-amber-400 mb-2">
+              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-2">
                 Cumhuriyeti Güncellemek İçin Bağış Yap
               </h3>
-              <p className="text-gray-200">
+              <p className="text-gray-200 text-base-responsive">
                 Bağışınız "Medeniyet için yetecek kadar" hedefimize katkı sağlayacak
               </p>
             </div>
@@ -395,36 +395,36 @@ export default function KatilPage() {
           
           <TabsContent value="financial" className="mt-2">
             <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-amber-400 mb-2">
+              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-2">
                 Şeffaf Gelir-Gider Tablosu
               </h3>
-              <p className="text-gray-200 text-sm">
+              <p className="text-gray-200 text-base-responsive">
                 Platformun tüm finansal faaliyetleri şeffaf bir şekilde yönetilmektedir
               </p>
             </div>
             
             <div className="flex flex-col md:flex-row justify-between items-center md:space-x-4 mb-4">
-              <div className="bg-gradient-to-r from-green-900/50 to-green-950/30 p-3 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto">
-                <ArrowUpRight className="text-green-400 mr-2 h-5 w-5" />
+              <div className="bg-gradient-to-r from-green-900/50 to-green-950/30 p-4 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto min-h-[60px]">
+                <ArrowUpRight className="text-green-400 mr-3 h-6 w-6" />
                 <div>
-                  <p className="text-gray-300 text-xs">Toplam Gelir</p>
-                  <p className="text-green-400 font-bold">{formatCurrency(totalIncome)}</p>
+                  <p className="text-gray-300 text-base-responsive">Toplam Gelir</p>
+                  <p className="text-green-400 font-bold text-base-responsive">{formatCurrency(totalIncome)}</p>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-red-900/50 to-red-950/30 p-3 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto">
-                <ArrowDownRight className="text-red-400 mr-2 h-5 w-5" />
+              <div className="bg-gradient-to-r from-red-900/50 to-red-950/30 p-4 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto min-h-[60px]">
+                <ArrowDownRight className="text-red-400 mr-3 h-6 w-6" />
                 <div>
-                  <p className="text-gray-300 text-xs">Toplam Gider</p>
-                  <p className="text-red-400 font-bold">{formatCurrency(totalExpense)}</p>
+                  <p className="text-gray-300 text-base-responsive">Toplam Gider</p>
+                  <p className="text-red-400 font-bold text-base-responsive">{formatCurrency(totalExpense)}</p>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-blue-900/50 to-blue-950/30 p-3 rounded-lg flex items-center w-full md:w-auto">
-                <BarChart4 className="text-blue-400 mr-2 h-5 w-5" />
+              <div className="bg-gradient-to-r from-blue-900/50 to-blue-950/30 p-4 rounded-lg flex items-center w-full md:w-auto min-h-[60px]">
+                <BarChart4 className="text-blue-400 mr-3 h-6 w-6" />
                 <div>
-                  <p className="text-gray-300 text-xs">Mevcut Bakiye</p>
-                  <p className={`font-bold ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
+                  <p className="text-gray-300 text-base-responsive">Mevcut Bakiye</p>
+                  <p className={`font-bold text-base-responsive ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
                     {formatCurrency(balance)}
                   </p>
                 </div>
@@ -490,12 +490,13 @@ export default function KatilPage() {
           </TabsContent>
         </Tabs>
         
-        <div className="flex flex-col md:flex-row gap-4 justify-center mt-10">
+        <div className="flex flex-col md:flex-row gap-4 justify-center mt-10 mb-6">
           <ModernTechButton 
             variant="futuristic"
             glow="subtle"
             border="subtle"
             onClick={() => navigate("/turkiye")}
+            className="text-base-responsive min-h-[50px] py-3"
           >
             ◀ Türkiye Sayfasına Dön
           </ModernTechButton>
@@ -505,6 +506,7 @@ export default function KatilPage() {
             glow="subtle"
             border="glowing"
             onClick={() => navigate("/")}
+            className="text-base-responsive min-h-[50px] py-3"
           >
             Ana Sayfa
           </ModernTechButton>
