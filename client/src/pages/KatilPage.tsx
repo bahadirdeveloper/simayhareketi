@@ -93,11 +93,15 @@ export default function KatilPage() {
   
   // Gelir-gider bilgileri - Henüz işlem yok
   const incomeData = [
-    { id: 1, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'income' },
+    { id: 1, date: '23 Nisan 2025', description: 'Tüm Dünya Çocuklarına Armağan', amount: 0, type: 'income' },
+    { id: 2, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'income' },
+    { id: 3, date: '30 Ağustos 2025', description: 'Sonsuz Zafer Bayramı', amount: 0, type: 'income' },
   ];
   
   const expenseData = [
-    { id: 1, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'expense' },
+    { id: 1, date: '23 Nisan 2025', description: 'Tüm Dünya Çocuklarına Armağan', amount: 0, type: 'expense' },
+    { id: 2, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'expense' },
+    { id: 3, date: '30 Ağustos 2025', description: 'Sonsuz Zafer Bayramı', amount: 0, type: 'expense' },
   ];
   
   // Toplam gelir/gider hesaplamaları
