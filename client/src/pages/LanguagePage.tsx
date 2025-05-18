@@ -206,17 +206,66 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <a 
-                    href="https://www.youtube.com/watch?v=yksM9nDv-Lg" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Müzik çal"
+                    onClick={() => {
+                      // Doğrudan video izleme alanı oluştur
+                      // Bu şekilde sesi sitede oynatabilir
+                      
+                      // Hali hazırda video oynatıcı varsa kaldır
+                      const existingPlayer = document.getElementById('youtube-audio-player');
+                      if (existingPlayer) {
+                        existingPlayer.remove();
+                        return;
+                      }
+                      
+                      // Görünür bir YouTube oynatıcı oluştur
+                      const playerDiv = document.createElement('div');
+                      playerDiv.id = 'youtube-audio-player';
+                      playerDiv.style.position = 'fixed';
+                      playerDiv.style.bottom = '20px';
+                      playerDiv.style.right = '20px';
+                      playerDiv.style.width = '300px';
+                      playerDiv.style.borderRadius = '4px';
+                      playerDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+                      playerDiv.style.padding = '10px';
+                      playerDiv.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
+                      playerDiv.style.zIndex = '1000';
+                      playerDiv.style.display = 'flex';
+                      playerDiv.style.flexDirection = 'column';
+                      
+                      // İçerik - YouTube iframe
+                      playerDiv.innerHTML = `
+                        <div style="position:relative; width:100%; padding-top:56.25%;">
+                          <iframe
+                            style="position:absolute; top:0; left:0; width:100%; height:100%;"
+                            src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                          ></iframe>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                          <div style="color:white; font-size:14px;">Ses Oynatılıyor</div>
+                          <button id="close-player" style="background:#c41e3a; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Kapat</button>
+                        </div>
+                      `;
+                      
+                      // Sayfaya ekle
+                      document.body.appendChild(playerDiv);
+                      
+                      // Kapatma düğmesi işlevselliği
+                      document.getElementById('close-player')?.addEventListener('click', () => {
+                        playerDiv.remove();
+                      });
+                    }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
