@@ -69,31 +69,73 @@ export default function BirlesikManifestoPage() {
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
         >
           <div 
-            className={`p-6 rounded-lg text-center cursor-pointer transition-all duration-300
+            className={`p-6 rounded-lg text-center transition-all duration-300
               ${activeTab === "anayasa" 
                 ? "bg-red-700 text-white" 
                 : "bg-red-900/30 text-white/80 hover:bg-red-800/50"}`}
-            onClick={() => setActiveTab("anayasa")}
           >
-            <h2 className="text-2xl font-bold">ANAYASA</h2>
+            <div className="flex flex-col items-center space-y-3">
+              <h2 className="text-2xl font-bold cursor-pointer" onClick={() => setActiveTab("anayasa")}>ANAYASA</h2>
+              <button 
+                className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg hover:from-red-600 hover:to-red-800 transition-all duration-300"
+                aria-label="Anayasa sesini çal"
+                title="Anayasa Açıklamasını Dinle"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open("https://www.youtube.com/watch?v=placeholder-anayasa", "_blank");
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.14v14l11-7-11-7z" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div 
-            className={`p-6 rounded-lg text-center cursor-pointer transition-all duration-300
+            className={`p-6 rounded-lg text-center transition-all duration-300
               ${activeTab === "manifesto" 
                 ? "bg-blue-700 text-white" 
                 : "bg-blue-900/30 text-white/80 hover:bg-blue-800/50"}`}
-            onClick={() => setActiveTab("manifesto")}
           >
-            <h2 className="text-2xl font-bold">MANİFESTO</h2>
+            <div className="flex flex-col items-center space-y-3">
+              <h2 className="text-2xl font-bold cursor-pointer" onClick={() => setActiveTab("manifesto")}>MANİFESTO</h2>
+              <button 
+                className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-900 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-300"
+                aria-label="Manifesto sesini çal"
+                title="Manifesto Açıklamasını Dinle"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open("https://www.youtube.com/watch?v=placeholder-manifesto", "_blank");
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.14v14l11-7-11-7z" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div 
-            className={`p-6 rounded-lg text-center cursor-pointer transition-all duration-300
+            className={`p-6 rounded-lg text-center transition-all duration-300
               ${activeTab === "cagri" 
                 ? "bg-blue-700 text-white" 
                 : "bg-blue-900/30 text-white/80 hover:bg-blue-800/50"}`}
-            onClick={() => setActiveTab("cagri")}
           >
-            <h2 className="text-2xl font-bold">HALKA ÇAĞRI</h2>
+            <div className="flex flex-col items-center space-y-3">
+              <h2 className="text-2xl font-bold cursor-pointer" onClick={() => setActiveTab("cagri")}>HALKA ÇAĞRI</h2>
+              <button 
+                className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-900 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-300"
+                aria-label="Çağrı sesini çal"
+                title="Çağrı Açıklamasını Dinle"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open("https://www.youtube.com/watch?v=placeholder-cagri", "_blank");
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.14v14l11-7-11-7z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </motion.div>
 
