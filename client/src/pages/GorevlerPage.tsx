@@ -1107,14 +1107,18 @@ export default function GorevlerPage() {
                         ? 'border-green-500 shadow-[0_0_15px_rgba(68,255,68,0.5)]' 
                         : 'border-red-600'
                   } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
-                  style={gorev.id >= 0 && gorev.id <= 100 ? {
-                    background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url(${getGorevBackgroundImage(gorev.id)})`, 
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  } : {}}
                 >
-                  {/* No additional overlay needed as we've included it in the background style */}
+                  {/* Background image with overlay */}
+                  {gorev.id >= 0 && gorev.id <= 100 && (
+                    <div className="absolute inset-0 z-0">
+                      <img 
+                        src={getGorevBackgroundImage(gorev.id)} 
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80"></div>
+                    </div>
+                  )}
                   
                   {/* Content */}
                   <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
