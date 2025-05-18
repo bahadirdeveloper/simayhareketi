@@ -208,67 +208,37 @@ export default function LanguagePage() {
                 <div className="flex items-center justify-center mb-4">
                   <button 
                     onClick={() => {
-                      // Tarayıcı kısıtlamalarını aşmak için çoklu yaklaşım kullanalım
+                      // Ses dosyasını doğrudan HTML elementleriyle çal
                       
-                      // 1. Kullanıcı etkileşimi ile doğrudan kaynak
-                      const directAudio = new Audio("/audio/giris1.mp3");
-                      directAudio.volume = 0.5;
-                      directAudio.loop = true;
+                      // 1. Audio elementini oluştur
+                      const audioElement = document.createElement('audio');
+                      audioElement.src = '/music/giris.mp3';
+                      audioElement.volume = 0.5;
+                      audioElement.loop = true;
+                      audioElement.controls = false;
+                      audioElement.id = 'turkish-music-player';
+                      audioElement.style.display = 'none';
+                      document.body.appendChild(audioElement);
                       
-                      // Direkt çalma girişimi
-                      directAudio.play()
-                        .then(() => {
-                          console.log("GİRİŞ MÜZİĞİ BAŞARIYLA ÇALINIYOR!");
-                        })
-                        .catch((err) => {
-                          console.error("Direkt çalma başarısız, alternatif metod deneniyor...", err);
+                      // 2. Çalmayı dene
+                      const playPromise = audioElement.play();
+                      
+                      if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                          console.log('Müzik çalınıyor!');
+                        }).catch(error => {
+                          console.error('Otomatik çalma hatası:', error);
                           
-                          // 2. AudioContext API kullanarak zorla çalma
-                          try {
-                            // İkinci deneme: AudioContext API
-                            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-                            
-                            fetch('/audio/giris1.mp3')
-                              .then(response => response.arrayBuffer())
-                              .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-                              .then(audioBuffer => {
-                                const source = audioContext.createBufferSource();
-                                source.buffer = audioBuffer;
-                                source.connect(audioContext.destination);
-                                source.loop = true;
-                                source.start(0);
-                                console.log("AudioContext ile başarıyla çalındı!");
-                              })
-                              .catch(e => {
-                                console.error("AudioContext ile çalma başarısız:", e);
-                                
-                                // 3. Gizli iframe ve embed element kullanma
-                                const audioContainer = document.createElement('div');
-                                audioContainer.style.position = 'fixed';
-                                audioContainer.style.bottom = '0';
-                                audioContainer.style.left = '0';
-                                audioContainer.style.width = '1px';
-                                audioContainer.style.height = '1px';
-                                audioContainer.style.overflow = 'hidden';
-                                audioContainer.style.opacity = '0.01';
-                                audioContainer.style.pointerEvents = 'none';
-                                
-                                // Embed yaklaşımı
-                                audioContainer.innerHTML = `
-                                  <embed src="/audio/giris1.mp3" width="1" height="1" 
-                                    hidden="true" autostart="true" loop="true">
-                                  <audio autoplay loop>
-                                    <source src="/audio/giris1.mp3" type="audio/mpeg">
-                                  </audio>
-                                  <iframe src="/audio/giris1.mp3" allow="autoplay" style="display:none"></iframe>
-                                `;
-                                
-                                document.body.appendChild(audioContainer);
-                              });
-                          } catch (e) {
-                            console.error("Tüm alternatif yöntemler başarısız:", e);
-                          }
+                          // 3. Kullanıcı etkileşimi ile yeni bir deneme
+                          alert('Müzik çalmak için lütfen tekrar tıklayın');
+                          
+                          // Anında çalmak için
+                          document.addEventListener('click', function clickHandler() {
+                            audioElement.play().catch(e => console.error('Son deneme de başarısız:', e));
+                            document.removeEventListener('click', clickHandler);
+                          }, { once: true });
                         });
+                      }
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Türk müziği çal"
