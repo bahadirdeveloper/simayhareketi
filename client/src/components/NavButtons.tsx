@@ -10,63 +10,28 @@ export function NavButtons() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.7 }}
-      className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-4 mb-6"
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 mb-6 max-w-4xl mx-auto"
     >
-      <ModernTechButton 
-        variant="turkish"
-        size="lg"
-        glow="none"
-        border="subtle"
-        onClick={() => navigate("/turkiye")}
-        className="min-w-[150px]"
-      >
-        TÜRKİYE
-      </ModernTechButton>
-      
-      <ModernTechButton 
-        variant="primary"
-        size="lg"
-        glow="none"
-        border="subtle"
-        onClick={() => navigate("/manifesto")}
-        className="min-w-[150px]"
-      >
-        MANİFESTO
-      </ModernTechButton>
-      
-      <ModernTechButton 
-        variant="primary"
-        size="lg"
-        glow="none"
-        border="subtle"
-        onClick={() => navigate("/cagri")}
-        className="min-w-[150px]"
-      >
-        ÇAĞRI
-      </ModernTechButton>
-      
-      <ModernTechButton 
-        variant="futuristic"
-        size="lg"
-        glow="none"
-        border="subtle"
-        onClick={() => navigate("/katil")}
-        className="min-w-[150px]"
-      >
-        KATIL
-      </ModernTechButton>
-      
-      <ModernTechButton 
-        variant="futuristic"
-        size="lg"
-        glow="none"
-        border="subtle"
-        onClick={() => navigate("/gorevler")}
-        className="min-w-[150px]"
-      >
-        GÖREV
-      </ModernTechButton>
+      {[
+        { path: "/turkiye", text: "TÜRKİYE", variant: "turkish" },
+        { path: "/manifesto", text: "MANİFESTO", variant: "primary" },
+        { path: "/cagri", text: "ÇAĞRI", variant: "primary" },
+        { path: "/katil", text: "KATIL", variant: "futuristic" },
+        { path: "/gorevler", text: "GÖREV", variant: "futuristic" }
+      ].map((button, index) => (
+        <ModernTechButton 
+          key={button.path}
+          variant={button.variant as any}
+          size="md"
+          glow="none"
+          border="subtle"
+          onClick={() => navigate(button.path)}
+          className="min-w-[110px] sm:min-w-[130px] touch-target text-sm sm:text-base py-2 sm:py-3"
+        >
+          {button.text}
+        </ModernTechButton>
+      ))}
     </motion.div>
   );
 }
