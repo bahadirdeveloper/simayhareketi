@@ -234,14 +234,14 @@ const ModernLayout = ({
             </div>
           </div>
           
-          {/* Basit ses kontrolü - tarayıcı native kontrolü */}
+          {/* Basit ses kontrolü - yerel ses dosyası ile */}
           <div className="fixed bottom-16 right-4 z-40">
             <div className="bg-black/40 p-2 rounded-lg border border-red-500/20 flex flex-col items-center">
               <span className="text-white text-sm mb-1">Ses Kontrolü</span>
               <audio 
                 controls
                 loop
-                src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3"
+                src="/attached_assets/giris.mp3"
                 style={{ 
                   width: '200px',
                   height: '36px',
