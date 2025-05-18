@@ -102,20 +102,14 @@ const GridLines = memo(() => {
 
 GridLines.displayName = 'GridLines';
 
-// Memoized background elements for better performance
+// Daha hafif arka plan - performans için optimize edildi
 const BackgroundElements = memo(() => (
   <div className="absolute inset-0 z-0">
-    {/* Subtle digital noise texture */}
-    <div className="absolute inset-0 bg-noise opacity-5"></div>
+    {/* Sadece basit arka plan elemanları */}
+    <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-red-900/10 to-transparent opacity-20"></div>
+    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-red-900/10 to-transparent opacity-20"></div>
     
-    {/* Grid pattern - optimized */}
-    <GridLines />
-    
-    {/* Reduced decorative elements for performance */}
-    <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-red-900/10 to-transparent opacity-20"></div>
-    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-red-900/10 to-transparent opacity-20"></div>
-    
-    {/* Minimal circuit elements */}
+    {/* Minimal çizgiler */}
     <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
   </div>
