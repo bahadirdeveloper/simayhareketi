@@ -1315,7 +1315,7 @@ export default function GorevlerPage() {
                 <img 
                   src={getGorevImage(selectedGorev.id)}
                   alt=""
-                  className="w-full h-full object-cover object-center blur-sm"
+                  className="w-full h-full object-cover object-center"
                   onError={(e) => {
                     // Hata durumunda renkli arkaplan kullan
                     e.currentTarget.style.display = "none";
