@@ -73,8 +73,8 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 mx-auto text-red-500 font-bold text-sm border border-red-500/50 rounded-full flex items-center justify-center">TC</div>
                   </div>
                   <p className="text-2xl-responsive font-bold leading-relaxed">
-                    <span className="text-red-500 block mb-3">"Türk, Atasının mirasına sahip çıkamazsa,</span>
-                    <span className="text-white block">geleceğini başka milletlerin insafına bırakır."</span>
+                    <span className="text-red-500 block mb-3">{t("turkiye_page.quote").split('"')[1]}</span>
+                    <span className="text-white block">{t("turkiye_page.quote").split('"')[2]}</span>
                   </p>
                 </motion.div>
               </div>
@@ -93,7 +93,7 @@ export default function TurkiyePage() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                TÜRKİYE
+                {t("turkiye_page.title")}
               </motion.h1>
               
               <motion.div 
@@ -103,7 +103,7 @@ export default function TurkiyePage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <div className="text-2xl-responsive text-white font-bold mb-4 flex items-center justify-center">
-                  Cumhuriyet ile Yeniden Güncelleniyor
+                  {t("turkiye_page.subtitle")}
                   <motion.div
                     className="ml-2 text-red-500 inline-flex"
                     animate={{ 
@@ -369,9 +369,9 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-4"
                   onClick={() => navigate("/cagri")}
                 >
-                  ÇAĞRI
+                  {t("turkiye_page.cagri")}
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halka çağrı ve manifestonun çağrı metni</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.cagri_desc")}</p>
               </div>
               
               {/* 5. HAREKETE KATIL */}
@@ -384,9 +384,9 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-4"
                   onClick={() => navigate("/katil")}
                 >
-                  HAREKETE KATIL
+                  {t("turkiye_page.harekete_katil")}
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet güncellemesi katılım sistemi</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.katil_desc")}</p>
               </div>
             </motion.div>
           </motion.div>
