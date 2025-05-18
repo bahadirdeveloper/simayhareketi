@@ -134,7 +134,7 @@ export default function BirlesikManifestoPage() {
                   transition={{ duration: 0.5 }}
                   className="text-3xl-responsive font-bold mb-6 text-white text-center"
                 >
-                  {t("manifesto.title")}
+                  Halk Hareketi Manifestosu
                 </motion.h1>
 
                 <motion.p
@@ -143,7 +143,7 @@ export default function BirlesikManifestoPage() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-lg-responsive text-gray-300 mb-6 leading-relaxed max-w-3xl mx-auto"
                 >
-                  {t("manifesto.introduction")}
+                  Halk Hareketi olarak, cumhuriyetin temel değerlerini korurken, onu halkın katılımıyla geleceğe taşımayı ve toplumsal bağları güçlendirmeyi amaçlıyoruz.
                 </motion.p>
 
                 <motion.h2
@@ -228,7 +228,7 @@ export default function BirlesikManifestoPage() {
                   className="prose prose-lg max-w-none prose-invert mx-auto"
                 >
                   <p className="text-lg-responsive leading-relaxed">
-                    Sevgili vatandaşlar, Türkiye'nin geleceğini birlikte şekillendirmek için büyük bir fırsat önümüzde duruyor. Bugün, Cumhuriyet'in temel değerlerini koruyarak, onu modern çağın gereklilikleriyle güncellemek ve daha güçlü, daha adil bir toplum inşa etmek için çağrımızı yapıyoruz.
+                    Sevgili vatandaşlar, Türkiye'nin geleceğini birlikte şekillendirmek için büyük bir fırsat önümüzde duruyor. Bugün, Cumhuriyet'in temel değerlerini koruyarak, onu çağımızın gereklilikleriyle güncellemek ve daha güçlü, daha adil bir toplum inşa etmek için çağrımızı yapıyoruz.
                   </p>
                   
                   <h2 className="text-2xl-responsive font-bold mt-8 mb-4">Neden Harekete Geçmeliyiz?</h2>
@@ -271,6 +271,12 @@ export default function BirlesikManifestoPage() {
                       "Türkiye Cumhuriyeti, ilelebet payidar kalacaktır."
                     </p>
                     <p className="text-sm text-gray-400 mt-2">Mustafa Kemal Atatürk</p>
+                  </div>
+                  
+                  <div className="bg-blue-900/20 p-4 rounded-lg mt-8 border border-blue-800/30">
+                    <p className="text-gray-300 text-center italic">
+                      Bu çağrı, yapay zeka değil, teknoloji ve halkın gücüyle ilerleyen bir gelecek için sizleri harekete geçmeye davet ediyor.
+                    </p>
                   </div>
                 </motion.div>
               </div>
