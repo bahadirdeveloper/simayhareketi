@@ -1,13 +1,81 @@
-import { ReactNode, useEffect, memo, useMemo, useState } from 'react';
+import { ReactNode, useEffect, memo, useMemo, useState, useRef } from 'react';
 import { useLocation } from 'wouter';
-import { ArrowLeft, MessageCircle, ExternalLink } from 'lucide-react';
+import { ArrowLeft, MessageCircle, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
-import AudioControl from './AudioControl';
 import LanguageSelector from './LanguageSelector';
 import AccessibilityReader from './AccessibilityReader';
 import { ModernTechButton } from './ModernTechButton';
-import { SimpleAudioPlayer } from './SimpleAudioPlayer';
 import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
+
+// Ses kontrolü için düğme bileşeni
+const AudioButton = () => {
+  const [location, setLocation] = useLocation();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [currentTime, setCurrentTime] = useState('0:00');
+  
+  useEffect(() => {
+    // Audio elementini oluştur
+    const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
+    audio.loop = true;
+    audioRef.current = audio;
+    
+    // Ses süresini izlemek için
+    const updateTime = () => {
+      if (audioRef.current) {
+        const minutes = Math.floor(audioRef.current.currentTime / 60);
+        const seconds = Math.floor(audioRef.current.currentTime % 60);
+        setCurrentTime(`${minutes}:${seconds < 10 ? '0' + seconds : seconds}`);
+      }
+    };
+    
+    audio.addEventListener('timeupdate', updateTime);
+    
+    // Component unmount olduğunda temizle
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener('timeupdate', updateTime);
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+  
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+    
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(err => {
+        console.error("Ses çalma hatası:", err);
+      });
+    }
+    
+    setIsPlaying(!isPlaying);
+  };
+  
+  // Ayrıca dil sayfasına yönlendirme işlevini de koru
+  const handleClick = (e: React.MouseEvent) => {
+    if (e.shiftKey) {
+      // Shift tuşu ile tıklanırsa dil sayfasına git
+      setLocation('/dil');
+    } else {
+      // Normal tıklama sesi açıp kapatır
+      toggleAudio();
+    }
+  };
+  
+  return (
+    <button 
+      onClick={handleClick}
+      className="fixed z-40 bottom-4 left-4 bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-red-700 transition-colors"
+      aria-label={isPlaying ? "Sesi Durdur" : "Sesi Başlat"}
+    >
+      {isPlaying ? 'SES' : 'SES'}
+    </button>
+  );
+};
 
 interface ModernLayoutProps {
   children: ReactNode;
@@ -234,23 +302,9 @@ const ModernLayout = ({
             </div>
           </div>
           
-          {/* Basit ses kontrolü - alternatif müzik */}
-          <div className="fixed bottom-16 right-4 z-40">
-            <div className="bg-black/40 p-2 rounded-lg border border-red-500/20 flex flex-col items-center">
-              <span className="text-white text-sm mb-1">Ses Kontrolü</span>
-              <audio 
-                controls
-                loop
-                preload="auto"
-                src="https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3"
-                style={{ 
-                  width: '200px',
-                  height: '36px',
-                  opacity: 0.8
-                }}
-                id="background-audio"
-              />
-            </div>
+          {/* Ses kontrol düğmesi */}
+          <div className="fixed bottom-4 left-4 z-40">
+            <AudioButton />
           </div>
         </main>
         
