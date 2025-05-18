@@ -71,8 +71,22 @@ export default function TurkNedirDetayPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-red-500 pb-2">
               TÜRK NEDİR?
             </h1>
-            <div className="w-24 h-1 bg-red-600 mx-auto mt-4 mb-6"></div>
-            <p className="text-2xl font-bold text-white mt-4">
+            <div className="w-24 h-1 bg-red-600 mx-auto mt-4 mb-4"></div>
+            
+            <div className="flex justify-center items-center mb-4">
+              <button 
+                className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                aria-label="Videoyu oynat"
+                title="Türklük Bilinci Videosunu İzle"
+                onClick={() => window.open("https://www.youtube.com/watch?v=placeholder", "_blank")}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.14v14l11-7-11-7z" />
+                </svg>
+              </button>
+            </div>
+            
+            <p className="text-2xl font-bold text-white mt-2">
               "Size söz... Bu medeniyet arşa yükselecek."
             </p>
           </div>
