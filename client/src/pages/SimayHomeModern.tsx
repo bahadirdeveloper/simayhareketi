@@ -191,7 +191,18 @@ export default function SimayHomeModern() {
                 onClick={() => navigate("/katil")}
                 className="min-w-[150px]"
               >
-                KATIL & GÖREV
+                KATIL
+              </ModernTechButton>
+              
+              <ModernTechButton 
+                variant="futuristic"
+                size="lg"
+                glow="none"
+                border="subtle"
+                onClick={() => navigate("/gorevler")}
+                className="min-w-[150px]"
+              >
+                GÖREV
               </ModernTechButton>
             </motion.div>
           </div>
