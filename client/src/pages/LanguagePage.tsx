@@ -210,40 +210,8 @@ export default function LanguagePage() {
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Müzik çal"
                     onClick={() => {
-                      // Gizli bir audio player oluştur ve YouTube videosunu çal
-                      // Önceki player varsa kaldır
-                      const existingPlayer = document.getElementById('hidden-youtube-player');
-                      if (existingPlayer) {
-                        existingPlayer.remove();
-                      }
-                      
-                      // Gizli div oluştur
-                      const audioContainer = document.createElement('div');
-                      audioContainer.id = 'hidden-youtube-player';
-                      audioContainer.style.position = 'fixed';
-                      audioContainer.style.bottom = '0';
-                      audioContainer.style.right = '0';
-                      audioContainer.style.width = '1px';
-                      audioContainer.style.height = '1px';
-                      audioContainer.style.opacity = '0.01'; // Tamamen gizli olmasın (0) çünkü bazı tarayıcılarda çalışmayabilir
-                      audioContainer.style.pointerEvents = 'none';
-                      audioContainer.style.zIndex = '-1'; // Sayfanın arka planına yerleştir
-                      
-                      // YouTube iframe'i oluştur
-                      audioContainer.innerHTML = `
-                        <iframe 
-                          width="1" 
-                          height="1" 
-                          src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1" 
-                          allow="autoplay; encrypted-media" 
-                          frameborder="0"
-                          title="Gizli Ses Oynatıcısı"
-                        ></iframe>
-                      `;
-                      
-                      // Sayfaya ekle
-                      document.body.appendChild(audioContainer);
-                      console.log("Arkaplanda YouTube sesi çalınıyor");
+                      // Doğrudan YouTube videosunu açalım
+                      window.open("https://www.youtube.com/watch?v=yksM9nDv-Lg", "_blank");
                     }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
