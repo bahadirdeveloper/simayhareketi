@@ -27,8 +27,20 @@ export default function LanguagePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    // Initialize audio system with immediate playback
+    try {
+      console.log("Audio initialization started for language page...");
+      initAudio('home');
+      
+      // Küçük bir gecikme ile ses çalmayı zorla
+      const playTimer = setTimeout(() => {
+        console.log("Forcing audio playback...");
+        playSoundtrack();
+      }, 500);
+      
+    } catch (error) {
+      console.error("Audio initialization failed:", error);
+    }
     
     // Record visit
     const recordVisit = async () => {
@@ -53,11 +65,21 @@ export default function LanguagePage() {
       setIsLoading(false);
     }, 1500);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [i18n.language]);
 
   const handleLanguageSelect = (langCode: string) => {
     i18n.changeLanguage(langCode);
+    
+    // Kullanıcı etkileşimi olduğunda sesi başlat (tarayıcı kısıtlamalarını aşmak için)
+    try {
+      console.log("User interaction - playing audio");
+      playSoundtrack();
+    } catch (error) {
+      console.error("Failed to play audio:", error);
+    }
     
     // Record selected language
     const recordLanguageSelection = async () => {
