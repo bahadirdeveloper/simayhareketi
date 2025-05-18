@@ -331,28 +331,33 @@ export default function TurkiyePage() {
               ))}
             </motion.div>
             
-            {/* Alt navigasyon butonları - Yalnızca istenen butonları göster */}
+            {/* Türk Nedir Butonunu Üstte ve Kırmızı Göster */}
             <motion.div
-              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-5xl mx-auto mb-10"
+              className="w-full max-w-4xl mx-auto mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              {/* TÜRK NEDİR? Button */}
-              <div className="flex flex-col">
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="mb-2 justify-center py-4"
-                  onClick={() => navigate("/turknedir")}
-                >
-                  TÜRK NEDİR?
-                </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
-              </div>
-              
+              <ModernTechButton 
+                variant="turkish"
+                size="lg"
+                glow="none"
+                border="subtle"
+                className="w-full justify-center py-5 text-lg font-bold"
+                onClick={() => navigate("/turknedir")}
+              >
+                TÜRK NEDİR?
+              </ModernTechButton>
+              <p className="text-xs text-gray-400 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+            </motion.div>
+            
+            {/* Alt navigasyon butonları - 3 buton yan yana */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl mx-auto mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               {/* MANİFESTO&ANAYASALARIMIZ Button */}
               <div className="flex flex-col">
                 <ModernTechButton 
