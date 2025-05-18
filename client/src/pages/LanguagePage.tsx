@@ -206,77 +206,50 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <div className="relative">
-                    {/* Ses butonu */}
-                    <button 
-                      onClick={() => {
-                        try {
-                          // Mevcut ses oynatıcısını temizle
-                          const existingAudio = document.getElementById('turkish-anthem-player');
-                          if (existingAudio) {
-                            existingAudio.remove();
-                          }
-                          
-                          // Yeni ses oynatıcısı oluştur
-                          const audioPlayer = document.createElement('audio');
-                          audioPlayer.id = 'turkish-anthem-player';
-                          audioPlayer.src = '/audio/anasayfa.mp3';
-                          audioPlayer.loop = true;
-                          audioPlayer.volume = 0.7;
-                          
-                          // Ses oynatıcısını gizle
-                          audioPlayer.style.display = 'none';
-                          document.body.appendChild(audioPlayer);
-                          
-                          // Ses çalma işlemi
-                          const playPromise = audioPlayer.play();
-                          
-                          if (playPromise !== undefined) {
-                            playPromise
-                              .then(() => {
-                                console.log("✅ Müzik başarıyla çalınıyor");
-                              })
-                              .catch((error) => {
-                                console.error("❌ Müzik çalınamadı, YouTube ile devam ediliyor", error);
-                                
-                                // Yedek plan: YouTube
-                                const youtubeContainer = document.createElement('div');
-                                youtubeContainer.id = 'youtube-container';
-                                youtubeContainer.style.position = 'fixed';
-                                youtubeContainer.style.bottom = '0';
-                                youtubeContainer.style.right = '0';
-                                youtubeContainer.style.width = '1px';
-                                youtubeContainer.style.height = '1px';
-                                youtubeContainer.style.visibility = 'hidden';
-                                youtubeContainer.style.pointerEvents = 'none';
-                                
-                                youtubeContainer.innerHTML = `
-                                  <iframe 
-                                    id="youtube-player" 
-                                    width="1" 
-                                    height="1" 
-                                    src="https://www.youtube.com/embed/Y75Km7dlt94?autoplay=1&mute=0" 
-                                    allow="autoplay" 
-                                    frameborder="0"
-                                  ></iframe>
-                                `;
-                                
-                                document.body.appendChild(youtubeContainer);
-                                console.log("YouTube oynatıcı yedek olarak başlatıldı");
-                              });
-                          }
-                        } catch (error) {
-                          console.error("Ses sistemi hata verdi:", error);
+                  <button 
+                    onClick={() => {
+                      try {
+                        // Mevcut YouTube player varsa temizle
+                        const existingPlayer = document.getElementById('youtube-container');
+                        if (existingPlayer) {
+                          existingPlayer.remove();
                         }
-                      }}
-                      className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
-                      aria-label="Müzik çal"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5.14v14l11-7-11-7z" />
-                      </svg>
-                    </button>
-                  </div>
+                        
+                        // YouTube videosu ekle
+                        const container = document.createElement('div');
+                        container.id = 'youtube-container';
+                        container.style.position = 'fixed';
+                        container.style.bottom = '0';
+                        container.style.right = '0';
+                        container.style.width = '1px';
+                        container.style.height = '1px';
+                        container.style.visibility = 'hidden';
+                        
+                        // iframe ekle
+                        container.innerHTML = `
+                          <iframe 
+                            id="youtube-player" 
+                            width="1" 
+                            height="1" 
+                            src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1" 
+                            allow="autoplay" 
+                            frameborder="0"
+                          ></iframe>
+                        `;
+                        
+                        document.body.appendChild(container);
+                        console.log("YouTube müziği başlatıldı");
+                      } catch (err) {
+                        console.error("Ses başlatma hatası:", err);
+                      }
+                    }}
+                    className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                    aria-label="Müzik çal"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5.14v14l11-7-11-7z" />
+                    </svg>
+                  </button>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
