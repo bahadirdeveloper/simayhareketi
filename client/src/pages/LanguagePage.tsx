@@ -125,8 +125,22 @@ export default function LanguagePage() {
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
         {/* Giriş sesi - doğrudan HTML audio elementi */}
-        <audio id="background-music" loop preload="auto" style={{display: 'none'}}>
-          <source src="/audio/giris.mp3" type="audio/mpeg" />
+        <audio 
+          id="background-music" 
+          loop 
+          preload="auto" 
+          controls
+          style={{
+            position: 'fixed',
+            bottom: '10px',
+            right: '10px',
+            zIndex: 1000,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            borderRadius: '8px',
+            padding: '5px'
+          }}
+        >
+          <source src="/audio/music.mp3" type="audio/mpeg" />
           Tarayıcınız ses elementini desteklemiyor.
         </audio>
 
