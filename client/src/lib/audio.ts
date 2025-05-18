@@ -81,7 +81,9 @@ export const playSoundtrack = (): void => {
       console.log("Audio paused");
     } else {
       // Direkt HTML5 Audio elemanı oluştur ve çal (tarayıcı kısıtlamalarını aşmak için)
-      const audioElement = new Audio('/sounds/giris.mp3');
+      console.log("Attempting to play audio directly");
+      const audioPath = currentPage === 'language' ? '/attached_assets/giris.mp3' : '/sounds/giris.mp3';
+      const audioElement = new Audio(audioPath);
       audioElement.loop = true;
       audioElement.volume = 0.3;
       
