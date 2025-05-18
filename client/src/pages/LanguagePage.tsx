@@ -206,17 +206,50 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <a 
-                    href="https://www.youtube.com/shorts/yksM9nDv-Lg" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Müzik çal"
+                    onClick={() => {
+                      // Gizli bir audio player oluştur ve YouTube videosunu çal
+                      // Önceki player varsa kaldır
+                      const existingPlayer = document.getElementById('hidden-youtube-player');
+                      if (existingPlayer) {
+                        existingPlayer.remove();
+                      }
+                      
+                      // Gizli div oluştur
+                      const audioContainer = document.createElement('div');
+                      audioContainer.id = 'hidden-youtube-player';
+                      audioContainer.style.position = 'fixed';
+                      audioContainer.style.bottom = '0';
+                      audioContainer.style.right = '0';
+                      audioContainer.style.width = '1px';
+                      audioContainer.style.height = '1px';
+                      audioContainer.style.opacity = '0.01'; // Tamamen gizli olmasın (0) çünkü bazı tarayıcılarda çalışmayabilir
+                      audioContainer.style.pointerEvents = 'none';
+                      audioContainer.style.zIndex = '-1'; // Sayfanın arka planına yerleştir
+                      
+                      // YouTube iframe'i oluştur
+                      audioContainer.innerHTML = `
+                        <iframe 
+                          width="1" 
+                          height="1" 
+                          src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1" 
+                          allow="autoplay; encrypted-media" 
+                          frameborder="0"
+                          title="Gizli Ses Oynatıcısı"
+                        ></iframe>
+                      `;
+                      
+                      // Sayfaya ekle
+                      document.body.appendChild(audioContainer);
+                      console.log("Arkaplanda YouTube sesi çalınıyor");
+                    }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
