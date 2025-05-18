@@ -177,10 +177,10 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/halkmanifestolari")}
-                className="min-w-[240px]"
+                onClick={() => navigate("/cagri")}
+                className="min-w-[150px]"
               >
-                HALK MANİFESTOLARI
+                ÇAĞRI
               </ModernTechButton>
               
               <ModernTechButton 
@@ -188,10 +188,10 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/gorevler")}
+                onClick={() => navigate("/katil")}
                 className="min-w-[150px]"
               >
-                GÖREVLER
+                KATIL & GÖREV
               </ModernTechButton>
             </motion.div>
           </div>
