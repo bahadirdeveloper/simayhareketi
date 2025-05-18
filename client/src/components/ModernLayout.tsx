@@ -233,9 +233,18 @@ const ModernLayout = ({
             </div>
           </div>
           
-          {/* Audio Control Button - fixed to the bottom right */}
+          {/* Basit ses kontrolü - sayfaya gömülü */}
           <div className="fixed bottom-16 right-4 z-40">
-            <AudioControl onToggle={handleToggleAudio} position="inline" showLabel={true} />
+            <div className="bg-black/40 p-2 rounded-lg border border-red-500/20 flex items-center space-x-2">
+              <audio 
+                id="page-audio" 
+                src={`/audio/music.mp3`}
+                controls
+                loop
+                style={{ height: '30px', width: '200px' }}
+              />
+              <span className="text-sm text-gray-300">Ses Kontrolü</span>
+            </div>
           </div>
         </main>
         
