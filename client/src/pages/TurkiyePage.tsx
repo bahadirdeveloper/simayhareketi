@@ -32,7 +32,7 @@ export default function TurkiyePage() {
     <ModernLayout 
       audioKey="turkiye" 
       showBackButton={true}
-      pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Genel katılım sekiz milyon beş yüz yirmi üç bin dokuz yüz on iki vatandaştır. Toplam bağış miktarı yedi milyon beş yüz on dört bin sekiz yüz doksan iki Türk Lirasıdır. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Halk Defteri & Manifestolar bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
+      pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Genel katılım istatistikleri yarın güncellenecektir. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Halk Defteri & Manifestolar bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
       pageName="Türkiye"
     >
       <div className="w-full max-w-6xl mx-auto">
@@ -168,7 +168,7 @@ export default function TurkiyePage() {
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      8.523.912
+                      0
                     </motion.div>
                     <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.citizens")}</div>
                   </div>
@@ -190,7 +190,7 @@ export default function TurkiyePage() {
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      ₺7.514.892
+                      ₺0
                     </motion.div>
                     <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.enough_for_civilization")}</div>
                   </div>
