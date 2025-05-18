@@ -24,6 +24,17 @@ export default function LanguageSelector() {
     // Dili değiştir
     i18n.changeLanguage(langCode);
     
+    // Tarayıcıda dil tercihini kalıcı olarak sakla (localStorage)
+    try {
+      localStorage.setItem('userLanguage', langCode);
+      console.log(`Dil tercihi kaydedildi: ${langCode}`);
+      
+      // Ayrıca bir çerez oluştur (bazı tarayıcılar için yedek)
+      document.cookie = `userLanguage=${langCode}; expires=Fri, 31 Dec 2030 23:59:59 GMT; path=/`;
+    } catch (e) {
+      console.error('Dil tercihi saklanamadı:', e);
+    }
+    
     // Mevcut sayfanın dilini güncellemeyi sağla
     // Aynı sayfayı korurken dili güncelle
     const currentPath = window.location.pathname;

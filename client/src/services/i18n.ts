@@ -9,8 +9,33 @@ import ruTranslation from "../locales/ru.json";
 import esTranslation from "../locales/es.json";
 import deTranslation from "../locales/de.json";
 
-// Tarayıcıda saklanan dil tercihi varsa onu al
-const savedLanguage = localStorage.getItem('userLanguage') || "tr";
+// Tarayıcıda saklanan dil tercihini al (localStorage veya çerez)
+let savedLanguage = "tr"; // Varsayılan dil
+
+// Tarayıcı depolama erişimini güvenli şekilde kontrol et
+try {
+  // LocalStorage'dan dili al
+  const storedLanguage = localStorage.getItem('userLanguage');
+  
+  // Geçerli bir dil varsa kullan
+  if (storedLanguage) {
+    savedLanguage = storedLanguage;
+    console.log(`Kaydedilmiş dil bulundu: ${savedLanguage}`);
+  } else {
+    // Çerezlerde kontrol et (yedek yöntem)
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith('userLanguage=')) {
+        savedLanguage = cookie.substring('userLanguage='.length, cookie.length);
+        console.log(`Çerezde dil bulundu: ${savedLanguage}`);
+        break;
+      }
+    }
+  }
+} catch (e) {
+  console.warn('Tarayıcı depolama erişiminde hata:', e);
+}
 
 // Configure i18next
 i18n

@@ -280,7 +280,10 @@ const ModernLayout = ({
           </div>
           
           {/* Ses kontrol düğmesi - sadece belirli sayfalarda görünür */}
-          {window.location.pathname === "/dil" || window.location.pathname === "/language" ? (
+          {window.location.pathname === "/dil" || 
+           window.location.pathname === "/language" || 
+           window.location.pathname === "/tr/dil" || 
+           window.location.pathname === "/en/language" ? (
             <div className="fixed bottom-4 left-4 z-40">
               <AudioButton />
             </div>
