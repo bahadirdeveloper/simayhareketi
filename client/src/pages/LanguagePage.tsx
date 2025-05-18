@@ -124,25 +124,27 @@ export default function LanguagePage() {
       {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
-        {/* Giriş sesi - doğrudan HTML audio elementi */}
-        <audio 
-          id="background-music" 
-          loop 
-          preload="auto" 
-          controls
-          style={{
-            position: 'fixed',
-            bottom: '10px',
-            right: '10px',
-            zIndex: 1000,
-            backgroundColor: 'rgba(0,0,0,0.6)',
-            borderRadius: '8px',
-            padding: '5px'
-          }}
-        >
-          <source src="/audio/music.mp3" type="audio/mpeg" />
-          Tarayıcınız ses elementini desteklemiyor.
-        </audio>
+        {/* Gizli YouTube iframe */}
+        <div style={{ 
+          position: 'fixed',
+          bottom: '-1000px',
+          right: '-1000px',
+          width: '100px',
+          height: '100px',
+          opacity: 0,
+          pointerEvents: 'none',
+          overflow: 'hidden',
+          zIndex: -1
+        }}>
+          <iframe
+            id="youtube-player"
+            width="100" 
+            height="100" 
+            src="about:blank"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
 
         {/* Background grid pattern */}
         
@@ -206,12 +208,33 @@ export default function LanguagePage() {
                 <div className="flex items-center justify-center mb-4">
                   <button 
                     onClick={() => {
-                      const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
-                      audio.volume = 0.5;
-                      audio.loop = true;
-                      audio.play().catch(e => console.error("Ses çalma hatası:", e));
+                      try {
+                        // YouTube iframe yaklaşımı
+                        const iframe = document.getElementById('youtube-player') as HTMLIFrameElement;
+                        
+                        if (iframe) {
+                          // Türk müziği playlist URL
+                          iframe.src = "https://www.youtube.com/embed/2atQnvunGCo?autoplay=1&mute=0";
+                          
+                          // Aynı zamanda yedek audio olarak çalma dene
+                          const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
+                          audio.volume = 0.5;
+                          audio.loop = true;
+                          audio.play().catch(() => {
+                            console.log("Pixabay ses çalınamadı, YouTube üzerinden devam");
+                          });
+                          
+                          // YouTube API kullanarak çalma
+                          const ytScript = document.createElement('script');
+                          ytScript.src = 'https://www.youtube.com/iframe_api';
+                          document.head.appendChild(ytScript);
+                        }
+                      } catch (error) {
+                        console.error("Ses başlatma hatası:", error);
+                      }
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                    aria-label="Türk müziği çal"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
