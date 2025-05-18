@@ -1230,14 +1230,21 @@ export default function GorevlerPage() {
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
             className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-5 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
-            {/* Arka plan görseli - seçilen görev için - düşük opaklık */}
-            {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
-              <div className="absolute inset-0 opacity-20 z-0">
-                <img 
-                  style={{ background: getGorevBackground(selectedGorev.id) }}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
+            {/* Arka plan gradient - seçilen görev için */}
+            {selectedGorev?.id && (
+              <div 
+                className="absolute inset-0 z-0"
+                style={{ 
+                  background: getGorevBackground(selectedGorev.id),
+                  opacity: 0.9
+                }}
+              >
+                {/* Dekoratif desen */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+                </div>
+                {/* Kontrast için gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
               </div>
             )}
             
