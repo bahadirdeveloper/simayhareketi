@@ -26,7 +26,9 @@ export const initAudio = (page: string = 'default'): void => {
   currentPage = page;
   
   // Sayfa için uygun ses dosyasını belirle
-  const soundPath = addTimestamp(soundtrackPaths[page] || soundtrackPaths.default);
+  const soundPath = addTimestamp(
+    soundtrackPaths[page as keyof typeof soundtrackPaths] || soundtrackPaths.default
+  );
   
   // Destroy previous soundtrack if exists
   if (soundtrack) {

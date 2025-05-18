@@ -223,7 +223,10 @@ export default function LanguagePage() {
           </AnimatePresence>
         </main>
         
-        <AudioControl onToggle={handleToggleAudio} />
+        {/* Ses kontrolü - Sabit konumda ve daha görünür */}
+        <div className="fixed bottom-10 right-5 z-50">
+          <AudioControl onToggle={handleToggleAudio} position="inline" showLabel={true} />
+        </div>
       </div>
     </>
   );
