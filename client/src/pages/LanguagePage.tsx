@@ -204,9 +204,19 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3">
-                    <div className="text-white font-bold text-xs">SES</div>
-                  </div>
+                  <button 
+                    onClick={() => {
+                      const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
+                      audio.volume = 0.5;
+                      audio.loop = true;
+                      audio.play().catch(e => console.error("Ses çalma hatası:", e));
+                    }}
+                    className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5.14v14l11-7-11-7z" />
+                    </svg>
+                  </button>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
@@ -277,10 +287,7 @@ export default function LanguagePage() {
           </AnimatePresence>
         </main>
         
-        {/* Ses kontrolü - Sabit konumda ve daha görünür */}
-        <div className="fixed bottom-10 right-5 z-50">
-          <AudioControl onToggle={handleToggleAudio} position="inline" showLabel={true} />
-        </div>
+        {/* Ses kontrolünü kaldırdık */}
       </div>
     </>
   );
