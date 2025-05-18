@@ -37,8 +37,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { 
   BarChart4,
   ArrowUpRight, 
-  ArrowDownRight
+  ArrowDownRight,
+  Users,
+  Heart,
+  HandHeart,
+  ClipboardCheck
 } from 'lucide-react';
+import { Progress } from "@/components/ui/progress";
 import PaymentForm from "@/components/PaymentForm";
 import { useToast } from "@/hooks/use-toast";
 
