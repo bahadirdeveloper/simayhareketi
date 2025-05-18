@@ -266,15 +266,15 @@ export default function KatilPage() {
                 <h3 className="text-lg-responsive font-semibold text-red-300">Harekete Geçen İller</h3>
               </div>
               <div className="mb-2 flex justify-between">
-                <span className="text-gray-300">72 il aktif</span>
+                <span className="text-gray-300">0 il aktif</span>
                 <span className="text-gray-400">81 il hedef</span>
               </div>
               <Progress 
-                value={Math.round((72 / 81) * 100)} 
+                value={0} 
                 className="h-3 bg-red-950/70"
               />
               <p className="text-gray-400 text-sm mt-2 text-right">
-                %{Math.round((72 / 81) * 100)} tamamlandı
+                %0 tamamlandı
               </p>
             </div>
           </div>
