@@ -208,30 +208,67 @@ export default function LanguagePage() {
                 <div className="flex items-center justify-center mb-4">
                   <button 
                     onClick={() => {
-                      try {
-                        // YouTube iframe yaklaşımı
-                        const iframe = document.getElementById('youtube-player') as HTMLIFrameElement;
-                        
-                        if (iframe) {
-                          // Türk müziği playlist URL
-                          iframe.src = "https://www.youtube.com/embed/2atQnvunGCo?autoplay=1&mute=0";
+                      // Tarayıcı kısıtlamalarını aşmak için çoklu yaklaşım kullanalım
+                      
+                      // 1. Kullanıcı etkileşimi ile doğrudan kaynak
+                      const directAudio = new Audio("/audio/giris1.mp3");
+                      directAudio.volume = 0.5;
+                      directAudio.loop = true;
+                      
+                      // Direkt çalma girişimi
+                      directAudio.play()
+                        .then(() => {
+                          console.log("GİRİŞ MÜZİĞİ BAŞARIYLA ÇALINIYOR!");
+                        })
+                        .catch((err) => {
+                          console.error("Direkt çalma başarısız, alternatif metod deneniyor...", err);
                           
-                          // Aynı zamanda yedek audio olarak çalma dene
-                          const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
-                          audio.volume = 0.5;
-                          audio.loop = true;
-                          audio.play().catch(() => {
-                            console.log("Pixabay ses çalınamadı, YouTube üzerinden devam");
-                          });
-                          
-                          // YouTube API kullanarak çalma
-                          const ytScript = document.createElement('script');
-                          ytScript.src = 'https://www.youtube.com/iframe_api';
-                          document.head.appendChild(ytScript);
-                        }
-                      } catch (error) {
-                        console.error("Ses başlatma hatası:", error);
-                      }
+                          // 2. AudioContext API kullanarak zorla çalma
+                          try {
+                            // İkinci deneme: AudioContext API
+                            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+                            
+                            fetch('/audio/giris1.mp3')
+                              .then(response => response.arrayBuffer())
+                              .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+                              .then(audioBuffer => {
+                                const source = audioContext.createBufferSource();
+                                source.buffer = audioBuffer;
+                                source.connect(audioContext.destination);
+                                source.loop = true;
+                                source.start(0);
+                                console.log("AudioContext ile başarıyla çalındı!");
+                              })
+                              .catch(e => {
+                                console.error("AudioContext ile çalma başarısız:", e);
+                                
+                                // 3. Gizli iframe ve embed element kullanma
+                                const audioContainer = document.createElement('div');
+                                audioContainer.style.position = 'fixed';
+                                audioContainer.style.bottom = '0';
+                                audioContainer.style.left = '0';
+                                audioContainer.style.width = '1px';
+                                audioContainer.style.height = '1px';
+                                audioContainer.style.overflow = 'hidden';
+                                audioContainer.style.opacity = '0.01';
+                                audioContainer.style.pointerEvents = 'none';
+                                
+                                // Embed yaklaşımı
+                                audioContainer.innerHTML = `
+                                  <embed src="/audio/giris1.mp3" width="1" height="1" 
+                                    hidden="true" autostart="true" loop="true">
+                                  <audio autoplay loop>
+                                    <source src="/audio/giris1.mp3" type="audio/mpeg">
+                                  </audio>
+                                  <iframe src="/audio/giris1.mp3" allow="autoplay" style="display:none"></iframe>
+                                `;
+                                
+                                document.body.appendChild(audioContainer);
+                              });
+                          } catch (e) {
+                            console.error("Tüm alternatif yöntemler başarısız:", e);
+                          }
+                        });
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Türk müziği çal"
