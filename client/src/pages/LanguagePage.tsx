@@ -207,31 +207,66 @@ export default function LanguagePage() {
               >
                 <div className="flex items-center justify-center mb-4">
                   <div className="relative">
-                    {/* Gizli YouTube iframe elementi */}
-                    <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', overflow: 'hidden', width: '1px', height: '1px' }}>
-                      <iframe
-                        id="youtube-player"
-                        width="1"
-                        height="1"
-                        src=""
-                        allow="autoplay"
-                        style={{ display: 'none' }}
-                      ></iframe>
-                    </div>
-                    
-                    {/* Oynat düğmesi */}
+                    {/* Ses butonu */}
                     <button 
                       onClick={() => {
                         try {
-                          // YouTube ile müzik çal (İstiklal Marşı - Turkiye ulusal marşı)
-                          const youtubePlayer = document.getElementById('youtube-player') as HTMLIFrameElement;
-                          if (youtubePlayer) {
-                            // autoplay=1: otomatik başlatır, start=0: baştan başlatır
-                            youtubePlayer.src = "https://www.youtube.com/embed/Y75Km7dlt94?autoplay=1";
-                            console.log("YouTube oynatıcı başlatıldı");
+                          // Mevcut ses oynatıcısını temizle
+                          const existingAudio = document.getElementById('turkish-anthem-player');
+                          if (existingAudio) {
+                            existingAudio.remove();
+                          }
+                          
+                          // Yeni ses oynatıcısı oluştur
+                          const audioPlayer = document.createElement('audio');
+                          audioPlayer.id = 'turkish-anthem-player';
+                          audioPlayer.src = '/audio/anasayfa.mp3';
+                          audioPlayer.loop = true;
+                          audioPlayer.volume = 0.7;
+                          
+                          // Ses oynatıcısını gizle
+                          audioPlayer.style.display = 'none';
+                          document.body.appendChild(audioPlayer);
+                          
+                          // Ses çalma işlemi
+                          const playPromise = audioPlayer.play();
+                          
+                          if (playPromise !== undefined) {
+                            playPromise
+                              .then(() => {
+                                console.log("✅ Müzik başarıyla çalınıyor");
+                              })
+                              .catch((error) => {
+                                console.error("❌ Müzik çalınamadı, YouTube ile devam ediliyor", error);
+                                
+                                // Yedek plan: YouTube
+                                const youtubeContainer = document.createElement('div');
+                                youtubeContainer.id = 'youtube-container';
+                                youtubeContainer.style.position = 'fixed';
+                                youtubeContainer.style.bottom = '0';
+                                youtubeContainer.style.right = '0';
+                                youtubeContainer.style.width = '1px';
+                                youtubeContainer.style.height = '1px';
+                                youtubeContainer.style.visibility = 'hidden';
+                                youtubeContainer.style.pointerEvents = 'none';
+                                
+                                youtubeContainer.innerHTML = `
+                                  <iframe 
+                                    id="youtube-player" 
+                                    width="1" 
+                                    height="1" 
+                                    src="https://www.youtube.com/embed/Y75Km7dlt94?autoplay=1&mute=0" 
+                                    allow="autoplay" 
+                                    frameborder="0"
+                                  ></iframe>
+                                `;
+                                
+                                document.body.appendChild(youtubeContainer);
+                                console.log("YouTube oynatıcı yedek olarak başlatıldı");
+                              });
                           }
                         } catch (error) {
-                          console.error("YouTube oynatıcı başlatma hatası:", error);
+                          console.error("Ses sistemi hata verdi:", error);
                         }
                       }}
                       className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
