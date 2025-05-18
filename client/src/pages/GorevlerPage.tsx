@@ -20,12 +20,11 @@ const getGorevImage = (id: number): string => {
     // Görev numarasını 1-100 arası sınırla
     const safeId = Math.max(1, Math.min(100, id));
     // Talep edildiğinde görseli dinamik olarak yükle
-    // attached_assets klasöründen görsel dosyalarını import etmek için @ alias'ı kullan
     return `/attached_assets/gorev-${safeId}.webp`;
   } catch (error) {
     console.error(`Görev görseli yüklenirken hata: ${id}`, error);
     // Hata durumunda varsayılan görseli döndür
-    return standardPatterns[0];
+    return "/attached_assets/gorev-1.webp"; // Varsayılan olarak birinci görev
   }
 };
 
@@ -1110,13 +1109,17 @@ export default function GorevlerPage() {
                 >
                   {/* Background image with overlay */}
                   {gorev.id >= 0 && gorev.id <= 100 && (
-                    <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 z-0 overflow-hidden">
                       <img 
                         src={getGorevBackgroundImage(gorev.id)} 
                         alt=""
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
+                        onError={(e) => {
+                          console.log(`Failed to load image for görev ${gorev.id}`);
+                          e.currentTarget.src = '/attached_assets/gorev-1.webp';
+                        }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/80"></div>
                     </div>
                   )}
                   
