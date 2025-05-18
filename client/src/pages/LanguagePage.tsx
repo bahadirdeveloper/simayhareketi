@@ -206,47 +206,42 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <button 
-                    onClick={() => {
-                      try {
-                        // Ana sayfa müziğini çal
-                        const audioElement = document.createElement('audio');
-                        audioElement.src = '/sounds/home-soundtrack.mp3';
-                        audioElement.id = 'homepage-soundtrack';
-                        audioElement.loop = true;
-                        audioElement.volume = 0.6;
-                        
-                        // Eğer eski bir audio elementi varsa kaldır
-                        const oldAudio = document.getElementById('homepage-soundtrack');
-                        if (oldAudio) {
-                          document.body.removeChild(oldAudio);
+                  <div className="relative">
+                    {/* Gizli YouTube iframe elementi */}
+                    <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', overflow: 'hidden', width: '1px', height: '1px' }}>
+                      <iframe
+                        id="youtube-player"
+                        width="1"
+                        height="1"
+                        src=""
+                        allow="autoplay"
+                        style={{ display: 'none' }}
+                      ></iframe>
+                    </div>
+                    
+                    {/* Oynat düğmesi */}
+                    <button 
+                      onClick={() => {
+                        try {
+                          // YouTube ile müzik çal (İstiklal Marşı - Turkiye ulusal marşı)
+                          const youtubePlayer = document.getElementById('youtube-player') as HTMLIFrameElement;
+                          if (youtubePlayer) {
+                            // autoplay=1: otomatik başlatır, start=0: baştan başlatır
+                            youtubePlayer.src = "https://www.youtube.com/embed/Y75Km7dlt94?autoplay=1";
+                            console.log("YouTube oynatıcı başlatıldı");
+                          }
+                        } catch (error) {
+                          console.error("YouTube oynatıcı başlatma hatası:", error);
                         }
-                        
-                        // Yeni audio elementini ekle ve çalmayı dene
-                        document.body.appendChild(audioElement);
-                        
-                        // Ses dosyasını çal
-                        const playPromise = audioElement.play();
-                        if (playPromise !== undefined) {
-                          playPromise
-                            .then(() => {
-                              console.log("Ana sayfa müziği çalınıyor!");
-                            })
-                            .catch(err => {
-                              console.error("Ana sayfa müziği çalınamadı:", err);
-                            });
-                        }
-                      } catch (error) {
-                        console.error("Ses sistemi başlatılamadı:", error);
-                      }
-                    }}
-                    className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
-                    aria-label="Müzik çal"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5.14v14l11-7-11-7z" />
-                    </svg>
-                  </button>
+                      }}
+                      className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                      aria-label="Müzik çal"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5.14v14l11-7-11-7z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
