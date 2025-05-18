@@ -307,100 +307,86 @@ export default function TurkiyePage() {
             </motion.div>
             
             {/* Ana Navigasyon Butonları - TÜRKİYE - MANİFESTO - ÇAĞRI - KATIL & GÖREV */}
-            {/* Özel NavButtons - Türkiye sayfasında yalnızca gerekli butonları göster */}
+            {/* Dikey buton listesi - İstenen sıralama */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 mb-6 max-w-4xl mx-auto"
-            >
-              {[
-                { path: "/cagri", text: "ÇAĞRI", variant: "primary" }
-              ].map((button, index) => (
-                <ModernTechButton 
-                  key={button.path}
-                  variant={button.variant as any}
-                  size="md"
-                  glow="none"
-                  border="subtle"
-                  onClick={() => navigate(button.path)}
-                  className="min-w-[110px] sm:min-w-[130px] touch-target text-sm sm:text-base py-2 sm:py-3"
-                >
-                  {button.text}
-                </ModernTechButton>
-              ))}
-            </motion.div>
-            
-            {/* Türk Nedir Butonunu Üstte ve Kırmızı Göster */}
-            <motion.div
-              className="w-full max-w-4xl mx-auto mb-6"
+              className="flex flex-col gap-4 w-full max-w-4xl mx-auto mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <ModernTechButton 
-                variant="turkish"
-                size="lg"
-                glow="none"
-                border="subtle"
-                className="w-full justify-center py-5 text-lg font-bold"
-                onClick={() => navigate("/turknedir")}
-              >
-                TÜRK NEDİR?
-              </ModernTechButton>
-              <p className="text-xs text-gray-400 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
-            </motion.div>
-            
-            {/* Alt navigasyon butonları - 3 buton yan yana */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl mx-auto mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              {/* MANİFESTO&ANAYASALARIMIZ Button */}
-              <div className="flex flex-col">
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="mb-2 justify-center py-4"
-                  onClick={() => navigate("/birlesikmanifesto")}
-                >
-                  MANİFESTO&ANAYASALARIMIZ
-                </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet manifestosu ve anayasal arşiv</p>
-              </div>
-              
-              {/* Görevler Button */}
-              <div className="flex flex-col">
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="mb-2 justify-center py-4"
-                  onClick={() => navigate("/gorevler")}
-                >
-                  GÖREVLER
-                </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet için yapılacak görevler listesi</p>
-              </div>
-              
-              {/* Katıl Button */}
+              {/* 1. TÜRK NEDİR? */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="turkish"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="mb-2 justify-center py-4"
+                  className="w-full justify-center py-5 text-lg font-bold"
+                  onClick={() => navigate("/turknedir")}
+                >
+                  TÜRK NEDİR?
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+              </div>
+              
+              {/* 2. ANAYASA VE MANİFESTOLAR */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
+                  onClick={() => navigate("/birlesikmanifesto")}
+                >
+                  ANAYASA VE MANİFESTOLAR
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet manifestosu ve anayasal arşiv</p>
+              </div>
+              
+              {/* 3. GÖREVLER */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
+                  onClick={() => navigate("/gorevler")}
+                >
+                  GÖREVLER
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet için yapılacak görevler listesi</p>
+              </div>
+              
+              {/* 4. ÇAĞRI */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="primary"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
+                  onClick={() => navigate("/cagri")}
+                >
+                  ÇAĞRI
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halka çağrı ve manifestonun çağrı metni</p>
+              </div>
+              
+              {/* 5. HAREKETE KATIL */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="turkish"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
                   onClick={() => navigate("/katil")}
                 >
                   HAREKETE KATIL
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet güncellemesi katılım sistemi</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet güncellemesi katılım sistemi</p>
               </div>
             </motion.div>
           </motion.div>
