@@ -11,7 +11,67 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+
+// Görev resimlerini doğrudan import et
+import gorev1 from "../../../attached_assets/gorev-1.webp";
+import gorev2 from "../../../attached_assets/gorev-2.webp";
+import gorev3 from "../../../attached_assets/gorev-3.webp";
+import gorev4 from "../../../attached_assets/gorev-4.webp";
+import gorev5 from "../../../attached_assets/gorev-5.webp";
+import gorev6 from "../../../attached_assets/gorev-6.webp";
+import gorev7 from "../../../attached_assets/gorev-7.webp";
+import gorev8 from "../../../attached_assets/gorev-8.webp";
+import gorev9 from "../../../attached_assets/gorev-9.webp";
+import gorev10 from "../../../attached_assets/gorev-10.webp";
+import gorev11 from "../../../attached_assets/gorev-11.webp";
+import gorev12 from "../../../attached_assets/gorev-12.webp";
+import gorev13 from "../../../attached_assets/gorev-13.webp";
+import gorev14 from "../../../attached_assets/gorev-14.webp";
+import gorev15 from "../../../attached_assets/gorev-15.webp";
+import gorev16 from "../../../attached_assets/gorev-16.webp";
+import gorev17 from "../../../attached_assets/gorev-17.webp";
+import gorev18 from "../../../attached_assets/gorev-18.webp";
+import gorev19 from "../../../attached_assets/gorev-19.webp";
+import gorev20 from "../../../attached_assets/gorev-20.webp";
+import gorev21 from "../../../attached_assets/gorev-21.webp";
+import gorev22 from "../../../attached_assets/gorev-22.webp";
+import gorev23 from "../../../attached_assets/gorev-23.webp";
+import gorev24 from "../../../attached_assets/gorev-24.webp";
 // No icons needed for formal appearance
+
+// Tüm görev resimlerini bir havuzda topla
+const gorevImages: Record<number, string> = {
+  1: gorev1,
+  2: gorev2,
+  3: gorev3,
+  4: gorev4,
+  5: gorev5,
+  6: gorev6,
+  7: gorev7,
+  8: gorev8,
+  9: gorev9,
+  10: gorev10,
+  11: gorev11,
+  12: gorev12,
+  13: gorev13,
+  14: gorev14,
+  15: gorev15,
+  16: gorev16,
+  17: gorev17,
+  18: gorev18,
+  19: gorev19,
+  20: gorev20,
+  21: gorev21,
+  22: gorev22,
+  23: gorev23,
+  24: gorev24
+};
+
+// Görev resmi getirme yardımcı fonksiyonu
+const getGorevImage = (id: number): string => {
+  const safeId = Math.min(Math.max(1, id), 24);
+  return gorevImages[safeId] || '';
+};
 
 // Görev arkaplan renkleri
 const gorevColors = [
@@ -1104,7 +1164,7 @@ export default function GorevlerPage() {
                   <div className="absolute inset-0 z-0 overflow-hidden">
                     {/* Görev görseli arkaplan */}
                     <img 
-                      src={`../attached_assets/gorev-${Math.min(Math.max(1, gorev.id), 100)}.webp`}
+                      src={getGorevImage(gorev.id)}
                       alt=""
                       className="w-full h-full object-cover object-center"
                       onError={(e) => {
@@ -1253,7 +1313,7 @@ export default function GorevlerPage() {
               <div className="absolute inset-0 z-0 overflow-hidden">
                 {/* Görev görseli arkaplan */}
                 <img 
-                  src={`../attached_assets/gorev-${Math.min(Math.max(1, selectedGorev.id), 100)}.webp`}
+                  src={getGorevImage(selectedGorev.id)}
                   alt=""
                   className="w-full h-full object-cover object-center blur-sm"
                   onError={(e) => {
