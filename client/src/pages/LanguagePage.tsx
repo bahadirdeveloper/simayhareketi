@@ -208,33 +208,40 @@ export default function LanguagePage() {
                 <div className="flex items-center justify-center mb-4">
                   <button 
                     onClick={() => {
-                      // Basit bir ses çalma butonu - direkt base64 kodlu ses verileri kullanıyoruz
-                      // Base64 formatında kısa bir ses efekti
-                      const beepSound = 'data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHNUWUVSAAAAEwAAAHd3dy5zb3VuZGpheS5jb21URU5DAAAAFQAAAGxhdmY1OC43Ni4xMDAgbGlicHJpdlRBTEIAAAASAAAAU291bmRKYXkgRWZmZWN0c1REQVQAAAAUAAAA0YeuIVBob3Rvc2hvcCAzLjAATURJQQAAAAYAAACzQo8cATJBTAAAAAUAAABVVEY4Q09NTQAAABYAAAGFQ19QcmVzZXRfVF9WTV9fbG91ZHMoQU9QXzNfc2VtaV9iei5zb3VuZClbUmVudGFsXQpDX1ByZXNldF9UX1ZNX19sb3VkcyhBT1BfM19zZW1pX2J6LnNvdW5kKVtGTU9ELVJOVC04MS1UTV1bU1lOVEhdW00xLTIwMDBdClJlbnRhbApGTU9ELVJOVC04MS1UTQpzeW50aAo1MS4yClNZTktSCigoPDxTdGFydF9UdW5lZF9LYnI+Pj09KCgoUmF0ZTwkTl80PiooRm9yY2Vfc2NhbGU8JE5fOT4pKSszMDApKjAuOTE2KSkKUGxheVNhbQ==/home/runner/workspace//q7Y4TrNRnqdQWR=';
-                      
-                      // Ses çalma
-                      const playAudio = new Audio(beepSound);
-                      playAudio.volume = 0.3;
-                      playAudio.play();
-                      
-                      // Sadece konsola yaz
-                      console.log("Ses butonu çalışıyor!");
-                      
-                      // External script ile müzik çalma deneyelim
-                      const script = document.createElement('script');
-                      script.src = '/music/musicplayer.js';
-                      script.onload = () => {
-                        try {
-                          // @ts-ignore global tanımlı fonksiyon
-                          window.playTurkishMusic();
-                        } catch (e) {
-                          console.error("Müzik çalma hatası:", e);
+                      try {
+                        // Ana sayfa müziğini çal
+                        const audioElement = document.createElement('audio');
+                        audioElement.src = '/sounds/home-soundtrack.mp3';
+                        audioElement.id = 'homepage-soundtrack';
+                        audioElement.loop = true;
+                        audioElement.volume = 0.6;
+                        
+                        // Eğer eski bir audio elementi varsa kaldır
+                        const oldAudio = document.getElementById('homepage-soundtrack');
+                        if (oldAudio) {
+                          document.body.removeChild(oldAudio);
                         }
-                      };
-                      document.head.appendChild(script);
+                        
+                        // Yeni audio elementini ekle ve çalmayı dene
+                        document.body.appendChild(audioElement);
+                        
+                        // Ses dosyasını çal
+                        const playPromise = audioElement.play();
+                        if (playPromise !== undefined) {
+                          playPromise
+                            .then(() => {
+                              console.log("Ana sayfa müziği çalınıyor!");
+                            })
+                            .catch(err => {
+                              console.error("Ana sayfa müziği çalınamadı:", err);
+                            });
+                        }
+                      } catch (error) {
+                        console.error("Ses sistemi başlatılamadı:", error);
+                      }
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
-                    aria-label="Türk müziği çal"
+                    aria-label="Müzik çal"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
