@@ -4,6 +4,8 @@
   "select_language": "Lütfen bir dil seçin:",
   "launch_date": "19 Mayıs 2025'te başlıyor.",
   "toggle_sound": "Sesi Aç/Kapat",
+  "toggle_sound_play": "Sesi Çal",
+  "toggle_sound_stop": "Sesi Durdur",
   "welcome_message": "Dünyayı Kurtarma Operasyonu'na Hoş Geldiniz",
   "content_description": "Bu, 19 Mayıs 2025'te yayına girecek olan küresel bir dijital bilinç ve adalet sisteminin başlangıç ekranıdır. Halkların kardeşliği ve teknolojik görev sistemi üzerine kurulacaktır.",
   "back_to_home": "Ana Sayfaya Dön",

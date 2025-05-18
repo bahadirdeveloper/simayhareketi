@@ -146,7 +146,7 @@ export default function TurkiyePage() {
                     }
                   </motion.button>
                   <span className="ml-2 text-gray-400 self-center text-sm">
-                    {isAudioPlaying ? "Sesi Durdur" : "Sesi Çal"}
+                    {isAudioPlaying ? t("toggle_sound_stop") : t("toggle_sound_play")}
                   </span>
                 </motion.div>
               </motion.div>
@@ -168,7 +168,7 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">TR</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">GENEL KATILIM</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">{t("turkiye_page.general_participation")}</h4>
                     <motion.div 
                       className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
@@ -176,7 +176,7 @@ export default function TurkiyePage() {
                     >
                       8.523.912
                     </motion.div>
-                    <div className="text-base-responsive text-gray-400 mt-1">Vatandaş</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.citizens")}</div>
                   </div>
                 </motion.div>
                 
@@ -190,7 +190,7 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">₺</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">TOPLAM BAĞIŞ</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">{t("turkiye_page.total_donation")}</h4>
                     <motion.div 
                       className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
@@ -198,7 +198,7 @@ export default function TurkiyePage() {
                     >
                       ₺7.514.892
                     </motion.div>
-                    <div className="text-base-responsive text-gray-400 mt-1">Medeniyet için</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.enough_for_civilization")}</div>
                   </div>
                 </motion.div>
                 
