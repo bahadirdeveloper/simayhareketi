@@ -112,6 +112,12 @@ export default function LanguagePage() {
       {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
+        {/* Giriş sesi - doğrudan HTML audio elementi */}
+        <audio id="background-music" loop preload="auto" style={{display: 'none'}}>
+          <source src="/sounds/giris.mp3" type="audio/mpeg" />
+          Tarayıcınız ses elementini desteklemiyor.
+        </audio>
+
         {/* Background grid pattern */}
         
         {/* Subtle digital noise texture */}

@@ -25,10 +25,10 @@ const addTimestamp = (url: string): string => {
 export const initAudio = (page: string = 'default'): void => {
   currentPage = page;
   
-  // Sayfa için uygun ses dosyasını belirle
-  const soundPath = addTimestamp(
-    soundtrackPaths[page as keyof typeof soundtrackPaths] || soundtrackPaths.default
-  );
+  console.log("Initializing audio with file: giris.mp3");
+  
+  // Ses dosyasının direkt yolunu belirt
+  const soundPath = '/sounds/giris.mp3';
   
   // Destroy previous soundtrack if exists
   if (soundtrack) {
@@ -37,28 +37,31 @@ export const initAudio = (page: string = 'default'): void => {
     soundtrack = null;
   }
   
-  // Ses yükleme ve otomatik başlatma
+  // Ses yükleme
   try {
     soundtrack = new Howl({
       src: [soundPath],
       loop: true,
-      volume: 0.2, // Ses seviyesini uygun değere ayarladık
-      html5: true,
+      volume: 0.3, // Ses seviyesini artırdık
+      html5: false, // Web Audio API kullan
       preload: true,
-      autoplay: true // Siteye girildiğinde otomatik başlatılacak
+      autoplay: false
     });
     
-    // Ses yüklendiğinde otomatik başlat
+    // Yüklemeyi bekle ve çalıştır
     soundtrack.once('load', () => {
-      if (soundtrack) {
-        soundtrack.play();
-        isPlaying = true;
-      }
+      console.log("Audio file loaded successfully, ready to play");
+      // Kullanıcı etkileşimi bekliyoruz
+    });
+    
+    // Hata yönetimi ekle
+    soundtrack.on('loaderror', (id, err) => {
+      console.error("Error loading audio:", err);
     });
     
     isInitialized = true;
   } catch (error) {
-    console.warn("Audio system init failed, continuing without audio", error);
+    console.error("Audio system init failed:", error);
   }
 };
 
@@ -66,12 +69,41 @@ export const initAudio = (page: string = 'default'): void => {
 export const playSoundtrack = (): void => {
   if (!soundtrack) return;
   
-  if (isPlaying) {
-    soundtrack.pause();
-    isPlaying = false;
-  } else {
-    soundtrack.play();
-    isPlaying = true;
+  console.log("Attempting to play/pause soundtrack");
+  
+  try {
+    if (isPlaying) {
+      soundtrack.pause();
+      isPlaying = false;
+      console.log("Audio paused");
+    } else {
+      // Direkt HTML5 Audio elemanı oluştur ve çal (tarayıcı kısıtlamalarını aşmak için)
+      const audioElement = new Audio('/sounds/giris.mp3');
+      audioElement.loop = true;
+      audioElement.volume = 0.3;
+      
+      const playPromise = audioElement.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("Audio started playing via HTML5 Audio");
+            isPlaying = true;
+          })
+          .catch(error => {
+            console.error("Playback failed:", error);
+            // Howler ile tekrar dene
+            soundtrack.play();
+            isPlaying = true;
+          });
+      } else {
+        soundtrack.play();
+        isPlaying = true;
+        console.log("Audio started playing via Howler");
+      }
+    }
+  } catch (error) {
+    console.error("Error controlling audio:", error);
   }
 };
 
