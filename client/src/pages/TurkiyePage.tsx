@@ -6,6 +6,7 @@ import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import { Play, Pause } from "lucide-react";
 import { initAudio, playSoundtrack } from "@/lib/audio";
+import NavButtons from "@/components/NavButtons";
 // No icons needed for formal appearance
 
 // Ana değerler için veri - türkiye sayfası için özelleştirilmiş (ikonsuz)
@@ -305,9 +306,12 @@ export default function TurkiyePage() {
               </motion.div>
             </motion.div>
             
-            {/* Navigation Buttons - Modern Grid Layout */}
+            {/* Ana Navigasyon Butonları - TÜRKİYE - MANİFESTO - ÇAĞRI - KATIL & GÖREV */}
+            <NavButtons />
+            
+            {/* Alt navigasyon butonları */}
             <motion.div
-              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mx-auto mb-8"
+              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-5xl mx-auto mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
