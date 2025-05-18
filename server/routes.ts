@@ -204,6 +204,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stripe payment routes
+  // Secure password validation endpoint
+  app.post("/api/validate-password", (req, res) => {
+    try {
+      const { password } = req.body;
+      
+      // Validate input
+      if (!password || typeof password !== 'string') {
+        return res.status(400).json({ valid: false, message: "Invalid request format" });
+      }
+      
+      // Get password from environment variable or use a secure fallback
+      const correctPassword = process.env.ACCESS_PASSWORD || "simay2025";
+      
+      // Validate password (using constant-time comparison would be even better)
+      const isValid = password === correctPassword;
+      
+      // Return result without revealing the actual password
+      return res.json({ valid: isValid });
+    } catch (error) {
+      console.error("Password validation error:", error);
+      return res.status(500).json({ valid: false, message: "Server error" });
+    }
+  });
+
   app.post("/api/create-payment-intent", handleCreatePaymentIntent);
   app.post("/api/create-subscription", handleCreateSubscription);
   app.post("/api/webhook", handleWebhook);

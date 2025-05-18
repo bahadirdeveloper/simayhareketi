@@ -69,15 +69,31 @@
       }
     </style>
     <script>
-      const correctPassword = "simay2025"; // set your password here
-
+      // Password is now fetched securely from the server
       function checkPassword() {
         const input = document.getElementById('passwordInput').value;
-        if (input === correctPassword) {
-          window.location.href = "index.html"; // redirect to actual content
-        } else {
-          alert("Yanlış parola!");
-        }
+        
+        // Make a request to a server endpoint to validate the password
+        fetch('/api/validate-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password: input })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.valid) {
+            localStorage.setItem("girisOnay", "true");
+            window.location.href = "index.html"; // redirect to actual content
+          } else {
+            alert("Yanlış parola!");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("Doğrulama hatası!");
+        });
       }
     </script>
   </head>
