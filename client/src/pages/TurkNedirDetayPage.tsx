@@ -115,7 +115,7 @@ export default function TurkNedirDetayPage() {
             Teknoloji, bilim ve sanatla kuşanmış Türk gençliği, geleceğe medeniyet taşıyacak en büyük güçtür. Sadece kendini değil, dünyayı da ayağa kaldırmaya ant içmiştir.
           </ParagraphText>
           <ParagraphText>
-            Dijital çağda, yapay zekâ, kuantum bilişim ve uzay teknolojilerinde öncü olmak, yeni nesil Türk gençliğinin hedefleri arasındadır. Geçmişin mirasını geleceğin teknolojileriyle harmanlayan Türk bilim insanları, insanlığın ilerleyişine katkıda bulunmak için çalışır.
+            Dijital çağda, teknoloji, kuantum bilişim ve uzay teknolojilerinde öncü olmak, yeni nesil Türk gençliğinin hedefleri arasındadır. Geçmişin mirasını geleceğin teknolojileriyle harmanlayan Türk bilim insanları, insanlığın ilerleyişine katkıda bulunmak için çalışır.
           </ParagraphText>
           
           <HighlightText>
