@@ -1121,15 +1121,29 @@ export default function GorevlerPage() {
                     </div>
                     
                     {/* Sadece görev başlığı göster, detayları modülde göster */}
-                    <div>
-                      <h3 className="text-lg-responsive font-bold text-white mb-2 leading-tight">{gorev.baslik}</h3>
+                    <div className="mb-4">
+                      <h3 className="text-lg-responsive font-bold text-white mb-3 leading-tight text-center">{gorev.baslik}</h3>
+                      
+                      {/* Dekoratif İkon - görev tipine uygun */}
+                      <div className="flex justify-center mb-3">
+                        <div className="w-16 h-16 flex items-center justify-center opacity-60">
+                          <div className="w-full h-full border-4 border-white/30 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 border-2 border-white/50 rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Kısa çağrı metni - özet olarak */}
+                      <p className="text-sm text-white/80 text-center line-clamp-2 mb-3 px-2">
+                        {gorev.cagri || "Cumhuriyet güncelleme görevine katılın"}
+                      </p>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton - dokunmatik için iyileştirilmiş */}
-                    <div>
-                      <div className="flex justify-between items-center text-base-responsive text-gray-200 mb-3">
-                        <span>Kategori: {gorev.kategori}</span>
-                        <span>{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
+                    <div className="mt-auto">
+                      <div className="flex justify-between items-center text-sm text-white/90 mb-3 bg-black/30 p-2 rounded-lg">
+                        <span className="bg-black/40 px-2 py-1 rounded-md border border-white/20">{gorev.kategori}</span>
+                        <span className="bg-black/40 px-2 py-1 rounded-md border border-white/20">{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
                       </div>
                       <Button 
                         className="w-full bg-gradient-to-r from-red-700 to-red-500 text-base-responsive h-12 py-0 text-white font-bold"
