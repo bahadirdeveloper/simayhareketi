@@ -12,7 +12,7 @@ export default function BirlesikManifestoPage() {
   const { t } = useTranslation();
   const [, navigate] = useLocation();
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [activeTab, setActiveTab] = useState("manifesto");
+  const [activeTab, setActiveTab] = useState("anayasa");
 
   useEffect(() => {
     // Ses sistemini başlat
@@ -66,8 +66,17 @@ export default function BirlesikManifestoPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
         >
+          <div 
+            className={`p-6 rounded-lg text-center cursor-pointer transition-all duration-300
+              ${activeTab === "anayasa" 
+                ? "bg-red-700 text-white" 
+                : "bg-red-900/30 text-white/80 hover:bg-red-800/50"}`}
+            onClick={() => setActiveTab("anayasa")}
+          >
+            <h2 className="text-2xl font-bold">ANAYASA</h2>
+          </div>
           <div 
             className={`p-6 rounded-lg text-center cursor-pointer transition-all duration-300
               ${activeTab === "manifesto" 
@@ -125,6 +134,121 @@ export default function BirlesikManifestoPage() {
           transition={{ duration: 0.5 }}
           className="mt-6"
         >
+          {activeTab === "anayasa" && (
+            <div className="space-y-8">
+              <div className="bg-gradient-to-br from-black/60 to-red-950/30 backdrop-blur-sm rounded-xl border border-red-900/30 p-6 shadow-lg">
+                <motion.h1
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-3xl-responsive font-bold mb-6 text-white text-center"
+                >
+                  {t("anayasa.title")}
+                </motion.h1>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="prose prose-lg max-w-none prose-invert mx-auto"
+                >
+                  {/* Anayasa Bölümleri */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div className="bg-red-900/20 backdrop-blur-sm rounded-lg p-6 border border-red-700/30 shadow-lg hover:shadow-red-700/10 transition-all duration-300">
+                      <h3 className="text-xl-responsive font-semibold text-white mb-4">Türkiye Cumhuriyeti Anayasası</h3>
+                      <p className="text-gray-300 mb-4">Bu topraklarda halkın kaderini yeniden yazan ilk büyük sözleşmedir. Eşitliğin, adaletin, özgürlüğün ve halk egemenliğinin teminatıdır.</p>
+                      <ModernTechButton
+                        variant="outline"
+                        color="red"
+                        size="sm"
+                        className="w-full justify-center"
+                        onClick={() => navigate("/anayasa")}
+                      >
+                        Detaylar
+                      </ModernTechButton>
+                    </div>
+                    
+                    <div className="bg-red-900/20 backdrop-blur-sm rounded-lg p-6 border border-red-700/30 shadow-lg hover:shadow-red-700/10 transition-all duration-300">
+                      <h3 className="text-xl-responsive font-semibold text-white mb-4">Halk Barış ve Dayanışma Bildirgesi</h3>
+                      <p className="text-gray-300 mb-4">Toplumsal barışın ve dayanışmanın önemine vurgu yapan, farklılıklarımızın zenginliğimiz olduğunu ifade eden bildirge.</p>
+                      <ModernTechButton
+                        variant="outline"
+                        color="red"
+                        size="sm"
+                        className="w-full justify-center"
+                        onClick={() => navigate("/halk-manifestolar")}
+                      >
+                        Detaylar
+                      </ModernTechButton>
+                    </div>
+                    
+                    <div className="bg-red-900/20 backdrop-blur-sm rounded-lg p-6 border border-red-700/30 shadow-lg hover:shadow-red-700/10 transition-all duration-300">
+                      <h3 className="text-xl-responsive font-semibold text-white mb-4">Halk Bireysel Haklar Sözleşmesi</h3>
+                      <p className="text-gray-300 mb-4">Her bireyin doğuştan gelen ve vazgeçilemez haklarını koruyan, bireysel özgürlükleri güvence altına alan temel sözleşme.</p>
+                      <ModernTechButton
+                        variant="outline"
+                        color="red"
+                        size="sm"
+                        className="w-full justify-center"
+                        onClick={() => navigate("/halk-manifestolar")}
+                      >
+                        Detaylar
+                      </ModernTechButton>
+                    </div>
+                    
+                    <div className="bg-red-900/20 backdrop-blur-sm rounded-lg p-6 border border-red-700/30 shadow-lg hover:shadow-red-700/10 transition-all duration-300">
+                      <h3 className="text-xl-responsive font-semibold text-white mb-4">Halk Dijital Bilinç Anayasası</h3>
+                      <p className="text-gray-300 mb-4">Dijital çağda bireylerin haklarını koruyan, teknolojik gelişmelere uyumlu ve veri gizliliğini esas alan modern anayasa.</p>
+                      <ModernTechButton
+                        variant="outline"
+                        color="red"
+                        size="sm"
+                        className="w-full justify-center"
+                        onClick={() => navigate("/halk-manifestolar")}
+                      >
+                        Detaylar
+                      </ModernTechButton>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-10 text-center">
+                    <p className="text-lg-responsive text-white font-semibold">
+                      {t("anayasa.listen")}
+                    </p>
+                    <div className="mt-8 bg-red-900/20 p-6 rounded-lg border border-red-800/30 max-w-2xl mx-auto">
+                      <h3 className="text-xl-responsive font-semibold text-white mb-3">{t("anayasa.join_title")}</h3>
+                      <p className="text-gray-300 mb-6">{t("anayasa.join_text")}</p>
+                      <ModernTechButton
+                        color="red"
+                        size="md"
+                        onClick={() => navigate("/katil")}
+                      >
+                        {t("anayasa.contribute_btn")}
+                      </ModernTechButton>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="flex justify-center mt-6">
+                <ModernTechButton
+                  onClick={() => setActiveTab("manifesto")}
+                  className="mx-2"
+                  color="blue"
+                >
+                  MANİFESTOYA GEÇ
+                </ModernTechButton>
+                <ModernTechButton
+                  onClick={() => navigate("/katil")}
+                  className="mx-2"
+                  color="red"
+                >
+                  KATIL & GÖREV
+                </ModernTechButton>
+              </div>
+            </div>
+          )}
+          
           {activeTab === "manifesto" && (
             <div className="space-y-8">
               <div className="bg-gradient-to-br from-black/60 to-blue-950/30 backdrop-blur-sm rounded-xl border border-blue-900/30 p-6 shadow-lg">
