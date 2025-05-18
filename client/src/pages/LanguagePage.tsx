@@ -73,12 +73,24 @@ export default function LanguagePage() {
   const handleLanguageSelect = (langCode: string) => {
     i18n.changeLanguage(langCode);
     
-    // Kullanıcı etkileşimi olduğunda sesi başlat (tarayıcı kısıtlamalarını aşmak için)
+    // Kullanıcı etkileşimi ile direkt ses çalma (tarayıcı kısıtlamalarını aşar)
     try {
-      console.log("User interaction - playing audio");
-      playSoundtrack();
+      console.log("Attempting to play audio directly");
+      
+      // Direkt DOM elemanını kullanarak çal
+      const audioElement = document.getElementById("background-music") as HTMLAudioElement;
+      if (audioElement) {
+        audioElement.volume = 0.3;
+        audioElement.play()
+          .then(() => {
+            console.log("Audio started successfully");
+          })
+          .catch(err => {
+            console.error("Audio play failed:", err);
+          });
+      }
     } catch (error) {
-      console.error("Failed to play audio:", error);
+      console.error("Audio play error:", error);
     }
     
     // Record selected language
@@ -114,7 +126,7 @@ export default function LanguagePage() {
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
         {/* Giriş sesi - doğrudan HTML audio elementi */}
         <audio id="background-music" loop preload="auto" style={{display: 'none'}}>
-          <source src="/sounds/giris.mp3" type="audio/mpeg" />
+          <source src="/audio/giris.mp3" type="audio/mpeg" />
           Tarayıcınız ses elementini desteklemiyor.
         </audio>
 
