@@ -1047,18 +1047,31 @@ export default function GorevlerPage() {
             
             {/* Kimleri Göreve Davet Ediyoruz - Tıklanabilir Başlık */}
             <motion.div 
-              className="mt-4 mb-3 cursor-pointer"
+              className="mt-4 mb-3"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              onClick={() => navigate("/gorev-davet")}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
             >
-              <h2 className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins">
-                Kimleri Göreve Davet Ediyoruz? 
-                <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
-              </h2>
+              <div className="flex flex-col items-center gap-3">
+                <h2 
+                  className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins cursor-pointer"
+                  onClick={() => navigate("/gorev-davet")}
+                >
+                  Kimleri Göreve Davet Ediyoruz? 
+                  <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
+                </h2>
+                
+                <button 
+                  className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-turkish-red to-red-900 rounded-full shadow-lg hover:from-turkish-red-light hover:to-red-900 transition-all duration-300"
+                  aria-label="Davet videosunu oynat"
+                  title="Davet Videosunu İzle"
+                  onClick={() => window.open("https://www.youtube.com/watch?v=placeholder-davet", "_blank")}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5.14v14l11-7-11-7z" />
+                  </svg>
+                </button>
+              </div>
             </motion.div>
           </motion.div>
           
