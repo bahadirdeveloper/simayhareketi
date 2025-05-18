@@ -206,38 +206,20 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
+                  <audio
+                    id="turkish-national-anthem"
+                    src="/music/giris.mp3"
+                    style={{ display: 'none' }}
+                  />
                   <button 
                     onClick={() => {
-                      // Ses dosyasını doğrudan HTML elementleriyle çal
-                      
-                      // 1. Audio elementini oluştur
-                      const audioElement = document.createElement('audio');
-                      audioElement.src = '/music/giris.mp3';
-                      audioElement.volume = 0.5;
-                      audioElement.loop = true;
-                      audioElement.controls = false;
-                      audioElement.id = 'turkish-music-player';
-                      audioElement.style.display = 'none';
-                      document.body.appendChild(audioElement);
-                      
-                      // 2. Çalmayı dene
-                      const playPromise = audioElement.play();
-                      
-                      if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                          console.log('Müzik çalınıyor!');
-                        }).catch(error => {
-                          console.error('Otomatik çalma hatası:', error);
-                          
-                          // 3. Kullanıcı etkileşimi ile yeni bir deneme
-                          alert('Müzik çalmak için lütfen tekrar tıklayın');
-                          
-                          // Anında çalmak için
-                          document.addEventListener('click', function clickHandler() {
-                            audioElement.play().catch(e => console.error('Son deneme de başarısız:', e));
-                            document.removeEventListener('click', clickHandler);
-                          }, { once: true });
-                        });
+                      try {
+                        const audio = document.getElementById('turkish-national-anthem') as HTMLAudioElement;
+                        audio.volume = 0.7;
+                        audio.loop = true;
+                        audio.play();
+                      } catch (error) {
+                        console.error('Ses çalma hatası:', error);
                       }
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
