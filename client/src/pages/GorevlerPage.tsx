@@ -13,19 +13,30 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 // No icons needed for formal appearance
 
-// Görev görsellerini daha verimli yönetmek için optimizasyon 
-// Dinamik olarak görev görsellerini yüklemek için
-const getGorevImage = (id: number): string => {
-  try {
-    // Görev numarasını 1-100 arası sınırla
-    const safeId = Math.max(1, Math.min(100, id));
-    // Talep edildiğinde görseli dinamik olarak yükle
-    return `/attached_assets/gorev-${safeId}.webp`;
-  } catch (error) {
-    console.error(`Görev görseli yüklenirken hata: ${id}`, error);
-    // Hata durumunda varsayılan görseli döndür
-    return "/attached_assets/gorev-1.webp"; // Varsayılan olarak birinci görev
-  }
+// Görev arkaplan renkleri
+const gorevColors = [
+  ["#B92020", "#7A0000"], // Kırmızı
+  ["#1E3A8A", "#0F1D47"], // Koyu mavi
+  ["#3F1D5E", "#1F0E2F"], // Mor
+  ["#155E3F", "#0A2F1F"], // Yeşil
+  ["#7A4800", "#3D2400"], // Kahverengi
+  ["#991B1B", "#4C0D0D"], // Koyu kırmızı
+  ["#0C4A6E", "#06293D"], // Lacivert
+  ["#5B21B6", "#2D105B"], // Mor
+  ["#065F46", "#032F23"], // Yeşil
+  ["#B45309", "#5A2905"], // Turuncu
+  ["#BE123C", "#5F091E"], // Bordo
+  ["#4338CA", "#211E65"], // Eflatun
+];
+
+// Görev için bir arkaplan renk dekorasyonu oluştur
+const getGorevBackground = (id: number) => {
+  // Görevi renkler dizisinden bir renge eşleştir
+  const colorIndex = id % gorevColors.length;
+  const [color1, color2] = gorevColors[colorIndex];
+  
+  // Diagonal gradient ile şık bir arkaplan oluştur
+  return `linear-gradient(135deg, ${color1}, ${color2})`;
 };
 
 
@@ -36,26 +47,8 @@ const standardPatterns = [
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwZjI5NDIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwODE0MjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNncmFkKSIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlNjBlMGUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIvPjwvc3ZnPg=="
 ];
 
-// Görev arka plan görsellerini döndüren fonksiyon - optimize edilmiş
-const getGorevBackgroundImage = (id: number) => {
-  // Görev 0 için özel durum
-  if (id === 0) {
-    return standardPatterns[0]; // Kurucu eksikleri için standart arka plan
-  }
-  
-  // Diğer tüm görevler için dinamik yükleme
-  return getGorevImage(id);
-};
-const backgroundColors = [
-  ['#0f2942', '#081421'], // Koyu mavi
-  ['#181F3A', '#0D1117'], // Koyu lacivert
-  ['#251E26', '#0D0D0F'], // Koyu mor
-  ['#2A1E21', '#150F10'], // Koyu kırmızı
-  ['#1B2728', '#0A1213'], // Koyu yeşil
-  ['#292624', '#141210'], // Koyu kahverengi
-  ['#25292B', '#0D0F10'], // Koyu gri
-  ['#232921', '#101510'], // Koyu orman yeşili
-];
+// Artık bu fonksiyona ihtiyacımız yok, doğrudan getGorevBackground kullanıyoruz
+// Eski kod temizlendi, artık getGorevBackground kullanıyoruz
 
 // Farklı arka plan desenleri (pattern)
 const backgroundPatterns = [
@@ -1107,21 +1100,18 @@ export default function GorevlerPage() {
                         : 'border-red-600'
                   } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                 >
-                  {/* Background image with overlay */}
-                  {gorev.id >= 0 && gorev.id <= 100 && (
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                      <img 
-                        src={getGorevBackgroundImage(gorev.id)} 
-                        alt=""
-                        className="w-full h-full object-cover object-center"
-                        onError={(e) => {
-                          console.log(`Failed to load image for görev ${gorev.id}`);
-                          e.currentTarget.src = '/attached_assets/gorev-1.webp';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/80"></div>
+                  {/* Renkli gradient arkaplan */}
+                  <div 
+                    className="absolute inset-0 z-0 overflow-hidden" 
+                    style={{ background: getGorevBackground(gorev.id) }}
+                  >
+                    {/* Dekoratif desenler ekle */}
+                    <div className="absolute inset-0 z-0 opacity-10">
+                      <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
                     </div>
-                  )}
+                    {/* Stil ve kontrast için gradient overlay ekle */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60"></div>
+                  </div>
                   
                   {/* Content */}
                   <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
@@ -1244,7 +1234,7 @@ export default function GorevlerPage() {
             {selectedGorev?.id && selectedGorev.id >= 0 && selectedGorev.id <= 100 && (
               <div className="absolute inset-0 opacity-20 z-0">
                 <img 
-                  src={getGorevBackgroundImage(selectedGorev.id)} 
+                  style={{ background: getGorevBackground(selectedGorev.id) }}
                   alt=""
                   className="w-full h-full object-cover"
                 />
