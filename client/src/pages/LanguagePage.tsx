@@ -71,7 +71,9 @@ export default function LanguagePage() {
   }, [i18n.language]);
 
   const handleLanguageSelect = (langCode: string) => {
+    // Seçilen dili hem uygulamada hem de yerel depolamada ayarla
     i18n.changeLanguage(langCode);
+    localStorage.setItem('userLanguage', langCode);
     
     // Kullanıcı etkileşimi ile direkt ses çalma (tarayıcı kısıtlamalarını aşar)
     try {
@@ -111,8 +113,8 @@ export default function LanguagePage() {
     
     recordLanguageSelection();
     
-    // Navigate to home page
-    navigate("/home");
+    // Dil seçimine göre ana sayfa yönlendirmesi
+    navigate("/turkiye");
   };
 
   const handleToggleAudio = () => {

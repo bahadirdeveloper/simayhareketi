@@ -9,6 +9,9 @@ import ruTranslation from "../locales/ru.json";
 import esTranslation from "../locales/es.json";
 import deTranslation from "../locales/de.json";
 
+// Tarayıcıda saklanan dil tercihi varsa onu al
+const savedLanguage = localStorage.getItem('userLanguage') || "tr";
+
 // Configure i18next
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -33,7 +36,7 @@ i18n
         translation: deTranslation
       }
     },
-    lng: "tr", // Default language
+    lng: savedLanguage, // Kaydedilmiş dili kullan
     fallbackLng: "tr",
     interpolation: {
       escapeValue: false // React already safes from XSS
