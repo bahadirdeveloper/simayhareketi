@@ -93,7 +93,7 @@ export default function BirlesikManifestoPage() {
                 : "bg-blue-900/30 text-white/80 hover:bg-blue-800/50"}`}
             onClick={() => setActiveTab("cagri")}
           >
-            <h2 className="text-2xl font-bold">ÇAĞRI</h2>
+            <h2 className="text-2xl font-bold">HALKA ÇAĞRI</h2>
           </div>
         </motion.div>
 
@@ -143,7 +143,7 @@ export default function BirlesikManifestoPage() {
                   transition={{ duration: 0.5 }}
                   className="text-3xl-responsive font-bold mb-6 text-white text-center"
                 >
-                  {t("anayasa.title")}
+                  HALK ANAYASASI
                 </motion.h1>
 
                 <motion.div
@@ -399,7 +399,7 @@ export default function BirlesikManifestoPage() {
                   
                   <div className="bg-blue-900/20 p-4 rounded-lg mt-8 border border-blue-800/30">
                     <p className="text-gray-300 text-center italic">
-                      Bu çağrı, yapay zeka değil, teknoloji ve halkın gücüyle ilerleyen bir gelecek için sizleri harekete geçmeye davet ediyor.
+                      Bu çağrı, teknoloji ve halkın gücüyle ilerleyen bir gelecek için sizleri harekete geçmeye davet ediyor.
                     </p>
                   </div>
                 </motion.div>
