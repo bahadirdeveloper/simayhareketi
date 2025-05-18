@@ -19,6 +19,31 @@
   "simay_goals_button": "Our Goals",
   "simay_tasks_button": "Tasks",
   
+  "turkiye_page": {
+    "title": "REPUBLIC IS UPDATING",
+    "subtitle": "With the People",
+    "quote": "\"If a Turk doesn't claim the legacy of their ancestors, they leave their future at the mercy of other nations.\"",
+    "general_participation": "GENERAL PARTICIPATION",
+    "citizens": "Citizens",
+    "total_donation": "TOTAL DONATION",
+    "enough_for_civilization": "For civilization",
+    "active_task": "ACTIVE TASK",
+    "task": "Task",
+    "update": "UPDATE",
+    "completed": "Completed",
+    "republic_values": "REPUBLIC VALUES",
+    "turk_nedir": "WHAT IS TURK?",
+    "turk_desc": "Historical analysis of Turkish identity and definition",
+    "anayasa_manifestolar": "CONSTITUTION AND MANIFESTOS",
+    "anayasa_desc": "Republican manifesto and constitutional archive",
+    "gorevler": "TASKS",
+    "gorevler_desc": "Task list for the Republic",
+    "cagri": "CALL",
+    "cagri_desc": "People's call and the call text of the manifesto",
+    "harekete_katil": "JOIN THE MOVEMENT",
+    "katil_desc": "Republic update participation system"
+  },
+  
   "amaclar": {
     "title": "Our Goals & Battles",
     "subtitle": "With the light shown by Atatürk, we are building a new system as the voice of the people.",

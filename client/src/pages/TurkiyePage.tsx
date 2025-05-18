@@ -324,9 +324,9 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-5 text-lg font-bold"
                   onClick={() => navigate("/turknedir")}
                 >
-                  TÜRK NEDİR?
+                  {t("turkiye_page.turk_nedir")}
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.turk_desc")}</p>
               </div>
               
               {/* 2. ANAYASA VE MANİFESTOLAR */}
@@ -339,9 +339,9 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-4"
                   onClick={() => navigate("/birlesikmanifesto")}
                 >
-                  ANAYASA VE MANİFESTOLAR
+                  {t("turkiye_page.anayasa_manifestolar")}
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet manifestosu ve anayasal arşiv</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.anayasa_desc")}</p>
               </div>
               
               {/* 3. GÖREVLER */}
@@ -354,9 +354,9 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-4"
                   onClick={() => navigate("/gorevler")}
                 >
-                  GÖREVLER
+                  {t("turkiye_page.gorevler")}
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet için yapılacak görevler listesi</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.gorevler_desc")}</p>
               </div>
               
               {/* 4. ÇAĞRI */}
