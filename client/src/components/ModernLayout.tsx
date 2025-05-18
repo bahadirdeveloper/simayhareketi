@@ -10,70 +10,53 @@ import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
 // Ses kontrolü için düğme bileşeni
 const AudioButton = () => {
   const [location, setLocation] = useLocation();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [currentTime, setCurrentTime] = useState('0:00');
+  const [showPlayer, setShowPlayer] = useState(false);
   
-  useEffect(() => {
-    // Audio elementini oluştur
-    const audio = new Audio("https://cdn.pixabay.com/download/audio/2021/10/25/audio_f0b7cc7ec2.mp3");
-    audio.loop = true;
-    audioRef.current = audio;
-    
-    // Ses süresini izlemek için
-    const updateTime = () => {
-      if (audioRef.current) {
-        const minutes = Math.floor(audioRef.current.currentTime / 60);
-        const seconds = Math.floor(audioRef.current.currentTime % 60);
-        setCurrentTime(`${minutes}:${seconds < 10 ? '0' + seconds : seconds}`);
-      }
-    };
-    
-    audio.addEventListener('timeupdate', updateTime);
-    
-    // Component unmount olduğunda temizle
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', updateTime);
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-  
-  const toggleAudio = () => {
-    if (!audioRef.current) return;
-    
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(err => {
-        console.error("Ses çalma hatası:", err);
-      });
-    }
-    
-    setIsPlaying(!isPlaying);
-  };
-  
-  // Ayrıca dil sayfasına yönlendirme işlevini de koru
+  // Dil sayfasına yönlendirme ve ses oynatıcı işlevselliği
   const handleClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
       // Shift tuşu ile tıklanırsa dil sayfasına git
       setLocation('/dil');
     } else {
-      // Normal tıklama sesi açıp kapatır
-      toggleAudio();
+      // Ses oynatıcıyı göster/gizle
+      setShowPlayer(!showPlayer);
     }
   };
   
   return (
-    <button 
-      onClick={handleClick}
-      className="fixed z-40 bottom-4 left-4 bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-red-700 transition-colors"
-      aria-label={isPlaying ? "Sesi Durdur" : "Sesi Başlat"}
-    >
-      {isPlaying ? 'SES' : 'SES'}
-    </button>
+    <>
+      <button 
+        onClick={handleClick}
+        className="fixed z-40 bottom-4 left-4 bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-red-700 transition-colors"
+        aria-label="Ses Kontrolü"
+      >
+        SES
+      </button>
+      
+      {/* YouTube oynatıcı - gizlenebilir panel olarak */}
+      {showPlayer && (
+        <div className="fixed bottom-20 left-4 z-40 bg-black/80 p-2 rounded-lg border border-red-500/30 shadow-lg">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-white text-sm">Müzik Kontrolü</span>
+            <button 
+              onClick={() => setShowPlayer(false)}
+              className="text-white text-xs hover:text-red-400"
+            >
+              Kapat
+            </button>
+          </div>
+          <iframe 
+            width="280" 
+            height="158" 
+            src="https://www.youtube.com/embed/HgH_LsBHTPw?autoplay=1&mute=0" 
+            title="Türk Müziği" 
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+        </div>
+      )}
+    </>
   );
 };
 
