@@ -13,107 +13,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 // No icons needed for formal appearance
 
-// Görev arka plan görselleri
-import gorev1 from "@assets/gorev-1.webp";
-import gorev2 from "@assets/gorev-2.webp";
-import gorev3 from "@assets/gorev-3.webp";
-import gorev4 from "@assets/gorev-4.webp";
-import gorev5 from "@assets/gorev-5.webp";
-import gorev6 from "@assets/gorev-6.webp";
-import gorev7 from "@assets/gorev-7.webp";
-import gorev8 from "@assets/gorev-8.webp";
-import gorev9 from "@assets/gorev-9.webp";
-import gorev10 from "@assets/gorev-10.webp";
-import gorev11 from "@assets/gorev-11.webp";
-import gorev12 from "@assets/gorev-12.webp";
-import gorev13 from "@assets/gorev-13.webp";
-import gorev14 from "@assets/gorev-14.webp";
-import gorev15 from "@assets/gorev-15.webp";
-import gorev16 from "@assets/gorev-16.webp";
-import gorev17 from "@assets/gorev-17.webp";
-import gorev18 from "@assets/gorev-18.webp";
-import gorev19 from "@assets/gorev-19.webp";
-import gorev20 from "@assets/gorev-20.webp";
-import gorev21 from "@assets/gorev-21.webp";
-import gorev22 from "@assets/gorev-22.webp";
-import gorev23 from "@assets/gorev-23.webp";
-import gorev24 from "@assets/gorev-24.webp";
-import gorev25 from "@assets/gorev-25.webp";
-import gorev26 from "@assets/gorev-26.webp";
-import gorev27 from "@assets/gorev-27.webp";
-import gorev28 from "@assets/gorev-28.webp";
-import gorev29 from "@assets/gorev-29.webp";
-import gorev30 from "@assets/gorev-30.webp";
-import gorev31 from "@assets/gorev-31.webp";
-import gorev32 from "@assets/gorev-32.webp";
-import gorev33 from "@assets/gorev-33.webp";
-import gorev34 from "@assets/gorev-34.webp";
-import gorev35 from "@assets/gorev-35.webp";
-import gorev36 from "@assets/gorev-36.webp";
-import gorev37 from "@assets/gorev-37.webp";
-import gorev38 from "@assets/gorev-38.webp";
-import gorev39 from "@assets/gorev-39.webp";
-import gorev40 from "@assets/gorev-40.webp";
-import gorev41 from "@assets/gorev-41.webp";
-import gorev42 from "@assets/gorev-42.webp";
-import gorev43 from "@assets/gorev-43.webp";
-import gorev44 from "@assets/gorev-44.webp";
-import gorev45 from "@assets/gorev-45.webp";
-import gorev46 from "@assets/gorev-46.webp";
-import gorev47 from "@assets/gorev-47.webp";
-import gorev48 from "@assets/gorev-48.webp";
-import gorev49 from "@assets/gorev-49.webp";
-import gorev50 from "@assets/gorev-50.webp";
-import gorev51 from "@assets/gorev-51.webp";
-import gorev52 from "@assets/gorev-52.webp";
-import gorev53 from "@assets/gorev-53.webp";
-import gorev54 from "@assets/gorev-54.webp";
-import gorev55 from "@assets/gorev-55.webp";
-import gorev56 from "@assets/gorev-56.webp";
-import gorev57 from "@assets/gorev-57.webp";
-import gorev58 from "@assets/gorev-58.webp";
-import gorev59 from "@assets/gorev-59.webp";
-import gorev60 from "@assets/gorev-60.webp";
-import gorev61 from "@assets/gorev-61.webp";
-import gorev62 from "@assets/gorev-62.webp";
-import gorev63 from "@assets/gorev-63.webp";
-import gorev64 from "@assets/gorev-64.webp";
-import gorev65 from "@assets/gorev-65.webp";
-import gorev66 from "@assets/gorev-66.webp";
-import gorev67 from "@assets/gorev-67.webp";
-import gorev68 from "@assets/gorev-68.webp";
-import gorev69 from "@assets/gorev-69.webp";
-import gorev70 from "@assets/gorev-70.webp";
-import gorev71 from "@assets/gorev-71.webp";
-import gorev72 from "@assets/gorev-72.webp";
-import gorev73 from "@assets/gorev-73.webp";
-import gorev74 from "@assets/gorev-74.webp";
-import gorev75 from "@assets/gorev-75.webp";
-import gorev76 from "@assets/gorev-76.webp";
-import gorev77 from "@assets/gorev-77.webp";
-import gorev78 from "@assets/gorev-78.webp";
-import gorev79 from "@assets/gorev-79.webp";
-import gorev80 from "@assets/gorev-80.webp";
-import gorev81 from "@assets/gorev-81.webp";
-import gorev82 from "@assets/gorev-82.webp";
-import gorev83 from "@assets/gorev-83.webp";
-import gorev84 from "@assets/gorev-84.webp";
-import gorev85 from "@assets/gorev-85.webp";
-import gorev86 from "@assets/gorev-86.webp";
-import gorev87 from "@assets/gorev-87.webp";
-import gorev88 from "@assets/gorev-88.webp";
-import gorev89 from "@assets/gorev-89.webp";
-import gorev90 from "@assets/gorev-90.webp";
-import gorev91 from "@assets/gorev-91.webp";
-import gorev92 from "@assets/gorev-92.webp";
-import gorev93 from "@assets/gorev-93.webp";
-import gorev94 from "@assets/gorev-94.webp";
-import gorev95 from "@assets/gorev-95.webp";
-import gorev96 from "@assets/gorev-96.webp";
-import gorev97 from "@assets/gorev-97.webp";
-import gorev98 from "@assets/gorev-98.webp";
-import gorev99 from "@assets/gorev-99.webp";
-import gorev100 from "@assets/gorev-100.webp";
+// Görev görsellerini daha verimli yönetmek için optimizasyon 
+// Dinamik olarak görev görsellerini yüklemek için
+const getGorevImage = (id: number): string => {
+  // Görev numarasını 1-100 arası sınırla
+  const safeId = Math.max(1, Math.min(100, id));
+  // Talep edildiğinde görseli dinamik olarak yükle
+  return `/attached_assets/gorev-${safeId}.webp`;
+};
 
 
 
