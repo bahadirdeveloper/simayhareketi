@@ -285,10 +285,12 @@ const ModernLayout = ({
             </div>
           </div>
           
-          {/* Ses kontrol düğmesi */}
-          <div className="fixed bottom-4 left-4 z-40">
-            <AudioButton />
-          </div>
+          {/* Ses kontrol düğmesi - sadece ana sayfada görünür */}
+          {window.location.pathname === "/" || window.location.pathname === "/tr" || window.location.pathname === "/tr/" ? (
+            <div className="fixed bottom-4 left-4 z-40">
+              <AudioButton />
+            </div>
+          ) : null}
         </main>
         
         {/* Accessibility Reader */}
