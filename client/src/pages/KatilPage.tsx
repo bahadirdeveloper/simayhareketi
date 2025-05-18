@@ -75,11 +75,11 @@ export default function KatilPage() {
   
   // Community solidarity progress data
   const [participantGoal] = useState(10000000); // 10 million participants goal
-  const [currentParticipants] = useState(8523912); // Current participant count
+  const [currentParticipants] = useState(0); // Current participant count
   const [projectGoal] = useState(100); // Project completion goal (100%)
-  const [currentProjects] = useState(67); // Current project completion percentage
+  const [currentProjects] = useState(0); // Current project completion percentage
   const [volunteerGoal] = useState(1000000); // Volunteer goal
-  const [currentVolunteers] = useState(312457); // Current volunteer count
+  const [currentVolunteers] = useState(0); // Current volunteer count
   
   // Calculate percentage for progress bars
   const calculatePercentage = (current: number, goal: number) => {
@@ -91,27 +91,13 @@ export default function KatilPage() {
     return `₺${(amount / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
   
-  // Gelir-gider bilgileri
+  // Gelir-gider bilgileri - Henüz işlem yok
   const incomeData = [
-    { id: 1, date: '05 Şubat 2025', description: 'Bireysel Bağışlar', amount: 124500, type: 'income' },
-    { id: 2, date: '12 Şubat 2025', description: 'Kurumsal Destekler', amount: 75000, type: 'income' },
-    { id: 3, date: '18 Şubat 2025', description: 'Sertifika Gelirleri', amount: 53200, type: 'income' },
-    { id: 4, date: '28 Şubat 2025', description: 'Etkinlik Katılım Gelirleri', amount: 32000, type: 'income' },
-    { id: 5, date: '10 Mart 2025', description: 'Bireysel Bağışlar', amount: 98700, type: 'income' },
-    { id: 6, date: '21 Mart 2025', description: 'Kurumsal Destekler', amount: 62500, type: 'income' },
-    { id: 7, date: '05 Nisan 2025', description: 'Sertifika Gelirleri', amount: 47800, type: 'income' },
-    { id: 8, date: '15 Nisan 2025', description: 'Bireysel Bağışlar', amount: 85300, type: 'income' },
+    { id: 1, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'income' },
   ];
   
   const expenseData = [
-    { id: 1, date: '08 Şubat 2025', description: 'Server ve Altyapı Giderleri', amount: 35000, type: 'expense' },
-    { id: 2, date: '15 Şubat 2025', description: 'Yazılım Geliştirme', amount: 87000, type: 'expense' },
-    { id: 3, date: '22 Şubat 2025', description: 'Güvenlik Sistemleri', amount: 28500, type: 'expense' },
-    { id: 4, date: '03 Mart 2025', description: 'İletişim ve Tanıtım', amount: 42300, type: 'expense' },
-    { id: 5, date: '12 Mart 2025', description: 'Siber Güvenlik Testleri', amount: 18700, type: 'expense' },
-    { id: 6, date: '25 Mart 2025', description: 'Server ve Altyapı Giderleri', amount: 32000, type: 'expense' },
-    { id: 7, date: '08 Nisan 2025', description: 'Yazılım Geliştirme', amount: 95000, type: 'expense' },
-    { id: 8, date: '17 Nisan 2025', description: 'İletişim ve Tanıtım', amount: 37500, type: 'expense' },
+    { id: 1, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'expense' },
   ];
   
   // Toplam gelir/gider hesaplamaları
