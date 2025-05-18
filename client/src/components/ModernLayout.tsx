@@ -234,7 +234,7 @@ const ModernLayout = ({
             </div>
           </div>
           
-          {/* Basit ses kontrolü - dış kaynaklı ses dosyası */}
+          {/* Basit ses kontrolü - Türk müziği (YouTube audio kütüphanesinden) */}
           <div className="fixed bottom-16 right-4 z-40">
             <div className="bg-black/40 p-2 rounded-lg border border-red-500/20 flex flex-col items-center">
               <span className="text-white text-sm mb-1">Ses Kontrolü</span>
@@ -242,12 +242,13 @@ const ModernLayout = ({
                 controls
                 loop
                 preload="auto"
-                src="https://archive.org/download/turkish-traditional-music-collection/turkish-traditional-music-collection.mp3"
+                src="https://cdn.pixabay.com/download/audio/2022/02/22/audio_deb0fb1631.mp3"
                 style={{ 
                   width: '200px',
                   height: '36px',
                   opacity: 0.8
                 }}
+                id="background-audio"
               />
             </div>
           </div>
