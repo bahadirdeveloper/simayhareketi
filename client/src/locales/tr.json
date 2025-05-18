@@ -5,12 +5,12 @@
   "launch_date": "19 Mayıs 2025'te başlıyor.",
   "toggle_sound": "Sesi Aç/Kapat",
   "welcome_message": "Dünyayı Kurtarma Operasyonu'na Hoş Geldiniz",
-  "content_description": "Bu, 19 Mayıs 2025'te yayına girecek olan küresel bir dijital bilinç ve adalet sisteminin başlangıç ekranıdır. Halkların kardeşliği ve dijital görev sistemi üzerine kurulacaktır.",
+  "content_description": "Bu, 19 Mayıs 2025'te yayına girecek olan küresel bir dijital bilinç ve adalet sisteminin başlangıç ekranıdır. Halkların kardeşliği ve teknolojik görev sistemi üzerine kurulacaktır.",
   "back_to_home": "Ana Sayfaya Dön",
   
-  "simay_title": "SİMAY HAREKETİ",
+  "simay_title": "HALK HAREKETİ",
   "simay_subtitle": "Cumhuriyetin Halk ile Güncellenme Platformu",
-  "simay_message": "Simay Hareketi, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla geleceğe taşıyan, kardeşliği ve adaleti temel alan bir güncellenme platformudur.",
+  "simay_message": "Halk Hareketi, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla geleceğe taşıyan, kardeşliği ve adaleti temel alan bir güncellenme platformudur.",
   "simay_launch_date": "19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu",
   "simay_manifesto_button": "Manifestomuz",
   "simay_join_button": "Harekete Katıl",
@@ -100,8 +100,8 @@
   },
   
   "manifesto": {
-    "title": "Simay Hareketi Manifestosu",
-    "introduction": "Simay Hareketi olarak, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla onu geleceğe taşımayı ve toplumsal bağları güçlendirmeyi amaçlıyoruz.",
+    "title": "Halk Hareketi Manifestosu",
+    "introduction": "Halk Hareketi olarak, cumhuriyetin temel değerlerini koruyarak halkın katılımıyla onu geleceğe taşımayı ve toplumsal bağları güçlendirmeyi amaçlıyoruz.",
     "principles": "İlkelerimiz",
     "principle_1": "Cumhuriyet değerlerinin korunması",
     "principle_2": "Halk katılımı ve şeffaflık",

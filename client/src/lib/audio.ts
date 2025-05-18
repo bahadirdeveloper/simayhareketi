@@ -39,11 +39,14 @@ export const initAudio = (page: string = 'default'): void => {
   
   // Ses yükleme
   try {
+    // assets klasöründen ses dosyasını al
+    const audioPath = page === 'language' ? '/attached_assets/giris.mp3' : soundPath;
+    
     soundtrack = new Howl({
-      src: [soundPath],
+      src: [audioPath],
       loop: true,
       volume: 0.3, // Ses seviyesini artırdık
-      html5: false, // Web Audio API kullan
+      html5: true, // HTML5 Audio API kullan
       preload: true,
       autoplay: false
     });
@@ -93,13 +96,17 @@ export const playSoundtrack = (): void => {
           .catch(error => {
             console.error("Playback failed:", error);
             // Howler ile tekrar dene
-            soundtrack.play();
-            isPlaying = true;
+            if (soundtrack) {
+              soundtrack.play();
+              isPlaying = true;
+            }
           });
       } else {
-        soundtrack.play();
-        isPlaying = true;
-        console.log("Audio started playing via Howler");
+        if (soundtrack) {
+          soundtrack.play();
+          isPlaying = true;
+          console.log("Audio started playing via Howler");
+        }
       }
     }
   } catch (error) {
