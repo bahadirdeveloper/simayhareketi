@@ -9,14 +9,8 @@ import { initAudio, playSoundtrack } from "@/lib/audio";
 import NavButtons from "@/components/NavButtons";
 // No icons needed for formal appearance
 
-// Ana değerler için veri - türkiye sayfası için özelleştirilmiş (ikonsuz)
-const turkishValues = [
-  { id: 'milli', name: 'MİLLİ', description: 'Özgür ve bağımsız' },
-  { id: 'muasir', name: 'MUASIR', description: 'Çağdaş uygarlık' },
-  { id: 'laik', name: 'LAİK', description: 'Vicdan özgürlüğü' },
-  { id: 'demokratik', name: 'DEMOKRATİK', description: 'Halk egemenliği' },
-  { id: 'sosyal', name: 'SOSYAL', description: 'Toplumsal dayanışma' }
-];
+// Turkish values defined by the translation system
+const turkishValueIds = ['milli', 'muasir', 'laik', 'demokratik', 'sosyal'];
 
 export default function TurkiyePage() {
   const { t, i18n } = useTranslation();
@@ -264,9 +258,9 @@ export default function TurkiyePage() {
                 </div>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-                  {turkishValues.map((value, index) => (
+                  {turkishValueIds.map((valueId, index) => (
                     <motion.div 
-                      key={value.id}
+                      key={valueId}
                       className="bg-gradient-to-b from-black/80 to-red-950/10 backdrop-blur-sm rounded-xl p-4 text-center border border-red-700/20 hover:border-red-500/40 transition-all duration-300 shadow-[0_2px_10px_rgba(185,28,28,0.05)] hover:shadow-[0_4px_20px_rgba(185,28,28,0.1)]"
                       initial={{ y: 10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
@@ -275,11 +269,11 @@ export default function TurkiyePage() {
                     >
                       <div className="flex justify-center mb-3">
                         <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-[0_4px_20px_rgba(185,28,28,0.15)]">
-                          <div className="text-white font-bold">{value.name.charAt(0)}</div>
+                          <div className="text-white font-bold">{t(`turkiye_page.values.${valueId}.name`).charAt(0)}</div>
                         </div>
                       </div>
-                      <h3 className="text-lg-responsive font-semibold text-white mb-2">{value.name}</h3>
-                      <p className="text-base-responsive text-gray-400">{value.description}</p>
+                      <h3 className="text-lg-responsive font-semibold text-white mb-2">{t(`turkiye_page.values.${valueId}.name`)}</h3>
+                      <p className="text-base-responsive text-gray-400">{t(`turkiye_page.values.${valueId}.description`)}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -296,11 +290,11 @@ export default function TurkiyePage() {
                   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
                   
                   <div className="flex items-center gap-3 mb-3">
-                    <h3 className="text-xl-responsive text-white font-semibold">Türkiye Cumhuriyeti Dijital Koordinasyon Alanı</h3>
+                    <h3 className="text-xl-responsive text-white font-semibold">{t("turkiye_page.coordination_area")}</h3>
                   </div>
                   
                   <p className="text-base-responsive text-white/70">
-                    Cumhuriyetin güncellenme sürecinde tüm vatandaşların koordineli bir şekilde görevlere katılmasını ve Türkiye'nin geleceğine katkıda bulunmasını amaçlayan dijital platform.
+                    {t("turkiye_page.coordination_desc")}
                   </p>
                 </div>
               </motion.div>

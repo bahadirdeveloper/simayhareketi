@@ -44,6 +44,8 @@
     "cagri_desc": "People's call and the call text of the manifesto",
     "harekete_katil": "JOIN THE MOVEMENT",
     "katil_desc": "Republic update participation system",
+    "coordination_area": "Republic of Turkey Digital Coordination Area",
+    "coordination_desc": "A digital platform aiming for all citizens to participate in tasks in a coordinated manner and contribute to the future of Turkey during the republic update process.",
     "values": {
       "milli": {
         "name": "NATIONAL",

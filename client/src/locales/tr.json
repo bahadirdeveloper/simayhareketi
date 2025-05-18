@@ -33,6 +33,8 @@
     "cagri_desc": "Halka çağrı ve manifestonun çağrı metni",
     "harekete_katil": "HAREKETE KATIL",
     "katil_desc": "Cumhuriyet güncellemesi katılım sistemi",
+    "coordination_area": "Türkiye Cumhuriyeti Dijital Koordinasyon Alanı",
+    "coordination_desc": "Cumhuriyetin güncellenme sürecinde tüm vatandaşların koordineli bir şekilde görevlere katılmasını ve Türkiye'nin geleceğine katkıda bulunmasını amaçlayan dijital platform.",
     "values": {
       "milli": {
         "name": "MİLLİ",
