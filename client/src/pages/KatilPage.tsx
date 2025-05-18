@@ -178,6 +178,19 @@ export default function KatilPage() {
       pageContent={pageContent}
     >
       <div className="w-full max-w-3xl mx-auto">
+        {/* Bağış Uyarı Mesajı */}
+        <div className="bg-red-900/40 border-2 border-red-600 rounded-lg p-6 mb-8 text-center animate-pulse">
+          <h2 className="text-2xl-responsive font-bold text-white mb-4">
+            ⚠️ BAĞIŞ İŞLEMLERİ ŞU AN İÇİN YAPILAMAMAKTADIR ⚠️
+          </h2>
+          <p className="text-lg-responsive text-gray-200 font-semibold mb-4">
+            HALK BANKALARI, BU ALANLARA TÜRK MİLLETİ İÇİN BİR İBAN BIRAKACAKTIR.
+          </p>
+          <p className="text-lg-responsive text-gray-200 font-semibold">
+            HALK İÇİN, HALKIN ADINA.
+          </p>
+        </div>
+        
         <Tabs defaultValue="katilim" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-6 min-h-[44px]">
             <TabsTrigger 
