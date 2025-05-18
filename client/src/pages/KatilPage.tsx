@@ -41,7 +41,9 @@ import {
   Users,
   Heart,
   HandHeart,
-  ClipboardCheck
+  ClipboardCheck,
+  Flag,
+  Share2
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 import PaymentForm from "@/components/PaymentForm";
@@ -70,6 +72,19 @@ export default function KatilPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
   const { toast } = useToast();
+  
+  // Community solidarity progress data
+  const [participantGoal] = useState(10000000); // 10 million participants goal
+  const [currentParticipants] = useState(8523912); // Current participant count
+  const [projectGoal] = useState(100); // Project completion goal (100%)
+  const [currentProjects] = useState(67); // Current project completion percentage
+  const [volunteerGoal] = useState(1000000); // Volunteer goal
+  const [currentVolunteers] = useState(312457); // Current volunteer count
+  
+  // Calculate percentage for progress bars
+  const calculatePercentage = (current: number, goal: number) => {
+    return Math.min(Math.round((current / goal) * 100), 100);
+  };
   
   // Para biçimlendirme fonksiyonu
   const formatCurrency = (amount: number) => {
@@ -194,6 +209,102 @@ export default function KatilPage() {
           <p className="text-lg-responsive text-gray-200 font-semibold">
             HALK İÇİN, HALKIN ADINA.
           </p>
+        </div>
+        
+        {/* Community Solidarity Progress Visualization */}
+        <div className="mb-10">
+          <h2 className="text-2xl-responsive font-bold text-white mb-6 text-center">HALK DAYANIŞMASI İLERLEYİŞİ</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Participant Progress */}
+            <div className="bg-gradient-to-br from-blue-950/50 to-blue-900/20 backdrop-blur-sm rounded-lg p-5 border border-blue-700/30">
+              <div className="flex items-center mb-3">
+                <Users className="h-6 w-6 text-blue-400 mr-3" />
+                <h3 className="text-lg-responsive font-semibold text-blue-300">Vatandaş Katılımı</h3>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-300">{currentParticipants.toLocaleString('tr-TR')} vatandaş</span>
+                <span className="text-gray-400">{participantGoal.toLocaleString('tr-TR')} hedef</span>
+              </div>
+              <Progress 
+                value={calculatePercentage(currentParticipants, participantGoal)} 
+                className="h-3 bg-blue-950/70"
+              />
+              <p className="text-gray-400 text-sm mt-2 text-right">
+                %{calculatePercentage(currentParticipants, participantGoal)} tamamlandı
+              </p>
+            </div>
+            
+            {/* Project Progress */}
+            <div className="bg-gradient-to-br from-amber-950/50 to-amber-900/20 backdrop-blur-sm rounded-lg p-5 border border-amber-700/30">
+              <div className="flex items-center mb-3">
+                <Flag className="h-6 w-6 text-amber-400 mr-3" />
+                <h3 className="text-lg-responsive font-semibold text-amber-300">Görev Tamamlanma</h3>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-300">{currentProjects}% tamamlandı</span>
+                <span className="text-gray-400">{projectGoal}% hedef</span>
+              </div>
+              <Progress 
+                value={currentProjects} 
+                className="h-3 bg-amber-950/70"
+              />
+              <p className="text-gray-400 text-sm mt-2 text-right">
+                {currentProjects} görev tamamlandı
+              </p>
+            </div>
+            
+            {/* Volunteer Progress */}
+            <div className="bg-gradient-to-br from-green-950/50 to-green-900/20 backdrop-blur-sm rounded-lg p-5 border border-green-700/30">
+              <div className="flex items-center mb-3">
+                <HandHeart className="h-6 w-6 text-green-400 mr-3" />
+                <h3 className="text-lg-responsive font-semibold text-green-300">Gönüllü Katılımı</h3>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-300">{currentVolunteers.toLocaleString('tr-TR')} gönüllü</span>
+                <span className="text-gray-400">{volunteerGoal.toLocaleString('tr-TR')} hedef</span>
+              </div>
+              <Progress 
+                value={calculatePercentage(currentVolunteers, volunteerGoal)} 
+                className="h-3 bg-green-950/70"
+              />
+              <p className="text-gray-400 text-sm mt-2 text-right">
+                %{calculatePercentage(currentVolunteers, volunteerGoal)} tamamlandı
+              </p>
+            </div>
+            
+            {/* Knowledge Sharing Progress */}
+            <div className="bg-gradient-to-br from-red-950/50 to-red-900/20 backdrop-blur-sm rounded-lg p-5 border border-red-700/30">
+              <div className="flex items-center mb-3">
+                <Share2 className="h-6 w-6 text-red-400 mr-3" />
+                <h3 className="text-lg-responsive font-semibold text-red-300">Harekete Geçen İller</h3>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-300">72 il aktif</span>
+                <span className="text-gray-400">81 il hedef</span>
+              </div>
+              <Progress 
+                value={Math.round((72 / 81) * 100)} 
+                className="h-3 bg-red-950/70"
+              />
+              <p className="text-gray-400 text-sm mt-2 text-right">
+                %{Math.round((72 / 81) * 100)} tamamlandı
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <p className="text-lg-responsive text-gray-300 mb-3">
+              Birlik içinde, Türkiye'nin geleceğini şekillendiren harekete sen de katıl!
+            </p>
+            <ModernTechButton 
+              color="red"
+              size="lg"
+              onClick={() => document.getElementById('katilimFormu')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              HAREKETE KATIL
+            </ModernTechButton>
+          </div>
         </div>
         
         <Tabs defaultValue="katilim" className="w-full">
