@@ -856,7 +856,7 @@ export default function GorevlerPage() {
   };
   
   // Görev modali açma
-  const openModal = (gorev: Gorev) => {
+  const openGorevModal = (gorev: Gorev) => {
     setSelectedGorev(gorev);
     setIsModalOpen(true);
     
@@ -1151,7 +1151,7 @@ export default function GorevlerPage() {
                       </div>
                       <Button 
                         className="w-full bg-gradient-to-r from-red-700 to-red-500 text-base-responsive h-12 py-0 text-white font-bold"
-                        onClick={() => openModal(gorev)}
+                        onClick={() => openGorevModal(gorev)}
                       >
                         Göreve Katıl
                       </Button>
