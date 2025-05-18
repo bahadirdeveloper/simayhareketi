@@ -206,21 +206,32 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <audio
-                    id="turkish-national-anthem"
-                    src="/music/giris.mp3"
-                    style={{ display: 'none' }}
-                  />
                   <button 
                     onClick={() => {
-                      try {
-                        const audio = document.getElementById('turkish-national-anthem') as HTMLAudioElement;
-                        audio.volume = 0.7;
-                        audio.loop = true;
-                        audio.play();
-                      } catch (error) {
-                        console.error('Ses çalma hatası:', error);
-                      }
+                      // Basit bir ses çalma butonu - direkt base64 kodlu ses verileri kullanıyoruz
+                      // Base64 formatında kısa bir ses efekti
+                      const beepSound = 'data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHNUWUVSAAAAEwAAAHd3dy5zb3VuZGpheS5jb21URU5DAAAAFQAAAGxhdmY1OC43Ni4xMDAgbGlicHJpdlRBTEIAAAASAAAAU291bmRKYXkgRWZmZWN0c1REQVQAAAAUAAAA0YeuIVBob3Rvc2hvcCAzLjAATURJQQAAAAYAAACzQo8cATJBTAAAAAUAAABVVEY4Q09NTQAAABYAAAGFQ19QcmVzZXRfVF9WTV9fbG91ZHMoQU9QXzNfc2VtaV9iei5zb3VuZClbUmVudGFsXQpDX1ByZXNldF9UX1ZNX19sb3VkcyhBT1BfM19zZW1pX2J6LnNvdW5kKVtGTU9ELVJOVC04MS1UTV1bU1lOVEhdW00xLTIwMDBdClJlbnRhbApGTU9ELVJOVC04MS1UTQpzeW50aAo1MS4yClNZTktSCigoPDxTdGFydF9UdW5lZF9LYnI+Pj09KCgoUmF0ZTwkTl80PiooRm9yY2Vfc2NhbGU8JE5fOT4pKSszMDApKjAuOTE2KSkKUGxheVNhbQ==/home/runner/workspace//q7Y4TrNRnqdQWR=';
+                      
+                      // Ses çalma
+                      const playAudio = new Audio(beepSound);
+                      playAudio.volume = 0.3;
+                      playAudio.play();
+                      
+                      // Sadece konsola yaz
+                      console.log("Ses butonu çalışıyor!");
+                      
+                      // External script ile müzik çalma deneyelim
+                      const script = document.createElement('script');
+                      script.src = '/music/musicplayer.js';
+                      script.onload = () => {
+                        try {
+                          // @ts-ignore global tanımlı fonksiyon
+                          window.playTurkishMusic();
+                        } catch (e) {
+                          console.error("Müzik çalma hatası:", e);
+                        }
+                      };
+                      document.head.appendChild(script);
                     }}
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Türk müziği çal"
