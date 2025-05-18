@@ -226,7 +226,7 @@ export default function TurkiyePage() {
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
-                      <div className="text-red-500 font-bold text-xs">73%</div>
+                      <div className="text-red-500 font-bold text-xs">0%</div>
                     </div>
                     <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">{t("turkiye_page.update")}</h4>
                     <motion.div 
@@ -234,7 +234,7 @@ export default function TurkiyePage() {
                       animate={{ opacity: [1, 0.9, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      %73
+                      %0
                     </motion.div>
                     <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.completed")}</div>
                   </div>
