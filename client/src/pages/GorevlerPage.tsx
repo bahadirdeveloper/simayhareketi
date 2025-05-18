@@ -16,10 +16,17 @@ import { Textarea } from "@/components/ui/textarea";
 // Görev görsellerini daha verimli yönetmek için optimizasyon 
 // Dinamik olarak görev görsellerini yüklemek için
 const getGorevImage = (id: number): string => {
-  // Görev numarasını 1-100 arası sınırla
-  const safeId = Math.max(1, Math.min(100, id));
-  // Talep edildiğinde görseli dinamik olarak yükle
-  return `/attached_assets/gorev-${safeId}.webp`;
+  try {
+    // Görev numarasını 1-100 arası sınırla
+    const safeId = Math.max(1, Math.min(100, id));
+    // Talep edildiğinde görseli dinamik olarak yükle
+    // attached_assets klasöründen görsel dosyalarını import etmek için @ alias'ı kullan
+    return `/attached_assets/gorev-${safeId}.webp`;
+  } catch (error) {
+    console.error(`Görev görseli yüklenirken hata: ${id}`, error);
+    // Hata durumunda varsayılan görseli döndür
+    return standardPatterns[0];
+  }
 };
 
 
