@@ -1123,11 +1123,9 @@ export default function GorevlerPage() {
                       {gorev.id}
                     </div>
                     
-                    {/* Görev başlık ve açıklaması - mobil için daha iyi okunabilirlik */}
+                    {/* Sadece görev başlığı göster, detayları modülde göster */}
                     <div>
                       <h3 className="text-lg-responsive font-bold text-white mb-2 leading-tight">{gorev.baslik}</h3>
-                      <p className="text-white mb-2 text-base-responsive font-semibold">{gorev.cagri}</p>
-                      <div className="text-base-responsive text-white italic mb-3">{gorev.aciklama && gorev.aciklama.length > 70 ? gorev.aciklama.substring(0, 70) + '...' : gorev.aciklama}</div>
                     </div>
                     
                     {/* Alt kısımdaki bilgiler ve buton - dokunmatik için iyileştirilmiş */}
@@ -1252,9 +1250,30 @@ export default function GorevlerPage() {
                 <DialogTitle className="text-white text-xl-responsive font-bold mb-2 sm:mb-2">
                   {selectedGorev?.baslik}
                 </DialogTitle>
-                <DialogDescription className="text-white text-base-responsive leading-relaxed">
+                
+                {/* Çağrı metni - büyük ve dikkat çekici */}
+                <div className="mb-4 bg-red-900/30 border border-red-600/50 rounded-lg p-4">
+                  <p className="text-white text-lg-responsive font-semibold">
+                    {selectedGorev?.cagri}
+                  </p>
+                </div>
+                
+                {/* Detaylı açıklama */}
+                <DialogDescription className="text-white text-base-responsive leading-relaxed mb-5">
                   {selectedGorev?.aciklama}
                 </DialogDescription>
+                
+                {/* Göreve özel bilgiler */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-black/40 rounded-lg p-3 border border-red-600/30">
+                    <p className="text-gray-300 text-sm">Kategori:</p>
+                    <p className="text-white font-semibold">{selectedGorev?.kategori}</p>
+                  </div>
+                  <div className="bg-black/40 rounded-lg p-3 border border-red-600/30">
+                    <p className="text-gray-300 text-sm">Kontenjan:</p>
+                    <p className="text-white font-semibold">{selectedGorev?.tamamlayan}/{selectedGorev?.kontenjan} kişi</p>
+                  </div>
+                </div>
               </DialogHeader>
               
               <form onSubmit={handleFormSubmit} className="space-y-5 mt-6">
