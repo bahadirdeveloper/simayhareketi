@@ -6,7 +6,7 @@ let isPlaying = false;
 let currentPage: string = '';
 
 // Tek bir ses dosyası kullanıyoruz - sistem optimizasyonu
-const AUDIO_FILE = '/sounds/giris.mp3';
+const AUDIO_FILE = '/attached_assets/giris.mp3';
 const ATTACHED_AUDIO_FILE = '/attached_assets/giris.mp3';
 
 // Initialize audio system for specific page - basitleştirilmiş
@@ -22,10 +22,8 @@ export const initAudio = (page: string = 'default'): void => {
   }
   
   try {
-    // Doğru ses dosyası yolunu kullan
-    const audioPath = page === 'language' || page === 'dil' 
-      ? ATTACHED_AUDIO_FILE 
-      : AUDIO_FILE;
+    // Artık tüm sayfalar için aynı ses dosyası yolu kullanılıyor
+    const audioPath = AUDIO_FILE;
     
     // Tek bir Howl nesnesi oluştur
     soundtrack = new Howl({
