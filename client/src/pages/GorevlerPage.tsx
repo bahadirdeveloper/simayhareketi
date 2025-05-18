@@ -1108,14 +1108,13 @@ export default function GorevlerPage() {
                         : 'border-red-600'
                   } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
-                    backgroundImage: `url(${getGorevBackgroundImage(gorev.id)})`, 
+                    background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                   } : {}}
                 >
-                  {/* Overlay to make text readable - Düşük opaklık ile görseller daha belirgin */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
+                  {/* No additional overlay needed as we've included it in the background style */}
                   
                   {/* Content */}
                   <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
