@@ -206,68 +206,18 @@ export default function LanguagePage() {
                 className="mb-10"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <button 
+                  <a 
+                    href="https://www.youtube.com/watch?v=yksM9nDv-Lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Müzik çal"
-                    onClick={() => {
-                      // Doğrudan video izleme alanı oluştur
-                      // Bu şekilde sesi sitede oynatabilir
-                      
-                      // Hali hazırda video oynatıcı varsa kaldır
-                      const existingPlayer = document.getElementById('youtube-audio-player');
-                      if (existingPlayer) {
-                        existingPlayer.remove();
-                        return;
-                      }
-                      
-                      // Görünür bir YouTube oynatıcı oluştur
-                      const playerDiv = document.createElement('div');
-                      playerDiv.id = 'youtube-audio-player';
-                      playerDiv.style.position = 'fixed';
-                      playerDiv.style.bottom = '20px';
-                      playerDiv.style.right = '20px';
-                      playerDiv.style.width = '300px';
-                      playerDiv.style.borderRadius = '4px';
-                      playerDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
-                      playerDiv.style.padding = '10px';
-                      playerDiv.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
-                      playerDiv.style.zIndex = '1000';
-                      playerDiv.style.display = 'flex';
-                      playerDiv.style.flexDirection = 'column';
-                      
-                      // Kullanıcıya doğrudan linki göster ve tıklamasını iste
-                      playerDiv.innerHTML = `
-                        <div style="padding:15px; text-align:center; background-color:#111; border-radius:4px; margin-bottom:10px;">
-                          <div style="color:white; margin-bottom:10px; font-size:14px;">
-                            YouTube kısıtlamaları nedeniyle video doğrudan gösterilemiyor. 
-                            Aşağıdaki düğmeye tıklayarak YouTube'da açabilirsiniz:
-                          </div>
-                          <a 
-                            href="https://www.youtube.com/watch?v=yksM9nDv-Lg" 
-                            target="_blank" 
-                            style="display:inline-block; background:#c41e3a; color:white; text-decoration:none; padding:8px 15px; border-radius:4px; font-weight:bold;"
-                          >
-                            YouTube'da Aç
-                          </a>
-                        </div>
-                        <div style="display:flex; justify-content:flex-end; margin-top:10px;">
-                          <button id="close-player" style="background:#333; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Kapat</button>
-                        </div>
-                      `;
-                      
-                      // Sayfaya ekle
-                      document.body.appendChild(playerDiv);
-                      
-                      // Kapatma düğmesi işlevselliği
-                      document.getElementById('close-player')?.addEventListener('click', () => {
-                        playerDiv.remove();
-                      });
-                    }}
+                    title="YouTube'da videoyu aç"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
                     </svg>
-                  </button>
+                  </a>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
                 <p className="text-lg-responsive text-gray-400 max-w-lg mx-auto">
