@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
+import { Play, Pause } from "lucide-react";
+import { initAudio, playSoundtrack } from "@/lib/audio";
 // No icons needed for formal appearance
 
 // Ana değerler için veri - türkiye sayfası için özelleştirilmiş (ikonsuz)
@@ -18,6 +20,18 @@ const turkishValues = [
 export default function TurkiyePage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  
+  useEffect(() => {
+    // Ses sistemini başlat
+    initAudio('turkiye');
+  }, []);
+  
+  // Ses çalma/durdurma işlemini yönet
+  const handleToggleAudio = () => {
+    playSoundtrack();
+    setIsAudioPlaying(!isAudioPlaying);
+  };
   
   return (
     <ModernLayout 
@@ -104,6 +118,36 @@ export default function TurkiyePage() {
                     <div className="text-red-500 font-bold">%</div>
                   </motion.div>
                 </div>
+                
+                {/* Ses çalma butonu */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  className="flex justify-center mb-6"
+                >
+                  <motion.button
+                    className={`
+                      rounded-full h-12 w-12 flex items-center justify-center 
+                      ${isAudioPlaying 
+                        ? "bg-gradient-to-br from-red-600 to-red-800" 
+                        : "bg-gradient-to-br from-red-700 to-red-900"} 
+                      hover:shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-shadow duration-300
+                      border border-red-500/30
+                    `}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleToggleAudio}
+                  >
+                    {isAudioPlaying 
+                      ? <Pause className="h-5 w-5 text-white" /> 
+                      : <Play className="h-5 w-5 text-white ml-0.5" />
+                    }
+                  </motion.button>
+                  <span className="ml-2 text-gray-400 self-center text-sm">
+                    {isAudioPlaying ? "Sesi Durdur" : "Sesi Çal"}
+                  </span>
+                </motion.div>
               </motion.div>
               
               {/* Enhanced İstatistik Kartları */}
