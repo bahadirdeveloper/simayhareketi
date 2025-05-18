@@ -1104,7 +1104,7 @@ export default function GorevlerPage() {
                   <div className="absolute inset-0 z-0 overflow-hidden">
                     {/* Görev görseli arkaplan */}
                     <img 
-                      src={`/attached_assets/gorev-${Math.min(Math.max(1, gorev.id), 100)}.webp`}
+                      src={`../attached_assets/gorev-${Math.min(Math.max(1, gorev.id), 100)}.webp`}
                       alt=""
                       className="w-full h-full object-cover object-center"
                       onError={(e) => {
@@ -1253,7 +1253,7 @@ export default function GorevlerPage() {
               <div className="absolute inset-0 z-0 overflow-hidden">
                 {/* Görev görseli arkaplan */}
                 <img 
-                  src={`/attached_assets/gorev-${Math.min(Math.max(1, selectedGorev.id), 100)}.webp`}
+                  src={`../attached_assets/gorev-${Math.min(Math.max(1, selectedGorev.id), 100)}.webp`}
                   alt=""
                   className="w-full h-full object-cover object-center blur-sm"
                   onError={(e) => {
