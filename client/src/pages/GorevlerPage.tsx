@@ -1101,16 +1101,20 @@ export default function GorevlerPage() {
                   } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                 >
                   {/* Renkli gradient arkaplan */}
-                  <div 
-                    className="absolute inset-0 z-0 overflow-hidden" 
-                    style={{ background: getGorevBackground(gorev.id) }}
-                  >
-                    {/* Dekoratif desenler ekle */}
-                    <div className="absolute inset-0 z-0 opacity-10">
-                      <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-                    </div>
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    {/* Görev görseli arkaplan */}
+                    <img 
+                      src={`/attached_assets/gorev-${Math.min(Math.max(1, gorev.id), 100)}.webp`}
+                      alt=""
+                      className="w-full h-full object-cover object-center"
+                      onError={(e) => {
+                        // Hata durumunda renkli arkaplan kullan
+                        e.currentTarget.style.display = "none";
+                        e.currentTarget.parentElement!.style.background = getGorevBackground(gorev.id);
+                      }}
+                    />
                     {/* Stil ve kontrast için gradient overlay ekle */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
                   </div>
                   
                   {/* Content */}
@@ -1244,21 +1248,22 @@ export default function GorevlerPage() {
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
           <DialogContent 
             className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-5 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
-            {/* Arka plan gradient - seçilen görev için */}
+            {/* Arka plan görseli - seçilen görev için */}
             {selectedGorev?.id && (
-              <div 
-                className="absolute inset-0 z-0"
-                style={{ 
-                  background: getGorevBackground(selectedGorev.id),
-                  opacity: 0.9
-                }}
-              >
-                {/* Dekoratif desen */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-                </div>
-                {/* Kontrast için gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                {/* Görev görseli arkaplan */}
+                <img 
+                  src={`/attached_assets/gorev-${Math.min(Math.max(1, selectedGorev.id), 100)}.webp`}
+                  alt=""
+                  className="w-full h-full object-cover object-center blur-sm"
+                  onError={(e) => {
+                    // Hata durumunda renkli arkaplan kullan
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
+                  }}
+                />
+                {/* Stil ve kontrast için gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/90"></div>
               </div>
             )}
             
