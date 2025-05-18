@@ -212,58 +212,6 @@ export default function LanguagePage() {
                     rel="noopener noreferrer"
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
                     aria-label="Müzik çal"
-                    onClick={(e) => {
-                      e.preventDefault(); // Sayfaya gitmesini engelle
-                      
-                      try {
-                        // Ses efekti çal
-                        const beep = new Audio("data:audio/mp3;base64,SUQzAwAAAAABOFRYWFgAAAASAAADbWFqb3JfYnJhbmQATTRBIFRYWFgAAAARAAACbWlub3JfdmVyc2lvbgAwVFhYWAAAABYAAANjb21wYXRpYmxlX2JyYW5kcwBpc29tVFhYWAAAABEAAAB0YWcAZmZtcGVnIDQuMy4xVElUMgAAABQAAABUaXRsZQBCZWVwIFNvdW5kVElUMQAAAA8AAABiZWVwIHNvdW5kAFRDT04AAAAPAAAARWZ4IC0gYmVlcABJRDMDAAAAAAEsU1RDTwAAAAEAAABDb21tZW50ABEAAABlbmdpbmVlcmluZwBBUElDAAAAGgAAAENvbW1lbnQAQWRkZWQgdGFncwBUWUVSAAAADwAAAPIwMTgAVElNRQAAAA8AAADyNjowNCBQTQBUUkNLAAAADwAAAAUvNwBUSFBFAAAAEwAAAEVYUABUQ09NAAAAFAAAAE1vemlsbGEgRmlyZWZveABUSVQyAAAADwAAAEVYUABUQUxCAAAAGwAAAEFuaW1hdGVkIGVmZmVjdHMAVFlFUgAAAA8AAADyMDIxAFRSSUQAAAAPAAAAU291bmRzAFRCUE0AAAAPAAAAMTIwAE1FRElBIFRZUEUgYXVkaW8vbXAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU2VhcmNoIGZvciBceDIybWFrZXJceDIyIG9uIEFtYXpvbi5jb20hAA==");
-                        beep.volume = 0.5;
-                        beep.play();
-                        
-                        // Modal oluştur
-                        const modal = document.createElement('div');
-                        modal.style.position = 'fixed';
-                        modal.style.top = '50%';
-                        modal.style.left = '50%';
-                        modal.style.transform = 'translate(-50%, -50%)';
-                        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                        modal.style.padding = '20px';
-                        modal.style.borderRadius = '10px';
-                        modal.style.zIndex = '1000';
-                        modal.style.width = '90%';
-                        modal.style.maxWidth = '600px';
-                        modal.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.5)';
-                        
-                        // Video içeriği
-                        modal.innerHTML = `
-                          <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                            <iframe 
-                              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                              src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1" 
-                              allow="autoplay; encrypted-media" 
-                              allowfullscreen
-                            ></iframe>
-                          </div>
-                          <div style="text-align: right; margin-top: 10px;">
-                            <button id="close-modal" style="background: #c41e3a; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Kapat</button>
-                          </div>
-                        `;
-                        
-                        document.body.appendChild(modal);
-                        
-                        // Kapat düğmesi işlevselliği
-                        document.getElementById('close-modal')?.addEventListener('click', () => {
-                          modal.remove();
-                        });
-                        
-                        console.log("YouTube videosu modal olarak açıldı");
-                      } catch (err) {
-                        console.error("Video açma hatası:", err);
-                        // Hata durumunda doğrudan YouTube'a git
-                        window.open("https://www.youtube.com/shorts/yksM9nDv-Lg", "_blank");
-                      }
-                    }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.14v14l11-7-11-7z" />
