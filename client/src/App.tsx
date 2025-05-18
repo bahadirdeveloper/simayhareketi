@@ -35,6 +35,7 @@ import CagriPage from "@/pages/CagriPage";
 import SertifikaPage from "@/pages/SertifikaPage";
 import EntegrasyonPage from "@/pages/EntegrasyonPage";
 import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
+import BirlesikManifestoPage from "@/pages/BirlesikManifestoPage";
 
 function Router() {
   return (
@@ -52,7 +53,9 @@ function Router() {
       <Route path="/halk-defteri" component={HalkDefteriPage} />
       <Route path="/katil" component={KatilPage} />
       <Route path="/katil/success" component={KatilPage} />
-      <Route path="/manifesto" component={ManifestoPage} />
+      <Route path="/birlesik-manifesto" component={BirlesikManifestoPage} />
+      <Route path="/manifesto" component={BirlesikManifestoPage} />
+      <Route path="/cagri" component={BirlesikManifestoPage} />
       <Route path="/join" component={JoinPage} />
       <Route path="/amaclar" component={AmacsavasPage} />
       <Route path="/russia" component={RussiaPage} />
@@ -61,7 +64,6 @@ function Router() {
       <Route path="/oppressed" component={OppressedNationsPage} />
       <Route path="/halk-manifestolar" component={HalkManifestolarPage} />
       <Route path="/halkmanifestolari" component={HalkManifestolarPage} />
-      <Route path="/cagri" component={CagriPage} />
       <Route path="/sertifika" component={SertifikaPage} />
       <Route path="/entegrasyon" component={EntegrasyonPage} />
       <Route path="/halk-koordinasyon" component={HalkKoordinasyonPage} />
