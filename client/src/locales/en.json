@@ -43,7 +43,29 @@
     "cagri": "CALL",
     "cagri_desc": "People's call and the call text of the manifesto",
     "harekete_katil": "JOIN THE MOVEMENT",
-    "katil_desc": "Republic update participation system"
+    "katil_desc": "Republic update participation system",
+    "values": {
+      "milli": {
+        "name": "NATIONAL",
+        "description": "Free and independent"
+      },
+      "muasir": {
+        "name": "CONTEMPORARY",
+        "description": "Modern civilization"
+      },
+      "laik": {
+        "name": "SECULAR",
+        "description": "Freedom of conscience"
+      },
+      "demokratik": {
+        "name": "DEMOCRATIC",
+        "description": "People's sovereignty"
+      },
+      "sosyal": {
+        "name": "SOCIAL",
+        "description": "Community solidarity"
+      }
+    }
   },
   
   "amaclar": {

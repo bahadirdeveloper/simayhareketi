@@ -32,7 +32,29 @@
     "cagri": "ÇAĞRI",
     "cagri_desc": "Halka çağrı ve manifestonun çağrı metni",
     "harekete_katil": "HAREKETE KATIL",
-    "katil_desc": "Cumhuriyet güncellemesi katılım sistemi"
+    "katil_desc": "Cumhuriyet güncellemesi katılım sistemi",
+    "values": {
+      "milli": {
+        "name": "MİLLİ",
+        "description": "Özgür ve bağımsız"
+      },
+      "muasir": {
+        "name": "MUASIR",
+        "description": "Çağdaş uygarlık"
+      },
+      "laik": {
+        "name": "LAİK",
+        "description": "Vicdan özgürlüğü"
+      },
+      "demokratik": {
+        "name": "DEMOKRATİK",
+        "description": "Halk egemenliği"
+      },
+      "sosyal": {
+        "name": "SOSYAL",
+        "description": "Toplumsal dayanışma"
+      }
+    }
   },
   
   "simay_title": "HALK HAREKETİ",

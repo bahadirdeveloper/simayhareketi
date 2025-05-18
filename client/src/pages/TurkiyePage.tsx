@@ -212,7 +212,7 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">100</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">AKTİF GÖREV</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">{t("turkiye_page.active_task")}</h4>
                     <motion.div 
                       className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
@@ -220,7 +220,7 @@ export default function TurkiyePage() {
                     >
                       100
                     </motion.div>
-                    <div className="text-base-responsive text-gray-400 mt-1">Görev</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.task")}</div>
                   </div>
                 </motion.div>
                 
@@ -234,7 +234,7 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/20 to-red-900/20 flex items-center justify-center mb-2">
                       <div className="text-red-500 font-bold text-xs">73%</div>
                     </div>
-                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">GÜNCELLEME</h4>
+                    <h4 className="font-medium text-red-400 text-sm uppercase tracking-wider mb-1">{t("turkiye_page.update")}</h4>
                     <motion.div 
                       className="text-xl-responsive font-bold text-white"
                       animate={{ opacity: [1, 0.9, 1] }}
@@ -242,7 +242,7 @@ export default function TurkiyePage() {
                     >
                       %73
                     </motion.div>
-                    <div className="text-base-responsive text-gray-400 mt-1">Tamamlandı</div>
+                    <div className="text-base-responsive text-gray-400 mt-1">{t("turkiye_page.completed")}</div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -258,7 +258,7 @@ export default function TurkiyePage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent h-px top-1/2 transform -translate-y-1/2"></div>
                   <h2 className="text-2xl-responsive font-bold text-center mb-6 text-white relative inline-block bg-black px-6 py-2 mx-auto block w-auto">
                     <div className="flex items-center gap-2 justify-center">
-                      CUMHURİYET DEĞERLERİ
+                      {t("turkiye_page.republic_values")}
                     </div>
                   </h2>
                 </div>
