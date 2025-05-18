@@ -307,7 +307,7 @@ export default function TurkiyePage() {
             </motion.div>
             
             {/* Ana Navigasyon Butonları - TÜRKİYE - MANİFESTO - ÇAĞRI - KATIL & GÖREV */}
-            {/* Özel NavButtons - Türkiye sayfasında TÜRKİYE butonunu gizle */}
+            {/* Özel NavButtons - Türkiye sayfasında yalnızca gerekli butonları göster */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -315,10 +315,7 @@ export default function TurkiyePage() {
               className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 mb-6 max-w-4xl mx-auto"
             >
               {[
-                { path: "/manifesto", text: "MANİFESTO", variant: "primary" },
-                { path: "/cagri", text: "ÇAĞRI", variant: "primary" },
-                { path: "/katil", text: "KATIL", variant: "futuristic" },
-                { path: "/gorevler", text: "GÖREV", variant: "futuristic" }
+                { path: "/cagri", text: "ÇAĞRI", variant: "primary" }
               ].map((button, index) => (
                 <ModernTechButton 
                   key={button.path}
@@ -334,7 +331,7 @@ export default function TurkiyePage() {
               ))}
             </motion.div>
             
-            {/* Alt navigasyon butonları */}
+            {/* Alt navigasyon butonları - Yalnızca istenen butonları göster */}
             <motion.div
               className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-5xl mx-auto mb-10"
               initial={{ opacity: 0, y: 20 }}
@@ -356,7 +353,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
               </div>
               
-              {/* Anayasa Button */}
+              {/* MANİFESTO&ANAYASALARIMIZ Button */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="futuristic"
@@ -364,11 +361,11 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="mb-2 justify-center py-4"
-                  onClick={() => navigate("/anayasa")}
+                  onClick={() => navigate("/birlesikmanifesto")}
                 >
-                  ANAYASALARIMIZ
+                  MANİFESTO&ANAYASALARIMIZ
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet anayasalarının tarihsel arşivi</p>
+                <p className="text-xs text-gray-400 text-center px-2">Cumhuriyet manifestosu ve anayasal arşiv</p>
               </div>
               
               {/* Görevler Button */}
