@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, memo, useMemo } from 'react';
+import { ReactNode, useEffect, memo, useMemo, useState } from 'react';
 import { useLocation } from 'wouter';
 import { ArrowLeft, MessageCircle, ExternalLink } from 'lucide-react';
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
@@ -6,7 +6,7 @@ import AudioControl from './AudioControl';
 import LanguageSelector from './LanguageSelector';
 import AccessibilityReader from './AccessibilityReader';
 import { ModernTechButton } from './ModernTechButton';
-import { initAudio, playSoundtrack } from '@/lib/audio';
+import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
 
 interface ModernLayoutProps {
   children: ReactNode;
@@ -225,17 +225,21 @@ const ModernLayout = ({
           {/* Footer */}
           <Footer />
           
-          {/* Technical indicators */}
+          {/* Technical indicators and Audio Controls */}
           <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
             <div className="bg-black/50 px-2 py-1 rounded-md border border-red-900/10 shadow-sm flex items-center">
               <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-1.5"></div>
               <span className="text-xs text-gray-400">v2.1</span>
             </div>
           </div>
+          
+          {/* Audio Control Button - fixed to the bottom right */}
+          <div className="fixed bottom-16 right-4 z-40">
+            <AudioControl onToggle={handleToggleAudio} position="inline" showLabel={true} />
+          </div>
         </main>
         
-        {/* Controls */}
-        <AudioControl onToggle={handleToggleAudio} />
+        {/* Accessibility Reader */}
         <AccessibilityReader pageContent={pageContent} pageName={pageName} />
       </div>
     </>
