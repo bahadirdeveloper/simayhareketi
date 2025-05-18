@@ -1108,7 +1108,7 @@ export default function GorevlerPage() {
                         : 'border-red-600'
                   } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
                   style={gorev.id >= 0 && gorev.id <= 100 ? {
-                    background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(${getGorevBackgroundImage(gorev.id)})`, 
+                    background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url(${getGorevBackgroundImage(gorev.id)})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
