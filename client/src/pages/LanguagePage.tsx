@@ -235,21 +235,23 @@ export default function LanguagePage() {
                       playerDiv.style.display = 'flex';
                       playerDiv.style.flexDirection = 'column';
                       
-                      // İçerik - YouTube iframe
+                      // Kullanıcıya doğrudan linki göster ve tıklamasını iste
                       playerDiv.innerHTML = `
-                        <div style="position:relative; width:100%; padding-top:56.25%;">
-                          <iframe
-                            style="position:absolute; top:0; left:0; width:100%; height:100%;"
-                            src="https://www.youtube.com/embed/yksM9nDv-Lg?autoplay=1"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                          ></iframe>
+                        <div style="padding:15px; text-align:center; background-color:#111; border-radius:4px; margin-bottom:10px;">
+                          <div style="color:white; margin-bottom:10px; font-size:14px;">
+                            YouTube kısıtlamaları nedeniyle video doğrudan gösterilemiyor. 
+                            Aşağıdaki düğmeye tıklayarak YouTube'da açabilirsiniz:
+                          </div>
+                          <a 
+                            href="https://www.youtube.com/watch?v=yksM9nDv-Lg" 
+                            target="_blank" 
+                            style="display:inline-block; background:#c41e3a; color:white; text-decoration:none; padding:8px 15px; border-radius:4px; font-weight:bold;"
+                          >
+                            YouTube'da Aç
+                          </a>
                         </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                          <div style="color:white; font-size:14px;">Ses Oynatılıyor</div>
-                          <button id="close-player" style="background:#c41e3a; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Kapat</button>
+                        <div style="display:flex; justify-content:flex-end; margin-top:10px;">
+                          <button id="close-player" style="background:#333; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Kapat</button>
                         </div>
                       `;
                       
