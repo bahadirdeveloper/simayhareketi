@@ -205,7 +205,7 @@ export default function LanguagePage() {
               >
                 <div className="flex items-center justify-center mb-4">
                   <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3">
-                    <div className="text-white font-bold text-xs">DİL</div>
+                    <div className="text-white font-bold text-xs">SES</div>
                   </div>
                 </div>
                 <h2 className="text-3xl-responsive font-semibold text-white mb-4">Dil Seçiniz</h2>
