@@ -1,53 +1,11 @@
-import { Howl } from "howler";
-
-// Daha basit ve etkili ses yönetimi - optimize edilmiş
-let soundtrack: Howl | null = null;
+// Audio system disabled
 let isPlaying = false;
 let currentPage: string = '';
 
-// Tek bir ses dosyası kullanıyoruz - sistem optimizasyonu
-const AUDIO_FILE = '/attached_assets/giris.mp3';
-const ATTACHED_AUDIO_FILE = '/attached_assets/giris.mp3';
-
-// Initialize audio system for specific page - basitleştirilmiş
+// Initialize audio system for specific page - disabled
 export const initAudio = (page: string = 'default'): void => {
-  console.log(`Audio initialization started for ${page} page...`);
   currentPage = page;
-  
-  // Temizlik: Önceki ses dosyalarını kaldır
-  if (soundtrack) {
-    soundtrack.stop();
-    soundtrack.unload();
-    soundtrack = null;
-  }
-  
-  try {
-    // Artık tüm sayfalar için aynı ses dosyası yolu kullanılıyor
-    const audioPath = AUDIO_FILE;
-    
-    // Tek bir Howl nesnesi oluştur
-    soundtrack = new Howl({
-      src: [audioPath],
-      loop: true,
-      volume: 0.4,
-      html5: true,
-      preload: true,
-      autoplay: false,
-      onload: () => {
-        console.log(`Audio file ${audioPath} loaded successfully`);
-      },
-      onloaderror: (id, err) => {
-        console.error(`Error loading audio from ${audioPath}:`, err);
-      },
-      onplayerror: (id, err) => {
-        console.error(`Error playing audio:`, err);
-        // Tarayıcı kısıtlamaları için yardımcı işlev
-        unlockAudio();
-      }
-    });
-  } catch (error) {
-    console.error("Audio system initialization failed:", error);
-  }
+  // Audio system is disabled
 };
 
 // Tarayıcı ses kısıtlamalarını aşmak için yardımcı işlev
