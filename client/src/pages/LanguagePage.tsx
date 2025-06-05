@@ -209,7 +209,7 @@ export default function LanguagePage() {
               >
                 <div className="flex items-center justify-center mb-4">
                   <a 
-                    href="https://www.youtube.com/watch?v=yksM9nDv-Lg"
+                    href="https://www.youtube.com/shorts/XOkvNPN1VJ8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
