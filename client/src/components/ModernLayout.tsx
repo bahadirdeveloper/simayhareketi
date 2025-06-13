@@ -270,7 +270,7 @@ const ModernLayout = ({
     <>
       <SimpleFuturisticTurkish />
       
-      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
+      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black particle-system">
         {/* Optimized background elements */}
         <BackgroundElements />
         

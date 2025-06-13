@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 // Button varyantlarını ve özelliklerini oluşturmak için CVA kullanımı - daha formal görünüm için güncellendi
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 interactive-glow",
   {
     variants: {
       variant: {
