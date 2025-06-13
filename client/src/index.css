@@ -90,11 +90,130 @@
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
+
+  /* Enhanced card hover effects */
+  .modern-card-hover {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .modern-card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    box-shadow: 
+      0 20px 40px rgba(220, 38, 38, 0.15),
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Enhanced text readability */
+  .enhanced-text {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.7;
+  }
+
+  /* Modern glass morphism effect */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+  }
+
+  /* Floating animation for interactive elements */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Advanced particle system effects */
+  @keyframes particle-float {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+      opacity: 0.3;
+    }
+    25% { 
+      transform: translateY(-20px) translateX(10px) rotate(90deg);
+      opacity: 0.7;
+    }
+    50% { 
+      transform: translateY(-10px) translateX(-5px) rotate(180deg);
+      opacity: 1;
+    }
+    75% { 
+      transform: translateY(-30px) translateX(15px) rotate(270deg);
+      opacity: 0.5;
+    }
+  }
+
+  .particle-system::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(2px 2px at 20px 30px, rgba(220, 38, 38, 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(220, 38, 38, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(220, 38, 38, 0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(220, 38, 38, 0.2), transparent);
+    background-repeat: repeat;
+    background-size: 150px 100px;
+    animation: particle-float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Enhanced hover states for interactive elements */
+  .interactive-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interactive-glow::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+      transparent, 
+      rgba(220, 38, 38, 0.5), 
+      transparent, 
+      rgba(220, 38, 38, 0.5), 
+      transparent);
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .interactive-glow:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 }
 
-/* Modern Turkish background */
+/* Enhanced modern Turkish background with depth */
 body {
-  background: linear-gradient(135deg, #0a1128 0%, #0f1b36 50%, #121a40 100%);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0f1c 0%, #0d1426 25%, #111a33 50%, #0f1730 75%, #0a0e1a 100%);
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;

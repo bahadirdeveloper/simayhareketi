@@ -212,7 +212,7 @@ export default function LanguagePage() {
                     href="https://www.youtube.com/shorts/XOkvNPN1VJ8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg mb-3 hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
+                    className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-red-700 via-red-600 to-red-900 rounded-full shadow-2xl mb-4 hover:from-red-600 hover:via-red-500 hover:to-red-800 transition-all duration-500 cursor-pointer group glass-morphism animate-float hover:scale-110"
                     aria-label="Müzik çal"
                     title="YouTube'da videoyu aç"
                   >
@@ -242,12 +242,13 @@ export default function LanguagePage() {
                     transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                   >
                     <div 
-                      className="mobile-card bg-black/50 backdrop-blur-sm border border-red-900/30 rounded-xl p-5 cursor-pointer hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 touch-target"
+                      className="mobile-card modern-card-hover rounded-xl p-6 cursor-pointer touch-target group"
                       onClick={() => handleLanguageSelect(language.code)}
                     >
-                      <div className="text-3xl mb-3">{language.flag}</div>
-                      <h3 className="text-xl-responsive font-semibold text-white mb-1">{language.nativeName}</h3>
-                      <div className="text-base-responsive text-gray-400">{language.name}</div>
+                      <div className="text-4xl mb-4 animate-float group-hover:scale-110 transition-transform duration-300">{language.flag}</div>
+                      <h3 className="text-xl-responsive font-semibold text-white mb-2 enhanced-text group-hover:text-red-300 transition-colors duration-300">{language.nativeName}</h3>
+                      <div className="text-base-responsive text-gray-400 enhanced-text group-hover:text-gray-300 transition-colors duration-300">{language.name}</div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                     </div>
                   </motion.div>
                 ))}

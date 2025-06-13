@@ -473,7 +473,7 @@ Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4 }}
                       viewport={{ once: true }}
-                      className="bg-black rounded-lg overflow-hidden border border-red-500/20 shadow-md hover:shadow-lg transition-all duration-200 hover:border-red-500/40 relative"
+                      className="modern-card-hover rounded-lg overflow-hidden relative group"
                     >
                       <div className={`absolute top-0 right-0 h-full w-1 bg-gradient-to-b ${category?.color || 'from-red-600 to-red-900'}`}></div>
                       
