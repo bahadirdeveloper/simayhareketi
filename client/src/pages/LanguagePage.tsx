@@ -185,6 +185,23 @@ export default function LanguagePage() {
               transition={{ duration: 0.5 }}
               className="w-full max-w-4xl mx-auto text-center"
             >
+              {/* TC Message */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.05 }}
+                className="mb-8"
+              >
+                <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200 max-w-2xl mx-auto">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-red-600 mb-2 tracking-wide">TC</div>
+                    <p className="text-gray-800 font-medium leading-relaxed text-base">
+                      Türk, Atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
