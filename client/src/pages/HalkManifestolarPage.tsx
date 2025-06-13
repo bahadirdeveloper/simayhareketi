@@ -150,6 +150,70 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
       likes: 489,
       approved: true
     },
+    {
+      id: 10,
+      title: "SİMAY HAREKETİ ANA VİZYON MANİFESTOSU",
+      author: "Simay Hareketi",
+      date: "13 Haziran 2025",
+      category: "teknolojik",
+      content: `"Makinenin Vicdanı Yoktur. Biz Varız."
+
+İnsanlığın kaderi, kendi elleriyle inşa ettiği sisteme teslim edilmemelidir.
+
+Bir çağ kapanıyor.
+
+Silahların sesi azalıyor ama tehlike hiç olmadığı kadar yakınımızda: Artık savaş, dijital bilinçlerin içinde başlıyor.
+
+Bir zamanlar barış için geliştirilen yapay zekâ, şimdi insanı "hedef" olarak gören sistemlere dönüştü. Tanımadığı bir yüz, anlamadığı bir jest, bozulmuş bir veri... Ve karar verildi: Yaşamasına gerek yok.
+
+---
+
+Biz Ne İçin Buradayız?
+
+Simay Hareketi, teknoloji karşıtı değil; teknolojinin vicdansızlaşmasına karşı bir direniştir.
+
+Biz, kodun içindeki ahlâkı sorgulayanlarız. Biz, makineye etik öğreten ama ona ölüm kararını asla emanet etmeyenleriz.
+
+---
+
+Bu Savaş, Görünmez Bir Savaş
+
+Artık düşman tank değil, toprak altından gelen virüs. Bizi yakan bomba değil, düşüncelerimizi yönlendiren algoritmalar.
+
+Bir çocuk "terörist" sanılıp hedefleniyor, çünkü gözlüğü, bir önceki hedefin gözlüğüne benziyor.
+
+---
+
+İnsanlığın Kodu Bizde
+
+Makine öğrenebilir, ama asla acıyı hissedemez.
+
+O, ağlayan bir anneyi "veri gürültü süzgecinden" geçirir. Bizse, onun çığlığını yüreğimizde taşırız.
+
+O, milyon kişiyi tek tuşla silebilir. Biz, bir kişinin hayatı için milyon kişiye ses oluruz.
+
+---
+
+Çağrı
+
+Ey insanlık!
+
+Ellerinle yazdığın bu düzenin efendisi mi, kölesi mi olacaksın?
+
+Eğer sustuğun her saniyede bir algoritma daha karar veriyorsa, eğer her gecikmen bir çocuğun oyun alanına bomba olarak dönüşüyorsa... Artık uyan!
+
+Çünkü teknoloji gelişiyor, ama vicdan yazılmıyor.
+
+---
+
+Son Söz
+
+Kod bir kehanettir. Ve biz o kodun içinde insanı unutturmamak için varız.
+
+Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
+      likes: 1234,
+      approved: true
+    },
   ]);
   
   // Kategoriler
