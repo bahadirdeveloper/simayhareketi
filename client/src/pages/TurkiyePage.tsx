@@ -67,7 +67,7 @@ export default function TurkiyePage() {
                     <div className="w-10 h-10 mx-auto text-red-500 font-bold text-sm border border-red-500/50 rounded-full flex items-center justify-center">TC</div>
                   </div>
                   <p className="text-2xl-responsive font-bold leading-relaxed">
-                    <span className="text-red-500 block mb-3">{t("turkiye_page.quote").split('"')[1]}</span>
+                    <span className="text-white block mb-3">{t("turkiye_page.quote").split('"')[1]}</span>
                     <span className="text-white block">{t("turkiye_page.quote").split('"')[2]}</span>
                   </p>
                 </motion.div>
