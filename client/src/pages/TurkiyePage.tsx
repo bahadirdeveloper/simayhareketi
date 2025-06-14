@@ -338,7 +338,22 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.anayasa_desc")}</p>
               </div>
               
-              {/* 3. GÖREVLER */}
+              {/* 3. AMACIMIZ & SAVAŞIMIZ */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
+                  onClick={() => window.open("/attached_assets/amaclar.html", "_blank")}
+                >
+                  AMACIMIZ & SAVAŞIMIZ
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Hareketin temel amaçları ve mücadele alanları</p>
+              </div>
+              
+              {/* 4. GÖREVLER */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="futuristic"
@@ -353,7 +368,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.gorevler_desc")}</p>
               </div>
               
-              {/* 4. ÇAĞRI */}
+              {/* 5. ÇAĞRI */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="primary"
@@ -368,7 +383,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.cagri_desc")}</p>
               </div>
               
-              {/* 5. HAREKETE KATIL */}
+              {/* 6. HAREKETE KATIL */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="turkish"
