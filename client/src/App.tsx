@@ -33,7 +33,6 @@ import OppressedNationsPage from "@/pages/OppressedNationsPage";
 import HalkManifestolarPage from "@/pages/HalkManifestolarPage";
 import { CagriPage } from "@/pages/CagriPage";
 import { AnayasalarPage } from "@/pages/AnayasalarPage";
-import { AmacSavasPage } from "@/pages/AmacSavasPage";
 import SertifikaPage from "@/pages/SertifikaPage";
 import EntegrasyonPage from "@/pages/EntegrasyonPage";
 import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
@@ -50,7 +49,8 @@ function Router() {
       <Route path="/turkdetay" component={TurkNedirDetayPage} />
       <Route path="/anayasa" component={AnayasaPage} />
       <Route path="/anayasalar" component={AnayasalarPage} />
-      <Route path="/amac-savas" component={AmacSavasPage} />
+      <Route path="/amac-savas" component={AmacsavasPage} />
+      <Route path="/amaclar" component={AmacsavasPage} />
       <Route path="/cagri" component={CagriPage} />
       <Route path="/gorevler" component={GorevlerPage} />
       <Route path="/gorev-davet" component={GorevDavetPage} />
@@ -61,7 +61,6 @@ function Router() {
       <Route path="/birlesik-manifesto" component={BirlesikManifestoPage} />
       <Route path="/manifesto" component={BirlesikManifestoPage} />
       <Route path="/join" component={JoinPage} />
-      <Route path="/amaclar" component={AmacsavasPage} />
       <Route path="/russia" component={RussiaPage} />
       <Route path="/iran" component={IranPage} />
       <Route path="/palestine" component={PalestinePage} />
