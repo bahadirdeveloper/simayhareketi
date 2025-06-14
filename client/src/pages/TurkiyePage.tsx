@@ -331,7 +331,7 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="w-full justify-center py-4"
-                  onClick={() => navigate("/birlesik-manifesto")}
+                  onClick={() => navigate("/halk-manifestolar")}
                 >
                   {t("turkiye_page.anayasa_manifestolar")}
                 </ModernTechButton>
