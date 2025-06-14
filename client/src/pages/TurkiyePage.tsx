@@ -391,11 +391,11 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="w-full justify-center py-4"
-                  onClick={() => navigate("/cagri")}
+                  onClick={() => window.open("/attached_assets/cagri.html", "_blank")}
                 >
-                  {t("turkiye_page.cagri")}
+                  ÇAĞRI
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.cagri_desc")}</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halka çağrı ve manifestonun çağrı metni</p>
               </div>
               
               {/* 7. HAREKETE KATIL */}
