@@ -323,7 +323,22 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.turk_desc")}</p>
               </div>
               
-              {/* 2. ANAYASA VE MANİFESTOLAR */}
+              {/* 2. ANAYASA */}
+              <div className="flex flex-col">
+                <ModernTechButton 
+                  variant="futuristic"
+                  size="lg"
+                  glow="none"
+                  border="subtle"
+                  className="w-full justify-center py-4"
+                  onClick={() => window.open("/attached_assets/anayasa.html", "_blank")}
+                >
+                  ANAYASA
+                </ModernTechButton>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet anayasası ve yasal çerçeve</p>
+              </div>
+              
+              {/* 3. MANİFESTOLAR */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="futuristic"
@@ -333,12 +348,12 @@ export default function TurkiyePage() {
                   className="w-full justify-center py-4"
                   onClick={() => navigate("/halk-manifestolar")}
                 >
-                  {t("turkiye_page.anayasa_manifestolar")}
+                  MANİFESTOLAR
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.anayasa_desc")}</p>
+                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halk manifestoları ve vizyon belgeleri</p>
               </div>
               
-              {/* 3. AMACIMIZ & SAVAŞIMIZ */}
+              {/* 4. AMACIMIZ & SAVAŞIMIZ */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="futuristic"
@@ -353,7 +368,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">Hareketin temel amaçları ve mücadele alanları</p>
               </div>
               
-              {/* 4. GÖREVLER */}
+              {/* 5. GÖREVLER */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="futuristic"
@@ -368,7 +383,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.gorevler_desc")}</p>
               </div>
               
-              {/* 5. ÇAĞRI */}
+              {/* 6. ÇAĞRI */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="primary"
@@ -383,7 +398,7 @@ export default function TurkiyePage() {
                 <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.cagri_desc")}</p>
               </div>
               
-              {/* 6. HAREKETE KATIL */}
+              {/* 7. HAREKETE KATIL */}
               <div className="flex flex-col">
                 <ModernTechButton 
                   variant="turkish"
