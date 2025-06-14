@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { ModernLayout } from "@/components/ModernLayout";
-import { useNavigate } from "wouter";
+import ModernLayout from "@/components/ModernLayout";
+import { useLocation } from "wouter";
 import { ModernTechButton } from "@/components/ModernTechButton";
 
 export function AnayasalarPage() {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
 
   return (
     <ModernLayout>
@@ -151,7 +151,7 @@ export function AnayasalarPage() {
             <ModernTechButton
               variant="futuristic"
               size="lg"
-              onClick={() => navigate("/turkiye")}
+              onClick={() => setLocation("/turkiye")}
               className="bg-gradient-to-r from-gold to-amber-500 hover:from-amber-500 hover:to-gold"
             >
               ← Ana Sayfaya Dön

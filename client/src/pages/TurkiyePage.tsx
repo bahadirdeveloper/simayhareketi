@@ -331,7 +331,7 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="w-full justify-center py-4"
-                  onClick={() => window.open("/attached_assets/anayasa.html", "_blank")}
+                  onClick={() => navigate("/anayasalar")}
                 >
                   ANAYASA
                 </ModernTechButton>
@@ -361,7 +361,7 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="w-full justify-center py-4"
-                  onClick={() => window.open("/attached_assets/amaclar.html", "_blank")}
+                  onClick={() => navigate("/amac-savas")}
                 >
                   AMACIMIZ & SAVAŞIMIZ
                 </ModernTechButton>
@@ -391,7 +391,7 @@ export default function TurkiyePage() {
                   glow="none"
                   border="subtle"
                   className="w-full justify-center py-4"
-                  onClick={() => window.open("/attached_assets/cagri.html", "_blank")}
+                  onClick={() => navigate("/cagri")}
                 >
                   ÇAĞRI
                 </ModernTechButton>
