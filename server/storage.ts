@@ -6,7 +6,7 @@ import { users, type User, type InsertUser, userSessions, visitorStats, feedback
   type UlkeBasvuru, type InsertUlkeBasvuru, type PremiumUyelik, type InsertPremiumUyelik,
   type Odeme, type InsertOdeme } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, asc } from "drizzle-orm";
 
 // Interface with all CRUD methods needed for the application
 export interface IStorage {
@@ -140,7 +140,7 @@ export class DatabaseStorage implements IStorage {
   async getAllGorevler(): Promise<Gorev[]> {
     return db.select().from(gorevler)
       .where(eq(gorevler.aktif, true))
-      .orderBy(desc(gorevler.createdAt));
+      .orderBy(asc(gorevler.id));
   }
   
   async getGorev(id: number): Promise<Gorev | undefined> {
