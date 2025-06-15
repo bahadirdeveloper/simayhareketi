@@ -116,7 +116,7 @@ export default function TurkiyePage() {
           {/* Anayasalarımız Button */}
           <div className="static-container">
             <ModernTechButton
-              onClick={() => navigateToPage("/anayasalarimiz")}
+              onClick={() => navigateToPage("/anayasalar")}
               className="w-full h-32 bg-gradient-to-br from-black/90 via-blue-950/50 to-black/90 border-2 border-blue-500/50 rounded-2xl static-container"
             >
               <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
