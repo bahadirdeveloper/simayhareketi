@@ -194,23 +194,25 @@ export default function GorevlerPage() {
               <div className={`bg-gradient-to-br ${getGorevColor(gorev.id)} rounded-xl p-1 hover:scale-105 transition-all duration-300`}>
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
-                  {/* Görev Resmi */}
-                  <div className="mb-4">
-                    <img
-                      src={getGorevImage(gorev.id)}
-                      alt={`Görev ${gorev.id}: ${gorev.baslik}`}
-                      className="w-full h-32 object-cover rounded-lg border border-gray-600 transition-opacity duration-300"
-                      loading="lazy"
-                      onLoad={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.opacity = '1';
-                      }}
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/attached_assets/gorev-1.webp';
-                      }}
-                      style={{ opacity: '0.8' }}
-                    />
+                  {/* Görev Resmi Arka Plan */}
+                  <div 
+                    className="mb-4 h-40 rounded-lg border border-gray-600 bg-cover bg-center bg-no-repeat relative overflow-hidden shadow-lg"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('${getGorevImage(gorev.id)}')`
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-gray-900/20" />
+                    <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 rounded text-white text-xs font-semibold">
+                      #{gorev.id}
+                    </div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <div className="text-white font-bold text-sm mb-1 line-clamp-1">
+                        {gorev.baslik}
+                      </div>
+                      <div className="text-gray-200 text-xs line-clamp-2">
+                        {gorev.aciklama}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Görev Bilgileri */}
