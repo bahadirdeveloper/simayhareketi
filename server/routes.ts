@@ -2,7 +2,8 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from "path";
-import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema, insertTransactionSchema } from "@shared/schema";
+import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema, insertTransactionSchema, 
+  insertGorevSchema, insertGorevBasvuruSchema, insertUlkeBasvuruSchema, insertPremiumUyelikSchema, insertOdemeSchema } from "@shared/schema";
 import { z } from "zod";
 import { 
   handleCreatePaymentIntent, 
