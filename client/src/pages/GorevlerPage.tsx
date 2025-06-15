@@ -1548,31 +1548,35 @@ export default function GorevlerPage() {
               <div className="grid lg:grid-cols-2 gap-0 min-h-[500px] lg:min-h-[600px] max-h-[90vh] overflow-hidden">
                 
                 {/* Left Side - Hero Image */}
-                <div className="relative bg-gradient-to-br from-red-900/20 to-orange-900/20 flex items-center justify-center min-h-[250px] lg:min-h-full">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <img 
-                    src={getGorevImage(selectedGorev.id)}
-                    alt={selectedGorev.baslik}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                      e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
-                    }}
-                  />
+                <div className="relative bg-gradient-to-br from-red-900/20 to-orange-900/20 flex items-center justify-center min-h-[300px] lg:min-h-full p-4">
+                  <div className="absolute inset-0 bg-black/30"></div>
                   
-                  {/* Image Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  {/* Image Container */}
+                  <div className="relative w-full h-full max-h-[400px] lg:max-h-full flex items-center justify-center">
+                    <img 
+                      src={getGorevImage(selectedGorev.id)}
+                      alt={selectedGorev.baslik}
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                        e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Subtle Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
                   
                   {/* Task Number Badge */}
-                  <div className="absolute top-4 left-4 lg:top-6 lg:left-6">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl lg:rounded-2xl flex items-center justify-center text-white font-bold text-lg lg:text-xl shadow-lg border-2 border-white/20">
+                  <div className="absolute top-4 left-4 lg:top-6 lg:left-6 z-10">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl lg:rounded-2xl flex items-center justify-center text-white font-bold text-lg lg:text-xl shadow-lg border-2 border-white/20 backdrop-blur-sm">
                       {selectedGorev.id}
                     </div>
                   </div>
 
                   {/* Category Badge */}
-                  <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6">
-                    <span className="px-3 py-1 lg:px-4 lg:py-2 bg-black/80 backdrop-blur-sm text-white rounded-full text-xs lg:text-sm font-medium capitalize border border-red-500/40">
+                  <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 z-10">
+                    <span className="px-3 py-1 lg:px-4 lg:py-2 bg-black/80 backdrop-blur-sm text-white rounded-full text-xs lg:text-sm font-medium capitalize border border-red-500/40 shadow-lg">
                       {selectedGorev.kategori}
                     </span>
                   </div>
