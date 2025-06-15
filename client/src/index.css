@@ -24,6 +24,17 @@ html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  /* Enhanced scroll performance */
+  overscroll-behavior: contain;
+  scroll-padding-top: 0;
+  contain: layout style;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  /* Force consistent rendering */
+  -webkit-filter: brightness(1);
+  filter: brightness(1);
+  will-change: auto;
 }
 
 /* Hardware acceleration for animations - optimize edildi */
@@ -294,8 +305,8 @@ body {
   -webkit-transform-style: preserve-3d !important;
   perspective: 1000px !important;
   -webkit-perspective: 1000px !important;
-  will-change: transform !important;
-  contain: layout style paint !important;
+  will-change: auto !important;
+  contain: strict !important;
   isolation: isolate !important;
   position: relative !important;
   z-index: 0 !important;
@@ -304,6 +315,17 @@ body {
   filter: brightness(1) !important;
   -webkit-transition: none !important;
   transition: none !important;
+  /* Force sub-pixel rendering */
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  -moz-osx-font-smoothing: auto !important;
+  text-rendering: geometricPrecision !important;
+  /* Browser-specific fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 /* Apply ultra-stable to all major layout containers globally */

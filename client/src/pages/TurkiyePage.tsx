@@ -77,19 +77,11 @@ export default function TurkiyePage() {
                   >
                     {/* Mobile-optimized Flag Icon */}
                     <div className="inline-block mb-6 sm:mb-10">
-                      <motion.div 
+                      <div 
                         className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)] gpu-accelerated stable-transform ultra-stable"
-                        animate={{ 
-                          boxShadow: [
-                            "0 0 20px rgba(239, 68, 68, 0.3)", 
-                            "0 0 40px rgba(239, 68, 68, 0.6)", 
-                            "0 0 20px rgba(239, 68, 68, 0.3)"
-                          ]
-                        }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                       >
                         🇹🇷
-                      </motion.div>
+                      </div>
                     </div>
                     
                     {/* Mobile-optimized Quote Section */}
