@@ -7,6 +7,7 @@ import AccessibilityReader from './AccessibilityReader';
 import QuickNav from './QuickNav';
 import { ModernTechButton } from './ModernTechButton';
 import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
+import { navigateWithScrollReset, scrollToTop } from '@/lib/navigation';
 
 // Ses kontrolü için düğme bileşeni
 const AudioButton = () => {
@@ -188,16 +189,8 @@ const ModernLayout = ({
   const [, navigate] = useLocation();
 
   useEffect(() => {
-    // Scroll to top on page change
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Also scroll the main content container
-    const mainContent = document.querySelector('.main-content');
-    if (mainContent) {
-      mainContent.scrollTop = 0;
-    }
+    // Scroll to top on page change using global helper
+    scrollToTop();
     
     // Optimize audio initialization
     const audioInitTimeout = setTimeout(() => {
@@ -254,17 +247,7 @@ const ModernLayout = ({
     if (!showBackButton) return null;
     
     const handleBackClick = () => {
-      // Scroll to top before navigation
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      
-      const mainContent = document.querySelector('.main-content');
-      if (mainContent) {
-        mainContent.scrollTop = 0;
-      }
-      
-      navigate("/");
+      navigateWithScrollReset(navigate, "/");
     };
     
     return (

@@ -6,6 +6,7 @@ import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import { Play, Pause } from "lucide-react";
 import { initAudio, playSoundtrack } from "@/lib/audio";
+import { navigateWithScrollReset } from "@/lib/navigation";
 import NavButtons from "@/components/NavButtons";
 import TurkishValueCard from "@/components/TurkishValueCard";
 import GlobalTranslator from "@/components/GlobalTranslator";
@@ -23,19 +24,9 @@ export default function TurkiyePage() {
     initAudio('turkiye');
   }, []);
   
-  // Scroll to top navigation helper
+  // Use global navigation helper
   const navigateToPage = (path: string) => {
-    // Scroll to top before navigation
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    const mainContent = document.querySelector('.main-content');
-    if (mainContent) {
-      mainContent.scrollTop = 0;
-    }
-    
-    navigate(path);
+    navigateWithScrollReset(navigate, path);
   };
   
   // Ses çalma/durdurma işlemini yönet

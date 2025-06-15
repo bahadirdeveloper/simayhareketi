@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import LoadingScreen from "@/components/LoadingScreen";
 import { initAudio, playSoundtrack } from "@/lib/audio";
+import { navigateWithScrollReset } from "@/lib/navigation";
 import { apiRequest } from "@/lib/queryClient";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import { 
@@ -155,7 +156,7 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/turkiye")}
+                onClick={() => navigateWithScrollReset(navigate, "/turkiye")}
                 className="min-w-[150px]"
               >
                 TÜRKİYE
@@ -166,7 +167,7 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/manifesto")}
+                onClick={() => navigateWithScrollReset(navigate, "/manifesto")}
                 className="min-w-[150px]"
               >
                 MANİFESTO
@@ -177,7 +178,7 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/cagri")}
+                onClick={() => navigateWithScrollReset(navigate, "/cagri")}
                 className="min-w-[150px]"
               >
                 ÇAĞRI
@@ -188,7 +189,7 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/katil")}
+                onClick={() => navigateWithScrollReset(navigate, "/katil")}
                 className="min-w-[150px]"
               >
                 KATIL
@@ -199,7 +200,7 @@ export default function SimayHomeModern() {
                 size="lg"
                 glow="none"
                 border="subtle"
-                onClick={() => navigate("/gorevler")}
+                onClick={() => navigateWithScrollReset(navigate, "/gorevler")}
                 className="min-w-[150px]"
               >
                 GÖREV
