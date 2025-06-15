@@ -81,7 +81,13 @@ export default function GorevlerPage() {
   const getGorevImage = (id: number) => {
     // Database'deki görev ID'si ile görsel dosyasını doğrudan eşleştir (1-100 arası)
     const imageId = Math.max(1, Math.min(id, 100));
-    return `/attached_assets/gorev-${imageId}.webp`;
+    try {
+      // Vite'nin asset handling sistemi kullanılarak görsel yükleme
+      return new URL(`../../../attached_assets/gorev-${imageId}.webp`, import.meta.url).href;
+    } catch (error) {
+      // Fallback olarak doğrudan path
+      return `/attached_assets/gorev-${imageId}.webp`;
+    }
   };
 
   const getGorevColor = (id: number) => {
@@ -196,21 +202,22 @@ export default function GorevlerPage() {
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
                   {/* Görev Resmi Arka Plan */}
-                  <div 
-                    className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg bg-cover bg-center bg-no-repeat"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('${getGorevImage(gorev.id)}')`
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-                    <div className="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded-full text-white text-sm font-bold border border-white/20">
+                  <div className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                      style={{
+                        backgroundImage: `url('${getGorevImage(gorev.id)}')`
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                    <div className="absolute top-3 right-3 bg-black/80 px-3 py-1 rounded-full text-white text-sm font-bold border border-white/30 backdrop-blur-sm">
                       #{gorev.id}
                     </div>
                     <div className="absolute bottom-3 left-3 right-3">
-                      <div className="text-white font-bold text-base mb-2 line-clamp-1 drop-shadow-lg">
+                      <div className="text-white font-bold text-lg mb-2 line-clamp-1 drop-shadow-2xl">
                         {gorev.baslik}
                       </div>
-                      <div className="text-gray-100 text-sm line-clamp-2 drop-shadow-md">
+                      <div className="text-gray-200 text-sm line-clamp-2 drop-shadow-lg">
                         {gorev.aciklama}
                       </div>
                     </div>
