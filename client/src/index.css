@@ -91,12 +91,18 @@ html, body {
   touch-action: manipulation;
 }
 
-/* Eliminate bounce effects on iOS */
-body {
-  position: fixed;
-  overflow: hidden;
-  width: 100%;
+/* Eliminate bounce effects on iOS - improved approach */
+html {
   height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .main-content {
@@ -106,7 +112,42 @@ body {
   right: 0;
   bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Content-specific anti-trembling optimizations */
+.content-stable {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+.text-stable {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1;
+  transform: translateZ(0);
+}
+
+.image-stable {
+  transform: translate3d(0, 0, 0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  will-change: auto;
+}
+
+/* Prevent reflow and repaint during animations */
+.motion-stable {
+  contain: layout style paint;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Mobile-first responsive utilities */

@@ -89,12 +89,12 @@ export default function TurkiyePage() {
                     <div className="max-w-6xl mx-auto">
                       <div className="bg-gradient-to-r from-black/80 via-black/60 to-black/80 rounded-xl sm:rounded-2xl p-6 sm:p-12 border border-red-500/40 sm:border-2 backdrop-blur-lg shadow-[inset_0_0_30px_rgba(239,68,68,0.1)] sm:shadow-[inset_0_0_50px_rgba(239,68,68,0.1)]">
                         <motion.p 
-                          className="text-xl sm:text-3xl md:text-5xl font-bold leading-relaxed text-center mb-6 sm:mb-10"
-                          initial={{ opacity: 0, y: 20 }}
+                          className="text-xl sm:text-3xl md:text-5xl font-bold leading-relaxed text-center mb-6 sm:mb-10 content-stable text-stable motion-stable"
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.5 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
                         >
-                          <span className="text-white block mb-4 sm:mb-8 italic font-serif tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                          <span className="text-white block mb-4 sm:mb-8 italic font-serif tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] text-stable">
                             "Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
                           </span>
                           <span className="text-red-400 block text-lg sm:text-2xl md:text-3xl font-semibold tracking-[0.1em] sm:tracking-[0.2em] drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]">
@@ -142,10 +142,10 @@ export default function TurkiyePage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent rounded-2xl blur-2xl"></div>
                 
                 <motion.h1 
-                  className="relative text-3xl sm:text-6xl md:text-7xl font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-orange-500 tracking-wide sm:tracking-wider drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  className="relative text-3xl sm:text-6xl md:text-7xl font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-orange-500 tracking-wide sm:tracking-wider drop-shadow-[0_0_30px_rgba(239,68,68,0.5)] content-stable text-stable motion-stable"
+                  initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 1 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
                 >
                   {t("turkiye_page.title")}
                 </motion.h1>
@@ -207,16 +207,17 @@ export default function TurkiyePage() {
 
             {/* Navigation Cards with VIP Design */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16"
-              initial={{ opacity: 0, y: 50 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 content-stable motion-stable"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
               {/* TÜRK Nedir Button */}
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
+                className="content-stable"
               >
                 <ModernTechButton
                   onClick={() => navigate("/turknedir")}
@@ -299,20 +300,20 @@ export default function TurkiyePage() {
 
             {/* Enhanced Values Section */}
             <motion.div 
-              className="mb-16"
-              initial={{ opacity: 0, y: 40 }}
+              className="mb-16 content-stable motion-stable"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl blur-2xl"></div>
-                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)]">
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)] content-stable">
                   
                   <motion.h2 
-                    className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500 text-stable content-stable"
+                    initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 2 }}
+                    transition={{ duration: 0.6, delay: 1.2 }}
                   >
                     Türk Değerleri
                   </motion.h2>
