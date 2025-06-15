@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 // No icons needed for formal appearance
-import { ModernTechButton } from "@/components/ModernTechButton";
+
 import AudioControl from "@/components/AudioControl";
 import GlobalTranslator from "@/components/GlobalTranslator";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -464,24 +464,7 @@ export default function LanguagePage() {
                 </motion.div>
               </motion.div>
               
-              {/* Direct Turkish Entry */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-6"
-              >
-                <ModernTechButton
-                  variant="turkish"
-                  size="lg"
-                  glow="strong"
-                  border="glowing"
-                  className="btn-mobile-optimized py-6 px-8 text-lg-responsive font-bold tracking-wide"
-                  onClick={() => handleLanguageSelect("tr")}
-                >
-                  HEMEN TÜRKÇE İLE DEVAM ET
-                </ModernTechButton>
-              </motion.div>
+
               
               {/* Modern Status Banner */}
               <motion.div
