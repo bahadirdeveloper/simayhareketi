@@ -201,33 +201,25 @@ export default function GorevlerPage() {
               <div className={`bg-gradient-to-br ${getGorevColor(gorev.id)} rounded-xl p-1 hover:scale-105 transition-all duration-300`}>
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
-                  {/* Görev Resmi Arka Plan */}
-                  <div className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                      style={{
-                        backgroundImage: `url('${getGorevImage(gorev.id)}')`
-                      }}
+                  {/* Görev Resmi - Tam Boyut */}
+                  <div className="mb-4 h-56 rounded-lg overflow-hidden shadow-lg relative">
+                    <img 
+                      src={getGorevImage(gorev.id)}
+                      alt={`Görev ${gorev.id}`}
+                      className="w-full h-full object-cover object-center"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className="absolute top-3 right-3 bg-black/80 px-3 py-1 rounded-full text-white text-sm font-bold border border-white/30 backdrop-blur-sm">
                       #{gorev.id}
                     </div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <div className="text-white font-bold text-lg mb-2 line-clamp-1 drop-shadow-2xl">
-                        {gorev.baslik}
-                      </div>
-                      <div className="text-gray-200 text-sm line-clamp-2 drop-shadow-lg">
-                        {gorev.aciklama}
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Görev Bilgileri */}
+                  {/* Görev Bilgileri - Tekrarsız */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-red-400 bg-red-900/30 px-2 py-1 rounded">
-                        #{gorev.id}
+                        {gorev.kategori || 'Genel'}
                       </span>
                       <Target className="h-4 w-4 text-red-400" />
                     </div>
