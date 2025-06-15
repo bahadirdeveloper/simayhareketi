@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ModernLayout from "@/components/ModernLayout";
 import TurkishValueCard from "@/components/TurkishValueCard";
 import { ModernTechButton } from "@/components/ModernTechButton";
-import { NavButtons } from "@/components/NavButtons";
+
 import GlobalTranslator from "@/components/GlobalTranslator";
 import { navigateToPage } from "@/lib/navigation";
 import { useTranslation } from "react-i18next";
