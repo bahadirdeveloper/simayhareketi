@@ -121,16 +121,10 @@ const GridLines = memo(() => {
 
 GridLines.displayName = 'GridLines';
 
-// Daha hafif arka plan - performans için optimize edildi
+// Completely static background - no moving elements
 const BackgroundElements = memo(() => (
-  <div className="absolute inset-0 z-0">
-    {/* Sadece basit arka plan elemanları */}
-    <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-red-900/10 to-transparent opacity-20"></div>
-    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-red-900/10 to-transparent opacity-20"></div>
-    
-    {/* Minimal çizgiler */}
-    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
-    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
+  <div className="absolute inset-0 z-0 ultra-stable no-motion">
+    {/* Completely static elements only - no gradients that can cause jitter */}
   </div>
 ));
 

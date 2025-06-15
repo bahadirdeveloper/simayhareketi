@@ -43,20 +43,9 @@ export default function TurkiyePage() {
       pageName="Türkiye"
     >
       <div className="w-full max-w-6xl mx-auto gpu-accelerated stable-transform no-layout-shift ultra-stable no-motion">
-        <AnimatePresence>
-          <motion.div
-            className="relative overflow-hidden gpu-accelerated stable-transform ultra-stable"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* VIP Premium Hero Section */}
-            <motion.div 
-              className="relative rounded-3xl overflow-hidden mb-16 gpu-accelerated stable-transform no-layout-shift"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+        <div className="relative overflow-hidden gpu-accelerated stable-transform ultra-stable no-motion">
+          {/* VIP Premium Hero Section */}
+          <div className="relative rounded-3xl overflow-hidden mb-16 gpu-accelerated stable-transform no-layout-shift ultra-stable no-motion">
               {/* Premium Glass Morphism Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl blur-3xl"></div>
               <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/95 via-red-950/30 to-black/95 border-2 border-red-500/50 rounded-3xl shadow-[0_40px_120px_rgba(239,68,68,0.3)]">
@@ -134,15 +123,10 @@ export default function TurkiyePage() {
                   </motion.div>
                 </div>
               </div>
-            </motion.div>
+            </div>
             
             {/* VIP Enhanced Title Section */}
-            <motion.div 
-              className="mb-16 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9 }}
-            >
+            <div className="mb-16 text-center ultra-stable no-motion">
               <div className="relative">
                 {/* Premium Background Glow */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent rounded-2xl blur-2xl"></div>
@@ -358,7 +342,7 @@ export default function TurkiyePage() {
             >
               <NavButtons />
             </motion.div>
-          </motion.div>
+          </div>
         </AnimatePresence>
         
         {/* Global Translation System */}
