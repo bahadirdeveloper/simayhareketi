@@ -1520,271 +1520,86 @@ export default function GorevlerPage() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedGorev && (
-            <div className="relative">
-              {/* Task Image Background */}
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                <img 
-                  src={getGorevImage(selectedGorev.id)}
-                  alt=""
-                  className="w-full h-full object-cover object-center"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
-              </div>
-              
-              {/* Content */}
-                  <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
-                    {/* Görev ID göstericisi - mobil için daha büyük */}
-                    <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded-bl shadow-md min-w-[32px] min-h-[28px] flex items-center justify-center">
-                      {gorev.id}
+            <div className="relative p-6">
+              {/* Task Header */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      {selectedGorev.id}
                     </div>
-                    
-                    {/* Sadece görev başlığı göster, detayları modülde göster */}
-                    <div className="mb-4">
-                      <h3 className="text-lg-responsive font-bold text-white mb-3 leading-tight text-center">{gorev.baslik}</h3>
-                      
-                      {/* Dekoratif İkon - görev tipine uygun */}
-                      <div className="flex justify-center mb-3">
-                        <div className="w-16 h-16 flex items-center justify-center opacity-60">
-                          <div className="w-full h-full border-4 border-white/30 rounded-full flex items-center justify-center">
-                            <div className="w-10 h-10 border-2 border-white/50 rounded-full"></div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Kısa çağrı metni - özet olarak */}
-                      <p className="text-sm text-white/80 text-center line-clamp-2 mb-3 px-2">
-                        {gorev.cagri || "Cumhuriyet güncelleme görevine katılın"}
-                      </p>
-                    </div>
-                    
-                    {/* Alt kısımdaki bilgiler ve buton - dokunmatik için iyileştirilmiş */}
-                    <div className="mt-auto">
-                      <div className="flex justify-between items-center text-sm text-white/90 mb-3 bg-black/30 p-2 rounded-lg">
-                        <span className="bg-black/40 px-2 py-1 rounded-md border border-white/20">{gorev.kategori}</span>
-                        <span className="bg-black/40 px-2 py-1 rounded-md border border-white/20">{gorev.tamamlayan}/{gorev.kontenjan} kişi</span>
-                      </div>
-                      <Button 
-                        className="w-full bg-gradient-to-r from-red-700 to-red-500 text-base-responsive h-12 py-0 text-white font-bold"
-                        onClick={() => openGorevModal(gorev)}
-                      >
-                        Göreve Katıl
-                      </Button>
+                    <div>
+                      <h2 className="text-2xl font-bold text-white mb-1">{selectedGorev.baslik}</h2>
+                      <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm capitalize">
+                        {selectedGorev.kategori}
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))
-            )}
-          </motion.div>
-          
-          {/* Pagination - Bottom - Enhanced Mobile Optimization */}
-          {filteredGorevler.length > 0 && (
-            <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-10 md:mt-12 gap-4 sm:gap-4 turkish-content-bg p-5 sm:p-5 md:p-6 max-w-3xl mx-auto mb-6 sm:mb-10 rounded-lg">
-              <Button 
-                variant="outline" 
-                size="default"
-                className="border-2 border-red-600/60 text-white font-bold text-base-responsive w-full sm:w-auto sm:min-w-[120px] px-3 sm:px-4 md:px-6 py-3 hover:bg-red-900/20 min-h-[44px]"
-                onClick={() => changePage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-              >
-                &lt; Önceki
-              </Button>
-              
-              <div className="flex gap-2 sm:gap-3 mx-1 sm:mx-2 flex-wrap justify-center my-3 sm:my-0 w-full sm:w-auto">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                  <Button
-                    key={pageNum}
-                    variant={currentPage === pageNum ? "default" : "outline"}
-                    size="sm"
-                    className={currentPage === pageNum 
-                      ? "bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-base-responsive min-w-[44px] min-h-[44px] sm:w-10 sm:h-10 md:w-12 md:h-12 border-none shadow-[0_0_10px_rgba(220,38,38,0.3)]" 
-                      : "border-2 border-red-600/60 text-white font-bold text-base-responsive min-w-[44px] min-h-[44px] sm:w-10 sm:h-10 md:w-12 md:h-12 hover:bg-red-900/20"}
-                    onClick={() => changePage(pageNum)}
-                  >
-                    {pageNum}
-                  </Button>
-                ))}
               </div>
-              
-              <Button 
-                variant="outline"
-                size="default" 
-                className="border-2 border-red-600/60 text-white font-bold text-base-responsive w-full sm:w-auto sm:min-w-[120px] px-3 sm:px-4 md:px-6 py-3 hover:bg-red-900/20 min-h-[44px]"
-                onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-              >
-                Sonraki &gt;
-              </Button>
-            </div>
-          )}
-          
-          {/* Navigation Buttons - Mobile Optimized */}
-          <div className="flex flex-col sm:flex-row justify-center mt-8 md:mt-10 gap-4 sm:gap-6">
-            <ModernTechButton 
-              variant="outline"
-              size="lg"
-              onClick={() => navigate("/turkiye")}
-              className="text-base-responsive min-h-[50px] py-3"
-            >
-              Türkiye Sayfasına Dön
-            </ModernTechButton>
-            
-            <ModernTechButton 
-              variant="futuristic"
-              size="lg"
-              glow="subtle"
-              onClick={() => navigate("/")}
-              className="text-base-responsive min-h-[50px] py-3"
-            >
-              Ana Sayfa
-            </ModernTechButton>
-          </div>
-          
-          {/* Cumhuriyet Sertifikası İbaresi - Mobil Optimizasyonu */}
-          <motion.div
-            className="w-full max-w-3xl mx-auto turkish-content-bg p-5 sm:p-5 rounded-lg mt-8 sm:mt-10 md:mt-14 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            <p className="text-lg-responsive font-bold text-turkish-white font-poppins">
-              Tamamlanan görevler <span className="text-turkish-red">Cumhuriyet Sertifikası</span> kazandıracaktır.
-            </p>
-          </motion.div>
-        </div>
-        </main>
-        
-        {/* Bottom animation */}
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/70 text-sm sm:text-base md:text-xl font-semibold tracking-wide animate-pulse z-10 mb-2">
-          CUMHURİYET GÜNCELLENİYOR
-        </div>
-        
-        {/* Görev Modal - Mobil Optimizasyonlu */}
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen} modal={true}>
-          <DialogContent 
-            className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white relative overflow-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] w-[95vw] md:w-[600px] p-5 sm:p-5 md:p-6 rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.5)]">
-            {/* Arka plan görseli - seçilen görev için */}
-            {selectedGorev?.id && (
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                {/* Görev görseli arkaplan */}
+
+              {/* Task Image */}
+              <div className="mb-6 rounded-lg overflow-hidden">
                 <img 
                   src={getGorevImage(selectedGorev.id)}
-                  alt=""
-                  className="w-full h-full object-cover object-center"
+                  alt={selectedGorev.baslik}
+                  className="w-full h-48 object-cover"
                   onError={(e) => {
-                    // Hata durumunda renkli arkaplan kullan
                     e.currentTarget.style.display = "none";
                     e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
                   }}
                 />
-                {/* Stil ve kontrast için gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/90"></div>
               </div>
-            )}
-            
-            {/* İçerik - Z indeksi daha yüksek */}
-            <div className="relative z-10">
-              <DialogHeader>
-                <DialogTitle className="text-white text-xl-responsive font-bold mb-2 sm:mb-2">
-                  {selectedGorev?.baslik}
-                </DialogTitle>
-                
-                {/* Çağrı metni - büyük ve dikkat çekici */}
-                <div className="mb-4 bg-red-900/30 border border-red-600/50 rounded-lg p-4">
-                  <p className="text-white text-lg-responsive font-semibold">
-                    {selectedGorev?.cagri}
+
+              {/* Task Details */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Çağrı</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {selectedGorev.cagri || "Bu görev için çağrı metni belirtilmemiş."}
                   </p>
                 </div>
-                
-                {/* Detaylı açıklama */}
-                <DialogDescription className="text-white text-base-responsive leading-relaxed mb-5">
-                  {selectedGorev?.aciklama}
-                </DialogDescription>
-                
-                {/* Göreve özel bilgiler */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div className="bg-black/40 rounded-lg p-3 border border-red-600/30">
-                    <p className="text-gray-300 text-sm">Kategori:</p>
-                    <p className="text-white font-semibold">{selectedGorev?.kategori}</p>
-                  </div>
-                  <div className="bg-black/40 rounded-lg p-3 border border-red-600/30">
-                    <p className="text-gray-300 text-sm">Kontenjan:</p>
-                    <p className="text-white font-semibold">{selectedGorev?.tamamlayan}/{selectedGorev?.kontenjan} kişi</p>
-                  </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Açıklama</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {selectedGorev.aciklama || "Bu görev için detaylı açıklama belirtilmemiş."}
+                  </p>
                 </div>
-              </DialogHeader>
-              
-              <form onSubmit={handleFormSubmit} className="space-y-5 mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="ad" className="text-base-responsive font-semibold">Adınız Soyadınız:</Label>
-                    <Input
-                      id="ad"
-                      name="ad"
-                      value={formData.ad}
-                      onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                      required
-                    />
+
+                {/* Task Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-800/50 rounded-lg p-4">
+                    <div className="text-gray-400 text-sm mb-1">Katılım</div>
+                    <div className="text-white text-xl font-bold">
+                      {selectedGorev.tamamlayan}/{selectedGorev.kontenjan}
+                    </div>
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="eposta" className="text-base-responsive font-semibold">E-posta:</Label>
-                    <Input
-                      id="eposta"
-                      name="eposta"
-                      type="email"
-                      value={formData.eposta}
-                      onChange={handleInputChange}
-                      className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                      required
-                    />
+                  <div className="bg-gray-800/50 rounded-lg p-4">
+                    <div className="text-gray-400 text-sm mb-1">Tamamlanma</div>
+                    <div className="text-white text-xl font-bold">
+                      %{Math.round((selectedGorev.tamamlayan / selectedGorev.kontenjan) * 100)}
+                    </div>
                   </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="not" className="text-base-responsive font-semibold">Not (isteğe bağlı):</Label>
-                  <Textarea
-                    id="not"
-                    name="not"
-                    value={formData.not}
-                    onChange={handleInputChange}
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive min-h-[100px] shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                    rows={3}
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="dosya" className="text-base-responsive font-semibold">Dosya yükle (PDF, JPEG):</Label>
-                  <Input
-                    id="dosya"
-                    name="dosya"
-                    type="file"
-                    accept=".pdf,.jpg,.jpeg,.png"
-                    className="bg-black/60 border-2 border-red-600/70 text-white text-base-responsive h-12 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                  />
-                </div>
-                
-                <div className="flex justify-center mt-6">
-                  <ModernTechButton 
-                    type="submit" 
-                    variant="turkish"
-                    size="lg"
-                    glow="strong"
-                    border="glowing"
-                    className="text-base-responsive min-h-[50px] px-8"
+
+                {/* Action Button */}
+                <div className="pt-4">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-3 text-lg"
+                    onClick={() => {
+                      // Add participation logic here
+                      setIsModalOpen(false);
+                    }}
                   >
                     Göreve Katıl
-                  </ModernTechButton>
+                  </Button>
                 </div>
-              </form>
+              </div>
             </div>
-          </DialogContent>
-        </Dialog>
-        
-      </ModernLayout>
-    );
+          )}
+        </DialogContent>
+      </Dialog>
+    </ModernLayout>
+  );
 }
