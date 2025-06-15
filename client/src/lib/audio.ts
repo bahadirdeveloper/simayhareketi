@@ -193,13 +193,20 @@ export const playSoundtrack = async (): Promise<void> => {
       return;
     }
     
-    // Determine track based on current page
+    // Determine track based on current page - only your playlist tracks
     const trackKey = currentPage === 'turkiye' ? 'turkiye' :
                     currentPage === 'manifesto' ? 'manifesto' :
                     currentPage === 'anayasa' ? 'anayasa' :
                     currentPage === 'cagri' ? 'cagri' :
                     currentPage === 'gorev' ? 'gorev' :
-                    currentPage === 'katil' ? 'katil' : 'default';
+                    currentPage === 'katil' ? 'katil' : 
+                    currentPage === 'home' ? 'default' : null;
+
+    // If page doesn't have an assigned track, don't play anything
+    if (!trackKey || !turkishPlaylist[trackKey as keyof typeof turkishPlaylist]) {
+      console.log(`No music assigned for page: ${currentPage}`);
+      return;
+    }
     
     const track = turkishPlaylist[trackKey as keyof typeof turkishPlaylist];
     
@@ -259,7 +266,12 @@ export const getCurrentTrackInfo = () => {
                   currentPage === 'anayasa' ? 'anayasa' :
                   currentPage === 'cagri' ? 'cagri' :
                   currentPage === 'gorev' ? 'gorev' :
-                  currentPage === 'katil' ? 'katil' : 'default';
+                  currentPage === 'katil' ? 'katil' : 
+                  currentPage === 'home' ? 'default' : null;
+  
+  if (!trackKey || !turkishPlaylist[trackKey as keyof typeof turkishPlaylist]) {
+    return null;
+  }
   
   return turkishPlaylist[trackKey as keyof typeof turkishPlaylist];
 };
