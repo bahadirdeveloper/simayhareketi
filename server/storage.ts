@@ -2,7 +2,7 @@ import { users, type User, type InsertUser, userSessions, visitorStats, feedback
   type InsertUserSession, type UserSession, type InsertVisitorStat, type VisitorStat, 
   type InsertFeedback, type Feedback, type InsertTransaction, type Transaction } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 // Interface with all CRUD methods needed for the application
 export interface IStorage {
@@ -91,14 +91,14 @@ export class DatabaseStorage implements IStorage {
   async getTransactions(limit: number = 100): Promise<Transaction[]> {
     return db.select().from(transactions)
       .where(eq(transactions.isPublic, true))
-      .orderBy(transactions.transactionDate)
+      .orderBy(desc(transactions.transactionDate))
       .limit(limit);
   }
   
   async getTransactionsByType(type: 'income' | 'expense', limit: number = 100): Promise<Transaction[]> {
     return db.select().from(transactions)
       .where(eq(transactions.type, type))
-      .orderBy(transactions.transactionDate)
+      .orderBy(desc(transactions.transactionDate))
       .limit(limit);
   }
 }

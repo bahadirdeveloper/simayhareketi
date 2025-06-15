@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { 
   Users,
   Crown,
@@ -98,6 +99,10 @@ export default function KatilPage() {
     lastUpdate: new Date()
   });
 
+  // Transaction data for transparency table
+  const [transactions, setTransactions] = useState([]);
+  const [transactionLoading, setTransactionLoading] = useState(false);
+
   const targetStats = {
     participants: 10000000,
     totalAmount: 25000000, // 25M TL target
@@ -141,6 +146,21 @@ export default function KatilPage() {
         ...prev,
         lastUpdate: new Date()
       }));
+    }
+  };
+
+  // Fetch financial transactions for transparency
+  const fetchTransactions = async () => {
+    try {
+      setTransactionLoading(true);
+      const response = await apiRequest("GET", "/api/transactions?limit=20");
+      const data = await response.json();
+      setTransactions(data.transactions || []);
+    } catch (error) {
+      console.error('Failed to fetch transactions:', error);
+      setTransactions([]);
+    } finally {
+      setTransactionLoading(false);
     }
   };
 

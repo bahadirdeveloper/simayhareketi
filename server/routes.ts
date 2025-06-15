@@ -2,7 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from "path";
-import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema } from "@shared/schema";
+import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema, insertTransactionSchema } from "@shared/schema";
 import { z } from "zod";
 import { 
   handleCreatePaymentIntent, 
@@ -218,6 +218,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching live stats:", error);
       res.status(500).json({ error: "Failed to retrieve live statistics" });
+    }
+  });
+
+  // Get financial transactions for transparency table
+  app.get("/api/transactions", async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
+      const transactions = await storage.getTransactions(limit);
+
+      res.json({ transactions, count: transactions.length });
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+      res.status(500).json({ error: "Failed to retrieve transactions" });
+    }
+  });
+
+  // Create new transaction (protected endpoint)
+  app.post("/api/transactions", async (req, res) => {
+    try {
+      const transactionData = insertTransactionSchema.parse(req.body);
+      const transaction = await storage.createTransaction(transactionData);
+
+      res.status(201).json(transaction);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: "Invalid transaction data", details: error.errors });
+      } else {
+        console.error("Transaction creation error:", error);
+        res.status(500).json({ error: "Failed to create transaction" });
+      }
     }
   });
 
