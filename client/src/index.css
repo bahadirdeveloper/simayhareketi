@@ -317,6 +317,38 @@ body {
   text-rendering: geometricPrecision !important;
 }
 
+/* Türkiye Page Specific Stabilization */
+[data-page="türkiye"] *,
+[data-page="türkiye"] div,
+[data-page="türkiye"] section,
+[data-page="türkiye"] article,
+[data-page="türkiye"] .grid,
+[data-page="türkiye"] .flex {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: auto !important;
+  contain: layout style !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: relative !important;
+  /* Extra stabilization for Türkiye page */
+  -webkit-filter: brightness(1) !important;
+  filter: brightness(1) !important;
+  isolation: isolate !important;
+}
+
+/* Force all backdrop-blur elements to be stable on Türkiye page */
+[data-page="türkiye"] .backdrop-blur-xl,
+[data-page="türkiye"] .backdrop-blur-lg,
+[data-page="türkiye"] [class*="backdrop-blur"] {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  will-change: auto !important;
+  contain: strict !important;
+}
+
 /* Apply ultra-stable to all major layout containers globally */
 .main-content, 
 [class*="motion-"], 
@@ -333,8 +365,8 @@ div[style*="translate"] {
   -webkit-transform: translate3d(0, 0, 0) !important;
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
-  will-change: transform !important;
-  contain: layout style paint !important;
+  will-change: auto !important;
+  contain: layout style !important;
   /* Force hardware acceleration on all elements */
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;

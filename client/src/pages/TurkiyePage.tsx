@@ -171,8 +171,8 @@ export default function TurkiyePage() {
                       <TurkishValueCard
                         key={valueId}
                         valueId={valueId}
-                        delay={index * 0.1}
-                        customText={valueTexts[valueId]}
+                        title={valueTexts[valueId]}
+                        index={index}
                       />
                     );
                   })}
