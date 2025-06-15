@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 import Stripe from "stripe";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
-}
+let stripe: Stripe | null = null;
 
-// @ts-ignore - Stripe API version might be different
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+if (process.env.STRIPE_SECRET_KEY) {
+  // @ts-ignore - Stripe API version might be different
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+} else {
+  console.warn('STRIPE_SECRET_KEY not provided - Stripe functionality will be disabled');
+}
 
 // In-memory cache for rate limiting
 const paymentRequestsMap = new Map<string, number[]>();
@@ -14,6 +16,13 @@ const subscriptionRequestsMap = new Map<string, number[]>();
 
 export async function handleCreatePaymentIntent(req: Request, res: Response) {
   try {
+    if (!stripe) {
+      return res.status(503).json({
+        success: false,
+        message: "Ödeme servisi şu anda kullanılamıyor."
+      });
+    }
+
     // Rate limiting: Check IP to prevent abuse
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
@@ -49,7 +58,7 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
     }
     
     // Stripe amount should be in the smallest currency unit (kuruş)
-    const paymentIntent = await stripe.paymentIntents.create({
+    const paymentIntent = await stripe!.paymentIntents.create({
       amount: Math.round(amount * 100),
       currency: "try", // Turkish Lira
       description: description || (isRegistrationFee ? "Cumhuriyet Güncellenme Platformu Kayıt Ücreti" : "Cumhuriyet Güncellenme Platformu Bağışı"),
@@ -75,6 +84,13 @@ export async function handleCreatePaymentIntent(req: Request, res: Response) {
 
 export async function handleCreateSubscription(req: Request, res: Response) {
   try {
+    if (!stripe) {
+      return res.status(503).json({
+        success: false,
+        message: "Abonelik servisi şu anda kullanılamıyor."
+      });
+    }
+
     // Rate limiting: Check IP to prevent abuse
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
@@ -110,7 +126,7 @@ export async function handleCreateSubscription(req: Request, res: Response) {
     }
     
     // Create a new customer
-    const customer = await stripe.customers.create({
+    const customer = await stripe!.customers.create({
       email,
       name,
       metadata: {
@@ -120,7 +136,7 @@ export async function handleCreateSubscription(req: Request, res: Response) {
     });
     
     // Create the subscription
-    const subscription = await stripe.subscriptions.create({
+    const subscription = await stripe!.subscriptions.create({
       customer: customer.id,
       items: [{ price: priceId }],
       payment_behavior: 'default_incomplete',
@@ -146,6 +162,10 @@ export async function handleCreateSubscription(req: Request, res: Response) {
 }
 
 export async function handleWebhook(req: Request, res: Response) {
+  if (!stripe) {
+    return res.status(503).send('Stripe service unavailable');
+  }
+
   let event: Stripe.Event;
 
   try {
@@ -157,7 +177,7 @@ export async function handleWebhook(req: Request, res: Response) {
       return res.status(400).send('Webhook secret is not configured');
     }
     
-    event = stripe.webhooks.constructEvent(
+    event = stripe!.webhooks.constructEvent(
       req.body, 
       signature, 
       webhookSecret
@@ -203,6 +223,13 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export async function getPaymentPrices(req: Request, res: Response) {
   try {
+    if (!stripe) {
+      return res.status(503).json({
+        success: false,
+        message: "Ücret servisi şu anda kullanılamıyor."
+      });
+    }
+
     const now = Date.now();
     
     // Use cached prices if available and not expired
@@ -210,7 +237,7 @@ export async function getPaymentPrices(req: Request, res: Response) {
       return res.json({ success: true, prices: cachedPrices, cached: true });
     }
     
-    const prices = await stripe.prices.list({
+    const prices = await stripe!.prices.list({
       active: true,
       limit: 10,
       expand: ['data.product']
