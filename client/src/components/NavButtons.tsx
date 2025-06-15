@@ -57,52 +57,51 @@ export function NavButtons() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="mt-8 mb-6"
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 sm:relative sm:bottom-auto sm:left-auto sm:transform-none sm:mt-8 sm:mb-6"
     >
-      <div className="relative max-w-5xl mx-auto">
-        {/* Background glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/5 to-transparent rounded-3xl blur-2xl"></div>
-        
-        <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/80 via-red-950/20 to-black/80 border border-red-500/30 rounded-3xl p-6 shadow-[0_20px_60px_rgba(239,68,68,0.1)]">
-          <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
-            {buttonData.map((button, index) => {
-              const IconComponent = button.icon;
-              
-              return (
-                <motion.button
-                  key={button.path}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate(button.path)}
-                  className="relative group min-w-[120px] lg:min-w-[140px] h-16 lg:h-18 bg-gradient-to-br from-black/90 via-gray-900/50 to-black/90 border-2 border-red-500/40 rounded-2xl backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-500 overflow-hidden"
-                >
-                  {/* Background pattern */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${button.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                  
-                  {/* Border glow effect */}
-                  <div className="absolute inset-0 border-2 border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-                  
-                  {/* Content */}
-                  <div className="relative flex flex-col items-center justify-center h-full px-4">
-                    <IconComponent className="w-5 h-5 mb-1 text-white opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="text-sm lg:text-base font-bold text-white tracking-wider drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                      {button.text}
-                    </span>
-                  </div>
-                  
-                  {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%] skew-x-12"></div>
-                </motion.button>
-              );
-            })}
-          </div>
-        </div>
+      {/* Mobile Navigation Bar */}
+      <div className="flex bg-black/90 backdrop-blur-xl border border-red-500/30 rounded-2xl p-2 shadow-2xl sm:hidden">
+        {buttonData.map((button, index) => {
+          const IconComponent = button.icon;
+          
+          return (
+            <motion.button
+              key={button.path}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => navigate(button.path)}
+              className="flex-1 flex flex-col items-center justify-center p-3 rounded-xl transition-colors duration-200 hover:bg-red-500/20 touch-target"
+            >
+              <IconComponent className="w-5 h-5 text-white mb-1" />
+              <span className="text-xs text-white font-medium">{button.text}</span>
+            </motion.button>
+          );
+        })}
+      </div>
+
+      {/* Desktop Navigation */}
+      <div className="hidden sm:flex justify-center gap-3 max-w-4xl mx-auto">
+        {buttonData.map((button, index) => {
+          const IconComponent = button.icon;
+          
+          return (
+            <motion.button
+              key={button.path}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate(button.path)}
+              className="flex items-center gap-2 px-6 py-3 bg-black/60 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-xl backdrop-blur-sm transition-all duration-200 group"
+            >
+              <IconComponent className="w-4 h-4 text-red-400 group-hover:text-red-300" />
+              <span className="text-white font-medium group-hover:text-red-100">{button.text}</span>
+            </motion.button>
+          );
+        })}
       </div>
     </motion.div>
   );

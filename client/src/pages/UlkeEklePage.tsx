@@ -86,15 +86,13 @@ export default function UlkeEklePage() {
           className="mb-6 sm:mb-8"
         >
           <div className="flex items-center mb-4 sm:mb-6">
-            <ModernTechButton
+            <button
               onClick={() => navigate("/dil-secimi")}
-              variant="ghost"
-              size="sm"
-              className="mr-2 sm:mr-4 touch-target"
+              className="flex items-center gap-2 px-3 py-2 bg-black/60 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg backdrop-blur-sm transition-all duration-200 text-white hover:text-red-100 touch-target"
             >
-              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">Geri Dön</span>
-            </ModernTechButton>
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Geri</span>
+            </button>
           </div>
           
           <div className="text-center">

@@ -4,6 +4,7 @@ import { ArrowLeft, MessageCircle, ExternalLink, Volume2, VolumeX } from 'lucide
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
 import LanguageSelector from './LanguageSelector';
 import AccessibilityReader from './AccessibilityReader';
+import QuickNav from './QuickNav';
 import { ModernTechButton } from './ModernTechButton';
 import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
 
@@ -237,23 +238,18 @@ const ModernLayout = ({
     if (onAudioToggle) onAudioToggle();
   };
 
-  // Memoized back button for better performance
+  // Simple back button for better usability
   const backButton = useMemo(() => {
     if (!showBackButton) return null;
     
     return (
-      <div className="fixed top-5 left-5 z-50">
-        <ModernTechButton 
-          size="sm"
-          variant="turkish"
-          glow="subtle" 
-          border="subtle"
-          onClick={() => navigate("/")}
-          leftIcon={<ArrowLeft className="h-4 w-4" />}
-        >
-          <span className="tracking-wide">Anasayfaya Dön</span>
-        </ModernTechButton>
-      </div>
+      <button 
+        onClick={() => navigate("/")}
+        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg backdrop-blur-sm transition-all duration-200 text-white hover:text-red-100 touch-target"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span className="hidden sm:inline">Ana Sayfa</span>
+      </button>
     );
   }, [showBackButton, navigate]);
 
@@ -315,6 +311,9 @@ const ModernLayout = ({
         
         {/* Accessibility Reader */}
         <AccessibilityReader pageContent={pageContent} pageName={pageName} />
+        
+        {/* Quick Navigation */}
+        <QuickNav />
       </div>
     </>
   );
