@@ -52,7 +52,7 @@ export default function TurkiyePage() {
           >
             {/* VIP Premium Hero Section */}
             <motion.div 
-              className="relative rounded-3xl overflow-hidden mb-16 gpu-accelerated stable-transform no-layout-shift"
+              className="relative rounded-3xl overflow-hidden mb-16 gpu-accelerated stable-transform no-layout-shift ultra-stable"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -70,6 +70,7 @@ export default function TurkiyePage() {
                 
                 <div className="relative z-10 py-12 sm:py-20 px-4 sm:px-10 lg:px-16 text-center">
                   <motion.div
+                    className="ultra-stable"
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -77,7 +78,7 @@ export default function TurkiyePage() {
                     {/* Mobile-optimized Flag Icon */}
                     <div className="inline-block mb-6 sm:mb-10">
                       <motion.div 
-                        className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)] gpu-accelerated stable-transform"
+                        className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)] gpu-accelerated stable-transform ultra-stable"
                         animate={{ 
                           boxShadow: [
                             "0 0 20px rgba(239, 68, 68, 0.3)", 
@@ -213,7 +214,7 @@ export default function TurkiyePage() {
 
             {/* Navigation Cards with VIP Design */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 content-stable motion-stable"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 content-stable motion-stable ultra-stable"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -223,7 +224,7 @@ export default function TurkiyePage() {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="content-stable"
+                className="content-stable ultra-stable"
               >
                 <ModernTechButton
                   onClick={() => navigateToPage("/turknedir")}
@@ -306,17 +307,17 @@ export default function TurkiyePage() {
 
             {/* Enhanced Values Section */}
             <motion.div 
-              className="mb-16 content-stable motion-stable"
+              className="mb-16 content-stable motion-stable ultra-stable"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl blur-2xl"></div>
-                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)] content-stable">
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)] content-stable ultra-stable">
                   
                   <motion.h2 
-                    className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500 text-stable content-stable"
+                    className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500 text-stable content-stable ultra-stable"
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.2 }}
@@ -324,7 +325,7 @@ export default function TurkiyePage() {
                     Türk Değerleri
                   </motion.h2>
                   
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8 ultra-stable">
                     {turkishValueIds.map((valueId, index) => {
                       // Define custom text for each value to ensure proper display
                       const valueTexts: Record<string, string> = {
