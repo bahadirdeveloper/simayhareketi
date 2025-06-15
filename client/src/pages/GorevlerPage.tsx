@@ -26,7 +26,12 @@ import {
   CheckCircle,
   Clock,
   Star,
-  Zap
+  Zap,
+  Megaphone,
+  BookOpen,
+  Rocket,
+  Sparkles,
+  Heart
 } from "lucide-react";
 
 // Görev resimlerini doğrudan import et (1-100)
@@ -1517,84 +1522,168 @@ export default function GorevlerPage() {
         </div>
       </div>
 
-      {/* Task Modal - Preserved Original Functionality */}
+      {/* Modern Task Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-6xl w-[95vw] max-h-[95vh] p-0 bg-transparent border-none overflow-hidden">
+          <DialogTitle className="sr-only">
+            {selectedGorev ? selectedGorev.baslik : "Görev Detayları"}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            {selectedGorev ? `${selectedGorev.kategori} kategorisindeki görev detayları ve katılım bilgileri` : "Görev bilgilerini görüntüleyin"}
+          </DialogDescription>
           {selectedGorev && (
-            <div className="relative p-6">
-              {/* Task Header */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+            <div className="relative bg-gradient-to-br from-black/95 via-gray-900/90 to-black/95 backdrop-blur-xl border-2 border-red-500/40 rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(239,68,68,0.4)]">
+              
+              {/* Premium Top Accent */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-orange-500 to-red-500"></div>
+              
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 z-50 w-10 h-10 bg-black/80 hover:bg-red-500/20 border border-red-500/40 hover:border-red-500/60 rounded-full flex items-center justify-center text-white hover:text-red-100 transition-all duration-200 touch-target"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="grid lg:grid-cols-2 gap-0 min-h-[500px] lg:min-h-[600px] max-h-[90vh] overflow-hidden">
+                
+                {/* Left Side - Hero Image */}
+                <div className="relative bg-gradient-to-br from-red-900/20 to-orange-900/20 flex items-center justify-center min-h-[250px] lg:min-h-full">
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <img 
+                    src={getGorevImage(selectedGorev.id)}
+                    alt={selectedGorev.baslik}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                      e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
+                    }}
+                  />
+                  
+                  {/* Image Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  
+                  {/* Task Number Badge */}
+                  <div className="absolute top-4 left-4 lg:top-6 lg:left-6">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl lg:rounded-2xl flex items-center justify-center text-white font-bold text-lg lg:text-xl shadow-lg border-2 border-white/20">
                       {selectedGorev.id}
                     </div>
+                  </div>
+
+                  {/* Category Badge */}
+                  <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6">
+                    <span className="px-3 py-1 lg:px-4 lg:py-2 bg-black/80 backdrop-blur-sm text-white rounded-full text-xs lg:text-sm font-medium capitalize border border-red-500/40">
+                      {selectedGorev.kategori}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="p-4 lg:p-8 xl:p-10 flex flex-col justify-between overflow-y-auto">
+                  
+                  {/* Header */}
+                  <div className="mb-4 lg:mb-8">
+                    <h2 className="text-xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 lg:mb-4 leading-tight">
+                      {selectedGorev.baslik}
+                    </h2>
+                    
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 gap-3 lg:gap-4 mb-4 lg:mb-6">
+                      <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-green-500/30 rounded-lg lg:rounded-xl p-3 lg:p-4">
+                        <div className="text-green-400 text-xs lg:text-sm font-medium mb-1">Katılım</div>
+                        <div className="text-white text-lg lg:text-2xl font-bold">
+                          {selectedGorev.tamamlayan}
+                        </div>
+                        <div className="text-green-300 text-xs">
+                          / {selectedGorev.kontenjan} kişi
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-orange-500/30 rounded-lg lg:rounded-xl p-3 lg:p-4">
+                        <div className="text-orange-400 text-xs lg:text-sm font-medium mb-1">Tamamlanma</div>
+                        <div className="text-white text-lg lg:text-2xl font-bold">
+                          %{Math.round((selectedGorev.tamamlayan / selectedGorev.kontenjan) * 100)}
+                        </div>
+                        <div className="text-orange-300 text-xs">oranı</div>
+                      </div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="mb-4 lg:mb-6">
+                      <div className="flex justify-between text-xs lg:text-sm text-gray-400 mb-2">
+                        <span>İlerleme</span>
+                        <span>{selectedGorev.tamamlayan}/{selectedGorev.kontenjan}</span>
+                      </div>
+                      <div className="w-full bg-gray-800/50 rounded-full h-2 lg:h-3">
+                        <div 
+                          className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 lg:h-3 rounded-full transition-all duration-300 shadow-lg"
+                          style={{ width: `${Math.min((selectedGorev.tamamlayan / selectedGorev.kontenjan) * 100, 100)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Sections */}
+                  <div className="space-y-4 lg:space-y-6 flex-1">
                     <div>
-                      <h2 className="text-2xl font-bold text-white mb-1">{selectedGorev.baslik}</h2>
-                      <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm capitalize">
-                        {selectedGorev.kategori}
-                      </span>
+                      <h3 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3 flex items-center">
+                        <Megaphone className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-red-400" />
+                        Çağrı Metni
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
+                        {selectedGorev.cagri || "Bu görev için çağrı metni belirtilmemiş."}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3 flex items-center">
+                        <BookOpen className="w-4 h-4 lg:w-5 lg:h-5 mr-2 text-orange-400" />
+                        Detaylı Açıklama
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
+                        {selectedGorev.aciklama || "Bu görev için detaylı açıklama belirtilmemiş."}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Task Image */}
-              <div className="mb-6 rounded-lg overflow-hidden">
-                <img 
-                  src={getGorevImage(selectedGorev.id)}
-                  alt={selectedGorev.baslik}
-                  className="w-full h-48 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
-                  }}
-                />
-              </div>
-
-              {/* Task Details */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-3">Çağrı</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {selectedGorev.cagri || "Bu görev için çağrı metni belirtilmemiş."}
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-3">Açıklama</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {selectedGorev.aciklama || "Bu görev için detaylı açıklama belirtilmemiş."}
-                  </p>
-                </div>
-
-                {/* Task Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-800/50 rounded-lg p-4">
-                    <div className="text-gray-400 text-sm mb-1">Katılım</div>
-                    <div className="text-white text-xl font-bold">
-                      {selectedGorev.tamamlayan}/{selectedGorev.kontenjan}
+                  {/* Action Buttons */}
+                  <div className="pt-4 lg:pt-8 space-y-3 lg:space-y-4">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-red-500 via-orange-500 to-red-500 hover:from-red-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-3 lg:py-4 text-base lg:text-lg rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] touch-target"
+                      onClick={() => {
+                        // Add participation logic here
+                        setIsModalOpen(false);
+                      }}
+                    >
+                      <Rocket className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
+                      Göreve Katıl
+                      <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 ml-2" />
+                    </Button>
+                    
+                    <div className="grid grid-cols-2 gap-2 lg:gap-3">
+                      <Button 
+                        variant="outline"
+                        className="border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:text-white transition-all duration-200 touch-target py-2 lg:py-3 text-sm lg:text-base"
+                        onClick={() => {
+                          // Add share logic here
+                        }}
+                      >
+                        <Star className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
+                        Paylaş
+                      </Button>
+                      
+                      <Button 
+                        variant="outline"
+                        className="border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:text-white transition-all duration-200 touch-target py-2 lg:py-3 text-sm lg:text-base"
+                        onClick={() => {
+                          // Add favorite logic here
+                        }}
+                      >
+                        <Heart className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
+                        Favorile
+                      </Button>
                     </div>
                   </div>
-                  <div className="bg-gray-800/50 rounded-lg p-4">
-                    <div className="text-gray-400 text-sm mb-1">Tamamlanma</div>
-                    <div className="text-white text-xl font-bold">
-                      %{Math.round((selectedGorev.tamamlayan / selectedGorev.kontenjan) * 100)}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action Button */}
-                <div className="pt-4">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-3 text-lg"
-                    onClick={() => {
-                      // Add participation logic here
-                      setIsModalOpen(false);
-                    }}
-                  >
-                    Göreve Katıl
-                  </Button>
                 </div>
               </div>
             </div>
