@@ -95,6 +95,7 @@ html, body {
 html {
   height: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -103,6 +104,11 @@ body {
   width: 100%;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  /* Anti-jitter optimization */
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0);
 }
 
 .main-content {
@@ -122,6 +128,11 @@ body {
   -webkit-backface-visibility: hidden;
   will-change: transform;
   contain: layout style paint;
+  /* Enhanced stability */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
 }
 
 .text-stable {
@@ -265,6 +276,23 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+/* Ultimate anti-jitter solution */
+.ultra-stable {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+  perspective: 1000px !important;
+  -webkit-perspective: 1000px !important;
+  will-change: transform !important;
+  contain: layout style paint !important;
+  isolation: isolate !important;
+  position: relative !important;
+  z-index: 0 !important;
 }
 
 @media (min-width: 640px) {

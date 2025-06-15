@@ -123,7 +123,7 @@ export default function LanguagePage() {
     <>
       {isLoading && <LoadingScreen />}
       
-      <div className="min-h-screen text-white relative bg-gradient-to-b from-gray-950 via-black to-black main-content scroll-optimized mobile-viewport-fix gpu-accelerated stable-transform">
+      <div className="min-h-screen text-white relative bg-gradient-to-b from-gray-950 via-black to-black main-content scroll-optimized mobile-viewport-fix gpu-accelerated stable-transform ultra-stable">
         {/* Optimized audio element */}
         <audio
           id="background-music"
@@ -149,7 +149,7 @@ export default function LanguagePage() {
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-0"></div>
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-0"></div>
             
-        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 nav-stable no-layout-shift mobile-nav-optimized">
+        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 nav-stable no-layout-shift mobile-nav-optimized ultra-stable">
           <AnimatePresence>
             <motion.div
               initial={{ opacity: 0 }}
