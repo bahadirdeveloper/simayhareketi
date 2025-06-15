@@ -227,6 +227,26 @@ export default function LanguagePage() {
                     </div>
                   </motion.div>
                 ))}
+                
+                {/* Add Country Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 + languages.length * 0.05 }}
+                >
+                  <div 
+                    className="mobile-card modern-card-hover rounded-xl p-6 cursor-pointer touch-target group border-2 border-dashed border-red-500/30 hover:border-red-500/60 bg-gradient-to-br from-red-950/20 to-black/40"
+                    onClick={() => {
+                      // Placeholder for adding new country functionality
+                      console.log("Add country clicked");
+                    }}
+                  >
+                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">➕</div>
+                    <h3 className="text-xl-responsive font-semibold text-white mb-2 enhanced-text group-hover:text-red-300 transition-colors duration-300">+ Ülke Ekle</h3>
+                    <div className="text-base-responsive text-gray-400 enhanced-text group-hover:text-gray-300 transition-colors duration-300">Add Country</div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                  </div>
+                </motion.div>
               </motion.div>
               
               {/* Direct Turkish Entry */}
