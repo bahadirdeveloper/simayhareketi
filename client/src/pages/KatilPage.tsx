@@ -673,7 +673,7 @@ export default function KatilPage() {
                               <Input 
                                 placeholder="Adınız ve soyadınız" 
                                 {...field} 
-                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12 touch-target"
                               />
                             </FormControl>
                             <FormMessage />
@@ -695,7 +695,7 @@ export default function KatilPage() {
                                 placeholder="ornek@email.com" 
                                 type="email"
                                 {...field} 
-                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12 touch-target"
                               />
                             </FormControl>
                             <FormMessage />
@@ -718,7 +718,7 @@ export default function KatilPage() {
                               <Input 
                                 placeholder="05XX XXX XX XX" 
                                 {...field} 
-                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12 touch-target"
                               />
                             </FormControl>
                             <FormMessage />

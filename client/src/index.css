@@ -258,6 +258,40 @@ html {
     -ms-user-select: none;
   }
 
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    .container-mobile {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    
+    .text-mobile {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+    }
+    
+    .heading-mobile {
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+    }
+    
+    .button-mobile {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      min-height: 44px !important;
+    }
+    
+    .card-mobile {
+      margin: 0.5rem !important;
+      padding: 1rem !important;
+    }
+    
+    .grid-mobile {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+  }
+
   /* Enhanced button interactions */
   .nav-button {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
