@@ -53,6 +53,65 @@
   .backdrop-blur-lg { backdrop-filter: blur(6px); }
   .shadow-2xl { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1); }
   .shadow-xl { box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.1); }
+  
+  /* Optimize animations for mobile */
+  .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+  
+  /* Reduce expensive effects on mobile */
+  .text-shadow-lg { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+  .text-shadow-xl { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); }
+}
+
+/* Performance-optimized animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Mobile-first grid improvements */
+.mobile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mobile-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .mobile-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+}
+
+/* Optimize images for mobile */
+@media (max-width: 768px) {
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Mobile navigation improvements */
+.mobile-nav {
+  @apply fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-red-500/30 p-3 z-40;
+}
+
+.mobile-nav-button {
+  @apply flex-1 flex flex-col items-center justify-center p-2 rounded-lg text-white/70 hover:text-white hover:bg-red-500/20 transition-all duration-200 touch-target;
+}
+
+/* Smooth scrolling for mobile */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on inputs for mobile */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }
 
 /* Reduce motion for accessibility and performance */

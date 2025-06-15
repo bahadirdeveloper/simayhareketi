@@ -16,10 +16,10 @@ const buttonVariants = cva(
         ghost: "bg-transparent text-white hover:bg-white/5 border-none"
       },
       size: {
-        sm: "h-8 rounded-[2px] px-3 py-1.5 text-xs",
-        md: "h-9 rounded-[2px] px-4 py-2",
-        lg: "h-10 rounded-[2px] px-5 py-2 text-sm tracking-wide",
-        xl: "h-11 rounded-[2px] px-6 py-2.5 text-base tracking-wide"
+        sm: "h-8 sm:h-9 rounded-[2px] px-3 py-1.5 text-xs touch-target",
+        md: "h-9 sm:h-10 rounded-[2px] px-4 py-2 text-sm touch-target",
+        lg: "h-10 sm:h-11 rounded-[2px] px-5 py-2 text-sm tracking-wide touch-target",
+        xl: "h-11 sm:h-12 rounded-[2px] px-6 py-2.5 text-base tracking-wide touch-target"
       },
       glow: {
         none: "",

@@ -96,18 +96,18 @@ export default function AnayasaPage() {
               <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-red-950/40 backdrop-blur-sm z-0"></div>
               <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
               
-              <div className="relative z-10 py-14 px-6 sm:px-10 text-center">
+              <div className="relative z-10 py-8 sm:py-14 px-4 sm:px-6 lg:px-10 text-center">
                 <motion.div
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-700 pb-2">
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-700 pb-2">
                     ANAYASALARIMIZ
                   </h1>
-                  <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mt-4 mb-6 rounded-full"></div>
+                  <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 rounded-full"></div>
                   
-                  <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+                  <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed px-2">
                     Türkiye Cumhuriyeti'nin temellerini oluşturan, milletin iradesini yansıtan, egemenliğin kayıtsız şartsız millete ait olduğunu belirten anayasal metinlerimiz.
                   </p>
                 </motion.div>

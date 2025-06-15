@@ -27,44 +27,45 @@ const AudioButton = () => {
     <>
       <button 
         onClick={handleClick}
-        className="fixed z-40 bottom-4 left-4 bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-red-700 transition-colors"
+        className="fixed z-40 bottom-3 left-3 sm:bottom-4 sm:left-4 bg-red-600 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg hover:bg-red-700 transition-colors touch-target"
         aria-label="Ses Kontrolü"
       >
         SES
       </button>
       
-      {/* YouTube oynatıcı - gizlenebilir panel olarak */}
+      {/* Mobile-optimized music panel */}
       {showPlayer && (
-        <div className="fixed bottom-20 left-4 z-40 bg-black/80 p-2 rounded-lg border border-red-500/30 shadow-lg">
+        <div className="fixed bottom-16 left-2 sm:bottom-20 sm:left-4 z-40 bg-black/90 p-2 sm:p-3 rounded-lg border border-red-500/30 shadow-lg max-w-xs">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-white text-sm">Müzik Kontrolü</span>
+            <span className="text-white text-xs sm:text-sm">Müzik Kontrolü</span>
             <button 
               onClick={() => setShowPlayer(false)}
-              className="text-white text-xs hover:text-red-400"
+              className="text-white text-xs hover:text-red-400 touch-target px-2 py-1"
             >
               Kapat
             </button>
           </div>
-          <div className="bg-gray-900 rounded-lg p-4 border border-red-500/30">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-white text-sm font-medium">Türk Müziği</span>
+          <div className="bg-gray-900 rounded-lg p-2 sm:p-4 border border-red-500/30">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              <span className="text-white text-xs sm:text-sm font-medium">Türk Müziği</span>
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
               <a 
                 href="https://www.youtube.com/shorts/XOkvNPN1VJ8" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center justify-center space-x-2"
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white px-2 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center justify-center space-x-1 sm:space-x-2 touch-target"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
-                <span>YouTube'da Aç</span>
+                <span className="hidden sm:inline">YouTube'da Aç</span>
+                <span className="sm:hidden">Aç</span>
               </a>
               <button 
                 onClick={() => setShowPlayer(false)}
-                className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-md text-sm transition-colors duration-200"
+                className="bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm transition-colors duration-200 touch-target"
               >
                 ✕
               </button>

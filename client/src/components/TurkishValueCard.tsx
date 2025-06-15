@@ -116,9 +116,9 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
               exit={{ opacity: 0 }}
             />
 
-            {/* Modal Content */}
+            {/* Mobile-optimized Modal Content */}
             <motion.div
-              className="relative max-w-6xl w-full max-h-[95vh] overflow-hidden mx-2"
+              className="relative max-w-6xl w-full max-h-[95vh] overflow-hidden mx-2 sm:mx-4"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -126,18 +126,18 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
               onClick={(e) => e.stopPropagation()}
             >
               {/* Card Visual */}
-              <div className={`relative rounded-3xl overflow-hidden ${currentValue?.bgPattern} border-2 border-red-500/50 shadow-[0_40px_120px_rgba(239,68,68,0.3)]`}>
+              <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden ${currentValue?.bgPattern} border border-red-500/50 sm:border-2 shadow-[0_20px_60px_rgba(239,68,68,0.2)] sm:shadow-[0_40px_120px_rgba(239,68,68,0.3)]`}>
                 
-                {/* Close Button */}
+                {/* Mobile-optimized Close Button */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-red-500/30"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-red-500/30 touch-target"
                 >
-                  <X className="w-5 h-5 text-white" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </button>
 
-                {/* Card Header */}
-                <div className="relative p-10 lg:p-12 text-center">
+                {/* Mobile-optimized Card Header */}
+                <div className="relative p-6 sm:p-10 lg:p-12 text-center">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
                     <div className="grid grid-cols-8 gap-4 h-full">
