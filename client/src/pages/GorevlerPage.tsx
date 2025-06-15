@@ -563,7 +563,7 @@ export default function GorevlerPage() {
         aciklama: getGorevAciklama(gorevIndex),
         kategori: getGorevKategori(gorevIndex),
         kontenjan: 25 + Math.floor(Math.random() * 10),
-        tamamlayan: Math.floor(Math.random() * 5) * (gorevIndex % 4 === 0 ? 1 : 0)
+        tamamlayan: 0
       };
     });
     
