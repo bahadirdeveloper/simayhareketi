@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Loader2, X, Languages } from "lucide-react";
 import { ModernTechButton } from "./ModernTechButton";
 import { Card, CardContent } from "./ui/card";
@@ -53,7 +54,7 @@ const supportedLanguages = [
   { code: "ha", name: "Hausa", flag: "🇳🇬" },
 ];
 
-function GlobalTranslator({ className }: GlobalTranslatorProps) {
+export default function GlobalTranslator({ className }: GlobalTranslatorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
   const [isTranslating, setIsTranslating] = useState(false);
@@ -148,9 +149,14 @@ function GlobalTranslator({ className }: GlobalTranslatorProps) {
   };
 
   return (
-    <div className="ultra-stable no-motion">
+    <>
       {/* Floating Translation Button */}
-      <div className={`fixed top-4 right-4 z-50 ultra-stable no-motion ${className}`}>
+      <motion.div
+        className={`fixed top-4 right-4 z-50 ${className}`}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+      >
         <ModernTechButton
           onClick={() => setIsOpen(!isOpen)}
           variant="futuristic"
@@ -163,75 +169,80 @@ function GlobalTranslator({ className }: GlobalTranslatorProps) {
             <Globe className="w-5 h-5" />
           )}
         </ModernTechButton>
-      </div>
+      </motion.div>
 
       {/* Translation Panel */}
-      {isOpen && (
-        <div className="fixed top-16 right-4 z-50 ultra-stable no-motion">
-          <Card className="bg-black/90 border-blue-500/30 backdrop-blur-xl shadow-2xl w-80">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                  <Languages className="w-5 h-5 text-blue-400" />
-                  <h3 className="text-white font-semibold">Anlık Çeviri</h3>
-                </div>
-                <ModernTechButton
-                  onClick={() => setIsOpen(false)}
-                  variant="ghost"
-                  size="sm"
-                  className="w-8 h-8"
-                >
-                  <X className="w-4 h-4" />
-                </ModernTechButton>
-              </div>
-              
-              <div className="space-y-3">
-                <div>
-                  <label className="text-sm text-gray-300 mb-2 block">
-                    Çeviri Dili Seçin:
-                  </label>
-                  <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
-                    <SelectTrigger className="w-full bg-black/50 border-blue-500/30 text-white">
-                      <SelectValue placeholder="Dil seçin" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-black/90 border-blue-500/30 backdrop-blur-xl">
-                      <SelectItem value="tr" className="text-white hover:bg-blue-500/20">
-                        🇹🇷 Türkçe (Orijinal)
-                      </SelectItem>
-                      {supportedLanguages.map((language) => (
-                        <SelectItem 
-                          key={language.code} 
-                          value={language.code}
-                          className="text-white hover:bg-blue-500/20"
-                        >
-                          {language.flag} {language.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="text-xs text-gray-400 bg-blue-950/20 p-2 rounded">
-                  <p className="flex items-center">
-                    <Globe className="w-3 h-3 mr-1" />
-                    Tüm sayfa içeriği seçilen dile çevrilecek
-                  </p>
-                </div>
-                
-                {isTranslating && (
-                  <div className="flex items-center justify-center space-x-2 text-blue-400 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Çeviriliyor...</span>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed top-16 right-4 z-50"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Card className="bg-black/90 border-blue-500/30 backdrop-blur-xl shadow-2xl w-80">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-2">
+                    <Languages className="w-5 h-5 text-blue-400" />
+                    <h3 className="text-white font-semibold">Anlık Çeviri</h3>
                   </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-    </div>
+                  <ModernTechButton
+                    onClick={() => setIsOpen(false)}
+                    variant="ghost"
+                    size="sm"
+                    className="w-8 h-8"
+                  >
+                    <X className="w-4 h-4" />
+                  </ModernTechButton>
+                </div>
+                
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-sm text-gray-300 mb-2 block">
+                      Çeviri Dili Seçin:
+                    </label>
+                    <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
+                      <SelectTrigger className="w-full bg-black/50 border-blue-500/30 text-white">
+                        <SelectValue placeholder="Dil seçin" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-black/90 border-blue-500/30 backdrop-blur-xl">
+                        <SelectItem value="tr" className="text-white hover:bg-blue-500/20">
+                          🇹🇷 Türkçe (Orijinal)
+                        </SelectItem>
+                        {supportedLanguages.map((language) => (
+                          <SelectItem 
+                            key={language.code} 
+                            value={language.code}
+                            className="text-white hover:bg-blue-500/20"
+                          >
+                            {language.flag} {language.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="text-xs text-gray-400 bg-blue-950/20 p-2 rounded">
+                    <p className="flex items-center">
+                      <Globe className="w-3 h-3 mr-1" />
+                      Tüm sayfa içeriği seçilen dile çevrilecek
+                    </p>
+                  </div>
+                  
+                  {isTranslating && (
+                    <div className="flex items-center justify-center space-x-2 text-blue-400 text-sm">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Çeviriliyor...</span>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
-
-export default GlobalTranslator;
-export { GlobalTranslator };

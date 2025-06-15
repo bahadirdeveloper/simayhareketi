@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function HalfBurningEarthBackground() {
   const [loaded, setLoaded] = useState(false);

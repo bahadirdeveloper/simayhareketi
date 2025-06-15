@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
 
@@ -16,70 +17,46 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
     setMounted(true);
   }, []);
 
-  const turkishValues = useMemo(() => ({
-    "millet-devlet": {
-      icon: "🏛️",
-      title: "Millet ve Devlet Birliği",
-      description: "Türk milleti ile devletin ayrılmaz bütünlüğü. Halk iradesi ile devlet otoritesinin uyumlu birlikteliği."
+  // Memoize value details to prevent re-creation on each render
+  const valueDetails = useMemo(() => ({
+    'milli': {
+      title: 'MİLLİ',
+      description: 'Türk milletinin bağımsızlığı, birliği ve varlığını koruyan temel değer. Vatan sevgisi, milli birlik ve beraberlik ruhu.',
+      icon: '🇹🇷',
+      color: 'from-red-600 to-red-800',
+      bgPattern: 'bg-gradient-to-br from-red-500/20 to-red-700/30'
     },
-    "vatan-sevgisi": {
-      icon: "🌍",
-      title: "Vatan Sevgisi",
-      description: "Türk topraklarına ve vatanına derin bağlılık. Ülkemizin her karışını koruma ve sahip çıkma sorumluluğu."
+    'muasir': {
+      title: 'MUASIR',
+      description: 'Çağdaş medeniyetler seviyesine ulaşma hedefi. Bilim, teknoloji ve modern düşünce ile ilerleme.',
+      icon: '🚀',
+      color: 'from-blue-600 to-blue-800',
+      bgPattern: 'bg-gradient-to-br from-blue-500/20 to-blue-700/30'
     },
-    "bayrak-saygisi": {
-      icon: "🇹🇷",
-      title: "Bayrak ve Sembol Saygısı", 
-      description: "Türk bayrağı ve ulusal sembollerimize gösterilen derin saygı ve bağlılık."
+    'laik': {
+      title: 'LAİK',
+      description: 'Din ve devlet işlerinin ayrılığı ilkesi. Vicdan özgürlüğü ve objektif yönetim anlayışı.',
+      icon: '⚖️',
+      color: 'from-purple-600 to-purple-800',
+      bgPattern: 'bg-gradient-to-br from-purple-500/20 to-purple-700/30'
     },
-    "dil-kultur": {
-      icon: "📚",
-      title: "Dil ve Kültür",
-      description: "Türkçemizi koruma ve geliştirme sorumluluğu. Kültürel değerlerimizi yaşatma ve gelecek nesillere aktarma."
+    'demokratik': {
+      title: 'DEMOKRATİK',
+      description: 'Halk egemenliği ve katılımcı yönetim. İnsan hakları, özgürlükler ve adalet temelli sistem.',
+      icon: '🗳️',
+      color: 'from-green-600 to-green-800',
+      bgPattern: 'bg-gradient-to-br from-green-500/20 to-green-700/30'
     },
-    "tarih-bilinci": {
-      icon: "⏳",
-      title: "Tarih Bilinci",
-      description: "Türk tarihinin derinliklerini bilme ve bu birikimi bugüne taşıma sorumluluğu."
-    },
-    "hukuk-devleti": {
-      icon: "⚖️",
-      title: "Hukuk Devleti",
-      description: "Adalet ve eşitlik ilkelerinin hayata geçirildiği hukuk devleti anlayışı."
-    },
-    "sosyal-dayanisma": {
-      icon: "🤝",
-      title: "Sosyal Dayanışma",
-      description: "Toplumun tüm kesimleri arasında karşılıklı yardımlaşma ve dayanışma ruhu."
-    },
-    "egitim-bilim": {
-      icon: "🎓",
-      title: "Eğitim ve Bilim",
-      description: "Bilim ve teknolojide ilerleme, eğitimde mükemmellik arayışı."
-    },
-    "aile-yapisi": {
-      icon: "👨‍👩‍👧‍👦",
-      title: "Aile Yapısı",
-      description: "Türk aile değerlerini koruma ve güçlendirme. Nesiller arası bağların sağlamlığı."
-    },
-    "caliskanlik": {
-      icon: "💪",
-      title: "Çalışkanlık ve Üretkenlik",
-      description: "Emek ve alın teri ile kazanılan başarının değeri. Üretken olmaya olan inanç."
-    },
-    "misafirperverlik": {
-      icon: "🏠",
-      title: "Misafirperverlik",
-      description: "Konuğa ve misafire gösterilen geleneksel Türk misafirperverliği."
-    },
-    "saygı-sevgi": {
-      icon: "❤️",
-      title: "Saygı ve Sevgi",
-      description: "Büyüklere saygı, küçüklere sevgi gösterme prensipleri."
+    'sosyal': {
+      title: 'SOSYAL',
+      description: 'Toplumsal adalet, eşitlik ve dayanışma. Sosyal refah ve birlikte yaşama kültürü.',
+      icon: '🤝',
+      color: 'from-orange-600 to-orange-800',
+      bgPattern: 'bg-gradient-to-br from-orange-500/20 to-orange-700/30'
     }
   }), []);
 
-  const currentValue = turkishValues[valueId as keyof typeof turkishValues];
+  const currentValue = valueDetails[valueId as keyof typeof valueDetails];
 
   const openModal = useCallback(() => setIsModalOpen(true), []);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
@@ -89,8 +66,12 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
   return (
     <>
       {/* Card */}
-      <div
-        className="relative group cursor-pointer content-stable motion-stable ultra-stable no-motion"
+      <motion.div
+        className="relative group cursor-pointer content-stable motion-stable ultra-stable"
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
+        whileHover={{ scale: 1.01, y: -1 }}
         onClick={openModal}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
@@ -114,92 +95,139 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
             Detaylar için tıklayın
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Modal */}
       {mounted && createPortal(
-        isModalOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 ultra-stable no-motion"
-            onClick={closeModal}
-          >
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm ultra-stable no-motion" />
+            <motion.div
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
 
             {/* Mobile-optimized Modal Content */}
-            <div
-              className="relative max-w-6xl w-full max-h-[95vh] overflow-hidden mx-2 sm:mx-4 ultra-stable no-motion"
-              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            <motion.div
+              className="relative max-w-6xl w-full max-h-[95vh] overflow-hidden mx-2 sm:mx-4"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Card */}
-              <div className="bg-gradient-to-br from-black via-red-950/20 to-black border-2 border-red-500/50 rounded-3xl backdrop-blur-xl shadow-[0_30px_80px_rgba(239,68,68,0.4)] overflow-hidden ultra-stable no-motion">
+              {/* Card Visual */}
+              <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden ${currentValue?.bgPattern} border border-red-500/50 sm:border-2 shadow-[0_20px_60px_rgba(239,68,68,0.2)] sm:shadow-[0_40px_120px_rgba(239,68,68,0.3)]`}>
                 
-                {/* Header */}
-                <div className="relative bg-gradient-to-r from-red-600/20 via-red-700/30 to-red-600/20 border-b border-red-500/30 p-6 sm:p-8 lg:p-10">
-                  {/* Close Button */}
-                  <button
-                    onClick={closeModal}
-                    className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 bg-red-500/20 hover:bg-red-500/40 border border-red-500/50 rounded-full flex items-center justify-center text-white hover:text-red-200 transition-all duration-200 z-10 ultra-stable no-motion"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
+                {/* Mobile-optimized Close Button */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-red-500/30 touch-target"
+                >
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                </button>
 
-                  {/* Icon and Title */}
-                  <div className="text-center pr-16">
-                    <div className="text-6xl sm:text-7xl lg:text-8xl mb-4 sm:mb-6">
-                      {currentValue?.icon}
+                {/* Mobile-optimized Card Header */}
+                <div className="relative p-6 sm:p-10 lg:p-12 text-center">
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="grid grid-cols-8 gap-4 h-full">
+                      {[...Array(64)].map((_, i) => (
+                        <div key={i} className="w-full h-4 bg-white/20 rounded-sm"></div>
+                      ))}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-4 sm:mb-6 leading-tight">
-                      {currentValue?.title}
-                    </h2>
                   </div>
+
+                  {/* Main Icon */}
+                  <motion.div
+                    className="text-8xl mb-6 relative z-10"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.2, type: "spring", damping: 15 }}
+                  >
+                    {currentValue?.icon}
+                  </motion.div>
+
+                  {/* Title */}
+                  <motion.h2
+                    className={`text-7xl lg:text-8xl font-bold bg-gradient-to-r ${currentValue?.color} bg-clip-text text-transparent mb-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {currentValue?.title}
+                  </motion.h2>
 
                   {/* Decorative Elements */}
                   <div className="flex justify-center items-center space-x-4 mb-8">
                     <div className="w-20 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
-                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)] ultra-stable no-motion" />
+                    <motion.div 
+                      className="w-3 h-3 bg-red-500 rounded-full"
+                      animate={{ 
+                        boxShadow: [
+                          "0 0 10px rgba(239, 68, 68, 0.5)",
+                          "0 0 20px rgba(239, 68, 68, 0.8)",
+                          "0 0 10px rgba(239, 68, 68, 0.5)"
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
                     <div className="w-20 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
                   </div>
                 </div>
 
                 {/* Card Body */}
                 <div className="relative p-10 lg:p-12 pt-0">
-                  <div className="bg-black/60 backdrop-blur-lg rounded-2xl p-8 lg:p-10 border border-red-500/30 ultra-stable no-motion">
+                  <motion.div
+                    className="bg-black/60 backdrop-blur-lg rounded-2xl p-8 lg:p-10 border border-red-500/30"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     <p className="text-white text-xl lg:text-2xl leading-relaxed text-center font-medium px-4">
                       {currentValue?.description}
                     </p>
-                  </div>
+                  </motion.div>
 
                   {/* Additional Visual Elements */}
-                  <div className="flex justify-center mt-8 lg:mt-10">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <div className="w-4 h-px bg-red-500"></div>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <div className="w-4 h-px bg-red-500"></div>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    </div>
+                  <div className="mt-6 grid grid-cols-3 gap-4">
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="h-2 bg-gradient-to-r from-red-500/30 to-red-600/30 rounded-full"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+                      />
+                    ))}
                   </div>
                 </div>
 
                 {/* Footer */}
-                <div className="bg-gradient-to-r from-red-950/30 via-black/50 to-red-950/30 border-t border-red-500/30 p-6 sm:p-8 lg:p-10 text-center">
-                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-                    Bu değer, Türk milletinin binlerce yıllık kültürel birikiminin bir parçasıdır.
-                  </p>
-                  <div className="mt-4 sm:mt-6">
-                    <button
-                      onClick={closeModal}
-                      className="px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border border-red-500/50 rounded-xl text-white font-semibold transition-all duration-200 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] ultra-stable no-motion"
-                    >
-                      Kapat
-                    </button>
-                  </div>
+                <div className="p-6 text-center">
+                  <motion.div
+                    className="text-sm text-red-400 opacity-80"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    Türkiye Cumhuriyeti'nin Temel Değeri
+                  </motion.div>
                 </div>
               </div>
-            </div>
-          </div>
-        ),
+            </motion.div>
+          </motion.div>
+        )}
+        </AnimatePresence>,
         document.body
       )}
     </>

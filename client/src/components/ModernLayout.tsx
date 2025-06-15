@@ -121,10 +121,16 @@ const GridLines = memo(() => {
 
 GridLines.displayName = 'GridLines';
 
-// Completely static background - no moving elements
+// Daha hafif arka plan - performans için optimize edildi
 const BackgroundElements = memo(() => (
-  <div className="absolute inset-0 z-0 ultra-stable no-motion">
-    {/* Completely static elements only - no gradients that can cause jitter */}
+  <div className="absolute inset-0 z-0">
+    {/* Sadece basit arka plan elemanları */}
+    <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-red-900/10 to-transparent opacity-20"></div>
+    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-red-900/10 to-transparent opacity-20"></div>
+    
+    {/* Minimal çizgiler */}
+    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
+    <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/30 to-transparent"></div>
   </div>
 ));
 
@@ -283,7 +289,7 @@ const ModernLayout = ({
         {backButton}
         
         {/* Main content */}
-        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized ultra-stable">
+        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized">
           {children}
           
           {/* Language selector */}
