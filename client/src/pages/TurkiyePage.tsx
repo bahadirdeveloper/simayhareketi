@@ -45,7 +45,7 @@ export default function TurkiyePage() {
   return (
     <ModernLayout
       audioKey="turkiye"
-      showLanguageSelector={true}
+      showLanguageSelector={false}
       showBackButton={true}
       pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Genel katılım istatistikleri yarın güncellenecektir. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Halk Defteri & Manifestolar bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
       pageName="Türkiye"
