@@ -284,38 +284,58 @@ body {
   gap: 1rem;
 }
 
-/* Ultimate anti-jitter solution */
+/* Ultimate anti-trembling solution */
 .ultra-stable {
-  transform: translate3d(0, 0, 0) !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  transform-style: preserve-3d !important;
-  -webkit-transform-style: preserve-3d !important;
-  perspective: 1000px !important;
-  -webkit-perspective: 1000px !important;
-  will-change: transform !important;
-  contain: layout style paint !important;
-  isolation: isolate !important;
-  position: relative !important;
-  z-index: 0 !important;
-  /* Additional stability layers */
-  -webkit-filter: brightness(1) !important;
-  filter: brightness(1) !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  transform-style: flat !important;
+  -webkit-transform-style: flat !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  isolation: auto !important;
+  position: static !important;
+  z-index: auto !important;
+  /* Disable all visual effects */
+  -webkit-filter: none !important;
+  filter: none !important;
   -webkit-transition: none !important;
   transition: none !important;
+  animation: none !important;
+  -webkit-animation: none !important;
 }
 
 /* Force disable all animations globally */
-.no-motion * {
+.no-motion,
+.no-motion *,
+.ultra-stable,
+.ultra-stable * {
+  animation: none !important;
+  -webkit-animation: none !important;
   animation-duration: 0s !important;
   animation-fill-mode: none !important;
   animation-iteration-count: 1 !important;
   animation-name: none !important;
   animation-play-state: paused !important;
   animation-timing-function: linear !important;
+  transition: none !important;
+  -webkit-transition: none !important;
   transition-duration: 0s !important;
   transition-delay: 0s !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Global animation disable for all elements */
+*,
+*::before,
+*::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }
 
 @media (min-width: 640px) {
