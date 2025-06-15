@@ -1524,7 +1524,7 @@ export default function GorevlerPage() {
 
       {/* Modern Task Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-6xl w-[95vw] max-h-[95vh] p-0 bg-transparent border-none overflow-hidden">
+        <DialogContent className="max-w-6xl w-[95vw] max-h-[95vh] p-0 bg-transparent border-none overflow-hidden [&>button]:hidden">
           <DialogTitle className="sr-only">
             {selectedGorev ? selectedGorev.baslik : "Görev Detayları"}
           </DialogTitle>
@@ -1537,7 +1537,7 @@ export default function GorevlerPage() {
               {/* Premium Top Accent */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-orange-500 to-red-500"></div>
               
-              {/* Close Button */}
+              {/* Single Close Button */}
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 z-50 w-10 h-10 bg-black/80 hover:bg-red-500/20 border border-red-500/40 hover:border-red-500/60 rounded-full flex items-center justify-center text-white hover:text-red-100 transition-all duration-200 touch-target"
