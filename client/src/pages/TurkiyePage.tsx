@@ -73,13 +73,13 @@ export default function TurkiyePage() {
                         className="w-32 h-32 mx-auto text-7xl border-4 border-red-500/60 rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_80px_rgba(239,68,68,0.5)]"
                         animate={{ 
                           boxShadow: [
-                            "0 0 40px rgba(239, 68, 68, 0.5)", 
-                            "0 0 80px rgba(239, 68, 68, 0.9)", 
-                            "0 0 40px rgba(239, 68, 68, 0.5)"
+                            "0 0 20px rgba(239, 68, 68, 0.3)", 
+                            "0 0 40px rgba(239, 68, 68, 0.6)", 
+                            "0 0 20px rgba(239, 68, 68, 0.3)"
                           ],
-                          scale: [1, 1.08, 1]
+                          scale: [1, 1.02, 1]
                         }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                       >
                         🇹🇷
                       </motion.div>
@@ -235,9 +235,9 @@ export default function TurkiyePage() {
 
               {/* Anayasalarımız Button */}
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
                   onClick={() => navigate("/anayasalar")}
@@ -256,9 +256,9 @@ export default function TurkiyePage() {
 
               {/* Görev Diriliş Button */}
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
                   onClick={() => navigate("/gorevler")}
@@ -277,9 +277,9 @@ export default function TurkiyePage() {
 
               {/* Halk Defteri Button */}
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
                   onClick={() => navigate("/halk-manifestolar")}

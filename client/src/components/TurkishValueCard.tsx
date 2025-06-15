@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
@@ -17,8 +17,8 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
     setMounted(true);
   }, []);
 
-  // Define detailed information and visual elements for each value
-  const valueDetails = {
+  // Memoize value details to prevent re-creation on each render
+  const valueDetails = useMemo(() => ({
     'milli': {
       title: 'MİLLİ',
       description: 'Türk milletinin bağımsızlığı, birliği ve varlığını koruyan temel değer. Vatan sevgisi, milli birlik ve beraberlik ruhu.',
@@ -54,12 +54,12 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
       color: 'from-orange-600 to-orange-800',
       bgPattern: 'bg-gradient-to-br from-orange-500/20 to-orange-700/30'
     }
-  };
+  }), []);
 
   const currentValue = valueDetails[valueId as keyof typeof valueDetails];
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = useCallback(() => setIsModalOpen(true), []);
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   if (!mounted) return null;
 
@@ -71,10 +71,10 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 2.2 + index * 0.1 }}
-        whileHover={{ scale: 1.08, y: -8 }}
+        whileHover={{ scale: 1.02, y: -2 }}
         onClick={openModal}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
         <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center">
           
           {/* Icon */}
