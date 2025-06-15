@@ -219,13 +219,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/turknedir")}
-                  className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
+                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
                       {t("turkiye_page.turk_nedir")}
                     </div>
-                    <div className="text-red-400 text-sm">
+                    <div className="text-red-400 text-xs">
                       Detaylar için tıklayın
                     </div>
                   </div>
@@ -240,13 +240,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/anayasalar")}
-                  className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
+                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
                       {t("turkiye_page.anayasalar")}
                     </div>
-                    <div className="text-red-400 text-sm">
+                    <div className="text-red-400 text-xs">
                       Anayasal çerçeve
                     </div>
                   </div>
@@ -261,13 +261,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/gorevler")}
-                  className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
+                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
                       {t("turkiye_page.gorev_dirilis")}
                     </div>
-                    <div className="text-red-400 text-sm">
+                    <div className="text-red-400 text-xs">
                       100 görevi keşfedin
                     </div>
                   </div>
@@ -282,13 +282,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/halk-manifestolar")}
-                  className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
+                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
                       {t("turkiye_page.halk_defteri")}
                     </div>
-                    <div className="text-red-400 text-sm">
+                    <div className="text-red-400 text-xs">
                       Manifestolar & Defter
                     </div>
                   </div>
@@ -327,8 +327,8 @@ export default function TurkiyePage() {
                         whileHover={{ scale: 1.08, y: -8 }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-6 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500">
-                          <div className="text-xl font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[100px] flex flex-col justify-center">
+                          <div className="text-responsive font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] text-wrap-turkish">
                             {t(`turkiye_page.values.${valueId}`)}
                           </div>
                           <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto"></div>
