@@ -88,19 +88,44 @@ export default function KatilPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   
-  // Hero stats with real-time effect
-  const [stats, setStats] = useState({
+  // Live Scoreboard with real-time updates
+  const [liveStats, setLiveStats] = useState({
     participants: 0,
+    totalAmount: 0,
     cities: 0,
     projects: 0,
-    volunteers: 0
+    volunteers: 0,
+    lastUpdate: new Date()
   });
 
   const targetStats = {
     participants: 10000000,
+    totalAmount: 25000000, // 25M TL target
     cities: 81,
     projects: 100,
     volunteers: 1000000
+  };
+
+  // Simulated real-time data fetching
+  const fetchLiveData = async () => {
+    try {
+      // In production, this would fetch from your API
+      // For now, simulate growing numbers for demo
+      const now = new Date();
+      const baseParticipants = Math.floor(Math.random() * 100) + 1000;
+      const baseAmount = baseParticipants * (Math.random() * 50 + 1); // Random between 1-50 TL per person
+      
+      setLiveStats(prev => ({
+        participants: Math.max(prev.participants, baseParticipants),
+        totalAmount: Math.max(prev.totalAmount, Math.floor(baseAmount)),
+        cities: Math.min(Math.floor(baseParticipants / 50), 81),
+        projects: Math.min(Math.floor(baseParticipants / 100), 100),
+        volunteers: Math.floor(baseParticipants * 0.3),
+        lastUpdate: now
+      }));
+    } catch (error) {
+      console.error('Failed to fetch live data:', error);
+    }
   };
 
   const membershipTiers = [
@@ -188,36 +213,31 @@ export default function KatilPage() {
     recordVisit();
   }, [i18n.language]);
 
-  const animateStats = () => {
-    const duration = 2000;
-    const steps = 60;
-    const stepDuration = duration / steps;
+  // Live data updates every 5 seconds
+  useEffect(() => {
+    fetchLiveData(); // Initial fetch
     
-    let currentStep = 0;
     const interval = setInterval(() => {
-      currentStep++;
-      const progress = currentStep / steps;
-      
-      setStats({
-        participants: Math.floor(targetStats.participants * progress * 0.001), // Start from small numbers
-        cities: Math.floor(targetStats.cities * progress * 0.01),
-        projects: Math.floor(targetStats.projects * progress * 0.05),
-        volunteers: Math.floor(targetStats.volunteers * progress * 0.002)
-      });
-      
-      if (currentStep >= steps) {
-        clearInterval(interval);
-      }
-    }, stepDuration);
+      fetchLiveData();
+    }, 5000); // Update every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  // Format currency
+  const formatCurrency = (amount: number) => {
+    if (amount >= 1000000) {
+      return `${(amount / 1000000).toFixed(1)}M TL`;
+    } else if (amount >= 1000) {
+      return `${(amount / 1000).toFixed(0)}K TL`;
+    }
+    return `${amount.toLocaleString()} TL`;
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      animateStats();
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  // Calculate progress percentage
+  const calculateProgress = (current: number, target: number) => {
+    return Math.min((current / target) * 100, 100);
+  };
 
   const handleToggleAudio = () => {
     playSoundtrack();
@@ -339,32 +359,109 @@ export default function KatilPage() {
               <span className="text-red-400 font-bold"> Birlikte güçlüyüz!</span>
             </motion.p>
 
-            {/* Real-time Stats */}
+            {/* Live Scoreboard */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12"
+              className="max-w-6xl mx-auto mb-12"
             >
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/10 backdrop-blur-lg border border-blue-500/30 rounded-2xl p-6">
-                <Users className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-1">{stats.participants.toLocaleString()}</div>
-                <div className="text-blue-300 text-sm">Katılımcı</div>
+              {/* Main Live Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {/* Live Participants Counter */}
+                <motion.div 
+                  className="bg-gradient-to-br from-green-500/30 to-emerald-600/20 backdrop-blur-xl border-2 border-green-500/50 rounded-3xl p-8 relative overflow-hidden"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 30px rgba(34, 197, 94, 0.3)",
+                      "0 0 50px rgba(34, 197, 94, 0.5)",
+                      "0 0 30px rgba(34, 197, 94, 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-500"></div>
+                  <div className="text-center">
+                    <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                    <div className="text-5xl md:text-6xl font-bold text-white mb-2 tabular-nums">
+                      {liveStats.participants.toLocaleString()}
+                    </div>
+                    <div className="text-green-300 text-xl font-semibold mb-3">CANLI KATILIMCI</div>
+                    <div className="text-gray-300 text-sm">
+                      Son güncelleme: {liveStats.lastUpdate.toLocaleTimeString()}
+                    </div>
+                    <Progress 
+                      value={calculateProgress(liveStats.participants, targetStats.participants)} 
+                      className="h-2 mt-4 bg-green-900/50"
+                    />
+                    <div className="text-green-400 text-sm mt-2">
+                      Hedef: {targetStats.participants.toLocaleString()} katılımcı
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Live Money Counter */}
+                <motion.div 
+                  className="bg-gradient-to-br from-yellow-500/30 to-orange-600/20 backdrop-blur-xl border-2 border-yellow-500/50 rounded-3xl p-8 relative overflow-hidden"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 30px rgba(245, 158, 11, 0.3)",
+                      "0 0 50px rgba(245, 158, 11, 0.5)",
+                      "0 0 30px rgba(245, 158, 11, 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+                  <div className="text-center">
+                    <TrendingUp className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                    <div className="text-5xl md:text-6xl font-bold text-white mb-2 tabular-nums">
+                      {formatCurrency(liveStats.totalAmount)}
+                    </div>
+                    <div className="text-yellow-300 text-xl font-semibold mb-3">TOPLANAN FONDS</div>
+                    <div className="text-gray-300 text-sm">
+                      Ortalama: {liveStats.participants > 0 ? Math.round(liveStats.totalAmount / liveStats.participants) : 0} TL/kişi
+                    </div>
+                    <Progress 
+                      value={calculateProgress(liveStats.totalAmount, targetStats.totalAmount)} 
+                      className="h-2 mt-4 bg-yellow-900/50"
+                    />
+                    <div className="text-yellow-400 text-sm mt-2">
+                      Hedef: {formatCurrency(targetStats.totalAmount)}
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-              <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/10 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
-                <MapPin className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-1">{stats.cities}</div>
-                <div className="text-green-300 text-sm">Şehir</div>
+
+              {/* Secondary Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/10 backdrop-blur-lg border border-blue-500/30 rounded-2xl p-6">
+                  <MapPin className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{liveStats.cities}</div>
+                  <div className="text-blue-300 text-sm">Aktif Şehir</div>
+                </div>
+                <div className="bg-gradient-to-br from-orange-500/20 to-red-500/10 backdrop-blur-lg border border-orange-500/30 rounded-2xl p-6">
+                  <Target className="w-8 h-8 text-orange-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{liveStats.projects}</div>
+                  <div className="text-orange-300 text-sm">Aktif Proje</div>
+                </div>
+                <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/10 backdrop-blur-lg border border-purple-500/30 rounded-2xl p-6 md:col-span-1 col-span-2">
+                  <HandHeart className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+                  <div className="text-3xl font-bold text-white mb-1">{liveStats.volunteers.toLocaleString()}</div>
+                  <div className="text-purple-300 text-sm">Gönüllü</div>
+                </div>
               </div>
-              <div className="bg-gradient-to-br from-orange-500/20 to-red-500/10 backdrop-blur-lg border border-orange-500/30 rounded-2xl p-6">
-                <Target className="w-8 h-8 text-orange-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-1">{stats.projects}</div>
-                <div className="text-orange-300 text-sm">Proje</div>
-              </div>
-              <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/10 backdrop-blur-lg border border-purple-500/30 rounded-2xl p-6">
-                <HandHeart className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-1">{stats.volunteers.toLocaleString()}</div>
-                <div className="text-purple-300 text-sm">Gönüllü</div>
+
+              {/* Live Update Indicator */}
+              <div className="text-center mt-6">
+                <motion.div 
+                  className="inline-flex items-center bg-black/50 border border-red-500/30 rounded-full px-4 py-2"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                  <span className="text-red-400 text-sm font-medium">CANLI SKOR TABLOSU</span>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>
