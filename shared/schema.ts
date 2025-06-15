@@ -47,11 +47,26 @@ export const feedback = pgTable("feedback", {
   submittedAt: timestamp("submitted_at").defaultNow().notNull(),
 });
 
+// Financial transactions for transparency
+export const transactions = pgTable("transactions", {
+  id: serial("id").primaryKey(),
+  type: varchar("type", { length: 10 }).notNull(), // 'income' or 'expense'
+  category: varchar("category", { length: 50 }).notNull(), // 'sunucu', 'domain', 'eğitim', 'entegrasyon', 'bağış', etc.
+  description: text("description").notNull(),
+  amount: integer("amount").notNull(), // Amount in kuruş (1 TL = 100 kuruş)
+  currency: varchar("currency", { length: 3 }).default("TRY").notNull(),
+  transactionDate: timestamp("transaction_date").defaultNow().notNull(),
+  isPublic: boolean("is_public").default(true).notNull(), // Whether to show in public transparency table
+  createdBy: integer("created_by").references(() => users.id),
+  reference: text("reference"), // Reference number or external ID
+});
+
 // Relations between tables
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(userSessions),
   visits: many(visitorStats),
   feedbacks: many(feedback),
+  transactions: many(transactions),
 }));
 
 export const userSessionsRelations = relations(userSessions, ({ one }) => ({
@@ -71,6 +86,13 @@ export const visitorStatsRelations = relations(visitorStats, ({ one }) => ({
 export const feedbackRelations = relations(feedback, ({ one }) => ({
   user: one(users, {
     fields: [feedback.userId],
+    references: [users.id],
+  }),
+}));
+
+export const transactionsRelations = relations(transactions, ({ one }) => ({
+  createdBy: one(users, {
+    fields: [transactions.createdBy],
     references: [users.id],
   }),
 }));
@@ -108,6 +130,11 @@ export const insertFeedbackSchema = createInsertSchema(feedback).omit({
   submittedAt: true,
 });
 
+export const insertTransactionSchema = createInsertSchema(transactions).omit({
+  id: true,
+  transactionDate: true,
+});
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -120,3 +147,6 @@ export type VisitorStat = typeof visitorStats.$inferSelect;
 
 export type InsertFeedback = z.infer<typeof insertFeedbackSchema>;
 export type Feedback = typeof feedback.$inferSelect;
+
+export type InsertTransaction = z.infer<typeof insertTransactionSchema>;
+export type Transaction = typeof transactions.$inferSelect;

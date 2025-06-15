@@ -1,6 +1,6 @@
-import { users, type User, type InsertUser, userSessions, visitorStats, feedback, 
+import { users, type User, type InsertUser, userSessions, visitorStats, feedback, transactions,
   type InsertUserSession, type UserSession, type InsertVisitorStat, type VisitorStat, 
-  type InsertFeedback, type Feedback } from "@shared/schema";
+  type InsertFeedback, type Feedback, type InsertTransaction, type Transaction } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -23,6 +23,11 @@ export interface IStorage {
   // Feedback methods
   submitFeedback(feedbackData: InsertFeedback): Promise<Feedback>;
   getAllFeedback(limit?: number): Promise<Feedback[]>;
+  
+  // Transaction methods
+  createTransaction(transaction: InsertTransaction): Promise<Transaction>;
+  getTransactions(limit?: number): Promise<Transaction[]>;
+  getTransactionsByType(type: 'income' | 'expense', limit?: number): Promise<Transaction[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -75,6 +80,26 @@ export class DatabaseStorage implements IStorage {
   
   async getAllFeedback(limit: number = 100): Promise<Feedback[]> {
     return db.select().from(feedback).limit(limit);
+  }
+  
+  // Transaction methods
+  async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
+    const result = await db.insert(transactions).values(transaction).returning();
+    return result[0];
+  }
+  
+  async getTransactions(limit: number = 100): Promise<Transaction[]> {
+    return db.select().from(transactions)
+      .where(eq(transactions.isPublic, true))
+      .orderBy(transactions.transactionDate)
+      .limit(limit);
+  }
+  
+  async getTransactionsByType(type: 'income' | 'expense', limit: number = 100): Promise<Transaction[]> {
+    return db.select().from(transactions)
+      .where(eq(transactions.type, type))
+      .orderBy(transactions.transactionDate)
+      .limit(limit);
   }
 }
 
