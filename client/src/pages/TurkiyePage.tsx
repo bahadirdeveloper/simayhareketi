@@ -19,19 +19,20 @@ export default function TurkiyePage() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   
   useEffect(() => {
-    // Ses sistemini başlat
     initAudio('turkiye');
   }, []);
   
-  // Use global navigation helper
   const navigateToPage = (path: string) => {
     navigateWithScrollReset(navigate, path);
   };
   
-  // Ses çalma/durdurma işlemini yönet
   const handleToggleAudio = () => {
-    playSoundtrack();
-    setIsAudioPlaying(!isAudioPlaying);
+    try {
+      playSoundtrack();
+      setIsAudioPlaying(prev => !prev);
+    } catch (error) {
+      console.log('Audio toggle failed:', error);
+    }
   };
   
   return (
@@ -43,70 +44,52 @@ export default function TurkiyePage() {
     >
       <div className="w-full max-w-7xl mx-auto static-container">
         
-        {/* Ultra Premium Hero Section */}
-        <div className="relative mb-24 overflow-hidden static-container">
-          {/* Premium Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(239,68,68,0.1),transparent_60%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(234,179,8,0.1),transparent_60%)]"></div>
-          </div>
-          
-          {/* Premium Container */}
-          <div className="relative backdrop-blur-sm border border-white/10 rounded-3xl p-16 text-center static-container">
+        {/* Clean Hero Section */}
+        <div className="relative mb-20 static-container">
+          <div className="bg-gray-900 border-2 border-gray-700 rounded-2xl p-12 text-center static-container">
             
-            {/* Elite Flag */}
+            {/* Flag */}
+            <div className="mb-8">
+              <div className="w-24 h-24 mx-auto bg-red-700 rounded-xl flex items-center justify-center text-4xl border-2 border-red-600">
+                🇹🇷
+              </div>
+            </div>
+            
+            {/* Title */}
             <div className="mb-12">
-              <div className="relative w-32 h-32 mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-yellow-500/20 rounded-2xl blur-2xl"></div>
-                <div className="relative w-full h-full bg-gradient-to-br from-red-600 to-red-800 rounded-2xl flex items-center justify-center text-6xl border-2 border-white/20 shadow-2xl">
-                  🇹🇷
-                </div>
-              </div>
-            </div>
-            
-            {/* Premium Typography */}
-            <div className="mb-16">
-              <h1 className="text-7xl md:text-9xl font-extralight tracking-[0.2em] mb-8">
-                <span className="bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
-                  TÜRKİYE
-                </span>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                TÜRKİYE
               </h1>
-              <div className="flex justify-center">
-                <div className="h-0.5 w-48 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-              </div>
+              <div className="w-32 h-1 bg-red-500 mx-auto rounded-full"></div>
             </div>
             
-            {/* Premium Quote */}
-            <div className="max-w-5xl mx-auto mb-16">
-              <div className="relative p-12 backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10">
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
-                  <div className="text-red-400 text-2xl font-bold">"</div>
-                </div>
-                <p className="text-2xl md:text-3xl font-light leading-relaxed text-white/90 mb-8 italic">
-                  Türk, atasının mirasına sahip çıkamazsa,<br />
-                  geleceğini başka milletlerin insafına bırakır.
+            {/* Quote */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="bg-gray-800 border border-gray-600 rounded-xl p-8">
+                <p className="text-xl md:text-2xl font-light text-white mb-6 italic">
+                  "Türk, atasının mirasına sahip çıkamazsa,<br />
+                  geleceğini başka milletlerin insafına bırakır."
                 </p>
                 <div className="text-right">
-                  <span className="text-red-400 text-lg font-medium tracking-widest">— MUSTAFA KEMAL ATATÜRK</span>
+                  <span className="text-red-400 font-medium">— MUSTAFA KEMAL ATATÜRK</span>
                 </div>
               </div>
             </div>
             
-            {/* Premium Audio Control */}
+            {/* Audio Control */}
             <div className="flex justify-center">
               <button
-                className="group relative px-12 py-4 bg-gradient-to-r from-red-600/80 to-red-700/80 backdrop-blur-sm border border-white/20 rounded-2xl hover:bg-gradient-to-r hover:from-red-500/80 hover:to-red-600/80 transition-all duration-500 static-container"
+                className="px-8 py-3 bg-red-700 border-2 border-red-600 rounded-xl hover:bg-red-600 transition-colors static-container"
                 onClick={handleToggleAudio}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {isAudioPlaying 
-                    ? <Pause className="h-6 w-6 text-white" /> 
-                    : <Play className="h-6 w-6 text-white ml-1" />
+                    ? <Pause className="h-5 w-5 text-white" /> 
+                    : <Play className="h-5 w-5 text-white ml-0.5" />
                   }
-                  <span className="text-white font-medium text-lg tracking-wide">
+                  <span className="text-white font-medium">
                     {isAudioPlaying ? "MÜZIK DURDUR" : "TÜRK MÜZİĞİ"}
                   </span>
-                  <div className="w-2 h-2 bg-white/60 rounded-full"></div>
                 </div>
               </button>
             </div>
