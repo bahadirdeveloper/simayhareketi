@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import { apiRequest } from "@/lib/queryClient";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Heart, ThumbsUp, Filter, Calendar, BookOpen, FileText, Star, Landmark, Shield, FilePen, MessageSquare, Bookmark } from "lucide-react";
+import { 
+  Heart, 
+  ThumbsUp, 
+  Filter, 
+  Calendar, 
+  BookOpen, 
+  FileText, 
+  Star, 
+  Users,
+  Scroll,
+  PenTool,
+  ArrowLeft,
+  Search,
+  TrendingUp,
+  Clock
+} from "lucide-react";
 
 interface ManifestoEntry {
   id: number;
@@ -26,15 +35,11 @@ interface ManifestoEntry {
 export default function HalkManifestolarPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
-  const { toast } = useToast();
   
-  // Form state
-  const [formData, setFormData] = useState({
-    title: "",
-    author: "",
-    category: "siyasi",
-    content: ""
-  });
+  // UI State
+  const [selectedManifesto, setSelectedManifesto] = useState<ManifestoEntry | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeView, setActiveView] = useState<'grid' | 'list'>('grid');
   
   // Tüm halk manifestoları
   const [manifestoEntries] = useState<ManifestoEntry[]>([
@@ -208,31 +213,37 @@ Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
   
   // Kategoriler
   const categories = [
-    { id: "siyasi", name: "Siyasi", color: "from-red-600 to-red-900" },
-    { id: "ekonomik", name: "Ekonomik", color: "from-green-600 to-green-900" },
-    { id: "sosyal", name: "Sosyal", color: "from-blue-600 to-blue-900" },
-    { id: "kültürel", name: "Kültürel", color: "from-yellow-600 to-yellow-900" },
-    { id: "teknolojik", name: "Teknolojik", color: "from-purple-600 to-purple-900" },
-    { id: "eğitim", name: "Eğitim", color: "from-teal-600 to-teal-900" },
-    { id: "çevresel", name: "Çevresel", color: "from-emerald-600 to-emerald-900" },
+    { id: "all", name: "Tümü", icon: BookOpen, color: "from-gray-600 to-gray-800" },
+    { id: "siyasi", name: "Siyasi", icon: Users, color: "from-red-600 to-red-800" },
+    { id: "ekonomik", name: "Ekonomik", icon: TrendingUp, color: "from-green-600 to-green-800" },
+    { id: "sosyal", name: "Sosyal", icon: Heart, color: "from-blue-600 to-blue-800" },
+    { id: "kültürel", name: "Kültürel", icon: Scroll, color: "from-purple-600 to-purple-800" },
+    { id: "teknolojik", name: "Teknolojik", icon: PenTool, color: "from-indigo-600 to-indigo-800" },
+    { id: "eğitim", name: "Eğitim", icon: BookOpen, color: "from-teal-600 to-teal-800" },
+    { id: "çevresel", name: "Çevresel", icon: Star, color: "from-emerald-600 to-emerald-800" },
   ];
   
   // Aktif kategori filtresi
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   
   // Sıralama seçeneği
   const [sortBy, setSortBy] = useState<'date' | 'likes'>('date');
   
   // Manifestoları filtreleme ve sıralama
   const filteredAndSortedManifestos = manifestoEntries
-    .filter(entry => entry.approved && (!activeCategory || entry.category === activeCategory))
+    .filter(entry => {
+      const matchesCategory = activeCategory === "all" || entry.category === activeCategory;
+      const matchesSearch = searchTerm === "" || 
+        entry.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.content.toLowerCase().includes(searchTerm.toLowerCase());
+      return entry.approved && matchesCategory && matchesSearch;
+    })
     .sort((a, b) => {
       if (sortBy === 'likes') {
         return b.likes - a.likes;
       } else {
-        // Date sorting (assuming dates are in the format "DD Ay YYYY")
-        return new Date(b.date.split(' ').reverse().join(' ')) > 
-               new Date(a.date.split(' ').reverse().join(' ')) ? 1 : -1;
+        return new Date(b.date) > new Date(a.date) ? 1 : -1;
       }
     });
   
