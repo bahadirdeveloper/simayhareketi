@@ -1327,10 +1327,10 @@ export default function GorevlerPage() {
             className="mb-16"
           >
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {Array.from({ length: 8 }).map((_, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl h-80">
+                    <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl h-96">
                       <div className="p-6 space-y-4">
                         <div className="h-4 bg-gray-600/50 rounded"></div>
                         <div className="h-4 bg-gray-600/50 rounded w-3/4"></div>
@@ -1349,7 +1349,7 @@ export default function GorevlerPage() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {currentGorevler.map(gorev => (
                   <motion.div
                     key={gorev.id}
@@ -1359,7 +1359,7 @@ export default function GorevlerPage() {
                     onClick={() => openGorevModal(gorev)}
                   >
                     <div className={`
-                      relative backdrop-blur-lg border-2 rounded-2xl overflow-hidden h-80 transition-all duration-300
+                      relative backdrop-blur-lg border-2 rounded-2xl overflow-hidden h-96 transition-all duration-300
                       ${gorev.kategori === 'kurucu' 
                         ? 'bg-gradient-to-br from-red-900/30 to-orange-900/20 border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
                         : gorev.tamamlayan > 0 
