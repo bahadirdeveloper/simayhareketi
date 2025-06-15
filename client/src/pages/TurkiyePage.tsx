@@ -334,150 +334,269 @@ export default function TurkiyePage() {
               </motion.div>
             </motion.div>
             
-            {/* Digital Civic Platform Navigation */}
+            {/* Premium Digital Civic Platform Navigation */}
             <motion.div
-              className="flex flex-col gap-6 w-full max-w-4xl mx-auto mb-10"
+              className="flex flex-col gap-8 w-full max-w-5xl mx-auto mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-bold text-white mb-2">Dijital Sivil Platform</h2>
-                <p className="text-gray-300 text-sm">Türkiye Cumhuriyeti'nin dijital koordinasyon merkezi</p>
-                <div className="w-20 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto mt-3"></div>
+              <div className="text-center mb-6">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="relative"
+                >
+                  <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-500/20 to-amber-600/20 rounded-full flex items-center justify-center border-2 border-red-500/50 shadow-[0_0_40px_rgba(239,68,68,0.3)]">
+                    ⚡
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent mb-4">
+                    Dijital Sivil Platform
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Türkiye Cumhuriyeti'nin dijital çağdaki koordinasyon ve katılım merkezi
+                  </p>
+                  <div className="flex justify-center items-center space-x-4 mt-6">
+                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
+                    <div className="w-2 h-2 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.6)]"></div>
+                    <div className="w-12 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
+                  </div>
+                </motion.div>
               </div>
-              {/* 1. TÜRK NEDİR? - Identity & Heritage */}
+              {/* 1. TÜRK NEDİR? - Premium Identity Section */}
               <motion.div 
-                className="flex flex-col"
+                className="group relative"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
-                <ModernTechButton 
-                  variant="turkish"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-5 text-lg font-bold bg-gradient-to-r from-red-800/80 to-red-700/80 hover:from-red-700/90 hover:to-red-600/90 border-red-500/30"
-                  onClick={() => navigate("/turknedir")}
-                >
-                  🏛️ TÜRK NEDİR?
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div className="relative bg-gradient-to-br from-black/90 via-red-950/30 to-black/90 border-2 border-red-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(239,68,68,0.15)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.25)] transition-all duration-300">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500/30 to-red-700/30 rounded-xl flex items-center justify-center text-2xl border border-red-500/50">
+                      🏛️
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white group-hover:text-red-300 transition-colors">TÜRK NEDİR?</h3>
+                      <p className="text-sm text-gray-400">Kimlik ve Miras</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    Türk kimliği ve tanımının tarihsel, kültürel incelemesi
+                  </p>
+                  <ModernTechButton 
+                    variant="turkish"
+                    size="md"
+                    className="w-full bg-gradient-to-r from-red-700/80 to-red-600/80 hover:from-red-600/90 hover:to-red-500/90 border-red-400/40"
+                    onClick={() => navigate("/turknedir")}
+                  >
+                    Keşfet →
+                  </ModernTechButton>
+                </div>
               </motion.div>
               
-              {/* 2. ANAYASA - Constitutional Framework */}
+              {/* 2. ANAYASA - Premium Constitutional Framework */}
               <motion.div 
-                className="flex flex-col"
+                className="group relative"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-gold/20 to-amber-600/20 hover:from-gold/30 hover:to-amber-600/30 border-gold/30"
-                  onClick={() => navigate("/anayasalar")}
-                >
-                  ⚖️ ANAYASA
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Halk anayasaları ve dijital haklar çerçevesi</p>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-600/20 to-yellow-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div className="relative bg-gradient-to-br from-black/90 via-amber-950/20 to-black/90 border-2 border-amber-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(251,191,36,0.15)] group-hover:shadow-[0_20px_60px_rgba(251,191,36,0.25)] transition-all duration-300">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500/30 to-yellow-600/30 rounded-xl flex items-center justify-center text-2xl border border-amber-500/50">
+                      ⚖️
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">ANAYASA</h3>
+                      <p className="text-sm text-gray-400">Anayasal Çerçeve</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    Halk anayasaları ve dijital haklar çerçevesi
+                  </p>
+                  <ModernTechButton 
+                    variant="futuristic"
+                    size="md"
+                    className="w-full bg-gradient-to-r from-amber-700/80 to-yellow-600/80 hover:from-amber-600/90 hover:to-yellow-500/90 border-amber-400/40"
+                    onClick={() => navigate("/anayasalar")}
+                  >
+                    İncele →
+                  </ModernTechButton>
+                </div>
               </motion.div>
               
-              {/* 3. MANİFESTOLAR - Vision Documents */}
+              {/* 3. MANİFESTOLAR - Premium Vision Documents */}
               <motion.div 
-                className="flex flex-col"
+                className="group relative"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-blue-800/20 to-cyan-700/20 hover:from-blue-700/30 hover:to-cyan-600/30 border-blue-400/30"
-                  onClick={() => navigate("/halk-manifestolar")}
-                >
-                  📜 MANİFESTOLAR
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Halk manifestoları ve gelecek vizyonu belgeleri</p>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div className="relative bg-gradient-to-br from-black/90 via-blue-950/20 to-black/90 border-2 border-blue-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(59,130,246,0.15)] group-hover:shadow-[0_20px_60px_rgba(59,130,246,0.25)] transition-all duration-300">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500/30 to-cyan-600/30 rounded-xl flex items-center justify-center text-2xl border border-blue-500/50">
+                      📜
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">MANİFESTOLAR</h3>
+                      <p className="text-sm text-gray-400">Vizyon Belgeleri</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    Halk manifestoları ve gelecek vizyonu belgeleri
+                  </p>
+                  <ModernTechButton 
+                    variant="futuristic"
+                    size="md"
+                    className="w-full bg-gradient-to-r from-blue-700/80 to-cyan-600/80 hover:from-blue-600/90 hover:to-cyan-500/90 border-blue-400/40"
+                    onClick={() => navigate("/halk-manifestolar")}
+                  >
+                    Oku →
+                  </ModernTechButton>
+                </div>
               </motion.div>
               
-              {/* 4. AMACIMIZ & SAVAŞIMIZ - Mission & Struggle */}
-              <motion.div 
-                className="flex flex-col"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-purple-800/20 to-indigo-700/20 hover:from-purple-700/30 hover:to-indigo-600/30 border-purple-400/30"
-                  onClick={() => navigate("/amac-savas")}
+              {/* Navigation Grid Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 4. AMACIMIZ & SAVAŞIMIZ */}
+                <motion.div 
+                  className="group relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  🎯 AMACIMIZ & SAVAŞIMIZ
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Hareketin temel amaçları ve sistemsel mücadele alanları</p>
-              </motion.div>
-              
-              {/* 5. GÖREVLER - Tasks & Duties */}
-              <motion.div 
-                className="flex flex-col"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ModernTechButton 
-                  variant="futuristic"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-green-800/20 to-emerald-700/20 hover:from-green-700/30 hover:to-emerald-600/30 border-green-400/30"
-                  onClick={() => navigate("/gorevler")}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-black/90 via-purple-950/20 to-black/90 border-2 border-purple-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(147,51,234,0.15)] group-hover:shadow-[0_20px_60px_rgba(147,51,234,0.25)] transition-all duration-300">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500/30 to-indigo-600/30 rounded-xl flex items-center justify-center text-2xl border border-purple-500/50">
+                        🎯
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">AMACIMIZ & SAVAŞIMIZ</h3>
+                        <p className="text-xs text-gray-400">Misyon ve Mücadele</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      Hareketin temel amaçları ve sistemsel mücadele alanları
+                    </p>
+                    <ModernTechButton 
+                      variant="futuristic"
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-purple-700/80 to-indigo-600/80 hover:from-purple-600/90 hover:to-indigo-500/90 border-purple-400/40"
+                      onClick={() => navigate("/amac-savas")}
+                    >
+                      Öğren →
+                    </ModernTechButton>
+                  </div>
+                </motion.div>
+                
+                {/* 5. GÖREVLER */}
+                <motion.div 
+                  className="group relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  ⚡ GÖREVLER
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Cumhuriyet için yapılacak görevler listesi</p>
-              </motion.div>
-              
-              {/* 6. ÇAĞRI - Call to Action */}
-              <motion.div 
-                className="flex flex-col"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ModernTechButton 
-                  variant="primary"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-orange-800/20 to-amber-700/20 hover:from-orange-700/30 hover:to-amber-600/30 border-orange-400/30"
-                  onClick={() => navigate("/cagri")}
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-black/90 via-green-950/20 to-black/90 border-2 border-green-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(34,197,94,0.15)] group-hover:shadow-[0_20px_60px_rgba(34,197,94,0.25)] transition-all duration-300">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-500/30 to-emerald-600/30 rounded-xl flex items-center justify-center text-2xl border border-green-500/50">
+                        ⚡
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-green-300 transition-colors">GÖREVLER</h3>
+                        <p className="text-xs text-gray-400">Görevler ve Sorumluluklar</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      Cumhuriyet için yapılacak görevler listesi
+                    </p>
+                    <ModernTechButton 
+                      variant="futuristic"
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-green-700/80 to-emerald-600/80 hover:from-green-600/90 hover:to-emerald-500/90 border-green-400/40"
+                      onClick={() => navigate("/gorevler")}
+                    >
+                      Görüntüle →
+                    </ModernTechButton>
+                  </div>
+                </motion.div>
+                
+                {/* 6. ÇAĞRI */}
+                <motion.div 
+                  className="group relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  📢 ÇAĞRI
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Meslek gruplarına özel çağrı ve davet metni</p>
-              </motion.div>
-              
-              {/* 7. HAREKETE KATIL - Join Movement */}
-              <motion.div 
-                className="flex flex-col"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <ModernTechButton 
-                  variant="turkish"
-                  size="lg"
-                  glow="none"
-                  border="subtle"
-                  className="w-full justify-center py-4 bg-gradient-to-r from-red-700/40 to-red-600/40 hover:from-red-600/50 hover:to-red-500/50 border-red-400/40 shadow-lg"
-                  onClick={() => navigate("/katil")}
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-black/90 via-orange-950/20 to-black/90 border-2 border-orange-500/40 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(249,115,22,0.15)] group-hover:shadow-[0_20px_60px_rgba(249,115,22,0.25)] transition-all duration-300">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500/30 to-amber-600/30 rounded-xl flex items-center justify-center text-2xl border border-orange-500/50">
+                        📢
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">ÇAĞRI</h3>
+                        <p className="text-xs text-gray-400">Halk Çağrısı</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      Meslek gruplarına özel çağrı ve davet metni
+                    </p>
+                    <ModernTechButton 
+                      variant="primary"
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-orange-700/80 to-amber-600/80 hover:from-orange-600/90 hover:to-amber-500/90 border-orange-400/40"
+                      onClick={() => navigate("/cagri")}
+                    >
+                      Dinle →
+                    </ModernTechButton>
+                  </div>
+                </motion.div>
+                
+                {/* 7. HAREKETE KATIL */}
+                <motion.div 
+                  className="group relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  🤝 HAREKETE KATIL
-                </ModernTechButton>
-                <p className="text-xs text-gray-300 text-center px-2 mt-2">Cumhuriyet güçlenmesi katılım sistemi</p>
-              </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600/30 to-red-800/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-black/90 via-red-950/30 to-black/90 border-2 border-red-500/50 rounded-2xl p-6 backdrop-blur-lg shadow-[0_15px_40px_rgba(239,68,68,0.20)] group-hover:shadow-[0_25px_70px_rgba(239,68,68,0.35)] transition-all duration-300">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500/40 to-red-700/40 rounded-xl flex items-center justify-center text-2xl border border-red-500/60">
+                        🤝
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white group-hover:text-red-300 transition-colors">HAREKETE KATIL</h3>
+                        <p className="text-xs text-gray-400">Katılım Sistemi</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      Cumhuriyet güçlenmesi katılım sistemi
+                    </p>
+                    <ModernTechButton 
+                      variant="turkish"
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-red-700/90 to-red-600/90 hover:from-red-600/100 hover:to-red-500/100 border-red-400/50 font-bold"
+                      onClick={() => navigate("/katil")}
+                    >
+                      Katıl →
+                    </ModernTechButton>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         </AnimatePresence>

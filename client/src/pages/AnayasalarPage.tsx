@@ -15,77 +15,147 @@ export function AnayasalarPage() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-4 py-8 max-w-5xl"
         >
-          {/* Enhanced Header */}
+          {/* Premium Header */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center mb-16"
           >
-            <motion.div 
-              className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-gold/20 to-amber-600/20 rounded-full flex items-center justify-center border-2 border-gold/50"
-              animate={{ 
-                boxShadow: ["0 0 30px rgba(251, 191, 36, 0.3)", "0 0 50px rgba(251, 191, 36, 0.6)", "0 0 30px rgba(251, 191, 36, 0.3)"]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              ⚖️
-            </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4 text-shadow-lg">
+            <div className="relative">
+              <motion.div 
+                className="w-28 h-28 mx-auto mb-8 bg-gradient-to-br from-gold/30 to-amber-600/30 rounded-full flex items-center justify-center border-3 border-gold/60 shadow-[0_0_60px_rgba(251,191,36,0.4)]"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 40px rgba(251, 191, 36, 0.4)", 
+                    "0 0 80px rgba(251, 191, 36, 0.7)", 
+                    "0 0 40px rgba(251, 191, 36, 0.4)"
+                  ],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="text-5xl">⚖️</span>
+              </motion.div>
+              
+              {/* Premium Background Elements */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-40 bg-gradient-to-br from-gold/10 to-transparent rounded-full blur-3xl"></div>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-gold via-amber-400 to-gold bg-clip-text text-transparent mb-6 text-shadow-lg leading-tight">
               HALK ANAYASALARI
             </h1>
-            <p className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto">
+            <p className="text-gray-300 text-xl mb-8 max-w-4xl mx-auto leading-relaxed">
               Cumhuriyet'ten dijital çağa: Halkın hakları ve özgürlüklerini koruyan anayasal çerçeveler
             </p>
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto rounded-full"></div>
+            
+            <div className="flex justify-center items-center space-x-6 mt-8">
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold to-gold"></div>
+              <div className="w-4 h-4 bg-gold rounded-full shadow-[0_0_20px_rgba(251,191,36,0.6)]"></div>
+              <div className="w-20 h-px bg-gradient-to-l from-transparent via-gold to-gold"></div>
+            </div>
           </motion.div>
 
-          {/* Turkish Republic Constitution - Foundation */}
+          {/* Premium Turkish Republic Constitution Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="backdrop-filter backdrop-blur-lg bg-gradient-to-br from-red-900/20 to-gold/10 border border-gold/40 rounded-2xl p-8 mb-8 shadow-2xl relative overflow-hidden"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative mb-12"
           >
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-gold to-red-500"></div>
-            <div className="flex items-center justify-center mb-6">
-              <motion.div 
-                className="w-16 h-16 bg-gradient-to-br from-red-600/30 to-gold/30 rounded-full flex items-center justify-center text-3xl border-2 border-gold/50"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                🇹🇷
-              </motion.div>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gold text-center mb-8">
-              TÜRKİYE CUMHURİYETİ ANAYASASI
-            </h2>
-            <div className="text-white text-lg leading-relaxed space-y-6 max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-black/30 rounded-lg p-6 border border-gold/20">
-                  <h3 className="text-gold font-bold mb-3">Temel İlkeler</h3>
-                  <ul className="space-y-2 text-gray-200">
-                    <li>• Halk egemenliği</li>
-                    <li>• Eşitlik ve adalet</li>
-                    <li>• Laiklik ve çağdaşlık</li>
-                    <li>• Cumhuriyetçilik</li>
-                  </ul>
-                </div>
-                <div className="bg-black/30 rounded-lg p-6 border border-gold/20">
-                  <h3 className="text-gold font-bold mb-3">Tarihsel Değer</h3>
-                  <ul className="space-y-2 text-gray-200">
-                    <li>• Milletin iradesiyle yazıldı</li>
-                    <li>• Özgürlük mücadelesinin ürünü</li>
-                    <li>• Gelecek nesillere miras</li>
-                    <li>• Diriliş anayasası</li>
-                  </ul>
-                </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-gold/15 to-red-600/10 rounded-3xl blur-2xl"></div>
+            <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/95 via-red-950/30 to-black/95 border-2 border-gold/50 rounded-3xl p-10 shadow-[0_30px_100px_rgba(251,191,36,0.2)] overflow-hidden">
+              
+              {/* Premium Top Border */}
+              <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-gold via-red-500 to-gold"></div>
+              
+              {/* Corner Decorations */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-gold/20 to-transparent rounded-br-full"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/20 to-transparent rounded-bl-full"></div>
+              
+              {/* Header Section */}
+              <div className="flex items-center justify-center mb-10">
+                <motion.div 
+                  className="w-20 h-20 bg-gradient-to-br from-red-600/40 to-gold/40 rounded-full flex items-center justify-center text-4xl border-3 border-gold/60 shadow-[0_0_40px_rgba(251,191,36,0.3)]"
+                  animate={{ 
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  🇹🇷
+                </motion.div>
               </div>
-              <div className="text-center bg-gradient-to-r from-gold/10 to-transparent p-6 rounded-lg border border-gold/20">
-                <p className="text-xl font-bold text-gold italic">
-                  "Egemenlik kayıtsız şartsız milletindir"
-                </p>
-                <p className="text-gray-300 mt-2">Bu söz, yeri asla doldurulamayacak kadar büyüktür.</p>
+              
+              <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-gold via-amber-400 to-gold bg-clip-text text-transparent text-center mb-12 leading-tight">
+                TÜRKİYE CUMHURİYETİ ANAYASASI
+              </h2>
+              
+              {/* Premium Content Grid */}
+              <div className="text-white text-lg leading-relaxed space-y-8 max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <motion.div 
+                    className="bg-gradient-to-br from-black/60 via-gold/5 to-black/60 rounded-2xl p-8 border-2 border-gold/30 backdrop-blur-sm shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+                    whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(251,191,36,0.2)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-gold/30 to-amber-600/30 rounded-xl flex items-center justify-center text-2xl border border-gold/50 mr-4">
+                        ⚖️
+                      </div>
+                      <h3 className="text-2xl font-bold text-gold">Temel İlkeler</h3>
+                    </div>
+                    <ul className="space-y-3 text-gray-200">
+                      <li className="flex items-center"><span className="text-gold mr-3">▶</span> Halk egemenliği</li>
+                      <li className="flex items-center"><span className="text-gold mr-3">▶</span> Eşitlik ve adalet</li>
+                      <li className="flex items-center"><span className="text-gold mr-3">▶</span> Laiklik ve çağdaşlık</li>
+                      <li className="flex items-center"><span className="text-gold mr-3">▶</span> Cumhuriyetçilik</li>
+                    </ul>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="bg-gradient-to-br from-black/60 via-red-950/10 to-black/60 rounded-2xl p-8 border-2 border-red-500/30 backdrop-blur-sm shadow-[0_15px_40px_rgba(0,0,0,0.3)]"
+                    whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(239,68,68,0.2)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500/30 to-red-700/30 rounded-xl flex items-center justify-center text-2xl border border-red-500/50 mr-4">
+                        🏛️
+                      </div>
+                      <h3 className="text-2xl font-bold text-red-400">Tarihsel Değer</h3>
+                    </div>
+                    <ul className="space-y-3 text-gray-200">
+                      <li className="flex items-center"><span className="text-red-400 mr-3">▶</span> Milletin iradesiyle yazıldı</li>
+                      <li className="flex items-center"><span className="text-red-400 mr-3">▶</span> Özgürlük mücadelesinin ürünü</li>
+                      <li className="flex items-center"><span className="text-red-400 mr-3">▶</span> Gelecek nesillere miras</li>
+                      <li className="flex items-center"><span className="text-red-400 mr-3">▶</span> Diriliş anayasası</li>
+                    </ul>
+                  </motion.div>
+                </div>
+                
+                {/* Premium Quote Section */}
+                <motion.div 
+                  className="text-center bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-10 border-2 border-gold/40 backdrop-blur-lg shadow-[0_20px_60px_rgba(251,191,36,0.15)]"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <div className="mb-6">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gold/40 to-amber-600/40 rounded-full flex items-center justify-center text-3xl border-2 border-gold/60">
+                      💬
+                    </div>
+                  </div>
+                  <p className="text-2xl md:text-3xl font-bold text-gold italic mb-4 leading-relaxed">
+                    "Egemenlik kayıtsız şartsız milletindir"
+                  </p>
+                  <p className="text-gray-300 text-lg">Bu söz, yeri asla doldurulamayacak kadar büyüktür.</p>
+                  
+                  <div className="flex justify-center items-center space-x-4 mt-8">
+                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-gold"></div>
+                    <div className="w-3 h-3 bg-gold rounded-full shadow-[0_0_15px_rgba(251,191,36,0.6)]"></div>
+                    <div className="w-12 h-px bg-gradient-to-l from-transparent via-gold to-gold"></div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
