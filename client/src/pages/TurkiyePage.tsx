@@ -156,28 +156,28 @@ export default function TurkiyePage() {
             </div>
           </div>
 
-          {/* Enhanced Premium Navigation Cards - 2x4 Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20 content-stable motion-stable ultra-stable no-motion">
+          {/* Navigation Cards - Compact 2x4 Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 content-stable motion-stable ultra-stable no-motion">
             {/* TÜRK Nedir Button - Massive */}
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/turknedir")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Star className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Star className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     TÜRK NEDİR
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Keşfet</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Keşfet</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -187,22 +187,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/anayasalarimiz")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Shield className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Shield className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     ANAYASALARIMIZ
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">İncele</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">İncele</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -212,22 +212,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/gorevdirilis")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Crown className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Crown className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     GÖREV DİRİLİŞ
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Başla</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Başla</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -237,22 +237,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/halkdefteri")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Flag className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Flag className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     HALK DEFTERİ
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Görüntüle</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Görüntüle</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -262,22 +262,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/manifesto")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Flag className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Flag className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     MANİFESTO
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Oku</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Oku</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -287,22 +287,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/cagri")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Star className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Star className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     ÇAĞRI
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Dinle</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Dinle</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -312,22 +312,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/katil")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Crown className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Crown className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     KATIL
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Başvur</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Başvur</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
@@ -337,22 +337,22 @@ export default function TurkiyePage() {
             <div className="content-stable ultra-stable no-motion group">
               <ModernTechButton
                 onClick={() => navigateToPage("/gorev")}
-                className="w-full h-44 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border-2 border-red-500/60 hover:border-red-400/80 rounded-3xl backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.25)] hover:shadow-[0_35px_90px_rgba(239,68,68,0.45)] transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-1"
+                className="w-full h-32 bg-gradient-to-br from-black/95 via-red-950/60 to-black/95 border border-red-500/60 hover:border-red-400/80 rounded-xl backdrop-blur-xl shadow-lg hover:shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
               >
-                <div className="flex flex-col items-center text-center h-full justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="flex flex-col items-center text-center h-full justify-center p-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 shadow-[0_15px_40px_rgba(239,68,68,0.4)] group-hover:shadow-[0_20px_50px_rgba(239,68,68,0.6)] transition-all duration-500 relative z-10">
-                    <Shield className="h-8 w-8 text-white drop-shadow-lg" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 via-red-500 to-orange-500 rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Shield className="h-5 w-5 text-white drop-shadow-sm" />
                   </div>
                   
-                  <h3 className="text-white font-black text-lg mb-2 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-500">
+                  <h3 className="text-white font-bold text-sm mb-1 tracking-wide relative z-10 group-hover:text-red-100 transition-colors duration-300">
                     GÖREV
                   </h3>
                   
-                  <div className="flex items-center space-x-2 text-red-400 group-hover:text-red-300 transition-colors duration-500 relative z-10">
-                    <span className="text-xs uppercase tracking-widest font-medium">Gör</span>
-                    <ChevronRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="flex items-center space-x-1 text-red-400 group-hover:text-red-300 transition-colors duration-300 relative z-10">
+                    <span className="text-xs uppercase tracking-wide font-medium">Gör</span>
+                    <ChevronRight className="h-3 w-3 transform group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </ModernTechButton>
