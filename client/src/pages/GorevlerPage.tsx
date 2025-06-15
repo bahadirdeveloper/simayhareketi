@@ -79,9 +79,8 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    // Görev ID'sini 1-100 arasında sınırla
-    const safeId = Math.max(1, Math.min(id, 100));
-    return `/attached_assets/gorev-${safeId}.webp`;
+    // Database'deki görev ID'si ile görsel dosyasını doğrudan eşleştir
+    return `/attached_assets/gorev-${id}.webp`;
   };
 
   const getGorevColor = (id: number) => {
@@ -199,12 +198,18 @@ export default function GorevlerPage() {
                   <div className="mb-4">
                     <img
                       src={getGorevImage(gorev.id)}
-                      alt={`Görev ${gorev.id}`}
-                      className="w-full h-32 object-cover rounded-lg"
+                      alt={`Görev ${gorev.id}: ${gorev.baslik}`}
+                      className="w-full h-32 object-cover rounded-lg border border-gray-600 transition-opacity duration-300"
+                      loading="lazy"
+                      onLoad={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.opacity = '1';
+                      }}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
+                        target.src = '/attached_assets/gorev-1.webp';
                       }}
+                      style={{ opacity: '0.8' }}
                     />
                   </div>
 
