@@ -7,43 +7,62 @@ let currentPage: string = '';
 let currentTrack: string = '';
 let volume = 0.3;
 
-// Turkish cultural ambient tracks
-const turkishAmbientTracks = {
+// Turkish cultural music playlist
+const turkishPlaylist = {
   default: {
-    name: 'Anadolu Rüzgarı',
-    description: 'Gentle Anatolian winds with ney flute',
-    mood: 'peaceful'
+    name: 'Benim Sadık Yarim Kara Topraktır',
+    artist: 'Geleneksel',
+    description: 'Türk halk müziği klasiği - toprak sevgisi',
+    mood: 'nostalgic',
+    audioFile: null // Will be procedural until real files added
   },
   turkiye: {
-    name: 'Türk Destanı',
-    description: 'Epic Turkish heritage with traditional instruments',
-    mood: 'heroic'
+    name: 'Kufi',
+    artist: 'Geleneksel',
+    description: 'Anadolu ezgileri - mistik atmosfer',
+    mood: 'mystical',
+    audioFile: null
   },
   manifesto: {
-    name: 'İstiklal Marşı',
-    description: 'Turkish National Anthem with orchestral arrangement',
-    mood: 'national'
+    name: '100 Yıllık Çınar',
+    artist: 'Cem Karaca',
+    description: 'Anadolu rock klasiği - güçlü mesaj',
+    mood: 'revolutionary',
+    audioFile: null
   },
   anayasa: {
-    name: 'Cumhuriyet Marşı',
-    description: 'Republican anthem with modern orchestration',
-    mood: 'patriotic'
+    name: 'Şinanay',
+    artist: 'Geleneksel',
+    description: 'Türk halk oyunu müziği - neşeli ritim',
+    mood: 'celebratory',
+    audioFile: null
   },
   cagri: {
-    name: 'Çağrı Sesi',
-    description: 'Call to action with drums and strings',
-    mood: 'inspiring'
+    name: 'Feriğim',
+    artist: 'Geleneksel',
+    description: 'Anadolu türküsü - duygusal yoğunluk',
+    mood: 'emotional',
+    audioFile: null
   },
   gorev: {
-    name: 'Görev Yürüyüşü',
-    description: 'Mission march with Turkish military themes',
-    mood: 'determined'
+    name: 'Yuh Yuh',
+    artist: 'Geleneksel',
+    description: 'Halk müziği - güçlü ritim',
+    mood: 'energetic',
+    audioFile: null
+  },
+  katil: {
+    name: '10 Yıl Nutuk',
+    artist: 'Geleneksel',
+    description: 'Atatürk nutku - tarihi konuşma',
+    mood: 'historical',
+    audioFile: null
   }
 };
 
-// Generate procedural Turkish ambient audio using Web Audio API
-const generateTurkishAmbient = async (trackKey: string, audioContext: AudioContext): Promise<AudioBuffer> => {
-  const track = turkishAmbientTracks[trackKey as keyof typeof turkishAmbientTracks] || turkishAmbientTracks.default;
+// Generate procedural Turkish music based on authentic tracks
+const generateTurkishMusic = async (trackKey: string, audioContext: AudioContext): Promise<AudioBuffer> => {
+  const track = turkishPlaylist[trackKey as keyof typeof turkishPlaylist] || turkishPlaylist.default;
   
   // Create 30-second audio buffer for ambient music
   const duration = 30;
@@ -62,60 +81,59 @@ const generateTurkishAmbient = async (trackKey: string, audioContext: AudioConte
       // Base ambient tone
       sample += Math.sin(2 * Math.PI * 220 * time) * 0.1 * Math.sin(time * 0.5);
       
-      // Add mood-specific characteristics
+      // Add mood-specific characteristics based on Turkish music styles
       switch (track.mood) {
-        case 'national':
-          // İstiklal Marşı - Turkish National Anthem melody pattern
-          // Create the characteristic ascending melody with orchestral elements
-          const anthemFreq1 = 293.66; // D4
-          const anthemFreq2 = 329.63; // E4
-          const anthemFreq3 = 369.99; // F#4
-          const anthemFreq4 = 440.00; // A4
-          
-          // Main melody line with characteristic rhythm
-          const beatTime = (time * 2) % 8; // 8-beat cycle
-          let melodicComponent = 0;
-          
-          if (beatTime < 2) {
-            melodicComponent = Math.sin(2 * Math.PI * anthemFreq1 * time) * 0.2;
-          } else if (beatTime < 4) {
-            melodicComponent = Math.sin(2 * Math.PI * anthemFreq2 * time) * 0.2;
-          } else if (beatTime < 6) {
-            melodicComponent = Math.sin(2 * Math.PI * anthemFreq3 * time) * 0.2;
-          } else {
-            melodicComponent = Math.sin(2 * Math.PI * anthemFreq4 * time) * 0.2;
-          }
-          
-          // Add orchestral brass section
-          sample += melodicComponent * Math.sin(time * 1.5);
-          sample += Math.sin(2 * Math.PI * anthemFreq1 * 0.5 * time) * 0.1 * Math.sin(time * 0.8);
-          
-          // Add timpani-like rhythm
-          const rhythmPattern = Math.sin(time * 4) > 0.7 ? 0.15 : 0.05;
-          sample += Math.sin(2 * Math.PI * 110 * time) * rhythmPattern;
+        case 'nostalgic':
+          // Benim Sadık Yarim Kara Topraktır - folk melody patterns
+          const folkFreq1 = 220.00; // A3
+          const folkFreq2 = 246.94; // B3
+          const folkFreq3 = 293.66; // D4
+          sample += Math.sin(2 * Math.PI * folkFreq1 * time) * 0.15 * Math.sin(time * 0.5);
+          sample += Math.sin(2 * Math.PI * folkFreq2 * time) * 0.1 * Math.sin(time * 0.7);
+          sample += Math.sin(2 * Math.PI * folkFreq3 * time) * 0.08 * Math.sin(time * 1.2);
           break;
-        case 'heroic':
-          // Add deeper resonant tones
-          sample += Math.sin(2 * Math.PI * 110 * time) * 0.15 * Math.sin(time * 0.3);
-          sample += Math.sin(2 * Math.PI * 330 * time) * 0.08 * Math.sin(time * 0.7);
+        case 'mystical':
+          // Kufi - mystical Anatolian tones
+          sample += Math.sin(2 * Math.PI * 196.00 * time) * 0.12 * Math.sin(time * 0.3); // G3
+          sample += Math.sin(2 * Math.PI * 293.66 * time) * 0.1 * Math.sin(time * 0.8);  // D4
+          sample += Math.sin(2 * Math.PI * 415.30 * time) * 0.08 * Math.sin(time * 1.5); // G#4
           break;
-        case 'patriotic':
-          // Add martial rhythm
-          sample += Math.sin(2 * Math.PI * 440 * time) * 0.12 * (Math.sin(time * 2) > 0 ? 1 : 0.3);
+        case 'revolutionary':
+          // 100 Yıllık Çınar - Cem Karaca style rock elements
+          const rockFreq = 440.00; // A4
+          sample += Math.sin(2 * Math.PI * rockFreq * time) * 0.2 * Math.sin(time * 2);
+          sample += Math.sin(2 * Math.PI * rockFreq * 0.5 * time) * 0.15 * Math.sin(time * 1);
+          // Add distortion-like harmonics
+          sample += Math.sin(2 * Math.PI * rockFreq * 1.5 * time) * 0.08 * Math.sin(time * 3);
           break;
-        case 'inspiring':
-          // Add uplifting harmonics
-          sample += Math.sin(2 * Math.PI * 554 * time) * 0.1 * Math.sin(time * 0.8);
-          sample += Math.sin(2 * Math.PI * 659 * time) * 0.07 * Math.sin(time * 1.2);
+        case 'celebratory':
+          // Şinanay - folk dance rhythm
+          const dancePattern = Math.sin(time * 6) > 0.5 ? 0.2 : 0.1;
+          sample += Math.sin(2 * Math.PI * 329.63 * time) * dancePattern; // E4
+          sample += Math.sin(2 * Math.PI * 392.00 * time) * 0.12 * Math.sin(time * 2); // G4
           break;
-        case 'determined':
-          // Add driving rhythm
-          sample += Math.sin(2 * Math.PI * 165 * time) * 0.2 * Math.sin(time * 1.5);
+        case 'emotional':
+          // Feriğim - emotional Turkish folk
+          sample += Math.sin(2 * Math.PI * 261.63 * time) * 0.15 * Math.sin(time * 0.4); // C4
+          sample += Math.sin(2 * Math.PI * 311.13 * time) * 0.12 * Math.sin(time * 0.9); // D#4
+          sample += Math.sin(2 * Math.PI * 369.99 * time) * 0.1 * Math.sin(time * 1.3);  // F#4
+          break;
+        case 'energetic':
+          // Yuh Yuh - strong rhythmic patterns
+          const energyBeat = Math.sin(time * 4) > 0.6 ? 0.18 : 0.08;
+          sample += Math.sin(2 * Math.PI * 277.18 * time) * energyBeat; // C#4
+          sample += Math.sin(2 * Math.PI * 415.30 * time) * 0.12 * Math.sin(time * 2.5); // G#4
+          break;
+        case 'historical':
+          // 10 Yıl Nutuk - solemn, historical tones
+          sample += Math.sin(2 * Math.PI * 174.61 * time) * 0.18 * Math.sin(time * 0.3); // F3
+          sample += Math.sin(2 * Math.PI * 220.00 * time) * 0.15 * Math.sin(time * 0.6); // A3
+          sample += Math.sin(2 * Math.PI * 293.66 * time) * 0.1 * Math.sin(time * 0.9);  // D4
           break;
         default:
-          // Peaceful ambient
-          sample += Math.sin(2 * Math.PI * 330 * time) * 0.08 * Math.sin(time * 0.4);
-          sample += Math.sin(2 * Math.PI * 165 * time) * 0.06 * Math.sin(time * 0.6);
+          // Default nostalgic folk
+          sample += Math.sin(2 * Math.PI * 220 * time) * 0.12 * Math.sin(time * 0.5);
+          sample += Math.sin(2 * Math.PI * 293.66 * time) * 0.08 * Math.sin(time * 0.7);
       }
       
       // Add subtle noise for texture
@@ -178,13 +196,15 @@ export const playSoundtrack = async (): Promise<void> => {
     // Determine track based on current page
     const trackKey = currentPage === 'turkiye' ? 'turkiye' :
                     currentPage === 'manifesto' ? 'manifesto' :
+                    currentPage === 'anayasa' ? 'anayasa' :
                     currentPage === 'cagri' ? 'cagri' :
-                    currentPage === 'gorev' ? 'gorev' : 'default';
+                    currentPage === 'gorev' ? 'gorev' :
+                    currentPage === 'katil' ? 'katil' : 'default';
     
-    const track = turkishAmbientTracks[trackKey as keyof typeof turkishAmbientTracks];
+    const track = turkishPlaylist[trackKey as keyof typeof turkishPlaylist];
     
     // Generate procedural audio buffer
-    const audioBuffer = await generateTurkishAmbient(trackKey, audioContext!);
+    const audioBuffer = await generateTurkishMusic(trackKey, audioContext!);
     
     // Create audio source from buffer
     const source = audioContext!.createBufferSource();
@@ -236,10 +256,12 @@ export const setAmbientVolume = (newVolume: number): void => {
 export const getCurrentTrackInfo = () => {
   const trackKey = currentPage === 'turkiye' ? 'turkiye' :
                   currentPage === 'manifesto' ? 'manifesto' :
+                  currentPage === 'anayasa' ? 'anayasa' :
                   currentPage === 'cagri' ? 'cagri' :
-                  currentPage === 'gorev' ? 'gorev' : 'default';
+                  currentPage === 'gorev' ? 'gorev' :
+                  currentPage === 'katil' ? 'katil' : 'default';
   
-  return turkishAmbientTracks[trackKey as keyof typeof turkishAmbientTracks];
+  return turkishPlaylist[trackKey as keyof typeof turkishPlaylist];
 };
 
 // Check if audio is playing
