@@ -71,23 +71,37 @@ export default function AmacsavasPage() {
         </div>
         
         <header className="text-center mb-12">
+          <motion.div 
+            className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-500/20 to-indigo-600/20 rounded-full flex items-center justify-center border-2 border-purple-500/50"
+            animate={{ 
+              boxShadow: ["0 0 30px rgba(147, 51, 234, 0.3)", "0 0 50px rgba(147, 51, 234, 0.6)", "0 0 30px rgba(147, 51, 234, 0.3)"]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            🎯
+          </motion.div>
           <motion.h1 
-            className="text-3xl-responsive md:text-4xl-responsive font-bold mb-4 text-red-500"
+            className="text-3xl-responsive md:text-4xl-responsive font-bold mb-4 bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            {t('amaclar.title', 'Amaçlarımız & Savaşlarımız')}
+            AMACIMIZ & SAVAŞIMIZ
           </motion.h1>
-          <motion.p
-            className="text-xl-responsive text-gray-300 max-w-3xl mx-auto"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            {t('amaclar.subtitle', 'Atatürk\'ün gösterdiği ışıkla, halkın sesi olarak yeni bir sistem kuruyoruz.')}
-          </motion.p>
+          <p className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto">
+            Cumhuriyet'in dijital çağdaki sistemsel dönüşümü için mücadele alanlarımız ve stratejik hedeflerimiz
+          </p>
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto rounded-full"></div>
         </header>
+        
+        <motion.p
+          className="text-xl-responsive text-gray-300 max-w-3xl mx-auto text-center mb-12"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
+          {t('amaclar.subtitle', 'Atatürk\'ün gösterdiği ışıkla, halkın sesi olarak yeni bir sistem kuruyoruz.')}
+        </motion.p>
         
         {/* Amaçlar Bölümü */}
         <motion.section

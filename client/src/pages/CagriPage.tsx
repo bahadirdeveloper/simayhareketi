@@ -138,7 +138,15 @@ export function CagriPage() {
               </div>
             </motion.div>
             
-            {/* Navigation */}
+          </motion.div>
+
+          {/* Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-center"
+          >
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <ModernTechButton
                 variant="futuristic"
