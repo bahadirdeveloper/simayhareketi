@@ -306,6 +306,43 @@ body {
   transition: none !important;
 }
 
+/* Apply ultra-stable to all major layout containers globally */
+.main-content, 
+[class*="motion-"], 
+[class*="animate-"], 
+.group,
+.relative,
+.absolute,
+.fixed,
+motion-div,
+.framer-motion-div,
+div[style*="transform"],
+div[style*="translate"] {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: transform !important;
+  contain: layout style paint !important;
+  /* Force hardware acceleration on all elements */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specific targeting for motion elements */
+div[data-framer-component],
+div[data-motion-component],
+div[class*="framer"],
+[style*="transform: translate"],
+[style*="transform:translate"] {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  perspective: 1000px !important;
+  -webkit-perspective: 1000px !important;
+}
+
 @media (min-width: 640px) {
   .mobile-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
