@@ -1,258 +1,230 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import Stripe from "stripe";
+import { storage } from "../storage";
 
-let stripe: Stripe | null = null;
-
-if (process.env.STRIPE_SECRET_KEY) {
-  // @ts-ignore - Stripe API version might be different
-  stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-} else {
-  console.warn('STRIPE_SECRET_KEY not provided - Stripe functionality will be disabled');
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
 }
 
-// In-memory cache for rate limiting
-const paymentRequestsMap = new Map<string, number[]>();
-const subscriptionRequestsMap = new Map<string, number[]>();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2023-10-16",
+});
 
-export async function handleCreatePaymentIntent(req: Request, res: Response) {
+// Payment prices for different services
+export const getPaymentPrices = async (req: Request, res: Response) => {
   try {
-    if (!stripe) {
-      return res.status(503).json({
-        success: false,
-        message: "Ödeme servisi şu anda kullanılamıyor."
-      });
+    const prices = {
+      basic: { amount: 2900, currency: "try", description: "Temel Üyelik" }, // 29 TL
+      premium: { amount: 4900, currency: "try", description: "Premium Üyelik" }, // 49 TL
+      enterprise: { amount: 9900, currency: "try", description: "Kurumsal Üyelik" }, // 99 TL
+      donation: { amount: 1000, currency: "try", description: "Bağış" }, // 10 TL minimum
+    };
+    
+    res.json({ success: true, data: prices });
+  } catch (error: any) {
+    console.error("Payment prices error:", error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Failed to retrieve payment prices", 
+      error: error.message 
+    });
+  }
+};
+
+// Create payment intent for one-time payments
+export const handleCreatePaymentIntent = async (req: Request, res: Response) => {
+  try {
+    const { amount, currency = "try", description = "Ödeme" } = req.body;
+    
+    if (!amount || amount < 100) { // Minimum 1 TL
+      return res.status(400).json({ error: "Invalid amount" });
     }
 
-    // Rate limiting: Check IP to prevent abuse
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
-    
-    // In a production environment, you would use Redis or a similar service for rate limiting
-    // For now, we'll use a simple in-memory implementation
-    const now = Date.now();
-    const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-    const MAX_REQUESTS = 5; // 5 requests per minute
-    
-    // This should be stored in a persistent store in production
-    const ipRequests = paymentRequestsMap.get(ipString) || [];
-    const recentRequests = ipRequests.filter(time => now - time < RATE_LIMIT_WINDOW);
-    
-    if (recentRequests.length >= MAX_REQUESTS) {
-      return res.status(429).json({
-        success: false,
-        message: "Çok fazla ödeme isteği gönderildi. Lütfen daha sonra tekrar deneyin."
-      });
-    }
-    
-    // Update request tracking
-    recentRequests.push(now);
-    paymentRequestsMap.set(ipString, recentRequests);
-    
-    const { amount, description, isRegistrationFee } = req.body;
-    
-    if (!amount || (isRegistrationFee ? amount < 1 : amount < 5)) {
-      return res.status(400).json({ 
-        success: false,
-        message: isRegistrationFee ? "Kayıt ücreti en az 1 TL olmalıdır." : "Bağış miktarı en az 5 TL olmalıdır." 
-      });
-    }
-    
-    // Stripe amount should be in the smallest currency unit (kuruş)
-    const paymentIntent = await stripe!.paymentIntents.create({
-      amount: Math.round(amount * 100),
-      currency: "try", // Turkish Lira
-      description: description || (isRegistrationFee ? "Cumhuriyet Güncellenme Platformu Kayıt Ücreti" : "Cumhuriyet Güncellenme Platformu Bağışı"),
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: Math.round(amount), // Amount should be in kuruş for TRY
+      currency: currency.toLowerCase(),
+      description,
       metadata: {
-        integration_check: 'accept_a_payment',
-        payment_type: isRegistrationFee ? 'registration_fee' : 'donation',
-        ip: ipString.substr(0, 15) // Store partial IP for fraud detection
+        userId: req.user?.id?.toString() || "anonymous",
+        timestamp: new Date().toISOString(),
       },
     });
 
     res.json({ 
-      success: true,
-      clientSecret: paymentIntent.client_secret 
+      clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id
     });
   } catch (error: any) {
-    console.error("Stripe payment intent error:", error);
+    console.error("Payment intent creation error:", error);
     res.status(500).json({ 
-      success: false,
-      message: `Ödeme işlemi başlatılırken bir hata oluştu: ${error.message}` 
+      error: "Payment intent creation failed", 
+      message: error.message 
     });
   }
-}
+};
 
-export async function handleCreateSubscription(req: Request, res: Response) {
+// Create or get subscription for premium features
+export const handleCreateSubscription = async (req: Request, res: Response) => {
   try {
-    if (!stripe) {
-      return res.status(503).json({
-        success: false,
-        message: "Abonelik servisi şu anda kullanılamıyor."
-      });
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ error: "Authentication required" });
     }
 
-    // Rate limiting: Check IP to prevent abuse
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    const ipString = typeof ip === 'string' ? ip : Array.isArray(ip) ? ip[0] : 'unknown';
-    
-    // In a production environment, you would use Redis or a similar service for rate limiting
-    // For now, we'll use a simple in-memory implementation
-    const now = Date.now();
-    const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-    const MAX_REQUESTS = 3; // 3 requests per minute for subscriptions (more restrictive)
-    
-    // This should be stored in a persistent store in production
-    const ipRequests = subscriptionRequestsMap.get(ipString) || [];
-    const recentRequests = ipRequests.filter((time: number) => now - time < RATE_LIMIT_WINDOW);
-    
-    if (recentRequests.length >= MAX_REQUESTS) {
-      return res.status(429).json({
-        success: false,
-        message: "Çok fazla abonelik isteği gönderildi. Lütfen daha sonra tekrar deneyin."
-      });
-    }
-    
-    // Update request tracking
-    recentRequests.push(now);
-    subscriptionRequestsMap.set(ipString, recentRequests);
-    
-    const { email, name, priceId } = req.body;
-    
-    if (!email || !priceId) {
-      return res.status(400).json({ 
-        success: false,
-        message: "E-posta ve abonelik türü zorunludur." 
-      });
-    }
-    
-    // Create a new customer
-    const customer = await stripe!.customers.create({
-      email,
-      name,
-      metadata: {
-        source: "Cumhuriyet Güncellenme Platformu",
-        ip: ipString.substr(0, 15) // Store partial IP for fraud detection
+    let user = req.user;
+    const { planType = "premium" } = req.body;
+
+    // Check if user already has an active subscription
+    if (user.stripeSubscriptionId) {
+      try {
+        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
+        
+        if (subscription.status === 'active') {
+          return res.json({
+            subscriptionId: subscription.id,
+            clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+            status: subscription.status
+          });
+        }
+      } catch (error) {
+        console.log("Existing subscription not found, creating new one");
       }
-    });
-    
-    // Create the subscription
-    const subscription = await stripe!.subscriptions.create({
+    }
+
+    if (!user.email) {
+      return res.status(400).json({ error: 'Email address required for subscription' });
+    }
+
+    // Create or retrieve Stripe customer
+    let customer;
+    if (user.stripeCustomerId) {
+      customer = await stripe.customers.retrieve(user.stripeCustomerId);
+    } else {
+      customer = await stripe.customers.create({
+        email: user.email,
+        name: user.name || user.username,
+        metadata: {
+          userId: user.id.toString(),
+        },
+      });
+      
+      // Update user with Stripe customer ID
+      user = await storage.updateUserStripeInfo(user.id, customer.id);
+    }
+
+    // Subscription prices based on plan type
+    const planPrices = {
+      basic: "price_basic", // You need to create these in Stripe Dashboard
+      premium: "price_premium",
+      enterprise: "price_enterprise"
+    };
+
+    // Create subscription
+    const subscription = await stripe.subscriptions.create({
       customer: customer.id,
-      items: [{ price: priceId }],
+      items: [{
+        price: planPrices[planType as keyof typeof planPrices] || planPrices.premium,
+      }],
       payment_behavior: 'default_incomplete',
+      payment_settings: { save_default_payment_method: 'on_subscription' },
       expand: ['latest_invoice.payment_intent'],
     });
-    
-    // @ts-ignore - Stripe types are not perfectly accurate for expanded fields
-    const clientSecret = subscription.latest_invoice?.payment_intent?.client_secret;
-    
-    res.json({ 
-      success: true,
+
+    // Update user with subscription info
+    await storage.updateUserStripeInfo(user.id, customer.id, subscription.id);
+
+    res.json({
       subscriptionId: subscription.id,
-      clientSecret,
-      customerId: customer.id
+      clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+      status: subscription.status
     });
   } catch (error: any) {
-    console.error("Stripe subscription error:", error);
+    console.error("Subscription creation error:", error);
     res.status(500).json({ 
-      success: false,
-      message: `Abonelik oluşturulurken bir hata oluştu: ${error.message}` 
+      error: "Subscription creation failed", 
+      message: error.message 
     });
   }
-}
+};
 
-export async function handleWebhook(req: Request, res: Response) {
-  if (!stripe) {
-    return res.status(503).send('Stripe service unavailable');
-  }
-
-  let event: Stripe.Event;
+// Webhook handler for Stripe events
+export const handleWebhook = async (req: Request, res: Response) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
 
   try {
-    // Verify the event came from Stripe
-    const signature = req.headers['stripe-signature'] as string;
-    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    
-    if (!webhookSecret) {
-      return res.status(400).send('Webhook secret is not configured');
-    }
-    
-    event = stripe!.webhooks.constructEvent(
+    event = stripe.webhooks.constructEvent(
       req.body, 
-      signature, 
-      webhookSecret
+      sig as string, 
+      process.env.STRIPE_WEBHOOK_SECRET || ""
     );
   } catch (err: any) {
-    console.error(`Webhook signature verification failed: ${err.message}`);
+    console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
   // Handle the event
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log(`PaymentIntent was successful: ${paymentIntent.id}`);
-      // TODO: Update payment status in database
-      break;
-    case 'payment_intent.payment_failed':
-      const failedPayment = event.data.object as Stripe.PaymentIntent;
-      console.log(`Payment failed: ${failedPayment.id}, ${failedPayment.last_payment_error?.message}`);
-      // TODO: Update payment status in database
-      break;
-    case 'subscription_schedule.created':
-    case 'subscription_schedule.updated':
-    case 'customer.subscription.created':
-    case 'customer.subscription.updated':
-    case 'customer.subscription.deleted':
-      const subscription = event.data.object as Stripe.Subscription;
-      console.log(`Subscription status: ${subscription.status}`);
-      // TODO: Update subscription status in database
-      break;
-    default:
-      console.log(`Unhandled event type: ${event.type}`);
-  }
-
-  // Return a 200 response to acknowledge receipt of the event
-  res.json({ received: true });
-}
-
-// Price cache to reduce Stripe API calls
-let cachedPrices: any = null;
-let lastCacheTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
-export async function getPaymentPrices(req: Request, res: Response) {
   try {
-    if (!stripe) {
-      return res.status(503).json({
-        success: false,
-        message: "Ücret servisi şu anda kullanılamıyor."
-      });
+    switch (event.type) {
+      case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        console.log('Payment succeeded:', paymentIntent.id);
+        
+        // Record successful payment
+        if (paymentIntent.metadata?.userId) {
+          await storage.createOdeme({
+            userId: parseInt(paymentIntent.metadata.userId),
+            miktar: paymentIntent.amount,
+            para_birimi: paymentIntent.currency.toUpperCase(),
+            durum: 'basarili',
+            odemeYontemi: 'stripe',
+            stripePaymentIntentId: paymentIntent.id,
+            aciklama: paymentIntent.description || 'Stripe ödeme'
+          });
+        }
+        break;
+
+      case 'payment_intent.payment_failed':
+        const failedPayment = event.data.object as Stripe.PaymentIntent;
+        console.log('Payment failed:', failedPayment.id);
+        
+        // Record failed payment
+        if (failedPayment.metadata?.userId) {
+          await storage.createOdeme({
+            userId: parseInt(failedPayment.metadata.userId),
+            miktar: failedPayment.amount,
+            para_birimi: failedPayment.currency.toUpperCase(),
+            durum: 'basarisiz',
+            odemeYontemi: 'stripe',
+            stripePaymentIntentId: failedPayment.id,
+            aciklama: failedPayment.description || 'Başarısız ödeme'
+          });
+        }
+        break;
+
+      case 'invoice.payment_succeeded':
+        const invoice = event.data.object as Stripe.Invoice;
+        console.log('Subscription payment succeeded:', invoice.id);
+        
+        // Update subscription status
+        if (invoice.subscription) {
+          const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string);
+          // Update user subscription status in database
+        }
+        break;
+
+      case 'customer.subscription.deleted':
+        const deletedSubscription = event.data.object as Stripe.Subscription;
+        console.log('Subscription cancelled:', deletedSubscription.id);
+        // Handle subscription cancellation
+        break;
+
+      default:
+        console.log(`Unhandled event type ${event.type}`);
     }
 
-    const now = Date.now();
-    
-    // Use cached prices if available and not expired
-    if (cachedPrices && (now - lastCacheTime < CACHE_DURATION)) {
-      return res.json({ success: true, prices: cachedPrices, cached: true });
-    }
-    
-    const prices = await stripe!.prices.list({
-      active: true,
-      limit: 10,
-      expand: ['data.product']
-    });
-    
-    // Update cache
-    cachedPrices = prices.data;
-    lastCacheTime = now;
-    
-    res.json({ success: true, prices: prices.data, cached: false });
-  } catch (error: any) {
-    console.error("Error fetching Stripe prices:", error);
-    res.status(500).json({ 
-      success: false,
-      message: `Ücret bilgileri alınırken bir hata oluştu: ${error.message}` 
-    });
+    res.json({ received: true });
+  } catch (error) {
+    console.error('Webhook handler error:', error);
+    res.status(500).json({ error: 'Webhook handler failed' });
   }
-}
+};
