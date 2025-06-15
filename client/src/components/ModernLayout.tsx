@@ -128,7 +128,7 @@ const Footer = memo(() => (
     <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-black/40 px-4 py-2.5 rounded-full border border-red-900/20 shadow-sm">
       <div className="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
       <p className="text-xs sm:text-sm text-gray-300 font-light tracking-wide">
-        <span className="font-medium text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
+        <span className="font-medium text-red-400">19 Mayıs 2025</span>
       </p>
     </div>
   </div>
