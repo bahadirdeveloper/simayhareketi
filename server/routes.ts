@@ -207,7 +207,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         participants: 0, // Start from zero - will grow with real registrations
         totalAmount: 0, // Start from zero - will grow with real payments
         activeCities: 0, // Start from zero - will grow with real city participation
-        activeProjects: 0, // Start from zero - will grow with real project completions
+        activeProjects: 101, // We have 101 mission tasks available on the platform
         volunteers: 0, // Start from zero - will grow with real volunteer registrations
         totalVisits: totalVisits,
         uniqueVisitors: uniqueVisitors,
