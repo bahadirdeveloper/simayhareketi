@@ -78,57 +78,89 @@ const generateTurkishMusic = async (trackKey: string, audioContext: AudioContext
       const time = i / sampleRate;
       let sample = 0;
       
-      // Base ambient tone
-      sample += Math.sin(2 * Math.PI * 220 * time) * 0.1 * Math.sin(time * 0.5);
+      // Base warm tone - reduced to make room for melodic content
+      sample += Math.sin(2 * Math.PI * 110 * time) * 0.05 * Math.sin(time * 0.3);
       
       // Add mood-specific characteristics based on Turkish music styles
       switch (track.mood) {
         case 'nostalgic':
-          // Benim Sadık Yarim Kara Topraktır - folk melody patterns
-          const folkFreq1 = 220.00; // A3
-          const folkFreq2 = 246.94; // B3
-          const folkFreq3 = 293.66; // D4
-          sample += Math.sin(2 * Math.PI * folkFreq1 * time) * 0.15 * Math.sin(time * 0.5);
-          sample += Math.sin(2 * Math.PI * folkFreq2 * time) * 0.1 * Math.sin(time * 0.7);
-          sample += Math.sin(2 * Math.PI * folkFreq3 * time) * 0.08 * Math.sin(time * 1.2);
+          // Benim Sadık Yarim Kara Topraktır - warm folk melody
+          const folkTime = time * 0.8; // Slower tempo
+          const folkMelody = Math.sin(2 * Math.PI * 220 * folkTime) * 0.3 * 
+                           (Math.sin(folkTime * 2) + 0.5 * Math.sin(folkTime * 4));
+          sample += folkMelody * Math.pow(Math.sin(time * 0.2), 2); // Gentle amplitude modulation
+          
+          // Add harmonic richness like a bağlama
+          sample += Math.sin(2 * Math.PI * 330 * folkTime) * 0.15 * Math.sin(time * 0.8);
+          sample += Math.sin(2 * Math.PI * 165 * folkTime) * 0.2 * Math.sin(time * 0.4);
           break;
         case 'mystical':
-          // Kufi - mystical Anatolian tones
-          sample += Math.sin(2 * Math.PI * 196.00 * time) * 0.12 * Math.sin(time * 0.3); // G3
-          sample += Math.sin(2 * Math.PI * 293.66 * time) * 0.1 * Math.sin(time * 0.8);  // D4
-          sample += Math.sin(2 * Math.PI * 415.30 * time) * 0.08 * Math.sin(time * 1.5); // G#4
+          // Kufi - mystical Anatolian atmosphere with ney-like sound
+          const neyTime = time * 0.6; // Even slower, meditative
+          const neyTone = Math.sin(2 * Math.PI * 196 * neyTime) * 0.25 * 
+                         Math.exp(-neyTime * 0.1) * (1 + 0.3 * Math.sin(neyTime * 8));
+          sample += neyTone * Math.sin(time * 0.15); // Very slow breathing
+          
+          // Add drone-like undertones
+          sample += Math.sin(2 * Math.PI * 98 * time) * 0.15 * Math.sin(time * 0.25);
+          sample += Math.sin(2 * Math.PI * 147 * time) * 0.1 * Math.sin(time * 0.35);
           break;
         case 'revolutionary':
-          // 100 Yıllık Çınar - Cem Karaca style rock elements
-          const rockFreq = 440.00; // A4
-          sample += Math.sin(2 * Math.PI * rockFreq * time) * 0.2 * Math.sin(time * 2);
-          sample += Math.sin(2 * Math.PI * rockFreq * 0.5 * time) * 0.15 * Math.sin(time * 1);
-          // Add distortion-like harmonics
-          sample += Math.sin(2 * Math.PI * rockFreq * 1.5 * time) * 0.08 * Math.sin(time * 3);
+          // 100 Yıllık Çınar - Cem Karaca Anadolu rock style
+          const rockTime = time * 1.2; // Slightly faster tempo
+          const powerChord = Math.sin(2 * Math.PI * 220 * rockTime) * 0.3 * 
+                           (1 + 0.5 * Math.sin(rockTime * 6)) * Math.sin(time * 1.5);
+          sample += powerChord;
+          
+          // Add bass line depth
+          sample += Math.sin(2 * Math.PI * 110 * rockTime) * 0.25 * Math.sin(time * 0.8);
+          // Add electric guitar-like harmonics
+          sample += Math.sin(2 * Math.PI * 330 * rockTime) * 0.15 * Math.sin(time * 2.5);
           break;
         case 'celebratory':
-          // Şinanay - folk dance rhythm
-          const dancePattern = Math.sin(time * 6) > 0.5 ? 0.2 : 0.1;
-          sample += Math.sin(2 * Math.PI * 329.63 * time) * dancePattern; // E4
-          sample += Math.sin(2 * Math.PI * 392.00 * time) * 0.12 * Math.sin(time * 2); // G4
+          // Şinanay - folk dance with davul rhythm
+          const danceTime = time * 1.8; // Upbeat tempo
+          const davulBeat = Math.sin(danceTime * 4) > 0.3 ? 0.3 : 0.1;
+          const zurnaLine = Math.sin(2 * Math.PI * 330 * danceTime) * 0.25 * 
+                           (1 + 0.4 * Math.sin(danceTime * 12));
+          sample += zurnaLine * davulBeat;
+          
+          // Add rhythmic accompaniment
+          sample += Math.sin(2 * Math.PI * 165 * danceTime) * 0.2 * Math.sin(time * 3);
+          sample += Math.sin(2 * Math.PI * 220 * danceTime) * 0.15 * Math.sin(time * 4.5);
           break;
         case 'emotional':
-          // Feriğim - emotional Turkish folk
-          sample += Math.sin(2 * Math.PI * 261.63 * time) * 0.15 * Math.sin(time * 0.4); // C4
-          sample += Math.sin(2 * Math.PI * 311.13 * time) * 0.12 * Math.sin(time * 0.9); // D#4
-          sample += Math.sin(2 * Math.PI * 369.99 * time) * 0.1 * Math.sin(time * 1.3);  // F#4
+          // Feriğim - heartfelt Turkish folk with tremolo
+          const emoTime = time * 0.7; // Slower, more emotional
+          const folkVoice = Math.sin(2 * Math.PI * 247 * emoTime) * 0.28 * 
+                           (1 + 0.2 * Math.sin(emoTime * 15)) * Math.sin(time * 0.3);
+          sample += folkVoice;
+          
+          // Add saz accompaniment
+          sample += Math.sin(2 * Math.PI * 185 * emoTime) * 0.18 * Math.sin(time * 0.8);
+          sample += Math.sin(2 * Math.PI * 123 * emoTime) * 0.15 * Math.sin(time * 0.5);
           break;
         case 'energetic':
-          // Yuh Yuh - strong rhythmic patterns
-          const energyBeat = Math.sin(time * 4) > 0.6 ? 0.18 : 0.08;
-          sample += Math.sin(2 * Math.PI * 277.18 * time) * energyBeat; // C#4
-          sample += Math.sin(2 * Math.PI * 415.30 * time) * 0.12 * Math.sin(time * 2.5); // G#4
+          // Yuh Yuh - powerful folk rhythm
+          const energyTime = time * 1.5; // Strong tempo
+          const strongRhythm = Math.sin(energyTime * 8) > 0.4 ? 0.35 : 0.15;
+          const folkPower = Math.sin(2 * Math.PI * 220 * energyTime) * strongRhythm;
+          sample += folkPower;
+          
+          // Add percussive elements
+          sample += Math.sin(2 * Math.PI * 110 * energyTime) * 0.25 * Math.sin(time * 2);
+          sample += Math.sin(2 * Math.PI * 330 * energyTime) * 0.18 * Math.sin(time * 3);
           break;
         case 'historical':
-          // 10 Yıl Nutuk - solemn, historical tones
-          sample += Math.sin(2 * Math.PI * 174.61 * time) * 0.18 * Math.sin(time * 0.3); // F3
-          sample += Math.sin(2 * Math.PI * 220.00 * time) * 0.15 * Math.sin(time * 0.6); // A3
-          sample += Math.sin(2 * Math.PI * 293.66 * time) * 0.1 * Math.sin(time * 0.9);  // D4
+          // 10 Yıl Nutuk - solemn orchestral arrangement
+          const speechTime = time * 0.5; // Very slow, ceremonial
+          const orchestral = Math.sin(2 * Math.PI * 175 * speechTime) * 0.25 * 
+                            Math.sin(time * 0.2) * (1 + 0.1 * Math.sin(speechTime * 6));
+          sample += orchestral;
+          
+          // Add brass section depth
+          sample += Math.sin(2 * Math.PI * 131 * speechTime) * 0.2 * Math.sin(time * 0.4);
+          sample += Math.sin(2 * Math.PI * 220 * speechTime) * 0.15 * Math.sin(time * 0.6);
           break;
         default:
           // Default nostalgic folk
