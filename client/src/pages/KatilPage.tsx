@@ -923,18 +923,18 @@ export default function KatilPage() {
                     <div className="backdrop-blur-sm bg-green-500/10 border border-green-500/30 rounded-xl p-4 text-center">
                       <h4 className="text-green-400 font-bold text-lg mb-2">Toplam Gelir</h4>
                       <p className="text-green-300 text-2xl font-bold">
-                        +{transactions
+                        +{(transactions
                           .filter((t: any) => t.type === 'income')
-                          .reduce((sum: number, t: any) => sum + t.amount, 0) / 100
+                          .reduce((sum: number, t: any) => sum + (t.amount || 0), 0) / 100)
                           .toLocaleString('tr-TR')} ₺
                       </p>
                     </div>
                     <div className="backdrop-blur-sm bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-center">
                       <h4 className="text-red-400 font-bold text-lg mb-2">Toplam Gider</h4>
                       <p className="text-red-300 text-2xl font-bold">
-                        -{transactions
+                        -{(transactions
                           .filter((t: any) => t.type === 'expense')
-                          .reduce((sum: number, t: any) => sum + t.amount, 0) / 100
+                          .reduce((sum: number, t: any) => sum + (t.amount || 0), 0) / 100)
                           .toLocaleString('tr-TR')} ₺
                       </p>
                     </div>
