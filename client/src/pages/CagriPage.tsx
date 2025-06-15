@@ -15,29 +15,45 @@ export function CagriPage() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-4 py-8 max-w-4xl"
         >
-          {/* Enhanced Header */}
+          {/* Premium Header */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center mb-16"
           >
-            <motion.div 
-              className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-full flex items-center justify-center border-2 border-orange-500/50"
-              animate={{ 
-                boxShadow: ["0 0 30px rgba(249, 115, 22, 0.3)", "0 0 50px rgba(249, 115, 22, 0.6)", "0 0 30px rgba(249, 115, 22, 0.3)"]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              📢
-            </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent mb-4 text-shadow-lg">
+            <div className="relative">
+              <motion.div 
+                className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-orange-500/30 to-red-600/30 rounded-full flex items-center justify-center border-3 border-orange-500/60 shadow-[0_0_80px_rgba(249,115,22,0.4)]"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 50px rgba(249, 115, 22, 0.4)", 
+                    "0 0 100px rgba(249, 115, 22, 0.7)", 
+                    "0 0 50px rgba(249, 115, 22, 0.4)"
+                  ],
+                  scale: [1, 1.08, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="text-6xl">📢</span>
+              </motion.div>
+              
+              {/* Premium Background Glow */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-gradient-to-br from-orange-500/15 to-transparent rounded-full blur-3xl"></div>
+            </div>
+            
+            <h1 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-orange-600 bg-clip-text text-transparent mb-8 text-shadow-lg leading-tight">
               HALK ÇAĞRISI
             </h1>
-            <p className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto">
-              Cumhuriyet'in dijital çağdaki yeniden inşası için meslek gruplarına özel çağrı
+            <p className="text-gray-300 text-xl mb-10 max-w-4xl mx-auto leading-relaxed">
+              Cumhuriyet'in dijital çağdaki yeniden inşası için meslek gruplarına özel çağrı ve koordinasyon platformu
             </p>
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto rounded-full"></div>
+            
+            <div className="flex justify-center items-center space-x-6 mt-8">
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-orange-500 to-orange-500"></div>
+              <div className="w-5 h-5 bg-orange-500 rounded-full shadow-[0_0_25px_rgba(249,115,22,0.6)]"></div>
+              <div className="w-24 h-px bg-gradient-to-l from-transparent via-orange-500 to-orange-500"></div>
+            </div>
           </motion.div>
 
           {/* Mission Statement */}
