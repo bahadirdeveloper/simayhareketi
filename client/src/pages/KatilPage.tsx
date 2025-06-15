@@ -252,12 +252,20 @@ export default function KatilPage() {
   // Live data updates every 5 seconds
   useEffect(() => {
     fetchLiveData(); // Initial fetch
+    fetchTransactions(); // Initial transaction fetch
     
     const interval = setInterval(() => {
       fetchLiveData();
     }, 5000); // Update every 5 seconds
     
-    return () => clearInterval(interval);
+    const transactionInterval = setInterval(() => {
+      fetchTransactions();
+    }, 30000); // Update transactions every 30 seconds
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(transactionInterval);
+    };
   }, []);
 
   // Format currency
@@ -809,6 +817,141 @@ export default function KatilPage() {
                     </div>
                   </form>
                 </Form>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Financial Transparency Table */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mb-16"
+          >
+            <Card className="backdrop-blur-xl bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 border-2 border-red-500/40 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(239,68,68,0.3)]">
+              <CardHeader className="text-center pb-6">
+                <CardTitle className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-4">
+                  Mali Şeffaflık Sistemi
+                </CardTitle>
+                <CardDescription className="text-gray-300 text-lg">
+                  Platform gelir ve giderlerinin canlı takibi - Halka tamamen şeffaf sistem
+                </CardDescription>
+                <div className="flex items-center justify-center mt-4">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
+                  <span className="text-green-400 text-sm font-medium">Canlı Veriler - Son güncelleme: {new Date().toLocaleTimeString('tr-TR')}</span>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {transactionLoading ? (
+                  <div className="flex items-center justify-center py-12">
+                    <div className="w-8 h-8 border-2 border-red-400/30 border-t-red-400 rounded-full animate-spin mr-3"></div>
+                    <span className="text-gray-400">Mali veriler yükleniyor...</span>
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="border-red-500/30 hover:bg-red-500/10">
+                          <TableHead className="text-red-400 font-bold">Tarih</TableHead>
+                          <TableHead className="text-red-400 font-bold">Kategori</TableHead>
+                          <TableHead className="text-red-400 font-bold">Açıklama</TableHead>
+                          <TableHead className="text-red-400 font-bold">Tür</TableHead>
+                          <TableHead className="text-red-400 font-bold text-right">Tutar</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {transactions.length === 0 ? (
+                          <TableRow>
+                            <TableCell colSpan={5} className="text-center text-gray-400 py-8">
+                              Henüz mali işlem kaydı bulunmuyor
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          transactions.map((transaction: any) => (
+                            <TableRow key={transaction.id} className="border-red-500/20 hover:bg-red-500/5 transition-colors">
+                              <TableCell className="text-gray-300 font-medium">
+                                {new Date(transaction.transactionDate).toLocaleDateString('tr-TR')}
+                              </TableCell>
+                              <TableCell>
+                                <Badge 
+                                  variant="outline" 
+                                  className={`
+                                    ${transaction.category === 'sunucu' ? 'border-blue-500/50 text-blue-400 bg-blue-500/10' : ''}
+                                    ${transaction.category === 'domain' ? 'border-purple-500/50 text-purple-400 bg-purple-500/10' : ''}
+                                    ${transaction.category === 'eğitim' ? 'border-green-500/50 text-green-400 bg-green-500/10' : ''}
+                                    ${transaction.category === 'entegrasyon' ? 'border-orange-500/50 text-orange-400 bg-orange-500/10' : ''}
+                                    ${transaction.category === 'bağış' ? 'border-yellow-500/50 text-yellow-400 bg-yellow-500/10' : ''}
+                                    capitalize font-medium
+                                  `}
+                                >
+                                  {transaction.category}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="text-gray-300 max-w-xs truncate">
+                                {transaction.description}
+                              </TableCell>
+                              <TableCell>
+                                <Badge 
+                                  variant={transaction.type === 'income' ? 'default' : 'destructive'}
+                                  className={`
+                                    ${transaction.type === 'income' 
+                                      ? 'bg-green-500/20 text-green-400 border-green-500/50' 
+                                      : 'bg-red-500/20 text-red-400 border-red-500/50'
+                                    }
+                                    font-medium
+                                  `}
+                                >
+                                  {transaction.type === 'income' ? 'Gelir' : 'Gider'}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="text-right font-bold">
+                                <span className={transaction.type === 'income' ? 'text-green-400' : 'text-red-400'}>
+                                  {transaction.type === 'income' ? '+' : '-'}{(transaction.amount / 100).toLocaleString('tr-TR')} ₺
+                                </span>
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </div>
+                )}
+                
+                {/* Financial Summary */}
+                {transactions.length > 0 && (
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="backdrop-blur-sm bg-green-500/10 border border-green-500/30 rounded-xl p-4 text-center">
+                      <h4 className="text-green-400 font-bold text-lg mb-2">Toplam Gelir</h4>
+                      <p className="text-green-300 text-2xl font-bold">
+                        +{transactions
+                          .filter((t: any) => t.type === 'income')
+                          .reduce((sum: number, t: any) => sum + t.amount, 0) / 100
+                          .toLocaleString('tr-TR')} ₺
+                      </p>
+                    </div>
+                    <div className="backdrop-blur-sm bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-center">
+                      <h4 className="text-red-400 font-bold text-lg mb-2">Toplam Gider</h4>
+                      <p className="text-red-300 text-2xl font-bold">
+                        -{transactions
+                          .filter((t: any) => t.type === 'expense')
+                          .reduce((sum: number, t: any) => sum + t.amount, 0) / 100
+                          .toLocaleString('tr-TR')} ₺
+                      </p>
+                    </div>
+                    <div className="backdrop-blur-sm bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 text-center">
+                      <h4 className="text-blue-400 font-bold text-lg mb-2">Net Durum</h4>
+                      <p className={`text-2xl font-bold ${
+                        (transactions.filter((t: any) => t.type === 'income').reduce((sum: number, t: any) => sum + t.amount, 0) - 
+                         transactions.filter((t: any) => t.type === 'expense').reduce((sum: number, t: any) => sum + t.amount, 0)) >= 0 
+                         ? 'text-green-300' : 'text-red-300'
+                      }`}>
+                        {((transactions.filter((t: any) => t.type === 'income').reduce((sum: number, t: any) => sum + t.amount, 0) - 
+                           transactions.filter((t: any) => t.type === 'expense').reduce((sum: number, t: any) => sum + t.amount, 0)) / 100)
+                           .toLocaleString('tr-TR', { signDisplay: 'always' })} ₺
+                      </p>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </motion.div>
