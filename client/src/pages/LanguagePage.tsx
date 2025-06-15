@@ -236,10 +236,7 @@ export default function LanguagePage() {
                 >
                   <div 
                     className="mobile-card modern-card-hover rounded-xl p-6 cursor-pointer touch-target group border-2 border-dashed border-red-500/30 hover:border-red-500/60 bg-gradient-to-br from-red-950/20 to-black/40"
-                    onClick={() => {
-                      // Placeholder for adding new country functionality
-                      console.log("Add country clicked");
-                    }}
+                    onClick={() => navigate("/ulke-ekle")}
                   >
                     <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">➕</div>
                     <h3 className="text-xl-responsive font-semibold text-white mb-2 enhanced-text group-hover:text-red-300 transition-colors duration-300">+ Ülke Ekle</h3>

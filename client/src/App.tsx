@@ -37,11 +37,14 @@ import SertifikaPage from "@/pages/SertifikaPage";
 import EntegrasyonPage from "@/pages/EntegrasyonPage";
 import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
 import BirlesikManifestoPage from "@/pages/BirlesikManifestoPage";
+import UlkeEklePage from "@/pages/UlkeEklePage";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={LanguagePage} />
+      <Route path="/dil-secimi" component={LanguagePage} />
+      <Route path="/ulke-ekle" component={UlkeEklePage} />
       <Route path="/home" component={SimayHomeModern} />
       <Route path="/professional" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
