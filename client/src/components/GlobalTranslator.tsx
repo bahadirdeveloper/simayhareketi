@@ -54,7 +54,7 @@ const supportedLanguages = [
   { code: "ha", name: "Hausa", flag: "🇳🇬" },
 ];
 
-export default function GlobalTranslator({ className }: GlobalTranslatorProps) {
+export function GlobalTranslator({ className }: GlobalTranslatorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
   const [isTranslating, setIsTranslating] = useState(false);
