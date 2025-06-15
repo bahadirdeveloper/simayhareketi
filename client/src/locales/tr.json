@@ -25,10 +25,11 @@
     "republic_values": "CUMHURİYET DEĞERLERİ",
     "turk_nedir": "TÜRK NEDİR?",
     "turk_desc": "Türk kimliği ve tanımının tarihsel incelemesi",
-    "anayasa_manifestolar": "ANAYASA VE MANİFESTOLAR",
+    "anayasalar": "ANAYASALARIMIZ",
     "anayasa_desc": "Cumhuriyet manifestosu ve anayasal arşiv",
-    "gorevler": "GÖREVLER",
+    "gorev_dirilis": "GÖREV DİRİLİŞ",
     "gorevler_desc": "Cumhuriyet için yapılacak görevler listesi",
+    "halk_defteri": "HALK DEFTERİ & MANİFESTOLAR",
     "cagri": "ÇAĞRI",
     "cagri_desc": "Halka çağrı ve manifestonun çağrı metni",
     "harekete_katil": "HAREKETE KATIL",
@@ -36,26 +37,18 @@
     "coordination_area": "Türkiye Cumhuriyeti Dijital Koordinasyon Alanı",
     "coordination_desc": "Cumhuriyetin güncellenme sürecinde tüm vatandaşların koordineli bir şekilde görevlere katılmasını ve Türkiye'nin geleceğine katkıda bulunmasını amaçlayan dijital platform.",
     "values": {
-      "milli": {
-        "name": "MİLLİ",
-        "description": "Özgür ve bağımsız"
-      },
-      "muasir": {
-        "name": "MUASIR",
-        "description": "Çağdaş uygarlık"
-      },
-      "laik": {
-        "name": "LAİK",
-        "description": "Vicdan özgürlüğü"
-      },
-      "demokratik": {
-        "name": "DEMOKRATİK",
-        "description": "Halk egemenliği"
-      },
-      "sosyal": {
-        "name": "SOSYAL",
-        "description": "Toplumsal dayanışma"
-      }
+      "milli": "MİLLİ",
+      "muasir": "MUASIR", 
+      "laik": "LAİK",
+      "demokratik": "DEMOKRATİK",
+      "sosyal": "SOSYAL"
+    },
+    "values_desc": {
+      "milli": "Özgür ve bağımsız",
+      "muasir": "Çağdaş uygarlık",
+      "laik": "Vicdan özgürlüğü",
+      "demokratik": "Halk egemenliği",
+      "sosyal": "Toplumsal dayanışma"
     }
   },
   
