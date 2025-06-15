@@ -1700,21 +1700,26 @@ export default function GorevlerPage() {
                           });
 
                           if (response.ok) {
+                            const result = await response.json();
                             toast({
-                              title: "Başvuru Gönderildi!",
-                              description: "Görev başvurunuz başarıyla kaydedildi. En kısa sürede değerlendirilecektir.",
+                              title: "✅ Başvuru Başarılı!",
+                              description: `Görev ${selectedGorev.id} için başvurunuz kaydedildi. Başvuru numaranız: ${result.id}`,
                             });
                             setIsModalOpen(false);
+                            
+                            // Refresh the task list to show updated application count
+                            setTimeout(() => {
+                              window.location.reload();
+                            }, 1500);
                           } else if (response.status === 401) {
                             toast({
-                              title: "Giriş Gerekli",
-                              description: "Göreve başvurmak için önce giriş yapmanız gerekiyor.",
-                              variant: "destructive",
+                              title: "🔐 Kimlik Doğrulama",
+                              description: "Güvenlik nedeniyle anonim başvuru sistemi kullanılmaktadır.",
                             });
                           } else {
                             const error = await response.json();
                             toast({
-                              title: "Başvuru Hatası",
+                              title: "❌ Başvuru Hatası",
                               description: error.error || "Başvuru gönderilemedi. Lütfen tekrar deneyin.",
                               variant: "destructive",
                             });

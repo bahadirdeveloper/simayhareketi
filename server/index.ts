@@ -211,8 +211,15 @@ app.use((req, res, next) => {
   const dangerousMethods = ['POST', 'PUT', 'PATCH', 'DELETE'];
   
   if (dangerousMethods.includes(req.method)) {
-    // Stripe webhook isteklerini bu kontrolden muaf tut (bu istekler genellikle referrer içermez)
-    if (req.path === '/api/webhook') {
+    // Certain endpoints are exempt from CSRF protection
+    const exemptPaths = [
+      '/api/webhook',
+      '/api/gorev-basvuru',
+      '/api/visits',
+      '/api/feedback'
+    ];
+    
+    if (exemptPaths.includes(req.path)) {
       return next();
     }
     
