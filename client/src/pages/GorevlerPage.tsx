@@ -1328,7 +1328,7 @@ export default function GorevlerPage() {
             className="mb-16"
           >
             {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 grid-mobile">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="animate-pulse">
                     <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-xl sm:rounded-2xl h-[300px] sm:h-[400px]">
@@ -1350,7 +1350,7 @@ export default function GorevlerPage() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 grid-mobile">
                 {currentGorevler.map(gorev => (
                   <motion.div
                     key={gorev.id}
@@ -1458,7 +1458,7 @@ export default function GorevlerPage() {
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors"
+                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors touch-target"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -1467,7 +1467,7 @@ export default function GorevlerPage() {
                   <button
                     key={i + 1}
                     onClick={() => setCurrentPage(i + 1)}
-                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 touch-target ${
                       currentPage === i + 1
                         ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white'
                         : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
@@ -1480,7 +1480,7 @@ export default function GorevlerPage() {
                 <button
                   onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors"
+                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors touch-target"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
