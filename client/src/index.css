@@ -5,6 +5,116 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Premium Design System */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  /* Premium Gradient Backgrounds */
+  .premium-gradient {
+    background: linear-gradient(135deg, 
+      rgba(239, 68, 68, 0.1) 0%, 
+      rgba(245, 101, 101, 0.05) 35%, 
+      rgba(0, 0, 0, 0.8) 100%);
+  }
+  
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .premium-card {
+    @apply glass-morphism rounded-3xl p-8 transition-all duration-300;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .premium-card:hover {
+    @apply border-red-500/30;
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.1);
+  }
+  
+  /* Enhanced Button Styles */
+  .btn-premium {
+    @apply bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600;
+    @apply text-white font-semibold py-4 px-8 rounded-2xl;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply shadow-lg hover:shadow-xl;
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+  }
+  
+  .btn-premium:hover {
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4);
+  }
+  
+  /* Typography Enhancements */
+  .heading-xl {
+    @apply text-6xl md:text-7xl font-black;
+    @apply bg-gradient-to-r from-white via-red-200 to-red-400 bg-clip-text text-transparent;
+    @apply tracking-tight leading-none;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .heading-lg {
+    @apply text-4xl md:text-5xl font-bold;
+    @apply bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .text-premium {
+    @apply text-xl md:text-2xl text-gray-300 leading-relaxed font-light;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Interactive Elements */
+  .interactive-glow {
+    transition: all 0.3s ease;
+  }
+  
+  .interactive-glow:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+  }
+  
+  /* Status Indicators */
+  .status-dot {
+    @apply w-3 h-3 rounded-full;
+    box-shadow: 0 0 10px currentColor;
+  }
+  
+  /* Loading Animations */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+    to {
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.8);
+    }
+  }
+}
+
 /* Performance optimizations - titreme sorunu için optimize edildi */
 * {
   will-change: auto;
