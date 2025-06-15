@@ -1601,6 +1601,9 @@ export default function GorevlerPage() {
           )}
         </DialogContent>
       </Dialog>
+      
+      {/* Global Translation System */}
+      <GlobalTranslator />
     </ModernLayout>
   );
 }

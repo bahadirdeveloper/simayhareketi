@@ -7,6 +7,7 @@ import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import GlobalTranslator from "@/components/GlobalTranslator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -984,6 +985,9 @@ export default function KatilPage() {
           </motion.div>
         </div>
       </main>
+      
+      {/* Global Translation System */}
+      <GlobalTranslator />
     </div>
   );
 }
