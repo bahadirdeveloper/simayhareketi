@@ -1139,34 +1139,13 @@ export default function GorevlerPage() {
 
       <main className="max-w-7xl mx-auto px-4 pb-16 z-10 relative">
         {/* Modern Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center py-12"
-        >
+        <div className="text-center py-12">
           {/* Hero Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mb-16"
-          >
+          <div className="relative mb-16">
             <div className="relative">
-              <motion.div 
-                className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-500/30 to-orange-600/30 rounded-full flex items-center justify-center border-3 border-red-500/60 shadow-[0_0_80px_rgba(239,68,68,0.4)]"
-                animate={{ 
-                  boxShadow: [
-                    "0 0 50px rgba(239, 68, 68, 0.4)", 
-                    "0 0 100px rgba(239, 68, 68, 0.7)", 
-                    "0 0 50px rgba(239, 68, 68, 0.4)"
-                  ],
-                  scale: [1, 1.08, 1]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
+              <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-500/30 to-orange-600/30 rounded-full flex items-center justify-center border-3 border-red-500/60 shadow-[0_0_80px_rgba(239,68,68,0.4)]">
                 <Target className="w-16 h-16 text-white" />
-              </motion.div>
+              </div>
               
               {/* Premium Background Glow */}
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-3xl"></div>
@@ -1184,14 +1163,10 @@ export default function GorevlerPage() {
               <div className="w-5 h-5 bg-red-500 rounded-full shadow-[0_0_25px_rgba(239,68,68,0.6)]"></div>
               <div className="w-24 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Stats Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
           >
             <div className="backdrop-blur-lg bg-gradient-to-br from-red-900/20 to-orange-900/20 border border-red-500/30 rounded-2xl p-6">
               <div className="flex items-center justify-center mb-4">
