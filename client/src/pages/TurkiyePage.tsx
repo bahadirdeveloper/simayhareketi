@@ -129,11 +129,11 @@ export default function TurkiyePage() {
               
               <div className="relative bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/50 rounded-2xl p-8 backdrop-blur-xl shadow-[0_25px_70px_rgba(239,68,68,0.2)]">
                 <div className="flex items-center justify-center gap-4 mb-6">
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full ultra-stable no-motion"></div>
                   <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
                     PLATFORM ERİŞİM
                   </h2>
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full ultra-stable no-motion"></div>
                 </div>
                 <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
                   Türkiye Cumhuriyeti'nin dijital koordinasyon platformuna hoş geldiniz. 
