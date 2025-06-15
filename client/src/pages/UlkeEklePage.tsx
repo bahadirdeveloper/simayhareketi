@@ -77,36 +77,36 @@ export default function UlkeEklePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-red-950/20 to-black">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container-mobile py-4 sm:py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-4 sm:mb-6">
             <ModernTechButton
               onClick={() => navigate("/dil-secimi")}
               variant="ghost"
               size="sm"
-              className="mr-4"
+              className="mr-2 sm:mr-4 touch-target"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Geri Dön
+              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Geri Dön</span>
             </ModernTechButton>
           </div>
           
           <div className="text-center">
-            <div className="inline-block px-4 py-2 bg-red-950/30 border border-red-500/40 rounded-lg mb-4">
-              <span className="text-sm font-medium text-red-400 tracking-wide uppercase">
+            <div className="inline-block px-3 sm:px-4 py-2 bg-red-950/30 border border-red-500/40 rounded-lg mb-3 sm:mb-4">
+              <span className="text-xs sm:text-sm font-medium text-red-400 tracking-wide uppercase">
                 Küresel Dayanışma Platformu
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="heading-mobile text-white mb-3 sm:mb-4">
               Ezilmiş Tüm Halkların
             </h1>
-            <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-6">
+            <h2 className="subheading-mobile text-red-500 mb-4 sm:mb-6">
               Ortak Başvuru Platformu
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
@@ -122,28 +122,28 @@ export default function UlkeEklePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="form-mobile">
             
             {/* Ülke Bilgileri */}
             <Card className="bg-black/40 border-red-500/30">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Globe className="w-5 h-5 mr-2 text-red-500" />
+                <CardTitle className="text-white flex items-center text-lg sm:text-xl">
+                  <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-500" />
                   Ülke ve Dil Bilgileri
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-400 body-mobile">
                   Temsil ettiğiniz ülke ve dilin bilgilerini giriniz
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="ulkeAdi" className="text-white">Ülke Adı</Label>
+                    <Label htmlFor="ulkeAdi" className="text-white text-sm sm:text-base">Ülke Adı</Label>
                     <Input
                       id="ulkeAdi"
                       {...form.register("ulkeAdi")}
                       placeholder="Örn: Doğu Türkistan"
-                      className="bg-black/20 border-red-500/30 text-white"
+                      className="input-mobile bg-black/20 border-red-500/30 text-white"
                     />
                     {form.formState.errors.ulkeAdi && (
                       <p className="text-red-400 text-sm mt-1">{form.formState.errors.ulkeAdi.message}</p>
@@ -151,12 +151,12 @@ export default function UlkeEklePage() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="ulkeKodu" className="text-white">Ülke Kodu</Label>
+                    <Label htmlFor="ulkeKodu" className="text-white text-sm sm:text-base">Ülke Kodu</Label>
                     <Input
                       id="ulkeKodu"
                       {...form.register("ulkeKodu")}
                       placeholder="Örn: ET"
-                      className="bg-black/20 border-red-500/30 text-white"
+                      className="input-mobile bg-black/20 border-red-500/30 text-white"
                     />
                     {form.formState.errors.ulkeKodu && (
                       <p className="text-red-400 text-sm mt-1">{form.formState.errors.ulkeKodu.message}</p>
@@ -164,12 +164,12 @@ export default function UlkeEklePage() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="dilAdi" className="text-white">Dil Adı (İngilizce)</Label>
+                    <Label htmlFor="dilAdi" className="text-white text-sm sm:text-base">Dil Adı (İngilizce)</Label>
                     <Input
                       id="dilAdi"
                       {...form.register("dilAdi")}
                       placeholder="Örn: Uyghur"
-                      className="bg-black/20 border-red-500/30 text-white"
+                      className="input-mobile bg-black/20 border-red-500/30 text-white"
                     />
                     {form.formState.errors.dilAdi && (
                       <p className="text-red-400 text-sm mt-1">{form.formState.errors.dilAdi.message}</p>
@@ -177,12 +177,12 @@ export default function UlkeEklePage() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="yerelDilAdi" className="text-white">Yerel Dil Adı</Label>
+                    <Label htmlFor="yerelDilAdi" className="text-white text-sm sm:text-base">Yerel Dil Adı</Label>
                     <Input
                       id="yerelDilAdi"
                       {...form.register("yerelDilAdi")}
                       placeholder="Örn: ئۇيغۇرچە"
-                      className="bg-black/20 border-red-500/30 text-white"
+                      className="input-mobile bg-black/20 border-red-500/30 text-white"
                     />
                     {form.formState.errors.yerelDilAdi && (
                       <p className="text-red-400 text-sm mt-1">{form.formState.errors.yerelDilAdi.message}</p>
@@ -397,13 +397,13 @@ export default function UlkeEklePage() {
             </Card>
 
             {/* Submit Button */}
-            <div className="flex justify-center pt-6">
+            <div className="flex justify-center pt-4 sm:pt-6">
               <ModernTechButton
                 type="submit"
                 variant="turkish"
                 size="xl"
                 disabled={isSubmitting}
-                className="px-12 py-4 text-lg font-bold"
+                className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold touch-target"
               >
                 {isSubmitting ? "Gönderiliyor..." : "Başvuruyu Gönder"}
               </ModernTechButton>

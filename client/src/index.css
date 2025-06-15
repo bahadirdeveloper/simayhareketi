@@ -31,6 +31,43 @@
   @apply min-h-[48px] px-6 py-3 text-base;
 }
 
+/* Enhanced mobile breakpoints */
+.container-mobile {
+  @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Mobile form improvements */
+.form-mobile {
+  @apply space-y-4 p-4 sm:p-6;
+}
+
+.input-mobile {
+  @apply w-full min-h-[48px] text-base px-4 py-3 rounded-lg;
+}
+
+/* Mobile card grid */
+.card-grid-mobile {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+}
+
+/* Mobile hero section */
+.hero-mobile {
+  @apply text-center py-8 sm:py-12 lg:py-16 px-4;
+}
+
+/* Mobile typography scale */
+.heading-mobile {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+}
+
+.subheading-mobile {
+  @apply text-lg sm:text-xl md:text-2xl font-semibold;
+}
+
+.body-mobile {
+  @apply text-sm sm:text-base leading-relaxed;
+}
+
 .text-xs-responsive { @apply text-xs sm:text-sm; }
 .text-sm-responsive { @apply text-sm sm:text-base; }
 .text-base-responsive { @apply text-base sm:text-lg; }
