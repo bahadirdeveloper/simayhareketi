@@ -222,23 +222,37 @@ app.use((req, res, next) => {
     
     // API istekleri için CSRF koruması
     if (req.path.startsWith('/api')) {
-      // Referrer veya Origin olmayan istekleri reddet (CSRF olabilir)
-      if (!referrer && !origin) {
-        console.warn(`[SECURITY] Potential CSRF attempt: Missing referrer and origin headers`);
-        return res.status(403).json({ 
-          error: 'Access Denied', 
-          message: 'CSRF koruması: Geçersiz kaynak.'
-        });
-      }
+      // Development ve Replit ortamı için esnek kontrol
+      const isDevelopment = process.env.NODE_ENV !== 'production';
+      const isReplit = host.includes('replit.app') || host.includes('replit.dev') || host.includes('repl.co');
       
-      // Basit referrer kontrolü - kendi sitemizden gelmeyen istekleri reddet
-      // Production'da daha kesin domain kontrolü yapılabilir
-      if (referrer && !referrer.includes(host) && !referrer.includes('localhost') && !referrer.includes('simayhareketi.com')) {
-        console.warn(`[SECURITY] Potential CSRF attempt from referrer: ${referrer}`);
-        return res.status(403).json({ 
-          error: 'Access Denied', 
-          message: 'CSRF koruması: İzin verilmeyen kaynaktan istek.'
-        });
+      // Development ortamında veya Replit'te daha esnek kontrol
+      if (isDevelopment || isReplit) {
+        // Sadece açıkça kötüye kullanım gösteren istekleri reddet
+        if (referrer && referrer.includes('malicious') || referrer.includes('phishing')) {
+          console.warn(`[SECURITY] Blocking malicious referrer: ${referrer}`);
+          return res.status(403).json({ 
+            error: 'Access Denied', 
+            message: 'CSRF koruması: İzin verilmeyen kaynaktan istek.'
+          });
+        }
+      } else {
+        // Production'da sıkı kontrol
+        if (!referrer && !origin) {
+          console.warn(`[SECURITY] Potential CSRF attempt: Missing referrer and origin headers`);
+          return res.status(403).json({ 
+            error: 'Access Denied', 
+            message: 'CSRF koruması: Geçersiz kaynak.'
+          });
+        }
+        
+        if (referrer && !referrer.includes(host) && !referrer.includes('localhost') && !referrer.includes('simayhareketi.com')) {
+          console.warn(`[SECURITY] Potential CSRF attempt from referrer: ${referrer}`);
+          return res.status(403).json({ 
+            error: 'Access Denied', 
+            message: 'CSRF koruması: İzin verilmeyen kaynaktan istek.'
+          });
+        }
       }
     }
   }
