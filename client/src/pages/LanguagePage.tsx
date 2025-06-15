@@ -126,51 +126,26 @@ export default function LanguagePage() {
       {isLoading && <LoadingScreen />}
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
-        {/* Gizli YouTube iframe */}
-        <div style={{ 
-          position: 'fixed',
-          bottom: '-1000px',
-          right: '-1000px',
-          width: '100px',
-          height: '100px',
-          opacity: 0,
-          pointerEvents: 'none',
-          overflow: 'hidden',
-          zIndex: -1
-        }}>
-          <iframe
-            id="youtube-player"
-            width="100" 
-            height="100" 
-            src="about:blank"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
-        </div>
+        {/* Optimized audio element */}
+        <audio
+          id="background-music"
+          preload="none"
+          className="hidden"
+          autoPlay={false}
+          loop={true}
+        />
 
-        {/* Background grid pattern */}
-        
-        {/* Subtle digital noise texture */}
-        <div className="absolute inset-0 bg-noise opacity-5 z-0"></div>
-        
-        {/* Reduced grid pattern for better performance */}
-        <div className="absolute inset-0 opacity-5 z-0">
-          {[...Array(10)].map((_, i) => (
-            <div 
-              key={`grid-h-${i}`} 
-              className="absolute w-full h-[0.5px] bg-red-500" 
-              style={{ top: `${i * 10}%` }} 
-            />
-          ))}
-          
-          {[...Array(10)].map((_, i) => (
-            <div 
-              key={`grid-v-${i}`} 
-              className="absolute h-full w-[0.5px] bg-red-500" 
-              style={{ left: `${i * 10}%` }} 
-            />
-          ))}
-        </div>
+        {/* Optimized grid pattern with CSS */}
+        <div 
+          className="absolute inset-0 opacity-5 z-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(239, 68, 68, 0.5) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(239, 68, 68, 0.5) 1px, transparent 1px)
+            `,
+            backgroundSize: '10% 10%'
+          }}
+        />
         
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-0"></div>

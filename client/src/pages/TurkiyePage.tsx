@@ -61,16 +61,16 @@ export default function TurkiyePage() {
                 <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-transparent rounded-br-full"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-bl-full"></div>
                 
-                <div className="relative z-10 py-20 px-10 sm:px-16 text-center">
+                <div className="relative z-10 py-12 sm:py-20 px-4 sm:px-10 lg:px-16 text-center">
                   <motion.div
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
                   >
-                    {/* Premium Flag Icon */}
-                    <div className="inline-block mb-10">
+                    {/* Mobile-optimized Flag Icon */}
+                    <div className="inline-block mb-6 sm:mb-10">
                       <motion.div 
-                        className="w-32 h-32 mx-auto text-7xl border-4 border-red-500/60 rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_80px_rgba(239,68,68,0.5)]"
+                        className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)]"
                         animate={{ 
                           boxShadow: [
                             "0 0 20px rgba(239, 68, 68, 0.3)", 
@@ -85,19 +85,19 @@ export default function TurkiyePage() {
                       </motion.div>
                     </div>
                     
-                    {/* Premium Quote Section */}
+                    {/* Mobile-optimized Quote Section */}
                     <div className="max-w-6xl mx-auto">
-                      <div className="bg-gradient-to-r from-black/80 via-black/60 to-black/80 rounded-2xl p-12 border-2 border-red-500/40 backdrop-blur-lg shadow-[inset_0_0_50px_rgba(239,68,68,0.1)]">
+                      <div className="bg-gradient-to-r from-black/80 via-black/60 to-black/80 rounded-xl sm:rounded-2xl p-6 sm:p-12 border border-red-500/40 sm:border-2 backdrop-blur-lg shadow-[inset_0_0_30px_rgba(239,68,68,0.1)] sm:shadow-[inset_0_0_50px_rgba(239,68,68,0.1)]">
                         <motion.p 
-                          className="text-3xl md:text-5xl font-bold leading-relaxed text-center mb-10"
+                          className="text-xl sm:text-3xl md:text-5xl font-bold leading-relaxed text-center mb-6 sm:mb-10"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.8, delay: 0.5 }}
                         >
-                          <span className="text-white block mb-8 italic font-serif tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                          <span className="text-white block mb-4 sm:mb-8 italic font-serif tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                             "Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
                           </span>
-                          <span className="text-red-400 block text-2xl md:text-3xl font-semibold tracking-[0.2em] drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                          <span className="text-red-400 block text-lg sm:text-2xl md:text-3xl font-semibold tracking-[0.1em] sm:tracking-[0.2em] drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]">
                             — Mustafa Kemal Atatürk
                           </span>
                         </motion.p>
@@ -142,7 +142,7 @@ export default function TurkiyePage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent rounded-2xl blur-2xl"></div>
                 
                 <motion.h1 
-                  className="relative text-6xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-orange-500 tracking-wider drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
+                  className="relative text-3xl sm:text-6xl md:text-7xl font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-orange-500 tracking-wide sm:tracking-wider drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 1.2, delay: 1 }}
@@ -151,15 +151,15 @@ export default function TurkiyePage() {
                 </motion.h1>
                 
                 <motion.div 
-                  className="flex flex-col items-center mb-8"
+                  className="flex flex-col items-center mb-6 sm:mb-8"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 1.2 }}
                 >
-                  <div className="text-3xl md:text-4xl text-white font-bold mb-6 flex items-center justify-center backdrop-blur-sm bg-black/20 px-8 py-4 rounded-2xl border border-red-500/30">
-                    {t("turkiye_page.subtitle")}
+                  <div className="text-lg sm:text-3xl md:text-4xl text-white font-bold mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center backdrop-blur-sm bg-black/20 px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl border border-red-500/30 text-center">
+                    <span className="mb-2 sm:mb-0">{t("turkiye_page.subtitle")}</span>
                     <motion.div
-                      className="ml-3 text-red-500 inline-flex"
+                      className="sm:ml-3 text-red-500 inline-flex"
                       animate={{ 
                         opacity: [1, 0.6, 1],
                         scale: [1, 1.2, 1],
@@ -171,7 +171,7 @@ export default function TurkiyePage() {
                         repeatType: "reverse"
                       }}
                     >
-                      <div className="text-red-500 font-bold text-4xl drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">%</div>
+                      <div className="text-red-500 font-bold text-2xl sm:text-4xl drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">%</div>
                     </motion.div>
                   </div>
                   

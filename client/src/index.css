@@ -17,6 +17,36 @@
   backface-visibility: hidden;
 }
 
+/* Mobile-first responsive utilities */
+.mobile-card {
+  @apply backdrop-blur-sm bg-black/40 border border-red-900/30 hover:border-red-600/50 transition-all duration-300;
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn-mobile-optimized {
+  @apply min-h-[48px] px-6 py-3 text-base;
+}
+
+.text-xs-responsive { @apply text-xs sm:text-sm; }
+.text-sm-responsive { @apply text-sm sm:text-base; }
+.text-base-responsive { @apply text-base sm:text-lg; }
+.text-lg-responsive { @apply text-lg sm:text-xl; }
+.text-xl-responsive { @apply text-xl sm:text-2xl; }
+.text-2xl-responsive { @apply text-2xl sm:text-3xl; }
+.text-3xl-responsive { @apply text-3xl sm:text-4xl; }
+
+.modern-card-hover {
+  @apply hover:scale-105 hover:shadow-2xl hover:shadow-red-900/20 transition-all duration-300;
+}
+
+.enhanced-text {
+  @apply font-medium tracking-wide;
+}
+
 /* Reduce motion for accessibility and performance */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
