@@ -386,13 +386,9 @@ export default function TurkiyePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent rounded-2xl blur-xl"></div>
             
             <div className="relative bg-gradient-to-br from-black/60 via-red-950/20 to-black/60 border border-red-900/30 rounded-2xl p-8 backdrop-blur-sm">
-              {/* Date and Mission Statement */}
-              <div className="flex flex-col sm:flex-row items-center justify-center mb-8 space-y-2 sm:space-y-0">
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse shadow-lg shadow-red-500/50"></div>
-                  <span className="text-red-400 text-base font-semibold">19 Mayıs 2025</span>
-                </div>
-                <span className="hidden sm:block text-white/40 text-base mx-4">•</span>
+              {/* Mission Statement */}
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse shadow-lg shadow-red-500/50"></div>
                 <span className="text-white/90 text-base font-medium">Cumhuriyetin Halk ile Güncelleme Yolculuğu</span>
               </div>
 
