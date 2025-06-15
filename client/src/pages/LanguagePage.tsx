@@ -483,18 +483,89 @@ export default function LanguagePage() {
                 </ModernTechButton>
               </motion.div>
               
-              {/* Footer Info */}
+              {/* Modern Status Banner */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="mt-16"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 2.6 }}
+                className="mt-20"
               >
-                <div className="inline-flex items-center bg-black/60 backdrop-blur-sm border border-red-500/40 rounded-full px-6 py-4 shadow-[0_4px_15px_rgba(220,38,38,0.12)]">
-                  <div className="h-4 w-4 rounded-full bg-red-500 mr-4 animate-pulse"></div>
-                  <p className="text-base-responsive text-gray-200 font-medium tracking-wide">
-                    19 Mayıs 2025 - Cumhuriyetin Halk ile Güncellenme Yolculuğu
-                  </p>
+                <div className="relative max-w-3xl mx-auto">
+                  {/* Glow background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-orange-500/20 to-red-500/20 blur-xl rounded-full"></div>
+                  
+                  {/* Main banner */}
+                  <div className="relative bg-gradient-to-r from-black/80 via-gray-900/90 to-black/80 backdrop-blur-xl border-2 border-red-500/50 rounded-2xl px-8 py-6 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                    <div className="flex items-center justify-center space-x-6">
+                      {/* Status indicator with animation */}
+                      <div className="flex items-center space-x-3">
+                        <div className="relative">
+                          <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
+                          <div className="absolute inset-0 w-4 h-4 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                        </div>
+                        <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">CANLI</span>
+                      </div>
+                      
+                      {/* Divider */}
+                      <div className="w-px h-8 bg-gradient-to-b from-transparent via-red-500/50 to-transparent"></div>
+                      
+                      {/* Main text */}
+                      <div className="text-center">
+                        <motion.p 
+                          className="text-xl sm:text-2xl font-bold text-white mb-1"
+                          animate={{ 
+                            textShadow: [
+                              "0 0 10px rgba(255,255,255,0.3)",
+                              "0 0 20px rgba(255,255,255,0.5)",
+                              "0 0 10px rgba(255,255,255,0.3)"
+                            ]
+                          }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        >
+                          19 Mayıs 2025
+                        </motion.p>
+                        <p className="text-gray-300 text-sm sm:text-base tracking-wide">
+                          Cumhuriyetin Halk ile Güncellenme Yolculuğu
+                        </p>
+                      </div>
+                      
+                      {/* Divider */}
+                      <div className="w-px h-8 bg-gradient-to-b from-transparent via-red-500/50 to-transparent"></div>
+                      
+                      {/* User count */}
+                      <div className="text-center">
+                        <motion.div 
+                          className="text-2xl font-bold text-green-400 mb-1"
+                          animate={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          ∞
+                        </motion.div>
+                        <div className="text-xs text-gray-400 uppercase tracking-wider">
+                          Aktif Katılımcı
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Progress bar */}
+                    <div className="mt-4 relative">
+                      <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-red-500 via-orange-500 to-red-500"
+                          animate={{ 
+                            x: ["-100%", "100%"],
+                            opacity: [0.7, 1, 0.7]
+                          }}
+                          transition={{ 
+                            duration: 3, 
+                            repeat: Infinity, 
+                            ease: "easeInOut" 
+                          }}
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent h-1 rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
