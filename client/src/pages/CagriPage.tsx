@@ -15,53 +15,60 @@ export function CagriPage() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-4 py-8 max-w-4xl"
         >
-          {/* Header */}
+          {/* Enhanced Header */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-8"
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-shadow-lg">
-              ÇAĞRI
+            <motion.div 
+              className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-full flex items-center justify-center border-2 border-orange-500/50"
+              animate={{ 
+                boxShadow: ["0 0 30px rgba(249, 115, 22, 0.3)", "0 0 50px rgba(249, 115, 22, 0.6)", "0 0 30px rgba(249, 115, 22, 0.3)"]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              📢
+            </motion.div>
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent mb-4 text-shadow-lg">
+              HALK ÇAĞRISI
             </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+            <p className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto">
+              Cumhuriyet'in dijital çağdaki yeniden inşası için meslek gruplarına özel çağrı
+            </p>
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto rounded-full"></div>
           </motion.div>
 
-          {/* Main Content Panel */}
+          {/* Mission Statement */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="backdrop-filter backdrop-blur-lg bg-gradient-to-br from-orange-900/20 to-red-900/20 border border-orange-500/40 rounded-2xl p-8 mb-8 shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500"></div>
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-orange-400 mb-4">
+                Cumhuriyet Çağrısı
+              </h2>
+              <p className="text-white text-lg leading-relaxed max-w-3xl mx-auto">
+                Bu çağrı, Türkiye Cumhuriyeti'nin dijital çağda yeniden inşası için her meslek grubuna, 
+                her yaşa, her bölgeye seslenişimizdir. Halkın bilinçli katılımıyla geleceği birlikte inşa ediyoruz.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Professional Groups */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="backdrop-filter backdrop-blur-lg bg-black/40 border border-gold/30 rounded-2xl p-8 shadow-2xl"
+            className="backdrop-filter backdrop-blur-lg bg-black/40 border border-orange-500/30 rounded-2xl p-8 shadow-2xl"
           >
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
-              <ModernTechButton
-                variant="primary"
-                size="lg"
-                className="bg-gradient-to-r from-red-600 to-yellow-500 hover:from-red-700 hover:to-yellow-600"
-              >
-                ATA Tablosu ❤️
-              </ModernTechButton>
-              <ModernTechButton
-                variant="futuristic"
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600"
-              >
-                📢 Duyuru & Çağrı & Davet!
-              </ModernTechButton>
-            </div>
-
-            {/* Main Message */}
-            <div className="text-center mb-8">
-              <p className="text-white text-lg leading-relaxed mb-6">
-                Bu bir çağrıdır. Bu bir mektuptur. Bu bir bilinçlenme hareketidir.<br />
-                Simay sadece bir sistem değil, halkın kendi sesidir. Bu bölümde, her meslek grubuna, her yaşa, her bölgeye bir çağrımız olacak.
-              </p>
-            </div>
-
-            {/* Professional Groups */}
+            <h2 className="text-2xl font-bold text-orange-400 text-center mb-8">
+              Meslek Gruplarına Çağrı
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -130,9 +137,9 @@ export function CagriPage() {
                 </p>
               </div>
             </motion.div>
-
+            
             {/* Navigation */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <ModernTechButton
                 variant="futuristic"
                 size="lg"
