@@ -739,7 +739,7 @@ export default function KatilPage() {
                               <Input 
                                 placeholder="Şehriniz" 
                                 {...field} 
-                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12 touch-target"
                               />
                             </FormControl>
                             <FormMessage />
@@ -759,7 +759,7 @@ export default function KatilPage() {
                           </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-black/50 border-red-500/30 text-white focus:border-red-400 h-12">
+                              <SelectTrigger className="bg-black/50 border-red-500/30 text-white focus:border-red-400 h-12 touch-target">
                                 <SelectValue placeholder="Katılım tipinizi seçin" />
                               </SelectTrigger>
                             </FormControl>
@@ -787,7 +787,7 @@ export default function KatilPage() {
                             <Textarea 
                               placeholder="Bu harekete neden katılmak istediğinizi kısaca paylaşın..."
                               {...field} 
-                              className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors min-h-24"
+                              className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors min-h-24 touch-target"
                             />
                           </FormControl>
                           <FormMessage />
@@ -799,7 +799,7 @@ export default function KatilPage() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-red-600 via-orange-600 to-red-600 hover:from-red-700 hover:via-orange-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                        className="w-full bg-gradient-to-r from-red-600 via-orange-600 to-red-600 hover:from-red-700 hover:via-orange-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] disabled:opacity-50 disabled:cursor-not-allowed text-lg touch-target button-mobile"
                       >
                         {isSubmitting ? (
                           <div className="flex items-center justify-center">

@@ -1259,7 +1259,7 @@ export default function GorevlerPage() {
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="w-full pl-12 pr-4 py-4 bg-black/50 border border-gray-600/50 rounded-2xl text-white placeholder-gray-400 focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
+                    className="w-full pl-12 pr-4 py-4 bg-black/50 border border-gray-600/50 rounded-2xl text-white placeholder-gray-400 focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20 transition-all duration-300 touch-target"
                   />
                 </div>
               </div>
@@ -1273,7 +1273,7 @@ export default function GorevlerPage() {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 touch-target ${
                     selectedCategory === null
                       ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg'
                       : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
@@ -1292,7 +1292,7 @@ export default function GorevlerPage() {
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 capitalize ${
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 capitalize touch-target ${
                       selectedCategory === category
                         ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg'
                         : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
