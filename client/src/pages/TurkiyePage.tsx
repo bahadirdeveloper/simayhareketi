@@ -218,7 +218,7 @@ export default function TurkiyePage() {
                 transition={{ duration: 0.3 }}
               >
                 <ModernTechButton
-                  onClick={() => navigate("/turk-nedir")}
+                  onClick={() => navigate("/turknedir")}
                   className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
                   <div className="text-center">

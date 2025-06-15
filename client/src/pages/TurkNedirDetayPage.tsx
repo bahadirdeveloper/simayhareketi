@@ -330,7 +330,7 @@ export default function TurkNedirDetayPage() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <ModernTechButton
-                        onClick={() => navigate("/turk-nedir")}
+                        onClick={() => navigate("/turknedir")}
                         className="px-10 py-4 text-xl font-bold bg-gradient-to-br from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 border-2 border-red-500/50 rounded-2xl shadow-[0_20px_60px_rgba(239,68,68,0.4)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.6)] transition-all duration-500 backdrop-blur-lg"
                       >
                         <div className="flex items-center space-x-3">
