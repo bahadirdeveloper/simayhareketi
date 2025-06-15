@@ -42,6 +42,7 @@ export interface IStorage {
   // Task application methods
   createGorevBasvuru(basvuru: InsertGorevBasvuru): Promise<GorevBasvuru>;
   getGorevBasvurulari(gorevId?: number, userId?: number): Promise<GorevBasvuru[]>;
+  getUserGorevBasvurulari(userId: number): Promise<GorevBasvuru[]>;
   updateGorevBasvuruDurum(id: number, durum: string): Promise<GorevBasvuru>;
   getGorevBasvuruCount(gorevId: number): Promise<number>;
   
@@ -179,6 +180,12 @@ export class DatabaseStorage implements IStorage {
     }
     
     return db.select().from(gorevBasvurulari)
+      .orderBy(desc(gorevBasvurulari.basvuruTarihi));
+  }
+
+  async getUserGorevBasvurulari(userId: number): Promise<GorevBasvuru[]> {
+    return db.select().from(gorevBasvurulari)
+      .where(eq(gorevBasvurulari.userId, userId))
       .orderBy(desc(gorevBasvurulari.basvuruTarihi));
   }
   

@@ -391,30 +391,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/gorev-basvuru", async (req, res) => {
     try {
-      // For now, create anonymous applications until proper auth is implemented
-      const { gorevId, notlar } = req.body;
+      const { gorevId, notlar, userId, userEmail } = req.body;
       
       if (!gorevId) {
-        return res.status(400).json({ error: "Task ID is required" });
+        return res.status(400).json({ error: "Görev ID gereklidir" });
       }
 
-      // Create anonymous user for demonstration
-      let anonymousUser;
-      try {
-        anonymousUser = await storage.createUser({
-          username: `anonim_${Date.now()}`,
-          email: `anonim_${Date.now()}@example.com`,
-          password: "anonymous"
+      if (!userId || !userEmail) {
+        return res.status(400).json({ error: "Kullanıcı bilgileri gereklidir" });
+      }
+
+      // Check if user has made payment (has active subscription or payment record)
+      const userPayments = await storage.getUserOdemeler(userId);
+      const hasValidPayment = userPayments.some(payment => 
+        payment.durum === 'completed' || payment.durum === 'active'
+      );
+
+      if (!hasValidPayment) {
+        return res.status(403).json({ 
+          error: "Bu özellik sadece ödeme yapmış kullanıcılar için kullanılabilir. Lütfen önce premium üyelik satın alın.",
+          requiresPayment: true
         });
-      } catch (error) {
-        // If user creation fails, use a default user ID
-        anonymousUser = { id: 1 };
+      }
+
+      // Check if user already has an application for any task
+      const existingApplications = await storage.getUserGorevBasvurulari(userId);
+      if (existingApplications.length > 0) {
+        return res.status(400).json({ 
+          error: "Zaten bir göreve başvuru yapmışsınız. Her kullanıcı sadece bir göreve başvuru yapabilir.",
+          hasExistingApplication: true
+        });
       }
 
       const basvuruData = insertGorevBasvuruSchema.parse({
         gorevId: parseInt(gorevId),
-        userId: anonymousUser.id,
-        notlar: notlar || "Anonim başvuru",
+        userId: userId,
+        notlar: notlar || "Premium kullanıcı başvurusu",
         durum: "beklemede"
       });
       
@@ -422,10 +434,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(201).json(basvuru);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.status(400).json({ error: "Invalid application data", details: error.errors });
+        res.status(400).json({ error: "Geçersiz başvuru verisi", details: error.errors });
       } else {
         console.error("Task application error:", error);
-        res.status(500).json({ error: "Failed to submit application" });
+        res.status(500).json({ error: "Başvuru gönderilemedi" });
       }
     }
   });
