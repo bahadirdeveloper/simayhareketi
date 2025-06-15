@@ -203,16 +203,22 @@ const ModernLayout = ({
         
         // Use fetch with a timeout to prevent blocking the UI
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
         
-        await fetch('/api/visits', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(visitData),
-          signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
+        try {
+          const response = await fetch('/api/visits', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(visitData),
+            signal: controller.signal
+          });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+        } finally {
+          clearTimeout(timeoutId);
+        }
       } catch (error) {
         console.error('Failed to record visit', error);
       }
