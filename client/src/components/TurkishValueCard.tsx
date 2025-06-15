@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { createPortal } from "react-dom";
 
 interface TurkishValueCardProps {
   valueId: string;
@@ -10,6 +11,11 @@ interface TurkishValueCardProps {
 
 const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, index }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Define detailed information and visual elements for each value
   const valueDetails = {
@@ -55,6 +61,8 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  if (!mounted) return null;
+
   return (
     <>
       {/* Card */}
@@ -90,15 +98,16 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
       </motion.div>
 
       {/* Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            >
             {/* Backdrop */}
             <motion.div
               className="absolute inset-0 bg-black/80 backdrop-blur-sm"
@@ -218,7 +227,9 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 };
