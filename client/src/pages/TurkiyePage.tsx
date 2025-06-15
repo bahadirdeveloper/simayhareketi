@@ -42,485 +42,358 @@ export default function TurkiyePage() {
       pageName="Türkiye"
     >
       <div className="w-full max-w-6xl mx-auto static-container">
-        {/* Revolutionary Hero Section */}
-        <div className="relative mb-24 static-container">
-          {/* Cosmic Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-black to-orange-900/20 rounded-[3rem] overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,0,0,0.3),transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,165,0,0.2),transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(255,0,0,0.1),rgba(255,165,0,0.1),rgba(255,0,0,0.1))]"></div>
+        {/* Futuristic Hero Section */}
+        <div className="relative mb-16 static-container">
+          {/* Tech Grid Background */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
           </div>
           
-          {/* Main Hero Container */}
-          <div className="relative backdrop-blur-sm bg-black/40 border-4 border-red-500/30 rounded-[3rem] overflow-hidden static-container">
+          {/* Main Container */}
+          <div className="relative bg-gradient-to-br from-gray-900/95 via-black/98 to-gray-900/95 border border-gray-700/50 rounded-xl static-container">
             
-            {/* Animated Top Border */}
-            <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-r from-red-500 via-orange-400 via-yellow-300 via-orange-400 to-red-500 bg-[length:200%_100%] animate-pulse"></div>
+            {/* Top Tech Line */}
+            <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
             
             {/* Content */}
-            <div className="relative z-20 py-16 px-8 text-center static-container">
+            <div className="relative px-8 py-12 text-center static-container">
               
-              {/* Flag with Glow Effect */}
-              <div className="relative mb-12">
-                <div className="absolute inset-0 bg-red-500/30 rounded-3xl blur-2xl scale-110"></div>
-                <div className="relative w-40 h-40 mx-auto bg-gradient-to-br from-red-600 via-red-500 to-red-700 rounded-3xl flex items-center justify-center text-8xl border-4 border-white/20 shadow-2xl static-container">
+              {/* Flag Icon - Minimal */}
+              <div className="mb-8">
+                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-gray-600/50 flex items-center justify-center text-3xl static-container">
                   🇹🇷
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
                 </div>
               </div>
               
-              {/* Revolutionary Title */}
-              <div className="mb-12">
-                <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-red-400 via-orange-300 to-yellow-400 bg-clip-text text-transparent drop-shadow-2xl">
-                    TÜRKİYE
-                  </span>
+              {/* Modern Title */}
+              <div className="mb-8">
+                <h1 className="text-4xl md:text-6xl font-light tracking-wide mb-2">
+                  <span className="text-white font-extralight">TÜRKİYE</span>
                 </h1>
-                <div className="h-2 w-32 mx-auto bg-gradient-to-r from-red-500 to-orange-500 rounded-full"></div>
+                <div className="w-16 h-px bg-red-500 mx-auto"></div>
               </div>
               
-              {/* Quote in Glass Container */}
-              <div className="max-w-5xl mx-auto mb-12">
-                <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl static-container">
-                  <div className="relative">
-                    <div className="absolute -top-4 -left-4 text-6xl text-red-400/50">"</div>
-                    <div className="absolute -bottom-4 -right-4 text-6xl text-red-400/50">"</div>
-                    
-                    <p className="text-2xl md:text-4xl font-bold leading-relaxed text-center mb-8">
-                      <span className="bg-gradient-to-r from-white via-red-200 to-orange-200 bg-clip-text text-transparent">
-                        TÜRK, ATASININ MİRASINA SAHİP ÇIKAMAZSA,<br />
-                        GELECEĞİNİ BAŞKA MİLLETLERİN İNSAFINA BIRAKIR
-                      </span>
-                    </p>
-                    
-                    <div className="text-center">
-                      <div className="inline-block px-6 py-2 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30">
-                        <p className="text-red-300 text-xl font-bold tracking-wider">
-                          — ATATÜRK —
-                        </p>
-                      </div>
-                    </div>
+              {/* Quote - Tech Style */}
+              <div className="max-w-4xl mx-auto mb-8">
+                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/30 rounded-lg p-6 static-container">
+                  <p className="text-lg md:text-xl font-light leading-relaxed text-gray-300 mb-4">
+                    "Türk, atasının mirasına sahip çıkamazsa,<br />
+                    geleceğini başka milletlerin insafına bırakır."
+                  </p>
+                  <div className="text-right">
+                    <span className="text-red-400 text-sm font-medium tracking-wider">— ATATÜRK</span>
                   </div>
                 </div>
               </div>
               
-              {/* Enhanced Audio Control */}
+              {/* Tech Audio Control */}
               <div className="flex justify-center">
                 <button
-                  className="group relative px-12 py-4 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl border-2 border-white/20 shadow-2xl static-container overflow-hidden"
+                  className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 border border-gray-600/50 rounded-lg hover:border-red-500/50 transition-all duration-300 static-container"
                   onClick={handleToggleAudio}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 duration-300"></div>
-                  <div className="relative flex items-center justify-center gap-3">
-                    {isAudioPlaying 
-                      ? <Pause className="h-8 w-8 text-white drop-shadow-lg" /> 
-                      : <Play className="h-8 w-8 text-white drop-shadow-lg ml-1" />
-                    }
-                    <span className="text-white font-bold text-lg">
-                      {isAudioPlaying ? "DURDUR" : "TÜRK MÜZİĞİ"}
-                    </span>
-                  </div>
+                  {isAudioPlaying 
+                    ? <Pause className="h-5 w-5 text-white" /> 
+                    : <Play className="h-5 w-5 text-white ml-0.5" />
+                  }
+                  <span className="text-white text-sm font-medium">
+                    {isAudioPlaying ? "DURDUR" : "MÜZIK"}
+                  </span>
+                  <div className="w-1 h-1 bg-red-500 rounded-full opacity-60"></div>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Revolutionary Navigation Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-20 static-container">
-          {/* TÜRK Nedir - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/turknedir")}
-              className="relative w-full h-36 bg-gradient-to-br from-red-900/80 via-red-800/60 to-black/90 border-2 border-red-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  TÜRK NEDİR?
-                </div>
-                <div className="text-red-300 text-xs font-semibold tracking-wide">
-                  KİMLİK KEŞFİ
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+        {/* Tech Navigation Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-16 static-container">
+          {/* TÜRK Nedir */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/turknedir")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-red-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">TÜRK NEDİR?</div>
+              <div className="w-8 h-px bg-red-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
 
-          {/* Anayasalarımız - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/anayasalar")}
-              className="relative w-full h-36 bg-gradient-to-br from-blue-900/80 via-blue-800/60 to-black/90 border-2 border-blue-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  ANAYASALARIMIZ
-                </div>
-                <div className="text-blue-300 text-xs font-semibold tracking-wide">
-                  HUKUK TEMELİ
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+          {/* Anayasalarımız */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/anayasalar")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-blue-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">ANAYASALARIMIZ</div>
+              <div className="w-8 h-px bg-blue-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
 
-          {/* Manifesto - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/halk-manifestolar")}
-              className="relative w-full h-36 bg-gradient-to-br from-purple-900/80 via-purple-800/60 to-black/90 border-2 border-purple-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  MANİFESTO
-                </div>
-                <div className="text-purple-300 text-xs font-semibold tracking-wide">
-                  HALK BEYANNAMESİ
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+          {/* Manifesto */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/halk-manifestolar")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-purple-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">MANİFESTO</div>
+              <div className="w-8 h-px bg-purple-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
 
-          {/* Çağrı - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/cagri")}
-              className="relative w-full h-36 bg-gradient-to-br from-orange-900/80 via-orange-800/60 to-black/90 border-2 border-orange-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  ÇAĞRI
-                </div>
-                <div className="text-orange-300 text-xs font-semibold tracking-wide">
-                  HALK SESİ
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+          {/* Çağrı */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/cagri")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-orange-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">ÇAĞRI</div>
+              <div className="w-8 h-px bg-orange-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
 
-          {/* Katıl - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/katil")}
-              className="relative w-full h-36 bg-gradient-to-br from-green-900/80 via-green-800/60 to-black/90 border-2 border-green-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  KATIL
-                </div>
-                <div className="text-green-300 text-xs font-semibold tracking-wide">
-                  BİRLİK OL
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+          {/* Katıl */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/katil")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-green-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">KATIL</div>
+              <div className="w-8 h-px bg-green-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
 
-          {/* 100 Görev - Revolutionary Card */}
-          <div className="group relative static-container">
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-amber-500/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-            <ModernTechButton
-              onClick={() => navigateToPage("/gorevler")}
-              className="relative w-full h-36 bg-gradient-to-br from-yellow-900/80 via-yellow-800/60 to-black/90 border-2 border-yellow-400/60 rounded-2xl overflow-hidden static-container"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                <div className="text-lg font-black text-white mb-2 drop-shadow-lg">
-                  100 GÖREV
-                </div>
-                <div className="text-yellow-300 text-xs font-semibold tracking-wide">
-                  DİRİLİŞ PLANI
-                </div>
-              </div>
-            </ModernTechButton>
-          </div>
+          {/* 100 Görev */}
+          <ModernTechButton
+            onClick={() => navigateToPage("/gorevler")}
+            className="h-24 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50 rounded-lg hover:border-yellow-500/50 transition-all duration-300 static-container"
+          >
+            <div className="text-center p-3">
+              <div className="text-sm font-medium text-white mb-1">100 GÖREV</div>
+              <div className="w-8 h-px bg-yellow-500/70 mx-auto"></div>
+            </div>
+          </ModernTechButton>
         </div>
 
-        {/* Revolutionary Values Section */}
-        <div className="mb-24 static-container">
-          <div className="relative">
-            {/* Cosmic Values Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-black to-orange-900/30 rounded-[3rem] overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,0,0,0.2),transparent_50%)]"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(255,165,0,0.15),transparent_50%)]"></div>
+        {/* Tech Values Section */}
+        <div className="mb-16 static-container">
+          <div className="bg-gradient-to-br from-gray-900/95 via-black/98 to-gray-900/95 border border-gray-700/50 rounded-xl p-8 static-container">
+            
+            {/* Modern Title */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-light tracking-wide mb-4">
+                <span className="text-white">TÜRK DEĞERLERİ</span>
+              </h2>
+              <div className="w-24 h-px bg-red-500 mx-auto"></div>
             </div>
             
-            <div className="relative backdrop-blur-sm bg-black/30 border-4 border-gradient-to-r from-red-500/40 to-orange-500/40 rounded-[3rem] p-16 static-container">
-              
-              {/* Revolutionary Title */}
-              <div className="text-center mb-16">
-                <h2 className="text-6xl md:text-8xl font-black mb-8 leading-tight">
-                  <span className="bg-gradient-to-r from-red-400 via-orange-300 to-yellow-400 bg-clip-text text-transparent drop-shadow-2xl">
-                    TÜRK DEĞERLERİ
-                  </span>
-                </h2>
-                <div className="flex justify-center">
-                  <div className="h-3 w-64 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 rounded-full"></div>
-                </div>
-              </div>
-              
-              {/* Revolutionary Values Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-8 static-container">
-                {turkishValueIds.map((valueId, index) => {
-                  const valueTexts: Record<string, string> = {
-                    'milli': 'MİLLİ',
-                    'muasir': 'MUASIR',
-                    'laik': 'LAİK',
-                    'demokratik': 'DEMOKRATİK',
-                    'sosyal': 'SOSYAL'
-                  };
-                  
-                  const colors = [
-                    'from-red-500 to-red-700',
-                    'from-blue-500 to-blue-700', 
-                    'from-green-500 to-green-700',
-                    'from-purple-500 to-purple-700',
-                    'from-orange-500 to-orange-700'
-                  ];
-                  
-                  return (
-                    <div key={valueId} className="group relative static-container">
-                      {/* Glow Effect */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${colors[index]}/20 rounded-3xl blur-2xl group-hover:blur-3xl opacity-50 group-hover:opacity-75 duration-700 scale-110`}></div>
+            {/* Tech Values Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 static-container">
+              {turkishValueIds.map((valueId, index) => {
+                const valueTexts: Record<string, string> = {
+                  'milli': 'MİLLİ',
+                  'muasir': 'MUASIR',
+                  'laik': 'LAİK',
+                  'demokratik': 'DEMOKRATİK',
+                  'sosyal': 'SOSYAL'
+                };
+                
+                const colors = [
+                  'red-500',
+                  'blue-500', 
+                  'green-500',
+                  'purple-500',
+                  'orange-500'
+                ];
+                
+                return (
+                  <div key={valueId} className="static-container">
+                    <div className={`bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-${colors[index]}/50 rounded-lg p-6 h-32 flex flex-col justify-center items-center transition-all duration-300 static-container`}>
                       
-                      {/* Value Card */}
-                      <div className={`relative backdrop-blur-xl bg-black/60 border-2 border-gradient-to-br ${colors[index]}/60 rounded-3xl p-8 h-48 flex flex-col items-center justify-center static-container overflow-hidden`}>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        
-                        {/* Value Icon/Symbol */}
-                        <div className={`relative mb-4 w-16 h-16 bg-gradient-to-br ${colors[index]} rounded-2xl flex items-center justify-center shadow-2xl`}>
-                          <div className="text-white text-2xl font-black">
-                            {valueTexts[valueId][0]}
-                          </div>
-                        </div>
-                        
-                        {/* Value Name */}
-                        <div className="relative text-center">
-                          <h3 className="text-2xl font-black text-white mb-2 drop-shadow-lg">
-                            {valueTexts[valueId]}
-                          </h3>
-                          <div className={`h-1 w-16 mx-auto bg-gradient-to-r ${colors[index]} rounded-full`}></div>
-                        </div>
+                      {/* Value Icon */}
+                      <div className={`w-8 h-8 bg-gradient-to-br from-gray-700 to-gray-800 rounded border border-${colors[index]}/40 flex items-center justify-center mb-3`}>
+                        <div className={`w-2 h-2 bg-${colors[index]} rounded-full`}></div>
+                      </div>
+                      
+                      {/* Value Name */}
+                      <div className="text-center">
+                        <h3 className="text-sm font-medium text-white mb-1">
+                          {valueTexts[valueId]}
+                        </h3>
+                        <div className={`w-6 h-px bg-${colors[index]}/60 mx-auto`}></div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Revolutionary Additional Pages */}
-        <div className="mb-24 static-container">
-          <div className="relative">
-            {/* Cosmic Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/25 via-black to-purple-900/25 rounded-[3rem] overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.2),transparent_50%)]"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(147,51,234,0.15),transparent_50%)]"></div>
+        {/* Tech Additional Pages */}
+        <div className="mb-16 static-container">
+          <div className="bg-gradient-to-br from-gray-900/95 via-black/98 to-gray-900/95 border border-gray-700/50 rounded-xl p-8 static-container">
+            
+            {/* Modern Title */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-light tracking-wide mb-4">
+                <span className="text-white">DİĞER SAYFALAR</span>
+              </h2>
+              <div className="w-20 h-px bg-blue-500 mx-auto"></div>
             </div>
             
-            <div className="relative backdrop-blur-sm bg-black/30 border-4 border-blue-500/30 rounded-[3rem] p-12 static-container">
-              
-              {/* Revolutionary Title */}
-              <div className="text-center mb-16">
-                <h2 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl">
-                    ÖZEL SAYFALAR
-                  </span>
-                </h2>
-                <div className="flex justify-center">
-                  <div className="h-2 w-48 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full"></div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 static-container">
+              {/* Halk Defteri */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/halk-defteri")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-cyan-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">HALK DEFTERİ</div>
+                  <div className="w-6 h-px bg-cyan-500/60 mx-auto"></div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 static-container">
-                {/* Halk Defteri */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/halk-defteri")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-cyan-950/50 to-black/90 border border-cyan-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">HALK DEFTERİ</div>
-                    <div className="text-cyan-400 text-xs opacity-80">Halk Kayıtları</div>
-                  </div>
-                </ModernTechButton>
+              </ModernTechButton>
 
-                {/* Görev Davet */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/gorev-davet")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-indigo-950/50 to-black/90 border border-indigo-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">GÖREV DAVET</div>
-                    <div className="text-indigo-400 text-xs opacity-80">Davet Sistemi</div>
-                  </div>
-                </ModernTechButton>
+              {/* Görev Davet */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/gorev-davet")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-indigo-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">GÖREV DAVET</div>
+                  <div className="w-6 h-px bg-indigo-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Kurucu Eksikleri */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/kurucu-eksikleri")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-pink-950/50 to-black/90 border border-pink-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">KURUCU EKSİKLERİ</div>
-                    <div className="text-pink-400 text-xs opacity-80">Eksiklikler</div>
-                  </div>
-                </ModernTechButton>
+              {/* Kurucu Eksikleri */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/kurucu-eksikleri")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-pink-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">KURUCU EKSİKLERİ</div>
+                  <div className="w-6 h-px bg-pink-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Amaç Savaş */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/amac-savas")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-rose-950/50 to-black/90 border border-rose-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">AMAÇ SAVAŞ</div>
-                    <div className="text-rose-400 text-xs opacity-80">Hedefler</div>
-                  </div>
-                </ModernTechButton>
+              {/* Amaç Savaş */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/amac-savas")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-rose-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">AMAÇ SAVAŞ</div>
+                  <div className="w-6 h-px bg-rose-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Sertifika */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/sertifika")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-emerald-950/50 to-black/90 border border-emerald-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">SERTİFİKA</div>
-                    <div className="text-emerald-400 text-xs opacity-80">Belgelendirme</div>
-                  </div>
-                </ModernTechButton>
+              {/* Sertifika */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/sertifika")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-emerald-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">SERTİFİKA</div>
+                  <div className="w-6 h-px bg-emerald-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Entegrasyon */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/entegrasyon")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-teal-950/50 to-black/90 border border-teal-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">ENTEGRASYON</div>
-                    <div className="text-teal-400 text-xs opacity-80">Sistem Entegrasyonu</div>
-                  </div>
-                </ModernTechButton>
+              {/* Entegrasyon */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/entegrasyon")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-teal-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">ENTEGRASYON</div>
+                  <div className="w-6 h-px bg-teal-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Halk Koordinasyon */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/halk-koordinasyon")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-violet-950/50 to-black/90 border border-violet-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">HALK KOORDİNASYON</div>
-                    <div className="text-violet-400 text-xs opacity-80">Koordinasyon</div>
-                  </div>
-                </ModernTechButton>
+              {/* Halk Koordinasyon */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/halk-koordinasyon")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-violet-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">KOORDINASYON</div>
+                  <div className="w-6 h-px bg-violet-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
 
-                {/* Birleşik Manifesto */}
-                <ModernTechButton
-                  onClick={() => navigateToPage("/birlesik-manifesto")}
-                  className="h-24 bg-gradient-to-br from-black/90 via-amber-950/50 to-black/90 border border-amber-500/50 rounded-xl static-container"
-                >
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-white mb-1">BİRLEŞİK MANİFESTO</div>
-                    <div className="text-amber-400 text-xs opacity-80">Birleşik Manifesto</div>
-                  </div>
-                </ModernTechButton>
-              </div>
+              {/* Birleşik Manifesto */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/birlesik-manifesto")}
+                className="h-20 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-amber-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-2">
+                  <div className="text-xs font-medium text-white mb-1">B. MANİFESTO</div>
+                  <div className="w-6 h-px bg-amber-500/60 mx-auto"></div>
+                </div>
+              </ModernTechButton>
             </div>
           </div>
         </div>
 
-        {/* Revolutionary International Section */}
-        <div className="mb-24 static-container">
-          <div className="relative">
-            {/* Global Cosmic Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-900/25 via-black to-emerald-900/25 rounded-[3rem] overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_50%,rgba(34,197,94,0.2),transparent_50%)]"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(16,185,129,0.15),transparent_50%)]"></div>
+        {/* Tech International Section */}
+        <div className="mb-16 static-container">
+          <div className="bg-gradient-to-br from-gray-900/95 via-black/98 to-gray-900/95 border border-gray-700/50 rounded-xl p-8 static-container">
+            
+            {/* Modern Title */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-light tracking-wide mb-4">
+                <span className="text-white">ULUSLARARASI DAYANIŞMA</span>
+              </h2>
+              <div className="w-20 h-px bg-green-500 mx-auto"></div>
             </div>
             
-            <div className="relative backdrop-blur-sm bg-black/30 border-4 border-green-500/30 rounded-[3rem] p-12 static-container">
-              
-              {/* Global Unity Title */}
-              <div className="text-center mb-16">
-                <h2 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent drop-shadow-2xl">
-                    KÜRESEL DAYANIŞMA
-                  </span>
-                </h2>
-                <div className="flex justify-center">
-                  <div className="h-2 w-64 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 rounded-full"></div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 static-container">
+              {/* Russia */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/russia")}
+                className="h-24 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-red-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-3">
+                  <div className="text-2xl mb-1">🇷🇺</div>
+                  <div className="text-xs font-medium text-white mb-1">RUSYA</div>
+                  <div className="w-6 h-px bg-red-500/60 mx-auto"></div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 static-container">
-                {/* Russia - Revolutionary Nation Card */}
-                <div className="group relative static-container">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-                  <ModernTechButton
-                    onClick={() => navigateToPage("/russia")}
-                    className="relative h-32 bg-gradient-to-br from-red-900/80 via-red-800/60 to-black/90 border-2 border-red-400/60 rounded-2xl overflow-hidden static-container"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                      <div className="text-4xl mb-2">🇷🇺</div>
-                      <div className="text-lg font-black text-white mb-1 drop-shadow-lg">RUSYA</div>
-                      <div className="text-red-300 text-xs font-semibold">DOSTLUK</div>
-                    </div>
-                  </ModernTechButton>
-                </div>
+              </ModernTechButton>
 
-                {/* Iran - Revolutionary Nation Card */}
-                <div className="group relative static-container">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-green-700/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-                  <ModernTechButton
-                    onClick={() => navigateToPage("/iran")}
-                    className="relative h-32 bg-gradient-to-br from-green-900/80 via-green-800/60 to-black/90 border-2 border-green-400/60 rounded-2xl overflow-hidden static-container"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                      <div className="text-4xl mb-2">🇮🇷</div>
-                      <div className="text-lg font-black text-white mb-1 drop-shadow-lg">İRAN</div>
-                      <div className="text-green-300 text-xs font-semibold">KARDEŞLİK</div>
-                    </div>
-                  </ModernTechButton>
+              {/* Iran */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/iran")}
+                className="h-24 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-green-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-3">
+                  <div className="text-2xl mb-1">🇮🇷</div>
+                  <div className="text-xs font-medium text-white mb-1">İRAN</div>
+                  <div className="w-6 h-px bg-green-500/60 mx-auto"></div>
                 </div>
+              </ModernTechButton>
 
-                {/* Palestine - Revolutionary Nation Card */}
-                <div className="group relative static-container">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-emerald-700/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-                  <ModernTechButton
-                    onClick={() => navigateToPage("/palestine")}
-                    className="relative h-32 bg-gradient-to-br from-emerald-900/80 via-emerald-800/60 to-black/90 border-2 border-emerald-400/60 rounded-2xl overflow-hidden static-container"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                      <div className="text-4xl mb-2">🇵🇸</div>
-                      <div className="text-lg font-black text-white mb-1 drop-shadow-lg">FİLİSTİN</div>
-                      <div className="text-emerald-300 text-xs font-semibold">ADALET</div>
-                    </div>
-                  </ModernTechButton>
+              {/* Palestine */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/palestine")}
+                className="h-24 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-emerald-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-3">
+                  <div className="text-2xl mb-1">🇵🇸</div>
+                  <div className="text-xs font-medium text-white mb-1">FİLİSTİN</div>
+                  <div className="w-6 h-px bg-emerald-500/60 mx-auto"></div>
                 </div>
+              </ModernTechButton>
 
-                {/* Oppressed Nations - Revolutionary Card */}
-                <div className="group relative static-container">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-700/20 rounded-2xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-75 duration-500"></div>
-                  <ModernTechButton
-                    onClick={() => navigateToPage("/oppressed")}
-                    className="relative h-32 bg-gradient-to-br from-purple-900/80 via-purple-800/60 to-black/90 border-2 border-purple-400/60 rounded-2xl overflow-hidden static-container"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="relative text-center p-4 h-full flex flex-col justify-center">
-                      <div className="text-4xl mb-2">🌍</div>
-                      <div className="text-sm font-black text-white mb-1 drop-shadow-lg">MAZLUM MİLLETLER</div>
-                      <div className="text-purple-300 text-xs font-semibold">DAYANIŞMA</div>
-                    </div>
-                  </ModernTechButton>
+              {/* Oppressed Nations */}
+              <ModernTechButton
+                onClick={() => navigateToPage("/oppressed")}
+                className="h-24 bg-gradient-to-br from-gray-800/70 to-gray-900/70 border border-gray-700/40 hover:border-purple-500/50 rounded-lg transition-all duration-300 static-container"
+              >
+                <div className="text-center p-3">
+                  <div className="text-2xl mb-1">🌍</div>
+                  <div className="text-xs font-medium text-white mb-1">MAZLUM MİLLETLER</div>
+                  <div className="w-6 h-px bg-purple-500/60 mx-auto"></div>
                 </div>
-              </div>
+              </ModernTechButton>
             </div>
           </div>
         </div>
