@@ -20,6 +20,11 @@ const turkishAmbientTracks = {
     mood: 'heroic'
   },
   manifesto: {
+    name: 'İstiklal Marşı',
+    description: 'Turkish National Anthem with orchestral arrangement',
+    mood: 'national'
+  },
+  anayasa: {
     name: 'Cumhuriyet Marşı',
     description: 'Republican anthem with modern orchestration',
     mood: 'patriotic'
@@ -59,6 +64,36 @@ const generateTurkishAmbient = async (trackKey: string, audioContext: AudioConte
       
       // Add mood-specific characteristics
       switch (track.mood) {
+        case 'national':
+          // İstiklal Marşı - Turkish National Anthem melody pattern
+          // Create the characteristic ascending melody with orchestral elements
+          const anthemFreq1 = 293.66; // D4
+          const anthemFreq2 = 329.63; // E4
+          const anthemFreq3 = 369.99; // F#4
+          const anthemFreq4 = 440.00; // A4
+          
+          // Main melody line with characteristic rhythm
+          const beatTime = (time * 2) % 8; // 8-beat cycle
+          let melodicComponent = 0;
+          
+          if (beatTime < 2) {
+            melodicComponent = Math.sin(2 * Math.PI * anthemFreq1 * time) * 0.2;
+          } else if (beatTime < 4) {
+            melodicComponent = Math.sin(2 * Math.PI * anthemFreq2 * time) * 0.2;
+          } else if (beatTime < 6) {
+            melodicComponent = Math.sin(2 * Math.PI * anthemFreq3 * time) * 0.2;
+          } else {
+            melodicComponent = Math.sin(2 * Math.PI * anthemFreq4 * time) * 0.2;
+          }
+          
+          // Add orchestral brass section
+          sample += melodicComponent * Math.sin(time * 1.5);
+          sample += Math.sin(2 * Math.PI * anthemFreq1 * 0.5 * time) * 0.1 * Math.sin(time * 0.8);
+          
+          // Add timpani-like rhythm
+          const rhythmPattern = Math.sin(time * 4) > 0.7 ? 0.15 : 0.05;
+          sample += Math.sin(2 * Math.PI * 110 * time) * rhythmPattern;
+          break;
         case 'heroic':
           // Add deeper resonant tones
           sample += Math.sin(2 * Math.PI * 110 * time) * 0.15 * Math.sin(time * 0.3);

@@ -163,7 +163,7 @@ export function AnayasalarPage() {
         
         {/* Ambient Music Player */}
         <div className="fixed top-6 right-6 z-50">
-          <TurkishAmbientPlayer page="manifesto" className="w-80" />
+          <TurkishAmbientPlayer page="anayasa" className="w-80" />
         </div>
 
         {/* Background Effects */}
