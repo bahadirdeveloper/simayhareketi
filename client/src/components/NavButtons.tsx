@@ -22,12 +22,12 @@ export function NavButtons() {
       isExternal: false 
     },
     { 
-      path: "/attached_assets/amaclar.html", 
+      path: "/halk-manifestolar", 
       text: "MANİFESTO", 
       icon: BookOpen,
       gradient: "from-blue-600 to-blue-800",
       bgGradient: "from-blue-500/20 to-blue-700/30",
-      isExternal: true 
+      isExternal: false 
     },
     { 
       path: "/cagri", 
@@ -79,7 +79,7 @@ export function NavButtons() {
                   transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => button.isExternal ? window.open(button.path, "_blank") : navigate(button.path)}
+                  onClick={() => navigate(button.path)}
                   className="relative group min-w-[120px] lg:min-w-[140px] h-16 lg:h-18 bg-gradient-to-br from-black/90 via-gray-900/50 to-black/90 border-2 border-red-500/40 rounded-2xl backdrop-blur-lg shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-500 overflow-hidden"
                 >
                   {/* Background pattern */}
