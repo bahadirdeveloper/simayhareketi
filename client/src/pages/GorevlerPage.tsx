@@ -144,9 +144,9 @@ const gorevImages: Record<number, string> = {
   91: gorev91, 92: gorev92, 93: gorev93, 94: gorev94, 95: gorev95, 96: gorev96, 97: gorev97, 98: gorev98, 99: gorev99, 100: gorev100
 };
 
-// Görev resmi getirme yardımcı fonksiyonu (1-100)
+// Görev resmi getirme yardımcı fonksiyonu (1-101)
 const getGorevImage = (id: number): string => {
-  const safeId = Math.min(Math.max(1, id), 100);
+  const safeId = Math.min(Math.max(1, id), 100); // 101. görev için 100. resmi kullan
   return gorevImages[safeId] || gorev1;
 };
 
@@ -554,8 +554,8 @@ export default function GorevlerPage() {
     // Bu şekilde birebir aynı görevleri ekleyebiliriz
 
     // Gerçek görev verilerini tamamlayacak şekilde diğer görevleri ekle
-    const restOfGorevler = Array.from({ length: 85 }, (_, index) => {
-      const gorevIndex = index + 16; // 16'dan başlayarak
+    const restOfGorevler = Array.from({ length: 86 }, (_, index) => {
+      const gorevIndex = index + 16; // 16'dan başlayarak (16-101 arası 86 görev)
       return {
         id: gorevIndex,
         baslik: `${gorevIndex}. Görev: ${getGorevTitle(gorevIndex)}`,
