@@ -16,13 +16,44 @@ import {
   Lightbulb,
   BookOpen,
   Handshake,
-  Eye
+  Eye,
+  Volume2,
+  Play,
+  Pause
 } from "lucide-react";
 import { useState } from "react";
 
 export function CagriPage() {
   const [location, setLocation] = useLocation();
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [playingAudio, setPlayingAudio] = useState<number | null>(null);
+
+  // Text-to-Speech function for professional groups
+  const handleTextToSpeech = (text: string, index: number, event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent card click
+    
+    if (playingAudio === index) {
+      // Stop current audio
+      window.speechSynthesis.cancel();
+      setPlayingAudio(null);
+      return;
+    }
+    
+    // Stop any current speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'tr-TR';
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    utterance.volume = 0.8;
+    
+    utterance.onstart = () => setPlayingAudio(index);
+    utterance.onend = () => setPlayingAudio(null);
+    utterance.onerror = () => setPlayingAudio(null);
+    
+    window.speechSynthesis.speak(utterance);
+  };
 
   const callToActionSections = [
     {
@@ -533,6 +564,27 @@ export function CagriPage() {
                           {group.title}
                         </h3>
                       </div>
+                      {/* Audio Control Button */}
+                      <motion.button
+                        onClick={(e) => handleTextToSpeech(
+                          `${group.title}. ${group.description}. ${group.details}`, 
+                          index, 
+                          e
+                        )}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          playingAudio === index 
+                            ? 'bg-orange-500/20 border-2 border-orange-500' 
+                            : 'bg-gray-700/50 border-2 border-gray-600/50 hover:border-orange-500/50'
+                        }`}
+                      >
+                        {playingAudio === index ? (
+                          <Pause className="w-4 h-4 text-orange-500" />
+                        ) : (
+                          <Volume2 className="w-4 h-4 text-gray-400 hover:text-orange-500 transition-colors" />
+                        )}
+                      </motion.button>
                     </div>
                     
                     <p className="text-gray-300 text-sm mb-4 leading-relaxed">
