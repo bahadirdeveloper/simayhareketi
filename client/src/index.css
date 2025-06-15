@@ -109,6 +109,12 @@ body {
   backface-visibility: hidden;
   perspective: 1000px;
   transform: translate3d(0, 0, 0);
+  /* Force hardware acceleration globally */
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smooth: always;
+  /* Prevent any layout shifts */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .main-content {
@@ -293,6 +299,11 @@ body {
   isolation: isolate !important;
   position: relative !important;
   z-index: 0 !important;
+  /* Additional stability layers */
+  -webkit-filter: brightness(1) !important;
+  filter: brightness(1) !important;
+  -webkit-transition: none !important;
+  transition: none !important;
 }
 
 @media (min-width: 640px) {
