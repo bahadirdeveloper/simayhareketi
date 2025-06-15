@@ -43,47 +43,66 @@ export default function TurkiyePage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Hero Section with Manifesto */}
+            {/* Premium Hero Section */}
             <motion.div 
-              className="relative rounded-xl overflow-hidden mb-8"
+              className="relative rounded-2xl overflow-hidden mb-12"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-red-950/30 backdrop-blur-sm z-0 shadow-[0_8px_30px_rgba(185,28,28,0.12)]"></div>
-              <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
-              <div className="absolute inset-0 border border-red-900/20 z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-red-950/40 to-black/95 backdrop-blur-xl z-0 shadow-[0_25px_80px_rgba(185,28,28,0.25)]"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(239,68,68,0.1),transparent)] z-0"></div>
+              <div className="absolute inset-0 border-2 border-red-800/40 rounded-2xl z-0"></div>
               
-              <div className="relative z-10 py-10 px-6 sm:px-10 text-center">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+              {/* Premium Corner Decorations */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-red-500/30 to-transparent rounded-br-3xl z-1"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-500/30 to-transparent rounded-bl-3xl z-1"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-red-500/30 to-transparent rounded-tr-3xl z-1"></div>
+              <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-red-500/30 to-transparent rounded-tl-3xl z-1"></div>
+              
+              <div className="relative z-10 py-16 px-8 sm:px-12 text-center">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
                 
                 <motion.div
-                  initial={{ y: -10, opacity: 0 }}
+                  initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <div className="inline-block mb-4">
+                  <div className="inline-block mb-8">
                     <motion.div 
-                      className="w-16 h-16 mx-auto text-red-500 font-bold text-lg border-2 border-red-500/70 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-sm shadow-lg"
+                      className="w-24 h-24 mx-auto text-6xl border-3 border-red-500/60 rounded-full flex items-center justify-center bg-gradient-to-br from-black/60 to-red-950/20 backdrop-blur-lg shadow-[0_0_50px_rgba(239,68,68,0.4)]"
                       animate={{ 
-                        boxShadow: ["0 0 20px rgba(239, 68, 68, 0.5)", "0 0 30px rgba(239, 68, 68, 0.8)", "0 0 20px rgba(239, 68, 68, 0.5)"]
+                        boxShadow: [
+                          "0 0 30px rgba(239, 68, 68, 0.4)", 
+                          "0 0 60px rgba(239, 68, 68, 0.8)", 
+                          "0 0 30px rgba(239, 68, 68, 0.4)"
+                        ],
+                        scale: [1, 1.05, 1]
                       }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     >
                       🇹🇷
                     </motion.div>
                   </div>
-                  <div className="max-w-4xl mx-auto">
-                    <p className="text-xl md:text-2xl font-bold leading-relaxed text-center">
-                      <span className="text-white block mb-4 italic">
-                        "Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
-                      </span>
-                      <span className="text-red-400 block text-lg font-semibold">
-                        — Mustafa Kemal Atatürk
-                      </span>
-                    </p>
-                    <div className="mt-6 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                  
+                  <div className="max-w-5xl mx-auto">
+                    <div className="bg-gradient-to-r from-black/70 via-black/50 to-black/70 rounded-xl p-10 border border-red-500/30 backdrop-blur-sm shadow-inner">
+                      <p className="text-2xl md:text-4xl font-bold leading-relaxed text-center mb-8">
+                        <span className="text-white block mb-6 italic font-serif tracking-wide">
+                          "Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
+                        </span>
+                        <span className="text-red-400 block text-xl md:text-2xl font-semibold tracking-widest">
+                          — Mustafa Kemal Atatürk
+                        </span>
+                      </p>
+                      
+                      <div className="flex justify-center items-center space-x-4 mt-8">
+                        <div className="w-16 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
+                        <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]"></div>
+                        <div className="w-16 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </div>
