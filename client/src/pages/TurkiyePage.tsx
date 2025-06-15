@@ -63,13 +63,28 @@ export default function TurkiyePage() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="inline-block mb-2">
-                    <div className="w-10 h-10 mx-auto text-red-500 font-bold text-sm border border-red-500/50 rounded-full flex items-center justify-center">TC</div>
+                  <div className="inline-block mb-4">
+                    <motion.div 
+                      className="w-16 h-16 mx-auto text-red-500 font-bold text-lg border-2 border-red-500/70 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-sm shadow-lg"
+                      animate={{ 
+                        boxShadow: ["0 0 20px rgba(239, 68, 68, 0.5)", "0 0 30px rgba(239, 68, 68, 0.8)", "0 0 20px rgba(239, 68, 68, 0.5)"]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      🇹🇷
+                    </motion.div>
                   </div>
-                  <p className="text-2xl-responsive font-bold leading-relaxed">
-                    <span className="text-white block mb-3">{t("turkiye_page.quote").split('"')[1]}</span>
-                    <span className="text-white block">{t("turkiye_page.quote").split('"')[2]}</span>
-                  </p>
+                  <div className="max-w-4xl mx-auto">
+                    <p className="text-xl md:text-2xl font-bold leading-relaxed text-center">
+                      <span className="text-white block mb-4 italic">
+                        "Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
+                      </span>
+                      <span className="text-red-400 block text-lg font-semibold">
+                        — Mustafa Kemal Atatürk
+                      </span>
+                    </p>
+                    <div className="mt-6 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
@@ -300,118 +315,150 @@ export default function TurkiyePage() {
               </motion.div>
             </motion.div>
             
-            {/* Ana Navigasyon Butonları - TÜRKİYE - MANİFESTO - ÇAĞRI - KATIL & GÖREV */}
-            {/* Dikey buton listesi - İstenen sıralama */}
+            {/* Digital Civic Platform Navigation */}
             <motion.div
-              className="flex flex-col gap-4 w-full max-w-4xl mx-auto mb-10"
+              className="flex flex-col gap-6 w-full max-w-4xl mx-auto mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              {/* 1. TÜRK NEDİR? */}
-              <div className="flex flex-col">
+              <div className="text-center mb-4">
+                <h2 className="text-2xl font-bold text-white mb-2">Dijital Sivil Platform</h2>
+                <p className="text-gray-300 text-sm">Türkiye Cumhuriyeti'nin dijital koordinasyon merkezi</p>
+                <div className="w-20 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto mt-3"></div>
+              </div>
+              {/* 1. TÜRK NEDİR? - Identity & Heritage */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="turkish"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-5 text-lg font-bold"
+                  className="w-full justify-center py-5 text-lg font-bold bg-gradient-to-r from-red-800/80 to-red-700/80 hover:from-red-700/90 hover:to-red-600/90 border-red-500/30"
                   onClick={() => navigate("/turknedir")}
                 >
-                  {t("turkiye_page.turk_nedir")}
+                  🏛️ TÜRK NEDİR?
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.turk_desc")}</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Türk kimliği ve tanımının tarihsel incelemesi</p>
+              </motion.div>
               
-              {/* 2. ANAYASA */}
-              <div className="flex flex-col">
+              {/* 2. ANAYASA - Constitutional Framework */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-gold/20 to-amber-600/20 hover:from-gold/30 hover:to-amber-600/30 border-gold/30"
                   onClick={() => navigate("/anayasalar")}
                 >
-                  ANAYASA
+                  ⚖️ ANAYASA
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Cumhuriyet anayasası ve yasal çerçeve</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Halk anayasaları ve dijital haklar çerçevesi</p>
+              </motion.div>
               
-              {/* 3. MANİFESTOLAR */}
-              <div className="flex flex-col">
+              {/* 3. MANİFESTOLAR - Vision Documents */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-blue-800/20 to-cyan-700/20 hover:from-blue-700/30 hover:to-cyan-600/30 border-blue-400/30"
                   onClick={() => navigate("/halk-manifestolar")}
                 >
-                  MANİFESTOLAR
+                  📜 MANİFESTOLAR
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halk manifestoları ve vizyon belgeleri</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Halk manifestoları ve gelecek vizyonu belgeleri</p>
+              </motion.div>
               
-              {/* 4. AMACIMIZ & SAVAŞIMIZ */}
-              <div className="flex flex-col">
+              {/* 4. AMACIMIZ & SAVAŞIMIZ - Mission & Struggle */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-purple-800/20 to-indigo-700/20 hover:from-purple-700/30 hover:to-indigo-600/30 border-purple-400/30"
                   onClick={() => navigate("/amac-savas")}
                 >
-                  AMACIMIZ & SAVAŞIMIZ
+                  🎯 AMACIMIZ & SAVAŞIMIZ
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Hareketin temel amaçları ve mücadele alanları</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Hareketin temel amaçları ve sistemsel mücadele alanları</p>
+              </motion.div>
               
-              {/* 5. GÖREVLER */}
-              <div className="flex flex-col">
+              {/* 5. GÖREVLER - Tasks & Duties */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="futuristic"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-green-800/20 to-emerald-700/20 hover:from-green-700/30 hover:to-emerald-600/30 border-green-400/30"
                   onClick={() => navigate("/gorevler")}
                 >
-                  {t("turkiye_page.gorevler")}
+                  ⚡ GÖREVLER
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.gorevler_desc")}</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Cumhuriyet için yapılacak görevler listesi</p>
+              </motion.div>
               
-              {/* 6. ÇAĞRI */}
-              <div className="flex flex-col">
+              {/* 6. ÇAĞRI - Call to Action */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="primary"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-orange-800/20 to-amber-700/20 hover:from-orange-700/30 hover:to-amber-600/30 border-orange-400/30"
                   onClick={() => navigate("/cagri")}
                 >
-                  ÇAĞRI
+                  📢 ÇAĞRI
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">Halka çağrı ve manifestonun çağrı metni</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Meslek gruplarına özel çağrı ve davet metni</p>
+              </motion.div>
               
-              {/* 7. HAREKETE KATIL */}
-              <div className="flex flex-col">
+              {/* 7. HAREKETE KATIL - Join Movement */}
+              <motion.div 
+                className="flex flex-col"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <ModernTechButton 
                   variant="turkish"
                   size="lg"
                   glow="none"
                   border="subtle"
-                  className="w-full justify-center py-4"
+                  className="w-full justify-center py-4 bg-gradient-to-r from-red-700/40 to-red-600/40 hover:from-red-600/50 hover:to-red-500/50 border-red-400/40 shadow-lg"
                   onClick={() => navigate("/katil")}
                 >
-                  {t("turkiye_page.harekete_katil")}
+                  🤝 HAREKETE KATIL
                 </ModernTechButton>
-                <p className="text-xs text-gray-400 text-center px-2 mt-2">{t("turkiye_page.katil_desc")}</p>
-              </div>
+                <p className="text-xs text-gray-300 text-center px-2 mt-2">Cumhuriyet güçlenmesi katılım sistemi</p>
+              </motion.div>
             </motion.div>
           </motion.div>
         </AnimatePresence>
