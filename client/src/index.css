@@ -367,29 +367,12 @@ body {
   backdrop-filter: none !important;
 }
 
-/* Global animation and transition killer */
+/* Global animation and transition killer - keep visual effects */
 *, *::before, *::after {
   animation-duration: 0s !important;
   animation-delay: 0s !important;
   transition-duration: 0s !important;
   transition-delay: 0s !important;
-  transform: none !important;
-  -webkit-transform: none !important;
-}
-
-/* Special disable for problematic properties */
-.backdrop-blur-xl,
-.backdrop-blur-lg,
-[class*="backdrop-blur"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-[class*="shadow-"],
-[class*="drop-shadow"] {
-  box-shadow: none !important;
-  filter: none !important;
-  -webkit-filter: none !important;
 }
 
 /* Apply ultra-stable to all major layout containers globally */
