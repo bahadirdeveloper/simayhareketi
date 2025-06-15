@@ -95,19 +95,19 @@ export default function TurkiyePage() {
         </div>
 
         {/* Navigation Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 static-container">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-16 static-container">
           {/* TÜRK Nedir Button */}
           <div className="static-container">
             <ModernTechButton
               onClick={() => navigateToPage("/turknedir")}
-              className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl static-container"
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl static-container"
             >
               <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
-                <div className="text-base sm:text-lg md:text-xl font-bold text-white mb-3 leading-tight">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
                   TÜRK NEDİR?
                 </div>
                 <div className="text-red-400 text-xs opacity-80">
-                  Detaylar için tıklayın
+                  Detaylar
                 </div>
               </div>
             </ModernTechButton>
@@ -117,14 +117,82 @@ export default function TurkiyePage() {
           <div className="static-container">
             <ModernTechButton
               onClick={() => navigateToPage("/anayasalarimiz")}
-              className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl static-container"
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-blue-950/50 to-black/90 border-2 border-blue-500/50 rounded-2xl static-container"
             >
-              <div className="text-center px-1 py-3 h-full flex flex-col justify-center">
-                <div className="text-sm sm:text-base md:text-lg font-bold text-white mb-2 leading-tight">
+              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
                   ANAYASALARIMIZ
                 </div>
-                <div className="text-red-400 text-xs opacity-80">
+                <div className="text-blue-400 text-xs opacity-80">
                   Anayasa & Kanunlar
+                </div>
+              </div>
+            </ModernTechButton>
+          </div>
+
+          {/* Manifesto Button */}
+          <div className="static-container">
+            <ModernTechButton
+              onClick={() => navigateToPage("/halk-manifestolar")}
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-purple-950/50 to-black/90 border-2 border-purple-500/50 rounded-2xl static-container"
+            >
+              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
+                  MANİFESTO
+                </div>
+                <div className="text-purple-400 text-xs opacity-80">
+                  Halk Manifestoları
+                </div>
+              </div>
+            </ModernTechButton>
+          </div>
+
+          {/* Çağrı Button */}
+          <div className="static-container">
+            <ModernTechButton
+              onClick={() => navigateToPage("/cagri")}
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-orange-950/50 to-black/90 border-2 border-orange-500/50 rounded-2xl static-container"
+            >
+              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
+                  ÇAĞRI
+                </div>
+                <div className="text-orange-400 text-xs opacity-80">
+                  Halk Çağrısı
+                </div>
+              </div>
+            </ModernTechButton>
+          </div>
+
+          {/* Katıl Button */}
+          <div className="static-container">
+            <ModernTechButton
+              onClick={() => navigateToPage("/katil")}
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-green-950/50 to-black/90 border-2 border-green-500/50 rounded-2xl static-container"
+            >
+              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
+                  KATIL
+                </div>
+                <div className="text-green-400 text-xs opacity-80">
+                  Katılım Formu
+                </div>
+              </div>
+            </ModernTechButton>
+          </div>
+
+          {/* 100 Görev Diriliş Button */}
+          <div className="static-container">
+            <ModernTechButton
+              onClick={() => navigateToPage("/gorevler")}
+              className="w-full h-32 bg-gradient-to-br from-black/90 via-yellow-950/50 to-black/90 border-2 border-yellow-500/50 rounded-2xl static-container"
+            >
+              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                <div className="text-sm font-bold text-white mb-2 leading-tight">
+                  100 GÖREV
+                </div>
+                <div className="text-yellow-400 text-xs opacity-80">
+                  Diriliş Görevleri
                 </div>
               </div>
             </ModernTechButton>
@@ -166,11 +234,6 @@ export default function TurkiyePage() {
           </div>
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-center static-container">
-          <NavButtons />
-        </div>
-        
         {/* Global Translation System */}
         <GlobalTranslator />
       </div>
