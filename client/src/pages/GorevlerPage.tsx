@@ -1373,13 +1373,13 @@ export default function GorevlerPage() {
                         <img 
                           src={getGorevImage(gorev.id)}
                           alt=""
-                          className="w-full h-full object-cover opacity-30"
+                          className="w-full h-full object-cover opacity-90"
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
                             e.currentTarget.parentElement!.style.background = getGorevBackground(gorev.id);
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                       </div>
                       
                       {/* Task Number Badge */}
@@ -1392,11 +1392,11 @@ export default function GorevlerPage() {
                       {/* Task Content */}
                       <div className="relative z-10 p-6 h-full flex flex-col justify-between">
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-tight">
+                          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-tight drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                             {gorev.baslik}
                           </h3>
                           
-                          <p className="text-gray-300 text-sm line-clamp-3 mb-4">
+                          <p className="text-white text-sm line-clamp-3 mb-4 drop-shadow-md" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
                             {gorev.cagri || "Cumhuriyet güncelleme görevine katılın"}
                           </p>
                         </div>
@@ -1404,18 +1404,18 @@ export default function GorevlerPage() {
                         {/* Task Footer */}
                         <div className="space-y-3">
                           <div className="flex items-center justify-between text-sm">
-                            <span className="px-3 py-1 bg-black/40 text-white rounded-full border border-white/20 capitalize">
+                            <span className="px-3 py-1 bg-black/60 text-white rounded-full border border-white/30 capitalize drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
                               {gorev.kategori}
                             </span>
-                            <span className="text-gray-300">
+                            <span className="text-white font-medium drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
                               {gorev.tamamlayan}/{gorev.kontenjan}
                             </span>
                           </div>
                           
                           {/* Progress Bar */}
-                          <div className="w-full bg-black/40 rounded-full h-2">
+                          <div className="w-full bg-black/60 rounded-full h-2 border border-white/20">
                             <div 
-                              className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full transition-all duration-300"
+                              className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full transition-all duration-300 shadow-lg"
                               style={{ width: `${Math.min((gorev.tamamlayan / gorev.kontenjan) * 100, 100)}%` }}
                             ></div>
                           </div>
@@ -1423,13 +1423,13 @@ export default function GorevlerPage() {
                           {/* Status Indicator */}
                           <div className="flex items-center justify-center">
                             {gorev.tamamlayan > 0 ? (
-                              <div className="flex items-center text-green-400 text-sm">
-                                <CheckCircle className="w-4 h-4 mr-1" />
+                              <div className="flex items-center text-green-400 text-sm font-medium drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+                                <CheckCircle className="w-4 h-4 mr-1 drop-shadow-md" />
                                 Aktif
                               </div>
                             ) : (
-                              <div className="flex items-center text-orange-400 text-sm">
-                                <Clock className="w-4 h-4 mr-1" />
+                              <div className="flex items-center text-orange-400 text-sm font-medium drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+                                <Clock className="w-4 h-4 mr-1 drop-shadow-md" />
                                 Bekliyor
                               </div>
                             )}
