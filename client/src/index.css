@@ -5,6 +5,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+* {
+  will-change: auto;
+}
+
+/* Hardware acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Modern teknoloji temalı animasyonlar */
 @layer utilities {
   /* Yatay sweep animasyonu (soldan sağa) */
