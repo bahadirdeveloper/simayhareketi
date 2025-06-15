@@ -67,7 +67,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
     <>
       {/* Card */}
       <motion.div
-        className="relative group cursor-pointer content-stable motion-stable"
+        className="relative group cursor-pointer content-stable motion-stable ultra-stable"
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
@@ -75,7 +75,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
         onClick={openModal}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center min-w-[140px] w-full">
+        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center min-w-[140px] w-full ultra-stable">
           
           {/* Icon */}
           <div className="text-4xl mb-2 opacity-80">
