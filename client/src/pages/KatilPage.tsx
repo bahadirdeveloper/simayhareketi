@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import ModernLayout from "@/components/ModernLayout";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
-import { ModernTechButton } from "@/components/ModernTechButton";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -33,17 +33,29 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { 
-  BarChart4,
-  ArrowUpRight, 
-  ArrowDownRight,
   Users,
+  Crown,
   Heart,
   HandHeart,
-  ClipboardCheck,
+  Star,
+  Target,
+  Trophy,
+  MapPin,
+  Mail,
+  Phone,
+  Send,
+  CheckCircle,
+  TrendingUp,
+  Zap,
+  Shield,
+  Globe,
   Flag,
-  Share2
+  Sparkles,
+  Rocket,
+  Award
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 import PaymentForm from "@/components/PaymentForm";
@@ -72,43 +84,76 @@ export default function KatilPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
   const { toast } = useToast();
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   
-  // Community solidarity progress data
-  const [participantGoal] = useState(10000000); // 10 million participants goal
-  const [currentParticipants] = useState(0); // Current participant count
-  const [projectGoal] = useState(100); // Project completion goal (100%)
-  const [currentProjects] = useState(0); // Current project completion percentage
-  const [volunteerGoal] = useState(1000000); // Volunteer goal
-  const [currentVolunteers] = useState(0); // Current volunteer count
-  
-  // Calculate percentage for progress bars
-  const calculatePercentage = (current: number, goal: number) => {
-    return Math.min(Math.round((current / goal) * 100), 100);
+  // Hero stats with real-time effect
+  const [stats, setStats] = useState({
+    participants: 0,
+    cities: 0,
+    projects: 0,
+    volunteers: 0
+  });
+
+  const targetStats = {
+    participants: 10000000,
+    cities: 81,
+    projects: 100,
+    volunteers: 1000000
   };
-  
-  // Para biçimlendirme fonksiyonu
-  const formatCurrency = (amount: number) => {
-    return `₺${(amount / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-  };
-  
-  // Gelir-gider bilgileri - Henüz işlem yok
-  const incomeData = [
-    { id: 1, date: '23 Nisan 2025', description: 'Tüm Dünya Çocuklarına Armağan', amount: 0, type: 'income' },
-    { id: 2, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'income' },
-    { id: 3, date: '30 Ağustos 2025', description: 'Sonsuz Zafer Bayramı', amount: 0, type: 'income' },
+
+  const membershipTiers = [
+    {
+      id: "destekci",
+      title: "Destekçi",
+      subtitle: "Temel Katılım",
+      price: "1 TL",
+      icon: Heart,
+      color: "from-blue-500 to-cyan-500",
+      features: [
+        "Platform erişimi",
+        "Görev katılımı",
+        "Topluluk forumları",
+        "Aylık bülten"
+      ],
+      popular: false
+    },
+    {
+      id: "aktif",
+      title: "Aktif Üye",
+      subtitle: "Gelişmiş Katılım",
+      price: "25 TL",
+      icon: Star,
+      color: "from-orange-500 to-red-500",
+      features: [
+        "Tüm destekçi hakları",
+        "Özel etkinlikler",
+        "Proje önerileri",
+        "Öncelikli destek",
+        "Özel rozetler"
+      ],
+      popular: true
+    },
+    {
+      id: "koordinator",
+      title: "Koordinatör",
+      subtitle: "Liderlik Katılımı",
+      price: "100 TL",
+      icon: Crown,
+      color: "from-purple-500 to-pink-500",
+      features: [
+        "Tüm aktif üye hakları",
+        "Yerel organizasyon",
+        "Karar alma süreçleri",
+        "Özel mentor desteği",
+        "Platform yönetimi",
+        "VIP etkinlik erişimi"
+      ],
+      popular: false
+    }
   ];
-  
-  const expenseData = [
-    { id: 1, date: '23 Nisan 2025', description: 'Tüm Dünya Çocuklarına Armağan', amount: 0, type: 'expense' },
-    { id: 2, date: '19 Mayıs 2025', description: 'Platformun Başlangıç Tarihi', amount: 0, type: 'expense' },
-    { id: 3, date: '30 Ağustos 2025', description: 'Sonsuz Zafer Bayramı', amount: 0, type: 'expense' },
-  ];
-  
-  // Toplam gelir/gider hesaplamaları
-  const totalIncome = incomeData.reduce((sum, item) => sum + item.amount, 0);
-  const totalExpense = expenseData.reduce((sum, item) => sum + item.amount, 0);
-  const balance = totalIncome - totalExpense;
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -122,10 +167,8 @@ export default function KatilPage() {
   });
   
   useEffect(() => {
-    // Initialize audio system
-    initAudio();
+    initAudio('katil');
     
-    // Record visitor stats
     const recordVisit = async () => {
       try {
         await apiRequest(
@@ -144,493 +187,524 @@ export default function KatilPage() {
     
     recordVisit();
   }, [i18n.language]);
-  
+
+  const animateStats = () => {
+    const duration = 2000;
+    const steps = 60;
+    const stepDuration = duration / steps;
+    
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+      
+      setStats({
+        participants: Math.floor(targetStats.participants * progress * 0.001), // Start from small numbers
+        cities: Math.floor(targetStats.cities * progress * 0.01),
+        projects: Math.floor(targetStats.projects * progress * 0.05),
+        volunteers: Math.floor(targetStats.volunteers * progress * 0.002)
+      });
+      
+      if (currentStep >= steps) {
+        clearInterval(interval);
+      }
+    }, stepDuration);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      animateStats();
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleToggleAudio = () => {
     playSoundtrack();
   };
   
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setIsSubmitting(true);
     
-    // Submit form
-    try {
-      // Here you would normally submit the form data to the backend
-      
+    setTimeout(() => {
+      setShowConfetti(true);
       toast({
-        title: "Başarıyla gönderildi!",
-        description: "Katılım talebiniz alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.",
+        title: "🎉 Harekete Hoş Geldiniz!",
+        description: "Katılımınız başarıyla kaydedildi. Cumhuriyetin geleceğine hoş geldiniz!",
         variant: "default",
       });
       
-      // Reset form
       form.reset();
-    } catch (error) {
-      toast({
-        title: "Hata",
-        description: "Bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.",
-        variant: "destructive",
-      });
-    }
+      setIsSubmitting(false);
+      setCurrentStep(3);
+      
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 3000);
+    }, 2000);
   }
-  
-  // Sayfa içeriği - erişilebilirlik okuyucusu için
-  const pageContent = `Katılım ve Bağış Sayfası. 
-    Bu sayfada Cumhuriyetin Halk ile Güncellenme Platformu'na katılabilir veya bağış yapabilirsiniz. 
-    Platformumuza katılmak için formu doldurup 1 TL'lik sembolik kayıt ücretini ödeyebilirsiniz. 
-    Bağış yapmak için bağış sekmesini kullanabilirsiniz. 
-    Şeffaf gelir-gider tablosunu da buradan görüntüleyebilirsiniz.`;
+
+  const steps = [
+    { title: "Bilgileriniz", icon: Users },
+    { title: "Katılım Tipi", icon: Target },
+    { title: "Ödeme", icon: Shield },
+    { title: "Tamamlandı", icon: Trophy }
+  ];
 
   return (
-    <ModernLayout 
-      audioKey="katil" 
-      showBackButton={true} 
-      pageName="Katılım & Bağış"
-      pageContent={pageContent}
-    >
-      <div className="w-full max-w-3xl mx-auto">
-        {/* Bağış Uyarı Mesajı */}
-        <div className="bg-red-900/40 border-2 border-red-600 rounded-lg p-6 mb-8 text-center animate-pulse">
-          <h2 className="text-2xl-responsive font-bold text-white mb-4">
-            ⚠️ BAĞIŞ İŞLEMLERİ ŞU AN İÇİN YAPILAMAMAKTADIR ⚠️
-          </h2>
-          <p className="text-lg-responsive text-gray-200 font-semibold mb-4">
-            HALK BANKALARI, BU ALANLARA TÜRK MİLLETİ İÇİN BİR İBAN BIRAKACAKTIR.
-          </p>
-          <p className="text-lg-responsive text-gray-200 font-semibold">
-            HALK İÇİN, HALKIN ADINA.
-          </p>
-        </div>
-        
-        {/* Community Solidarity Progress Visualization */}
-        <div className="mb-10">
-          <h2 className="text-2xl-responsive font-bold text-white mb-6 text-center">HALK DAYANIŞMASI İLERLEYİŞİ</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Participant Progress */}
-            <div className="bg-gradient-to-br from-blue-950/50 to-blue-900/20 backdrop-blur-sm rounded-lg p-5 border border-blue-700/30">
-              <div className="flex items-center mb-3">
-                <Users className="h-6 w-6 text-blue-400 mr-3" />
-                <h3 className="text-lg-responsive font-semibold text-blue-300">Vatandaş Katılımı</h3>
-              </div>
-              <div className="mb-2 flex justify-between">
-                <span className="text-gray-300">{currentParticipants.toLocaleString('tr-TR')} vatandaş</span>
-                <span className="text-gray-400">{participantGoal.toLocaleString('tr-TR')} hedef</span>
-              </div>
-              <Progress 
-                value={calculatePercentage(currentParticipants, participantGoal)} 
-                className="h-3 bg-blue-950/70"
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
+      {/* Background */}
+      <SimpleFuturisticTurkish />
+      
+      {/* Confetti Effect */}
+      <AnimatePresence>
+        {showConfetti && (
+          <div className="fixed inset-0 z-50 pointer-events-none">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-3 h-3 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full"
+                initial={{ 
+                  x: Math.random() * window.innerWidth,
+                  y: -10,
+                  opacity: 1,
+                  scale: 0
+                }}
+                animate={{ 
+                  y: window.innerHeight + 10,
+                  opacity: 0,
+                  scale: 1,
+                  rotate: 360
+                }}
+                transition={{ 
+                  duration: 3,
+                  delay: Math.random() * 2,
+                  ease: "easeOut"
+                }}
               />
-              <p className="text-gray-400 text-sm mt-2 text-right">
-                %{calculatePercentage(currentParticipants, participantGoal)} tamamlandı
-              </p>
-            </div>
-            
-            {/* Project Progress */}
-            <div className="bg-gradient-to-br from-amber-950/50 to-amber-900/20 backdrop-blur-sm rounded-lg p-5 border border-amber-700/30">
-              <div className="flex items-center mb-3">
-                <Flag className="h-6 w-6 text-amber-400 mr-3" />
-                <h3 className="text-lg-responsive font-semibold text-amber-300">Görev Tamamlanma</h3>
-              </div>
-              <div className="mb-2 flex justify-between">
-                <span className="text-gray-300">{currentProjects}% tamamlandı</span>
-                <span className="text-gray-400">{projectGoal}% hedef</span>
-              </div>
-              <Progress 
-                value={currentProjects} 
-                className="h-3 bg-amber-950/70"
-              />
-              <p className="text-gray-400 text-sm mt-2 text-right">
-                {currentProjects} görev tamamlandı
-              </p>
-            </div>
-            
-            {/* Volunteer Progress */}
-            <div className="bg-gradient-to-br from-green-950/50 to-green-900/20 backdrop-blur-sm rounded-lg p-5 border border-green-700/30">
-              <div className="flex items-center mb-3">
-                <HandHeart className="h-6 w-6 text-green-400 mr-3" />
-                <h3 className="text-lg-responsive font-semibold text-green-300">Gönüllü Katılımı</h3>
-              </div>
-              <div className="mb-2 flex justify-between">
-                <span className="text-gray-300">{currentVolunteers.toLocaleString('tr-TR')} gönüllü</span>
-                <span className="text-gray-400">{volunteerGoal.toLocaleString('tr-TR')} hedef</span>
-              </div>
-              <Progress 
-                value={calculatePercentage(currentVolunteers, volunteerGoal)} 
-                className="h-3 bg-green-950/70"
-              />
-              <p className="text-gray-400 text-sm mt-2 text-right">
-                %{calculatePercentage(currentVolunteers, volunteerGoal)} tamamlandı
-              </p>
-            </div>
-            
-            {/* Knowledge Sharing Progress */}
-            <div className="bg-gradient-to-br from-red-950/50 to-red-900/20 backdrop-blur-sm rounded-lg p-5 border border-red-700/30">
-              <div className="flex items-center mb-3">
-                <Share2 className="h-6 w-6 text-red-400 mr-3" />
-                <h3 className="text-lg-responsive font-semibold text-red-300">Harekete Geçen İller</h3>
-              </div>
-              <div className="mb-2 flex justify-between">
-                <span className="text-gray-300">0 il aktif</span>
-                <span className="text-gray-400">81 il hedef</span>
-              </div>
-              <Progress 
-                value={0} 
-                className="h-3 bg-red-950/70"
-              />
-              <p className="text-gray-400 text-sm mt-2 text-right">
-                %0 tamamlandı
-              </p>
-            </div>
+            ))}
           </div>
-          
-          <div className="mt-8 text-center">
-            <p className="text-lg-responsive text-gray-300 mb-3">
-              Birlik içinde, Türkiye'nin geleceğini şekillendiren harekete sen de katıl!
-            </p>
-            <ModernTechButton 
-              color="red"
-              size="lg"
-              onClick={() => document.getElementById('katilimFormu')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              HAREKETE KATIL
-            </ModernTechButton>
-          </div>
-        </div>
-        
-        <Tabs defaultValue="katilim" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6 min-h-[44px]">
-            <TabsTrigger 
-              value="katilim"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
-            >
-              KATILIM
-            </TabsTrigger>
-            <TabsTrigger 
-              value="bagis"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
-            >
-              BAĞIŞ YAP
-            </TabsTrigger>
-            <TabsTrigger 
-              value="financial"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-amber-600 data-[state=active]:text-white text-base-responsive min-h-[44px] py-2"
-            >
-              ŞEFFAF GELİR-GİDER
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="katilim" className="mt-2">
-            <div className="text-center mb-6">
-              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-4">
-                Cumhuriyet Güncellenme Platformu Katılımı
-              </h3>
-              <p className="text-gray-200 text-base-responsive mb-4">
-                Platformumuza katılmak için aşağıdaki formu doldurduktan sonra
-                1 TL'lik sembolik kayıt ücretini ödemeniz gerekmektedir.
-              </p>
-              <div className="bg-amber-900/30 border border-amber-500/50 rounded-lg p-4 mb-6">
-                <p className="text-amber-300 text-base-responsive">
-                  Kayıt ücreti, platform maliyetlerinin karşılanması ve sisteme olan bağlılığın sembolik bir göstergesi olarak alınmaktadır.
-                </p>
-              </div>
-            </div>
-            
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="ad"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white text-base-responsive">Ad Soyad</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Ad ve soyadınızı giriniz" 
-                          {...field} 
-                          className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
-                        />
-                      </FormControl>
-                      <FormMessage className="text-base-responsive" />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white text-base-responsive">E-posta Adresi</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="ornekmail@adres.com" 
-                            type="email"
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-base-responsive" />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="telefon"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white text-base-responsive">Telefon</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="05XX XXX XX XX" 
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-base-responsive" />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <FormField
-                    control={form.control}
-                    name="sehir"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white text-base-responsive">Şehir</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Yaşadığınız şehir" 
-                            {...field} 
-                            className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-base-responsive" />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="katilimTipi"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white text-base-responsive">Katılım Tipi</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="bg-black/50 border-amber-500 text-white text-base-responsive h-12 min-h-[44px]">
-                              <SelectValue placeholder="Katılım tipi seçin" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className="bg-black/90 border-amber-500 text-white text-base-responsive">
-                            <SelectItem value="gonullu" className="min-h-[44px] flex items-center">Gönüllü Katılımcı</SelectItem>
-                            <SelectItem value="teknik" className="min-h-[44px] flex items-center">Teknik Ekip</SelectItem>
-                            <SelectItem value="organizasyon" className="min-h-[44px] flex items-center">Organizasyon Ekibi</SelectItem>
-                            <SelectItem value="icerik" className="min-h-[44px] flex items-center">İçerik Üretimi</SelectItem>
-                            <SelectItem value="diger" className="min-h-[44px] flex items-center">Diğer</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage className="text-base-responsive" />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="mesaj"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white text-base-responsive">Mesajınız (Opsiyonel)</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Katılım amacınızı, yeteneklerinizi veya sorularınızı yazabilirsiniz." 
-                          {...field} 
-                          className="bg-black/50 border-amber-500 text-white text-base-responsive h-32"
-                        />
-                      </FormControl>
-                      <FormMessage className="text-base-responsive" />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="pt-4">
-                  <ModernTechButton 
-                    type="submit" 
-                    variant="turkish"
-                    size="xl"
-                    glow="subtle"
-                    border="glowing"
-                    className="w-full text-lg-responsive font-bold min-h-[54px] py-3"
-                  >
-                    Bilgilerimi Kaydet ve Ödemeye Geç
-                  </ModernTechButton>
-                </div>
-              </form>
-            </Form>
-            
-            <div className="mt-6 pt-6 border-t border-amber-500/30">
-              <h4 className="text-xl-responsive font-semibold text-amber-400 mb-4 text-center">
-                Kayıt Ücreti Ödemesi
-              </h4>
-              <div className="bg-black/40 backdrop-blur-sm border border-amber-500/50 rounded-lg p-4 md:p-5">
-                <div className="mb-4 text-center">
-                  <div className="inline-block bg-amber-900/50 px-4 py-3 rounded-lg border border-amber-500/30">
-                    <span className="text-white text-base-responsive">Katılım ücreti:</span>
-                    <span className="text-amber-400 font-bold text-xl-responsive ml-2">1 TL</span>
-                  </div>
-                </div>
-                
-                <PaymentForm 
-                  isRegistrationFee={true}
-                  fixedAmount={1}
-                  fixedDescription="Cumhuriyet Güncellenme Platformu Kayıt Ücreti"
-                />
-                
-                <div className="mt-3 text-center">
-                  <p className="text-gray-300 text-base-responsive italic">
-                    * Ödeme bilgileriniz güvenli bir şekilde işlenmektedir. Kredi kartı veya banka bilgileriniz sistemimizde saklanmaz.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="bagis" className="mt-2">
-            <div className="text-center mb-4">
-              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-2">
-                Cumhuriyeti Güncellemek İçin Bağış Yap
-              </h3>
-              <p className="text-gray-200 text-base-responsive">
-                Bağışınız "Medeniyet için yetecek kadar" hedefimize katkı sağlayacak
-              </p>
-            </div>
-            
-            <PaymentForm />
-          </TabsContent>
-          
-          <TabsContent value="financial" className="mt-2">
-            <div className="text-center mb-6">
-              <h3 className="text-xl-responsive font-semibold text-amber-400 mb-2">
-                Şeffaf Gelir-Gider Tablosu
-              </h3>
-              <p className="text-gray-200 text-base-responsive">
-                Platformun tüm finansal faaliyetleri şeffaf bir şekilde yönetilmektedir
-              </p>
-            </div>
-            
-            <div className="flex flex-col md:flex-row justify-between items-center md:space-x-4 mb-4">
-              <div className="bg-gradient-to-r from-green-900/50 to-green-950/30 p-4 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto min-h-[60px]">
-                <ArrowUpRight className="text-green-400 mr-3 h-6 w-6" />
-                <div>
-                  <p className="text-gray-300 text-base-responsive">Toplam Gelir</p>
-                  <p className="text-green-400 font-bold text-base-responsive">{formatCurrency(totalIncome)}</p>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-red-900/50 to-red-950/30 p-4 rounded-lg flex items-center mb-3 md:mb-0 w-full md:w-auto min-h-[60px]">
-                <ArrowDownRight className="text-red-400 mr-3 h-6 w-6" />
-                <div>
-                  <p className="text-gray-300 text-base-responsive">Toplam Gider</p>
-                  <p className="text-red-400 font-bold text-base-responsive">{formatCurrency(totalExpense)}</p>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-blue-900/50 to-blue-950/30 p-4 rounded-lg flex items-center w-full md:w-auto min-h-[60px]">
-                <BarChart4 className="text-blue-400 mr-3 h-6 w-6" />
-                <div>
-                  <p className="text-gray-300 text-base-responsive">Mevcut Bakiye</p>
-                  <p className={`font-bold text-base-responsive ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
-                    {formatCurrency(balance)}
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <Tabs defaultValue="income">
-              <TabsList className="grid w-full grid-cols-2 mb-4 min-h-[44px]">
-                <TabsTrigger value="income" className="text-base-responsive min-h-[44px] py-2">
-                  Gelirler
-                </TabsTrigger>
-                <TabsTrigger value="expense" className="text-base-responsive min-h-[44px] py-2">
-                  Giderler
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="income">
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="text-amber-400 text-base-responsive">Tarih</TableHead>
-                        <TableHead className="text-amber-400 text-base-responsive">Açıklama</TableHead>
-                        <TableHead className="text-amber-400 text-right text-base-responsive">Tutar</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {incomeData.map((item) => (
-                        <TableRow key={item.id} className="border-b border-amber-900/20">
-                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.date}</TableCell>
-                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.description}</TableCell>
-                          <TableCell className="text-green-400 text-right text-base-responsive py-3">{formatCurrency(item.amount)}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="expense">
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="text-amber-400 text-base-responsive">Tarih</TableHead>
-                        <TableHead className="text-amber-400 text-base-responsive">Açıklama</TableHead>
-                        <TableHead className="text-amber-400 text-right text-base-responsive">Tutar</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {expenseData.map((item) => (
-                        <TableRow key={item.id} className="border-b border-amber-900/20">
-                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.date}</TableCell>
-                          <TableCell className="text-gray-300 text-base-responsive py-3">{item.description}</TableCell>
-                          <TableCell className="text-red-400 text-right text-base-responsive py-3">{formatCurrency(item.amount)}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </TabsContent>
-        </Tabs>
-        
-        <div className="flex flex-col md:flex-row gap-4 justify-center mt-10 mb-6">
-          <ModernTechButton 
-            variant="futuristic"
-            glow="subtle"
-            border="subtle"
-            onClick={() => navigate("/turkiye")}
-            className="text-base-responsive min-h-[50px] py-3"
+        )}
+      </AnimatePresence>
+      
+      {/* Accessibility Reader */}
+      <AccessibilityReader 
+        pageContent="Cumhuriyet Katılım Platformu. Bu sayfada harekete katılabilir, üyelik tipinizi seçebilir ve platformun bir parçası olabilirsiniz."
+        pageName="katil" 
+      />
+      
+      {/* Epic Hero Section */}
+      <div className="relative z-20 py-20 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center mb-16"
           >
-            ◀ Türkiye Sayfasına Dön
-          </ModernTechButton>
-          
-          <ModernTechButton 
-            variant="primary"
-            glow="subtle"
-            border="glowing"
-            onClick={() => navigate("/")}
-            className="text-base-responsive min-h-[50px] py-3"
-          >
-            Ana Sayfa
-          </ModernTechButton>
+            <div className="relative mb-12">
+              <motion.div
+                className="w-40 h-40 mx-auto bg-gradient-to-br from-red-500/30 to-orange-600/30 rounded-full flex items-center justify-center border-4 border-red-500/50 shadow-[0_0_100px_rgba(239,68,68,0.5)]"
+                animate={{
+                  boxShadow: [
+                    "0 0 100px rgba(239, 68, 68, 0.5)",
+                    "0 0 150px rgba(239, 68, 68, 0.8)",
+                    "0 0 100px rgba(239, 68, 68, 0.5)"
+                  ],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
+                <Rocket className="w-20 h-20 text-red-400" />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-orange-500/10 to-red-500/20 rounded-full blur-3xl"></div>
+            </div>
+
+            <motion.h1 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-red-400 via-orange-500 via-yellow-400 to-red-600 bg-clip-text text-transparent mb-8 leading-tight"
+            >
+              CUMHURİYETE KATIL
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-2xl md:text-3xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed"
+            >
+              Türkiye'nin geleceğini şekillendiren büyük harekete sen de katıl. 
+              <span className="text-red-400 font-bold"> Birlikte güçlüyüz!</span>
+            </motion.p>
+
+            {/* Real-time Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12"
+            >
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/10 backdrop-blur-lg border border-blue-500/30 rounded-2xl p-6">
+                <Users className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">{stats.participants.toLocaleString()}</div>
+                <div className="text-blue-300 text-sm">Katılımcı</div>
+              </div>
+              <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/10 backdrop-blur-lg border border-green-500/30 rounded-2xl p-6">
+                <MapPin className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">{stats.cities}</div>
+                <div className="text-green-300 text-sm">Şehir</div>
+              </div>
+              <div className="bg-gradient-to-br from-orange-500/20 to-red-500/10 backdrop-blur-lg border border-orange-500/30 rounded-2xl p-6">
+                <Target className="w-8 h-8 text-orange-400 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">{stats.projects}</div>
+                <div className="text-orange-300 text-sm">Proje</div>
+              </div>
+              <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/10 backdrop-blur-lg border border-purple-500/30 rounded-2xl p-6">
+                <HandHeart className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-1">{stats.volunteers.toLocaleString()}</div>
+                <div className="text-purple-300 text-sm">Gönüllü</div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </ModernLayout>
+      
+      {/* Main Content */}
+      <main className="container mx-auto px-4 pb-24 max-w-6xl z-10 relative">
+        <div className="space-y-20">
+          {/* Membership Tiers */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent mb-6">
+                Üyelik Seçenekleri
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Katkı seviyene göre üyelik tipini seç ve harekete dahil ol
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {membershipTiers.map((tier, index) => (
+                <motion.div
+                  key={tier.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="group relative"
+                >
+                  <Card className={`h-full bg-gradient-to-br from-black/60 via-gray-900/40 to-black/60 border-2 ${
+                    tier.popular 
+                      ? 'border-orange-500/50 shadow-[0_0_50px_rgba(251,146,60,0.3)]' 
+                      : 'border-gray-500/30 hover:border-orange-400/50'
+                  } transition-all duration-300 backdrop-blur-lg relative overflow-hidden`}>
+                    
+                    {tier.popular && (
+                      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500"></div>
+                    )}
+                    
+                    {tier.popular && (
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-none px-4 py-1">
+                          <Star className="w-4 h-4 mr-1" />
+                          En Popüler
+                        </Badge>
+                      </div>
+                    )}
+                    
+                    <CardHeader className="text-center pb-4 pt-8">
+                      <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${tier.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <tier.icon className="w-10 h-10 text-white" />
+                      </div>
+                      
+                      <CardTitle className="text-2xl text-white group-hover:text-orange-400 transition-colors duration-300">
+                        {tier.title}
+                      </CardTitle>
+                      <CardDescription className="text-gray-400 font-medium">
+                        {tier.subtitle}
+                      </CardDescription>
+                      
+                      <div className="mt-4">
+                        <div className="text-4xl font-bold text-white">{tier.price}</div>
+                        <div className="text-gray-400">tek seferlik</div>
+                      </div>
+                    </CardHeader>
+                    
+                    <CardContent className="pt-0 pb-8">
+                      <ul className="space-y-3 mb-8">
+                        {tier.features.map((feature, i) => (
+                          <li key={i} className="flex items-center text-gray-300">
+                            <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <Button 
+                        className={`w-full bg-gradient-to-r ${tier.color} hover:shadow-lg text-white font-semibold py-3 rounded-xl transition-all duration-300`}
+                        onClick={() => {
+                          form.setValue("katilimTipi", tier.id);
+                          document.getElementById('membershipForm')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <Zap className="w-5 h-5 mr-2" />
+                        Seç ve Katıl
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Registration Form */}
+          <motion.div
+            id="membershipForm"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="bg-gradient-to-br from-black/70 via-red-950/10 to-black/70 border-2 border-red-500/40 backdrop-blur-xl shadow-[0_30px_100px_rgba(239,68,68,0.2)] overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 to-red-500"></div>
+              
+              <CardHeader className="text-center pb-8 pt-12">
+                <div className="flex items-center justify-center space-x-2 mb-6">
+                  <Globe className="w-8 h-8 text-red-400" />
+                  <Flag className="w-8 h-8 text-white" />
+                  <Crown className="w-8 h-8 text-orange-400" />
+                </div>
+                
+                <CardTitle className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-4">
+                  Harekete Katılım Formu
+                </CardTitle>
+                <CardDescription className="text-gray-300 text-lg max-w-2xl mx-auto">
+                  Türkiye'nin geleceğini şekillendiren büyük harekete katılmak için bilgilerinizi paylaşın
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent className="px-8 pb-12">
+                {/* Progress Steps */}
+                <div className="flex items-center justify-between mb-12 max-w-2xl mx-auto">
+                  {steps.map((step, index) => (
+                    <div key={index} className="flex flex-col items-center flex-1">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                        index <= currentStep 
+                          ? 'bg-gradient-to-r from-red-500 to-orange-500 border-red-500 text-white' 
+                          : 'border-gray-600 text-gray-400'
+                      }`}>
+                        <step.icon className="w-6 h-6" />
+                      </div>
+                      <div className={`text-sm mt-2 transition-colors duration-300 ${
+                        index <= currentStep ? 'text-red-400' : 'text-gray-400'
+                      }`}>
+                        {step.title}
+                      </div>
+                      {index < steps.length - 1 && (
+                        <div className={`absolute h-0.5 w-16 mt-6 transition-colors duration-300 ${
+                          index < currentStep ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gray-600'
+                        }`} style={{ left: `${((index + 1) / steps.length) * 100}%` }} />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="ad"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white font-medium flex items-center">
+                              <Users className="w-4 h-4 mr-2 text-red-400" />
+                              Ad Soyad
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="Adınız ve soyadınız" 
+                                {...field} 
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white font-medium flex items-center">
+                              <Mail className="w-4 h-4 mr-2 text-red-400" />
+                              E-posta Adresi
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="ornek@email.com" 
+                                type="email"
+                                {...field} 
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="telefon"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white font-medium flex items-center">
+                              <Phone className="w-4 h-4 mr-2 text-red-400" />
+                              Telefon
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="05XX XXX XX XX" 
+                                {...field} 
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="sehir"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white font-medium flex items-center">
+                              <MapPin className="w-4 h-4 mr-2 text-red-400" />
+                              Şehir
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="Şehriniz" 
+                                {...field} 
+                                className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors h-12"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="katilimTipi"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white font-medium flex items-center">
+                            <Target className="w-4 h-4 mr-2 text-red-400" />
+                            Katılım Tipi
+                          </FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="bg-black/50 border-red-500/30 text-white focus:border-red-400 h-12">
+                                <SelectValue placeholder="Katılım tipinizi seçin" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-black/90 border-red-500/30">
+                              <SelectItem value="destekci">Destekçi (1 TL)</SelectItem>
+                              <SelectItem value="aktif">Aktif Üye (25 TL)</SelectItem>
+                              <SelectItem value="koordinator">Koordinatör (100 TL)</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="mesaj"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white font-medium flex items-center">
+                            <Heart className="w-4 h-4 mr-2 text-red-400" />
+                            Harekete Katılma Motivasyonunuz (İsteğe bağlı)
+                          </FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Bu harekete neden katılmak istediğinizi kısaca paylaşın..."
+                              {...field} 
+                              className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-400 focus:border-red-400 transition-colors min-h-24"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="pt-6">
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-gradient-to-r from-red-600 via-orange-600 to-red-600 hover:from-red-700 hover:via-orange-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                      >
+                        {isSubmitting ? (
+                          <div className="flex items-center justify-center">
+                            <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
+                            Harekete Katılıyorsunuz...
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center">
+                            <Rocket className="w-6 h-6 mr-3" />
+                            <Sparkles className="w-5 h-5 mr-2" />
+                            CUMHURİYETE KATIL
+                            <Sparkles className="w-5 h-5 ml-2" />
+                          </div>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.3 }}
+            className="text-center"
+          >
+            <div className="backdrop-blur-xl bg-gradient-to-br from-red-500/20 via-orange-500/10 to-red-500/20 border-2 border-red-500/40 rounded-3xl p-12 max-w-4xl mx-auto">
+              <Award className="w-16 h-16 text-red-400 mx-auto mb-6" />
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Geleceğin İnşasında Rol Al
+              </h3>
+              <p className="text-gray-300 text-xl mb-8 leading-relaxed">
+                Her katılım, Türkiye'nin daha güçlü bir geleceğe adım atmasıdır. 
+                Sen de bu büyük dönüşümün bir parçası ol ve tarih yazanlar arasında yer al.
+              </p>
+              <div className="flex items-center justify-center space-x-4 text-red-400">
+                <Star className="w-6 h-6 fill-current" />
+                <span className="text-lg font-medium">Birlikte Güçlüyüz</span>
+                <Star className="w-6 h-6 fill-current" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </main>
+    </div>
   );
 }
