@@ -42,9 +42,8 @@ import UlkeEklePage from "@/pages/UlkeEklePage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimayHomeProfessional} />
+      <Route path="/" component={LanguagePage} />
       <Route path="/dil-secimi" component={LanguagePage} />
-      <Route path="/dil" component={LanguagePage} />
       <Route path="/ulke-ekle" component={UlkeEklePage} />
       <Route path="/home" component={SimayHomeModern} />
       <Route path="/professional" component={SimayHomeProfessional} />

@@ -9,15 +9,18 @@ import { ModernTechButton } from './ModernTechButton';
 import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
 import { navigateWithScrollReset, scrollToTop } from '@/lib/navigation';
 
-// Audio button component
+// Ses kontrolü için düğme bileşeni
 const AudioButton = () => {
   const [location, setLocation] = useLocation();
   const [showPlayer, setShowPlayer] = useState(false);
   
+  // Dil sayfasına yönlendirme ve ses oynatıcı işlevselliği
   const handleClick = (e: React.MouseEvent) => {
     if (e.shiftKey) {
+      // Shift tuşu ile tıklanırsa dil sayfasına git
       setLocation('/dil');
     } else {
+      // Ses oynatıcıyı göster/gizle
       setShowPlayer(!showPlayer);
     }
   };
@@ -32,6 +35,7 @@ const AudioButton = () => {
         SES
       </button>
       
+      {/* Mobile-optimized music panel */}
       {showPlayer && (
         <div className="fixed bottom-16 left-2 sm:bottom-20 sm:left-4 z-40 bg-black/90 p-2 sm:p-3 rounded-lg border border-red-500/30 shadow-lg max-w-xs">
           <div className="flex justify-between items-center mb-2">
@@ -85,7 +89,9 @@ interface ModernLayoutProps {
   onAudioToggle?: () => void;
 }
 
+// Memoized grid lines for better performance
 const GridLines = memo(() => {
+  // Pre-calculate grid lines to avoid re-renders
   const gridLines = useMemo(() => {
     const horizontalLines = [...Array(5)].map((_, i) => (
       <div 
@@ -115,28 +121,57 @@ const GridLines = memo(() => {
 
 GridLines.displayName = 'GridLines';
 
+// Completely static background - no moving elements
 const BackgroundElements = memo(() => (
   <div className="absolute inset-0 z-0 ultra-stable no-motion">
-    {/* Static background elements only */}
+    {/* Completely static elements only - no gradients that can cause jitter */}
   </div>
 ));
 
 BackgroundElements.displayName = 'BackgroundElements';
 
+// Optimized footer component
 const Footer = memo(() => (
   <div className="text-center mt-8 mb-4 flex flex-col items-center space-y-3">
     <div className="inline-flex flex-wrap items-center justify-center space-x-1 sm:space-x-2 bg-black/40 px-4 py-2.5 rounded-full border border-red-900/20 shadow-sm">
       <div className="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
       <p className="text-xs sm:text-sm text-gray-300 font-light tracking-wide">
-        <span className="font-medium text-red-400">19 Mayıs 2025</span>
+        <span className="font-medium text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
       </p>
+    </div>
+    
+    <div className="relative z-10">
+      <div className="mb-2 flex justify-center items-center">
+        <div className="h-px w-4 bg-gradient-to-r from-transparent to-red-500"></div>
+        <div className="mx-2 text-xs uppercase tracking-widest text-red-400 font-medium">Forum Bağlantısı</div>
+        <div className="h-px w-4 bg-gradient-to-l from-transparent to-red-500"></div>
+      </div>
+      
+      <a 
+        href="https://www.simayhareketi.com" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline"
+      >
+        <ModernTechButton 
+          variant="turkish"
+          size="md"
+          glow="subtle"
+          border="glowing"
+          leftIcon={<MessageCircle className="w-4 h-4" />}
+          rightIcon={<ExternalLink className="w-3.5 h-3.5" />}
+        >
+          Halk Koordinasyon Merkezi
+        </ModernTechButton>
+      </a>
     </div>
   </div>
 ));
 
 Footer.displayName = 'Footer';
 
-const ModernLayoutComponent = ({
+// Main layout component
+const ModernLayout = ({
   children,
   audioKey = 'home',
   showLanguageSelector = false,
@@ -148,12 +183,15 @@ const ModernLayoutComponent = ({
   const [, navigate] = useLocation();
 
   useEffect(() => {
+    // Scroll to top on page change using global helper
     scrollToTop();
     
+    // Optimize audio initialization
     const audioInitTimeout = setTimeout(() => {
       initAudio(audioKey);
     }, 100);
     
+    // Record visit - using a more efficient approach
     const recordVisit = async () => {
       try {
         const visitData = {
@@ -163,6 +201,7 @@ const ModernLayoutComponent = ({
           hasInteracted: false
         };
         
+        // Use fetch with a timeout to prevent blocking the UI
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000);
         
@@ -197,6 +236,7 @@ const ModernLayoutComponent = ({
     if (onAudioToggle) onAudioToggle();
   };
 
+  // Simple back button for better usability
   const backButton = useMemo(() => {
     if (!showBackButton) return null;
     
@@ -215,6 +255,7 @@ const ModernLayoutComponent = ({
     );
   }, [showBackButton, navigate]);
 
+  // Memoized language selector for better performance
   const languageSelector = useMemo(() => {
     if (!showLanguageSelector) return null;
     
@@ -235,17 +276,23 @@ const ModernLayoutComponent = ({
       <SimpleFuturisticTurkish />
       
       <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black particle-system main-content scroll-optimized mobile-viewport-fix gpu-accelerated stable-transform ultra-stable">
+        {/* Optimized background elements */}
         <BackgroundElements />
         
+        {/* Back button */}
         {backButton}
         
+        {/* Main content */}
         <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized ultra-stable">
           {children}
           
+          {/* Language selector */}
           {languageSelector}
           
+          {/* Footer */}
           <Footer />
           
+          {/* Technical indicators and Audio Controls */}
           <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
             <div className="bg-black/50 px-2 py-1 rounded-md border border-red-900/10 shadow-sm flex items-center">
               <div className="h-1.5 w-1.5 rounded-full bg-green-500 mr-1.5"></div>
@@ -253,22 +300,25 @@ const ModernLayoutComponent = ({
             </div>
           </div>
           
-          {(window.location.pathname === "/dil" || 
+          {/* Ses kontrol düğmesi - sadece belirli sayfalarda görünür */}
+          {window.location.pathname === "/dil" || 
            window.location.pathname === "/language" || 
            window.location.pathname === "/tr/dil" || 
-           window.location.pathname === "/en/language") && (
+           window.location.pathname === "/en/language" ? (
             <div className="fixed bottom-4 left-4 z-40">
               <AudioButton />
             </div>
-          )}
+          ) : null}
         </main>
         
+        {/* Accessibility Reader */}
         <AccessibilityReader pageContent={pageContent} pageName={pageName} />
+        
+        {/* Quick Navigation */}
         <QuickNav />
       </div>
     </>
   );
 };
 
-export const ModernLayout = memo(ModernLayoutComponent);
-export default ModernLayout;
+export default memo(ModernLayout);
