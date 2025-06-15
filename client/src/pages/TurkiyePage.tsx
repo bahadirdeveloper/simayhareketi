@@ -379,6 +379,58 @@ export default function TurkiyePage() {
               </ModernTechButton>
             </div>
           </div>
+
+          {/* Forum Connection Section */}
+          <div className="relative mt-16 mb-12">
+            {/* Background glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent rounded-2xl blur-xl"></div>
+            
+            <div className="relative bg-gradient-to-br from-black/60 via-red-950/20 to-black/60 border border-red-900/30 rounded-2xl p-8 backdrop-blur-sm">
+              {/* Date and Mission Statement */}
+              <div className="flex flex-col sm:flex-row items-center justify-center mb-8 space-y-2 sm:space-y-0">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse shadow-lg shadow-red-500/50"></div>
+                  <span className="text-red-400 text-base font-semibold">19 Mayıs 2025</span>
+                </div>
+                <span className="hidden sm:block text-white/40 text-base mx-4">•</span>
+                <span className="text-white/90 text-base font-medium">Cumhuriyetin Halk ile Güncelleme Yolculuğu</span>
+              </div>
+
+              {/* Decorative separator */}
+              <div className="flex items-center justify-center mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent w-24"></div>
+                <div className="mx-4 text-red-400 text-sm font-medium tracking-[0.2em] uppercase">FORUM BAĞLANTISI</div>
+                <div className="h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent w-24"></div>
+              </div>
+
+              {/* Forum Button with enhanced styling */}
+              <div className="flex justify-center">
+                <ModernTechButton
+                  onClick={() => navigateToPage("/halkkoordinasyon")}
+                  className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 via-red-700 to-red-600 hover:from-red-500 hover:via-red-600 hover:to-red-500 text-white rounded-xl transition-all duration-500 shadow-xl shadow-red-900/30 hover:shadow-2xl hover:shadow-red-600/40 transform hover:scale-105 overflow-hidden"
+                >
+                  {/* Button glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-red-400/20 to-red-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Button content */}
+                  <div className="relative flex items-center">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-3 group-hover:bg-white/30 transition-colors duration-300">
+                      <span className="text-sm">🌐</span>
+                    </div>
+                    <span className="font-semibold text-lg tracking-wide">Halk Koordinasyon Merkezi</span>
+                    <ChevronRight className="ml-3 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </ModernTechButton>
+              </div>
+
+              {/* Additional info text */}
+              <div className="mt-6 text-center">
+                <p className="text-white/60 text-sm max-w-md mx-auto leading-relaxed">
+                  Cumhuriyetin geleceğini şekillendirmek için halk ile birlikte çalışma platformu
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Global Translation System */}
