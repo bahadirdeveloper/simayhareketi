@@ -289,7 +289,7 @@ const ModernLayout = ({
         {backButton}
         
         {/* Main content */}
-        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized">
+        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized ultra-stable">
           {children}
           
           {/* Language selector */}

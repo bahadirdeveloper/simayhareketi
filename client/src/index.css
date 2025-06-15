@@ -306,6 +306,18 @@ body {
   transition: none !important;
 }
 
+/* Force disable all animations globally */
+.no-motion * {
+  animation-duration: 0s !important;
+  animation-fill-mode: none !important;
+  animation-iteration-count: 1 !important;
+  animation-name: none !important;
+  animation-play-state: paused !important;
+  animation-timing-function: linear !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
 @media (min-width: 640px) {
   .mobile-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }

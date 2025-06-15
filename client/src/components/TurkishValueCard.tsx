@@ -67,7 +67,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
     <>
       {/* Card */}
       <motion.div
-        className="relative group cursor-pointer content-stable motion-stable ultra-stable"
+        className="relative group cursor-pointer content-stable motion-stable ultra-stable no-motion"
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
