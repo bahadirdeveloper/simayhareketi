@@ -206,7 +206,7 @@ export default function TurkiyePage() {
 
             {/* Navigation Cards with VIP Design */}
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.6 }}
@@ -219,13 +219,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/turknedir")}
-                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
-                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
-                      {t("turkiye_page.turk_nedir")}
+                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
+                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                      TÜRK NEDİR?
                     </div>
-                    <div className="text-red-400 text-xs">
+                    <div className="text-red-400 text-sm opacity-80">
                       Detaylar için tıklayın
                     </div>
                   </div>
@@ -240,13 +240,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/anayasalar")}
-                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
-                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
-                      {t("turkiye_page.anayasalar")}
+                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
+                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                      ANAYASALARIMIZ
                     </div>
-                    <div className="text-red-400 text-xs">
+                    <div className="text-red-400 text-sm opacity-80">
                       Anayasal çerçeve
                     </div>
                   </div>
@@ -261,13 +261,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/gorevler")}
-                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
-                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
-                      {t("turkiye_page.gorev_dirilis")}
+                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
+                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                      GÖREV DİRİLİŞ
                     </div>
-                    <div className="text-red-400 text-xs">
+                    <div className="text-red-400 text-sm opacity-80">
                       100 görevi keşfedin
                     </div>
                   </div>
@@ -282,13 +282,13 @@ export default function TurkiyePage() {
               >
                 <ModernTechButton
                   onClick={() => navigate("/halk-manifestolar")}
-                  className="w-full h-36 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
+                  className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-3 py-2 h-full flex flex-col justify-center">
-                    <div className="text-responsive-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] text-wrap-turkish">
-                      {t("turkiye_page.halk_defteri")}
+                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
+                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                      HALK DEFTERİ &<br/>MANİFESTOLAR
                     </div>
-                    <div className="text-red-400 text-xs">
+                    <div className="text-red-400 text-sm opacity-80">
                       Manifestolar & Defter
                     </div>
                   </div>
@@ -316,25 +316,36 @@ export default function TurkiyePage() {
                     Türk Değerleri
                   </motion.h2>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                    {turkishValueIds.map((valueId, index) => (
-                      <motion.div
-                        key={valueId}
-                        className="relative group"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 2.2 + index * 0.1 }}
-                        whileHover={{ scale: 1.08, y: -8 }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[100px] flex flex-col justify-center">
-                          <div className="text-responsive font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] text-wrap-turkish">
-                            {t(`turkiye_page.values.${valueId}`)}
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {turkishValueIds.map((valueId, index) => {
+                      // Define custom text for each value to ensure proper display
+                      const valueTexts = {
+                        'milli': 'MİLLİ',
+                        'muasir': 'MUASIR',
+                        'laik': 'LAİK',
+                        'demokratik': 'DEMOKRATİK',
+                        'sosyal': 'SOSYAL'
+                      };
+                      
+                      return (
+                        <motion.div
+                          key={valueId}
+                          className="relative group"
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 2.2 + index * 0.1 }}
+                          whileHover={{ scale: 1.08, y: -8 }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                          <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center">
+                            <div className="text-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] leading-tight">
+                              {valueTexts[valueId] || valueId.toUpperCase()}
+                            </div>
+                            <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto"></div>
                           </div>
-                          <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto"></div>
-                        </div>
-                      </motion.div>
-                    ))}
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
