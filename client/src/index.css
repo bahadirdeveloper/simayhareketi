@@ -5,16 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Performance optimizations */
+/* Performance optimizations - titreme sorunu için optimize edildi */
 * {
   will-change: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hardware acceleration for animations */
+/* Hardware acceleration for animations - optimize edildi */
 .gpu-accelerated {
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 /* Mobile-first responsive utilities */
@@ -77,33 +81,57 @@
 .text-3xl-responsive { @apply text-3xl sm:text-4xl; }
 
 .modern-card-hover {
-  @apply hover:scale-105 hover:shadow-2xl hover:shadow-red-900/20 transition-all duration-300;
+  @apply hover:scale-[1.02] hover:shadow-xl hover:shadow-red-900/20 transition-all duration-200;
+  transform-origin: center;
 }
 
 .enhanced-text {
   @apply font-medium tracking-wide;
 }
 
-/* Mobile performance optimizations */
+/* Mobile performance optimizations - titreme giderildi */
 @media (max-width: 768px) {
-  .backdrop-blur-xl { backdrop-filter: blur(8px); }
-  .backdrop-blur-lg { backdrop-filter: blur(6px); }
-  .shadow-2xl { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1); }
-  .shadow-xl { box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.1); }
+  .backdrop-blur-xl { backdrop-filter: blur(6px); }
+  .backdrop-blur-lg { backdrop-filter: blur(4px); }
+  .shadow-2xl { box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.1); }
+  .shadow-xl { box-shadow: 0 6px 15px -3px rgba(0, 0, 0, 0.1); }
   
-  /* Optimize animations for mobile */
-  .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-  .animate-float { animation: float 3s ease-in-out infinite; }
+  /* Optimize animations for mobile - smooth transitions */
+  .animate-pulse { 
+    animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transform: translate3d(0, 0, 0);
+  }
+  .animate-float { 
+    animation: float 4s ease-in-out infinite;
+    transform: translate3d(0, 0, 0);
+  }
   
   /* Reduce expensive effects on mobile */
-  .text-shadow-lg { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
-  .text-shadow-xl { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); }
+  .text-shadow-lg { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
+  .text-shadow-xl { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); }
+  
+  /* Mobile anti-aliasing */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 }
 
-/* Performance-optimized animations */
+/* Performance-optimized animations - titreme fix */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { 
+    transform: translate3d(0, 0px, 0); 
+  }
+  50% { 
+    transform: translate3d(0, -8px, 0); 
+  }
+}
+
+/* Smooth hover transitions */
+.smooth-hover {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 /* Mobile-first grid improvements */
@@ -158,6 +186,17 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Stability fixes for smooth animations */
+.stable-transform {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Prevent layout shift during animations */
+.no-layout-shift {
+  contain: layout style paint;
 }
 
 /* Modern teknoloji temalı animasyonlar */

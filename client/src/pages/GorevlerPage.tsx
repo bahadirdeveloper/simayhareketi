@@ -1380,13 +1380,24 @@ export default function GorevlerPage() {
                 {currentGorevler.map(gorev => (
                   <motion.div
                     key={gorev.id}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group cursor-pointer"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.2, 
+                      delay: (gorev.id % 12) * 0.03,
+                      ease: "easeOut" 
+                    }}
+                    whileHover={{ 
+                      scale: 1.01, 
+                      y: -2,
+                      transition: { duration: 0.15, ease: "easeOut" }
+                    }}
+                    whileTap={{ scale: 0.99 }}
+                    className="group cursor-pointer gpu-accelerated"
                     onClick={() => openGorevModal(gorev)}
                   >
                     <div className={`
-                      relative backdrop-blur-lg border border-gray-700/50 sm:border-2 rounded-xl sm:rounded-2xl overflow-hidden h-[300px] sm:h-[400px] lg:h-[450px] transition-all duration-300
+                      relative backdrop-blur-lg border border-gray-700/50 sm:border-2 rounded-xl sm:rounded-2xl overflow-hidden h-[300px] sm:h-[400px] lg:h-[450px] transition-all duration-200 gpu-accelerated stable-transform no-layout-shift
                       ${gorev.kategori === 'kurucu' 
                         ? 'bg-gradient-to-br from-red-900/30 to-orange-900/20 sm:border-red-500/60 shadow-[0_0_15px_rgba(239,68,68,0.2)] sm:shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
                         : gorev.tamamlayan > 0 
