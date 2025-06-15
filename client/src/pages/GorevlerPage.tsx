@@ -79,7 +79,9 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    return `/@fs/home/runner/workspace/attached_assets/gorev-${Math.min(id, 100)}.webp`;
+    // Görev ID'sini 1-100 arasında sınırla
+    const safeId = Math.max(1, Math.min(id, 100));
+    return `/attached_assets/gorev-${safeId}.webp`;
   };
 
   const getGorevColor = (id: number) => {
