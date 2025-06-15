@@ -196,17 +196,13 @@ export default function GorevlerPage() {
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
                   {/* Görev Resmi Arka Plan */}
-                  <div className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg">
-                    <img
-                      src={getGorevImage(gorev.id)}
-                      alt={`Görev ${gorev.id}: ${gorev.baslik}`}
-                      className="absolute inset-0 w-full h-full object-cover object-center"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div 
+                    className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('${getGorevImage(gorev.id)}')`
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
                     <div className="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded-full text-white text-sm font-bold border border-white/20">
                       #{gorev.id}
                     </div>
