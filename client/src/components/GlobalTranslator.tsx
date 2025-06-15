@@ -54,7 +54,7 @@ const supportedLanguages = [
   { code: "ha", name: "Hausa", flag: "🇳🇬" },
 ];
 
-export function GlobalTranslator({ className }: GlobalTranslatorProps) {
+function GlobalTranslator({ className }: GlobalTranslatorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
   const [isTranslating, setIsTranslating] = useState(false);
@@ -246,3 +246,6 @@ export function GlobalTranslator({ className }: GlobalTranslatorProps) {
     </>
   );
 }
+
+export default GlobalTranslator;
+export { GlobalTranslator };

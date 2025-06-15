@@ -33,3 +33,13 @@ export const navigateWithScrollReset = (navigate: (path: string) => void, path: 
     scrollToTop();
   }, 100);
 };
+
+export const navigateToPage = (path: string) => {
+  scrollToTop();
+  window.location.href = path;
+  
+  // Additional scroll reset after navigation
+  setTimeout(() => {
+    scrollToTop();
+  }, 100);
+};
