@@ -11,6 +11,7 @@ import {
   handleWebhook,
   getPaymentPrices
 } from "./routes/stripe";
+import { seedTasks } from "./seed-tasks";
 
 // SQL Enjeksiyon Koruma Middleware
 function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
@@ -461,6 +462,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/create-subscription", handleCreateSubscription);
   app.post("/api/webhook", handleWebhook);
   app.get("/api/payment-prices", getPaymentPrices);
+
+  // Database seeding endpoint
+  app.post("/api/seed-tasks", async (req, res) => {
+    try {
+      await seedTasks();
+      res.json({ success: true, message: "101 görev başarıyla veritabanına eklendi" });
+    } catch (error) {
+      console.error("Task seeding error:", error);
+      res.status(500).json({ error: "Failed to seed tasks" });
+    }
+  });
 
   const httpServer = createServer(app);
 

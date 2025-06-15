@@ -216,7 +216,8 @@ app.use((req, res, next) => {
       '/api/webhook',
       '/api/gorev-basvuru',
       '/api/visits',
-      '/api/feedback'
+      '/api/feedback',
+      '/api/seed-tasks'
     ];
     
     if (exemptPaths.includes(req.path)) {
