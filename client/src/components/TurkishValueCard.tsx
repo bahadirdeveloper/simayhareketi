@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
 
@@ -170,17 +169,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
                   {/* Decorative Elements */}
                   <div className="flex justify-center items-center space-x-4 mb-8">
                     <div className="w-20 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
-                    <motion.div 
-                      className="w-3 h-3 bg-red-500 rounded-full"
-                      animate={{ 
-                        boxShadow: [
-                          "0 0 10px rgba(239, 68, 68, 0.5)",
-                          "0 0 20px rgba(239, 68, 68, 0.8)",
-                          "0 0 10px rgba(239, 68, 68, 0.5)"
-                        ]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
+                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)] ultra-stable no-motion" />
                     <div className="w-20 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
                   </div>
                 </div>

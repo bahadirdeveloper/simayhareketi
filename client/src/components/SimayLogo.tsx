@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
 export default function SimayLogo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -111,12 +110,7 @@ export default function SimayLogo() {
   }, []);
   
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
-      className="relative"
-    >
+    <div className="relative ultra-stable no-motion">
       <canvas 
         ref={canvasRef} 
         className="max-w-full h-auto"
@@ -124,6 +118,6 @@ export default function SimayLogo() {
           filter: 'drop-shadow(0 0 10px rgba(0, 255, 0, 0.7))' 
         }}
       />
-    </motion.div>
+    </div>
   );
 }

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
 export default function MatrixLogo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -99,22 +98,13 @@ export default function MatrixLogo() {
   }, []);
   
   return (
-    <motion.div
-      className="rounded-full overflow-hidden border-2 border-matrix-green shadow-[0_0_15px_rgba(0,255,65,0.6)]"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1, rotate: 360 }}
-      transition={{ 
-        type: "spring", 
-        duration: 1.5,
-        bounce: 0.4
-      }}
-    >
+    <div className="rounded-full overflow-hidden border-2 border-matrix-green shadow-[0_0_15px_rgba(0,255,65,0.6)] ultra-stable no-motion">
       <canvas 
         ref={canvasRef} 
         width={120} 
         height={120} 
         className="bg-black"
       />
-    </motion.div>
+    </div>
   );
 }
