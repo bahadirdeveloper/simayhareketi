@@ -7,6 +7,7 @@ import { ModernTechButton } from "@/components/ModernTechButton";
 import { Play, Pause } from "lucide-react";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import NavButtons from "@/components/NavButtons";
+import TurkishValueCard from "@/components/TurkishValueCard";
 
 // Turkish values defined by the translation system
 const turkishValueIds = ['milli', 'muasir', 'laik', 'demokratik', 'sosyal'];
@@ -319,7 +320,7 @@ export default function TurkiyePage() {
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                     {turkishValueIds.map((valueId, index) => {
                       // Define custom text for each value to ensure proper display
-                      const valueTexts = {
+                      const valueTexts: Record<string, string> = {
                         'milli': 'MİLLİ',
                         'muasir': 'MUASIR',
                         'laik': 'LAİK',
@@ -328,22 +329,12 @@ export default function TurkiyePage() {
                       };
                       
                       return (
-                        <motion.div
+                        <TurkishValueCard
                           key={valueId}
-                          className="relative group"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 2.2 + index * 0.1 }}
-                          whileHover={{ scale: 1.08, y: -8 }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                          <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center">
-                            <div className="text-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] leading-tight">
-                              {valueTexts[valueId] || valueId.toUpperCase()}
-                            </div>
-                            <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto"></div>
-                          </div>
-                        </motion.div>
+                          valueId={valueId}
+                          title={valueTexts[valueId] || valueId.toUpperCase()}
+                          index={index}
+                        />
                       );
                     })}
                   </div>
