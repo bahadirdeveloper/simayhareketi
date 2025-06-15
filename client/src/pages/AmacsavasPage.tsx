@@ -124,10 +124,9 @@ export default function AmacsavasPage() {
             >
               <h3 className="text-xl font-bold mb-4 text-white">1</h3>
               <p className="text-gray-300">
-                {t('amaclar.amac1', 'Her bireye doğru ve nitelikli eğitim sağlamak').replace(
-                  t('amaclar.amac1_bold'),
-                  `<span class="text-yellow-400 font-bold">${t('amaclar.amac1_bold')}</span>`
-                )}
+                {t('amaclar.amac1', 'Her bireye ')} <span className="text-yellow-400 font-bold">
+                  {t('amaclar.amac1_bold', 'doğru ve nitelikli eğitim')}
+                </span> {t('amaclar.amac1_rest', ' sağlamak')}
               </p>
             </motion.div>
             
