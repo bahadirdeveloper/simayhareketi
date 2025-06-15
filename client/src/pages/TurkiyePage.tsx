@@ -317,7 +317,7 @@ export default function TurkiyePage() {
                     Türk Değerleri
                   </motion.h2>
                   
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
                     {turkishValueIds.map((valueId, index) => {
                       // Define custom text for each value to ensure proper display
                       const valueTexts: Record<string, string> = {

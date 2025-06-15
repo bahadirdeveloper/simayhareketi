@@ -75,7 +75,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
         onClick={openModal}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center">
+        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-4 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500 min-h-[120px] flex flex-col justify-center min-w-[140px] w-full">
           
           {/* Icon */}
           <div className="text-4xl mb-2 opacity-80">
@@ -83,7 +83,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
           </div>
           
           {/* Title */}
-          <div className="text-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] leading-tight">
+          <div className="text-xs sm:text-sm lg:text-base font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] leading-tight px-1 break-words hyphens-auto">
             {title}
           </div>
           
@@ -118,7 +118,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
 
             {/* Modal Content */}
             <motion.div
-              className="relative max-w-4xl w-full max-h-[95vh] overflow-hidden mx-4"
+              className="relative max-w-6xl w-full max-h-[95vh] overflow-hidden mx-2"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
