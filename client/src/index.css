@@ -349,6 +349,20 @@ body {
   contain: strict !important;
 }
 
+/* Static container class - ultimate stability */
+.static-container {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: auto !important;
+  contain: layout style !important;
+  position: static !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  isolation: isolate !important;
+}
+
 /* Apply ultra-stable to all major layout containers globally */
 .main-content, 
 [class*="motion-"], 
