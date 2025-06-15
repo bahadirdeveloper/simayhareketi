@@ -222,11 +222,11 @@ export default function TurkiyePage() {
                   onClick={() => navigate("/turknedir")}
                   className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
-                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                  <div className="text-center px-3 py-4 h-full flex flex-col justify-center">
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
                       TÜRK NEDİR?
                     </div>
-                    <div className="text-red-400 text-sm opacity-80">
+                    <div className="text-red-400 text-xs sm:text-sm opacity-80">
                       Detaylar için tıklayın
                     </div>
                   </div>
@@ -243,11 +243,11 @@ export default function TurkiyePage() {
                   onClick={() => navigate("/anayasalar")}
                   className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
-                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                  <div className="text-center px-3 py-4 h-full flex flex-col justify-center">
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
                       ANAYASALARIMIZ
                     </div>
-                    <div className="text-red-400 text-sm opacity-80">
+                    <div className="text-red-400 text-xs sm:text-sm opacity-80">
                       Anayasal çerçeve
                     </div>
                   </div>
@@ -264,12 +264,12 @@ export default function TurkiyePage() {
                   onClick={() => navigate("/gorevler")}
                   className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
-                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                  <div className="text-center px-3 py-4 h-full flex flex-col justify-center">
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
                       GÖREV DİRİLİŞ
                     </div>
-                    <div className="text-red-400 text-sm opacity-80">
-                      100 görevi keşfedin
+                    <div className="text-red-400 text-xs sm:text-sm opacity-80">
+                      101 görevi keşfedin
                     </div>
                   </div>
                 </ModernTechButton>
@@ -285,11 +285,11 @@ export default function TurkiyePage() {
                   onClick={() => navigate("/halk-manifestolar")}
                   className="w-full h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
-                  <div className="text-center px-4 py-4 h-full flex flex-col justify-center">
-                    <div className="text-xl lg:text-2xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+                  <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
+                    <div className="text-base sm:text-lg lg:text-xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
                       HALK DEFTERİ &<br/>MANİFESTOLAR
                     </div>
-                    <div className="text-red-400 text-sm opacity-80">
+                    <div className="text-red-400 text-xs sm:text-sm opacity-80">
                       Manifestolar & Defter
                     </div>
                   </div>
