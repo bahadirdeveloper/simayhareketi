@@ -201,12 +201,12 @@ export default function GorevlerPage() {
               <div className={`bg-gradient-to-br ${getGorevColor(gorev.id)} rounded-xl p-1 hover:scale-105 transition-all duration-300`}>
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
-                  {/* Görev Resmi - Dengeli Boyut */}
-                  <div className="mb-4 h-48 rounded-lg overflow-hidden shadow-lg relative">
+                  {/* Görev Resmi - Tam Görünür */}
+                  <div className="mb-4 h-48 rounded-lg overflow-hidden shadow-lg relative bg-gray-800">
                     <img 
                       src={getGorevImage(gorev.id)}
                       alt={`Görev ${gorev.id}`}
-                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
