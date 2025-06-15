@@ -42,50 +42,36 @@ export default function TurkiyePage() {
       pageName="Türkiye"
     >
       <div className="w-full max-w-6xl mx-auto static-container">
-        {/* Hero Section - Basitleştirildi */}
-        <div className="relative rounded-3xl overflow-hidden mb-16 static-container">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl"></div>
-          <div className="relative bg-gradient-to-br from-black/95 via-red-950/30 to-black/95 border-2 border-red-500/50 rounded-3xl static-container">
-            
-            {/* Top Accent */}
-            <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-t-3xl"></div>
-            
-            <div className="relative z-10 py-12 sm:py-20 px-4 sm:px-10 lg:px-16 text-center static-container">
+        {/* Hero Section - Ultra Basit */}
+        <div className="rounded-3xl mb-16 static-container">
+          <div className="bg-black border-2 border-red-500 rounded-3xl static-container">
+            <div className="py-12 px-4 text-center static-container">
               {/* Flag Icon */}
-              <div className="inline-block mb-6 sm:mb-10">
-                <div className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 static-container">
+              <div className="mb-10">
+                <div className="w-32 h-32 mx-auto text-6xl border-2 border-red-500 rounded-2xl flex items-center justify-center bg-black static-container">
                   🇹🇷
                 </div>
               </div>
               
               {/* Quote Section */}
-              <div className="max-w-6xl mx-auto">
-                <div className="bg-gradient-to-r from-black/80 via-black/60 to-black/80 rounded-xl sm:rounded-2xl p-6 sm:p-12 border border-red-500/40 sm:border-2 static-container">
-                  <p className="text-xl sm:text-3xl md:text-5xl font-bold leading-relaxed text-center mb-6 sm:mb-10">
-                    <span className="bg-gradient-to-r from-red-400 via-orange-500 to-red-400 bg-clip-text text-transparent">
-                      "TÜRK, ATASININ MİRASINA<br />
-                      SAHİP ÇIKAMAZSA, GELECEĞİNİ<br />
-                      BAŞKA MİLLETLERİN İNSAFINA BIRAKIR."
-                    </span>
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-black rounded-2xl p-12 border border-red-500 static-container">
+                  <p className="text-3xl font-bold text-center mb-10 text-red-400">
+                    "TÜRK, ATASININ MİRASINA SAHİP ÇIKAMAZSA, GELECEĞİNİ BAŞKA MİLLETLERİN İNSAFINA BIRAKIR."
                   </p>
                   
-                  {/* Attribution */}
                   <div className="text-center">
-                    <p className="text-red-400 text-lg sm:text-xl font-semibold tracking-wider">
+                    <p className="text-red-400 text-xl font-semibold">
                       - Atatürk -
                     </p>
                   </div>
                   
-                  {/* Audio Control Button */}
-                  <div className="flex justify-center mt-8 sm:mt-12">
+                  <div className="flex justify-center mt-12">
                     <button
-                      className="relative px-8 py-4 rounded-2xl border-2 border-red-500/60 bg-gradient-to-br from-black/80 to-red-950/40 transition-all duration-300 flex items-center justify-center gap-3 text-white font-semibold static-container"
+                      className="px-8 py-4 rounded-2xl border-2 border-red-500 bg-black text-white font-semibold static-container"
                       onClick={handleToggleAudio}
                     >
-                      {isAudioPlaying 
-                        ? <Pause className="h-6 w-6 text-white" /> 
-                        : <Play className="h-6 w-6 text-white ml-0.5" />
-                      }
+                      {isAudioPlaying ? "Durdur" : "Oynat"}
                     </button>
                   </div>
                 </div>
@@ -95,72 +81,48 @@ export default function TurkiyePage() {
         </div>
 
         {/* Navigation Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 static-container">
-          {/* TÜRK Nedir Button */}
+        <div className="grid grid-cols-2 gap-6 mb-16 static-container">
           <div className="static-container">
-            <ModernTechButton
+            <button
               onClick={() => navigateToPage("/turknedir")}
-              className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl transition-all duration-500 static-container"
+              className="w-full h-40 bg-black border-2 border-red-500 rounded-2xl text-white font-bold static-container"
             >
-              <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
-                <div className="text-base sm:text-lg md:text-xl font-bold text-white mb-3 leading-tight">
-                  TÜRK NEDİR?
-                </div>
-                <div className="text-red-400 text-xs opacity-80">
-                  Detaylar için tıklayın
-                </div>
-              </div>
-            </ModernTechButton>
+              TÜRK NEDİR?
+            </button>
           </div>
 
-          {/* Anayasalarımız Button */}
           <div className="static-container">
-            <ModernTechButton
+            <button
               onClick={() => navigateToPage("/anayasalarimiz")}
-              className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl transition-all duration-500 static-container"
+              className="w-full h-40 bg-black border-2 border-red-500 rounded-2xl text-white font-bold static-container"
             >
-              <div className="text-center px-1 py-3 h-full flex flex-col justify-center">
-                <div className="text-sm sm:text-base md:text-lg font-bold text-white mb-2 leading-tight">
-                  ANAYASALARIMIZ
-                </div>
-                <div className="text-red-400 text-xs opacity-80">
-                  Anayasa & Kanunlar
-                </div>
-              </div>
-            </ModernTechButton>
+              ANAYASALARIMIZ
+            </button>
           </div>
         </div>
 
         {/* Values Section */}
         <div className="mb-16 static-container">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl"></div>
-            <div className="relative bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 static-container">
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-500">
-                Türk Değerleri
-              </h2>
-              
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8 static-container">
-                {turkishValueIds.map((valueId, index) => {
-                  // Define custom text for each value to ensure proper display
-                  const valueTexts: Record<string, string> = {
-                    'milli': 'MİLLİ',
-                    'muasir': 'MUASIR',
-                    'laik': 'LAİK',
-                    'demokratik': 'DEMOKRATİK',
-                    'sosyal': 'SOSYAL'
-                  };
-                  
-                  return (
-                    <TurkishValueCard
-                      key={valueId}
-                      valueId={valueId}
-                      title={valueTexts[valueId]}
-                      index={index}
-                    />
-                  );
-                })}
+          <div className="bg-black border-2 border-red-500 rounded-3xl p-12 static-container">
+            <h2 className="text-4xl font-bold text-center mb-12 text-red-400">
+              Türk Değerleri
+            </h2>
+            
+            <div className="grid grid-cols-5 gap-6 static-container">
+              <div className="bg-black border border-red-500 rounded-lg p-4 text-center static-container">
+                <div className="text-white font-bold">MİLLİ</div>
+              </div>
+              <div className="bg-black border border-red-500 rounded-lg p-4 text-center static-container">
+                <div className="text-white font-bold">MUASIR</div>
+              </div>
+              <div className="bg-black border border-red-500 rounded-lg p-4 text-center static-container">
+                <div className="text-white font-bold">LAİK</div>
+              </div>
+              <div className="bg-black border border-red-500 rounded-lg p-4 text-center static-container">
+                <div className="text-white font-bold">DEMOKRATİK</div>
+              </div>
+              <div className="bg-black border border-red-500 rounded-lg p-4 text-center static-container">
+                <div className="text-white font-bold">SOSYAL</div>
               </div>
             </div>
           </div>

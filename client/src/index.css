@@ -19,22 +19,21 @@ html, body {
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  /* Enhanced scroll performance */
-  overscroll-behavior: contain;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: auto;
+  /* Ultra performance scroll */
+  overscroll-behavior: auto;
   scroll-padding-top: 0;
-  contain: layout style;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  text-rendering: geometricPrecision;
-  /* Force consistent rendering */
-  -webkit-filter: brightness(1);
-  filter: brightness(1);
-  will-change: auto;
+  contain: layout;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  /* Disable all animations globally */
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
 }
 
 /* Hardware acceleration for animations - optimize edildi */
@@ -351,16 +350,46 @@ body {
 
 /* Static container class - ultimate stability */
 .static-container {
-  transform: translate3d(0, 0, 0) !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
   will-change: auto !important;
-  contain: layout style !important;
+  contain: none !important;
   position: static !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  isolation: isolate !important;
+  isolation: auto !important;
+  /* Disable all effects */
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Global animation and transition killer */
+*, *::before, *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Special disable for problematic properties */
+.backdrop-blur-xl,
+.backdrop-blur-lg,
+[class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[class*="shadow-"],
+[class*="drop-shadow"] {
+  box-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* Apply ultra-stable to all major layout containers globally */
