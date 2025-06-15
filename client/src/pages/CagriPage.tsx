@@ -518,6 +518,7 @@ export function CagriPage() {
                     rotateY: 3,
                     rotateX: 3
                   }}
+                  onClick={() => setLocation("/gorev-davet")}
                   className={`group cursor-pointer backdrop-blur-lg bg-gradient-to-br ${group.color} border ${group.border} rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 overflow-hidden relative`}
                 >
                   {/* Animated Background Effect */}
@@ -545,7 +546,12 @@ export function CagriPage() {
                     {/* Action Indicator */}
                     <div className="flex items-center justify-between">
                       <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
-                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs text-gray-400 group-hover:text-orange-400 transition-colors opacity-0 group-hover:opacity-100">
+                          Katıl
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
+                      </div>
                     </div>
                   </div>
                 </motion.div>
