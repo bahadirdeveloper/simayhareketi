@@ -1686,51 +1686,16 @@ export default function GorevlerPage() {
                   <div className="pt-4 lg:pt-8 space-y-3 lg:space-y-4">
                     <Button 
                       className="w-full bg-gradient-to-r from-red-500 via-orange-500 to-red-500 hover:from-red-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-3 lg:py-4 text-base lg:text-lg rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] touch-target"
-                      onClick={async () => {
-                        try {
-                          const response = await fetch('/api/gorev-basvuru', {
-                            method: 'POST',
-                            headers: {
-                              'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                              gorevId: selectedGorev.id,
-                              notlar: 'Web sitesi üzerinden başvuru'
-                            }),
-                          });
-
-                          if (response.ok) {
-                            const result = await response.json();
-                            toast({
-                              title: "✅ Başvuru Başarılı!",
-                              description: `Görev ${selectedGorev.id} için başvurunuz kaydedildi. Başvuru numaranız: ${result.id}`,
-                            });
-                            setIsModalOpen(false);
-                            
-                            // Refresh the task list to show updated application count
-                            setTimeout(() => {
-                              window.location.reload();
-                            }, 1500);
-                          } else if (response.status === 401) {
-                            toast({
-                              title: "🔐 Kimlik Doğrulama",
-                              description: "Güvenlik nedeniyle anonim başvuru sistemi kullanılmaktadır.",
-                            });
-                          } else {
-                            const error = await response.json();
-                            toast({
-                              title: "❌ Başvuru Hatası",
-                              description: error.error || "Başvuru gönderilemedi. Lütfen tekrar deneyin.",
-                              variant: "destructive",
-                            });
-                          }
-                        } catch (error) {
-                          toast({
-                            title: "Bağlantı Hatası",
-                            description: "Sunucuya bağlanılamadı. Lütfen internet bağlantınızı kontrol edin.",
-                            variant: "destructive",
-                          });
-                        }
+                      onClick={() => {
+                        toast({
+                          title: "Premium Üyelik Gerekli",
+                          description: "Bu özellik sadece ödeme yapmış kullanıcılar için kullanılabilir. Lütfen premium üyelik sayfasından ödeme yapın.",
+                          variant: "destructive",
+                        });
+                        // Redirect to payment page
+                        setTimeout(() => {
+                          window.location.href = '/katil';
+                        }, 2000);
                       }}
                     >
                       <Rocket className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />
