@@ -131,32 +131,6 @@ const Footer = memo(() => (
         <span className="font-medium text-red-400">19 Mayıs 2025</span> • Cumhuriyetin Halk ile Güncellenme Yolculuğu
       </p>
     </div>
-    
-    <div className="relative z-10">
-      <div className="mb-2 flex justify-center items-center">
-        <div className="h-px w-4 bg-gradient-to-r from-transparent to-red-500"></div>
-        <div className="mx-2 text-xs uppercase tracking-widest text-red-400 font-medium">Forum Bağlantısı</div>
-        <div className="h-px w-4 bg-gradient-to-l from-transparent to-red-500"></div>
-      </div>
-      
-      <a 
-        href="https://www.simayhareketi.com" 
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline"
-      >
-        <ModernTechButton 
-          variant="turkish"
-          size="md"
-          glow="subtle"
-          border="glowing"
-          leftIcon={<MessageCircle className="w-4 h-4" />}
-          rightIcon={<ExternalLink className="w-3.5 h-3.5" />}
-        >
-          Halk Koordinasyon Merkezi
-        </ModernTechButton>
-      </a>
-    </div>
   </div>
 ));
 
