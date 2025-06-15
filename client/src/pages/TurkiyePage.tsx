@@ -113,135 +113,131 @@ export default function TurkiyePage() {
           </div>
         </div>
 
-        {/* Elite Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 static-container">
+        {/* Stable Navigation Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 static-container">
           
           {/* TÜRK NEDİR */}
           <ModernTechButton
             onClick={() => navigateToPage("/turknedir")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-900/40 to-red-950/60 backdrop-blur-sm border border-red-500/30 hover:border-red-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-red-900 border-2 border-red-600 hover:border-red-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-red-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-red-200 transition-colors">TÜRK NEDİR?</h3>
-                <p className="text-red-200/70 text-sm leading-relaxed">Kimlik, tarih ve değerlerimizin derinliklerinde yolculuk</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-red-200 transition-colors">TÜRK NEDİR?</h3>
+                <p className="text-red-200 text-sm opacity-90">Kimlik, tarih ve değerlerimiz</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-red-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
           {/* ANAYASALARIMIZ */}
           <ModernTechButton
             onClick={() => navigateToPage("/anayasalar")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900/40 to-blue-950/60 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-blue-900 border-2 border-blue-600 hover:border-blue-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-blue-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">ANAYASALARIMIZ</h3>
-                <p className="text-blue-200/70 text-sm leading-relaxed">Hukuk sistemimizin temelini oluşturan yasalar</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">ANAYASALARIMIZ</h3>
+                <p className="text-blue-200 text-sm opacity-90">Hukuk ve adalet sistemi</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-blue-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
           {/* MANİFESTO */}
           <ModernTechButton
             onClick={() => navigateToPage("/halk-manifestolar")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-900/40 to-purple-950/60 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-purple-900 border-2 border-purple-600 hover:border-purple-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-purple-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors">MANİFESTO</h3>
-                <p className="text-purple-200/70 text-sm leading-relaxed">Geleceğe dair vizyon ve ideallerin manifestosu</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-200 transition-colors">MANİFESTO</h3>
+                <p className="text-purple-200 text-sm opacity-90">Gelecek vizyonu ve idealler</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-purple-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
           {/* ÇAĞRI */}
           <ModernTechButton
             onClick={() => navigateToPage("/cagri")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-900/40 to-orange-950/60 backdrop-blur-sm border border-orange-500/30 hover:border-orange-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-orange-900 border-2 border-orange-600 hover:border-orange-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-orange-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-200 transition-colors">ÇAĞRI</h3>
-                <p className="text-orange-200/70 text-sm leading-relaxed">Halkımıza ulaşan güçlü mesajlar ve çağrılar</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-200 transition-colors">ÇAĞRI</h3>
+                <p className="text-orange-200 text-sm opacity-90">Güçlü mesajlar ve çağrılar</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-orange-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
           {/* KATIL */}
           <ModernTechButton
             onClick={() => navigateToPage("/katil")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-900/40 to-green-950/60 backdrop-blur-sm border border-green-500/30 hover:border-green-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-green-900 border-2 border-green-600 hover:border-green-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-green-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-green-200 transition-colors">KATIL</h3>
-                <p className="text-green-200/70 text-sm leading-relaxed">Büyük birliktelik için katılım ve dayanışma</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">KATIL</h3>
+                <p className="text-green-200 text-sm opacity-90">Birlik ve dayanışma</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-green-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
           {/* 100 GÖREV */}
           <ModernTechButton
             onClick={() => navigateToPage("/gorevler")}
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-yellow-900/40 to-yellow-950/60 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-400/60 transition-all duration-700 h-64 static-container"
+            className="group relative rounded-2xl bg-yellow-900 border-2 border-yellow-600 hover:border-yellow-500 transition-all duration-500 h-56 static-container"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div className="relative h-full flex flex-col justify-end p-8 z-10">
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-yellow-500 rounded-lg"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"></div>
+            <div className="relative h-full flex flex-col justify-end p-6 z-10">
+              <div className="mb-4">
+                <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-5 h-5 bg-white rounded"></div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-200 transition-colors">100 GÖREV</h3>
-                <p className="text-yellow-200/70 text-sm leading-relaxed">Diriliş için belirlenen stratejik hedefler</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-200 transition-colors">100 GÖREV</h3>
+                <p className="text-yellow-200 text-sm opacity-90">Stratejik hedefler</p>
               </div>
-              <div className="w-full h-1 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full group-hover:h-2 transition-all"></div>
+              <div className="w-full h-1 bg-yellow-500 rounded-full"></div>
             </div>
           </ModernTechButton>
 
         </div>
 
-        {/* Premium Values Section */}
-        <div className="mb-24 static-container">
-          <div className="relative backdrop-blur-sm bg-white/5 border border-white/10 rounded-3xl p-16 static-container">
+        {/* Stable Values Section */}
+        <div className="mb-20 static-container">
+          <div className="bg-gray-900 border-2 border-gray-700 rounded-2xl p-12 static-container">
             
-            <div className="text-center mb-16">
-              <h2 className="text-5xl md:text-6xl font-extralight tracking-wide mb-6">
-                <span className="bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
-                  TÜRK DEĞERLERİ
-                </span>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                TÜRK DEĞERLERİ
               </h2>
-              <div className="flex justify-center">
-                <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-              </div>
+              <div className="w-24 h-1 bg-red-500 mx-auto rounded-full"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 static-container">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 static-container">
               {turkishValueIds.map((valueId, index) => {
                 const valueTexts: Record<string, string> = {
                   'milli': 'MİLLİ',
@@ -251,27 +247,51 @@ export default function TurkiyePage() {
                   'sosyal': 'SOSYAL'
                 };
                 
-                const colors = [
-                  'red-500',
-                  'blue-500', 
-                  'green-500',
-                  'purple-500',
-                  'orange-500'
+                const bgColors = [
+                  'bg-red-800',
+                  'bg-blue-800', 
+                  'bg-green-800',
+                  'bg-purple-800',
+                  'bg-orange-800'
+                ];
+
+                const borderColors = [
+                  'border-red-600',
+                  'border-blue-600', 
+                  'border-green-600',
+                  'border-purple-600',
+                  'border-orange-600'
+                ];
+
+                const iconColors = [
+                  'bg-red-600',
+                  'bg-blue-600', 
+                  'bg-green-600',
+                  'bg-purple-600',
+                  'bg-orange-600'
+                ];
+
+                const lineColors = [
+                  'bg-red-500',
+                  'bg-blue-500', 
+                  'bg-green-500',
+                  'bg-purple-500',
+                  'bg-orange-500'
                 ];
                 
                 return (
-                  <div key={valueId} className="group relative static-container">
-                    <div className="backdrop-blur-sm bg-white/5 border border-white/10 hover:border-white/20 rounded-2xl p-8 h-48 flex flex-col justify-center items-center transition-all duration-500 static-container">
+                  <div key={valueId} className="static-container">
+                    <div className={`${bgColors[index]} border-2 ${borderColors[index]} rounded-xl p-6 h-40 flex flex-col justify-center items-center transition-all duration-300 hover:scale-105 static-container`}>
                       
-                      <div className={`w-16 h-16 bg-gradient-to-br from-${colors[index]}/20 to-${colors[index]}/40 rounded-2xl flex items-center justify-center mb-6`}>
-                        <div className={`w-8 h-8 bg-${colors[index]} rounded-xl`}></div>
+                      <div className={`w-12 h-12 ${iconColors[index]} rounded-lg flex items-center justify-center mb-4`}>
+                        <div className="w-6 h-6 bg-white rounded"></div>
                       </div>
                       
                       <div className="text-center">
-                        <h3 className="text-lg font-medium text-white mb-3">
+                        <h3 className="text-base font-bold text-white mb-2">
                           {valueTexts[valueId]}
                         </h3>
-                        <div className={`w-12 h-0.5 bg-${colors[index]} mx-auto rounded-full`}></div>
+                        <div className={`w-8 h-0.5 ${lineColors[index]} mx-auto rounded-full`}></div>
                       </div>
                     </div>
                   </div>
