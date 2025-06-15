@@ -289,7 +289,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // OpenAI Translation API endpoint
+  // Free Translation API endpoint using MyMemory
   app.post("/api/translate", async (req, res) => {
     try {
       const { texts, targetLanguage, sourceLanguage = 'tr' } = req.body;
@@ -298,31 +298,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Invalid request format" });
       }
 
-      const OpenAI = require("openai");
-      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-      const response = await openai.chat.completions.create({
-        model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-        messages: [
-          {
-            role: "system",
-            content: `You are a professional translator. Translate the following texts from ${sourceLanguage} to ${targetLanguage}. 
-            Maintain the original meaning, tone, and context. For political, cultural, or sensitive content, be accurate and respectful.
-            Return only the translations in the same order as provided, separated by ||| delimiter. Do not add explanations.`
-          },
-          {
-            role: "user",
-            content: texts.join(" ||| ")
+      const translations = [];
+      
+      // Translate each text individually to avoid API limits
+      for (const text of texts) {
+        try {
+          // MyMemory API - Free and no API key required
+          const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLanguage}|${targetLanguage}`);
+          const data = await response.json();
+          
+          if (data.responseStatus === 200 && data.responseData) {
+            translations.push(data.responseData.translatedText);
+          } else {
+            // Fallback to LibreTranslate
+            try {
+              const libretranslateResponse = await fetch('https://libretranslate.de/translate', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  q: text,
+                  source: sourceLanguage,
+                  target: targetLanguage,
+                  format: 'text'
+                })
+              });
+              
+              if (libretranslateResponse.ok) {
+                const libretranslateData = await libretranslateResponse.json();
+                translations.push(libretranslateData.translatedText);
+              } else {
+                translations.push(text); // Return original if translation fails
+              }
+            } catch (fallbackError) {
+              translations.push(text); // Return original if fallback fails
+            }
           }
-        ],
-        temperature: 0.3,
-        max_tokens: 2000
-      });
+          
+          // Rate limiting delay
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+        } catch (error) {
+          console.error("Single translation error:", error);
+          translations.push(text); // Return original text on error
+        }
+      }
 
-      const translatedText = response.choices[0].message.content;
-      const translations = translatedText.split(" ||| ");
-
-      res.json({ translations: translations.slice(0, texts.length) });
+      res.json({ translations });
     } catch (error) {
       console.error("Translation error:", error);
       res.status(500).json({ error: "Translation failed" });

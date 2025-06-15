@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Globe, Users, FileText, User, Mail, Phone, MapPin } from "lucide-react";
 import { ModernTechButton } from "@/components/ModernTechButton";
+import GlobalTranslator from "@/components/GlobalTranslator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -410,6 +411,9 @@ export default function UlkeEklePage() {
           </form>
         </motion.div>
       </div>
+      
+      {/* Global Translation System */}
+      <GlobalTranslator />
     </div>
   );
 }
