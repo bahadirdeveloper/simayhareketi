@@ -10,6 +10,20 @@
   will-change: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Global anti-trembling optimizations */
+html, body {
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Hardware acceleration for animations - optimize edildi */
@@ -17,8 +31,82 @@
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Enhanced stability classes */
+.stable-transform {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+.no-layout-shift {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Smooth scrolling and navigation */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile navigation optimizations */
+.mobile-nav-optimized {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Enhanced scroll and gesture optimizations */
+.scroll-optimized {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+/* Fix for mobile viewport issues */
+.mobile-viewport-fix {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Prevent layout shifts during navigation */
+.nav-stable {
+  contain: layout style;
+  will-change: auto;
+}
+
+/* Touch-friendly interactive elements */
+.touch-friendly {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px;
+  touch-action: manipulation;
+}
+
+/* Eliminate bounce effects on iOS */
+body {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.main-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Mobile-first responsive utilities */

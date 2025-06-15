@@ -245,7 +245,7 @@ const ModernLayout = ({
     return (
       <button 
         onClick={() => navigate("/")}
-        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-target"
+        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-friendly mobile-nav-optimized gpu-accelerated"
       >
         <ArrowLeft className="h-4 w-4" />
         <span className="hidden sm:inline">Ana Sayfa</span>
@@ -273,7 +273,7 @@ const ModernLayout = ({
     <>
       <SimpleFuturisticTurkish />
       
-      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black particle-system">
+      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black particle-system main-content scroll-optimized mobile-viewport-fix gpu-accelerated stable-transform">
         {/* Optimized background elements */}
         <BackgroundElements />
         
@@ -281,7 +281,7 @@ const ModernLayout = ({
         {backButton}
         
         {/* Main content */}
-        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16">
+        <main className="container mx-auto px-3 sm:px-4 lg:px-6 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 sm:py-16 nav-stable no-layout-shift mobile-nav-optimized">
           {children}
           
           {/* Language selector */}

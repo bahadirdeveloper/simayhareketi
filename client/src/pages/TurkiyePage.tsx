@@ -36,20 +36,20 @@ export default function TurkiyePage() {
       pageContent="Türkiye sayfasına hoş geldiniz. Bu sayfa Türkiye Cumhuriyeti'nin dijital koordinasyon alanıdır. Genel katılım istatistikleri yarın güncellenecektir. Sayfada TÜRK Nedir, Anayasalarımız, Görev Diriliş ve Halk Defteri & Manifestolar bölümlerine erişebilirsiniz. Türk, atasının mirasına sahip çıkamazsa, geleceğini başka milletlerin insafına bırakır."
       pageName="Türkiye"
     >
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto gpu-accelerated stable-transform no-layout-shift">
         <AnimatePresence>
           <motion.div
-            className="relative overflow-hidden"
+            className="relative overflow-hidden gpu-accelerated stable-transform"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             {/* VIP Premium Hero Section */}
             <motion.div 
-              className="relative rounded-3xl overflow-hidden mb-16"
-              initial={{ opacity: 0, y: -30 }}
+              className="relative rounded-3xl overflow-hidden mb-16 gpu-accelerated stable-transform no-layout-shift"
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2 }}
+              transition={{ duration: 0.6 }}
             >
               {/* Premium Glass Morphism Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl blur-3xl"></div>
@@ -71,16 +71,15 @@ export default function TurkiyePage() {
                     {/* Mobile-optimized Flag Icon */}
                     <div className="inline-block mb-6 sm:mb-10">
                       <motion.div 
-                        className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)]"
+                        className="w-20 h-20 sm:w-32 sm:h-32 mx-auto text-4xl sm:text-7xl border-2 sm:border-4 border-red-500/60 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_40px_rgba(239,68,68,0.5)] sm:shadow-[0_0_80px_rgba(239,68,68,0.5)] gpu-accelerated stable-transform"
                         animate={{ 
                           boxShadow: [
                             "0 0 20px rgba(239, 68, 68, 0.3)", 
                             "0 0 40px rgba(239, 68, 68, 0.6)", 
                             "0 0 20px rgba(239, 68, 68, 0.3)"
-                          ],
-                          scale: [1, 1.02, 1]
+                          ]
                         }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                       >
                         🇹🇷
                       </motion.div>
