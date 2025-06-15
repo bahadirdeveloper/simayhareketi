@@ -79,8 +79,9 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    // Database'deki görev ID'si ile görsel dosyasını doğrudan eşleştir
-    return `/attached_assets/gorev-${id}.webp`;
+    // Database'deki görev ID'si ile görsel dosyasını doğrudan eşleştir (1-100 arası)
+    const imageId = Math.max(1, Math.min(id, 100));
+    return `/attached_assets/gorev-${imageId}.webp`;
   };
 
   const getGorevColor = (id: number) => {
@@ -195,21 +196,25 @@ export default function GorevlerPage() {
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
                   {/* Görev Resmi Arka Plan */}
-                  <div 
-                    className="mb-4 h-40 rounded-lg border border-gray-600 bg-cover bg-center bg-no-repeat relative overflow-hidden shadow-lg"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('${getGorevImage(gorev.id)}')`
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-gray-900/20" />
-                    <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 rounded text-white text-xs font-semibold">
+                  <div className="mb-4 h-48 rounded-lg border border-gray-600 relative overflow-hidden shadow-lg">
+                    <img
+                      src={getGorevImage(gorev.id)}
+                      alt={`Görev ${gorev.id}: ${gorev.baslik}`}
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded-full text-white text-sm font-bold border border-white/20">
                       #{gorev.id}
                     </div>
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <div className="text-white font-bold text-sm mb-1 line-clamp-1">
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <div className="text-white font-bold text-base mb-2 line-clamp-1 drop-shadow-lg">
                         {gorev.baslik}
                       </div>
-                      <div className="text-gray-200 text-xs line-clamp-2">
+                      <div className="text-gray-100 text-sm line-clamp-2 drop-shadow-md">
                         {gorev.aciklama}
                       </div>
                     </div>
