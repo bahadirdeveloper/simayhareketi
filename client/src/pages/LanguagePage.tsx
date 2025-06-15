@@ -8,6 +8,7 @@ import AudioControl from "@/components/AudioControl";
 import GlobalTranslator from "@/components/GlobalTranslator";
 import LoadingScreen from "@/components/LoadingScreen";
 import { initAudio, playSoundtrack } from "@/lib/audio";
+import { scrollToTop } from "@/lib/navigation";
 import { apiRequest } from "@/lib/queryClient";
 
 // Dil seçim listesi - sadece Türkçe
@@ -21,6 +22,9 @@ export default function LanguagePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Ensure scroll starts at top on page load
+    scrollToTop();
+    
     // Initialize audio system with immediate playback
     try {
       console.log("Audio initialization started for language page...");
@@ -119,7 +123,7 @@ export default function LanguagePage() {
     <>
       {isLoading && <LoadingScreen />}
       
-      <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-b from-gray-950 via-black to-black">
+      <div className="min-h-screen text-white relative bg-gradient-to-b from-gray-950 via-black to-black main-content scroll-optimized mobile-viewport-fix gpu-accelerated stable-transform">
         {/* Optimized audio element */}
         <audio
           id="background-music"
@@ -145,7 +149,7 @@ export default function LanguagePage() {
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-0"></div>
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-0"></div>
             
-        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-12">
+        <main className="container mx-auto px-4 z-10 relative flex flex-col items-center justify-center min-h-screen py-12 nav-stable no-layout-shift mobile-nav-optimized">
           <AnimatePresence>
             <motion.div
               initial={{ opacity: 0 }}
@@ -549,6 +553,61 @@ export default function LanguagePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent h-1 rounded-full animate-pulse"></div>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+
+              {/* Additional scrollable content for testing */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 2.8 }}
+                className="mt-16 max-w-4xl mx-auto text-center"
+              >
+                <h2 className="text-3xl font-bold text-white mb-8">Platform Özellikleri</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                  {[
+                    { title: "Demokratik Katılım", desc: "Halkın sesinin duyulması", icon: "🗳️" },
+                    { title: "Şeffaf Yönetim", desc: "Açık ve hesap verebilir süreçler", icon: "🔍" },
+                    { title: "Adil Temsil", desc: "Herkesin eşit söz hakkı", icon: "⚖️" },
+                    { title: "Ekonomik Adalet", desc: "Kaynak dağılımında eşitlik", icon: "💰" },
+                    { title: "Sosyal Dayanışma", desc: "Toplumsal birlik ve beraberlik", icon: "🤝" },
+                    { title: "Çevresel Sorumluluk", desc: "Sürdürülebilir gelecek", icon: "🌱" }
+                  ].map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 3.0 + index * 0.1 }}
+                      className="bg-gray-900/50 backdrop-blur-sm border border-red-500/30 rounded-xl p-6 hover:border-red-500/60 transition-all duration-300"
+                    >
+                      <div className="text-4xl mb-4">{feature.icon}</div>
+                      <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                      <p className="text-gray-300 text-sm">{feature.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="bg-gray-900/30 backdrop-blur-sm border border-red-500/20 rounded-2xl p-8 mb-16">
+                  <h3 className="text-2xl font-bold text-white mb-6">Misyonumuz</h3>
+                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                    Türkiye Cumhuriyeti'nin temel değerlerini koruyarak, modern dünyanın gereksinimlerine 
+                    uygun şekilde güncellemek ve halkın iradesini en üst düzeyde temsil etmek.
+                  </p>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    Demokrasinin gerçek anlamda yaşandığı, adaletli ve eşitlikçi bir toplum inşa etmek 
+                    için çalışıyoruz. Her vatandaşın sesinin duyulduğu, katılımcı ve şeffaf bir yönetim 
+                    anlayışını hayata geçirmek önceliğimizdir.
+                  </p>
+                </div>
+
+                <div className="text-center py-12">
+                  <motion.p
+                    className="text-gray-400 text-sm"
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    Scroll testi için ek içerik - Yukarı aşağı kaydırabilirsiniz
+                  </motion.p>
                 </div>
               </motion.div>
             </motion.div>
