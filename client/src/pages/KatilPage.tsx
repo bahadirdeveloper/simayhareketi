@@ -828,17 +828,20 @@ export default function KatilPage() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="mb-16"
           >
-            <Card className="backdrop-blur-xl bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 border-2 border-red-500/40 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(239,68,68,0.3)]">
-              <CardHeader className="text-center pb-6">
-                <CardTitle className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-4">
+            <Card className="backdrop-blur-xl bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 border border-red-500/40 sm:border-2 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(239,68,68,0.2)] sm:shadow-[0_0_50px_rgba(239,68,68,0.3)]">
+              <CardHeader className="text-center pb-4 sm:pb-6 px-4 sm:px-6">
+                <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-3 sm:mb-4">
                   Mali Şeffaflık Sistemi
                 </CardTitle>
-                <CardDescription className="text-gray-300 text-lg">
+                <CardDescription className="text-gray-300 text-sm sm:text-lg px-2">
                   Platform gelir ve giderlerinin canlı takibi - Halka tamamen şeffaf sistem
                 </CardDescription>
-                <div className="flex items-center justify-center mt-4">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
-                  <span className="text-green-400 text-sm font-medium">Canlı Veriler - Son güncelleme: {new Date().toLocaleTimeString('tr-TR')}</span>
+                <div className="flex flex-col sm:flex-row items-center justify-center mt-3 sm:mt-4 space-y-2 sm:space-y-0">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
+                    <span className="text-green-400 text-xs sm:text-sm font-medium">Canlı Veriler</span>
+                  </div>
+                  <span className="text-gray-400 text-xs sm:ml-2">Son güncelleme: {new Date().toLocaleTimeString('tr-TR')}</span>
                 </div>
               </CardHeader>
               <CardContent>
@@ -848,15 +851,15 @@ export default function KatilPage() {
                     <span className="text-gray-400">Mali veriler yükleniyor...</span>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <Table>
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <Table className="min-w-full">
                       <TableHeader>
                         <TableRow className="border-red-500/30 hover:bg-red-500/10">
-                          <TableHead className="text-red-400 font-bold">Tarih</TableHead>
-                          <TableHead className="text-red-400 font-bold">Kategori</TableHead>
-                          <TableHead className="text-red-400 font-bold">Açıklama</TableHead>
-                          <TableHead className="text-red-400 font-bold">Tür</TableHead>
-                          <TableHead className="text-red-400 font-bold text-right">Tutar</TableHead>
+                          <TableHead className="text-red-400 font-bold text-xs sm:text-sm px-2 sm:px-4">Tarih</TableHead>
+                          <TableHead className="text-red-400 font-bold text-xs sm:text-sm px-2 sm:px-4">Kategori</TableHead>
+                          <TableHead className="text-red-400 font-bold text-xs sm:text-sm px-2 sm:px-4 hidden sm:table-cell">Açıklama</TableHead>
+                          <TableHead className="text-red-400 font-bold text-xs sm:text-sm px-2 sm:px-4">Tür</TableHead>
+                          <TableHead className="text-red-400 font-bold text-xs sm:text-sm text-right px-2 sm:px-4">Tutar</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -963,19 +966,19 @@ export default function KatilPage() {
             transition={{ duration: 0.8, delay: 1.3 }}
             className="text-center"
           >
-            <div className="backdrop-blur-xl bg-gradient-to-br from-red-500/20 via-orange-500/10 to-red-500/20 border-2 border-red-500/40 rounded-3xl p-12 max-w-4xl mx-auto">
-              <Award className="w-16 h-16 text-red-400 mx-auto mb-6" />
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <div className="backdrop-blur-xl bg-gradient-to-br from-red-500/20 via-orange-500/10 to-red-500/20 border border-red-500/40 sm:border-2 rounded-2xl sm:rounded-3xl p-6 sm:p-12 max-w-4xl mx-auto">
+              <Award className="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-4 sm:mb-6" />
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
                 Geleceğin İnşasında Rol Al
               </h3>
-              <p className="text-gray-300 text-xl mb-8 leading-relaxed">
+              <p className="text-gray-300 text-base sm:text-xl mb-6 sm:mb-8 leading-relaxed px-2">
                 Her katılım, Türkiye'nin daha güçlü bir geleceğe adım atmasıdır. 
                 Sen de bu büyük dönüşümün bir parçası ol ve tarih yazanlar arasında yer al.
               </p>
-              <div className="flex items-center justify-center space-x-4 text-red-400">
-                <Star className="w-6 h-6 fill-current" />
-                <span className="text-lg font-medium">Birlikte Güçlüyüz</span>
-                <Star className="w-6 h-6 fill-current" />
+              <div className="flex items-center justify-center space-x-3 sm:space-x-4 text-red-400">
+                <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
+                <span className="text-base sm:text-lg font-medium">Birlikte Güçlüyüz</span>
+                <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
               </div>
             </div>
           </motion.div>

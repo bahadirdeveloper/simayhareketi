@@ -47,6 +47,14 @@
   @apply font-medium tracking-wide;
 }
 
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  .backdrop-blur-xl { backdrop-filter: blur(8px); }
+  .backdrop-blur-lg { backdrop-filter: blur(6px); }
+  .shadow-2xl { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1); }
+  .shadow-xl { box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.1); }
+}
+
 /* Reduce motion for accessibility and performance */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

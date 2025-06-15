@@ -1327,29 +1327,29 @@ export default function GorevlerPage() {
             className="mb-16"
           >
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {Array.from({ length: 4 }).map((_, i) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl h-[500px]">
-                      <div className="p-6 space-y-4">
-                        <div className="h-4 bg-gray-600/50 rounded"></div>
-                        <div className="h-4 bg-gray-600/50 rounded w-3/4"></div>
-                        <div className="h-20 bg-gray-600/50 rounded"></div>
+                    <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-xl sm:rounded-2xl h-[300px] sm:h-[400px]">
+                      <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+                        <div className="h-3 sm:h-4 bg-gray-600/50 rounded"></div>
+                        <div className="h-3 sm:h-4 bg-gray-600/50 rounded w-3/4"></div>
+                        <div className="h-16 sm:h-20 bg-gray-600/50 rounded"></div>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             ) : filteredGorevler.length === 0 ? (
-              <div className="text-center py-16">
-                <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl p-12 max-w-2xl mx-auto">
-                  <Search className="w-16 h-16 text-gray-400 mx-auto mb-6" />
-                  <p className="text-xl text-gray-300 mb-4">Aranan kriterlere uygun görev bulunamadı</p>
-                  <p className="text-gray-400">Farklı arama terimleri veya filtreler deneyebilirsiniz</p>
+              <div className="text-center py-8 sm:py-16">
+                <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-xl sm:rounded-2xl p-6 sm:p-12 max-w-2xl mx-auto">
+                  <Search className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-4 sm:mb-6" />
+                  <p className="text-lg sm:text-xl text-gray-300 mb-2 sm:mb-4">Aranan kriterlere uygun görev bulunamadı</p>
+                  <p className="text-sm sm:text-base text-gray-400">Farklı arama terimleri veya filtreler deneyebilirsiniz</p>
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {currentGorevler.map(gorev => (
                   <motion.div
                     key={gorev.id}
@@ -1359,14 +1359,14 @@ export default function GorevlerPage() {
                     onClick={() => openGorevModal(gorev)}
                   >
                     <div className={`
-                      relative backdrop-blur-lg border-2 rounded-2xl overflow-hidden h-[500px] transition-all duration-300
+                      relative backdrop-blur-lg border border-gray-700/50 sm:border-2 rounded-xl sm:rounded-2xl overflow-hidden h-[300px] sm:h-[400px] lg:h-[450px] transition-all duration-300
                       ${gorev.kategori === 'kurucu' 
-                        ? 'bg-gradient-to-br from-red-900/30 to-orange-900/20 border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
+                        ? 'bg-gradient-to-br from-red-900/30 to-orange-900/20 sm:border-red-500/60 shadow-[0_0_15px_rgba(239,68,68,0.2)] sm:shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
                         : gorev.tamamlayan > 0 
-                          ? 'bg-gradient-to-br from-green-900/20 to-emerald-900/20 border-green-500/50 shadow-[0_0_20px_rgba(34,197,94,0.2)]' 
+                          ? 'bg-gradient-to-br from-green-900/20 to-emerald-900/20 sm:border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.1)] sm:shadow-[0_0_20px_rgba(34,197,94,0.2)]' 
                           : 'bg-gradient-to-br from-gray-900/20 to-black/20 border-gray-700/50 hover:border-red-500/50'
                       }
-                      group-hover:shadow-[0_0_40px_rgba(239,68,68,0.4)]
+                      group-hover:shadow-[0_0_20px_rgba(239,68,68,0.3)] sm:group-hover:shadow-[0_0_40px_rgba(239,68,68,0.4)]
                     `}>
                       {/* Task Image Background */}
                       <div className="absolute inset-0 z-0">
@@ -1382,21 +1382,21 @@ export default function GorevlerPage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                       </div>
                       
-                      {/* Task Number Badge */}
-                      <div className="absolute top-4 right-4 z-20">
-                        <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                      {/* Mobile-optimized Task Number Badge */}
+                      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20">
+                        <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-lg shadow-lg">
                           {gorev.id}
                         </div>
                       </div>
                       
-                      {/* Task Content */}
-                      <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                      {/* Mobile-optimized Task Content */}
+                      <div className="relative z-10 p-3 sm:p-6 h-full flex flex-col justify-between">
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-tight drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                          <h3 className="text-base sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2 leading-tight drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                             {gorev.baslik}
                           </h3>
                           
-                          <p className="text-white text-sm line-clamp-3 mb-4 drop-shadow-md" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                          <p className="text-white text-xs sm:text-sm line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-4 drop-shadow-md" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
                             {gorev.cagri || "Cumhuriyet güncelleme görevine katılın"}
                           </p>
                         </div>
