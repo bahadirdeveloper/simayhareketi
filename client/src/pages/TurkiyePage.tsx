@@ -234,6 +234,168 @@ export default function TurkiyePage() {
           </div>
         </div>
 
+        {/* Additional Pages Navigation */}
+        <div className="mb-16 static-container">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/10 to-blue-600/5 rounded-3xl"></div>
+            <div className="relative bg-gradient-to-br from-black/90 via-blue-950/20 to-black/90 border-2 border-blue-500/40 rounded-3xl p-8 static-container">
+              
+              <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Diğer Önemli Sayfalar
+              </h2>
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 static-container">
+                {/* Halk Defteri */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/halk-defteri")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-cyan-950/50 to-black/90 border border-cyan-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">HALK DEFTERİ</div>
+                    <div className="text-cyan-400 text-xs opacity-80">Halk Kayıtları</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Görev Davet */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/gorev-davet")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-indigo-950/50 to-black/90 border border-indigo-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">GÖREV DAVET</div>
+                    <div className="text-indigo-400 text-xs opacity-80">Davet Sistemi</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Kurucu Eksikleri */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/kurucu-eksikleri")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-pink-950/50 to-black/90 border border-pink-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">KURUCU EKSİKLERİ</div>
+                    <div className="text-pink-400 text-xs opacity-80">Eksiklikler</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Amaç Savaş */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/amac-savas")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-rose-950/50 to-black/90 border border-rose-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">AMAÇ SAVAŞ</div>
+                    <div className="text-rose-400 text-xs opacity-80">Hedefler</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Sertifika */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/sertifika")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-emerald-950/50 to-black/90 border border-emerald-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">SERTİFİKA</div>
+                    <div className="text-emerald-400 text-xs opacity-80">Belgelendirme</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Entegrasyon */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/entegrasyon")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-teal-950/50 to-black/90 border border-teal-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">ENTEGRASYON</div>
+                    <div className="text-teal-400 text-xs opacity-80">Sistem Entegrasyonu</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Halk Koordinasyon */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/halk-koordinasyon")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-violet-950/50 to-black/90 border border-violet-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">HALK KOORDİNASYON</div>
+                    <div className="text-violet-400 text-xs opacity-80">Koordinasyon</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Birleşik Manifesto */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/birlesik-manifesto")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-amber-950/50 to-black/90 border border-amber-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">BİRLEŞİK MANİFESTO</div>
+                    <div className="text-amber-400 text-xs opacity-80">Birleşik Manifesto</div>
+                  </div>
+                </ModernTechButton>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* International Pages */}
+        <div className="mb-16 static-container">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 via-emerald-600/10 to-green-600/5 rounded-3xl"></div>
+            <div className="relative bg-gradient-to-br from-black/90 via-green-950/20 to-black/90 border-2 border-green-500/40 rounded-3xl p-8 static-container">
+              
+              <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500">
+                Uluslararası Dayanışma
+              </h2>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 static-container">
+                {/* Russia */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/russia")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border border-red-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">🇷🇺 RUSYA</div>
+                    <div className="text-red-400 text-xs opacity-80">Rusya Sayfası</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Iran */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/iran")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-green-950/50 to-black/90 border border-green-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">🇮🇷 İRAN</div>
+                    <div className="text-green-400 text-xs opacity-80">İran Sayfası</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Palestine */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/palestine")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-emerald-950/50 to-black/90 border border-emerald-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">🇵🇸 FİLİSTİN</div>
+                    <div className="text-emerald-400 text-xs opacity-80">Filistin Sayfası</div>
+                  </div>
+                </ModernTechButton>
+
+                {/* Oppressed Nations */}
+                <ModernTechButton
+                  onClick={() => navigateToPage("/oppressed")}
+                  className="h-24 bg-gradient-to-br from-black/90 via-purple-950/50 to-black/90 border border-purple-500/50 rounded-xl static-container"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white mb-1">🌍 MAZLUM MİLLETLER</div>
+                    <div className="text-purple-400 text-xs opacity-80">Mazlum Milletler</div>
+                  </div>
+                </ModernTechButton>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Global Translation System */}
         <GlobalTranslator />
       </div>
