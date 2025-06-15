@@ -9,16 +9,9 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 
-// Dil seçim listesi
+// Dil seçim listesi - sadece Türkçe
 const languages = [
   { code: "tr", name: "Türkçe", nativeName: "Türkçe", flag: "🇹🇷" },
-  { code: "en", name: "English", nativeName: "English", flag: "🇬🇧" },
-  { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪" },
-  { code: "fr", name: "French", nativeName: "Français", flag: "🇫🇷" },
-  { code: "es", name: "Spanish", nativeName: "Español", flag: "🇪🇸" },
-  { code: "ar", name: "Arabic", nativeName: "العربية", flag: "🇸🇦" },
-  { code: "ru", name: "Russian", nativeName: "Русский", flag: "🇷🇺" },
-  { code: "zh", name: "Chinese", nativeName: "中文", flag: "🇨🇳" },
 ];
 
 export default function LanguagePage() {
