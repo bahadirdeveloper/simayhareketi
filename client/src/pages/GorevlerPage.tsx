@@ -6,6 +6,7 @@ import ModernLayout from "@/components/ModernLayout";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import GlobalTranslator from "@/components/GlobalTranslator";
 import { Input } from "@/components/ui/input";
@@ -259,6 +260,7 @@ interface Gorev {
 export default function GorevlerPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
+  const { toast } = useToast();
   const [selectedGorev, setSelectedGorev] = useState<Gorev | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -298,8 +300,27 @@ export default function GorevlerPage() {
     
     recordVisit();
     
-    // Tüm 101 görev
-    const allGorevler: Gorev[] = [
+    // Fetch real tasks from API
+    const fetchGorevler = async () => {
+      try {
+        const response = await fetch('/api/gorevler');
+        if (response.ok) {
+          const realGorevler = await response.json();
+          setGorevler(realGorevler);
+        } else {
+          console.error('Failed to fetch tasks');
+        }
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchGorevler();
+    
+    // Fallback görevler (sadece API başarısız olursa kullanılacak)
+    const fallbackGorevler: Gorev[] = [
       {
         id: 0,
         baslik: "Görev 0: Kurucunun Eksikleri",
@@ -1654,9 +1675,46 @@ export default function GorevlerPage() {
                   <div className="pt-4 lg:pt-8 space-y-3 lg:space-y-4">
                     <Button 
                       className="w-full bg-gradient-to-r from-red-500 via-orange-500 to-red-500 hover:from-red-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-3 lg:py-4 text-base lg:text-lg rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_50px_rgba(239,68,68,0.5)] touch-target"
-                      onClick={() => {
-                        // Add participation logic here
-                        setIsModalOpen(false);
+                      onClick={async () => {
+                        try {
+                          const response = await fetch('/api/gorev-basvuru', {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                              gorevId: selectedGorev.id,
+                              notlar: 'Web sitesi üzerinden başvuru'
+                            }),
+                          });
+
+                          if (response.ok) {
+                            toast({
+                              title: "Başvuru Gönderildi!",
+                              description: "Görev başvurunuz başarıyla kaydedildi. En kısa sürede değerlendirilecektir.",
+                            });
+                            setIsModalOpen(false);
+                          } else if (response.status === 401) {
+                            toast({
+                              title: "Giriş Gerekli",
+                              description: "Göreve başvurmak için önce giriş yapmanız gerekiyor.",
+                              variant: "destructive",
+                            });
+                          } else {
+                            const error = await response.json();
+                            toast({
+                              title: "Başvuru Hatası",
+                              description: error.error || "Başvuru gönderilemedi. Lütfen tekrar deneyin.",
+                              variant: "destructive",
+                            });
+                          }
+                        } catch (error) {
+                          toast({
+                            title: "Bağlantı Hatası",
+                            description: "Sunucuya bağlanılamadı. Lütfen internet bağlantınızı kontrol edin.",
+                            variant: "destructive",
+                          });
+                        }
                       }}
                     >
                       <Rocket className="w-4 h-4 lg:w-5 lg:h-5 mr-2" />

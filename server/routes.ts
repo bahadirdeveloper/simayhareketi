@@ -353,6 +353,101 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Tasks/Missions API
+  app.get("/api/gorevler", async (req, res) => {
+    try {
+      const gorevler = await storage.getAllGorevler();
+      // Add application counts for each task
+      const gorevlerWithCounts = await Promise.all(
+        gorevler.map(async (gorev) => {
+          const count = await storage.getGorevBasvuruCount(gorev.id);
+          return { ...gorev, tamamlayan: count };
+        })
+      );
+      res.json(gorevlerWithCounts);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+      res.status(500).json({ error: "Failed to retrieve tasks" });
+    }
+  });
+
+  app.get("/api/gorevler/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const gorev = await storage.getGorev(id);
+      
+      if (!gorev) {
+        return res.status(404).json({ error: "Task not found" });
+      }
+      
+      const tamamlayan = await storage.getGorevBasvuruCount(id);
+      res.json({ ...gorev, tamamlayan });
+    } catch (error) {
+      console.error("Error fetching task:", error);
+      res.status(500).json({ error: "Failed to retrieve task" });
+    }
+  });
+
+  app.post("/api/gorev-basvuru", async (req, res) => {
+    try {
+      if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: "Authentication required" });
+      }
+
+      const basvuruData = insertGorevBasvuruSchema.parse({
+        ...req.body,
+        userId: req.user.id
+      });
+      
+      // Check if user already applied for this task
+      const existingApplications = await storage.getGorevBasvurulari(basvuruData.gorevId, req.user.id);
+      if (existingApplications.length > 0) {
+        return res.status(400).json({ error: "You have already applied for this task" });
+      }
+      
+      const basvuru = await storage.createGorevBasvuru(basvuruData);
+      res.status(201).json(basvuru);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: "Invalid application data", details: error.errors });
+      } else {
+        console.error("Task application error:", error);
+        res.status(500).json({ error: "Failed to submit application" });
+      }
+    }
+  });
+
+  app.get("/api/my-applications", async (req, res) => {
+    try {
+      if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: "Authentication required" });
+      }
+
+      const applications = await storage.getGorevBasvurulari(undefined, req.user.id);
+      res.json(applications);
+    } catch (error) {
+      console.error("Error fetching user applications:", error);
+      res.status(500).json({ error: "Failed to retrieve applications" });
+    }
+  });
+
+  // Country addition requests
+  app.post("/api/ulke-basvuru", async (req, res) => {
+    try {
+      const basvuruData = insertUlkeBasvuruSchema.parse(req.body);
+      const basvuru = await storage.createUlkeBasvuru(basvuruData);
+      res.status(201).json(basvuru);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: "Invalid country request data", details: error.errors });
+      } else {
+        console.error("Country request error:", error);
+        res.status(500).json({ error: "Failed to submit country request" });
+      }
+    }
+  });
+
+  // Stripe payments
   app.post("/api/create-payment-intent", handleCreatePaymentIntent);
   app.post("/api/create-subscription", handleCreateSubscription);
   app.post("/api/webhook", handleWebhook);
