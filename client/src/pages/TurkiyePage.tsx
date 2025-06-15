@@ -15,30 +15,51 @@ export default function TurkiyePage() {
   const [sound, setSound] = useState<Howl | null>(null);
 
   useEffect(() => {
-    const audioSound = new Howl({
-      src: ['/assets/giris.mp3'],
-      html5: true,
-      volume: 0.7,
-      onplay: () => setIsPlaying(true),
-      onpause: () => setIsPlaying(false),
-      onend: () => setIsPlaying(false),
-      onstop: () => setIsPlaying(false),
-    });
-    
-    setSound(audioSound);
-    
-    return () => {
-      audioSound.unload();
-    };
+    try {
+      const audioSound = new Howl({
+        src: ['/assets/giris.mp3'],
+        html5: true,
+        volume: 0.7,
+        onplay: () => setIsPlaying(true),
+        onpause: () => setIsPlaying(false),
+        onend: () => setIsPlaying(false),
+        onstop: () => setIsPlaying(false),
+        onloaderror: (id, error) => {
+          console.log('Audio load error:', error);
+          setIsPlaying(false);
+        },
+        onplayerror: (id, error) => {
+          console.log('Audio play error:', error);
+          setIsPlaying(false);
+        }
+      });
+      
+      setSound(audioSound);
+      
+      return () => {
+        try {
+          audioSound.unload();
+        } catch (error) {
+          console.log('Audio cleanup error:', error);
+        }
+      };
+    } catch (error) {
+      console.log('Audio initialization error:', error);
+    }
   }, []);
 
   const togglePlayback = () => {
     if (!sound) return;
     
-    if (isPlaying) {
-      sound.pause();
-    } else {
-      sound.play();
+    try {
+      if (isPlaying) {
+        sound.pause();
+      } else {
+        sound.play();
+      }
+    } catch (error) {
+      console.log('Audio playback error:', error);
+      setIsPlaying(false);
     }
   };
 
