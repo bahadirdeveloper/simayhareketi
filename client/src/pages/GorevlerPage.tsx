@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-// Görev resimlerini doğrudan import et
+// Görev resimlerini doğrudan import et (1-100)
 import gorev1 from "../../../attached_assets/gorev-1.webp";
 import gorev2 from "../../../attached_assets/gorev-2.webp";
 import gorev3 from "../../../attached_assets/gorev-3.webp";
@@ -37,40 +37,101 @@ import gorev21 from "../../../attached_assets/gorev-21.webp";
 import gorev22 from "../../../attached_assets/gorev-22.webp";
 import gorev23 from "../../../attached_assets/gorev-23.webp";
 import gorev24 from "../../../attached_assets/gorev-24.webp";
-// No icons needed for formal appearance
+import gorev25 from "../../../attached_assets/gorev-25.webp";
+import gorev26 from "../../../attached_assets/gorev-26.webp";
+import gorev27 from "../../../attached_assets/gorev-27.webp";
+import gorev28 from "../../../attached_assets/gorev-28.webp";
+import gorev29 from "../../../attached_assets/gorev-29.webp";
+import gorev30 from "../../../attached_assets/gorev-30.webp";
+import gorev31 from "../../../attached_assets/gorev-31.webp";
+import gorev32 from "../../../attached_assets/gorev-32.webp";
+import gorev33 from "../../../attached_assets/gorev-33.webp";
+import gorev34 from "../../../attached_assets/gorev-34.webp";
+import gorev35 from "../../../attached_assets/gorev-35.webp";
+import gorev36 from "../../../attached_assets/gorev-36.webp";
+import gorev37 from "../../../attached_assets/gorev-37.webp";
+import gorev38 from "../../../attached_assets/gorev-38.webp";
+import gorev39 from "../../../attached_assets/gorev-39.webp";
+import gorev40 from "../../../attached_assets/gorev-40.webp";
+import gorev41 from "../../../attached_assets/gorev-41.webp";
+import gorev42 from "../../../attached_assets/gorev-42.webp";
+import gorev43 from "../../../attached_assets/gorev-43.webp";
+import gorev44 from "../../../attached_assets/gorev-44.webp";
+import gorev45 from "../../../attached_assets/gorev-45.webp";
+import gorev46 from "../../../attached_assets/gorev-46.webp";
+import gorev47 from "../../../attached_assets/gorev-47.webp";
+import gorev48 from "../../../attached_assets/gorev-48.webp";
+import gorev49 from "../../../attached_assets/gorev-49.webp";
+import gorev50 from "../../../attached_assets/gorev-50.webp";
+import gorev51 from "../../../attached_assets/gorev-51.webp";
+import gorev52 from "../../../attached_assets/gorev-52.webp";
+import gorev53 from "../../../attached_assets/gorev-53.webp";
+import gorev54 from "../../../attached_assets/gorev-54.webp";
+import gorev55 from "../../../attached_assets/gorev-55.webp";
+import gorev56 from "../../../attached_assets/gorev-56.webp";
+import gorev57 from "../../../attached_assets/gorev-57.webp";
+import gorev58 from "../../../attached_assets/gorev-58.webp";
+import gorev59 from "../../../attached_assets/gorev-59.webp";
+import gorev60 from "../../../attached_assets/gorev-60.webp";
+import gorev61 from "../../../attached_assets/gorev-61.webp";
+import gorev62 from "../../../attached_assets/gorev-62.webp";
+import gorev63 from "../../../attached_assets/gorev-63.webp";
+import gorev64 from "../../../attached_assets/gorev-64.webp";
+import gorev65 from "../../../attached_assets/gorev-65.webp";
+import gorev66 from "../../../attached_assets/gorev-66.webp";
+import gorev67 from "../../../attached_assets/gorev-67.webp";
+import gorev68 from "../../../attached_assets/gorev-68.webp";
+import gorev69 from "../../../attached_assets/gorev-69.webp";
+import gorev70 from "../../../attached_assets/gorev-70.webp";
+import gorev71 from "../../../attached_assets/gorev-71.webp";
+import gorev72 from "../../../attached_assets/gorev-72.webp";
+import gorev73 from "../../../attached_assets/gorev-73.webp";
+import gorev74 from "../../../attached_assets/gorev-74.webp";
+import gorev75 from "../../../attached_assets/gorev-75.webp";
+import gorev76 from "../../../attached_assets/gorev-76.webp";
+import gorev77 from "../../../attached_assets/gorev-77.webp";
+import gorev78 from "../../../attached_assets/gorev-78.webp";
+import gorev79 from "../../../attached_assets/gorev-79.webp";
+import gorev80 from "../../../attached_assets/gorev-80.webp";
+import gorev81 from "../../../attached_assets/gorev-81.webp";
+import gorev82 from "../../../attached_assets/gorev-82.webp";
+import gorev83 from "../../../attached_assets/gorev-83.webp";
+import gorev84 from "../../../attached_assets/gorev-84.webp";
+import gorev85 from "../../../attached_assets/gorev-85.webp";
+import gorev86 from "../../../attached_assets/gorev-86.webp";
+import gorev87 from "../../../attached_assets/gorev-87.webp";
+import gorev88 from "../../../attached_assets/gorev-88.webp";
+import gorev89 from "../../../attached_assets/gorev-89.webp";
+import gorev90 from "../../../attached_assets/gorev-90.webp";
+import gorev91 from "../../../attached_assets/gorev-91.webp";
+import gorev92 from "../../../attached_assets/gorev-92.webp";
+import gorev93 from "../../../attached_assets/gorev-93.webp";
+import gorev94 from "../../../attached_assets/gorev-94.webp";
+import gorev95 from "../../../attached_assets/gorev-95.webp";
+import gorev96 from "../../../attached_assets/gorev-96.webp";
+import gorev97 from "../../../attached_assets/gorev-97.webp";
+import gorev98 from "../../../attached_assets/gorev-98.webp";
+import gorev99 from "../../../attached_assets/gorev-99.webp";
+import gorev100 from "../../../attached_assets/gorev-100.webp";
 
-// Tüm görev resimlerini bir havuzda topla
+// Tüm görev resimlerini bir havuzda topla (1-100)
 const gorevImages: Record<number, string> = {
-  1: gorev1,
-  2: gorev2,
-  3: gorev3,
-  4: gorev4,
-  5: gorev5,
-  6: gorev6,
-  7: gorev7,
-  8: gorev8,
-  9: gorev9,
-  10: gorev10,
-  11: gorev11,
-  12: gorev12,
-  13: gorev13,
-  14: gorev14,
-  15: gorev15,
-  16: gorev16,
-  17: gorev17,
-  18: gorev18,
-  19: gorev19,
-  20: gorev20,
-  21: gorev21,
-  22: gorev22,
-  23: gorev23,
-  24: gorev24
+  1: gorev1, 2: gorev2, 3: gorev3, 4: gorev4, 5: gorev5, 6: gorev6, 7: gorev7, 8: gorev8, 9: gorev9, 10: gorev10,
+  11: gorev11, 12: gorev12, 13: gorev13, 14: gorev14, 15: gorev15, 16: gorev16, 17: gorev17, 18: gorev18, 19: gorev19, 20: gorev20,
+  21: gorev21, 22: gorev22, 23: gorev23, 24: gorev24, 25: gorev25, 26: gorev26, 27: gorev27, 28: gorev28, 29: gorev29, 30: gorev30,
+  31: gorev31, 32: gorev32, 33: gorev33, 34: gorev34, 35: gorev35, 36: gorev36, 37: gorev37, 38: gorev38, 39: gorev39, 40: gorev40,
+  41: gorev41, 42: gorev42, 43: gorev43, 44: gorev44, 45: gorev45, 46: gorev46, 47: gorev47, 48: gorev48, 49: gorev49, 50: gorev50,
+  51: gorev51, 52: gorev52, 53: gorev53, 54: gorev54, 55: gorev55, 56: gorev56, 57: gorev57, 58: gorev58, 59: gorev59, 60: gorev60,
+  61: gorev61, 62: gorev62, 63: gorev63, 64: gorev64, 65: gorev65, 66: gorev66, 67: gorev67, 68: gorev68, 69: gorev69, 70: gorev70,
+  71: gorev71, 72: gorev72, 73: gorev73, 74: gorev74, 75: gorev75, 76: gorev76, 77: gorev77, 78: gorev78, 79: gorev79, 80: gorev80,
+  81: gorev81, 82: gorev82, 83: gorev83, 84: gorev84, 85: gorev85, 86: gorev86, 87: gorev87, 88: gorev88, 89: gorev89, 90: gorev90,
+  91: gorev91, 92: gorev92, 93: gorev93, 94: gorev94, 95: gorev95, 96: gorev96, 97: gorev97, 98: gorev98, 99: gorev99, 100: gorev100
 };
 
-// Görev resmi getirme yardımcı fonksiyonu
+// Görev resmi getirme yardımcı fonksiyonu (1-100)
 const getGorevImage = (id: number): string => {
-  const safeId = Math.min(Math.max(1, id), 24);
-  return gorevImages[safeId] || '';
+  const safeId = Math.min(Math.max(1, id), 100);
+  return gorevImages[safeId] || gorev1;
 };
 
 // Görev arkaplan renkleri
