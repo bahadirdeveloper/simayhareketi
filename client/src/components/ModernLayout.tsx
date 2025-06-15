@@ -188,6 +188,17 @@ const ModernLayout = ({
   const [, navigate] = useLocation();
 
   useEffect(() => {
+    // Scroll to top on page change
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Also scroll the main content container
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.scrollTop = 0;
+    }
+    
     // Optimize audio initialization
     const audioInitTimeout = setTimeout(() => {
       initAudio(audioKey);
@@ -242,9 +253,23 @@ const ModernLayout = ({
   const backButton = useMemo(() => {
     if (!showBackButton) return null;
     
+    const handleBackClick = () => {
+      // Scroll to top before navigation
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      const mainContent = document.querySelector('.main-content');
+      if (mainContent) {
+        mainContent.scrollTop = 0;
+      }
+      
+      navigate("/");
+    };
+    
     return (
       <button 
-        onClick={() => navigate("/")}
+        onClick={handleBackClick}
         className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-friendly mobile-nav-optimized gpu-accelerated"
       >
         <ArrowLeft className="h-4 w-4" />

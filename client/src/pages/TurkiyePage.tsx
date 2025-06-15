@@ -23,6 +23,21 @@ export default function TurkiyePage() {
     initAudio('turkiye');
   }, []);
   
+  // Scroll to top navigation helper
+  const navigateToPage = (path: string) => {
+    // Scroll to top before navigation
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.scrollTop = 0;
+    }
+    
+    navigate(path);
+  };
+  
   // Ses çalma/durdurma işlemini yönet
   const handleToggleAudio = () => {
     playSoundtrack();
@@ -220,7 +235,7 @@ export default function TurkiyePage() {
                 className="content-stable"
               >
                 <ModernTechButton
-                  onClick={() => navigate("/turknedir")}
+                  onClick={() => navigateToPage("/turknedir")}
                   className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
                   <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
@@ -241,7 +256,7 @@ export default function TurkiyePage() {
                 transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
-                  onClick={() => navigate("/anayasalar")}
+                  onClick={() => navigateToPage("/anayasalar")}
                   className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
                   <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
@@ -262,7 +277,7 @@ export default function TurkiyePage() {
                 transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
-                  onClick={() => navigate("/gorevler")}
+                  onClick={() => navigateToPage("/gorevler")}
                   className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
                   <div className="text-center px-2 py-4 h-full flex flex-col justify-center">
@@ -283,7 +298,7 @@ export default function TurkiyePage() {
                 transition={{ duration: 0.2 }}
               >
                 <ModernTechButton
-                  onClick={() => navigate("/halk-manifestolar")}
+                  onClick={() => navigateToPage("/halk-manifestolar")}
                   className="w-full h-44 sm:h-40 bg-gradient-to-br from-black/90 via-red-950/50 to-black/90 border-2 border-red-500/50 rounded-2xl backdrop-blur-xl shadow-[0_20px_60px_rgba(239,68,68,0.2)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.4)] transition-all duration-500"
                 >
                   <div className="text-center px-1 py-3 h-full flex flex-col justify-center">
