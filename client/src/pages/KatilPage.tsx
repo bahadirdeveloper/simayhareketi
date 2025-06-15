@@ -125,25 +125,22 @@ export default function KatilPage() {
       const response = await apiRequest("GET", "/api/stats/live");
       const data: LiveStatsResponse = await response.json();
       
+      // Update with real data from API
       setLiveStats({
-        participants: data.participants || 0,
-        totalAmount: data.totalAmount || 0,
-        cities: data.activeCities || 0,
-        projects: data.activeProjects || 0,
-        volunteers: data.volunteers || 0,
+        participants: data.participants,
+        totalAmount: data.totalAmount,
+        cities: data.activeCities,
+        projects: data.activeProjects,
+        volunteers: data.volunteers,
         lastUpdate: new Date()
       });
     } catch (error) {
       console.error('Failed to fetch live data:', error);
-      // If API fails, reset to zero values
-      setLiveStats({
-        participants: 0,
-        totalAmount: 0,
-        cities: 0,
-        projects: 0,
-        volunteers: 0,
+      // If API fails, keep current values or set to zero
+      setLiveStats(prev => ({
+        ...prev,
         lastUpdate: new Date()
-      });
+      }));
     }
   };
 
