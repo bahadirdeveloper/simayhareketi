@@ -193,82 +193,103 @@ export default function KurucuEksikleriPage() {
       
       <main className="container mx-auto px-4 pb-24 pt-16 z-10 relative">
         <div className="max-w-4xl mx-auto">
-          {/* Header Section */}
+          {/* Premium Header Section */}
           <motion.div 
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4">
-              GÖREV 0
-            </h1>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
-              KURUCUNUN EKSİKLERİ
-            </h2>
+            <div className="relative">
+              <motion.div 
+                className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-500/30 to-amber-600/30 rounded-full flex items-center justify-center border-3 border-red-500/60 shadow-[0_0_80px_rgba(239,68,68,0.4)]"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 50px rgba(239, 68, 68, 0.4)", 
+                    "0 0 100px rgba(239, 68, 68, 0.7)", 
+                    "0 0 50px rgba(239, 68, 68, 0.4)"
+                  ],
+                  scale: [1, 1.08, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="text-6xl">🔧</span>
+              </motion.div>
+              
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-3xl"></div>
+            </div>
             
-            {/* Vizyon Bölümü - Dikkat Çekici Animasyonlu Kutu */}
+            <h1 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-red-400 via-orange-500 to-red-600 bg-clip-text text-transparent mb-8 text-shadow-lg leading-tight">
+              KURUCUNUN EKSİKLERİ
+            </h1>
+            <p className="text-gray-300 text-xl mb-10 max-w-4xl mx-auto leading-relaxed">
+              Sistemin mimarı, açıkça eksiklerini ortaya koyar ve bu eksiklikleri gidermek için halktan destek alır
+            </p>
+            
+            <div className="flex justify-center items-center space-x-6 mt-8">
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
+              <div className="w-5 h-5 bg-red-500 rounded-full shadow-[0_0_25px_rgba(239,68,68,0.6)]"></div>
+              <div className="w-24 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
+            </div>
+            
+            {/* Premium Vizyon Bölümü */}
             <motion.div
-              className="relative flex justify-center mb-10"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-lg blur-xl"></div>
-              <div className="bg-gradient-to-r from-red-950/60 to-black/70 backdrop-blur-sm p-6 border-2 border-red-600/50 rounded-lg shadow-[0_0_30px_rgba(220,38,38,0.25)] max-w-3xl relative z-10">
-                <motion.div
-                  className="absolute -top-4 -left-4 bg-gradient-to-r from-red-600 to-red-800 px-4 py-2 rounded-lg text-white font-bold text-sm"
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                >
-                  Vizyonumuz
-                </motion.div>
-                <p className="text-xl md:text-2xl text-white/90 font-bold mb-4 leading-relaxed">
-                  "Bu sistemin temel mimarisi, <span className="text-red-500">Türk halkının kaderine gerçek bir değer katmaktır.</span>"
-                </p>
-                <p className="text-lg text-white/80 mb-3">
-                  Bu belki ilk sınavımız değil, fakat son sınavımız olma riskini taşıdığını açıkça ilan ediyorum!
-                </p>
-                <ul className="text-white/80 space-y-2 mb-4 list-disc pl-6">
-                  <li>Hilenin mümkün olmadığı, rüşvetin barınamadığı, vatandaşın yerinden, yurdundan ve işinden edilmediği;</li>
-                  <li>Sadece cebimizden çıkan her kuruşun hesabını sorabildiğimiz, şeffaf bir halk sistemi istiyoruz.</li>
-                </ul>
-                <p className="text-lg text-white/80 font-bold mb-3">
-                  Bu sistem <span className="text-red-500">halk adına, halk için</span> vardır!
-                </p>
-                <p className="text-lg text-white/80 mb-3">
-                  Kısa sürede büyük işler başardık ve bu başarıların geleceği, hepimizin ortak geleceğidir. Savaşımız bundan sonra yalnızca cehalete karşıdır. Aydınlanma, bilgilenme ve bilinçlenme mücadelesinden başka bir savaş tanımıyoruz!
-                </p>
-                <div className="border-l-4 border-red-600 pl-4 py-1 my-4">
-                  <p className="text-xl text-white font-bold">
-                    Türk halkının cebinden çıkan her kuruşun hesabını soracağız!
-                  </p>
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl blur-2xl"></div>
+              <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/95 via-red-950/30 to-black/95 border-2 border-red-500/50 rounded-3xl p-10 shadow-[0_30px_100px_rgba(239,68,68,0.2)] overflow-hidden">
+                
+                {/* Premium Top Border */}
+                <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-orange-500 via-red-500 to-orange-500"></div>
+                
+                {/* Corner Decorations */}
+                <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-transparent rounded-br-full"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-bl-full"></div>
+                
+                {/* Header Section */}
+                <div className="flex items-center justify-center mb-10">
+                  <motion.div 
+                    className="w-20 h-20 bg-gradient-to-br from-red-600/40 to-orange-600/40 rounded-full flex items-center justify-center text-4xl border-3 border-red-500/60 shadow-[0_0_40px_rgba(239,68,68,0.3)]"
+                    animate={{ 
+                      rotate: [0, 5, -5, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    💡
+                  </motion.div>
                 </div>
-                <p className="text-lg text-white/80 mb-3">
-                  Kimse endişeye kapılmasın; hiç kimsenin yaptığı bu dünyada dahi yanına kalmayacaktır, buna söz veriyoruz!
-                </p>
-                <p className="text-white/90 mb-4">
-                  Geleceğe bıraktığım bu sistem, her aşamasıyla geliştirilebilir ve ilerletilebilir bir kapıdır. Bu kapı, Türk gençliğine sonuna kadar açıktır.
-                </p>
-                <div className="bg-gradient-to-r from-red-950/80 to-black/80 p-4 border-l-4 border-red-600 rounded mt-5">
-                  <p className="text-xl font-bold text-white">
-                    Ey Türk Gençliği!
-                  </p>
-                  <p className="text-white/90">
-                    Birinci vazifen; bu şeffaflığı, adaleti ve dürüstlüğü yaşatmak, cehaletle ve yozlaşmayla sonuna kadar mücadele etmektir!
-                  </p>
-                </div>
-                <div className="mt-6 text-center">
-                  <p className="text-xl text-white font-bold mb-2">
-                    <span className="text-red-500">Cumhuriyet, Türkler ile yeniden güncelleniyor!</span>
-                  </p>
-                  <p className="text-lg text-white/80">
-                    Bu güncellemenin mimarı halktır, sahibi Türk milletidir!
-                  </p>
+                
+                <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-red-400 bg-clip-text text-transparent text-center mb-12 leading-tight">
+                  VİZYONUMUZ
+                </h2>
+                {/* Premium Content Grid */}
+                <div className="text-white text-lg leading-relaxed space-y-8 max-w-5xl mx-auto">
+                  <motion.div 
+                    className="text-center bg-gradient-to-r from-red-500/20 via-orange-500/10 to-red-500/20 rounded-2xl p-10 border-2 border-red-500/40 backdrop-blur-lg shadow-[0_20px_60px_rgba(239,68,68,0.15)]"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <div className="mb-6">
+                      <div className="w-16 h-16 mx-auto bg-gradient-to-br from-red-500/40 to-orange-600/40 rounded-full flex items-center justify-center text-3xl border-2 border-red-500/60">
+                        💬
+                      </div>
+                    </div>
+                    <p className="text-2xl md:text-3xl font-bold text-red-400 italic mb-4 leading-relaxed">
+                      "Bu sistemin temel mimarisi, Türk halkının kaderine gerçek bir değer katmaktır."
+                    </p>
+                    <p className="text-gray-300 text-lg">Bu belki ilk sınavımız değil, fakat son sınavımız olma riskini taşıdığını açıkça ilan ediyorum!</p>
+                    
+                    <div className="flex justify-center items-center space-x-4 mt-8">
+                      <div className="w-12 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
+                      <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.6)]"></div>
+                      <div className="w-12 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
