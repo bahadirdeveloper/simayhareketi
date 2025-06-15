@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
@@ -11,6 +11,22 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { 
+  Search, 
+  Filter, 
+  ChevronLeft, 
+  ChevronRight, 
+  Users, 
+  Target, 
+  Calendar, 
+  Award,
+  ArrowRight,
+  X,
+  CheckCircle,
+  Clock,
+  Star,
+  Zap
+} from "lucide-react";
 
 // Görev resimlerini doğrudan import et (1-100)
 import gorev1 from "../../../attached_assets/gorev-1.webp";
@@ -1088,170 +1104,438 @@ export default function GorevlerPage() {
       pageContent={pageContent}
       pageName="Görevler"
     >
-      <main className="max-w-6xl mx-auto px-4 pb-16 z-10 relative">
-        {/* Header */}
-        <div className="text-center py-10">
-          <motion.div 
-            className="turkish-content-bg p-8 rounded-lg mb-10 max-w-4xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-wide leading-tight"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              101. YILINDA HALKIN ANDI: 100 GÖREVLE YENİDEN DOĞUŞ
-            </motion.h1>
-            
-            {/* Kimleri Göreve Davet Ediyoruz - Tıklanabilir Başlık */}
-            <motion.div 
-              className="mt-4 mb-3"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            >
-              <div className="flex flex-col items-center gap-3">
-                <h2 
-                  className="text-2xl font-bold text-turkish-red inline-flex items-center gap-2 font-poppins cursor-pointer"
-                  onClick={() => navigate("/gorev-davet")}
-                >
-                  Kimleri Göreve Davet Ediyoruz? 
-                  <span className="text-turkish-white text-base font-normal">(Tıkla)</span>
-                </h2>
-                
-                <button 
-                  className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-turkish-red to-red-900 rounded-full shadow-lg hover:from-turkish-red-light hover:to-red-900 transition-all duration-300"
-                  aria-label="Davet videosunu oynat"
-                  title="Davet Videosunu İzle"
-                  onClick={() => window.open("https://www.youtube.com/watch?v=placeholder-davet", "_blank")}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5.14v14l11-7-11-7z" />
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-          
-          {/* Kurucu görev button */}
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-red-500/3 to-orange-500/3 rounded-full blur-3xl"></div>
+      </div>
+
+      <main className="max-w-7xl mx-auto px-4 pb-16 z-10 relative">
+        {/* Modern Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center py-12"
+        >
+          {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-6 sm:mb-8"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative mb-16"
           >
-            <Button 
-              className="turkish-flag-button text-base sm:text-lg md:text-xl px-5 sm:px-8 md:px-10 py-4 sm:py-6 md:py-7 font-bold font-poppins"
-              onClick={() => navigate("/kurucu-eksikleri")}
-            >
-              GÖREV 0: KURUCUNUN EKSİKLERİ
-            </Button>
+            <div className="relative">
+              <motion.div 
+                className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-500/30 to-orange-600/30 rounded-full flex items-center justify-center border-3 border-red-500/60 shadow-[0_0_80px_rgba(239,68,68,0.4)]"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 50px rgba(239, 68, 68, 0.4)", 
+                    "0 0 100px rgba(239, 68, 68, 0.7)", 
+                    "0 0 50px rgba(239, 68, 68, 0.4)"
+                  ],
+                  scale: [1, 1.08, 1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Target className="w-16 h-16 text-white" />
+              </motion.div>
+              
+              {/* Premium Background Glow */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-3xl"></div>
+            </div>
+            
+            <h1 className="text-5xl md:text-8xl font-bold bg-gradient-to-r from-red-400 via-orange-500 to-red-600 bg-clip-text text-transparent mb-8 text-shadow-lg leading-tight">
+              100 GÖREV
+            </h1>
+            <p className="text-gray-300 text-xl mb-10 max-w-4xl mx-auto leading-relaxed">
+              Cumhuriyet'in 101. yılında halkın andı: 100 görevle yeniden doğuş için birlikte hareket edeceğiz
+            </p>
+            
+            <div className="flex justify-center items-center space-x-6 mt-8">
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-red-500 to-red-500"></div>
+              <div className="w-5 h-5 bg-red-500 rounded-full shadow-[0_0_25px_rgba(239,68,68,0.6)]"></div>
+              <div className="w-24 h-px bg-gradient-to-l from-transparent via-red-500 to-red-500"></div>
+            </div>
           </motion.div>
-          
-          {/* Filters */}
-          <div className="mb-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="turkish-content-bg p-6 rounded-lg"
-            >
-              <div className="flex flex-col gap-4">
-                <div className="flex justify-center">
+
+          {/* Stats Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          >
+            <div className="backdrop-blur-lg bg-gradient-to-br from-red-900/20 to-orange-900/20 border border-red-500/30 rounded-2xl p-6">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Toplam Görev</h3>
+              <p className="text-3xl font-bold text-red-400">{gorevler.length}</p>
+            </div>
+            
+            <div className="backdrop-blur-lg bg-gradient-to-br from-orange-900/20 to-red-900/20 border border-orange-500/30 rounded-2xl p-6">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Aktif Katılım</h3>
+              <p className="text-3xl font-bold text-orange-400">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)}</p>
+            </div>
+            
+            <div className="backdrop-blur-lg bg-gradient-to-br from-green-900/20 to-emerald-900/20 border border-green-500/30 rounded-2xl p-6">
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Tamamlanan</h3>
+              <p className="text-3xl font-bold text-green-400">{gorevler.filter(g => g.tamamlayan > 0).length}</p>
+            </div>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="backdrop-blur-lg bg-gradient-to-br from-red-900/20 to-orange-900/20 border border-red-500/40 rounded-2xl p-8 mb-16 relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-orange-500 to-red-500"></div>
+            
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-left">
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Kimleri Göreve Davet Ediyoruz?
+                </h2>
+                <p className="text-gray-300 text-lg">
+                  Her meslek grubundan vatandaşları cumhuriyet görevlerine çağırıyoruz
+                </p>
+              </div>
+              
+              <div className="flex gap-4">
+                <ModernTechButton
+                  variant="primary"
+                  size="lg"
+                  onClick={() => navigate("/gorev-davet")}
+                  className="bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700"
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  Davet Listesi
+                </ModernTechButton>
+                
+                <ModernTechButton
+                  variant="secondary"
+                  size="lg"
+                  onClick={() => navigate("/kurucu-eksikleri")}
+                  className="border-red-500/50 hover:border-red-400"
+                >
+                  <Zap className="w-5 h-5 mr-2" />
+                  Görev 0
+                </ModernTechButton>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Modern Filters */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mb-16"
+          >
+            <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl p-8">
+              {/* Search Bar */}
+              <div className="relative mb-8">
+                <div className="relative max-w-2xl mx-auto">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     type="text"
                     placeholder="Görev ara..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="max-w-md turkish-tech-input text-sm sm:text-base md:text-lg px-4 sm:px-5 md:px-6 py-4 sm:py-5 md:py-6 h-10 sm:h-12 md:h-14 font-poppins"
+                    className="w-full pl-12 pr-4 py-4 bg-black/50 border border-gray-600/50 rounded-2xl text-white placeholder-gray-400 focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
                   />
                 </div>
-                
-                <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6">
-                  {categories.map(category => (
-                    <Button
-                      key={category}
-                      variant={selectedCategory === category ? "default" : "outline"}
-                      className={selectedCategory === category 
-                        ? "turkish-flag-button font-bold text-xs sm:text-sm md:text-lg px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 border-none font-poppins" 
-                        : "modern-button text-white font-semibold text-xs sm:text-sm md:text-lg px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 font-poppins"
-                      }
-                      onClick={() => {
-                        setSelectedCategory(category);
-                        setCurrentPage(1); // Kategori değiştiğinde ilk sayfaya dön
-                      }}
-                    >
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
-                    </Button>
-                  ))}
-                </div>
               </div>
-            </motion.div>
-            
 
-            
-            {/* Counters */}
-            <div className="text-center mb-6 sm:mb-8 mt-6 sm:mt-8 turkish-content-bg p-4 sm:p-5 rounded-lg max-w-2xl mx-auto">
-              <div className="flex flex-col md:flex-row justify-center gap-4 sm:gap-6 md:gap-8">
-                <div className="turkish-counter-box p-3 sm:p-4 rounded-lg flex-1">
-                  <p className="text-turkish-white text-base sm:text-lg md:text-xl font-bold font-poppins">Toplam Görev</p>
-                  <p className="text-turkish-red text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2 font-poppins">{gorevler.length}</p>
-                </div>
-                <div className="turkish-counter-box p-3 sm:p-4 rounded-lg flex-1">
-                  <p className="text-turkish-white text-base sm:text-lg md:text-xl font-bold font-poppins">Katılım Sayısı</p>
-                  <p className="text-turkish-red text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2 font-poppins">{gorevler.reduce((acc, g) => acc + g.tamamlayan, 0)} vatandaş</p>
-                </div>
+              {/* Category Filters */}
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                <motion.button
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setCurrentPage(1);
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    selectedCategory === null
+                      ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg'
+                      : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
+                  }`}
+                >
+                  <Filter className="w-4 h-4 mr-2 inline" />
+                  Tümü
+                </motion.button>
+                
+                {categories.map(category => (
+                  <motion.button
+                    key={category}
+                    onClick={() => {
+                      setSelectedCategory(category === selectedCategory ? null : category);
+                      setCurrentPage(1);
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 capitalize ${
+                      selectedCategory === category
+                        ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg'
+                        : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
+                    }`}
+                  >
+                    {category}
+                  </motion.button>
+                ))}
               </div>
+
+              {/* Clear Filters */}
+              {(selectedCategory || searchTerm) && (
+                <div className="text-center">
+                  <motion.button
+                    onClick={clearFilters}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 py-2 bg-gray-600/50 text-gray-300 rounded-lg hover:bg-gray-500/50 transition-all duration-300"
+                  >
+                    <X className="w-4 h-4 mr-2 inline" />
+                    Filtreleri Temizle
+                  </motion.button>
+                </div>
+              )}
             </div>
-          </div>
+          </motion.div>
           
-          {/* Görevler Grid - Her satırda 4 görev */}
+          {/* Modern Task Grid */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 md:gap-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            className="mb-16"
           >
             {isLoading ? (
-              // Loader - mobile-optimized
-              Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-black/40 rounded-lg p-5 animate-pulse h-[300px] sm:h-64 mx-auto w-full max-w-[350px] sm:max-w-none"></div>
-              ))
-            ) : filteredGorevler.length === 0 ? (
-              <p className="text-center col-span-full text-base-responsive">Aranan kriterlere uygun görev bulunamadı.</p>
-            ) : (
-              currentGorevler.map(gorev => (
-                <div 
-                  key={gorev.id}
-                  className={`relative border-[4px] aspect-[2/3] w-full max-w-[350px] sm:max-w-none mx-auto ${
-                    gorev.kategori === 'kurucu' 
-                      ? 'border-red-600 shadow-[0_0_25px_rgba(220,38,38,0.5)]' 
-                      : gorev.tamamlayan > 0 
-                        ? 'border-green-500 shadow-[0_0_15px_rgba(68,255,68,0.5)]' 
-                        : 'border-red-600'
-                  } rounded-lg hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(220,38,38,0.7)] transition-all duration-300 overflow-hidden`}
-                >
-                  {/* Renkli gradient arkaplan */}
-                  <div className="absolute inset-0 z-0 overflow-hidden">
-                    {/* Görev görseli arkaplan */}
-                    <img 
-                      src={getGorevImage(gorev.id)}
-                      alt=""
-                      className="w-full h-full object-cover object-center"
-                      onError={(e) => {
-                        // Hata durumunda renkli arkaplan kullan
-                        e.currentTarget.style.display = "none";
-                        e.currentTarget.parentElement!.style.background = getGorevBackground(gorev.id);
-                      }}
-                    />
-                    {/* Stil ve kontrast için gradient overlay ekle */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="animate-pulse">
+                    <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl h-80">
+                      <div className="p-6 space-y-4">
+                        <div className="h-4 bg-gray-600/50 rounded"></div>
+                        <div className="h-4 bg-gray-600/50 rounded w-3/4"></div>
+                        <div className="h-20 bg-gray-600/50 rounded"></div>
+                      </div>
+                    </div>
                   </div>
-                  
-                  {/* Content */}
+                ))}
+              </div>
+            ) : filteredGorevler.length === 0 ? (
+              <div className="text-center py-16">
+                <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl p-12 max-w-2xl mx-auto">
+                  <Search className="w-16 h-16 text-gray-400 mx-auto mb-6" />
+                  <p className="text-xl text-gray-300 mb-4">Aranan kriterlere uygun görev bulunamadı</p>
+                  <p className="text-gray-400">Farklı arama terimleri veya filtreler deneyebilirsiniz</p>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {currentGorevler.map(gorev => (
+                  <motion.div
+                    key={gorev.id}
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group cursor-pointer"
+                    onClick={() => openGorevModal(gorev)}
+                  >
+                    <div className={`
+                      relative backdrop-blur-lg border-2 rounded-2xl overflow-hidden h-80 transition-all duration-300
+                      ${gorev.kategori === 'kurucu' 
+                        ? 'bg-gradient-to-br from-red-900/30 to-orange-900/20 border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
+                        : gorev.tamamlayan > 0 
+                          ? 'bg-gradient-to-br from-green-900/20 to-emerald-900/20 border-green-500/50 shadow-[0_0_20px_rgba(34,197,94,0.2)]' 
+                          : 'bg-gradient-to-br from-gray-900/20 to-black/20 border-gray-700/50 hover:border-red-500/50'
+                      }
+                      group-hover:shadow-[0_0_40px_rgba(239,68,68,0.4)]
+                    `}>
+                      {/* Task Image Background */}
+                      <div className="absolute inset-0 z-0">
+                        <img 
+                          src={getGorevImage(gorev.id)}
+                          alt=""
+                          className="w-full h-full object-cover opacity-30"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            e.currentTarget.parentElement!.style.background = getGorevBackground(gorev.id);
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      </div>
+                      
+                      {/* Task Number Badge */}
+                      <div className="absolute top-4 right-4 z-20">
+                        <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                          {gorev.id}
+                        </div>
+                      </div>
+                      
+                      {/* Task Content */}
+                      <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 leading-tight">
+                            {gorev.baslik}
+                          </h3>
+                          
+                          <p className="text-gray-300 text-sm line-clamp-3 mb-4">
+                            {gorev.cagri || "Cumhuriyet güncelleme görevine katılın"}
+                          </p>
+                        </div>
+                        
+                        {/* Task Footer */}
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="px-3 py-1 bg-black/40 text-white rounded-full border border-white/20 capitalize">
+                              {gorev.kategori}
+                            </span>
+                            <span className="text-gray-300">
+                              {gorev.tamamlayan}/{gorev.kontenjan}
+                            </span>
+                          </div>
+                          
+                          {/* Progress Bar */}
+                          <div className="w-full bg-black/40 rounded-full h-2">
+                            <div 
+                              className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${Math.min((gorev.tamamlayan / gorev.kontenjan) * 100, 100)}%` }}
+                            ></div>
+                          </div>
+                          
+                          {/* Status Indicator */}
+                          <div className="flex items-center justify-center">
+                            {gorev.tamamlayan > 0 ? (
+                              <div className="flex items-center text-green-400 text-sm">
+                                <CheckCircle className="w-4 h-4 mr-1" />
+                                Aktif
+                              </div>
+                            ) : (
+                              <div className="flex items-center text-orange-400 text-sm">
+                                <Clock className="w-4 h-4 mr-1" />
+                                Bekliyor
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="flex justify-center mt-16 mb-8"
+          >
+            <div className="backdrop-blur-lg bg-gradient-to-br from-gray-900/20 to-black/20 border border-gray-700/50 rounded-2xl p-4">
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i + 1}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                      currentPage === i + 1
+                        ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white'
+                        : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="p-2 rounded-lg bg-gray-700/50 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Completion Message */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <div className="backdrop-blur-lg bg-gradient-to-br from-green-900/20 to-emerald-900/20 border border-green-500/30 rounded-2xl p-8 max-w-2xl mx-auto">
+            <Award className="w-16 h-16 text-green-400 mx-auto mb-4" />
+            <p className="text-2xl font-bold text-white mb-2">
+              Tamamlanan görevler <span className="text-green-400">Cumhuriyet Sertifikası</span> kazandıracaktır
+            </p>
+            <p className="text-gray-300">
+              Her görev, cumhuriyetin geleceği için atılan bir adımdır
+            </p>
+          </div>
+        </motion.div>
+      </main>
+
+      {/* Footer Message */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="backdrop-blur-lg bg-black/50 px-6 py-2 rounded-full border border-red-500/30">
+          <p className="text-red-400 font-semibold tracking-wider animate-pulse">
+            CUMHURİYET GÜNCELLENİYOR
+          </p>
+        </div>
+      </div>
+
+      {/* Task Modal - Preserved Original Functionality */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="bg-black/90 backdrop-blur-md border-2 border-red-600/70 text-white max-w-4xl max-h-[90vh] overflow-y-auto">
+          {selectedGorev && (
+            <div className="relative">
+              {/* Task Image Background */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <img 
+                  src={getGorevImage(selectedGorev.id)}
+                  alt=""
+                  className="w-full h-full object-cover object-center"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.parentElement!.style.background = getGorevBackground(selectedGorev.id);
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
+              </div>
+              
+              {/* Content */}
                   <div className="relative z-10 p-3 sm:p-4 h-full flex flex-col justify-between">
                     {/* Görev ID göstericisi - mobil için daha büyük */}
                     <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded-bl shadow-md min-w-[32px] min-h-[28px] flex items-center justify-center">
