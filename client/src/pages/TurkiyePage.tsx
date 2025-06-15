@@ -8,6 +8,7 @@ import { Play, Pause } from "lucide-react";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import NavButtons from "@/components/NavButtons";
 import TurkishValueCard from "@/components/TurkishValueCard";
+import GlobalTranslator from "@/components/GlobalTranslator";
 
 // Turkish values defined by the translation system
 const turkishValueIds = ['milli', 'muasir', 'laik', 'demokratik', 'sosyal'];
@@ -353,6 +354,9 @@ export default function TurkiyePage() {
             </motion.div>
           </motion.div>
         </AnimatePresence>
+        
+        {/* Global Translation System */}
+        <GlobalTranslator />
       </div>
     </ModernLayout>
   );

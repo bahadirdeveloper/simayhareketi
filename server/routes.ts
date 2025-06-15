@@ -289,6 +289,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // OpenAI Translation API endpoint
+  app.post("/api/translate", async (req, res) => {
+    try {
+      const { texts, targetLanguage, sourceLanguage = 'tr' } = req.body;
+      
+      if (!texts || !Array.isArray(texts) || !targetLanguage) {
+        return res.status(400).json({ error: "Invalid request format" });
+      }
+
+      const OpenAI = require("openai");
+      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+        messages: [
+          {
+            role: "system",
+            content: `You are a professional translator. Translate the following texts from ${sourceLanguage} to ${targetLanguage}. 
+            Maintain the original meaning, tone, and context. For political, cultural, or sensitive content, be accurate and respectful.
+            Return only the translations in the same order as provided, separated by ||| delimiter. Do not add explanations.`
+          },
+          {
+            role: "user",
+            content: texts.join(" ||| ")
+          }
+        ],
+        temperature: 0.3,
+        max_tokens: 2000
+      });
+
+      const translatedText = response.choices[0].message.content;
+      const translations = translatedText.split(" ||| ");
+
+      res.json({ translations: translations.slice(0, texts.length) });
+    } catch (error) {
+      console.error("Translation error:", error);
+      res.status(500).json({ error: "Translation failed" });
+    }
+  });
+
   app.post("/api/create-payment-intent", handleCreatePaymentIntent);
   app.post("/api/create-subscription", handleCreateSubscription);
   app.post("/api/webhook", handleWebhook);
