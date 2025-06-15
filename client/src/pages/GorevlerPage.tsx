@@ -36,22 +36,22 @@ import {
 } from "lucide-react";
 
 // Görev resimlerini doğrudan import et (1-100)
-import gorev1 from "../../../attached_assets/gorev-1.webp";
-import gorev2 from "../../../attached_assets/gorev-2.webp";
-import gorev3 from "../../../attached_assets/gorev-3.webp";
-import gorev4 from "../../../attached_assets/gorev-4.webp";
-import gorev5 from "../../../attached_assets/gorev-5.webp";
-import gorev6 from "../../../attached_assets/gorev-6.webp";
-import gorev7 from "../../../attached_assets/gorev-7.webp";
-import gorev8 from "../../../attached_assets/gorev-8.webp";
-import gorev9 from "../../../attached_assets/gorev-9.webp";
-import gorev10 from "../../../attached_assets/gorev-10.webp";
-import gorev11 from "../../../attached_assets/gorev-11.webp";
-import gorev12 from "../../../attached_assets/gorev-12.webp";
-import gorev13 from "../../../attached_assets/gorev-13.webp";
-import gorev14 from "../../../attached_assets/gorev-14.webp";
-import gorev15 from "../../../attached_assets/gorev-15.webp";
-import gorev16 from "../../../attached_assets/gorev-16.webp";
+import gorev1 from "@assets/gorev-1.webp";
+import gorev2 from "@assets/gorev-2.webp";
+import gorev3 from "@assets/gorev-3.webp";
+import gorev4 from "@assets/gorev-4.webp";
+import gorev5 from "@assets/gorev-5.webp";
+import gorev6 from "@assets/gorev-6.webp";
+import gorev7 from "@assets/gorev-7.webp";
+import gorev8 from "@assets/gorev-8.webp";
+import gorev9 from "@assets/gorev-9.webp";
+import gorev10 from "@assets/gorev-10.webp";
+import gorev11 from "@assets/gorev-11.webp";
+import gorev12 from "@assets/gorev-12.webp";
+import gorev13 from "@assets/gorev-13.webp";
+import gorev14 from "@assets/gorev-14.webp";
+import gorev15 from "@assets/gorev-15.webp";
+import gorev16 from "@assets/gorev-16.webp";
 import gorev17 from "../../../attached_assets/gorev-17.webp";
 import gorev18 from "../../../attached_assets/gorev-18.webp";
 import gorev19 from "../../../attached_assets/gorev-19.webp";
