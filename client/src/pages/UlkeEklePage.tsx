@@ -88,7 +88,7 @@ export default function UlkeEklePage() {
           <div className="flex items-center mb-4 sm:mb-6">
             <button
               onClick={() => navigate("/dil-secimi")}
-              className="flex items-center gap-2 px-3 py-2 bg-black/60 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg backdrop-blur-sm transition-all duration-200 text-white hover:text-red-100 touch-target"
+              className="flex items-center gap-2 px-3 py-2 bg-black/60 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-target"
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Geri</span>

@@ -43,7 +43,7 @@ const QuickNav = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-16 right-0 bg-black/90 backdrop-blur-xl border border-red-500/30 rounded-2xl p-3 shadow-2xl min-w-[200px]"
+            className="absolute bottom-16 right-0 bg-black/90 floating-element border border-red-500/30 rounded-2xl p-3 min-w-[200px]"
           >
             <div className="space-y-2">
               {navItems.map((item) => {
@@ -57,7 +57,7 @@ const QuickNav = () => {
                       navigate(item.path);
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-gray-900/50 hover:bg-red-500/20 transition-colors duration-200 group"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-gray-900/50 hover:bg-red-500/20 nav-button touch-target group"
                   >
                     <IconComponent className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
                     <span className="text-white font-medium">{item.label}</span>
@@ -73,7 +73,7 @@ const QuickNav = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-red-600 hover:bg-red-500 text-white rounded-full shadow-2xl flex items-center justify-center transition-colors duration-200"
+        className="w-14 h-14 bg-red-600 hover:bg-red-500 text-white rounded-full floating-element flex items-center justify-center nav-button touch-target"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

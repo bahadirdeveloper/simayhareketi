@@ -245,7 +245,7 @@ const ModernLayout = ({
     return (
       <button 
         onClick={() => navigate("/")}
-        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg backdrop-blur-sm transition-all duration-200 text-white hover:text-red-100 touch-target"
+        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-target"
       >
         <ArrowLeft className="h-4 w-4" />
         <span className="hidden sm:inline">Ana Sayfa</span>

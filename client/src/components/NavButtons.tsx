@@ -63,7 +63,7 @@ export function NavButtons() {
       className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 sm:relative sm:bottom-auto sm:left-auto sm:transform-none sm:mt-8 sm:mb-6"
     >
       {/* Mobile Navigation Bar */}
-      <div className="flex bg-black/90 backdrop-blur-xl border border-red-500/30 rounded-2xl p-2 shadow-2xl sm:hidden">
+      <div className="flex bg-black/90 floating-element border border-red-500/30 rounded-2xl p-2 sm:hidden">
         {buttonData.map((button, index) => {
           const IconComponent = button.icon;
           
@@ -72,7 +72,7 @@ export function NavButtons() {
               key={button.path}
               whileTap={{ scale: 0.9 }}
               onClick={() => navigate(button.path)}
-              className="flex-1 flex flex-col items-center justify-center p-3 rounded-xl transition-colors duration-200 hover:bg-red-500/20 touch-target"
+              className="flex-1 flex flex-col items-center justify-center p-3 rounded-xl hover:bg-red-500/20 nav-button touch-target"
             >
               <IconComponent className="w-5 h-5 text-white mb-1" />
               <span className="text-xs text-white font-medium">{button.text}</span>
