@@ -1,6 +1,7 @@
 // Turkish Ambient Music System
 let audioContext: AudioContext | null = null;
-let currentAudio: HTMLAudioElement | null = null;
+let currentSource: AudioBufferSourceNode | null = null;
+let currentGainNode: GainNode | null = null;
 let isPlaying = false;
 let currentPage: string = '';
 let currentTrack: string = '';
@@ -124,10 +125,15 @@ export const playSoundtrack = async (): Promise<void> => {
       await initAudio(currentPage);
     }
     
-    if (isPlaying && currentAudio) {
+    if (isPlaying && currentSource) {
       // Stop current track
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
+      currentSource.stop();
+      currentSource.disconnect();
+      if (currentGainNode) {
+        currentGainNode.disconnect();
+      }
+      currentSource = null;
+      currentGainNode = null;
       isPlaying = false;
       currentTrack = '';
       console.log('Turkish ambient music stopped');
@@ -141,33 +147,41 @@ export const playSoundtrack = async (): Promise<void> => {
                     currentPage === 'gorev' ? 'gorev' : 'default';
     
     const track = turkishAmbientTracks[trackKey as keyof typeof turkishAmbientTracks];
-    const audioData = generateTurkishAmbient(trackKey);
     
-    // Create and configure audio element
-    currentAudio = new Audio(audioData);
-    currentAudio.loop = true;
-    currentAudio.volume = volume;
+    // Generate procedural audio buffer
+    const audioBuffer = await generateTurkishAmbient(trackKey, audioContext!);
     
-    // Add event listeners
-    currentAudio.addEventListener('loadstart', () => {
-      console.log(`Loading Turkish ambient track: ${track.name}`);
-    });
+    // Create audio source from buffer
+    const source = audioContext!.createBufferSource();
+    source.buffer = audioBuffer;
+    source.loop = true;
     
-    currentAudio.addEventListener('canplaythrough', () => {
-      console.log(`Turkish ambient track ready: ${track.description}`);
-    });
+    // Create gain node for volume control
+    const gainNode = audioContext!.createGain();
+    gainNode.gain.value = volume;
     
-    currentAudio.addEventListener('error', (e) => {
-      console.warn('Audio playback error:', e);
-      isPlaying = false;
-    });
+    // Connect audio nodes
+    source.connect(gainNode);
+    gainNode.connect(audioContext!.destination);
     
-    // Play the track
-    await currentAudio.play();
+    // Store references for control
+    currentSource = source;
+    currentGainNode = gainNode;
+    
+    // Start playback
+    source.start();
     isPlaying = true;
     currentTrack = track.name;
     
     console.log(`Playing Turkish ambient music: ${track.name} (${track.mood} mood)`);
+    
+    // Handle source end
+    source.onended = () => {
+      isPlaying = false;
+      currentTrack = '';
+      currentSource = null;
+      currentGainNode = null;
+    };
     
   } catch (error) {
     console.warn('Failed to play Turkish ambient music:', error);
@@ -178,8 +192,8 @@ export const playSoundtrack = async (): Promise<void> => {
 // Set volume for ambient music
 export const setAmbientVolume = (newVolume: number): void => {
   volume = Math.max(0, Math.min(1, newVolume));
-  if (currentAudio) {
-    currentAudio.volume = volume;
+  if (currentGainNode) {
+    currentGainNode.gain.value = volume;
   }
 };
 

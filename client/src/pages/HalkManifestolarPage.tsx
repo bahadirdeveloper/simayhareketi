@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
+import TurkishAmbientPlayer from "@/components/TurkishAmbientPlayer";
 import { apiRequest } from "@/lib/queryClient";
 import { 
   Heart, 
   ThumbsUp, 
-  Filter, 
   Calendar, 
   BookOpen, 
   FileText, 
@@ -18,7 +18,9 @@ import {
   ArrowLeft,
   Search,
   TrendingUp,
-  Clock
+  Clock,
+  Eye,
+  Filter
 } from "lucide-react";
 
 interface ManifestoEntry {
@@ -39,9 +41,10 @@ export default function HalkManifestolarPage() {
   // UI State
   const [selectedManifesto, setSelectedManifesto] = useState<ManifestoEntry | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeView, setActiveView] = useState<'grid' | 'list'>('grid');
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<'date' | 'likes'>('date');
   
-  // Tüm halk manifestoları
+  // Manifestolar
   const [manifestoEntries] = useState<ManifestoEntry[]>([
     {
       id: 1,
@@ -97,66 +100,6 @@ MADDE 12. ZİNCİRİN SON HALKASI SENSİN: Manifesto burada biter, ama görev ş
     },
     {
       id: 4,
-      title: "EVRENSEL ADALET MANİFESTOSU",
-      author: "Mehmet Demir",
-      date: "18 Nisan 2025",
-      category: "sosyal",
-      content: "Adalet, toplumun temelidir. Hukukun üstünlüğü, insan haklarına saygı ve eşitlik ilkeleri üzerine inşa edilmiş bir adalet sistemi, her toplumun en temel ihtiyacıdır. Türkiye, tarih boyunca adaleti en yüce değer olarak görmüş bir medeniyetin mirasçısıdır. Bugün de bu mirasa sahip çıkarak, adaletin her alanda tesisini sağlamak için çalışmalıyız. Adalet, sadece mahkemelerde değil, eğitimde, sağlıkta, ekonomide, kısacası hayatın her alanında kendini göstermelidir. Hiçbir vatandaş, kendini adaletsizliğe uğramış hissetmemelidir. Adalet, devletin bir lütfu değil, vatandaşın temel hakkıdır ve bu hakkın korunması, hepimizin ortak sorumluluğudur.",
-      likes: 856,
-      approved: true
-    },
-    {
-      id: 5,
-      title: "YEŞİL TÜRKİYE VİZYONU",
-      author: "Ayşe Yıldız",
-      date: "20 Nisan 2025",
-      category: "çevresel",
-      content: "Doğayla uyum içinde yaşayan, yeşil enerji kaynaklarını etkin şekilde kullanan, atıklarını minimize eden ve geri dönüştüren bir Türkiye, hepimizin ortak hayalidir. Bu hayali gerçeğe dönüştürmek için, her birey, her kurum ve devlet el ele vermelidir. Yenilenebilir enerji, sürdürülebilir tarım, akıllı şehircilik ve çevre dostu ulaşım sistemleri, Yeşil Türkiye vizyonumuzun temel taşlarıdır. İklim kriziyle mücadelede öncü bir ülke olarak, gelecek nesillere daha temiz, daha yeşil bir dünya bırakmak için kararlılıkla çalışmalıyız. Unutmayalım ki, doğayı korumak, vatanı korumaktır ve bu kutsal görev, her Türk vatandaşının omuzlarındadır.",
-      likes: 734,
-      approved: true
-    },
-    {
-      id: 6,
-      title: "EĞİTİMDE DEVRİM MANİFESTOSU",
-      author: "Ali Öztürk",
-      date: "22 Nisan 2025",
-      category: "eğitim",
-      content: "Eğitim, bir ulusun geleceğinin teminatıdır. Türkiye'nin geleceği, ancak çağdaş, bilimsel ve yenilikçi bir eğitim sistemiyle inşa edilebilir. Her çocuğun kaliteli eğitime eşit erişim hakkı olmalı, hiçbir çocuk geride bırakılmamalıdır. Okullarda sadece bilgi değil, düşünme becerisi, problem çözme yeteneği, empati ve küresel vatandaşlık bilinci de kazandırılmalıdır. Öğretmenlerimiz, toplumun mimarları olarak en yüksek saygıyı ve desteği hak etmektedir. Eğitimde teknolojinin etkin kullanımı, müfredatın çağın gereklerine göre sürekli güncellenmesi ve araştırma-geliştirme faaliyetlerine verilen önemin artırılması, eğitim devriminin temel unsurlarıdır.",
-      likes: 612,
-      approved: true
-    },
-    {
-      id: 7,
-      title: "DİJİTAL EGEMENLİK DEKLARASYONU",
-      author: "Emre Şahin",
-      date: "25 Nisan 2025",
-      category: "teknolojik",
-      content: "Dijital çağda egemenlik, veri egemenliğidir. Bir ülkenin dijital altyapısı, verileri ve teknolojik kapasitesi, o ülkenin bağımsızlığının temel göstergeleridir. Türkiye, dijital dünyada da tam bağımsızlık ilkesiyle hareket etmeli, kendi yazılımını, donanımını ve veri merkezlerini geliştirmelidir. Siber güvenlik, yapay zeka, büyük veri analizi gibi alanlarda yerli ve milli çözümler üretmek, artık bir tercih değil, bir zorunluluktur. Her Türk vatandaşı, dijital okuryazarlığı ve veri bilincini geliştirmeli, verilerinin değerini anlamalı ve korumalıdır. Dijital egemenlik, 21. yüzyılın en kritik ulusal güvenlik meselesidir ve bu konuda göstereceğimiz başarı, Türkiye'nin geleceğini belirleyecektir.",
-      likes: 598,
-      approved: true
-    },
-    {
-      id: 8,
-      title: "EKONOMİK BAĞIMSIZLIK MANİFESTOSU",
-      author: "Nalan Koç",
-      date: "27 Nisan 2025",
-      category: "ekonomik",
-      content: "Ekonomik bağımsızlık olmadan, siyasi bağımsızlık eksik kalır. Türkiye, kendi ekonomik kararlarını kendisi verebilen, üretim kapasitesi yüksek, ihracata dayalı, teknoloji odaklı bir ekonomi inşa etmelidir. Yenilikçi girişimcilerimizin desteklenmesi, küresel değer zincirlerinde daha üst basamaklara çıkılması ve katma değeri yüksek ürünlere odaklanılması, ekonomik bağımsızlık stratejimizin temelini oluşturmalıdır. Kaynaklarımızı verimli kullanmak, tasarruf bilincini geliştirmek ve finansal okuryazarlığı artırmak, her vatandaşın ekonomik bağımsızlığa katkısı olmalıdır. Unutmayalım ki, güçlü bir ekonomi, güçlü bir Türkiye demektir ve bu gücü oluşturmak, hepimizin sorumluluğudur.",
-      likes: 523,
-      approved: true
-    },
-    {
-      id: 9,
-      title: "KÜLTÜREL MİRAS KORUMA BİLDİRGESİ",
-      author: "Selin Özkan",
-      date: "29 Nisan 2025",
-      category: "kültürel",
-      content: "Anadolu, binlerce yıllık medeniyetlerin beşiğidir. Bu topraklar üzerinde yaşamış tüm kültürlerin mirası, bizim ortak hazinemizdir ve bu hazinenin korunması, gelecek nesillere aktarılması, hepimizin sorumluluğudur. Tarih bilinci ve kültürel kimlik, bir ulusun en değerli varlıklarıdır. Türkiye, sahip olduğu eşsiz kültürel mirası korumak, yaşatmak ve dünyaya tanıtmak için daha fazla çaba göstermelidir. Her vatandaş, kendi kültürel mirasına sahip çıkmalı, geleneksel değerlerini ve sanatını yaşatmalıdır. Kültürel miras, sadece bir geçmiş hatırası değil, geleceğimizi şekillendirecek bir ilham kaynağıdır ve bu kaynağı en iyi şekilde değerlendirmek, hepimizin görevidir.",
-      likes: 489,
-      approved: true
-    },
-    {
-      id: 10,
       title: "SİMAY HAREKETİ ANA VİZYON MANİFESTOSU",
       author: "Simay Hareketi",
       date: "13 Haziran 2025",
@@ -189,26 +132,10 @@ Makine öğrenebilir, ama asla acıyı hissedemez.
 
 O, ağlayan bir anneyi "veri gürültü süzgecinden" geçirir. Bizse, onun çığlığını yüreğimizde taşırız.
 
-O, milyon kişiyi tek tuşla silebilir. Biz, bir kişinin hayatı için milyon kişiye ses oluruz.
-
-Çağrı
-
-Ey insanlık!
-
-Ellerinle yazdığın bu düzenin efendisi mi, kölesi mi olacaksın?
-
-Eğer sustuğun her saniyede bir algoritma daha karar veriyorsa, eğer her gecikmen bir çocuğun oyun alanına bomba olarak dönüşüyorsa... Artık uyan!
-
-Çünkü teknoloji gelişiyor, ama vicdan yazılmıyor.
-
-Son Söz
-
-Kod bir kehanettir. Ve biz o kodun içinde insanı unutturmamak için varız.
-
-Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
+O, milyon kişiyi tek tuşla silebilir. Biz, bir kişinin hayatı için milyon kişiye ses oluruz.`,
       likes: 1234,
       approved: true
-    },
+    }
   ]);
   
   // Kategoriler
@@ -219,17 +146,9 @@ Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
     { id: "sosyal", name: "Sosyal", icon: Heart, color: "from-blue-600 to-blue-800" },
     { id: "kültürel", name: "Kültürel", icon: Scroll, color: "from-purple-600 to-purple-800" },
     { id: "teknolojik", name: "Teknolojik", icon: PenTool, color: "from-indigo-600 to-indigo-800" },
-    { id: "eğitim", name: "Eğitim", icon: BookOpen, color: "from-teal-600 to-teal-800" },
-    { id: "çevresel", name: "Çevresel", icon: Star, color: "from-emerald-600 to-emerald-800" },
   ];
   
-  // Aktif kategori filtresi
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  
-  // Sıralama seçeneği
-  const [sortBy, setSortBy] = useState<'date' | 'likes'>('date');
-  
-  // Manifestoları filtreleme ve sıralama
+  // Filtreleme ve sıralama
   const filteredAndSortedManifestos = manifestoEntries
     .filter(entry => {
       const matchesCategory = activeCategory === "all" || entry.category === activeCategory;
@@ -246,427 +165,330 @@ Simay Hareketi, makinenin değil, insanlığın uyanışıdır.`,
         return new Date(b.date) > new Date(a.date) ? 1 : -1;
       }
     });
-  
+
   useEffect(() => {
-    // Record visitor stats
     const recordVisit = async () => {
       try {
-        await apiRequest(
-          "POST", 
-          "/api/visits", 
-          {
-            language: i18n.language || "tr",
-            hasInteracted: false,
-            page: "halk-manifestolar"
-          }
-        );
+        await apiRequest("POST", "/api/visits", {
+          language: i18n.language || "tr",
+          hasInteracted: false,
+          page: "halk-manifestolar"
+        });
       } catch (error) {
         console.error("Failed to record visit:", error);
       }
     };
-    
     recordVisit();
   }, [i18n.language]);
-  
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+  const getCategoryIcon = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category?.icon || FileText;
   };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Form validation
-    if (!formData.title || !formData.author || !formData.content) {
-      toast({
-        title: "Eksik Bilgi",
-        description: "Lütfen tüm zorunlu alanları doldurun.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    if (formData.content.length < 100) {
-      toast({
-        title: "Manifesto Çok Kısa",
-        description: "Lütfen en az 100 karakter uzunluğunda bir manifesto metni girin.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    // Success message
-    toast({
-      title: "Manifestonuz Alındı",
-      description: "Teşekkürler! Manifestonuz incelendikten sonra yayınlanacak.",
-      variant: "default"
-    });
-    
-    // Reset form
-    setFormData({
-      title: "",
-      author: "",
-      category: "siyasi",
-      content: ""
-    });
+
+  const getCategoryColor = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category?.color || "from-gray-600 to-gray-800";
   };
-  
-  const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-    <motion.h2 
-      className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text mb-6 mt-10 border-b-2 border-red-600/30 pb-2"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-      {children}
-    </motion.h2>
-  );
-  
-  // Sayfa içeriğini erişilebilirlik için hazırlama
-  const pageContent = `Halk Manifestolar sayfasına hoş geldiniz. Bu sayfa, vatandaşların ülkemizin geleceğine dair manifestolarını paylaştığı bir platformdur. 
-    Farklı kategorilerde manifestoları okuyabilir ve kendi manifestonuzu da oluşturabilirsiniz. 
-    Sayfada siyasi, ekonomik, sosyal, kültürel, teknolojik, eğitim ve çevresel alanlarda manifestolar bulunmaktadır.`;
-  
+
+  const formatDate = (dateStr: string) => {
+    return dateStr;
+  };
+
+  const truncateContent = (content: string, maxLength: number = 200) => {
+    if (content.length <= maxLength) return content;
+    return content.substring(0, maxLength) + "...";
+  };
+
   return (
-    <ModernLayout 
-      audioKey="manifesto" 
-      showBackButton={true}
-      showLanguageSelector={true}
-      pageContent={pageContent}
-      pageName="Halk Manifestolar"
-    >
-      <div className="max-w-5xl mx-auto">
-        {/* Header Section */}
-        <motion.div 
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="relative inline-block">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4 text-4xl-responsive readable-text">
-              HALK MANİFESTOLAR
-            </h1>
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-          </div>
-          
-          <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-6 text-xl-responsive readable-text flex items-center justify-center gap-2">
-            <Star className="h-5 w-5 text-red-500" />
-            Geleceğin Vizyonu, Halkın Sesiyle
-            <Star className="h-5 w-5 text-red-500" />
-          </h2>
-          
-          {/* Intro Section */}
-          <motion.div
-            className="relative flex justify-center mb-10"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <div className="bg-gradient-to-r from-black/80 via-black/90 to-black/80 p-6 border border-red-900/20 rounded-lg shadow-lg max-w-3xl relative z-10 enhanced-text overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-              
-              <div className="flex items-center gap-3 mb-3">
-                <Bookmark className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <h3 className="text-white font-semibold text-lg">Ulusal Manifesto Platformu</h3>
-              </div>
-              
-              <p className="text-lg text-white/90 leading-relaxed mb-4 readable-text">
-                Bu platform, Türkiye Cumhuriyeti vatandaşlarının geleceğe dair manifestolarını paylaşabilecekleri, fikir alışverişi yapabilecekleri ve ortak bir vizyon oluşturabilecekleri dijital bir alandır.
-              </p>
-              <p className="text-white/80 text-base readable-text">
-                Her manifesto, bir gelecek vizyonu, her fikir bir yapı taşıdır. Siz de kendi manifestonuzu yazın, geleceği birlikte şekillendirelim!
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
+    <ModernLayout>
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-hidden">
         
-        <Tabs defaultValue="view" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-black border border-red-500/30 rounded-md shadow-md overflow-hidden">
-            <TabsTrigger value="view" className="text-base font-medium py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-red-900 data-[state=active]:text-white data-[state=active]:shadow-md rounded-none">
-              <BookOpen className="h-4 w-4 mr-2" />
-              Manifestoları Görüntüle
-            </TabsTrigger>
-            <TabsTrigger value="create" className="text-base font-medium py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-700 data-[state=active]:to-red-900 data-[state=active]:text-white data-[state=active]:shadow-md rounded-none">
-              <FilePen className="h-4 w-4 mr-2" />
-              Yeni Manifesto Oluştur
-            </TabsTrigger>
-          </TabsList>
-          
-          {/* Manifestoları Görüntüleme Sekmesi */}
-          <TabsContent value="view" className="mt-6">
-            {/* Filtre ve Sıralama Alanı */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 bg-black p-4 rounded-lg border border-red-500/20 shadow-md">
-              <div className="space-y-2">
-                <h3 className="text-white/90 font-medium text-sm flex items-center gap-2">
-                  <Filter className="h-4 w-4 text-red-500" />
-                  Kategori Filtresi
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className={`text-xs border-white/10 ${!activeCategory ? 'bg-gradient-to-r from-red-900/40 to-red-800/30 text-white border-red-500/20' : 'bg-black/50 hover:bg-red-950/30'}`}
-                    onClick={() => setActiveCategory(null)}
-                  >
-                    Tümü
-                  </Button>
-                  
-                  {categories.map(category => (
-                    <Button 
-                      key={category.id}
-                      variant="outline" 
-                      size="sm"
-                      className={`text-xs border-white/10 ${activeCategory === category.id ? `bg-gradient-to-r ${category.color} text-white border-white/20` : 'bg-black/50 hover:bg-black/80'}`}
-                      onClick={() => setActiveCategory(category.id)}
-                    >
-                      {category.name}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <h3 className="text-white/90 font-medium text-sm flex items-center gap-2">
-                  <MessageSquare className="h-4 w-4 text-red-500" />
-                  Sıralama
-                </h3>
-                <div className="flex gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className={`text-xs border-white/10 ${sortBy === 'date' ? 'bg-gradient-to-r from-blue-900/40 to-blue-800/30 text-white border-blue-500/30' : 'bg-black/50 hover:bg-blue-950/30'}`}
-                    onClick={() => setSortBy('date')}
-                  >
-                    <Calendar className="h-3.5 w-3.5 mr-1" />
-                    Tarihe Göre
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className={`text-xs border-white/10 ${sortBy === 'likes' ? 'bg-gradient-to-r from-red-900/40 to-red-800/30 text-white border-red-500/30' : 'bg-black/50 hover:bg-red-950/30'}`}
-                    onClick={() => setSortBy('likes')}
-                  >
-                    <ThumbsUp className="h-3.5 w-3.5 mr-1" />
-                    Beğeniye Göre
-                  </Button>
-                </div>
-              </div>
-            </div>
+        {/* Ambient Music Player */}
+        <div className="fixed top-6 right-6 z-50">
+          <TurkishAmbientPlayer page="manifesto" className="w-80" />
+        </div>
+
+        {/* Background Effects */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-red-900/10" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)',
+            backgroundSize: '20px 20px'
+          }} />
+        </div>
+
+        {/* Hero Section */}
+        <div className="relative z-10 pt-24 pb-12">
+          <div className="container mx-auto px-4">
             
-            {/* Manifesto Listesi */}
-            <div className="space-y-8 mb-12">
-              {filteredAndSortedManifestos.length === 0 ? (
-                <div className="text-center py-12 bg-black/30 rounded-lg border border-red-500/20">
-                  <p className="text-white/70">Bu kategoride henüz manifesto bulunmamaktadır.</p>
-                </div>
-              ) : (
-                filteredAndSortedManifestos.map(entry => {
-                  const category = categories.find(c => c.id === entry.category);
-                  
+            {/* Back Button */}
+            <motion.button
+              onClick={() => navigate("/")}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8 flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-300 group"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+              <span>Ana Sayfaya Dön</span>
+            </motion.button>
+
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 mb-6 drop-shadow-2xl">
+                HALK MANİFESTOLARI
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                Türk halkının vicdanından doğan manifestolar, geleceğin inşasında rehber olan sesler
+              </p>
+            </motion.div>
+
+            {/* Search and Filter Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col lg:flex-row gap-4 mb-8 max-w-4xl mx-auto"
+            >
+              {/* Search */}
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Manifesto, yazar veya içerik ara..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-black/40 border border-gray-700/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
+                />
+              </div>
+
+              {/* Sort */}
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSortBy('date')}
+                  className={`px-4 py-3 rounded-xl flex items-center space-x-2 transition-all duration-300 ${
+                    sortBy === 'date' 
+                      ? 'bg-red-600 text-white shadow-lg shadow-red-600/30' 
+                      : 'bg-black/40 text-gray-300 hover:bg-black/60'
+                  }`}
+                >
+                  <Clock className="w-4 h-4" />
+                  <span>Tarih</span>
+                </button>
+                <button
+                  onClick={() => setSortBy('likes')}
+                  className={`px-4 py-3 rounded-xl flex items-center space-x-2 transition-all duration-300 ${
+                    sortBy === 'likes' 
+                      ? 'bg-red-600 text-white shadow-lg shadow-red-600/30' 
+                      : 'bg-black/40 text-gray-300 hover:bg-black/60'
+                  }`}
+                >
+                  <Heart className="w-4 h-4" />
+                  <span>Beğeni</span>
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Category Filter */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap justify-center gap-3 mb-12"
+            >
+              {categories.map((category) => {
+                const IconComponent = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-6 py-3 rounded-full flex items-center space-x-2 transition-all duration-300 ${
+                      activeCategory === category.id
+                        ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
+                        : 'bg-black/40 text-gray-300 hover:bg-black/60 border border-gray-700/50'
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span>{category.name}</span>
+                    {activeCategory === category.id && (
+                      <span className="bg-white/20 px-2 py-1 rounded-full text-xs">
+                        {activeCategory === "all" ? manifestoEntries.length : 
+                         manifestoEntries.filter(m => m.category === category.id).length}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </motion.div>
+
+            {/* Manifestos Grid */}
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <AnimatePresence>
+                {filteredAndSortedManifestos.map((manifesto, index) => {
+                  const IconComponent = getCategoryIcon(manifesto.category);
                   return (
-                    <motion.div 
-                      key={entry.id}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                      viewport={{ once: true }}
-                      className="modern-card-hover rounded-lg overflow-hidden relative group"
+                    <motion.div
+                      key={manifesto.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      onClick={() => setSelectedManifesto(manifesto)}
+                      className="group relative bg-gradient-to-br from-black/60 via-gray-900/40 to-black/60 backdrop-blur-lg border border-gray-700/30 rounded-2xl p-6 cursor-pointer hover:border-red-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/20 hover:-translate-y-2"
                     >
-                      <div className={`absolute top-0 right-0 h-full w-1 bg-gradient-to-b ${category?.color || 'from-red-600 to-red-900'}`}></div>
-                      
-                      <div className="p-5">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'}`}></span>
-                              <h3 className="text-lg md:text-xl font-bold text-white readable-text">{entry.title}</h3>
-                            </div>
-                            <div className="flex items-center text-sm text-gray-400 gap-2 ml-4">
-                              <span className="text-white/80">{entry.author}</span>
-                              <span className="text-red-500/50">•</span>
-                              <span className="text-white/60">{entry.date}</span>
-                              <span className="text-red-500/50">•</span>
-                              <span className={`px-1.5 py-0.5 rounded text-xs bg-gradient-to-r ${category?.color || 'from-red-600 to-red-900'} text-white/90`}>
-                                {category?.name || 'Genel'}
-                              </span>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-center gap-1 bg-black px-2 py-1 rounded-md shadow-sm border border-red-500/30">
-                            <Heart className="h-3.5 w-3.5 text-red-500" fill="rgba(220,38,38,0.2)" />
-                            <span className="text-white/90 text-sm">{entry.likes}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-black/70 p-4 rounded-md border border-red-500/10 my-3">
-                          <p className="text-white/95 whitespace-pre-line readable-text enhanced-text leading-relaxed text-sm">
-                            {entry.content}
-                          </p>
-                        </div>
-                        
-                        <div className="flex justify-between items-center">
-                          <span className="text-white/40 text-xs flex items-center gap-1">
-                            <Shield className="h-3 w-3 text-red-500/60" /> TC Onaylı Manifesto
+                      {/* Category Badge */}
+                      <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gradient-to-r ${getCategoryColor(manifesto.category)} text-white text-sm mb-4`}>
+                        <IconComponent className="w-3 h-3" />
+                        <span className="capitalize">{manifesto.category}</span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300">
+                        {manifesto.title}
+                      </h3>
+
+                      {/* Author & Date */}
+                      <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
+                        <span className="flex items-center space-x-2">
+                          <Users className="w-4 h-4" />
+                          <span>{manifesto.author}</span>
+                        </span>
+                        <span className="flex items-center space-x-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{formatDate(manifesto.date)}</span>
+                        </span>
+                      </div>
+
+                      {/* Content Preview */}
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        {truncateContent(manifesto.content)}
+                      </p>
+
+                      {/* Stats */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4 text-sm text-gray-400">
+                          <span className="flex items-center space-x-1">
+                            <Heart className="w-4 h-4" />
+                            <span>{manifesto.likes.toLocaleString()}</span>
                           </span>
-                          
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            className="text-xs border-red-500/20 hover:bg-red-900/10 flex items-center gap-1 h-8 px-3"
-                          >
-                            <Heart className="h-3.5 w-3.5 text-red-500" />
-                            <span>Beğen</span>
-                          </Button>
+                          <span className="flex items-center space-x-1">
+                            <Eye className="w-4 h-4" />
+                            <span>Oku</span>
+                          </span>
+                        </div>
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <ArrowLeft className="w-5 h-5 text-red-400 rotate-180" />
                         </div>
                       </div>
                     </motion.div>
                   );
-                })
-              )}
+                })}
+              </AnimatePresence>
             </div>
-          </TabsContent>
-          
-          {/* Yeni Manifesto Oluşturma Sekmesi */}
-          <TabsContent value="create" className="mt-6">
+
+            {/* No Results */}
+            {filteredAndSortedManifestos.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-16"
+              >
+                <Search className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                <h3 className="text-2xl font-semibold text-gray-400 mb-2">Sonuç Bulunamadı</h3>
+                <p className="text-gray-500">Arama kriterlerinize uygun manifesto bulunamadı.</p>
+              </motion.div>
+            )}
+          </div>
+        </div>
+
+        {/* Manifesto Detail Modal */}
+        <AnimatePresence>
+          {selectedManifesto && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="bg-black rounded-lg border border-red-500/20 p-5 shadow-md"
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              onClick={() => setSelectedManifesto(null)}
             >
-              <div className="flex items-center gap-2 mb-4">
-                <FileText className="h-5 w-5 text-red-500" />
-                <h3 className="text-xl font-bold text-white readable-text">Yeni Manifesto Oluştur</h3>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="title" className="text-white/90 text-sm flex items-center gap-1.5">
-                      <Landmark className="h-3.5 w-3.5 text-red-500" />
-                      Manifesto Başlığı <span className="text-red-500">*</span>
-                    </Label>
-                    <Input 
-                      id="title"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      className="bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
-                      placeholder="Örn: DİJİTAL ÇAĞDA TÜRK KİMLİĞİ"
-                    />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-gradient-to-br from-black via-gray-900 to-red-950 border border-gray-700/50 rounded-3xl p-8 max-w-4xl max-h-[90vh] overflow-y-auto w-full"
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex-1">
+                    <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gradient-to-r ${getCategoryColor(selectedManifesto.category)} text-white text-sm mb-4`}>
+                      {React.createElement(getCategoryIcon(selectedManifesto.category), { className: "w-3 h-3" })}
+                      <span className="capitalize">{selectedManifesto.category}</span>
+                    </div>
+                    <h2 className="text-3xl font-bold text-white mb-4">
+                      {selectedManifesto.title}
+                    </h2>
+                    <div className="flex items-center space-x-6 text-gray-400">
+                      <span className="flex items-center space-x-2">
+                        <Users className="w-4 h-4" />
+                        <span>{selectedManifesto.author}</span>
+                      </span>
+                      <span className="flex items-center space-x-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDate(selectedManifesto.date)}</span>
+                      </span>
+                      <span className="flex items-center space-x-2">
+                        <Heart className="w-4 h-4" />
+                        <span>{selectedManifesto.likes.toLocaleString()}</span>
+                      </span>
+                    </div>
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="author" className="text-white/90 text-sm flex items-center gap-1.5">
-                      <Shield className="h-3.5 w-3.5 text-red-500" />
-                      Yazar <span className="text-red-500">*</span>
-                    </Label>
-                    <Input 
-                      id="author"
-                      name="author"
-                      value={formData.author}
-                      onChange={handleInputChange}
-                      className="bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
-                      placeholder="Adınız ve Soyadınız"
-                    />
+                  <button
+                    onClick={() => setSelectedManifesto(null)}
+                    className="text-gray-400 hover:text-white transition-colors duration-200 p-2"
+                  >
+                    <ArrowLeft className="w-6 h-6 rotate-45" />
+                  </button>
+                </div>
+
+                {/* Content */}
+                <div className="prose prose-invert max-w-none">
+                  <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                    {selectedManifesto.content}
                   </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="category" className="text-white/90 text-sm flex items-center gap-1.5">
-                    <Bookmark className="h-3.5 w-3.5 text-red-500" />
-                    Kategori
-                  </Label>
-                  <select 
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    className="w-full rounded-md bg-black border border-gray-800 focus:border-red-500/40 text-white p-2 shadow-sm"
+
+                {/* Action Buttons */}
+                <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-700/50">
+                  <div className="flex items-center space-x-4">
+                    <button className="flex items-center space-x-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200">
+                      <Heart className="w-4 h-4" />
+                      <span>Beğen</span>
+                    </button>
+                    <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors duration-200">
+                      <FileText className="w-4 h-4" />
+                      <span>Paylaş</span>
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => setSelectedManifesto(null)}
+                    className="px-6 py-2 bg-black/40 hover:bg-black/60 text-gray-300 rounded-lg transition-colors duration-200"
                   >
-                    {categories.map(category => (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
+                    Kapat
+                  </button>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="content" className="text-white/90 text-sm flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-red-500" />
-                    Manifesto Metni <span className="text-red-500">*</span>
-                  </Label>
-                  <Textarea 
-                    id="content"
-                    name="content"
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    className="min-h-[180px] bg-black border-gray-800 focus:border-red-500/40 text-white shadow-sm"
-                    placeholder="Manifestonuzu buraya yazın..."
-                  />
-                  <p className="text-xs text-gray-400 flex items-center gap-1 mt-1">
-                    <Star className="h-3 w-3 text-red-500/60" />
-                    En az 100 karakter olmalıdır. Manifestonuz incelendikten sonra yayınlanacaktır.
-                  </p>
-                </div>
-                
-                <div className="pt-2">
-                  <Button 
-                    type="submit"
-                    className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-700 hover:to-red-800 text-white font-medium py-2 px-4 rounded-md shadow-sm flex items-center gap-2"
-                  >
-                    <FileText className="h-4 w-4" />
-                    Manifestoyu Gönder
-                  </Button>
-                </div>
-              </form>
+              </motion.div>
             </motion.div>
-            
-            <div className="mt-5 bg-black p-4 rounded-lg border border-red-500/20 shadow-md">
-              <div className="flex items-center gap-2 mb-3">
-                <Shield className="h-4 w-4 text-red-500" />
-                <h4 className="text-white font-medium text-sm">Manifesto Yazım Kuralları</h4>
-              </div>
-              <ul className="text-white/80 text-sm space-y-1.5 list-none ml-5">
-                {[
-                  "Manifestonuz, Türkiye Cumhuriyeti değerlerine ve ilkelerine uygun olmalıdır.",
-                  "Nefret söylemi, şiddet çağrısı veya ayrımcılık içeren manifestolar yayınlanmayacaktır.",
-                  "Manifestonuz özgün olmalı ve başkalarının fikirlerini içermemelidir.",
-                  "Açık, anlaşılır ve düzgün bir Türkçe kullanılmalıdır.",
-                  "Manifestonuz, bir vizyonu, bir ideali veya bir hedefi ifade etmelidir.",
-                  "Kişisel saldırılar, hakaret veya iftira içeren manifestolar kabul edilmeyecektir."
-                ].map((rule, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <span className="inline-block w-1.5 h-1.5 bg-red-500 rounded-full flex-shrink-0 mt-1"></span>
-                    <span>{rule}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </TabsContent>
-        </Tabs>
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 mb-6 text-center"
-        >
-          <div className="flex justify-center items-center gap-2 mb-3">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-            <Star className="h-4 w-4 text-red-500" />
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-          </div>
-          <p className="text-gray-400 text-sm">
-            © 2025 Cumhuriyet Güncellenme Platformu | Halk Manifestolar
-          </p>
-        </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </ModernLayout>
   );
