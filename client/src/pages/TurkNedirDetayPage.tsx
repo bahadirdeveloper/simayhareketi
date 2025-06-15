@@ -1,36 +1,25 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
+import { motion, AnimatePresence } from "framer-motion";
 import ModernLayout from "@/components/ModernLayout";
 import { apiRequest } from "@/lib/queryClient";
-import { Button } from "@/components/ui/button";
-
-// Basitleştirilmiş Bileşen Tanımları
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-red-500 mb-6 mt-10 border-b border-red-900/20 pb-2">
-    {children}
-  </h2>
-);
-
-const ParagraphText = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-lg md:text-xl text-white/90 mb-6">
-    {children}
-  </p>
-);
-
-const HighlightText = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-red-900/20 p-4 border-l-4 border-red-600 rounded my-8">
-    <p className="text-xl md:text-2xl font-bold text-white">
-      {children}
-    </p>
-  </div>
-);
+import { ModernTechButton } from "@/components/ModernTechButton";
+import { Flag, Heart, Map, History, ChevronLeft, Quote, Star, Shield, Book, Crown, Compass, Users } from "lucide-react";
 
 const ListItem = ({ children }: { children: React.ReactNode }) => (
-  <li className="mb-3 flex items-start">
-    <span className="inline-block mr-2 mt-1 text-red-500">•</span>
-    <span className="text-white/90">{children}</span>
-  </li>
+  <motion.li 
+    className="mb-4 flex items-start group"
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+    whileHover={{ x: 5 }}
+  >
+    <span className="inline-block mr-3 mt-1 text-red-500 group-hover:text-red-400 transition-colors duration-300">
+      <div className="w-2 h-2 bg-red-500 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+    </span>
+    <span className="text-white/90 group-hover:text-white transition-colors duration-300">{children}</span>
+  </motion.li>
 );
 
 export default function TurkNedirDetayPage() {
@@ -38,7 +27,6 @@ export default function TurkNedirDetayPage() {
   const [, navigate] = useLocation();
   
   useEffect(() => {
-    // Record visitor stats
     const recordVisit = async () => {
       try {
         await apiRequest(
@@ -63,120 +51,302 @@ export default function TurkNedirDetayPage() {
   return (
     <ModernLayout audioKey="turkdetay" showBackButton={true} pageName="Türk Nedir? - Detay" pageContent={pageContent}>
       <div className="w-full max-w-6xl mx-auto">
-        {/* Header - Simplified */}
-        <div className="relative rounded-xl overflow-hidden mb-10">
-          <div className="absolute inset-0 bg-black/40 z-0"></div>
-          
-          <div className="relative z-10 py-14 px-6 sm:px-10 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-red-500 pb-2">
-              TÜRK NEDİR?
-            </h1>
-            <div className="w-24 h-1 bg-red-600 mx-auto mt-4 mb-4"></div>
-            
-            <div className="flex justify-center items-center mb-4">
-              <button 
-                className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full shadow-lg hover:from-red-600 hover:to-red-800 transition-all duration-300 cursor-pointer"
-                aria-label="Videoyu oynat"
-                title="Türklük Bilinci Videosunu İzle"
-                onClick={() => window.open("https://www.youtube.com/watch?v=placeholder", "_blank")}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5.14v14l11-7-11-7z" />
-                </svg>
-              </button>
-            </div>
-            
-            <p className="text-2xl font-bold text-white mt-2">
-              "Size söz... Bu medeniyet arşa yükselecek."
-            </p>
-          </div>
-        </div>
-        
-        {/* Main Content - Simplified */}
-        <div className="bg-black rounded-xl p-8 sm:p-10 border border-red-900/10 max-w-5xl mx-auto mb-12">
-          <SectionTitle>1. Türk Olmak Bir Bilinçtir</SectionTitle>
-          <ParagraphText>
-            Türk; yalnızca bir soy değil, bir karakterdir. Adaleti, vicdanı ve üretimi kutsal sayan bir anlayıştır. Dünyanın neresinde olursa olsun; mazluma el uzatan, zalime karşı duran ruhtur.
-          </ParagraphText>
-          <ParagraphText>
-            Gelişmiş bir medeniyet kurmak ve bunu sürdürebilmek için gereken disiplin, inanç ve kararlılık, Türk'ün varlığında hayat bulur. Bu bilinci taşıyan her insan, dünyayı daha yaşanabilir kılmak için sorumluluk alır.
-          </ParagraphText>
-          
-          <SectionTitle>2. Türk'ün Tarihi Durmaz</SectionTitle>
-          <ParagraphText>
-            Göktürk Yazıtları'ndan Anadolu'nun destanlarına, Kurtuluş Savaşı'ndan dijital medeniyetlere... Türk, tarihi sadece yazmaz; yaşar, kurar, taşır.
-          </ParagraphText>
-          <ParagraphText>
-            Her çağda, her medeniyette, her coğrafyada kendini yenileme yeteneğiyle öne çıkan Türk milleti, geçmişiyle gurur duyarken geleceği inşa etme sorumluluğunu da üstlenir. Türk'ün adım attığı her toprak, onun azminin ve kararlılığının izlerini taşır.
-          </ParagraphText>
-          
-          <SectionTitle>3. Türk Olmanın Sırrı</SectionTitle>
-          <ul className="space-y-1 mb-8 list-inside pl-2">
-            <ListItem>Vicdanla hareket etmek</ListItem>
-            <ListItem>Bilgiyle donanmak</ListItem>
-            <ListItem>Adaletin tarafında olmak</ListItem>
-            <ListItem>Üretmek, paylaşmak</ListItem>
-            <ListItem>Geçmişi unutmadan geleceği kurmak</ListItem>
-            <ListItem>Kendin için değil, insanlık için çalışmak</ListItem>
-            <ListItem>Bağımsızlığı ve egemenliği her şeyin üstünde tutmak</ListItem>
-          </ul>
-          <ParagraphText>
-            Bu değerler, Türk kimliğinin özünü oluşturur. Bunları içselleştiren her birey, Türklüğün özünde yer alan medeniyet kurucu ruhu yaşatır ve geleceğe taşır.
-          </ParagraphText>
-          
-          <SectionTitle>4. Yeni Nesil Türk: Bilinç + Teknoloji + Ruh</SectionTitle>
-          <ParagraphText>
-            Teknoloji, bilim ve sanatla kuşanmış Türk gençliği, geleceğe medeniyet taşıyacak en büyük güçtür. Sadece kendini değil, dünyayı da ayağa kaldırmaya ant içmiştir.
-          </ParagraphText>
-          <ParagraphText>
-            Dijital çağda, teknoloji, kuantum bilişim ve uzay teknolojilerinde öncü olmak, yeni nesil Türk gençliğinin hedefleri arasındadır. Geçmişin mirasını geleceğin teknolojileriyle harmanlayan Türk bilim insanları, insanlığın ilerleyişine katkıda bulunmak için çalışır.
-          </ParagraphText>
-          
-          <HighlightText>
-            Bilinci, ruhu ve teknolojisiyle birleşen Türk, insanlığın kurtuluşu olacaktır.
-          </HighlightText>
-          
-          <SectionTitle>5. Halka Söz</SectionTitle>
-          <ParagraphText>
-            <strong>"Ve bunu nasıl yapacağımızı adım adım gösterdik...<br/>
-            Tüm siyasilerden bir yana, bu işe <span className="text-red-500">CAN</span> veriyoruz."</strong>
-          </ParagraphText>
-          <ParagraphText>
-            Bu bir parti değil, bu bir halk sistemidir. Her birey bir tuğla, her fikir bir anahtardır. Sen de bu yapının bir parçası ol!
-          </ParagraphText>
-          <ParagraphText>
-            Türklük bilincini taşıyan herkes, geleceğin medeniyetinin inşasında sorumluluk almalıdır. Bu sorumluluk, sadece kendin için değil, tüm insanlık için çalışmayı gerektirir.
-          </ParagraphText>
-        </div>
-          
-        {/* Quote Section - Simplified */}
-        <div className="bg-black rounded-xl border border-red-900/20 p-6 sm:p-8 max-w-4xl mx-auto mb-12">
-          <blockquote className="border-l-4 border-red-500 pl-4 my-6">
-            <p className="text-xl sm:text-2xl italic text-white/90">
-              "Ne mutlu Türküm diyene!"
-            </p>
-            <footer className="text-right text-white/70 mt-2">
-              — Mustafa Kemal Atatürk
-            </footer>
-          </blockquote>
-        </div>
-        
-        {/* Navigation Buttons - Simplified */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10 mb-16">
-          <Button 
-            onClick={() => navigate("/turknedir")}
-            className="px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+        <AnimatePresence>
+          <motion.div
+            className="relative overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
-            ◀ Türk Nedir Sayfasına Dön
-          </Button>
-          
-          <Button 
-            onClick={() => navigate("/turkiye")}
-            className="px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Türkiye Sayfasına Dön
-          </Button>
-        </div>
+            {/* VIP Premium Hero Section */}
+            <motion.div 
+              className="relative rounded-3xl overflow-hidden mb-16"
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl blur-3xl"></div>
+              <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/95 via-red-950/30 to-black/95 border-2 border-red-500/50 rounded-3xl shadow-[0_40px_120px_rgba(239,68,68,0.3)]">
+                
+                <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-t-3xl"></div>
+                
+                <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-transparent rounded-br-full"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-bl-full"></div>
+                
+                <div className="relative z-10 py-20 px-10 sm:px-16 text-center">
+                  <motion.div
+                    initial={{ y: -30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                  >
+                    <div className="inline-block mb-10">
+                      <motion.div 
+                        className="w-32 h-32 mx-auto border-4 border-red-500/60 rounded-2xl flex items-center justify-center bg-gradient-to-br from-black/80 to-red-950/40 backdrop-blur-lg shadow-[0_0_80px_rgba(239,68,68,0.5)]"
+                        animate={{ 
+                          boxShadow: [
+                            "0 0 40px rgba(239, 68, 68, 0.5)", 
+                            "0 0 80px rgba(239, 68, 68, 0.9)", 
+                            "0 0 40px rgba(239, 68, 68, 0.5)"
+                          ],
+                          scale: [1, 1.08, 1]
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <Crown className="h-16 w-16 text-red-500" />
+                      </motion.div>
+                    </div>
+                    
+                    <motion.h1 
+                      className="text-5xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-orange-500 tracking-wider drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 1.2, delay: 0.5 }}
+                    >
+                      TÜRK NEDİR?
+                    </motion.h1>
+                    
+                    <motion.p 
+                      className="text-2xl md:text-3xl text-white/90 font-light mb-8"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.7 }}
+                    >
+                      Derin Analiz & Karakteristik Özellikler
+                    </motion.p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* VIP Core Definition */}
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl blur-2xl"></div>
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)]">
+                  
+                  <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.1 }}
+                  >
+                    <Book className="h-12 w-12 text-red-500 mx-auto mb-6" />
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                      Türk Olmak Bir Bilinçtir
+                    </h2>
+                    <p className="text-xl md:text-2xl text-white/90 leading-relaxed font-light italic max-w-4xl mx-auto">
+                      "Türk; yalnızca bir soy değil, bir <span className="text-red-400 font-bold">karakterdir</span>. 
+                      Adaleti, vicdanı ve üretimi kutsal sayan bir <span className="text-red-400 font-bold">anlayıştır</span>."
+                    </p>
+                  </motion.div>
+
+                  {/* VIP Character Traits */}
+                  <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.3 }}
+                  >
+                    {[
+                      { icon: Heart, title: "VİCDANLI", desc: "Doğru olanı yapmak" },
+                      { icon: Shield, title: "ADİL", desc: "Haksızlığa karşı durmak" },
+                      { icon: Star, title: "ÜRETKİN", desc: "Değer yaratmak" },
+                      { icon: Compass, title: "İLKELİ", desc: "Değerlerden sapmamak" }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.title}
+                        className="relative group"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.5 + index * 0.1 }}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-6 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500">
+                          <item.icon className="h-10 w-10 text-red-500 mx-auto mb-3" />
+                          <h3 className="text-lg font-bold text-white mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                            {item.title}
+                          </h3>
+                          <p className="text-white/80 text-sm">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* VIP Historical Continuity */}
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl blur-2xl"></div>
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)]">
+                  
+                  <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2 }}
+                  >
+                    <History className="h-12 w-12 text-red-500 mx-auto mb-6" />
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                      Türk'ün Tarihi Durmaz
+                    </h2>
+                    <p className="text-xl text-white/90 leading-relaxed max-w-4xl mx-auto">
+                      Göktürk Yazıtları'ndan Anadolu'nun destanlarına, Kurtuluş Savaşı'ndan dijital medeniyetlere 
+                      Türk tarihi kesintisiz devam eder.
+                    </p>
+                  </motion.div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {[
+                      { era: "Göktürk", period: "552-744", desc: "İlk yazılı belgeler ve devlet geleneği" },
+                      { era: "Selçuklu", period: "1037-1194", desc: "Anadolu'ya yerleşim ve kültür" },
+                      { era: "Osmanlı", period: "1299-1922", desc: "Çok uluslu imparatorluk dönemi" },
+                      { era: "Cumhuriyet", period: "1923-", desc: "Modern Türk devleti ve değerleri" }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.era}
+                        className="relative group"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 2.2 + index * 0.15 }}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        <div className="relative bg-gradient-to-br from-black/80 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-6 backdrop-blur-lg text-center shadow-[0_10px_40px_rgba(239,68,68,0.2)] group-hover:shadow-[0_20px_60px_rgba(239,68,68,0.4)] transition-all duration-500">
+                          <h3 className="text-xl font-bold text-red-400 mb-2">{item.era}</h3>
+                          <p className="text-white/60 text-sm mb-3">{item.period}</p>
+                          <p className="text-white/80 text-sm leading-relaxed">{item.desc}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* VIP Essential Principles */}
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.5 }}
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-orange-600/10 to-red-600/5 rounded-3xl blur-2xl"></div>
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/20 to-black/90 border-2 border-red-500/40 rounded-3xl p-12 shadow-[0_30px_100px_rgba(239,68,68,0.15)]">
+                  
+                  <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.7 }}
+                  >
+                    <Users className="h-12 w-12 text-red-500 mx-auto mb-6" />
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                      Türk Olmanın Sırrı
+                    </h2>
+                  </motion.div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 2.9 }}
+                    >
+                      <h3 className="text-2xl font-bold text-red-400 mb-6">Kişisel Değerler</h3>
+                      <ul className="space-y-2">
+                        <ListItem>Vicdanla hareket etmek</ListItem>
+                        <ListItem>Bilgiyle donanmak</ListItem>
+                        <ListItem>Adaletin tarafında olmak</ListItem>
+                        <ListItem>Üretmek ve yaratmak</ListItem>
+                        <ListItem>Paylaşmak ve yardımlaşmak</ListItem>
+                      </ul>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 3.1 }}
+                    >
+                      <h3 className="text-2xl font-bold text-red-400 mb-6">Toplumsal Sorumluluk</h3>
+                      <ul className="space-y-2">
+                        <ListItem>Geçmişi unutmadan geleceği kurmak</ListItem>
+                        <ListItem>Millete hizmet etmek</ListItem>
+                        <ListItem>Çevreyi ve doğayı korumak</ListItem>
+                        <ListItem>Teknoloji ve bilimi desteklemek</ListItem>
+                        <ListItem>Kültürel değerleri yaşatmak</ListItem>
+                      </ul>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* VIP Modern Context */}
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 3.3 }}
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-600/15 to-red-600/10 rounded-3xl blur-3xl"></div>
+                <div className="relative backdrop-filter backdrop-blur-xl bg-gradient-to-br from-black/90 via-red-950/30 to-black/90 border-2 border-red-500/50 rounded-3xl p-12 shadow-[0_40px_120px_rgba(239,68,68,0.3)]">
+                  
+                  <motion.div 
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 3.5 }}
+                  >
+                    <Quote className="h-12 w-12 text-red-500 mx-auto mb-6" />
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                      21. Yüzyılda Türk Olmak
+                    </h2>
+                    <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-5xl mx-auto mb-12">
+                      Modern dünyada Türk olmak; teknolojik gelişmeleri takip etmek, küresel sorunlara yerel çözümler üretmek, 
+                      kültürel değerleri koruyarak evrensel ilkelerle harmanlamak demektir.
+                    </p>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 3.7 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <ModernTechButton
+                        onClick={() => navigate("/turk-nedir")}
+                        className="px-10 py-4 text-xl font-bold bg-gradient-to-br from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 border-2 border-red-500/50 rounded-2xl shadow-[0_20px_60px_rgba(239,68,68,0.4)] hover:shadow-[0_30px_80px_rgba(239,68,68,0.6)] transition-all duration-500 backdrop-blur-lg"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <ChevronLeft className="h-6 w-6 text-white" />
+                          <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                            Ana Sayfaya Dön
+                          </span>
+                        </div>
+                      </ModernTechButton>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </ModernLayout>
   );
