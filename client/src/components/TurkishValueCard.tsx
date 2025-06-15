@@ -118,7 +118,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
 
             {/* Modal Content */}
             <motion.div
-              className="relative max-w-2xl w-full max-h-[90vh] overflow-hidden"
+              className="relative max-w-4xl w-full max-h-[95vh] overflow-hidden mx-4"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -137,7 +137,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
                 </button>
 
                 {/* Card Header */}
-                <div className="relative p-8 text-center">
+                <div className="relative p-10 lg:p-12 text-center">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
                     <div className="grid grid-cols-8 gap-4 h-full">
@@ -159,7 +159,7 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
 
                   {/* Title */}
                   <motion.h2
-                    className={`text-6xl font-bold bg-gradient-to-r ${currentValue?.color} bg-clip-text text-transparent mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
+                    className={`text-7xl lg:text-8xl font-bold bg-gradient-to-r ${currentValue?.color} bg-clip-text text-transparent mb-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
@@ -186,14 +186,14 @@ const TurkishValueCard: React.FC<TurkishValueCardProps> = ({ valueId, title, ind
                 </div>
 
                 {/* Card Body */}
-                <div className="relative p-8 pt-0">
+                <div className="relative p-10 lg:p-12 pt-0">
                   <motion.div
-                    className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 border border-red-500/30"
+                    className="bg-black/60 backdrop-blur-lg rounded-2xl p-8 lg:p-10 border border-red-500/30"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <p className="text-white text-lg leading-relaxed text-center font-medium">
+                    <p className="text-white text-xl lg:text-2xl leading-relaxed text-center font-medium px-4">
                       {currentValue?.description}
                     </p>
                   </motion.div>
