@@ -106,25 +106,44 @@ export default function KatilPage() {
     volunteers: 1000000
   };
 
-  // Simulated real-time data fetching
+  // Interface for API response
+  interface LiveStatsResponse {
+    participants: number;
+    totalAmount: number;
+    activeCities: number;
+    activeProjects: number;
+    volunteers: number;
+    totalVisits?: number;
+    uniqueVisitors?: number;
+    lastUpdated?: string;
+  }
+
+  // Real-time data fetching from backend
   const fetchLiveData = async () => {
     try {
-      // In production, this would fetch from your API
-      // For now, simulate growing numbers for demo
-      const now = new Date();
-      const baseParticipants = Math.floor(Math.random() * 100) + 1000;
-      const baseAmount = baseParticipants * (Math.random() * 50 + 1); // Random between 1-50 TL per person
+      // Fetch real participation stats from backend
+      const response = await apiRequest("GET", "/api/stats/live");
+      const data: LiveStatsResponse = await response.json();
       
-      setLiveStats(prev => ({
-        participants: Math.max(prev.participants, baseParticipants),
-        totalAmount: Math.max(prev.totalAmount, Math.floor(baseAmount)),
-        cities: Math.min(Math.floor(baseParticipants / 50), 81),
-        projects: Math.min(Math.floor(baseParticipants / 100), 100),
-        volunteers: Math.floor(baseParticipants * 0.3),
-        lastUpdate: now
-      }));
+      setLiveStats({
+        participants: data.participants || 0,
+        totalAmount: data.totalAmount || 0,
+        cities: data.activeCities || 0,
+        projects: data.activeProjects || 0,
+        volunteers: data.volunteers || 0,
+        lastUpdate: new Date()
+      });
     } catch (error) {
       console.error('Failed to fetch live data:', error);
+      // If API fails, reset to zero values
+      setLiveStats({
+        participants: 0,
+        totalAmount: 0,
+        cities: 0,
+        projects: 0,
+        volunteers: 0,
+        lastUpdate: new Date()
+      });
     }
   };
 
