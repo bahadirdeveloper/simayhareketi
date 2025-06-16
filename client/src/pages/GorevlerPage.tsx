@@ -67,8 +67,8 @@ export default function GorevlerPage() {
 
   // Filtreleme ve arama
   const filteredGorevler = gorevler.filter(gorev => {
-    const matchesSearch = gorev.baslik.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         gorev.aciklama.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = gorev.baslik?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         gorev.aciklama?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "all" || gorev.kategori === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -79,11 +79,15 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    // Görev ID'sine göre ilgili görev görselini eşleştir
-    const finalImageId = Math.max(1, Math.min(id, 100));
-    
-    // Attached assets klasöründeki görev görsellerini kullan
-    return `/@fs/home/runner/workspace/attached_assets/gorev-${finalImageId}.webp`;
+    try {
+      // Görev ID'sine göre ilgili görev görselini eşleştir
+      const finalImageId = Math.max(1, Math.min(id, 100));
+      
+      // Attached assets klasöründeki görev görsellerini kullan
+      return `/@fs/home/runner/workspace/attached_assets/gorev-${finalImageId}.webp`;
+    } catch (error) {
+      return '/placeholder-task.png'; // Fallback image
+    }
   };
 
   const getGorevColor = (id: number) => {
@@ -301,6 +305,9 @@ export default function GorevlerPage() {
                       alt={`Görev ${gorev.id}`}
                       className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     <div className="absolute top-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-white text-sm font-bold border border-white/30 backdrop-blur-sm">
