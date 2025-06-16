@@ -47,7 +47,7 @@ export function SimpleAudioPlayer({ className = '' }: SimpleAudioPlayerProps) {
         if (AudioContext) {
           const context = new AudioContext();
           context.resume().then(() => {
-            console.log('AudioContext started successfully');
+            // AudioContext started successfully
           });
         }
       }

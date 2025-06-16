@@ -119,7 +119,7 @@ export default function GlobalTranslator({ className }: GlobalTranslatorProps) {
         }
       }
     } catch (error) {
-      console.error('Translation error:', error);
+      // Silent translation error
     } finally {
       setIsTranslating(false);
     }

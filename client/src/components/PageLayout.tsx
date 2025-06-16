@@ -48,7 +48,7 @@ export default function PageLayout({
 
   const handleToggleAudio = (isPlaying = false) => {
     // Audio toggle logic is handled within the AudioControl component
-    console.log('Audio is now', isPlaying ? 'playing' : 'paused');
+    // Audio state changed
   };
 
   return (

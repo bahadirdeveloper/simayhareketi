@@ -57,7 +57,7 @@ export default function UlkeEklePage() {
     setIsSubmitting(true);
     try {
       // Form verilerini console'a yazdır (geliştirme amaçlı)
-      console.log("Ülke ekleme başvurusu:", data);
+      // Country application submitted
       
       // Burada API çağrısı yapılabilir
       // await apiRequest("POST", "/api/ulke-basvuru", data);
@@ -68,7 +68,7 @@ export default function UlkeEklePage() {
       // Ana sayfaya yönlendir
       navigate("/dil-secimi");
     } catch (error) {
-      console.error("Başvuru gönderim hatası:", error);
+      // Application submission error
       alert("Başvuru gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
     } finally {
       setIsSubmitting(false);
