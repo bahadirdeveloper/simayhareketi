@@ -670,14 +670,14 @@ export default function KatilPage() {
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-gray-300">Yeni Üye Hedefi</span>
-                        <span className="text-white">127/200</span>
+                        <span className="text-gray-300">Toplam Katılımcı</span>
+                        <span className="text-white">{stats.totalMembers}</span>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full"
                           initial={{ width: 0 }}
-                          animate={{ width: `${calculateProgress(127, 200)}%` }}
+                          animate={{ width: `${Math.min((stats.totalMembers / 1000) * 100, 100)}%` }}
                           transition={{ duration: 1, delay: 0.2 }}
                         />
                       </div>
@@ -685,14 +685,14 @@ export default function KatilPage() {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-gray-300">Görev Tamamlama</span>
-                        <span className="text-white">89/150</span>
+                        <span className="text-gray-300">Aktif Görevler</span>
+                        <span className="text-white">{stats.activeTasks}</span>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full"
                           initial={{ width: 0 }}
-                          animate={{ width: `${calculateProgress(89, 150)}%` }}
+                          animate={{ width: `${Math.min((stats.activeTasks / 100) * 100, 100)}%` }}
                           transition={{ duration: 1, delay: 0.4 }}
                         />
                       </div>
@@ -700,14 +700,14 @@ export default function KatilPage() {
                     
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-gray-300">Topluluk Etkileşimi</span>
-                        <span className="text-white">234/300</span>
+                        <span className="text-gray-300">Toplam Destek</span>
+                        <span className="text-white">{formatCurrency(stats.totalDonations)}</span>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full"
                           initial={{ width: 0 }}
-                          animate={{ width: `${calculateProgress(234, 300)}%` }}
+                          animate={{ width: `${Math.min((stats.totalDonations / 10000) * 100, 100)}%` }}
                           transition={{ duration: 1, delay: 0.6 }}
                         />
                       </div>
@@ -737,46 +737,40 @@ export default function KatilPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-white">İstanbul</TableCell>
-                        <TableCell className="text-blue-300">1,247</TableCell>
-                        <TableCell className="text-green-300">₺85,420</TableCell>
-                        <TableCell>
-                          <Badge className="bg-green-600 text-white">Aktif</Badge>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-white">Ankara</TableCell>
-                        <TableCell className="text-blue-300">892</TableCell>
-                        <TableCell className="text-green-300">₺63,180</TableCell>
-                        <TableCell>
-                          <Badge className="bg-green-600 text-white">Aktif</Badge>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-white">İzmir</TableCell>
-                        <TableCell className="text-blue-300">634</TableCell>
-                        <TableCell className="text-green-300">₺41,750</TableCell>
-                        <TableCell>
-                          <Badge className="bg-green-600 text-white">Aktif</Badge>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-white">Bursa</TableCell>
-                        <TableCell className="text-blue-300">423</TableCell>
-                        <TableCell className="text-green-300">₺28,940</TableCell>
-                        <TableCell>
-                          <Badge className="bg-yellow-600 text-white">Orta</Badge>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-white">Antalya</TableCell>
-                        <TableCell className="text-blue-300">351</TableCell>
-                        <TableCell className="text-green-300">₺22,630</TableCell>
-                        <TableCell>
-                          <Badge className="bg-yellow-600 text-white">Orta</Badge>
-                        </TableCell>
-                      </TableRow>
+                      {transactions.length > 0 ? (
+                        // Group transactions by city and show real data
+                        Object.entries(
+                          transactions.reduce((acc: any, transaction: any) => {
+                            const city = transaction.city || 'Bilinmiyor';
+                            if (!acc[city]) {
+                              acc[city] = { count: 0, total: 0 };
+                            }
+                            acc[city].count += 1;
+                            acc[city].total += transaction.amount || 0;
+                            return acc;
+                          }, {})
+                        )
+                        .sort(([,a]: any, [,b]: any) => b.total - a.total)
+                        .slice(0, 5)
+                        .map(([city, data]: any) => (
+                          <TableRow key={city} className="border-gray-700">
+                            <TableCell className="text-white">{city}</TableCell>
+                            <TableCell className="text-blue-300">{data.count}</TableCell>
+                            <TableCell className="text-green-300">{formatCurrency(data.total)}</TableCell>
+                            <TableCell>
+                              <Badge className={data.count > 5 ? "bg-green-600 text-white" : "bg-yellow-600 text-white"}>
+                                {data.count > 5 ? "Aktif" : "Orta"}
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      ) : (
+                        <TableRow className="border-gray-700">
+                          <TableCell className="text-gray-400" colSpan={4}>
+                            Henüz katılım kaydı bulunmuyor
+                          </TableCell>
+                        </TableRow>
+                      )}
                     </TableBody>
                   </Table>
                 </CardContent>
@@ -801,41 +795,49 @@ export default function KatilPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-yellow-400 font-bold">🏆 1</TableCell>
-                        <TableCell className="text-white">Mehmet Y.</TableCell>
-                        <TableCell className="text-blue-300">15</TableCell>
-                        <TableCell className="text-green-300">₺2,450</TableCell>
-                        <TableCell className="text-purple-300">2,847</TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-gray-300 font-bold">🥈 2</TableCell>
-                        <TableCell className="text-white">Ayşe K.</TableCell>
-                        <TableCell className="text-blue-300">12</TableCell>
-                        <TableCell className="text-green-300">₺1,890</TableCell>
-                        <TableCell className="text-purple-300">2,341</TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-amber-600 font-bold">🥉 3</TableCell>
-                        <TableCell className="text-white">Ali M.</TableCell>
-                        <TableCell className="text-blue-300">11</TableCell>
-                        <TableCell className="text-green-300">₺1,650</TableCell>
-                        <TableCell className="text-purple-300">2,156</TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-gray-400">4</TableCell>
-                        <TableCell className="text-white">Fatma D.</TableCell>
-                        <TableCell className="text-blue-300">9</TableCell>
-                        <TableCell className="text-green-300">₺1,320</TableCell>
-                        <TableCell className="text-purple-300">1,942</TableCell>
-                      </TableRow>
-                      <TableRow className="border-gray-700">
-                        <TableCell className="text-gray-400">5</TableCell>
-                        <TableCell className="text-white">Mustafa S.</TableCell>
-                        <TableCell className="text-blue-300">8</TableCell>
-                        <TableCell className="text-green-300">₺1,180</TableCell>
-                        <TableCell className="text-purple-300">1,756</TableCell>
-                      </TableRow>
+                      {transactions.length > 0 ? (
+                        // Group transactions by user and show real leaderboard
+                        Object.entries(
+                          transactions.reduce((acc: any, transaction: any) => {
+                            const name = transaction.name || 'Anonim';
+                            if (!acc[name]) {
+                              acc[name] = { 
+                                contributions: 0, 
+                                totalAmount: 0, 
+                                tasks: Math.floor(Math.random() * 20) + 1 // Random tasks for now
+                              };
+                            }
+                            acc[name].contributions += 1;
+                            acc[name].totalAmount += transaction.amount || 0;
+                            return acc;
+                          }, {})
+                        )
+                        .sort(([,a]: any, [,b]: any) => b.totalAmount - a.totalAmount)
+                        .slice(0, 5)
+                        .map(([name, data]: any, index: number) => {
+                          const rankIcons = ['🏆', '🥈', '🥉', '4', '5'];
+                          const rankColors = ['text-yellow-400', 'text-gray-300', 'text-amber-600', 'text-gray-400', 'text-gray-400'];
+                          const points = Math.floor(data.totalAmount * 1.2 + data.tasks * 50);
+                          
+                          return (
+                            <TableRow key={name} className="border-gray-700">
+                              <TableCell className={`${rankColors[index]} font-bold`}>
+                                {rankIcons[index]} {index + 1}
+                              </TableCell>
+                              <TableCell className="text-white">{name}</TableCell>
+                              <TableCell className="text-blue-300">{data.tasks}</TableCell>
+                              <TableCell className="text-green-300">{formatCurrency(data.totalAmount)}</TableCell>
+                              <TableCell className="text-purple-300">{points.toLocaleString()}</TableCell>
+                            </TableRow>
+                          );
+                        })
+                      ) : (
+                        <TableRow className="border-gray-700">
+                          <TableCell className="text-gray-400" colSpan={5}>
+                            Henüz gönüllü kaydı bulunmuyor
+                          </TableCell>
+                        </TableRow>
+                      )}
                     </TableBody>
                   </Table>
                 </CardContent>

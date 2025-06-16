@@ -346,6 +346,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Test endpoint to create sample transactions for development
+  app.post("/api/test-transaction", async (req, res) => {
+    try {
+      const { name, email, phone, city, amount, packageType } = req.body;
+      
+      const transaction = await storage.createTransaction({
+        name: name || "Test User",
+        email: email || "test@example.com", 
+        phone: phone || "5551234567",
+        city: city || "Istanbul",
+        amount: amount || 50,
+        packageType: packageType || "destek",
+        paymentIntentId: "test_" + Date.now(),
+        status: "completed"
+      });
+
+      res.json(transaction);
+    } catch (error: any) {
+      console.error("Test transaction error:", error);
+      res.status(500).json({ 
+        error: "Test transaction failed: " + error.message 
+      });
+    }
+  });
+
   // Free Translation API endpoint using MyMemory
   app.post("/api/translate", async (req, res) => {
     try {
