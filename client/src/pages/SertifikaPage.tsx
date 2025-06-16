@@ -4,354 +4,220 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter';
 import ModernLayout from '@/components/ModernLayout';
 import { apiRequest } from '@/lib/queryClient';
-import { ModernTechButton } from '@/components/ModernTechButton';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
 import { 
   Download, 
   ShieldCheck, 
   Star, 
   Award, 
-  TrendingUp, 
   Users, 
-  FileText, 
-  BarChart4,
-  ArrowUpRight, 
-  ArrowDownRight
+  CheckCircle,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 export default function SertifikaPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
   
-  // Gelir-gider bilgileri
-  const incomeData = [
-    { id: 1, date: '05 Şubat 2025', description: 'Bireysel Bağışlar', amount: 124500, type: 'income' },
-    { id: 2, date: '12 Şubat 2025', description: 'Kurumsal Destekler', amount: 75000, type: 'income' },
-    { id: 3, date: '18 Şubat 2025', description: 'Sertifika Gelirleri', amount: 53200, type: 'income' },
-    { id: 4, date: '28 Şubat 2025', description: 'Etkinlik Katılım Gelirleri', amount: 32000, type: 'income' },
-    { id: 5, date: '10 Mart 2025', description: 'Bireysel Bağışlar', amount: 98700, type: 'income' },
-    { id: 6, date: '21 Mart 2025', description: 'Kurumsal Destekler', amount: 62500, type: 'income' },
-    { id: 7, date: '05 Nisan 2025', description: 'Sertifika Gelirleri', amount: 47800, type: 'income' },
-    { id: 8, date: '15 Nisan 2025', description: 'Bireysel Bağışlar', amount: 85300, type: 'income' },
-  ];
-  
-  const expenseData = [
-    { id: 1, date: '08 Şubat 2025', description: 'Server ve Altyapı Giderleri', amount: 35000, type: 'expense' },
-    { id: 2, date: '15 Şubat 2025', description: 'Yazılım Geliştirme', amount: 87000, type: 'expense' },
-    { id: 3, date: '22 Şubat 2025', description: 'Güvenlik Sistemleri', amount: 28500, type: 'expense' },
-    { id: 4, date: '03 Mart 2025', description: 'İletişim ve Tanıtım', amount: 42300, type: 'expense' },
-    { id: 5, date: '12 Mart 2025', description: 'Siber Güvenlik Testleri', amount: 18700, type: 'expense' },
-    { id: 6, date: '25 Mart 2025', description: 'Server ve Altyapı Giderleri', amount: 32000, type: 'expense' },
-    { id: 7, date: '08 Nisan 2025', description: 'Yazılım Geliştirme', amount: 95000, type: 'expense' },
-    { id: 8, date: '17 Nisan 2025', description: 'İletişim ve Tanıtım', amount: 37500, type: 'expense' },
-  ];
-  
-  // Toplam gelir/gider hesaplamaları
-  const totalIncome = incomeData.reduce((sum, item) => sum + item.amount, 0);
-  const totalExpense = expenseData.reduce((sum, item) => sum + item.amount, 0);
-  const balance = totalIncome - totalExpense;
-  
-  // Sertifika sağladığı faydalar
-  const certificateBenefits = [
-    { icon: <ShieldCheck className="w-8 h-8 text-red-500" />, title: 'Güvenli Katılım', description: 'Blockchain tabanlı sertifika ile katılımınız güvenli bir şekilde belgelenir.' },
-    { icon: <Star className="w-8 h-8 text-red-500" />, title: 'Özel Erişim', description: 'Çeşitli etkinliklere ve dijital içeriklere özel erişim hakkı kazanırsınız.' },
-    { icon: <Award className="w-8 h-8 text-red-500" />, title: 'Katkı Rozeti', description: 'Profilinizde gösterebileceğiniz dijital katkı rozetlerine sahip olursunuz.' },
-    { icon: <TrendingUp className="w-8 h-8 text-red-500" />, title: 'Gelişim Takibi', description: 'Toplumsal fayda projelerine katkılarınızı izleyebilirsiniz.' },
-    { icon: <Users className="w-8 h-8 text-red-500" />, title: 'Ağ Erişimi', description: 'Aynı değerleri paylaşan kişilerle etkileşim kurma imkanı bulursunuz.' },
-    { icon: <FileText className="w-8 h-8 text-red-500" />, title: 'Resmi Belge', description: 'Cumhuriyet\'e katkınızı belgeleyen resmi bir kanıt elde edersiniz.' }
-  ];
-  
-  // Sertifika seviyeleri kaldırıldı
-  
-  // Erişilebilirlik metninin tanımı
-  const pageContent = `Cumhuriyet Sertifikası Bilgilendirme sayfasına hoş geldiniz. 
-    Bu sayfada, Cumhuriyet Sertifikası'nın ne olduğu, nasıl elde edileceği ve sağladığı faydalar hakkında bilgiler bulacaksınız. 
-    Ayrıca platformun gelir ve giderlerini gösteren şeffaf bir finansal tablo da sunulmaktadır. 
-    Bu şeffaflık, vatandaşların güvenini kazanmak ve mali açıklık sağlamak için önemlidir.`;
+  const pageContent = "Halk Sistemi Katılım Sertifikası - Mazlum halkların dayanışma platformuna katılımınızı belgeleyen dijital sertifika sistemi.";
   
   useEffect(() => {
-    // Record visitor stats
     const recordVisit = async () => {
       try {
-        await apiRequest(
-          "POST", 
-          "/api/visits", 
-          {
-            language: i18n.language || "tr",
-            hasInteracted: false,
-            page: "sertifika"
-          }
-        );
+        await apiRequest("POST", "/api/visits", {
+          language: i18n.language || "tr",
+          hasInteracted: false,
+          page: "sertifika"
+        });
       } catch (error) {
         console.error("Failed to record visit:", error);
       }
     };
-    
     recordVisit();
   }, [i18n.language]);
-  
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(amount);
-  };
-  
+
+  const benefits = [
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "Dijital Kimlik",
+      description: "Platformdaki tüm aktivitelerinizde kullanabileceğiniz güvenli dijital kimlik"
+    },
+    {
+      icon: <Star className="w-6 h-6" />,
+      title: "Halk Koordinasyonu",
+      description: "Halk koordinasyon süreçlerine öncelikli katılım hakkı"
+    },
+    {
+      icon: <Award className="w-6 h-6" />,
+      title: "100 Görev Erişimi",
+      description: "Atatürk'ün medeniyet ışığında belirlenen 100 göreve tam erişim"
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Dayanışma Ağı",
+      description: "Mazlum halkların küresel dayanışma ağına katılım"
+    }
+  ];
+
   return (
     <ModernLayout 
       audioKey="turkiye" 
       showBackButton={true}
-      showLanguageSelector={true}
       pageContent={pageContent}
-      pageName="Cumhuriyet Sertifikası"
+      pageName="Katılım Sertifikası"
     >
-      <div className="w-full max-w-5xl mx-auto">
-        {/* Header Section */}
+      <div className="w-full max-w-4xl mx-auto">
+        
+        {/* Hero Section */}
         <motion.div 
-          className="text-center mb-8"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4 readable-text text-4xl-responsive">
-            CUMHURİYET SERTİFİKASI
+          <div className="inline-flex items-center gap-2 bg-red-950/30 border border-red-600/40 rounded-full px-6 py-2 mb-6">
+            <Sparkles className="w-4 h-4 text-red-400" />
+            <span className="text-red-400 font-medium text-sm">Halk Sistemi Sertifikası</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
+            DİJİTAL
+            <span className="block bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+              KATILIM SERTİFİKASI
+            </span>
           </h1>
-          <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-6 readable-text text-xl-responsive">
-            Katılım Belgesi
-          </h2>
+          
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Mazlum halkların dayanışma platformuna katılımınızı belgeleyen 
+            <span className="text-red-400 font-medium"> resmi dijital sertifika</span>
+          </p>
         </motion.div>
-        
-        <Tabs defaultValue="certificate" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-black/60 to-red-950/50 backdrop-blur-sm border border-red-500/30 mb-6">
-            <TabsTrigger value="certificate" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Cumhuriyet Sertifikası</TabsTrigger>
-            <TabsTrigger value="financial" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Şeffaf Gelir-Gider</TabsTrigger>
-          </TabsList>
-          
-          {/* Cumhuriyet Sertifikası Sekmesi */}
-          <TabsContent value="certificate">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm rounded-lg border-2 border-red-600/30 p-6 shadow-lg"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4 readable-text">Cumhuriyet Sertifikası Nedir?</h3>
-                <div className="text-gray-300 space-y-4 readable-text enhanced-text">
-                  <p>
-                    <span className="text-red-400 font-medium">Cumhuriyet Sertifikası</span>, Türkiye Cumhuriyeti'nin güncellenmesi ve geliştirilmesi sürecine katkıda bulunan vatandaşlara verilen resmi, dijital bir katılım belgesidir. Bu sertifika, vatandaşların Cumhuriyet değerlerine bağlılığını ve toplumsal gelişime katkılarını belgeleyen, blockchain teknolojisiyle güvence altına alınmış benzersiz bir kimlik doğrulama sistemidir.
-                  </p>
-                  <p>
-                    Her Cumhuriyet Sertifikası, özgün bir kod ve dijital imza barındırır. Bu sayede sertifikanızın gerçekliği her zaman doğrulanabilir ve sahtecilik riski ortadan kalkar. Sertifika sahipleri, katkı düzeylerine göre farklı erişim ve ayrıcalıklara sahip olurlar.
-                  </p>
-                  <p>
-                    Cumhuriyet Sertifikası, sadece bir belge değil, aynı zamanda toplumsal dayanışmanın ve ortak değerlere bağlılığın somut bir göstergesidir. Bu sertifikaya sahip olmak, "Ben de varım" demenin, Atatürk'ün emanet ettiği Cumhuriyet'i geleceğe taşıma sorumluluğuna ortak olmanın bir yoludur.
-                  </p>
-                </div>
-                
-                <div className="mt-10">
-                  <h3 className="text-2xl font-bold text-white mb-6 readable-text">Sertifikanın Sağladığı Faydalar</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {certificateBenefits.map((benefit, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="bg-gradient-to-b from-black/40 to-red-950/20 p-4 rounded-lg border border-red-500/30 flex flex-col items-center text-center"
-                      >
-                        <div className="mb-3">{benefit.icon}</div>
-                        <h4 className="text-white font-medium mb-2">{benefit.title}</h4>
-                        <p className="text-gray-300 text-sm">{benefit.description}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Sertifika seviyeleri tablosu kaldırıldı */}
-                
-                <div className="mt-10 text-center">
-                  <h3 className="text-2xl font-bold text-white mb-4 readable-text">Nasıl Sertifika Alabilirsiniz?</h3>
-                  <p className="text-gray-300 mb-6 readable-text enhanced-text">
-                    Cumhuriyet Sertifikası almak için katkıda bulunmak ve katılım sürecini tamamlamak yeterlidir. 
-                    Sertifikanız, katkınız onaylandıktan sonra dijital olarak size iletilecektir.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-                    <ModernTechButton 
-                      variant="turkish"
-                      size="lg"
-                      glow="strong"
-                      border="glowing"
-                      onClick={() => navigate("/katil")}
-                    >
-                      Sertifika Al
-                    </ModernTechButton>
-                    
-                    <ModernTechButton 
-                      variant="outline"
-                      size="lg"
-                      rightIcon={<Download className="w-4 h-4" />}
-                      onClick={() => navigate("/gorevler")}
-                    >
-                      Örnek Sertifika
-                    </ModernTechButton>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </TabsContent>
-          
-          {/* Şeffaf Gelir-Gider Sekmesi */}
-          <TabsContent value="financial">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm rounded-lg border-2 border-red-600/30 p-6 shadow-lg"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4 readable-text">Finansal Şeffaflık İlkemiz</h3>
-                <p className="text-gray-300 mb-6 readable-text enhanced-text">
-                  Cumhuriyet Güncellenme Platformu olarak, mali şeffaflığı temel ilkelerimizden biri olarak benimsiyoruz. 
-                  Tüm gelir ve giderlerimizi detaylı bir şekilde raporlayarak, vatandaşlarımıza karşı hesap verebilirliğimizi 
-                  en üst düzeyde tutuyoruz. Aşağıda, platformumuzun güncel gelir ve gider tablosunu görebilirsiniz.
-                </p>
-                
-                {/* Özet Finansal Görünüm */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-gradient-to-r from-green-900/30 to-black/40 p-4 rounded-lg border border-green-500/30 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-white text-sm mb-1">Toplam Gelir</h4>
-                      <p className="text-green-400 text-xl font-medium">{formatCurrency(totalIncome)}</p>
-                    </div>
-                    <ArrowUpRight className="w-8 h-8 text-green-500/60" />
-                  </div>
-                  
-                  <div className="bg-gradient-to-r from-red-900/30 to-black/40 p-4 rounded-lg border border-red-500/30 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-white text-sm mb-1">Toplam Gider</h4>
-                      <p className="text-red-400 text-xl font-medium">{formatCurrency(totalExpense)}</p>
-                    </div>
-                    <ArrowDownRight className="w-8 h-8 text-red-500/60" />
-                  </div>
-                  
-                  <div className="bg-gradient-to-r from-blue-900/30 to-black/40 p-4 rounded-lg border border-blue-500/30 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-white text-sm mb-1">Net Bakiye</h4>
-                      <p className={`text-xl font-medium ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
-                        {formatCurrency(balance)}
-                      </p>
-                    </div>
-                    <BarChart4 className="w-8 h-8 text-blue-500/60" />
-                  </div>
-                </div>
-                
-                {/* Gelir-Gider Tabloları */}
-                <div className="mt-8">
-                  <h3 className="text-2xl font-bold text-white mb-4 readable-text">Gelir ve Gider Detayları</h3>
-                  
-                  <Tabs defaultValue="income" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 bg-black/30 border border-gray-800 mb-4">
-                      <TabsTrigger value="income" className="data-[state=active]:bg-green-900/20 data-[state=active]:text-white">Gelirler</TabsTrigger>
-                      <TabsTrigger value="expense" className="data-[state=active]:bg-red-900/20 data-[state=active]:text-white">Giderler</TabsTrigger>
-                    </TabsList>
-                    
-                    <TabsContent value="income">
-                      <div className="overflow-x-auto">
-                        <Table className="w-full border-collapse">
-                          <TableHeader>
-                            <TableRow className="border-b border-green-500/30 bg-black/40">
-                              <TableHead className="text-white font-medium py-3">Tarih</TableHead>
-                              <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
-                              <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {incomeData.map((item) => (
-                              <TableRow 
-                                key={item.id} 
-                                className="border-b border-green-500/20 hover:bg-green-900/10"
-                              >
-                                <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
-                                <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
-                                <TableCell className="py-3 text-green-400 text-right font-medium">{formatCurrency(item.amount)}</TableCell>
-                              </TableRow>
-                            ))}
-                            <TableRow className="bg-green-900/20 border-t border-green-500/40">
-                              <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gelir</TableCell>
-                              <TableCell className="py-3 text-green-400 text-right font-bold">{formatCurrency(totalIncome)}</TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </div>
-                    </TabsContent>
-                    
-                    <TabsContent value="expense">
-                      <div className="overflow-x-auto">
-                        <Table className="w-full border-collapse">
-                          <TableHeader>
-                            <TableRow className="border-b border-red-500/30 bg-black/40">
-                              <TableHead className="text-white font-medium py-3">Tarih</TableHead>
-                              <TableHead className="text-white font-medium py-3">Açıklama</TableHead>
-                              <TableHead className="text-white font-medium py-3 text-right">Tutar</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {expenseData.map((item) => (
-                              <TableRow 
-                                key={item.id} 
-                                className="border-b border-red-500/20 hover:bg-red-900/10"
-                              >
-                                <TableCell className="py-3 text-gray-300">{item.date}</TableCell>
-                                <TableCell className="py-3 text-gray-300">{item.description}</TableCell>
-                                <TableCell className="py-3 text-red-400 text-right font-medium">{formatCurrency(item.amount)}</TableCell>
-                              </TableRow>
-                            ))}
-                            <TableRow className="bg-red-900/20 border-t border-red-500/40">
-                              <TableCell colSpan={2} className="py-3 text-white font-bold">Toplam Gider</TableCell>
-                              <TableCell className="py-3 text-red-400 text-right font-bold">{formatCurrency(totalExpense)}</TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </div>
-                
-                <div className="mt-10 text-center">
-                  <h3 className="text-2xl font-bold text-white mb-4 readable-text">Mali Şeffaflık Taahhüdümüz</h3>
-                  <p className="text-gray-300 mb-6 readable-text enhanced-text">
-                    Cumhuriyet Güncellenme Platformu olarak, tüm mali faaliyetlerimizi şeffaf bir şekilde raporlamayı ve 
-                    vatandaşlarımıza hesap verebilir olmayı taahhüt ediyoruz. Finansal tablolarımız düzenli olarak güncellenmekte 
-                    ve herkesin erişimine açık tutulmaktadır.
-                  </p>
-                  
-                  <div className="bg-gradient-to-r from-blue-950/30 to-black/30 p-4 rounded-lg border border-blue-500/30 mt-6">
-                    <p className="text-white/90 italic readable-text">
-                      "Şeffaflık, güvenin temelidir. Cumhuriyet'in güncellenmesi sürecinde, mali açıklık ve hesap verebilirlik 
-                      en temel ilkelerimizdendir. Her kuruş, halkın emaneti olarak bilinçle ve sorumlulukla kullanılmaktadır."
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </TabsContent>
-        </Tabs>
-        
-        {/* Footer */}
+
+        {/* Main Certificate Display */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-8 mb-6"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-gradient-to-br from-black via-red-950/10 to-black border-2 border-red-600/30 rounded-2xl p-8 mb-12 relative overflow-hidden"
         >
-          <p className="text-gray-400 text-sm">
-            © 2025 Cumhuriyet Güncellenme Platformu | Mali Şeffaflık Birimi
-          </p>
-          <p className="text-gray-500 text-xs mt-2">
-            Son Güncelleme: 20 Nisan 2025
-          </p>
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="w-full h-full bg-gradient-to-br from-red-600 to-transparent" />
+          </div>
+          
+          {/* Certificate Content */}
+          <div className="relative z-10">
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-20 h-20 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center">
+                <Award className="w-10 h-10 text-white" />
+              </div>
+            </div>
+            
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-white mb-2">HALK SİSTEMİ</h2>
+              <p className="text-red-400 font-medium">Katılım Sertifikası</p>
+              <div className="w-24 h-1 bg-red-500 mx-auto mt-4 rounded-full" />
+            </div>
+            
+            <div className="bg-black/20 border border-red-600/20 rounded-lg p-6 mb-6">
+              <p className="text-gray-300 text-center leading-relaxed">
+                Bu sertifika, sahibinin <span className="text-red-400 font-medium">Atatürk'ün Medeniyet Işığında 100 Görevle Halk Sistemi</span> 
+                platformuna katıldığını ve mazlum halkların dayanışma ağının bir parçası olduğunu belgeler.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-sm text-gray-400 mb-2">Sertifika Özellikleri</p>
+              <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3 text-green-500" />
+                  Blockchain Korumalı
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3 text-green-500" />
+                  Benzersiz Kimlik
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3 text-green-500" />
+                  Doğrulanabilir
+                </span>
+              </div>
+            </div>
+          </div>
         </motion.div>
+
+        {/* Benefits Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-12"
+        >
+          <h3 className="text-2xl font-bold text-white text-center mb-8">
+            Sertifika Avantajları
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className="bg-gradient-to-r from-black/40 to-red-950/20 border border-red-600/20 rounded-xl p-6 hover:border-red-500/40 transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-red-950/30 border border-red-600/30 rounded-lg flex items-center justify-center text-red-400">
+                    {benefit.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-white font-semibold mb-2">{benefit.title}</h4>
+                    <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Action Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-red-950/20 to-black/40 border border-red-600/20 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Sertifikanızı Alın
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Halk Sistemi'ne katılarak dijital sertifikanızı hemen alın ve 
+              mazlum halkların dayanışma ağının bir parçası olun.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                onClick={() => navigate("/katil")}
+                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Hemen Katıl
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+              
+              <Button
+                variant="outline"
+                onClick={() => navigate("/gorevler")}
+                className="border-red-600/30 text-red-400 hover:bg-red-950/20 px-8 py-3 rounded-lg"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Örnek Sertifika
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </ModernLayout>
   );
