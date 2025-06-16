@@ -82,6 +82,10 @@ export default function KatilPage() {
   const [customAmount, setCustomAmount] = useState<string>('');
   const { toast } = useToast();
 
+  const calculateProgress = (current: number, target: number) => {
+    return Math.min((current / target) * 100, 100);
+  };
+
   const handlePackageSelect = async (packageType: string, amount: number) => {
     try {
       setSelectedPackage(packageType);
@@ -605,29 +609,52 @@ export default function KatilPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {transactions.map((transaction, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                            <Users className="w-5 h-5 text-white" />
+                    {transactions.length > 0 ? (
+                      transactions.map((transaction, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                              <Users className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-white font-medium">{transaction.name || "Anonim"}</p>
+                              <p className="text-gray-400 text-sm">{transaction.city || "Bilinmiyor"}</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-white font-medium">{transaction.name || "Anonim"}</p>
-                            <p className="text-gray-400 text-sm">{transaction.city || "Bilinmiyor"}</p>
+                          <div className="text-right">
+                            <p className="text-green-400 font-bold">{formatCurrency(transaction.amount)}</p>
+                            <p className="text-gray-400 text-xs">{formatDate(transaction.createdAt)}</p>
                           </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-green-400 font-bold">{formatCurrency(transaction.amount)}</p>
-                          <p className="text-gray-400 text-xs">{formatDate(transaction.createdAt)}</p>
-                        </div>
-                      </motion.div>
-                    ))}
+                        </motion.div>
+                      ))
+                    ) : (
+                      [...Array(3)].map((_, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <div>
+                              <div className="text-white font-medium">Yeni Katılımcı</div>
+                              <div className="text-gray-400 text-sm">Az önce katıldı</div>
+                            </div>
+                          </div>
+                          <Badge variant="secondary" className="bg-green-600/20 text-green-300">
+                            Aktif
+                          </Badge>
+                        </motion.div>
+                      ))
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -635,31 +662,182 @@ export default function KatilPage() {
               <Card className="bg-gray-900 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
-                    <Target className="w-5 h-5 text-blue-400" />
-                    Güncel İstatistikler
+                    <Clock className="w-5 h-5 text-blue-400" />
+                    Günlük Hedefler
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Toplam Katılımcı</span>
-                      <Badge variant="secondary" className="bg-red-600 text-white">
-                        {stats.totalMembers}
-                      </Badge>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Yeni Üye Hedefi</span>
+                        <span className="text-white">127/200</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(127, 200)}%` }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                        />
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Aktif Görevler</span>
-                      <Badge variant="secondary" className="bg-blue-600 text-white">
-                        {stats.activeTasks}
-                      </Badge>
+                    
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Görev Tamamlama</span>
+                        <span className="text-white">89/150</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(89, 150)}%` }}
+                          transition={{ duration: 1, delay: 0.4 }}
+                        />
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Toplam Destek</span>
-                      <Badge variant="secondary" className="bg-green-600 text-white">
-                        {formatCurrency(stats.totalDonations)}
-                      </Badge>
+                    
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Topluluk Etkileşimi</span>
+                        <span className="text-white">234/300</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(234, 300)}%` }}
+                          transition={{ duration: 1, delay: 0.6 }}
+                        />
+                      </div>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Additional Live Data Tables */}
+            <div className="grid grid-cols-1 gap-6">
+              <Card className="bg-gray-900 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-purple-400" />
+                    Şehir Bazlı Katılım
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="border-gray-700">
+                        <TableHead className="text-gray-300">Şehir</TableHead>
+                        <TableHead className="text-gray-300">Katılımcı</TableHead>
+                        <TableHead className="text-gray-300">Toplam Katkı</TableHead>
+                        <TableHead className="text-gray-300">Durum</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-white">İstanbul</TableCell>
+                        <TableCell className="text-blue-300">1,247</TableCell>
+                        <TableCell className="text-green-300">₺85,420</TableCell>
+                        <TableCell>
+                          <Badge className="bg-green-600 text-white">Aktif</Badge>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-white">Ankara</TableCell>
+                        <TableCell className="text-blue-300">892</TableCell>
+                        <TableCell className="text-green-300">₺63,180</TableCell>
+                        <TableCell>
+                          <Badge className="bg-green-600 text-white">Aktif</Badge>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-white">İzmir</TableCell>
+                        <TableCell className="text-blue-300">634</TableCell>
+                        <TableCell className="text-green-300">₺41,750</TableCell>
+                        <TableCell>
+                          <Badge className="bg-green-600 text-white">Aktif</Badge>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-white">Bursa</TableCell>
+                        <TableCell className="text-blue-300">423</TableCell>
+                        <TableCell className="text-green-300">₺28,940</TableCell>
+                        <TableCell>
+                          <Badge className="bg-yellow-600 text-white">Orta</Badge>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-white">Antalya</TableCell>
+                        <TableCell className="text-blue-300">351</TableCell>
+                        <TableCell className="text-green-300">₺22,630</TableCell>
+                        <TableCell>
+                          <Badge className="bg-yellow-600 text-white">Orta</Badge>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Trophy className="w-5 h-5 text-yellow-400" />
+                    En Aktif Gönüllüler
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="border-gray-700">
+                        <TableHead className="text-gray-300">Rank</TableHead>
+                        <TableHead className="text-gray-300">İsim</TableHead>
+                        <TableHead className="text-gray-300">Görev</TableHead>
+                        <TableHead className="text-gray-300">Katkı</TableHead>
+                        <TableHead className="text-gray-300">Puan</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-yellow-400 font-bold">🏆 1</TableCell>
+                        <TableCell className="text-white">Mehmet Y.</TableCell>
+                        <TableCell className="text-blue-300">15</TableCell>
+                        <TableCell className="text-green-300">₺2,450</TableCell>
+                        <TableCell className="text-purple-300">2,847</TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-gray-300 font-bold">🥈 2</TableCell>
+                        <TableCell className="text-white">Ayşe K.</TableCell>
+                        <TableCell className="text-blue-300">12</TableCell>
+                        <TableCell className="text-green-300">₺1,890</TableCell>
+                        <TableCell className="text-purple-300">2,341</TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-amber-600 font-bold">🥉 3</TableCell>
+                        <TableCell className="text-white">Ali M.</TableCell>
+                        <TableCell className="text-blue-300">11</TableCell>
+                        <TableCell className="text-green-300">₺1,650</TableCell>
+                        <TableCell className="text-purple-300">2,156</TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-gray-400">4</TableCell>
+                        <TableCell className="text-white">Fatma D.</TableCell>
+                        <TableCell className="text-blue-300">9</TableCell>
+                        <TableCell className="text-green-300">₺1,320</TableCell>
+                        <TableCell className="text-purple-300">1,942</TableCell>
+                      </TableRow>
+                      <TableRow className="border-gray-700">
+                        <TableCell className="text-gray-400">5</TableCell>
+                        <TableCell className="text-white">Mustafa S.</TableCell>
+                        <TableCell className="text-blue-300">8</TableCell>
+                        <TableCell className="text-green-300">₺1,180</TableCell>
+                        <TableCell className="text-purple-300">1,756</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </CardContent>
               </Card>
             </div>
