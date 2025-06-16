@@ -65,41 +65,75 @@ export default function TurkiyePage() {
               <div className="w-full h-full bg-gradient-to-r from-red-500/20 to-transparent"></div>
             </div>
             
-            {/* VIP Turkish Flag */}
+            {/* Professional Turkish Flag */}
             <div className="mb-8 flex justify-center">
-              <div className="relative w-40 h-28 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 hover:scale-105 transition-transform duration-300">
-                {/* Flag background */}
-                <div className="w-full h-full bg-gradient-to-br from-red-600 via-red-700 to-red-800 relative">
-                  {/* Subtle texture overlay */}
-                  <div className="absolute inset-0 opacity-10" style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)',
-                    backgroundSize: '20px 20px'
+              <div className="relative w-48 h-32 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/30 hover:scale-105 transition-all duration-500 group">
+                {/* Flag background with official red */}
+                <div className="w-full h-full bg-red-600 relative" style={{ backgroundColor: '#E30A17' }}>
+                  
+                  {/* High-quality fabric texture */}
+                  <div className="absolute inset-0 opacity-20" style={{
+                    backgroundImage: `
+                      linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%),
+                      linear-gradient(-45deg, transparent 25%, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.05) 50%, transparent 50%, transparent 75%, rgba(0,0,0,0.05) 75%)
+                    `,
+                    backgroundSize: '4px 4px'
                   }}></div>
                   
-                  {/* Star and Crescent */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative">
-                      {/* Crescent Moon */}
-                      <div className="relative w-12 h-12">
-                        <div className="absolute w-10 h-10 bg-white rounded-full left-1 top-1"></div>
-                        <div className="absolute w-8 h-8 bg-red-700 rounded-full left-3 top-1"></div>
+                  {/* Star and Crescent with perfect proportions */}
+                  <div className="absolute inset-0 flex items-center" style={{ paddingLeft: '28%' }}>
+                    <div className="relative flex items-center">
+                      {/* Crescent Moon - precise Turkish flag proportions */}
+                      <div className="relative w-16 h-16">
+                        {/* Outer circle (white) */}
+                        <div 
+                          className="absolute bg-white rounded-full shadow-lg" 
+                          style={{
+                            width: '60px',
+                            height: '60px',
+                            left: '2px',
+                            top: '2px'
+                          }}
+                        ></div>
+                        {/* Inner circle (red) - creates crescent */}
+                        <div 
+                          className="absolute rounded-full"
+                          style={{
+                            width: '48px',
+                            height: '48px',
+                            backgroundColor: '#E30A17',
+                            left: '10px',
+                            top: '2px'
+                          }}
+                        ></div>
                       </div>
                       
-                      {/* Five-pointed Star */}
-                      <div className="absolute -right-4 top-2">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                          <path d="M12 2L14.09 8.26L22 9L16 14.74L17.18 22.5L12 19.77L6.82 22.5L8 14.74L2 9L9.91 8.26L12 2Z"/>
+                      {/* Five-pointed Star - perfect positioning */}
+                      <div className="absolute" style={{ left: '44px', top: '12px' }}>
+                        <svg width="28" height="28" viewBox="0 0 100 100" className="drop-shadow-lg">
+                          <path 
+                            d="M50 10 L61.8 38.2 L92.7 38.2 L69.1 57.4 L80.9 85.6 L50 66.4 L19.1 85.6 L30.9 57.4 L7.3 38.2 L38.2 38.2 Z" 
+                            fill="white"
+                            stroke="rgba(255,255,255,0.3)"
+                            strokeWidth="1"
+                          />
                         </svg>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5"></div>
+                  {/* Subtle wave animation */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
+                  
+                  {/* Professional shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"></div>
                 </div>
                 
-                {/* Premium border shine */}
-                <div className="absolute inset-0 rounded-2xl border border-white/30 pointer-events-none"></div>
+                {/* Premium metallic border */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-gradient-to-r from-yellow-400/50 via-white/50 to-yellow-400/50 pointer-events-none"></div>
+                
+                {/* Flag pole effect */}
+                <div className="absolute -left-2 top-0 w-1 h-full bg-gradient-to-b from-gray-300 to-gray-600 rounded-full shadow-lg"></div>
               </div>
             </div>
             
