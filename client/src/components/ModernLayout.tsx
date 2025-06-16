@@ -61,7 +61,7 @@ const Footer = memo(() => (
     <div className="max-w-7xl mx-auto px-3 sm:px-6">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
-          <SimpleFuturisticTurkish className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />
+          <SimpleFuturisticTurkish />
           <span>Cumhuriyet Güncellenme Platformu</span>
         </div>
         
@@ -129,7 +129,7 @@ const ModernLayout = ({
         clearTimeout(timeoutId);
       } catch (error) {
         // Silent fail for visit tracking
-        if (error.name !== 'AbortError') {
+        if ((error as Error).name !== 'AbortError') {
           console.debug('Visit tracking failed:', error);
         }
       }

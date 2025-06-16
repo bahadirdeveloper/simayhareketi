@@ -291,7 +291,7 @@ app.use((req, res, next) => {
     const mergedOptions = Object.assign({}, secureOptions, options || {});
     
     // Orijinal cookie metodunu güvenli ayarlarla çağır
-    return originalCookie.call(this, name, value, mergedOptions);
+    return originalCookie.call(this, name, value, mergedOptions as any);
   };
   
   next();

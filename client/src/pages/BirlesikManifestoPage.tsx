@@ -13,11 +13,8 @@ export default function BirlesikManifestoPage() {
   const [activeTab, setActiveTab] = useState("anayasa");
 
   useEffect(() => {
-    // Ses sistemini başlat
+    // Page initialization complete
   }, []);
-
-  // Ses çalma/durdurma işlemini yönet
-  };
 
   const manifestoValues = [
     {

@@ -855,7 +855,10 @@ export default function KatilPage() {
           </TabsContent>
         </Tabs>
       </div>
-      <AccessibilityReader />
+      <AccessibilityReader 
+        pageContent="Cumhuriyet yenilenmesine katılım formu. Türkiye'nin dijital dönüşümüne katkıda bulunmak için bilgilerinizi paylaşın."
+        pageName="Katılım Formu"
+      />
     </ModernLayout>
   );
 }
