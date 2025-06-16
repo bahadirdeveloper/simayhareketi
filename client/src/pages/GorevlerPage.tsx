@@ -77,15 +77,13 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    // Database'deki görev ID'si ile görsel dosyasını doğrudan eşleştir (1-100 arası)
-    const imageId = Math.max(1, Math.min(id, 100));
-    try {
-      // Vite'nin asset handling sistemi kullanılarak görsel yükleme
-      return new URL(`../../../attached_assets/gorev-${imageId}.webp`, import.meta.url).href;
-    } catch (error) {
-      // Fallback olarak doğrudan path
-      return `/attached_assets/gorev-${imageId}.webp`;
-    }
+    // Görev ID'sine göre ilgili görev görselini eşleştir
+    const gorevIndex = gorevler.findIndex(g => g.id === id);
+    const imageNumber = gorevIndex !== -1 ? gorevIndex + 1 : 1;
+    const finalImageId = Math.max(1, Math.min(imageNumber, 100));
+    
+    // Attached assets klasöründeki görev görsellerini kullan
+    return `/@fs/home/runner/workspace/attached_assets/gorev-${finalImageId}.webp`;
   };
 
   const getGorevColor = (id: number) => {
