@@ -251,7 +251,11 @@ const ModernLayout = ({
       const currentPath = window.location.pathname;
       const isTurkeySection = currentPath === '/turknedir' || 
                              currentPath === '/anayasalar' || 
-                             currentPath === '/turkdetay';
+                             currentPath === '/turkdetay' ||
+                             currentPath === '/halk-manifestolar' ||
+                             currentPath === '/cagri' ||
+                             currentPath === '/katil' ||
+                             currentPath === '/gorevler';
       
       if (isTurkeySection) {
         navigateWithScrollReset(navigate, "/turkiye");
@@ -263,7 +267,11 @@ const ModernLayout = ({
     const currentPath = window.location.pathname;
     const isTurkeySection = currentPath === '/turknedir' || 
                            currentPath === '/anayasalar' || 
-                           currentPath === '/turkdetay';
+                           currentPath === '/turkdetay' ||
+                           currentPath === '/halk-manifestolar' ||
+                           currentPath === '/cagri' ||
+                           currentPath === '/katil' ||
+                           currentPath === '/gorevler';
     
     return (
       <button 

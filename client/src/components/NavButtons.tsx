@@ -18,7 +18,11 @@ export function NavButtons() {
   const isOnTurkeySection = location.startsWith('/turkiye') || 
                            location === '/turknedir' || 
                            location === '/anayasalar' || 
-                           location === '/turkdetay';
+                           location === '/turkdetay' ||
+                           location === '/halk-manifestolar' ||
+                           location === '/cagri' ||
+                           location === '/katil' ||
+                           location === '/gorevler';
 
   // Different button sets based on current location
   const mainButtonData = [
