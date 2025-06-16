@@ -673,42 +673,7 @@ export default function KatilPage() {
                       />
                     </div>
 
-                    <div className="relative z-10">
-                      <FormField
-                        control={form.control}
-                        name="katilimTipi"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white">Katılım Tipi</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger className="bg-gray-800 border-gray-600 text-white">
-                                  <SelectValue placeholder="Katılım tipinizi seçin" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent 
-                                className="bg-gray-800 border-gray-600 text-white shadow-xl border-2"
-                                position="popper"
-                                side="bottom"
-                                align="start"
-                                sideOffset={4}
-                              >
-                                {katilimTipleri.map((tip) => (
-                                  <SelectItem 
-                                    key={tip.value} 
-                                    value={tip.value} 
-                                    className="text-white hover:bg-gray-700 focus:bg-gray-700 cursor-pointer py-3 px-4"
-                                  >
-                                    {tip.label}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
+
 
                     <FormField
                       control={form.control}
