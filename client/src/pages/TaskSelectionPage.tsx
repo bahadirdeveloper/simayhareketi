@@ -83,11 +83,11 @@ export default function TaskSelectionPage() {
         localStorage.removeItem('completedPayment');
         toast({
           title: "Görev Seçildi!",
-          description: "Göreviniz başarıyla seçildi. Katılımınız için teşekkürler!",
+          description: "Göreviniz başarıyla seçildi. Forum kaydına yönlendiriliyorsunuz.",
         });
         
         setTimeout(() => {
-          navigate('/gorevler');
+          navigate('/forum-kayit');
         }, 2000);
       } else {
         throw new Error('Görev seçimi başarısız');

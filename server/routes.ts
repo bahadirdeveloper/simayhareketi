@@ -486,6 +486,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Forum account generation endpoint
+  app.post("/api/generate-forum-account", async (req, res) => {
+    try {
+      const { userInfo, digitalID } = req.body;
+      
+      if (!userInfo || !userInfo.email) {
+        return res.status(400).json({ error: "Kullanıcı bilgileri eksik" });
+      }
+
+      // Generate unique forum credentials
+      const timestamp = Date.now();
+      const randomSuffix = Math.random().toString(36).substring(2, 8);
+      
+      const username = `${userInfo.ad.toLowerCase().replace(/\s+/g, '')}${randomSuffix}`;
+      const forumId = `TR${timestamp.toString(36).toUpperCase()}`;
+      const loginToken = btoa(`${username}:${forumId}:${timestamp}`);
+      
+      // Simulate forum account creation
+      const forumAccount = {
+        username: username,
+        forumId: forumId,
+        email: userInfo.email,
+        displayName: userInfo.ad,
+        city: userInfo.sehir,
+        loginToken: loginToken,
+        registrationDate: new Date().toISOString(),
+        verified: digitalID,
+        membershipLevel: digitalID ? 'verified' : 'basic'
+      };
+
+      // Store forum account info (in real implementation, this would go to forum database)
+      console.log('Forum account created:', forumAccount);
+
+      res.json({
+        success: true,
+        username: forumAccount.username,
+        forumId: forumAccount.forumId,
+        loginToken: forumAccount.loginToken,
+        forumUrl: 'https://forum.turkiye-cumhuriyeti.digital',
+        message: 'Forum hesabı başarıyla oluşturuldu'
+      });
+    } catch (error: any) {
+      console.error("Forum account creation error:", error);
+      res.status(500).json({ 
+        error: "Forum hesabı oluşturulamadı",
+        message: error.message 
+      });
+    }
+  });
+
   app.post("/api/gorev-basvuru", async (req, res) => {
     try {
       const { gorevId, notlar, userId, userEmail } = req.body;

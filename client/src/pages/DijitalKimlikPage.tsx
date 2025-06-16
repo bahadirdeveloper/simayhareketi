@@ -399,12 +399,20 @@ export default function DijitalKimlikPage() {
                 <div>
                   <p className="text-white font-semibold">Görev seçimi yapabilirsiniz</p>
                   <p className="text-gray-300 text-sm">Ödeme tamamlandığı için artık 1 görev seçebilir ve projeye katılabilirsiniz.</p>
-                  <Button
-                    onClick={() => navigate('/gorevler')}
-                    className="mt-2 bg-blue-600 hover:bg-blue-700 text-white"
-                  >
-                    Görevleri İncele
-                  </Button>
+                  <div className="flex space-x-2 mt-2">
+                    <Button
+                      onClick={() => navigate('/task-selection')}
+                      className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
+                    >
+                      Görev Seç
+                    </Button>
+                    <Button
+                      onClick={() => navigate('/forum-kayit')}
+                      className="bg-green-600 hover:bg-green-700 text-white flex-1"
+                    >
+                      Forum Kayıt
+                    </Button>
+                  </div>
                 </div>
               </div>
               
