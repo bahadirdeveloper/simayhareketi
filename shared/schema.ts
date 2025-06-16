@@ -280,9 +280,52 @@ export const insertOdemeSchema = createInsertSchema(odemeler).omit({
   odemeTarihi: true,
 });
 
+// Dijital kimlik tablosu
+export const dijitalKimlikler = pgTable("dijital_kimlikler", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  tcNo: varchar("tc_no", { length: 11 }).notNull().unique(),
+  ad: text("ad").notNull(),
+  soyad: text("soyad").notNull(),
+  dogumTarihi: text("dogum_tarihi").notNull(), // YYYY-MM-DD
+  dogumYeri: text("dogum_yeri").notNull(),
+  seriNo: varchar("seri_no", { length: 3 }).notNull(), // A1B gibi
+  belgeNo: varchar("belge_no", { length: 9 }).notNull(),
+  verilisTarihi: timestamp("verilis_tarihi").defaultNow().notNull(),
+  gecerlilikTarihi: timestamp("gecerlilik_tarihi").notNull(),
+  babaAdi: text("baba_adi"),
+  anaAdi: text("ana_adi"),
+  uyruk: text("uyruk").default("TÜRKİYE CUMHURİYETİ").notNull(),
+  cinsiyet: varchar("cinsiyet", { length: 1 }).notNull(), // E/K
+  medeniHal: varchar("medeni_hal", { length: 1 }), // B/E/D/O
+  din: text("din").default("İSLAM"),
+  kanGrubu: varchar("kan_grubu", { length: 3 }), // A+, B- gibi
+  kayitNo: text("kayit_no").notNull(),
+  dijitalImza: text("dijital_imza").notNull(),
+  qrKod: text("qr_kod").notNull(),
+  aktif: boolean("aktif").default(true).notNull(),
+  olusturulmaTarihi: timestamp("olusturulma_tarihi").defaultNow().notNull(),
+});
+
+export const insertDijitalKimlikSchema = createInsertSchema(dijitalKimlikler).omit({
+  id: true,
+  olusturulmaTarihi: true,
+});
+
+// Dijital kimlik relations
+export const dijitalKimliklerRelations = relations(dijitalKimlikler, ({ one }) => ({
+  user: one(users, {
+    fields: [dijitalKimlikler.userId],
+    references: [users.id],
+  }),
+}));
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export type InsertDijitalKimlik = z.infer<typeof insertDijitalKimlikSchema>;
+export type DijitalKimlik = typeof dijitalKimlikler.$inferSelect;
 
 export type InsertUserSession = z.infer<typeof insertUserSessionSchema>;
 export type UserSession = typeof userSessions.$inferSelect;
