@@ -35,14 +35,6 @@ export default function TurkiyePage() {
     navigateWithScrollReset(navigate, path);
   };
   
-  const handleToggleAudio = () => {
-    try {
-      setIsAudioPlaying(prev => !prev);
-    } catch (error) {
-      console.log('Audio toggle failed:', error);
-    }
-  };
-  
   return (
     <ModernLayout 
       audioKey="turkiye" 
@@ -112,7 +104,7 @@ export default function TurkiyePage() {
             <div className="flex justify-center relative z-10">
               <button
                 className="group px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 border-2 border-red-500 rounded-2xl hover:from-red-500 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-red-500/30"
-                onClick={handleToggleAudio}
+                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
               >
                 <div className="flex items-center gap-3">
                   <Play className="h-6 w-6 text-white ml-0.5 group-hover:scale-110 transition-transform" />

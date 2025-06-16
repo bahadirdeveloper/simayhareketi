@@ -17,7 +17,6 @@ export default function BirlesikManifestoPage() {
   }, []);
 
   // Ses çalma/durdurma işlemini yönet
-  const handleToggleAudio = () => {
   };
 
   const manifestoValues = [
@@ -151,7 +150,6 @@ export default function BirlesikManifestoPage() {
             `}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={handleToggleAudio}
           >
             <Play className="h-5 w-5 text-white ml-0.5" />
           </motion.button>
