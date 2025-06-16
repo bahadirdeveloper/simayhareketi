@@ -288,14 +288,14 @@ export default function GorevlerPage() {
         </div>
 
         {/* Görev Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
           {currentGorevler.map((gorev) => (
             <div key={gorev.id} className="group relative">
               <div className={`bg-gradient-to-br ${getGorevColor(gorev.id)} rounded-xl p-1 hover:scale-105 transition-all duration-300`}>
                 <div className="bg-gray-900 rounded-lg p-4 h-full">
                   
                   {/* Görev Resmi - Tam Görünür */}
-                  <div className="mb-4 h-48 rounded-lg overflow-hidden shadow-lg relative bg-gray-800">
+                  <div className="mb-4 h-40 sm:h-48 rounded-lg overflow-hidden shadow-lg relative bg-gray-800">
                     <img 
                       src={getGorevImage(gorev.id)}
                       alt={`Görev ${gorev.id}`}
@@ -341,28 +341,30 @@ export default function GorevlerPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4 mb-8">
+          <div className="flex justify-center items-center gap-2 sm:gap-4 mb-8">
             <Button
               variant="outline"
               size="sm"
+              className="h-12 px-4 text-sm"
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
               <ChevronLeft className="h-4 w-4" />
-              Önceki
+              <span className="hidden sm:inline">Önceki</span>
             </Button>
             
-            <span className="text-gray-400">
+            <span className="text-gray-400 text-sm px-2">
               {currentPage} / {totalPages}
             </span>
             
             <Button
               variant="outline"
               size="sm"
+              className="h-12 px-4 text-sm"
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
-              Sonraki
+              <span className="hidden sm:inline">Sonraki</span>
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
