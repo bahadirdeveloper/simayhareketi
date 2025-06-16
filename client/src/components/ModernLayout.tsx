@@ -30,7 +30,13 @@ const LanguageButton = () => {
   return (
     <button 
       onClick={handleClick}
-      className="fixed z-40 bottom-3 left-3 sm:bottom-4 sm:left-4 bg-red-600 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg hover:bg-red-700 transition-colors touch-target"
+      onTouchStart={(e) => {
+        e.currentTarget.style.backgroundColor = '#dc2626';
+      }}
+      onTouchEnd={(e) => {
+        e.currentTarget.style.backgroundColor = '#ef4444';
+      }}
+      className="fixed z-40 bottom-3 left-3 sm:bottom-4 sm:left-4 bg-red-600 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg hover:bg-red-700 transition-colors touch-target min-h-[48px] min-w-[48px]"
       aria-label="Dil Seçimi"
     >
       DİL
@@ -170,7 +176,15 @@ const ModernLayout = ({
     return (
       <button
         onClick={handleBackClick}
-        className="fixed top-3 left-3 sm:top-4 sm:left-4 z-40 bg-black/80 border border-red-500/30 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600/20 hover:border-red-400 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+        onTouchStart={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.3)';
+          e.currentTarget.style.borderColor = 'rgba(248, 113, 113, 0.8)';
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+          e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+        }}
+        className="fixed top-3 left-3 sm:top-4 sm:left-4 z-40 bg-black/80 border border-red-500/30 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600/20 hover:border-red-400 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm touch-target min-h-[48px] min-w-[48px]"
         aria-label="Geri Dön"
       >
         <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />

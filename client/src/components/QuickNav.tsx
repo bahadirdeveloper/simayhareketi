@@ -61,7 +61,13 @@ const QuickNav = () => {
                       navigate(item.path);
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center gap-3 p-2 sm:p-3 rounded-xl bg-gray-900/50 hover:bg-red-500/20 nav-button touch-target group text-sm sm:text-base"
+                    onTouchStart={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
+                    }}
+                    onTouchEnd={(e) => {
+                      e.currentTarget.style.backgroundColor = '';
+                    }}
+                    className="w-full flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-gray-900/50 hover:bg-red-500/20 nav-button touch-target group text-sm sm:text-base min-h-[48px]"
                   >
                     <IconComponent className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
                     <span className="text-white font-medium">{item.label}</span>
@@ -77,7 +83,14 @@ const QuickNav = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-red-600 hover:bg-red-500 text-white rounded-full floating-element flex items-center justify-center nav-button touch-target"
+        onTouchStart={(e) => {
+          e.currentTarget.style.backgroundColor = '#dc2626';
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.backgroundColor = '#ef4444';
+        }}
+        className="w-16 h-16 bg-red-600 hover:bg-red-500 text-white rounded-full floating-element flex items-center justify-center nav-button touch-target min-h-[48px] min-w-[48px]"
+        aria-label={isOpen ? "Menüyü Kapat" : "Menüyü Aç"}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
