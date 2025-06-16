@@ -237,20 +237,20 @@ export default function SimayHomeModern() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto px-4 pb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto px-4 pb-10">
               {coreValues.map((value, index) => (
                 <motion.div 
                   key={value.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1 + (index * 0.1) }}
-                  className="bg-gradient-to-br from-gray-900 to-black border border-red-900/20 rounded-xl p-6 text-center hover:border-red-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-red-900/20 hover:-translate-y-1 group"
+                  className="bg-gradient-to-br from-gray-900 to-black border border-red-900/20 rounded-xl p-4 text-center hover:border-red-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-red-900/20 hover:-translate-y-1 group"
                 >
-                  <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full mx-auto mb-5 text-white font-bold text-2xl shadow-md group-hover:shadow-red-700/30 group-hover:from-red-600 group-hover:to-red-800 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-700 to-red-900 rounded-full mx-auto mb-3 text-white font-bold text-lg shadow-md group-hover:shadow-red-700/30 group-hover:from-red-600 group-hover:to-red-800 transition-all">
                     {value.symbol}
                   </div>
-                  <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400 transition-colors">{value.name}</h3>
-                  <p className="text-white/80 text-base font-light leading-relaxed">{value.description}</p>
+                  <h3 className="text-lg font-bold text-red-500 mb-2 group-hover:text-red-400 transition-colors">{value.name}</h3>
+                  <p className="text-white/80 text-sm font-light leading-relaxed">{value.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -260,39 +260,19 @@ export default function SimayHomeModern() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="mb-20 mx-auto px-4 max-w-5xl"
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="mb-16 mx-auto px-4 max-w-4xl"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/50 via-blue-950/30 to-indigo-950/50 rounded-2xl -z-10 transform -skew-y-1"></div>
-              
-              <div className="absolute inset-0 rounded-2xl overflow-hidden -z-10">
-                {/* Reduced grid lines for better performance */}
-                {[...Array(3)].map((_, i) => (
-                  <div key={`stat-h-${i}`} className="absolute h-px bg-blue-500/10 w-full" style={{ top: `${(i+1) * 33}%` }} />
-                ))}
-                {[...Array(4)].map((_, i) => (
-                  <div key={`stat-v-${i}`} className="absolute w-px bg-blue-500/10 h-full" style={{ left: `${(i+1) * 25}%` }} />
-                ))}
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700/50">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {stats.map((stat, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="backdrop-blur-sm bg-gradient-to-br from-black/80 to-gray-900/80 border border-red-900/20 rounded-xl p-8 text-center shadow-[0_4px_20px_rgba(185,28,28,0.08)] hover:shadow-[0_8px_30px_rgba(185,28,28,0.15)] transition-all duration-500 hover:-translate-y-1 relative group overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-900/0 via-red-900/5 to-red-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                    
-                    <div className="relative">
-                      <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-red-500 mb-3 font-mono tracking-tight">{stat.value}</div>
-                      <div className="text-white/80 font-medium text-sm uppercase tracking-widest mb-1 group-hover:text-white transition-colors">{stat.label}</div>
-                      <div className="text-white/50 text-xs mt-1 group-hover:text-white/70 transition-colors">{stat.suffix}</div>
+                  <div key={index} className="text-center">
+                    <div className="text-3xl font-bold text-red-400 mb-2">
+                      {stat.value}
                     </div>
-                  </motion.div>
+                    <div className="text-white text-sm font-semibold">{stat.label}</div>
+                    <div className="text-gray-400 text-xs">{stat.suffix}</div>
+                  </div>
                 ))}
               </div>
             </div>
