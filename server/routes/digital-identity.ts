@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { dijitalKimlikler, users, odemeler } from "@shared/schema";
-import { generateFullDigitalIdentity } from "../lib/tc-generator";
+import { generateDigitalIdentityFromUserData } from "../lib/tc-generator";
 import { z } from "zod";
 
 // Dijital kimlik indirme için form şeması

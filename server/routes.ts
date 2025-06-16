@@ -13,6 +13,7 @@ import {
 } from "./routes/stripe";
 import { seedTasks } from "./seed-tasks";
 import { registerDigitalIdentityRoutes } from "./routes/digital-identity";
+import { registerPremiumRoutes } from "./routes/premium";
 
 // SQL Enjeksiyon Koruma Middleware
 function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
@@ -489,6 +490,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register digital identity routes
   registerDigitalIdentityRoutes(app);
+  
+  // Register premium package routes
+  registerPremiumRoutes(app);
 
   const httpServer = createServer(app);
 

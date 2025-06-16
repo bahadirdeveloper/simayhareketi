@@ -163,43 +163,50 @@ export function generateBloodType(): string {
   return bloodTypes[Math.floor(Math.random() * bloodTypes.length)];
 }
 
-// Tam dijital kimlik verisi üret
-export function generateFullDigitalIdentity(userId: number): any {
-  const gender = Math.random() > 0.5 ? 'E' : 'K';
-  const { ad, soyad } = generateTurkishName(gender);
+// Gerçek kullanıcı verilerinden dijital kimlik üret
+export function generateDigitalIdentityFromUserData(userProfile: {
+  userId: number;
+  uyelikId: number;
+  ad: string;
+  soyad: string;
+  dogumTarihi: string;
+  dogumYeri: string;
+  babaAdi?: string;
+  anaAdi?: string;
+  cinsiyet: 'E' | 'K';
+  kanGrubu?: string;
+}): any {
   const tcNumber = generateTCNumber();
-  const birthDate = generateBirthDate();
-  const birthPlace = generateBirthPlace();
   const serialNumber = generateSerialNumber();
   const documentNumber = generateDocumentNumber();
   const registrationNumber = generateRegistrationNumber();
-  const bloodType = generateBloodType();
   
   // Geçerlilik tarihi (10 yıl sonra)
   const expiryDate = new Date();
   expiryDate.setFullYear(expiryDate.getFullYear() + 10);
   
-  const signatureData = `${tcNumber}${ad}${soyad}${birthDate}${userId}`;
+  const signatureData = `${tcNumber}${userProfile.ad}${userProfile.soyad}${userProfile.dogumTarihi}${userProfile.userId}`;
   const digitalSignature = generateDigitalSignature(signatureData);
-  const qrCode = generateQRCodeData(tcNumber, ad, soyad);
+  const qrCode = generateQRCodeData(tcNumber, userProfile.ad, userProfile.soyad);
   
   return {
-    userId,
+    userId: userProfile.userId,
+    uyelikId: userProfile.uyelikId,
     tcNo: tcNumber,
-    ad,
-    soyad,
-    dogumTarihi: birthDate,
-    dogumYeri: birthPlace,
+    ad: userProfile.ad,
+    soyad: userProfile.soyad,
+    dogumTarihi: userProfile.dogumTarihi,
+    dogumYeri: userProfile.dogumYeri,
     seriNo: serialNumber,
     belgeNo: documentNumber,
     gecerlilikTarihi: expiryDate,
-    babaAdi: generateTurkishName('E').ad,
-    anaAdi: generateTurkishName('K').ad,
+    babaAdi: userProfile.babaAdi || generateTurkishName('E').ad,
+    anaAdi: userProfile.anaAdi || generateTurkishName('K').ad,
     uyruk: 'TÜRKİYE CUMHURİYETİ',
-    cinsiyet: gender,
-    medeniHal: Math.random() > 0.5 ? 'B' : 'E', // B: Bekar, E: Evli
+    cinsiyet: userProfile.cinsiyet,
+    medeniHal: 'B', // Default to single
     din: 'İSLAM',
-    kanGrubu: bloodType,
+    kanGrubu: userProfile.kanGrubu || generateBloodType(),
     kayitNo: registrationNumber,
     dijitalImza: digitalSignature,
     qrKod: qrCode,

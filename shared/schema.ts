@@ -281,23 +281,24 @@ export const insertOdemeSchema = createInsertSchema(odemeler).omit({
   odemeTarihi: true,
 });
 
-// Dijital kimlik tablosu
+// Dijital kimlik tablosu - Paket satın alımında otomatik oluşturulur
 export const dijitalKimlikler = pgTable("dijital_kimlikler", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  uyelikId: integer("uyelik_id").notNull().references(() => premiumUyelikler.id, { onDelete: "cascade" }),
   tcNo: varchar("tc_no", { length: 11 }).notNull().unique(),
-  ad: text("ad").notNull(),
-  soyad: text("soyad").notNull(),
-  dogumTarihi: text("dogum_tarihi").notNull(), // YYYY-MM-DD
+  ad: text("ad").notNull(), // Kullanıcının gerçek adı
+  soyad: text("soyad").notNull(), // Kullanıcının gerçek soyadı
+  dogumTarihi: text("dogum_tarihi").notNull(), // Kullanıcının gerçek doğum tarihi
   dogumYeri: text("dogum_yeri").notNull(),
   seriNo: varchar("seri_no", { length: 3 }).notNull(), // A1B gibi
   belgeNo: varchar("belge_no", { length: 9 }).notNull(),
   verilisTarihi: timestamp("verilis_tarihi").defaultNow().notNull(),
   gecerlilikTarihi: timestamp("gecerlilik_tarihi").notNull(),
-  babaAdi: text("baba_adi"),
-  anaAdi: text("ana_adi"),
+  babaAdi: text("baba_adi"), // Kullanıcının gerçek baba adı
+  anaAdi: text("ana_adi"), // Kullanıcının gerçek ana adı
   uyruk: text("uyruk").default("TÜRKİYE CUMHURİYETİ").notNull(),
-  cinsiyet: varchar("cinsiyet", { length: 1 }).notNull(), // E/K
+  cinsiyet: varchar("cinsiyet", { length: 1 }).notNull(), // E/K - kullanıcının gerçek cinsiyeti
   medeniHal: varchar("medeni_hal", { length: 1 }), // B/E/D/O
   din: text("din").default("İSLAM"),
   kanGrubu: varchar("kan_grubu", { length: 3 }), // A+, B- gibi
