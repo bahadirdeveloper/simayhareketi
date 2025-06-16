@@ -242,6 +242,9 @@ export default function KatilPage() {
         let amount = 0;
         
         switch (packageType) {
+          case 'dijital-kimlik':
+            amount = 1;
+            break;
           case 'temel':
             amount = 50;
             break;
@@ -307,8 +310,9 @@ export default function KatilPage() {
   }
 
   const katilimTipleri = [
+    { value: "dijital-kimlik", label: "🟢 Dijital TC Kimlik - Güvenli dijital kimlik + 1 görev hakkı (₺1)" },
     { value: "temel", label: "🔵 Temel Paket - Hareket üyeliği + Dijital kimlik belgesi (₺50)" },
-    { value: "premium", label: "🟢 Premium Paket - Otomatik TC kimlik doğrulama + Premium görevler (₺150)" },
+    { value: "premium", label: "🟡 Premium Paket - Otomatik TC kimlik doğrulama + Premium görevler (₺150)" },
     { value: "elite", label: "🟣 Elite Paket - Liderlik görevleri + Organizatör yetkileri (₺300)" }
   ];
 
@@ -446,7 +450,7 @@ export default function KatilPage() {
                 <Card className={`bg-gradient-to-br from-emerald-900 to-emerald-700 border-emerald-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 ${selectedPackage === 'dijital-kimlik' ? 'ring-4 ring-emerald-400 border-emerald-400' : ''}`}>
                   <CardHeader className="text-center pb-4">
                     <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <IdCard className="w-8 h-8 text-white" />
+                      <CreditCard className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-white text-lg font-bold">DİJİTAL TC KİMLİK</CardTitle>
                     <CardDescription className="text-emerald-200">

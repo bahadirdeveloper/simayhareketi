@@ -41,6 +41,7 @@ import UlkeEklePage from "@/pages/UlkeEklePage";
 import DijitalKimlikPage from "@/pages/DijitalKimlikPage";
 import PremiumPackagesPage from "@/pages/PremiumPackagesPage";
 import CheckoutPage from "@/pages/CheckoutPage";
+import TaskSelectionPage from "@/pages/TaskSelectionPage";
 
 function Router() {
   return (
@@ -65,6 +66,7 @@ function Router() {
       <Route path="/katil" component={KatilPage} />
       <Route path="/katil/success" component={KatilPage} />
       <Route path="/checkout" component={CheckoutPage} />
+      <Route path="/task-selection" component={TaskSelectionPage} />
       <Route path="/birlesik-manifesto" component={BirlesikManifestoPage} />
       <Route path="/manifesto" component={BirlesikManifestoPage} />
       <Route path="/join" component={JoinPage} />

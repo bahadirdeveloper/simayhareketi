@@ -444,6 +444,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Task selection endpoint for paid users
+  app.post("/api/select-task", async (req, res) => {
+    try {
+      const { taskId, paymentData } = req.body;
+      
+      if (!taskId || !paymentData) {
+        return res.status(400).json({ error: "Eksik parametreler" });
+      }
+
+      // Verify payment was completed for digital ID
+      if (paymentData.packageType !== 'dijital-kimlik' && paymentData.amount < 1) {
+        return res.status(403).json({ error: "Görev seçimi için ödeme gerekli" });
+      }
+
+      // Get task details
+      const gorev = await storage.getGorev(taskId);
+      if (!gorev) {
+        return res.status(404).json({ error: "Görev bulunamadı" });
+      }
+
+      // Create task application record
+      const basvuru = await storage.createGorevBasvuru({
+        gorevId: taskId,
+        notlar: `Dijital kimlik ile seçilen görev - Paket: ${paymentData.packageType}`,
+        userId: paymentData.userInfo?.email || 'anonymous',
+        userEmail: paymentData.userInfo?.email || '',
+        durum: 'secildi'
+      });
+
+      res.json({ 
+        success: true, 
+        task: gorev,
+        application: basvuru,
+        message: "Görev başarıyla seçildi"
+      });
+    } catch (error: any) {
+      console.error("Task selection error:", error);
+      res.status(500).json({ 
+        error: "Görev seçimi başarısız",
+        message: error.message 
+      });
+    }
+  });
+
   app.post("/api/gorev-basvuru", async (req, res) => {
     try {
       const { gorevId, notlar, userId, userEmail } = req.body;
