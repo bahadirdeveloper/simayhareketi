@@ -183,7 +183,7 @@ export default function HalkDefteriPage() {
             </TabsContent>
             
             <TabsContent value="halkdefteri" className="mt-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 {/* Message Form Section */}
                 <div className="order-2 lg:order-1">
                   <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
@@ -198,7 +198,7 @@ export default function HalkDefteriPage() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Örn: Ahmet Yılmaz"
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50"
+                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12 text-base"
                           required
                         />
                       </div>
@@ -211,7 +211,7 @@ export default function HalkDefteriPage() {
                           value={formData.city}
                           onChange={handleInputChange}
                           placeholder="Örn: İstanbul"
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50"
+                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12 text-base"
                           required
                         />
                       </div>
@@ -225,7 +225,7 @@ export default function HalkDefteriPage() {
                           onChange={handleInputChange}
                           placeholder="Düşüncelerinizi, fikirlerinizi paylaşın..."
                           rows={4}
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 resize-none"
+                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 resize-none min-h-[120px] text-base"
                           required
                         />
                       </div>
