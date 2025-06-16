@@ -437,17 +437,23 @@ export default function KatilPage() {
                       control={form.control}
                       name="katilimTipi"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="relative">
                           <FormLabel className="text-white">Katılım Tipi</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-gray-800 border-gray-600 text-white">
+                              <SelectTrigger className="bg-gray-800 border-gray-600 text-white relative">
                                 <SelectValue placeholder="Katılım tipinizi seçin" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-gray-800 border-gray-600">
+                            <SelectContent 
+                              className="bg-gray-800 border-gray-600 text-white shadow-lg z-[999]"
+                              position="popper"
+                              side="bottom"
+                              align="start"
+                              sideOffset={4}
+                            >
                               {katilimTipleri.map((tip) => (
-                                <SelectItem key={tip.value} value={tip.value} className="text-white">
+                                <SelectItem key={tip.value} value={tip.value} className="text-white hover:bg-gray-700 focus:bg-gray-700">
                                   {tip.label}
                                 </SelectItem>
                               ))}
