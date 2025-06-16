@@ -6,7 +6,7 @@ import LanguageSelector from './LanguageSelector';
 import AccessibilityReader from './AccessibilityReader';
 import QuickNav from './QuickNav';
 import { ModernTechButton } from './ModernTechButton';
-import { initAudio, playSoundtrack, isAudioPlaying } from '@/lib/audio';
+
 import { navigateWithScrollReset, scrollToTop } from '@/lib/navigation';
 
 // Ses kontrolü için düğme bileşeni

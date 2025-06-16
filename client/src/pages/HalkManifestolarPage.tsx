@@ -204,10 +204,7 @@ O, milyon kişiyi tek tuşla silebilir. Biz, bir kişinin hayatı için milyon k
     <ModernLayout>
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-hidden">
         
-        {/* Ambient Music Player */}
-        <div className="fixed top-6 right-6 z-50">
-          <TurkishAmbientPlayer page="manifesto" className="w-80" />
-        </div>
+
 
         {/* Background Effects */}
         <div className="absolute inset-0 opacity-5">

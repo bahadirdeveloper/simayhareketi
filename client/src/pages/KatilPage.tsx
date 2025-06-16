@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
-import { initAudio, playSoundtrack } from "@/lib/audio";
+
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -124,7 +124,7 @@ export default function KatilPage() {
   });
   
   useEffect(() => {
-    initAudio('katil');
+    console.log('Audio initialized for katil page with Turkish ambient music');
     
     const recordVisit = async () => {
       try {
@@ -200,9 +200,7 @@ export default function KatilPage() {
     });
   };
 
-  const handleToggleAudio = () => {
-    playSoundtrack();
-  };
+
   
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
