@@ -70,13 +70,11 @@ export function registerDigitalIdentityRoutes(app: Express) {
         return res.status(409).json({ error: "Bu kullanıcı için zaten dijital kimlik mevcut" });
       }
 
-      // Yeni dijital kimlik üret
-      const identityData = generateFullDigitalIdentity(userId);
-      
-      const [newIdentity] = await db
-        .insert(dijitalKimlikler)
-        .values(identityData)
-        .returning();
+      // Bu endpoint artık kullanılmıyor - kimlikler premium paket alımında otomatik oluşturuluyor
+      return res.status(400).json({ 
+        error: "Dijital kimlik oluşturmak için premium paket satın alın",
+        redirect: "/premium-paketler" 
+      });
 
       res.status(201).json({
         message: "Dijital kimlik başarıyla oluşturuldu",
