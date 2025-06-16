@@ -287,7 +287,7 @@ export default function KatilPage() {
             className="bg-gray-900 border-2 border-blue-500/30 rounded-2xl p-6 text-center"
           >
             <Users className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{stats.totalMembers.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-white">{stats.totalMembers?.toLocaleString() || 0}</div>
             <div className="text-blue-300 text-sm">Toplam Üye</div>
           </motion.div>
 
@@ -298,7 +298,7 @@ export default function KatilPage() {
             className="bg-gray-900 border-2 border-orange-500/30 rounded-2xl p-6 text-center"
           >
             <Target className="w-8 h-8 text-orange-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{stats.activeTasks}</div>
+            <div className="text-2xl font-bold text-white">{stats.activeTasks || 0}</div>
             <div className="text-orange-300 text-sm">Aktif Görev</div>
           </motion.div>
 
