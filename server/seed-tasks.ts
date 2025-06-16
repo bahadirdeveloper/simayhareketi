@@ -38,8 +38,11 @@ export async function seedTasks() {
     const existingTasks = await storage.getAllGorevler();
     console.log(`Found ${existingTasks.length} existing tasks`);
     
-    // Add new tasks from JSON
-    for (const task of tasks) {
+    // Limit to exactly 100 tasks
+    const limitedTasks = tasks.slice(0, 100);
+    
+    // Add exactly 100 tasks
+    for (const task of limitedTasks) {
       await storage.createGorev({
         baslik: task.baslik,
         aciklama: task.aciklama,
@@ -47,8 +50,8 @@ export async function seedTasks() {
       });
     }
     
-    console.log(`Successfully seeded ${tasks.length} tasks from JSON file`);
-    return { success: true, count: tasks.length };
+    console.log(`Successfully seeded exactly ${limitedTasks.length} tasks`);
+    return { success: true, count: limitedTasks.length };
   } catch (error) {
     console.error("Error seeding tasks:", error);
     throw error;
