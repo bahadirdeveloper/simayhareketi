@@ -324,79 +324,213 @@ export default function HalkDefteriPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-4">
-              HALK DEFTERİ & MANİFESTOLAR
-            </h1>
-            <h2 className="text-xl md:text-2xl font-medium text-white/90 mb-4">
-              Geleceğin Sözleri, Halkın Sesleri
-            </h2>
+            <motion.h1 
+              className="text-6xl md:text-7xl lg:text-8xl font-black text-gradient bg-gradient-to-r from-red-500 via-red-300 to-white text-transparent bg-clip-text tracking-wide mb-6 relative"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <span className="relative">
+                HALK DEFTERİ 
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-red-600/30 to-red-400/30 blur-lg rounded-lg"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 0.8, 0.5] 
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-yellow-400 via-red-400 to-red-600 text-transparent bg-clip-text">
+                & MANİFESTOLAR
+              </span>
+            </motion.h1>
+            <motion.h2 
+              className="text-2xl md:text-3xl font-bold text-white/95 mb-6 tracking-wide"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              🇹🇷 Geleceğin Sözleri, Halkın Sesleri 🇹🇷
+            </motion.h2>
             
             {/* Intro Section */}
             <motion.div
-              className="relative flex justify-center mb-6"
+              className="relative flex justify-center mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-lg blur-xl"></div>
-              <div className="bg-gradient-to-r from-red-950/60 to-black/70 backdrop-blur-sm p-6 border-2 border-red-600/50 rounded-lg shadow-[0_0_30px_rgba(220,38,38,0.25)] max-w-3xl relative z-10">
-                <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-4">
-                  Bu sayfa, vatandaşların değerli düşüncelerini ve geleceğe dair manifestoları bir araya getiriyor. Aşağıda, Cumhuriyet değerlerini koruyan ve geliştiren fikirler ve manifestolar bulacaksınız.
-                </p>
-                <p className="text-white/80 text-lg">
-                  Her düşünce bir tohum, her manifesto bir gelecek vizyonudur. Siz de katkıda bulunun!
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 to-yellow-500/20 rounded-xl blur-2xl animate-pulse"></div>
+              <motion.div 
+                className="bg-gradient-to-br from-red-950/80 via-black/80 to-red-900/70 backdrop-blur-md p-8 border-2 border-red-500/60 rounded-xl shadow-[0_0_50px_rgba(220,38,38,0.4)] max-w-4xl relative z-10 overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-yellow-400 to-red-600"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1.5, delay: 0.6 }}
+                />
+                <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-red-500/20 to-yellow-500/20 rounded-full blur-lg animate-ping"></div>
+                
+                <motion.p 
+                  className="text-xl md:text-2xl text-white/95 leading-relaxed mb-6 font-semibold"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  ⚡ Bu sayfa, vatandaşların değerli düşüncelerini ve geleceğe dair manifestoları bir araya getiriyor. 
+                  <span className="text-red-400 font-bold"> Cumhuriyet değerlerini koruyan ve geliştiren</span> fikirler ve manifestolar bulacaksınız.
+                </motion.p>
+                <motion.p 
+                  className="text-white/90 text-xl font-medium bg-gradient-to-r from-red-400 to-yellow-400 text-transparent bg-clip-text"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                >
+                  ✨ Her düşünce bir tohum, her manifesto bir gelecek vizyonudur. Siz de katkıda bulunun! ✨
+                </motion.p>
+              </motion.div>
             </motion.div>
             
             {/* Tabs Container */}
-            <Tabs defaultValue="manifesto" className="w-full max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-black/60 to-red-950/50 backdrop-blur-sm border border-red-500/30">
-                <TabsTrigger value="manifesto" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Manifestolar</TabsTrigger>
-                <TabsTrigger value="halkdefteri" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Halk Defteri</TabsTrigger>
-              </TabsList>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <Tabs defaultValue="manifesto" className="w-full max-w-5xl mx-auto">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-red-950/80 via-black/80 to-red-950/80 backdrop-blur-lg border-2 border-red-500/50 rounded-xl p-2 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                    <TabsTrigger 
+                      value="manifesto" 
+                      className="text-xl font-bold py-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-700 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-red-500/30 transition-all duration-300 rounded-lg"
+                    >
+                      📜 Manifestolar
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="halkdefteri" 
+                      className="text-xl font-bold py-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-700 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-red-500/30 transition-all duration-300 rounded-lg"
+                    >
+                      📝 Halk Defteri
+                    </TabsTrigger>
+                  </TabsList>
+                </motion.div>
               
-              <TabsContent value="manifesto" className="mt-6">
-                <div className="space-y-6">
-                  {/* Manifestolar */}
-                  <motion.div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                    <h3 className="text-2xl font-bold text-white mb-6 text-center">HALKIN SON SÖZÜ MANİFESTOSU</h3>
-                    
-                    <p className="text-white/80 text-center italic mb-6">
-                      "Bu bir belge değil, bir başlangıçtır. Manifesto burada biter, ama görev şimdi başlar."
-                    </p>
-                    
-                    <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
-                      {manifestoEntries.map(entry => (
-                        <motion.div 
-                          key={entry.id}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 0.05 * entry.id }}
-                          className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-5 rounded-lg border border-red-600/20 shadow-[0_0_15px_rgba(220,38,38,0.1)]"
-                        >
-                          <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center shadow-sm">
-                              <span className="text-white text-sm font-bold">{entry.id}</span>
+                <TabsContent value="manifesto" className="mt-8">
+                  <motion.div 
+                    className="space-y-8"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <motion.div 
+                      className="bg-gradient-to-br from-red-950/90 via-black/90 to-red-900/80 backdrop-blur-lg border-2 border-red-500/60 rounded-2xl p-8 shadow-[0_0_60px_rgba(220,38,38,0.4)] overflow-hidden relative"
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <motion.div
+                        className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-red-600"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 1.5, delay: 0.3 }}
+                      />
+                      
+                      <div className="absolute top-6 right-6 w-20 h-20 bg-gradient-to-br from-red-500/30 to-yellow-500/30 rounded-full blur-xl animate-pulse"></div>
+                      
+                      <motion.h3 
+                        className="text-3xl md:text-4xl font-black text-center mb-8 bg-gradient-to-r from-red-400 via-yellow-400 to-red-500 text-transparent bg-clip-text"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                      >
+                        🏛️ HALKIN SON SÖZÜ MANİFESTOSU 🏛️
+                      </motion.h3>
+                      
+                      <motion.p 
+                        className="text-white/90 text-center italic mb-8 text-xl font-medium bg-gradient-to-r from-white to-red-200 text-transparent bg-clip-text"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                      >
+                        ⚡ "Bu bir belge değil, bir başlangıçtır. Manifesto burada biter, ama görev şimdi başlar." ⚡
+                      </motion.p>
+                      
+                      <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
+                        {manifestoEntries.map(entry => (
+                          <motion.div 
+                            key={entry.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 * entry.id }}
+                            whileHover={{ scale: 1.02, x: 10 }}
+                            className="bg-gradient-to-r from-black/90 via-red-950/50 to-black/90 backdrop-blur-sm p-6 rounded-xl border-2 border-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.2)] relative overflow-hidden group"
+                          >
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            />
+                            
+                            <div className="flex items-start gap-6 relative z-10">
+                              <motion.div 
+                                className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center shadow-lg"
+                                whileHover={{ rotate: 360 }}
+                                transition={{ duration: 0.6 }}
+                              >
+                                <span className="text-white text-lg font-black">{entry.id}</span>
+                              </motion.div>
+                              <div className="flex-1">
+                                <motion.h4 
+                                  className="text-red-300 font-black text-xl mb-4 bg-gradient-to-r from-red-400 to-yellow-400 text-transparent bg-clip-text"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.2 * entry.id }}
+                                >
+                                  {entry.title}
+                                </motion.h4>
+                                <motion.p 
+                                  className="text-white/95 leading-relaxed text-lg"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.3 * entry.id }}
+                                >
+                                  {entry.content}
+                                </motion.p>
+                              </div>
                             </div>
-                            <div className="flex-1">
-                              <h4 className="text-red-400 font-bold text-lg mb-3">{entry.title}</h4>
-                              <p className="text-white/90 leading-relaxed">{entry.content}</p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                    
-                    <div className="mt-8 pt-6 border-t border-red-600/30">
-                      <p className="text-white/90 text-center text-lg font-semibold">Bu manifesto yalnızca okunan bir metin değil, yaşanan bir gerçektir.</p>
-                      <p className="text-white/70 text-sm mt-1 text-center">Bu belge yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı.</p>
-                    </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                      
+                      <motion.div 
+                        className="mt-10 pt-8 border-t-2 border-red-500/50"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.5 }}
+                      >
+                        <div className="text-center bg-gradient-to-br from-red-950/60 to-black/80 p-6 rounded-xl border border-red-500/30">
+                          <p className="text-white/95 text-xl font-bold mb-2">
+                            ✨ Bu manifesto yalnızca okunan bir metin değil, yaşanan bir gerçektir. ✨
+                          </p>
+                          <p className="text-red-300 text-lg">
+                            Bu belge yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı.
+                          </p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
                   </motion.div>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="halkdefteri" className="mt-6">
+                </TabsContent>
+                
+                <TabsContent value="halkdefteri" className="mt-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Message Form Section */}
                   <motion.div
@@ -535,6 +669,7 @@ export default function HalkDefteriPage() {
                 </motion.div>
               </div>
             </Tabs>
+            </motion.div>
           </motion.div>
         </div>
       </main>
