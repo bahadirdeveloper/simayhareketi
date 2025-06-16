@@ -38,6 +38,7 @@ import EntegrasyonPage from "@/pages/EntegrasyonPage";
 import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
 import BirlesikManifestoPage from "@/pages/BirlesikManifestoPage";
 import UlkeEklePage from "@/pages/UlkeEklePage";
+import DijitalKimlikPage from "@/pages/DijitalKimlikPage";
 
 function Router() {
   return (
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/sertifika" component={SertifikaPage} />
       <Route path="/entegrasyon" component={EntegrasyonPage} />
       <Route path="/halk-koordinasyon" component={HalkKoordinasyonPage} />
+      <Route path="/dijital-kimlik" component={DijitalKimlikPage} />
       <Route path="/matrix" component={Home} />
       <Route path="/simay" component={SimayHome} />
       <Route path="/simay2" component={SimayHome2} />

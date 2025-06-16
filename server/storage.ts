@@ -306,6 +306,34 @@ export class DatabaseStorage implements IStorage {
       .returning();
     return result[0];
   }
+
+  // Digital identity methods
+  async createDijitalKimlik(kimlik: InsertDijitalKimlik): Promise<DijitalKimlik> {
+    const result = await db.insert(dijitalKimlikler).values(kimlik).returning();
+    return result[0];
+  }
+
+  async getDijitalKimlik(userId: number): Promise<DijitalKimlik | undefined> {
+    const result = await db.select().from(dijitalKimlikler).where(eq(dijitalKimlikler.userId, userId));
+    return result[0];
+  }
+
+  async getDijitalKimlikByTcNo(tcNo: string): Promise<DijitalKimlik | undefined> {
+    const result = await db.select().from(dijitalKimlikler).where(eq(dijitalKimlikler.tcNo, tcNo));
+    return result[0];
+  }
+
+  async updateDijitalKimlikDurum(id: number, aktif: boolean): Promise<DijitalKimlik> {
+    const result = await db.update(dijitalKimlikler)
+      .set({ aktif })
+      .where(eq(dijitalKimlikler.id, id))
+      .returning();
+    return result[0];
+  }
+
+  async getAllDijitalKimlikler(): Promise<DijitalKimlik[]> {
+    return await db.select().from(dijitalKimlikler).orderBy(desc(dijitalKimlikler.olusturulmaTarihi));
+  }
 }
 
 export const storage = new DatabaseStorage();
