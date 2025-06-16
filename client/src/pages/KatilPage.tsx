@@ -96,6 +96,38 @@ export default function KatilPage() {
   const [transactions, setTransactions] = useState<any[]>([]);
   const { toast } = useToast();
 
+  const handlePackageSelect = async (packageType: string, amount: number) => {
+    try {
+      // Create payment intent for the selected package
+      const response = await apiRequest("POST", "/api/create-payment-intent", {
+        amount: amount,
+        packageType: packageType
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        // Store payment info in localStorage for checkout page
+        localStorage.setItem('pendingPayment', JSON.stringify({
+          clientSecret: data.clientSecret,
+          amount: amount,
+          packageType: packageType
+        }));
+        
+        // Navigate to checkout page
+        navigate('/checkout');
+      } else {
+        throw new Error('Payment initialization failed');
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Ödeme Hatası",
+        description: "Ödeme işlemi başlatılamadı. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
