@@ -204,7 +204,7 @@ export default function SimayHomeModern() {
               </ModernTechButton>
               
               <ModernTechButton 
-                variant="accent"
+                variant="secondary"
                 size="lg"
                 glow="none"
                 border="subtle"
@@ -353,7 +353,7 @@ export default function SimayHomeModern() {
                   </ModernTechButton>
                   
                   <ModernTechButton 
-                    variant="accent"
+                    variant="secondary"
                     size="lg"
                     glow="none"
                     border="subtle"
