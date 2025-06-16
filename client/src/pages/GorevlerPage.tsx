@@ -64,14 +64,12 @@ export default function GorevlerPage() {
   };
 
   // Filtreleme ve arama
-  const filteredGorevler = gorevler
-    .filter(gorev => {
-      const matchesSearch = gorev.baslik.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           gorev.aciklama.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === "all" || gorev.kategori === selectedCategory;
-      return matchesSearch && matchesCategory;
-    })
-    .sort((a, b) => a.id - b.id); // ID'ye göre sırala (0, 1, 2, 3...)
+  const filteredGorevler = gorevler.filter(gorev => {
+    const matchesSearch = gorev.baslik.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         gorev.aciklama.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || gorev.kategori === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   // Sayfalama
   const totalPages = Math.ceil(filteredGorevler.length / itemsPerPage);
@@ -79,12 +77,7 @@ export default function GorevlerPage() {
   const currentGorevler = filteredGorevler.slice(startIndex, startIndex + itemsPerPage);
 
   const getGorevImage = (id: number) => {
-    // 0. görev için özel görsel, diğerleri için ID'ye göre eşleştirme
-    if (id === 0) {
-      return `/@fs/home/runner/workspace/attached_assets/gorev-1.webp`; // 0. görev için 1. görseli kullan
-    }
-    
-    // 1-100 arası görevler için direkt ID eşleştirmesi
+    // Görev ID'sine göre ilgili görev görselini eşleştir
     const finalImageId = Math.max(1, Math.min(id, 100));
     
     // Attached assets klasöründeki görev görsellerini kullan
@@ -137,6 +130,16 @@ export default function GorevlerPage() {
               Diriliş için belirlenen stratejik hedefler
             </p>
             <div className="w-24 h-1 bg-red-500 mx-auto rounded-full mt-4"></div>
+            
+            {/* Kurununun Eksikleri Button */}
+            <div className="mt-6">
+              <Button
+                onClick={() => window.open('/attached_assets/kurununun-eksikleri.html', '_blank')}
+                className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg border-2 border-yellow-500"
+              >
+                📋 Kurununun Eksikleri
+              </Button>
+            </div>
           </div>
 
           {/* Search and Filter */}
