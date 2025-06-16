@@ -344,6 +344,85 @@ export class DatabaseStorage implements IStorage {
   async getAllDijitalKimlikler(): Promise<DijitalKimlik[]> {
     return await db.select().from(dijitalKimlikler).orderBy(desc(dijitalKimlikler.olusturulmaTarihi));
   }
+
+  // Premium user authentication methods
+  async getPremiumUser(identifier: string): Promise<any | undefined> {
+    // Mock premium users for demonstration
+    const premiumUsers = [
+      {
+        id: "PREMIUM_001",
+        username: "premium_user1",
+        email: "premium1@example.com",
+        password: "premium123",
+        membershipType: "gold",
+        joinDate: "2024-01-15",
+        digitalIdNumber: "TR-GOLD-001",
+        contributionAmount: 250
+      },
+      {
+        id: "PREMIUM_002", 
+        username: "premium_user2",
+        email: "premium2@example.com",
+        password: "premium456",
+        membershipType: "silver",
+        joinDate: "2024-02-20",
+        digitalIdNumber: "TR-SILVER-002",
+        contributionAmount: 150
+      },
+      {
+        id: "PREMIUM_003",
+        username: "destekci",
+        email: "destekci@simay.org",
+        password: "simay2025",
+        membershipType: "platinum",
+        joinDate: "2024-01-01",
+        digitalIdNumber: "TR-PLAT-003",
+        contributionAmount: 500
+      }
+    ];
+
+    return premiumUsers.find(user => 
+      user.username === identifier || user.email === identifier
+    );
+  }
+
+  async getPremiumUserByEmail(email: string): Promise<any | undefined> {
+    // Mock premium users for demonstration
+    const premiumUsers = [
+      {
+        id: "PREMIUM_001",
+        username: "premium_user1",
+        email: "premium1@example.com",
+        password: "premium123",
+        membershipType: "gold",
+        joinDate: "2024-01-15",
+        digitalIdNumber: "TR-GOLD-001",
+        contributionAmount: 250
+      },
+      {
+        id: "PREMIUM_002",
+        username: "premium_user2", 
+        email: "premium2@example.com",
+        password: "premium456",
+        membershipType: "silver",
+        joinDate: "2024-02-20",
+        digitalIdNumber: "TR-SILVER-002",
+        contributionAmount: 150
+      },
+      {
+        id: "PREMIUM_003",
+        username: "destekci",
+        email: "destekci@simay.org",
+        password: "simay2025",
+        membershipType: "platinum",
+        joinDate: "2024-01-01",
+        digitalIdNumber: "TR-PLAT-003",
+        contributionAmount: 500
+      }
+    ];
+
+    return premiumUsers.find(user => user.email === email);
+  }
 }
 
 export const storage = new DatabaseStorage();

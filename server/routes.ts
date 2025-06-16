@@ -477,8 +477,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       
       // Store verification code temporarily (in real app, use Redis or database)
-      global.verificationCodes = global.verificationCodes || {};
-      global.verificationCodes[email] = {
+      (global as any).verificationCodes = (global as any).verificationCodes || {};
+      (global as any).verificationCodes[email] = {
         code: verificationCode,
         expires: Date.now() + 10 * 60 * 1000 // 10 minutes
       };
@@ -501,7 +501,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Check verification code
-      const storedData = global.verificationCodes?.[email];
+      const storedData = (global as any).verificationCodes?.[email];
       if (!storedData || storedData.code !== verificationCode || Date.now() > storedData.expires) {
         return res.status(401).json({ message: "Geçersiz veya süresi dolmuş doğrulama kodu" });
       }
@@ -513,7 +513,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Clear verification code
-      delete global.verificationCodes[email];
+      delete (global as any).verificationCodes[email];
 
       // Generate token
       const token = `premium_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;

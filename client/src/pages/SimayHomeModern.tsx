@@ -202,6 +202,17 @@ export default function SimayHomeModern() {
               >
                 GÖREV
               </ModernTechButton>
+              
+              <ModernTechButton 
+                variant="accent"
+                size="lg"
+                glow="none"
+                border="subtle"
+                onClick={() => navigateWithScrollReset(navigate, "/entegrasyon-sureci")}
+                className="min-w-[150px]"
+              >
+                ENTEGRASYON
+              </ModernTechButton>
             </motion.div>
           </div>
           
@@ -339,6 +350,17 @@ export default function SimayHomeModern() {
                     className="min-w-[200px]"
                   >
                     ANAYASAYI OKU
+                  </ModernTechButton>
+                  
+                  <ModernTechButton 
+                    variant="accent"
+                    size="lg"
+                    glow="none"
+                    border="subtle"
+                    onClick={() => navigate("/premium-login")}
+                    className="min-w-[200px]"
+                  >
+                    PREMIUM GİRİŞ
                   </ModernTechButton>
                 </div>
               </div>

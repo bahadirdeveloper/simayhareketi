@@ -64,7 +64,7 @@ export default function PremiumLoginPage() {
     mutationFn: async (data: LoginFormData) => {
       return await apiRequest("POST", "/api/premium-login", data);
     },
-    onSuccess: (response) => {
+    onSuccess: (response: any) => {
       toast({
         title: "Giriş Başarılı",
         description: "Premium hesabınıza başarıyla giriş yaptınız.",
@@ -106,7 +106,7 @@ export default function PremiumLoginPage() {
     mutationFn: async (data: EmailLoginFormData) => {
       return await apiRequest("POST", "/api/verify-email-login", data);
     },
-    onSuccess: (response) => {
+    onSuccess: (response: any) => {
       toast({
         title: "Giriş Başarılı",
         description: "E-posta doğrulaması başarılı.",
