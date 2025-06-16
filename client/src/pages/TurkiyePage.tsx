@@ -65,85 +65,176 @@ export default function TurkiyePage() {
               <div className="w-full h-full bg-gradient-to-r from-red-500/20 to-transparent"></div>
             </div>
             
-            {/* Official Turkish Flag SVG */}
-            <div className="mb-8 flex justify-center">
-              <div className="relative hover:scale-105 transition-all duration-500 group">
+            {/* Waving Turkish Flag with Atatürk Silhouette */}
+            <div className="mb-8 flex justify-center relative">
+              {/* Atatürk Silhouette Background */}
+              <div className="absolute -right-24 top-0 opacity-20 z-0">
+                <svg width="200" height="300" viewBox="0 0 200 300" className="text-white/30">
+                  <path 
+                    d="M100 50 
+                       C85 45, 75 55, 70 70
+                       C68 75, 67 80, 68 85
+                       C70 90, 75 92, 80 90
+                       C85 88, 90 85, 95 88
+                       C100 90, 105 88, 110 90
+                       C115 92, 120 90, 122 85
+                       C123 80, 122 75, 120 70
+                       C115 55, 105 45, 100 50 Z
+                       
+                       M85 95
+                       C80 100, 75 110, 78 120
+                       C80 130, 85 140, 90 145
+                       C95 150, 100 155, 105 150
+                       C110 145, 115 130, 117 120
+                       C120 110, 115 100, 110 95
+                       C105 90, 95 90, 85 95 Z
+                       
+                       M75 160
+                       C70 170, 68 180, 70 190
+                       C75 200, 85 210, 95 220
+                       C100 225, 105 220, 115 210
+                       C125 200, 130 190, 132 180
+                       C130 170, 125 160, 120 155
+                       C110 150, 85 150, 75 160 Z
+                       
+                       M80 230
+                       C75 240, 73 250, 75 260
+                       C80 270, 90 275, 100 280
+                       C110 275, 120 270, 125 260
+                       C127 250, 125 240, 120 230
+                       C115 225, 95 225, 80 230 Z"
+                    fill="currentColor"
+                    className="drop-shadow-2xl"
+                  />
+                </svg>
+              </div>
+              
+              <div className="relative hover:scale-105 transition-all duration-500 group z-10">
                 <svg 
-                  width="240" 
-                  height="160" 
-                  viewBox="0 0 360 240" 
+                  width="280" 
+                  height="180" 
+                  viewBox="0 0 400 260" 
                   className="rounded-2xl shadow-2xl border-4 border-white/30"
-                  style={{ filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))' }}
+                  style={{ filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.6))' }}
                 >
-                  {/* Flag background - Official Turkish Red */}
-                  <rect width="360" height="240" fill="#E30A17" rx="16" ry="16" />
-                  
-                  {/* Fabric texture overlay */}
                   <defs>
-                    <pattern id="fabricTexture" patternUnits="userSpaceOnUse" width="8" height="8">
-                      <rect width="8" height="8" fill="#E30A17"/>
-                      <circle cx="2" cy="2" r="0.5" fill="rgba(255,255,255,0.1)"/>
-                      <circle cx="6" cy="6" r="0.5" fill="rgba(0,0,0,0.05)"/>
+                    {/* Wave animation path */}
+                    <path id="wavePath" d="M0,130 Q100,110 200,130 T400,130" />
+                    
+                    {/* Fabric texture */}
+                    <pattern id="fabricTexture" patternUnits="userSpaceOnUse" width="6" height="6">
+                      <rect width="6" height="6" fill="#E30A17"/>
+                      <circle cx="1.5" cy="1.5" r="0.3" fill="rgba(255,255,255,0.15)"/>
+                      <circle cx="4.5" cy="4.5" r="0.3" fill="rgba(0,0,0,0.08)"/>
                     </pattern>
                     
-                    {/* Gradient for depth */}
+                    {/* Wave distortion */}
+                    <filter id="wave" x="0%" y="0%" width="100%" height="100%">
+                      <feTurbulence baseFrequency="0.02" numOctaves="3" result="turbulence"/>
+                      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="8">
+                        <animate attributeName="scale" values="5;12;5" dur="4s" repeatCount="indefinite"/>
+                      </feDisplacementMap>
+                    </filter>
+                    
+                    {/* Depth gradient */}
                     <linearGradient id="depthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
                       <stop offset="50%" stopColor="rgba(255,255,255,0.05)" />
-                      <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
+                      <stop offset="100%" stopColor="rgba(0,0,0,0.15)" />
                     </linearGradient>
                     
-                    {/* Shadow filter */}
-                    <filter id="shadow">
-                      <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="rgba(0,0,0,0.3)"/>
-                    </filter>
-                  </defs>
-                  
-                  {/* Texture overlay */}
-                  <rect width="360" height="240" fill="url(#fabricTexture)" opacity="0.3" rx="16" ry="16" />
-                  
-                  {/* Crescent Moon - exact Turkish flag proportions */}
-                  <g transform="translate(108, 120)" filter="url(#shadow)">
-                    {/* Outer white circle */}
-                    <circle cx="0" cy="0" r="48" fill="white" />
-                    {/* Inner red circle to create crescent */}
-                    <circle cx="16" cy="0" r="38.4" fill="#E30A17" />
-                  </g>
-                  
-                  {/* Five-pointed Star - exact positioning */}
-                  <g transform="translate(204, 120)" filter="url(#shadow)">
-                    <path 
-                      d="M0,-30 L8.82,-9.27 L30,-9.27 L12.36,5.73 L21.18,26.46 L0,11.46 L-21.18,26.46 L-12.36,5.73 L-30,-9.27 L-8.82,-9.27 Z" 
-                      fill="white"
-                    />
-                  </g>
-                  
-                  {/* Depth gradient overlay */}
-                  <rect width="360" height="240" fill="url(#depthGradient)" opacity="0.6" rx="16" ry="16" />
-                  
-                  {/* Subtle wave animation for group hover */}
-                  <g className="opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                    <rect width="360" height="240" fill="url(#waveGradient)" opacity="0.1" rx="16" ry="16" />
-                  </g>
-                  
-                  <defs>
-                    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    {/* Wind effect */}
+                    <linearGradient id="windGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="transparent" />
-                      <stop offset="50%" stopColor="rgba(255,255,255,0.2)" />
+                      <stop offset="30%" stopColor="rgba(255,255,255,0.1)" />
+                      <stop offset="70%" stopColor="rgba(255,255,255,0.05)" />
                       <stop offset="100%" stopColor="transparent" />
                       <animateTransform 
                         attributeName="gradientTransform" 
                         type="translate" 
-                        values="-360 0; 360 0; -360 0" 
-                        dur="3s" 
+                        values="-400 0; 400 0; -400 0" 
+                        dur="6s" 
                         repeatCount="indefinite"
                       />
                     </linearGradient>
+                    
+                    {/* Shadow filter */}
+                    <filter id="shadow">
+                      <feDropShadow dx="3" dy="3" stdDeviation="3" floodColor="rgba(0,0,0,0.4)"/>
+                    </filter>
                   </defs>
+                  
+                  {/* Flag background with wave effect */}
+                  <rect width="400" height="260" fill="#E30A17" rx="20" ry="20" filter="url(#wave)" />
+                  
+                  {/* Fabric texture overlay */}
+                  <rect width="400" height="260" fill="url(#fabricTexture)" opacity="0.4" rx="20" ry="20" />
+                  
+                  {/* Crescent Moon with subtle wave */}
+                  <g transform="translate(120, 130)" filter="url(#shadow)">
+                    <circle cx="0" cy="0" r="50" fill="white">
+                      <animateTransform 
+                        attributeName="transform" 
+                        type="translate" 
+                        values="0,0; 2,-1; 0,0; -1,1; 0,0" 
+                        dur="5s" 
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                    <circle cx="18" cy="0" r="40" fill="#E30A17">
+                      <animateTransform 
+                        attributeName="transform" 
+                        type="translate" 
+                        values="0,0; 2,-1; 0,0; -1,1; 0,0" 
+                        dur="5s" 
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  </g>
+                  
+                  {/* Star with gentle wave motion */}
+                  <g transform="translate(220, 130)" filter="url(#shadow)">
+                    <path 
+                      d="M0,-32 L9.5,-10 L32,-10 L13.3,6.2 L22.8,28.4 L0,12.2 L-22.8,28.4 L-13.3,6.2 L-32,-10 L-9.5,-10 Z" 
+                      fill="white"
+                    >
+                      <animateTransform 
+                        attributeName="transform" 
+                        type="translate" 
+                        values="0,0; 1.5,-0.8; 0,0; -0.8,0.8; 0,0" 
+                        dur="5s" 
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                  </g>
+                  
+                  {/* Wind/wave effect overlay */}
+                  <rect width="400" height="260" fill="url(#windGradient)" opacity="0.3" rx="20" ry="20" />
+                  
+                  {/* Depth gradient */}
+                  <rect width="400" height="260" fill="url(#depthGradient)" opacity="0.7" rx="20" ry="20" />
+                  
+                  {/* Flag fold lines for realism */}
+                  <g opacity="0.1">
+                    <line x1="100" y1="0" x2="105" y2="260" stroke="rgba(0,0,0,0.3)" strokeWidth="1">
+                      <animate attributeName="x1" values="100;102;100;98;100" dur="4s" repeatCount="indefinite"/>
+                      <animate attributeName="x2" values="105;107;105;103;105" dur="4s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="200" y1="0" x2="195" y2="260" stroke="rgba(255,255,255,0.2)" strokeWidth="1">
+                      <animate attributeName="x1" values="200;198;200;202;200" dur="4.5s" repeatCount="indefinite"/>
+                      <animate attributeName="x2" values="195;193;195;197;195" dur="4.5s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="300" y1="0" x2="305" y2="260" stroke="rgba(0,0,0,0.2)" strokeWidth="1">
+                      <animate attributeName="x1" values="300;302;300;298;300" dur="3.8s" repeatCount="indefinite"/>
+                      <animate attributeName="x2" values="305;307;305;303;305" dur="3.8s" repeatCount="indefinite"/>
+                    </line>
+                  </g>
                 </svg>
                 
-                {/* Flag pole */}
-                <div className="absolute -left-2 top-0 w-1 h-full bg-gradient-to-b from-gray-300 to-gray-600 rounded-full shadow-lg"></div>
+                {/* Enhanced flag pole */}
+                <div className="absolute -left-3 top-0 w-2 h-full bg-gradient-to-b from-gray-200 via-gray-400 to-gray-700 rounded-full shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-t-full"></div>
+                </div>
               </div>
             </div>
             
