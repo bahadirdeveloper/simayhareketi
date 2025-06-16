@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
+import SEOHead from "@/components/SEOHead";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -115,14 +116,38 @@ export default function GorevlerPage() {
     );
   }
 
+  // SEO structured data for tasks page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Atatürk'ün Medeniyet Işığında 100 Görev",
+    "description": "Türkiye'nin geleceği için belirlenen 100 stratejik görev. Her görev, milletimizin diriliş yolculuğunda kritik bir adımdır.",
+    "numberOfItems": gorevler.length,
+    "itemListElement": gorevler.slice(0, 10).map((gorev, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": gorev.baslik,
+      "description": gorev.aciklama
+    }))
+  };
+
   return (
-    <ModernLayout 
-      audioKey="mission"
-      showBackButton={true}
-      pageContent="Türkiye'nin geleceği için belirlenen 100 stratejik görev. Her görev, milletimizin diriliş yolculuğunda kritik bir adımdır."
-      pageName="100 Görev"
-    >
-      <div className="w-full max-w-7xl mx-auto">
+    <>
+      <SEOHead
+        title={`100 Görev - Atatürk'ün Medeniyet Işığında | Halk Sistemi`}
+        description="Türkiye'nin geleceği için belirlenen 100 stratejik görev. Atatürk'ün Medeniyet Işığında kitabından alınan otantik görevler. Her görev, milletimizin diriliş yolculuğunda kritik bir adımdır."
+        keywords="100 görev, Atatürk, medeniyet ışığında, stratejik hedefler, Türkiye geleceği, diriliş, görev listesi"
+        canonicalUrl="https://halksistemi.replit.app/gorevler"
+        ogType="article"
+        structuredData={structuredData}
+      />
+      <ModernLayout 
+        audioKey="mission"
+        showBackButton={true}
+        pageContent="Türkiye'nin geleceği için belirlenen 100 stratejik görev. Her görev, milletimizin diriliş yolculuğunda kritik bir adımdır."
+        pageName="100 Görev"
+      >
+        <div className="w-full max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="bg-gray-900 border-2 border-gray-700 rounded-2xl p-8 mb-8">
@@ -298,7 +323,8 @@ export default function GorevlerPage() {
 
         {/* Global Translation System */}
         <GlobalTranslator />
-      </div>
-    </ModernLayout>
+        </div>
+      </ModernLayout>
+    </>
   );
 }

@@ -1,62 +1,84 @@
 import { useLocation } from 'wouter';
 import { ChevronRight, Home } from 'lucide-react';
-import { Link } from 'wouter';
+import { navigateWithScrollReset } from '@/lib/navigation';
 
-const pageMap: Record<string, { title: string; parent?: string }> = {
-  '/': { title: 'Ana Sayfa' },
-  '/halk-defteri': { title: 'Halk Defteri', parent: '/' },
-  '/gorevler': { title: '100 Görev', parent: '/' },
-  '/canli-gelir-gider': { title: 'Mali Şeffaflık', parent: '/' },
-  '/halk-koordinasyon': { title: 'Halk Koordinasyon', parent: '/' },
-  '/anayasa': { title: 'Anayasa', parent: '/' },
-  '/language': { title: 'Diller', parent: '/' },
-  '/turkiye': { title: 'Türkiye', parent: '/' },
-  '/oppressed-nations': { title: 'Mazlum Milletler', parent: '/' },
-  '/halk-manifestolar': { title: 'Halk Manifestoları', parent: '/' },
-  '/kurucunun-eksikleri': { title: 'Kurucunun Eksikleri', parent: '/gorevler' },
-  '/dijital-kimlik': { title: 'Dijital Kimlik', parent: '/' },
-  '/entegrasyon-sureci': { title: 'Entegrasyon Sürecimiz', parent: '/turkiye' },
-};
+interface BreadcrumbItem {
+  label: string;
+  path: string;
+}
 
-export function NavigationBreadcrumb() {
-  const [location] = useLocation();
-  
-  const currentPage = pageMap[location];
-  if (!currentPage) return null;
+const NavigationBreadcrumb = () => {
+  const [location, navigate] = useLocation();
 
-  const breadcrumbs = [];
-  let current: string | undefined = location;
-  
-  while (current && pageMap[current]) {
-    breadcrumbs.unshift({
-      path: current,
-      title: pageMap[current].title,
-      isActive: current === location
-    });
-    current = pageMap[current].parent;
+  // Define page hierarchy and breadcrumb structure
+  const getBreadcrumbPath = (pathname: string): BreadcrumbItem[] => {
+    const basePath = [{ label: 'Ana Sayfa', path: '/home' }];
+    
+    const pathMappings: Record<string, BreadcrumbItem[]> = {
+      '/home': [{ label: 'Ana Sayfa', path: '/home' }],
+      '/turkiye': [...basePath, { label: 'Türkiye', path: '/turkiye' }],
+      '/turknedir': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }],
+      '/turkdetay': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }, { label: 'Detay', path: '/turkdetay' }],
+      '/anayasa': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Anayasa', path: '/anayasa' }],
+      '/anayasalar': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Anayasalarımız', path: '/anayasalar' }],
+      '/manifesto': [...basePath, { label: 'Manifesto', path: '/manifesto' }],
+      '/birlesik-manifesto': [...basePath, { label: 'Manifesto', path: '/manifesto' }],
+      '/gorevler': [...basePath, { label: '100 Görev', path: '/gorevler' }],
+      '/kurucu-eksikleri': [...basePath, { label: '100 Görev', path: '/gorevler' }, { label: 'Kurucu Eksikleri', path: '/kurucu-eksikleri' }],
+      '/entegrasyon-sureci': [...basePath, { label: 'Entegrasyon Süreci', path: '/entegrasyon-sureci' }],
+      '/dijital-kimlik': [...basePath, { label: 'Dijital Kimlik', path: '/dijital-kimlik' }],
+      '/halk-defteri': [...basePath, { label: 'Halk Defteri', path: '/halk-defteri' }],
+      '/canli-gelir-gider': [...basePath, { label: 'Mali Şeffaflık', path: '/canli-gelir-gider' }],
+      '/katil': [...basePath, { label: 'Platforma Katıl', path: '/katil' }],
+      '/cagri': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Çağrı', path: '/cagri' }],
+      '/amac-savas': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Amaçlar & Savaşlar', path: '/amac-savas' }],
+      '/premium-login': [...basePath, { label: 'Premium Giriş', path: '/premium-login' }],
+      '/premium-dashboard': [...basePath, { label: 'Premium Giriş', path: '/premium-login' }, { label: 'Premium Panel', path: '/premium-dashboard' }],
+      '/dil-secimi': [{ label: 'Dil Seçimi', path: '/dil-secimi' }],
+      '/ulke-ekle': [...basePath, { label: 'Ülke Ekle', path: '/ulke-ekle' }]
+    };
+
+    return pathMappings[pathname] || basePath;
+  };
+
+  const breadcrumbs = getBreadcrumbPath(location);
+
+  // Don't show breadcrumb on home page or single-level pages
+  if (breadcrumbs.length <= 1) {
+    return null;
   }
 
-  if (breadcrumbs.length <= 1) return null;
-
   return (
-    <nav className="flex items-center space-x-2 text-sm text-gray-400 mb-4 px-4 py-2 bg-black/20 rounded-lg border border-red-600/20 backdrop-blur-sm">
-      {breadcrumbs.map((crumb, index) => (
-        <div key={crumb.path} className="flex items-center space-x-2">
-          {index === 0 && <Home className="h-4 w-4" />}
-          {crumb.isActive ? (
-            <span className="text-red-400 font-medium">{crumb.title}</span>
-          ) : (
-            <Link href={crumb.path}>
-              <span className="hover:text-white transition-colors cursor-pointer">
-                {crumb.title}
-              </span>
-            </Link>
-          )}
-          {index < breadcrumbs.length - 1 && (
-            <ChevronRight className="h-4 w-4 text-gray-600" />
-          )}
-        </div>
-      ))}
+    <nav className="mb-6" aria-label="Sayfa navigasyonu">
+      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-3">
+        <ol className="flex items-center space-x-2 text-sm">
+          {breadcrumbs.map((item, index) => (
+            <li key={item.path} className="flex items-center">
+              {index === 0 && (
+                <Home className="h-4 w-4 text-gray-400 mr-2" />
+              )}
+              
+              {index < breadcrumbs.length - 1 ? (
+                <>
+                  <button
+                    onClick={() => navigateWithScrollReset(navigate, item.path)}
+                    className="text-blue-400 hover:text-blue-300 transition-colors duration-200 hover:underline"
+                  >
+                    {item.label}
+                  </button>
+                  <ChevronRight className="h-4 w-4 text-gray-500 mx-2" />
+                </>
+              ) : (
+                <span className="text-white font-medium">
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
     </nav>
   );
-}
+};
+
+export default NavigationBreadcrumb;

@@ -90,8 +90,36 @@ export default function SimayHomeModern() {
 
   const pageContent = "Cumhuriyet Güncellenme Platformu, Türkiye'nin dijital dönüşüm ve vatandaş katılımı projesidir. Bu platform, vatandaşların cumhuriyetin geleceğini şekillendirmesine olanak tanır. Akıl, bilim, vicdan, fen ve sanat değerlerini rehber alarak, hep birlikte geleceğe yön veririz. Platforma katılabilir, görevleri inceleyebilir ve projeye katkıda bulunabilirsiniz.";
 
+  // SEO structured data
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Halk Sistemi",
+    "description": "Atatürk'ün Medeniyet Işığında 100 Görevle Halk Sistemi. Mazlum halkların dayanışma ve koordinasyon platformu.",
+    "url": "https://halksistemi.replit.app",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Halk Sistemi",
+      "description": "Mazlum halkların dayanışma platformu",
+      "foundingDate": "2024",
+      "areaServed": "Worldwide"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://halksistemi.replit.app/gorevler",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <>
+      <SEOHead
+        title="Halk Sistemi - Ana Sayfa | Mazlum Halkların Dayanışma Platformu"
+        description="Atatürk'ün Medeniyet Işığında 100 Görevle Halk Sistemi. Türkiye ve mazlum milletlerin dayanışma platformu. Mali şeffaflık, halk defteri ve dijital kimlik sistemi."
+        keywords="halk sistemi, mazlum milletler, dayanışma, 100 görev, Atatürk, medeniyet, türkiye, mali şeffaflık, dijital kimlik, ana sayfa"
+        canonicalUrl="https://halksistemi.replit.app/home"
+        structuredData={structuredData}
+      />
       {isLoading && <LoadingScreen />}
       
       <ModernLayout 

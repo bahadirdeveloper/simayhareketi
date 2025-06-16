@@ -9,6 +9,7 @@ import MobileHamburgerMenu from './MobileHamburgerMenu';
 import { ModernTechButton } from './ModernTechButton';
 
 import { navigateWithScrollReset, scrollToTop } from '@/lib/navigation';
+import NavigationBreadcrumb from './NavigationBreadcrumb';
 
 interface ModernLayoutProps {
   children: ReactNode;
