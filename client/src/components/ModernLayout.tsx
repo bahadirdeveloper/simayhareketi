@@ -192,10 +192,7 @@ const ModernLayout = ({
     // Scroll to top on page change using global helper
     scrollToTop();
     
-    // Optimize audio initialization
-    const audioInitTimeout = setTimeout(() => {
-      initAudio(audioKey);
-    }, 100);
+    // Page initialization complete
     
     // Record visit - using a more efficient approach
     const recordVisit = async () => {
@@ -238,7 +235,6 @@ const ModernLayout = ({
   }, [audioKey]);
 
   const handleToggleAudio = () => {
-    playSoundtrack();
     if (onAudioToggle) onAudioToggle();
   };
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ModernLayout from "@/components/ModernLayout";
-import { initAudio } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -39,7 +38,6 @@ export default function GorevlerPage() {
   const itemsPerPage = 12;
 
   useEffect(() => {
-    initAudio('mission');
     loadGorevler();
   }, []);
 

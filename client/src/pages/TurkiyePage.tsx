@@ -18,7 +18,6 @@ import {
   Sparkles,
   Star
 } from "lucide-react";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { navigateWithScrollReset } from "@/lib/navigation";
 import GlobalTranslator from "@/components/GlobalTranslator";
 
@@ -28,10 +27,8 @@ const turkishValueIds = ['milli', 'muasir', 'laik', 'demokratik', 'sosyal'];
 export default function TurkiyePage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   
   useEffect(() => {
-    initAudio('turkiye');
   }, []);
   
   const navigateToPage = (path: string) => {
@@ -40,7 +37,6 @@ export default function TurkiyePage() {
   
   const handleToggleAudio = () => {
     try {
-      playSoundtrack();
       setIsAudioPlaying(prev => !prev);
     } catch (error) {
       console.log('Audio toggle failed:', error);
@@ -119,12 +115,9 @@ export default function TurkiyePage() {
                 onClick={handleToggleAudio}
               >
                 <div className="flex items-center gap-3">
-                  {isAudioPlaying 
-                    ? <Pause className="h-6 w-6 text-white group-hover:scale-110 transition-transform" /> 
-                    : <Play className="h-6 w-6 text-white ml-0.5 group-hover:scale-110 transition-transform" />
-                  }
+                  <Play className="h-6 w-6 text-white ml-0.5 group-hover:scale-110 transition-transform" />
                   <span className="text-white font-semibold text-lg">
-                    {isAudioPlaying ? "MÜZIK DURDUR" : "TÜRK MÜZİĞİ"}
+                    Türkiye'yi Keşfet
                   </span>
                 </div>
               </button>

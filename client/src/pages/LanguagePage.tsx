@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import AudioControl from "@/components/AudioControl";
 import GlobalTranslator from "@/components/GlobalTranslator";
 import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { scrollToTop } from "@/lib/navigation";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -28,12 +27,10 @@ export default function LanguagePage() {
     // Initialize audio system with immediate playback
     try {
       console.log("Audio initialization started for language page...");
-      initAudio('home');
       
       // Küçük bir gecikme ile ses çalmayı zorla
       const playTimer = setTimeout(() => {
         console.log("Forcing audio playback...");
-        playSoundtrack();
       }, 500);
       
     } catch (error) {
@@ -116,7 +113,6 @@ export default function LanguagePage() {
   };
 
   const handleToggleAudio = () => {
-    playSoundtrack();
   };
 
   return (

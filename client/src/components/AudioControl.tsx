@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import { isAudioPlaying, playSoundtrack } from "@/lib/audio";
 
 type AudioControlProps = {
   onToggle?: () => void;
@@ -14,15 +13,12 @@ export default function AudioControl({
   position = "fixed", 
   showLabel = false 
 }: AudioControlProps) {
-  const [playing, setPlaying] = useState(isAudioPlaying());
   
   // Ses durumunu takip et
   useEffect(() => {
-    setPlaying(isAudioPlaying());
   }, []);
   
   const handleToggle = () => {
-    playSoundtrack();
     setPlaying(!playing);
     if (onToggle) onToggle();
   };

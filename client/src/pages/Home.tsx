@@ -7,7 +7,7 @@ import MatrixLogo from "@/components/MatrixLogo";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
+
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -19,7 +19,6 @@ export default function Home() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio();
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -42,7 +41,6 @@ export default function Home() {
   }, [i18n.language]);
 
   const handleToggleAudio = () => {
-    playSoundtrack();
     
     // Record user interaction
     const updateInteraction = async () => {

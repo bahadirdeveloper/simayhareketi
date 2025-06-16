@@ -7,7 +7,6 @@ import HalfBurningEarthLogo from "@/components/HalfBurningEarthLogo";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -20,7 +19,6 @@ export default function SimayHome() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio();
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -42,7 +40,6 @@ export default function SimayHome() {
   }, [i18n.language]);
 
   const handleToggleAudio = () => {
-    playSoundtrack();
     
     // Record user interaction
     const updateInteraction = async () => {

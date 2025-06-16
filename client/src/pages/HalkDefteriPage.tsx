@@ -5,7 +5,6 @@ import { useLocation } from "wouter";
 import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AudioControl from "@/components/AudioControl";
 import AccessibilityReader from "@/components/AccessibilityReader";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,7 +31,6 @@ interface FeedbackEntry {
 export default function HalkDefteriPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const { toast } = useToast();
   
   // Form state
@@ -176,7 +174,6 @@ export default function HalkDefteriPage() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio('turkiye');
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -199,8 +196,6 @@ export default function HalkDefteriPage() {
   }, [i18n.language]);
   
   const handleToggleAudio = () => {
-    playSoundtrack();
-    setIsAudioPlaying(!isAudioPlaying);
   };
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

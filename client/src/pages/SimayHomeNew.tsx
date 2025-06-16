@@ -8,7 +8,6 @@ import LoadingScreen from "@/components/LoadingScreen";
 import AudioControl from "@/components/AudioControl";
 import LanguageSelector from "@/components/LanguageSelector";
 import { apiRequest } from "@/lib/queryClient";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 
 export default function SimayHomeNew() {
   const { t, i18n } = useTranslation();
@@ -18,7 +17,6 @@ export default function SimayHomeNew() {
   // Record visitor stats
   useEffect(() => {
     // Initialize audio system
-    initAudio();
     
     const recordVisit = async () => {
       try {
@@ -40,7 +38,6 @@ export default function SimayHomeNew() {
   }, [i18n.language]);
   
   const handleToggleAudio = () => {
-    playSoundtrack();
     
     // Record interaction
     const updateInteraction = async () => {

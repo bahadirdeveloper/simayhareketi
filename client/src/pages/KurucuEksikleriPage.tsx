@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AccessibilityReader from "@/components/AccessibilityReader";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,7 +38,6 @@ import {
 export default function KurucuEksikleriPage() {
   const { t, i18n } = useTranslation();
   const [, navigate] = useLocation();
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   
@@ -54,7 +52,6 @@ export default function KurucuEksikleriPage() {
   });
   
   useEffect(() => {
-    initAudio('kurucu');
     
     const recordVisit = async () => {
       try {
@@ -76,8 +73,6 @@ export default function KurucuEksikleriPage() {
   }, [i18n.language]);
   
   const handleToggleAudio = () => {
-    playSoundtrack();
-    setIsAudioPlaying(!isAudioPlaying);
   };
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

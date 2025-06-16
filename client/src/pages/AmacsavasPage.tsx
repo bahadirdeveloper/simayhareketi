@@ -7,7 +7,6 @@ import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import { apiRequest } from "@/lib/queryClient";
 import { ModernTechButton } from "@/components/ModernTechButton";
 import AccessibilityReader from "@/components/AccessibilityReader";
-import { initAudio } from "@/lib/audio";
 
 export default function AmacsavasPage() {
   const { t, i18n } = useTranslation();
@@ -15,7 +14,6 @@ export default function AmacsavasPage() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio('amaclar');
     
     // Record visitor stats
     const recordVisit = async () => {

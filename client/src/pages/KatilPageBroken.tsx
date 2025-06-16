@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
 import AccessibilityReader from "@/components/AccessibilityReader";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import GlobalTranslator from "@/components/GlobalTranslator";
@@ -139,7 +138,6 @@ export default function KatilPage() {
   });
   
   useEffect(() => {
-    initAudio('katil');
     
     const recordVisit = async () => {
       try {
@@ -230,7 +228,6 @@ export default function KatilPage() {
   };
 
   const handleToggleAudio = () => {
-    playSoundtrack();
   };
   
   async function onSubmit(values: z.infer<typeof formSchema>) {

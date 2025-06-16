@@ -6,7 +6,6 @@ import BurningEarthImage from "@/components/BurningEarthImage";
 import LanguageSelector from "@/components/LanguageSelector";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 
@@ -17,7 +16,6 @@ export default function SimayHome2() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio();
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -40,7 +38,6 @@ export default function SimayHome2() {
   }, [i18n.language]);
   
   const handleToggleAudio = () => {
-    playSoundtrack();
     
     // Record interaction
     const updateInteraction = async () => {

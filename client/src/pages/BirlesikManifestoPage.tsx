@@ -4,25 +4,20 @@ import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ModernLayout from "@/components/ModernLayout";
 import { ModernTechButton } from "@/components/ModernTechButton";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { useLocation } from "wouter";
 import { Play, Pause } from "lucide-react";
 
 export default function BirlesikManifestoPage() {
   const { t } = useTranslation();
   const [, navigate] = useLocation();
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [activeTab, setActiveTab] = useState("anayasa");
 
   useEffect(() => {
     // Ses sistemini başlat
-    initAudio('manifesto');
   }, []);
 
   // Ses çalma/durdurma işlemini yönet
   const handleToggleAudio = () => {
-    playSoundtrack();
-    setIsAudioPlaying(!isAudioPlaying);
   };
 
   const manifestoValues = [
@@ -149,7 +144,6 @@ export default function BirlesikManifestoPage() {
           <motion.button
             className={`
               rounded-full h-12 w-12 flex items-center justify-center 
-              ${isAudioPlaying 
                 ? "bg-gradient-to-br from-blue-600 to-blue-800" 
                 : "bg-gradient-to-br from-blue-700 to-blue-900"} 
               hover:shadow-[0_0_15px_rgba(37,99,235,0.5)] transition-shadow duration-300
@@ -159,13 +153,9 @@ export default function BirlesikManifestoPage() {
             whileTap={{ scale: 0.95 }}
             onClick={handleToggleAudio}
           >
-            {isAudioPlaying 
-              ? <Pause className="h-5 w-5 text-white" /> 
-              : <Play className="h-5 w-5 text-white ml-0.5" />
-            }
+            <Play className="h-5 w-5 text-white ml-0.5" />
           </motion.button>
           <span className="ml-2 text-gray-400 self-center text-sm">
-            {isAudioPlaying ? "Sesi Durdur" : "Sesi Çal"}
           </span>
         </motion.div>
 

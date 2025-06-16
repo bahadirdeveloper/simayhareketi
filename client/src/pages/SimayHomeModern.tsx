@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import LoadingScreen from "@/components/LoadingScreen";
-import { initAudio, playSoundtrack } from "@/lib/audio";
 import { navigateWithScrollReset } from "@/lib/navigation";
 import { apiRequest } from "@/lib/queryClient";
 import { ModernTechButton } from "@/components/ModernTechButton";
@@ -40,7 +39,6 @@ export default function SimayHomeModern() {
   
   useEffect(() => {
     // Initialize audio system
-    initAudio();
     
     // Record visitor stats
     const recordVisit = async () => {
@@ -69,7 +67,6 @@ export default function SimayHomeModern() {
   }, [i18n.language]);
 
   const handleToggleAudio = () => {
-    playSoundtrack();
     
     // Record user interaction
     const updateInteraction = async () => {

@@ -12,7 +12,6 @@ import RealBurningEarthBackground from "@/components/RealBurningEarthBackground"
 import TurkishGeneFlowLogo from "@/components/TurkishGeneFlowLogo";
 import AudioControl from "@/components/AudioControl";
 import LoadingScreen from "@/components/LoadingScreen";
-import { playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 
 export default function JoinPage() {
@@ -57,7 +56,6 @@ export default function JoinPage() {
   }, [i18n.language]);
 
   const handleToggleAudio = () => {
-    playSoundtrack();
   };
   
   const handleLoadingComplete = () => {

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
 import AudioControl from './AudioControl';
-import { initAudio, playSoundtrack } from '@/lib/audio';
 import LanguageSelector from './LanguageSelector';
 
 interface PageLayoutProps {
@@ -25,7 +24,6 @@ export default function PageLayout({
 
   useEffect(() => {
     // Initialize audio system
-    initAudio(audioKey);
     
     // Record page visit
     const recordVisit = async () => {
