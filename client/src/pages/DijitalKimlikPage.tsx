@@ -38,13 +38,13 @@ import {
 } from "lucide-react";
 
 const formSchema = z.object({
-  ad: z.string().min(2, "Ad en az 2 karakter olmalıdır"),
-  soyad: z.string().min(2, "Soyad en az 2 karakter olmalıdır"),
-  tcKimlik: z.string().length(11, "TC Kimlik numarası 11 haneli olmalıdır"),
+  ad: z.string().min(2, "Ad en az 2 karakter olmalıdır").max(30, "Ad en fazla 30 karakter olabilir"),
+  soyad: z.string().min(2, "Soyad en az 2 karakter olmalıdır").max(30, "Soyad en fazla 30 karakter olabilir"),
+  tcKimlik: z.string().length(11, "TC Kimlik numarası 11 haneli olmalıdır").regex(/^[0-9]+$/, "TC Kimlik sadece rakam içermelidir"),
   dogumTarihi: z.string().min(1, "Doğum tarihi gereklidir"),
-  dogumYeri: z.string().min(2, "Doğum yeri gereklidir"),
+  dogumYeri: z.string().min(2, "Doğum yeri gereklidir").max(50, "Doğum yeri en fazla 50 karakter olabilir"),
   email: z.string().email("Geçerli bir e-posta adresi giriniz"),
-  telefon: z.string().min(10, "Telefon numarası en az 10 haneli olmalıdır"),
+  telefon: z.string().min(10, "Telefon numarası en az 10 haneli olmalıdır").max(15, "Telefon numarası en fazla 15 haneli olabilir"),
 });
 
 interface DigitalID {

@@ -354,6 +354,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Applications endpoint for form submissions
+  app.post("/api/applications", async (req, res) => {
+    try {
+      const { type, data, timestamp } = req.body;
+      
+      // Validate application data based on type
+      const validApplicationTypes = ['kurucu-eksikleri', 'katil', 'dijital-kimlik', 'gorev-basvuru'];
+      
+      if (!validApplicationTypes.includes(type)) {
+        return res.status(400).json({ error: "Geçersiz başvuru türü" });
+      }
+      
+      // Basic validation for all application types
+      if (!data || typeof data !== 'object') {
+        return res.status(400).json({ error: "Başvuru verileri eksik" });
+      }
+      
+      // Store application data (in a real system, this would go to database)
+      const applicationId = `APP_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+      
+      const application = {
+        id: applicationId,
+        type,
+        data,
+        timestamp: timestamp || new Date().toISOString(),
+        status: 'pending',
+        ip: req.ip,
+        userAgent: req.get('User-Agent')
+      };
+      
+      // Log application for monitoring
+      console.log(`[APPLICATION] New ${type} application:`, {
+        id: applicationId,
+        type,
+        timestamp: application.timestamp,
+        ip: req.ip
+      });
+      
+      res.status(201).json({
+        success: true,
+        applicationId,
+        message: "Başvurunuz başarıyla alındı",
+        timestamp: application.timestamp
+      });
+      
+    } catch (error) {
+      console.error("Application submission error:", error);
+      res.status(500).json({ 
+        error: "Başvuru işlemi sırasında hata oluştu",
+        message: "Lütfen tekrar deneyin"
+      });
+    }
+  });
+
   // Serve static files for supported languages
   app.get("/:lang", (req, res, next) => {
     const supportedLanguages = ["tr", "en", "ar", "ru", "es", "de"];

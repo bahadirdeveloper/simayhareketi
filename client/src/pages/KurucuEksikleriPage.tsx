@@ -88,36 +88,71 @@ export default function KurucuEksikleriPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Form validation
-    if (!formData.ad || !formData.email || !formData.alan || !formData.neden) {
+    try {
+      // Enhanced form validation
+      const errors = [];
+      
+      if (!formData.ad || formData.ad.trim().length < 2) {
+        errors.push("Ad soyad en az 2 karakter olmalıdır");
+      }
+      
+      if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        errors.push("Geçerli bir e-posta adresi giriniz");
+      }
+      
+      if (!formData.alan) {
+        errors.push("Uzmanlık alanı seçilmelidir");
+      }
+      
+      if (!formData.neden || formData.neden.trim().length < 10) {
+        errors.push("Katılım nedeni en az 10 karakter olmalıdır");
+      }
+      
+      if (errors.length > 0) {
+        toast({
+          title: "Form Hataları",
+          description: errors.join(", "),
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Submit to API
+      const response = await apiRequest("POST", "/api/applications", {
+        type: "kurucu-eksikleri",
+        data: formData,
+        timestamp: new Date().toISOString()
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Başvuru Başarıyla Alındı!",
+          description: "Teşekkürler! En kısa sürede sizinle iletişime geçeceğiz.",
+          variant: "default"
+        });
+        
+        // Reset form
+        setFormData({
+          ad: "",
+          email: "",
+          alan: "",
+          neden: "",
+          deneyim: "",
+          zaman: ""
+        });
+      } else {
+        throw new Error("Başvuru gönderilemedi");
+      }
+    } catch (error) {
       toast({
-        title: "Eksik Bilgi",
-        description: "Lütfen tüm zorunlu alanları doldurun.",
+        title: "Hata",
+        description: "Başvuru gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
         variant: "destructive"
       });
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Başvuru Başarıyla Alındı!",
-      description: "Teşekkürler! En kısa sürede sizinle iletişime geçeceğiz.",
-      variant: "default"
-    });
-    
-    // Reset form
-    setFormData({
-      ad: "",
-      email: "",
-      alan: "",
-      neden: "",
-      deneyim: "",
-      zaman: ""
-    });
-    setIsSubmitting(false);
   };
 
   const eksiklikler = [

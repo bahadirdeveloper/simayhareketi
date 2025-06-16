@@ -52,15 +52,21 @@ import AccessibilityReader from "@/components/AccessibilityReader";
 const formSchema = z.object({
   ad: z.string().min(2, {
     message: "Ad en az 2 karakter olmalıdır.",
+  }).max(50, {
+    message: "Ad en fazla 50 karakter olabilir.",
   }),
   email: z.string().email({
     message: "Geçerli bir e-posta adresi giriniz.",
   }),
   telefon: z.string().min(10, {
     message: "Telefon numarası en az 10 karakter olmalıdır.",
+  }).max(15, {
+    message: "Telefon numarası en fazla 15 karakter olabilir.",
   }),
   sehir: z.string().min(2, {
     message: "Şehir en az 2 karakter olmalıdır.",
+  }).max(30, {
+    message: "Şehir adı en fazla 30 karakter olabilir.",
   }),
   katilimTipi: z.string().optional(),
   mesaj: z.string().optional(),

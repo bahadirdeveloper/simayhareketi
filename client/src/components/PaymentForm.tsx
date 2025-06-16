@@ -58,10 +58,13 @@ const amountSchema = z.object({
     .refine((val) => !isNaN(Number(val)), {
       message: "Geçerli bir sayı giriniz",
     })
-    .refine((val) => Number(val) >= 1, {
-      message: "Tutar en az 1 TL olmalıdır",
+    .refine((val) => Number(val) >= 20, {
+      message: "Tutar en az 20 TL olmalıdır",
+    })
+    .refine((val) => Number(val) <= 100000, {
+      message: "Tutar en fazla 100.000 TL olabilir",
     }),
-  description: z.string().optional(),
+  description: z.string().min(5, "Açıklama en az 5 karakter olmalıdır").max(200, "Açıklama en fazla 200 karakter olabilir").optional(),
   isRegistrationFee: z.boolean().optional(),
 });
 
