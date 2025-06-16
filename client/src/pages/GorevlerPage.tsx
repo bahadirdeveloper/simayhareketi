@@ -131,13 +131,13 @@ export default function GorevlerPage() {
             </p>
             <div className="w-24 h-1 bg-red-500 mx-auto rounded-full mt-4"></div>
             
-            {/* Kurununun Eksikleri Button */}
+            {/* Kurucunun Eksikleri Button */}
             <div className="mt-6">
               <Button
-                onClick={() => window.open('/attached_assets/kurununun-eksikleri.html', '_blank')}
+                onClick={() => window.open('/attached_assets/kurucu.html', '_blank')}
                 className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg border-2 border-yellow-500"
               >
-                📋 Kurununun Eksikleri
+                📋 Kurucunun Eksikleri
               </Button>
             </div>
           </div>
