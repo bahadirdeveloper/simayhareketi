@@ -181,14 +181,14 @@ export function AnayasalarPage() {
             
             {/* Back Button */}
             <motion.button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/turkiye")}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               className="mb-8 flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-300 group"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
-              <span>Ana Sayfaya Dön</span>
+              <span>Türkiye'ye Dön</span>
             </motion.button>
 
             {/* Title Section */}
