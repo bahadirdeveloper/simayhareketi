@@ -153,7 +153,8 @@ export class DatabaseStorage implements IStorage {
   async getAllGorevler(): Promise<Gorev[]> {
     return db.select().from(gorevler)
       .where(eq(gorevler.aktif, true))
-      .orderBy(asc(gorevler.id));
+      .orderBy(asc(gorevler.id))
+      .limit(100);
   }
   
   async getGorev(id: number): Promise<Gorev | undefined> {
