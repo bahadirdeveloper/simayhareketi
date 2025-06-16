@@ -194,6 +194,93 @@ export default function GorevlerPage() {
           </div>
         </div>
 
+        {/* Kurucular Bölümü */}
+        <div className="bg-gray-900 border-2 border-gray-700 rounded-2xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+            Kurucular ve Liderler
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gray-800 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-white font-semibold mb-2">Mustafa Kemal Atatürk</h3>
+              <p className="text-gray-400 text-sm">Cumhuriyetin Kurucusu</p>
+              <p className="text-red-400 text-xs mt-2">Medeniyet Işığı</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Target className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-white font-semibold mb-2">Halk Sistemi</h3>
+              <p className="text-gray-400 text-sm">Kolektif Liderlik</p>
+              <p className="text-blue-400 text-xs mt-2">Dayanışma Ruhu</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Award className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-white font-semibold mb-2">Gönüllü Toplum</h3>
+              <p className="text-gray-400 text-sm">Aktif Katılımcılar</p>
+              <p className="text-green-400 text-xs mt-2">Özgürlük Savaşçıları</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Davet Edilen Gruplar */}
+        <div className="bg-gray-900 border-2 border-gray-700 rounded-2xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+            Kimleri Davet Ediyoruz?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">🎓</div>
+              <h4 className="text-white font-semibold text-sm">Eğitimciler</h4>
+              <p className="text-gray-400 text-xs">Öğretmenler, Akademisyenler</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">🎨</div>
+              <h4 className="text-white font-semibold text-sm">Sanatçılar</h4>
+              <p className="text-gray-400 text-xs">Müzisyenler, Ressamlar</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">🌱</div>
+              <h4 className="text-white font-semibold text-sm">Çevreciler</h4>
+              <p className="text-gray-400 text-xs">Doğa Koruyucuları</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">🤝</div>
+              <h4 className="text-white font-semibold text-sm">Gönüllüler</h4>
+              <p className="text-gray-400 text-xs">Toplumsal Dayanışma</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">⚖️</div>
+              <h4 className="text-white font-semibold text-sm">Hukukçular</h4>
+              <p className="text-gray-400 text-xs">Adalet Savunucuları</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">🏥</div>
+              <h4 className="text-white font-semibold text-sm">Sağlıkçılar</h4>
+              <p className="text-gray-400 text-xs">Hekim, Hemşireler</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">💼</div>
+              <h4 className="text-white font-semibold text-sm">İş İnsanları</h4>
+              <p className="text-gray-400 text-xs">Girişimciler, Yöneticiler</p>
+            </div>
+            <div className="bg-gray-800 rounded-lg p-4 text-center">
+              <div className="text-3xl mb-2">📚</div>
+              <h4 className="text-white font-semibold text-sm">Öğrenciler</h4>
+              <p className="text-gray-400 text-xs">Geleceğin Liderleri</p>
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <p className="text-gray-300 text-sm">
+              "Medeniyet ışığında birleşen her birey, bu büyük davaya katkıda bulunabilir."
+            </p>
+          </div>
+        </div>
+
         {/* Görev Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
           {currentGorevler.map((gorev) => (
