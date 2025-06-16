@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
-import TurkishAmbientPlayer from "@/components/TurkishAmbientPlayer";
+
 import { apiRequest } from "@/lib/queryClient";
 import { 
   Heart, 

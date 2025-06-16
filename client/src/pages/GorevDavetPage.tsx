@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
-import TurkishAmbientPlayer from "@/components/TurkishAmbientPlayer";
+
 import { apiRequest } from "@/lib/queryClient";
 import { 
   ArrowLeft,
@@ -156,10 +156,7 @@ export default function GorevDavetPage() {
     <ModernLayout>
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-hidden">
         
-        {/* Ambient Music Player */}
-        <div className="fixed top-6 right-6 z-50">
-          <TurkishAmbientPlayer page="cagri" className="w-80" />
-        </div>
+
 
         {/* Background Effects */}
         <div className="absolute inset-0 opacity-5">
