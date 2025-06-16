@@ -531,18 +531,44 @@ export default function HalkDefteriPage() {
                 </TabsContent>
                 
                 <TabsContent value="halkdefteri" className="mt-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Message Form Section */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="order-2 lg:order-1"
+                  <motion.div 
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-10"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
                   >
-                    <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Düşüncelerinizi Paylaşın</h3>
-                      
-                      <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Message Form Section */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="order-2 lg:order-1"
+                    >
+                      <motion.div 
+                        className="bg-gradient-to-br from-red-950/90 via-black/90 to-red-900/80 backdrop-blur-lg border-2 border-red-500/60 rounded-2xl p-8 shadow-[0_0_50px_rgba(220,38,38,0.4)] relative overflow-hidden"
+                        whileHover={{ y: -5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <motion.div
+                          className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-red-600"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: 1.5, delay: 0.5 }}
+                        />
+                        
+                        <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-red-500/30 to-yellow-500/30 rounded-full blur-lg animate-pulse"></div>
+                        
+                        <motion.h3 
+                          className="text-3xl font-black text-center mb-8 bg-gradient-to-r from-red-400 via-yellow-400 to-red-500 text-transparent bg-clip-text"
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.7 }}
+                        >
+                          ✍️ Düşüncelerinizi Paylaşın ✍️
+                        </motion.h3>
+                        
+                        <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                         <div>
                           <Label htmlFor="name" className="text-white/90">Adınız Soyadınız</Label>
                           <Input
@@ -580,53 +606,114 @@ export default function HalkDefteriPage() {
                           />
                         </div>
                         
-                        <Button 
-                          type="submit"
-                          className="w-full bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 border border-red-500/30 text-white font-semibold py-3 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-all duration-300"
-                        >
-                          Mesajı Gönder
-                        </Button>
-                      </form>
-                      
-                      <p className="text-white/60 text-sm mt-4 text-center">
-                        Mesajınız incelendikten sonra Halk Defteri'nde yayınlanacaktır.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  {/* Entries Section */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="order-1 lg:order-2"
-                  >
-                    <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Halk Defteri</h3>
-                      
-                      <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                        {entries.filter(entry => entry.approved).map(entry => (
-                          <motion.div 
-                            key={entry.id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 * entry.id }}
-                            className="bg-gradient-to-r from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-600/20 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                          >
-                            <div className="flex justify-between items-start mb-2">
-                              <div>
-                                <p className="text-red-400 font-semibold">{entry.name}</p>
-                                <p className="text-white/60 text-sm">{entry.city}</p>
-                              </div>
-                              <p className="text-white/50 text-xs">{entry.date}</p>
-                            </div>
-                            <p className="text-white/90 leading-relaxed">{entry.message}</p>
+                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button 
+                              type="submit"
+                              className="w-full bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:from-red-500 hover:via-red-600 hover:to-red-700 border-2 border-red-500/50 text-white font-black py-4 text-lg rounded-xl shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] transition-all duration-300"
+                            >
+                              🚀 Mesajı Gönder 🚀
+                            </Button>
                           </motion.div>
-                        ))}
-                      </div>
-                    </div>
+                        </form>
+                        
+                        <motion.p 
+                          className="text-white/80 text-lg mt-6 text-center font-medium bg-gradient-to-r from-red-300 to-yellow-300 text-transparent bg-clip-text"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.2 }}
+                        >
+                          ⭐ Mesajınız incelendikten sonra Halk Defteri'nde yayınlanacaktır. ⭐
+                        </motion.p>
+                      </motion.div>
+                    </motion.div>
+                  
+                    {/* Entries Section */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="order-1 lg:order-2"
+                    >
+                      <motion.div 
+                        className="bg-gradient-to-br from-red-950/90 via-black/90 to-red-900/80 backdrop-blur-lg border-2 border-red-500/60 rounded-2xl p-8 shadow-[0_0_50px_rgba(220,38,38,0.4)] relative overflow-hidden"
+                        whileHover={{ y: -5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <motion.div
+                          className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-red-600"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: 1.5, delay: 0.8 }}
+                        />
+                        
+                        <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-red-500/30 to-yellow-500/30 rounded-full blur-lg animate-pulse"></div>
+                        
+                        <motion.h3 
+                          className="text-3xl font-black text-center mb-8 bg-gradient-to-r from-red-400 via-yellow-400 to-red-500 text-transparent bg-clip-text"
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 1 }}
+                        >
+                          📚 Halk Defteri 📚
+                        </motion.h3>
+                        
+                        <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar relative z-10">
+                          {entries.filter(entry => entry.approved).map((entry) => (
+                            <motion.div 
+                              key={entry.id}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.6, delay: 0.2 * entry.id }}
+                              whileHover={{ scale: 1.03, x: -5 }}
+                              className="bg-gradient-to-r from-black/90 via-red-950/50 to-black/90 backdrop-blur-sm p-6 rounded-xl border-2 border-red-500/40 shadow-[0_0_20px_rgba(220,38,38,0.2)] relative overflow-hidden group"
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              />
+                              
+                              <div className="flex justify-between items-start mb-4 relative z-10">
+                                <div>
+                                  <motion.p 
+                                    className="text-red-300 font-bold text-lg bg-gradient-to-r from-red-400 to-yellow-400 text-transparent bg-clip-text"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 * entry.id }}
+                                  >
+                                    {entry.name}
+                                  </motion.p>
+                                  <motion.p 
+                                    className="text-white/70 text-base font-medium"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.4 * entry.id }}
+                                  >
+                                    📍 {entry.city}
+                                  </motion.p>
+                                </div>
+                                <motion.p 
+                                  className="text-white/60 text-sm font-medium bg-red-950/50 px-3 py-1 rounded-lg"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.5 * entry.id }}
+                                >
+                                  {entry.date}
+                                </motion.p>
+                              </div>
+                              <motion.p 
+                                className="text-white/95 leading-relaxed text-lg font-medium relative z-10"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.6 * entry.id }}
+                              >
+                                "{entry.message}"
+                              </motion.p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </motion.div>
                   </motion.div>
-                </div>
               </TabsContent>
               
               {/* Bottom Quote */}
