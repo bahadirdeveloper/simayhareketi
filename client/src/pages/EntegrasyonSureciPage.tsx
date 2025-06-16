@@ -103,7 +103,7 @@ export default function EntegrasyonSureciPage() {
 
   return (
     <PageLayout 
-      showLanguageSelector={true} 
+      showLanguageSelector={false} 
       showBackNavigation={true}
       className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
     >
