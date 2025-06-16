@@ -75,11 +75,6 @@ export function registerDigitalIdentityRoutes(app: Express) {
         error: "Dijital kimlik oluşturmak için premium paket satın alın",
         redirect: "/premium-paketler" 
       });
-
-      res.status(201).json({
-        message: "Dijital kimlik başarıyla oluşturuldu",
-        identity: newIdentity
-      });
     } catch (error) {
       console.error("Dijital kimlik oluşturma hatası:", error);
       res.status(500).json({ error: "Dijital kimlik oluşturulamadı" });
