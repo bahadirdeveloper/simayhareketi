@@ -212,6 +212,35 @@ export default function KatilPage() {
     setIsSubmitting(true);
     
     try {
+      // Enhanced validation
+      const errors = [];
+      
+      if (!values.ad || values.ad.trim().length < 2) {
+        errors.push("Ad soyad en az 2 karakter olmalıdır");
+      }
+      
+      if (!values.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+        errors.push("Geçerli bir e-posta adresi giriniz");
+      }
+      
+      if (!values.telefon || values.telefon.length < 10) {
+        errors.push("Telefon numarası en az 10 haneli olmalıdır");
+      }
+      
+      if (!values.sehir || values.sehir.trim().length < 2) {
+        errors.push("Şehir adı en az 2 karakter olmalıdır");
+      }
+      
+      if (errors.length > 0) {
+        toast({
+          title: "Form Hataları",
+          description: errors.join(", "),
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
       if (selectedPackage || values.katilimTipi) {
         const packageType = selectedPackage || values.katilimTipi;
         let amount = 0;
@@ -227,14 +256,31 @@ export default function KatilPage() {
             throw new Error('Geçersiz katkı seçimi');
         }
         
-        const response = await apiRequest("POST", "/api/create-payment-intent", {
+        // First submit application data
+        const applicationResponse = await apiRequest("POST", "/api/applications", {
+          type: "katil",
+          data: {
+            ...values,
+            selectedPackage: packageType,
+            amount,
+            language: i18n.language
+          },
+          timestamp: new Date().toISOString()
+        });
+        
+        if (!applicationResponse.ok) {
+          throw new Error('Başvuru kaydedilemedi');
+        }
+        
+        // Then proceed to payment
+        const paymentResponse = await apiRequest("POST", "/api/create-payment-intent", {
           amount: amount,
           packageType: packageType,
           userInfo: values
         });
         
-        if (response.ok) {
-          const data = await response.json();
+        if (paymentResponse.ok) {
+          const data = await paymentResponse.json();
           localStorage.setItem('pendingPayment', JSON.stringify({
             clientSecret: data.clientSecret,
             amount: amount,
@@ -248,25 +294,40 @@ export default function KatilPage() {
           throw new Error('Ödeme işlemi başlatılamadı');
         }
       } else {
-        setShowConfetti(true);
-        toast({
-          title: "Harekete Hoş Geldiniz!",
-          description: "Katılımınız başarıyla kaydedildi. Cumhuriyetin geleceğine hoş geldiniz!",
-          variant: "default",
+        // Free participation
+        const response = await apiRequest("POST", "/api/applications", {
+          type: "katil",
+          data: {
+            ...values,
+            participationType: "free",
+            language: i18n.language
+          },
+          timestamp: new Date().toISOString()
         });
         
-        form.reset();
-        setSelectedPackage('');
-        
-        setTimeout(() => {
-          setShowConfetti(false);
-        }, 5000);
+        if (response.ok) {
+          setShowConfetti(true);
+          toast({
+            title: "Harekete Hoş Geldiniz!",
+            description: "Katılımınız başarıyla kaydedildi. Cumhuriyetin geleceğine hoş geldiniz!",
+            variant: "default",
+          });
+          
+          form.reset();
+          setSelectedPackage('');
+          
+          setTimeout(() => {
+            setShowConfetti(false);
+          }, 5000);
+        } else {
+          throw new Error('Katılım kaydedilemedi');
+        }
       }
     } catch (error) {
-      // Submission error
+      console.error('Participation error:', error);
       toast({
         title: "Hata",
-        description: "Katılım başarısız. Lütfen tekrar deneyin.",
+        description: error instanceof Error ? error.message : "Katılım başarısız. Lütfen tekrar deneyin.",
         variant: "destructive",
       });
     } finally {
