@@ -178,7 +178,6 @@ export function generateFullDigitalIdentity(userId: number): any {
   // Geçerlilik tarihi (10 yıl sonra)
   const expiryDate = new Date();
   expiryDate.setFullYear(expiryDate.getFullYear() + 10);
-  const expiryDateString = expiryDate.toISOString();
   
   const signatureData = `${tcNumber}${ad}${soyad}${birthDate}${userId}`;
   const digitalSignature = generateDigitalSignature(signatureData);
@@ -193,7 +192,7 @@ export function generateFullDigitalIdentity(userId: number): any {
     dogumYeri: birthPlace,
     seriNo: serialNumber,
     belgeNo: documentNumber,
-    gecerlilikTarihi: expiryDateString,
+    gecerlilikTarihi: expiryDate,
     babaAdi: generateTurkishName('E').ad,
     anaAdi: generateTurkishName('K').ad,
     uyruk: 'TÜRKİYE CUMHURİYETİ',
