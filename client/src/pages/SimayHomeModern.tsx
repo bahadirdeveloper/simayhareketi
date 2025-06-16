@@ -146,7 +146,7 @@ export default function SimayHomeModern() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-wrap justify-center gap-4 sm:gap-6"
+              className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6"
             >
               <ModernTechButton 
                 variant="turkish"
@@ -154,7 +154,7 @@ export default function SimayHomeModern() {
                 glow="none"
                 border="subtle"
                 onClick={() => navigateWithScrollReset(navigate, "/turkiye")}
-                className="min-w-[150px]"
+                className="min-w-[120px] sm:min-w-[150px] text-sm sm:text-base px-4 sm:px-6"
               >
                 TÜRKİYE
               </ModernTechButton>
@@ -165,7 +165,7 @@ export default function SimayHomeModern() {
                 glow="none"
                 border="subtle"
                 onClick={() => navigateWithScrollReset(navigate, "/manifesto")}
-                className="min-w-[150px]"
+                className="min-w-[120px] sm:min-w-[150px] text-sm sm:text-base px-4 sm:px-6"
               >
                 MANİFESTO
               </ModernTechButton>

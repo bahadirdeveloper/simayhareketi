@@ -40,14 +40,14 @@ const QuickNav = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-16 right-0 bg-black/90 floating-element border border-red-500/30 rounded-2xl p-3 min-w-[200px]"
+            className="absolute bottom-16 right-0 bg-black/90 floating-element border border-red-500/30 rounded-2xl p-3 min-w-[180px] sm:min-w-[200px] max-w-[250px]"
           >
             <div className="space-y-2">
               {navItems.map((item) => {
@@ -61,7 +61,7 @@ const QuickNav = () => {
                       navigate(item.path);
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-gray-900/50 hover:bg-red-500/20 nav-button touch-target group"
+                    className="w-full flex items-center gap-3 p-2 sm:p-3 rounded-xl bg-gray-900/50 hover:bg-red-500/20 nav-button touch-target group text-sm sm:text-base"
                   >
                     <IconComponent className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
                     <span className="text-white font-medium">{item.label}</span>
