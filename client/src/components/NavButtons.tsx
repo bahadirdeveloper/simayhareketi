@@ -5,13 +5,23 @@ import {
   BookOpen, 
   Megaphone, 
   Users, 
-  Target 
+  Target,
+  Book,
+  Scale,
+  FileText
 } from 'lucide-react';
 
 export function NavButtons() {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
+  
+  // Check if we're on Turkey page or its subpages
+  const isOnTurkeySection = location.startsWith('/turkiye') || 
+                           location === '/turknedir' || 
+                           location === '/anayasalar' || 
+                           location === '/turkdetay';
 
-  const buttonData = [
+  // Different button sets based on current location
+  const mainButtonData = [
     { 
       path: "/turkiye", 
       text: "TÜRKİYE", 
@@ -53,6 +63,51 @@ export function NavButtons() {
       isExternal: false 
     }
   ];
+
+  const turkeyButtonData = [
+    { 
+      path: "/turkiye", 
+      text: "ANA", 
+      icon: MapPin,
+      gradient: "from-red-600 to-red-800",
+      bgGradient: "from-red-500/20 to-red-700/30",
+      isExternal: false 
+    },
+    { 
+      path: "/turknedir", 
+      text: "TÜRK", 
+      icon: Book,
+      gradient: "from-blue-600 to-blue-800",
+      bgGradient: "from-blue-500/20 to-blue-700/30",
+      isExternal: false 
+    },
+    { 
+      path: "/anayasalar", 
+      text: "ANAYASA", 
+      icon: Scale,
+      gradient: "from-purple-600 to-purple-800",
+      bgGradient: "from-purple-500/20 to-purple-700/30",
+      isExternal: false 
+    },
+    { 
+      path: "/halk-manifestolar", 
+      text: "MANİFESTO", 
+      icon: FileText,
+      gradient: "from-green-600 to-green-800",
+      bgGradient: "from-green-500/20 to-green-700/30",
+      isExternal: false 
+    },
+    { 
+      path: "/gorevler", 
+      text: "GÖREV", 
+      icon: Target,
+      gradient: "from-orange-600 to-orange-800",
+      bgGradient: "from-orange-500/20 to-orange-700/30",
+      isExternal: false 
+    }
+  ];
+
+  const buttonData = isOnTurkeySection ? turkeyButtonData : mainButtonData;
 
   return (
     <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 sm:relative sm:bottom-auto sm:left-auto sm:transform-none sm:mt-8 sm:mb-6 static-container">
