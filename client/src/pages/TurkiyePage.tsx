@@ -339,6 +339,27 @@ export default function TurkiyePage() {
             </div>
           </div>
 
+          {/* ENTEGRASYON SÜRECİMİZ */}
+          <div
+            onClick={() => navigateToPage("/entegrasyon-sureci")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-emerald-900 to-emerald-950 border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Network className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-emerald-400 rounded-full group-hover:bg-emerald-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-200 transition-colors">ENTEGRASYON SÜRECİMİZ</h3>
+                <p className="text-emerald-200 text-base leading-relaxed mb-4">Platform entegrasyonu ve sistem süreçleri</p>
+                <div className="w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full group-hover:from-emerald-400 group-hover:to-emerald-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
           {/* SERTİFİKA */}
           <div
             onClick={() => navigateToPage("/sertifika")}
