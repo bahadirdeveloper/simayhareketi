@@ -381,23 +381,23 @@ export default function TurkiyePage() {
             </div>
           </div>
 
-          {/* FORUM KAYIT */}
+          {/* CANLI GELİR-GİDER TABLOSU */}
           <div
-            onClick={() => navigateToPage("/forum-kayit")}
-            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-pink-800 via-pink-900 to-pink-950 border border-pink-500/30 hover:border-pink-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/25"
+            onClick={() => navigateToPage("/canli-gelir-gider")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-emerald-900 to-emerald-950 border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             <div className="relative p-8 h-64 flex flex-col justify-between">
               <div className="flex items-center justify-between">
-                <div className="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <UserPlus className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Database className="h-8 w-8 text-white" />
                 </div>
-                <div className="w-6 h-6 border-2 border-pink-400 rounded-full group-hover:bg-pink-400 transition-colors duration-300"></div>
+                <div className="w-6 h-6 border-2 border-emerald-400 rounded-full group-hover:bg-emerald-400 transition-colors duration-300"></div>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors">FORUM KAYIT</h3>
-                <p className="text-pink-200 text-base leading-relaxed mb-4">Forum topluluk kaydı ve üyelik</p>
-                <div className="w-full h-1 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full group-hover:from-pink-400 group-hover:to-pink-500 transition-colors"></div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-200 transition-colors">CANLI GELİR-GİDER</h3>
+                <p className="text-emerald-200 text-base leading-relaxed mb-4">Şeffaf mali durum ve harcama takibi</p>
+                <div className="w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full group-hover:from-emerald-400 group-hover:to-emerald-500 transition-colors"></div>
               </div>
             </div>
           </div>

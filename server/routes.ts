@@ -244,13 +244,93 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get financial stats for transparency dashboard
+  app.get("/api/financial-stats", async (req, res) => {
+    try {
+      const transactions = await storage.getTransactions(1000); // Get more for calculations
+      
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
+      
+      // Calculate totals
+      const totalIncome = transactions
+        .filter(t => t.type === 'income')
+        .reduce((sum, t) => sum + t.amount, 0);
+        
+      const totalExpenses = transactions
+        .filter(t => t.type === 'expense')
+        .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+        
+      // Calculate monthly figures
+      const monthlyTransactions = transactions.filter(t => {
+        const tDate = new Date(t.createdAt);
+        return tDate.getMonth() === currentMonth && tDate.getFullYear() === currentYear;
+      });
+      
+      const monthlyIncome = monthlyTransactions
+        .filter(t => t.type === 'income')
+        .reduce((sum, t) => sum + t.amount, 0);
+        
+      const monthlyExpenses = monthlyTransactions
+        .filter(t => t.type === 'expense')
+        .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+
+      const stats = {
+        totalIncome,
+        totalExpenses,
+        balance: totalIncome - totalExpenses,
+        monthlyIncome,
+        monthlyExpenses,
+        lastUpdate: new Date().toISOString()
+      };
+
+      res.json(stats);
+    } catch (error) {
+      console.error("Error fetching financial stats:", error);
+      res.status(500).json({ error: "Failed to retrieve financial statistics" });
+    }
+  });
+
   // Get financial transactions for transparency table
   app.get("/api/transactions", async (req, res) => {
     try {
+      const period = req.query.period as string;
       const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
-      const transactions = await storage.getTransactions(limit);
+      
+      let transactions = await storage.getTransactions(1000);
+      
+      // Filter by period if specified
+      if (period && period !== 'all') {
+        const now = new Date();
+        let filterDate = new Date();
+        
+        if (period === 'week') {
+          filterDate.setDate(now.getDate() - 7);
+        } else if (period === 'month') {
+          filterDate.setMonth(now.getMonth() - 1);
+        }
+        
+        transactions = transactions.filter(t => new Date(t.createdAt) >= filterDate);
+      }
+      
+      // Sort by date (newest first) and limit
+      transactions = transactions
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, limit);
 
-      res.json({ transactions, count: transactions.length });
+      // Format transactions for frontend
+      const formattedTransactions = transactions.map(t => ({
+        id: t.id,
+        type: t.type,
+        amount: Math.abs(t.amount),
+        description: t.description,
+        category: t.category || 'Genel',
+        date: t.createdAt,
+        verified: true // All transactions in system are verified
+      }));
+
+      res.json(formattedTransactions);
     } catch (error) {
       console.error("Error fetching transactions:", error);
       res.status(500).json({ error: "Failed to retrieve transactions" });
