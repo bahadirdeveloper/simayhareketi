@@ -243,7 +243,7 @@ export default function KatilPage() {
         
         switch (packageType) {
           case 'dijital-kimlik':
-            amount = 5;
+            amount = 20;
             break;
           case 'temel':
             amount = 50;
@@ -310,7 +310,7 @@ export default function KatilPage() {
   }
 
   const katilimTipleri = [
-    { value: "dijital-kimlik", label: "🟢 Dijital TC Kimlik - Güvenli dijital kimlik + 1 görev hakkı (₺5)" },
+    { value: "dijital-kimlik", label: "🟢 Dijital TC Kimlik - Güvenli dijital kimlik + 1 görev hakkı (₺20)" },
     { value: "temel", label: "🔵 Temel Paket - Hareket üyeliği + Dijital kimlik belgesi (₺50)" },
     { value: "premium", label: "🟡 Premium Paket - Otomatik TC kimlik doğrulama + Premium görevler (₺150)" },
     { value: "elite", label: "🟣 Elite Paket - Liderlik görevleri + Organizatör yetkileri (₺300)" }
@@ -458,7 +458,7 @@ export default function KatilPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <div className="text-3xl font-bold text-white mb-4">₺5</div>
+                    <div className="text-3xl font-bold text-white mb-4">₺20</div>
                     <ul className="text-emerald-200 space-y-2 text-sm mb-6">
                       <li>✓ Güvenli dijital TC kimlik</li>
                       <li>✓ QR doğrulama kodu</li>
@@ -467,7 +467,7 @@ export default function KatilPage() {
                     </ul>
                     <Button 
                       className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-                      onClick={() => handlePackageSelect('dijital-kimlik', 5)}
+                      onClick={() => handlePackageSelect('dijital-kimlik', 20)}
                     >
                       Seç
                     </Button>
