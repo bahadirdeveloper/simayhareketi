@@ -295,53 +295,53 @@ export default function GorevlerPage() {
           </div>
         </div>
 
-        {/* Görev Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
+        {/* Görev Grid - Mobil Optimize */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8">
           {currentGorevler.map((gorev) => (
             <div key={gorev.id} className="group relative">
               <div className={`bg-gradient-to-br ${getGorevColor(gorev.id)} rounded-xl p-1 hover:scale-105 transition-all duration-300`}>
-                <div className="bg-gray-900 rounded-lg p-4 h-full">
+                <div className="bg-gray-900 rounded-lg p-3 sm:p-4 h-full">
                   
-                  {/* Görev Resmi - Tam Görünür */}
-                  <div className="mb-4 h-40 sm:h-48 rounded-lg overflow-hidden shadow-lg relative bg-gray-800">
+                  {/* Görev Resmi - Mobil Optimize */}
+                  <div className="mb-4 h-36 sm:h-44 md:h-48 rounded-lg overflow-hidden shadow-lg relative bg-gray-800">
                     <img 
                       src={getGorevImage(gorev.id)}
                       alt={`Görev ${gorev.id}`}
-                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNEI1NTYzIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTA1IiBmb250LWZhbWlseT0iYXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkfDtnJldiAjPC90ZXh0Pgo8L3N2Zz4=';
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    <div className="absolute top-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-white text-sm font-bold border border-white/30 backdrop-blur-sm">
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-black/80 px-2 py-1 sm:px-2.5 sm:py-1 rounded-full text-white text-xs sm:text-sm font-bold border border-white/30 backdrop-blur-sm">
                       #{gorev.id}
                     </div>
                   </div>
 
-                  {/* Görev Bilgileri - Tekrarsız */}
-                  <div className="space-y-3">
+                  {/* Görev Bilgileri - Mobil Optimize */}
+                  <div className="space-y-2 sm:space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-red-400 bg-red-900/30 px-2 py-1 rounded">
+                      <span className="text-xs font-semibold text-red-400 bg-red-900/30 px-2 py-0.5 rounded">
                         {gorev.kategori || 'Genel'}
                       </span>
-                      <Target className="h-4 w-4 text-red-400" />
+                      <Target className="h-3 w-3 sm:h-4 sm:w-4 text-red-400" />
                     </div>
 
-                    <h3 className="text-white font-semibold text-sm leading-tight line-clamp-2">
+                    <h3 className="text-white font-semibold text-xs sm:text-sm leading-tight line-clamp-2">
                       {gorev.baslik}
                     </h3>
 
-                    <p className="text-gray-400 text-xs leading-relaxed line-clamp-3">
+                    <p className="text-gray-400 text-xs leading-relaxed line-clamp-2 sm:line-clamp-3">
                       {gorev.aciklama}
                     </p>
 
-                    <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center justify-between pt-1 sm:pt-2">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3 text-gray-500" />
                         <span className="text-xs text-gray-500">Devam Eden</span>
                       </div>
-                      <Award className="h-4 w-4 text-yellow-500" />
+                      <Award className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500" />
                     </div>
                   </div>
                 </div>
