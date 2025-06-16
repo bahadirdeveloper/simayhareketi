@@ -135,14 +135,33 @@ export default function GorevlerPage() {
             </p>
             <div className="w-24 h-1 bg-red-500 mx-auto rounded-full mt-4"></div>
             
-            {/* Kurucunun Eksikleri Button */}
-            <div className="mt-6">
-              <Button
+            {/* GÖREV 0 - Modern Button */}
+            <div className="mt-8">
+              <button
                 onClick={() => navigate('/kurucu-eksikleri')}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg border-2 border-yellow-500"
+                className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-black transition-all duration-500 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-2xl shadow-2xl hover:shadow-amber-400/50 transform hover:scale-110 hover:-translate-y-2 border-2 border-amber-300/80 hover:border-amber-200 overflow-hidden"
               >
-                📋 Kurucunun Eksikleri
-              </Button>
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                
+                {/* Content */}
+                <div className="relative flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-black/20 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                    <span className="text-2xl">🧩</span>
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-semibold opacity-80">GÖREV 0</div>
+                    <div className="font-black tracking-wide">KURUCUNUN EKSİKLERİ</div>
+                  </div>
+                  <div className="w-3 h-3 bg-black/30 rounded-full group-hover:bg-white/60 transition-all duration-300 group-hover:scale-150"></div>
+                </div>
+                
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-400/20 to-yellow-400/20 blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              </button>
             </div>
           </div>
 
