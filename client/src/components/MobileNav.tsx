@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Home, FileText, Target, Users, DollarSign, Globe } from 'lucide-react';
+import { Menu, X, Home, FileText, Target, Users, DollarSign, Globe, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface MobileNavProps {
@@ -22,7 +22,22 @@ export function MobileNav({ className = '' }: MobileNavProps) {
     { path: '/halk-koordinasyon', label: 'Halk Koordinasyon', icon: Users },
     { path: '/canli-gelir-gider', label: 'Mali Şeffaflık', icon: DollarSign },
     { path: '/language', label: 'Diller', icon: Globe },
+    { path: '/anayasa', label: 'Anayasa', icon: FileText },
+    { path: '/turkiye', label: 'Türkiye', icon: Target },
+    { path: '/oppressed-nations', label: 'Mazlum Milletler', icon: Globe },
   ];
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   return (
     <div className={`md:hidden ${className}`}>
@@ -82,17 +97,22 @@ export function MobileNav({ className = '' }: MobileNavProps) {
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                        className={`flex items-center justify-between px-4 py-4 rounded-lg transition-all duration-200 ${
                           isActive
                             ? 'bg-gradient-to-r from-red-600/20 to-red-800/20 border border-red-500/40 text-red-400'
                             : 'text-gray-300 hover:bg-red-950/30 hover:text-white border border-transparent hover:border-red-600/20'
                         }`}
                       >
-                        <Icon className="h-5 w-5" />
-                        <span className="font-medium">{item.label}</span>
-                        {isActive && (
-                          <div className="w-2 h-2 bg-red-400 rounded-full ml-auto animate-pulse" />
-                        )}
+                        <div className="flex items-center space-x-3">
+                          <Icon className="h-5 w-5" />
+                          <span className="font-medium">{item.label}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          {isActive && (
+                            <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                          )}
+                          <ChevronRight className="h-4 w-4 opacity-50" />
+                        </div>
                       </motion.div>
                     </Link>
                   );
