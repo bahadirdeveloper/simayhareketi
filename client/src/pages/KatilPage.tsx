@@ -52,6 +52,7 @@ import {
   VolumeX,
   ArrowLeft,
   CheckCircle,
+  CreditCard,
   Plus,
   User,
   MessageSquare,
@@ -429,7 +430,47 @@ export default function KatilPage() {
 
           <TabsContent value="katil" className="space-y-6">
             {/* Premium Paketler Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+              {/* Dijital Kimlik Paketi - 1 TL */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-gradient-to-r from-green-400 to-emerald-500 text-black px-4 py-1 rounded-full text-xs font-bold">
+                    EN UYGUN
+                  </span>
+                </div>
+                <Card className={`bg-gradient-to-br from-emerald-900 to-emerald-700 border-emerald-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 ${selectedPackage === 'dijital-kimlik' ? 'ring-4 ring-emerald-400 border-emerald-400' : ''}`}>
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <IdCard className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-lg font-bold">DİJİTAL TC KİMLİK</CardTitle>
+                    <CardDescription className="text-emerald-200">
+                      Güvenli dijital kimlik + 1 görev hakkı
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺1</div>
+                    <ul className="text-emerald-200 space-y-2 text-sm mb-6">
+                      <li>✓ Güvenli dijital TC kimlik</li>
+                      <li>✓ QR doğrulama kodu</li>
+                      <li>✓ 1 görev seçme hakkı</li>
+                      <li>✓ Biyometrik güvenlik</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                      onClick={() => handlePackageSelect('dijital-kimlik', 1)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
               {/* Temel Paket */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
