@@ -65,13 +65,10 @@ export default function TurkiyePage() {
               <div className="w-full h-full bg-gradient-to-r from-red-500/20 to-transparent"></div>
             </div>
             
-            {/* Flag with Glow */}
-            <div className="mb-8 relative flex justify-center">
-              <div className="relative">
-                <div className="w-32 h-32 bg-red-600 rounded-2xl flex items-center justify-center text-5xl border-4 border-red-400 shadow-2xl shadow-red-500/50 relative z-10">
-                  🇹🇷
-                </div>
-                <div className="absolute top-0 left-0 w-32 h-32 bg-red-500/30 rounded-2xl blur-xl animate-pulse"></div>
+            {/* Flag */}
+            <div className="mb-8 flex justify-center">
+              <div className="w-32 h-32 bg-red-600 rounded-2xl flex items-center justify-center text-5xl border-4 border-red-400 shadow-lg">
+                🇹🇷
               </div>
             </div>
             
