@@ -8,6 +8,7 @@ import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import { apiRequest } from "@/lib/queryClient";
 import { useTranslation } from 'react-i18next';
+import { useQuery } from "@tanstack/react-query";
 import { 
   Users, 
   MessageSquare, 
@@ -41,6 +42,18 @@ export default function HalkDefteriPage() {
 
   const pageContent = "Halk Koordinasyonu - Mazlum halkların sesini duyurduğu demokratik platform. Egemenlik kayıtsız şartsız halktadır.";
 
+  // Fetch real feedback data from API
+  const { data: feedbackData = [], isLoading: feedbackLoading } = useQuery({
+    queryKey: ["/api/feedback"],
+    retry: false,
+  });
+
+  // Fetch real statistics from API
+  const { data: statsData, isLoading: statsLoading } = useQuery({
+    queryKey: ["/api/live-stats"],
+    retry: false,
+  });
+
   useEffect(() => {
     const recordVisit = async () => {
       try {
@@ -61,56 +74,41 @@ export default function HalkDefteriPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submitted successfully
-    setFormData({ name: "", city: "", message: "" });
+    try {
+      await apiRequest("POST", "/api/feedback", formData);
+      setFormData({ name: "", city: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+    }
   };
 
-  const entries: FeedbackEntry[] = [
-    {
-      id: 1,
-      name: "Zehra K.",
-      city: "Diyarbakır",
-      message: "Mazlum halkların sesini duyuran bu platform çok değerli. Tüm dünyadan kardeşlerimizle dayanışma içinde olmak umut veriyor.",
-      date: "2 saat önce",
-      approved: true,
-      likes: 47
-    },
-    {
-      id: 2,
-      name: "Ahmed M.",
-      city: "Filistin",
-      message: "Türkiye'nin mazlum halklara verdiği destek tarihi bir sorumluluktur. Bu platformda birlik olmak güç demektir.",
-      date: "5 saat önce", 
-      approved: true,
-      likes: 82
-    },
-    {
-      id: 3,
-      name: "Fatma Y.",
-      city: "İstanbul",
-      message: "Halkın koordinasyonu demokrasinin temelidir. Bu sistemle sesimizi birleştiriyoruz.",
-      date: "1 gün önce",
-      approved: true,
-      likes: 34
-    },
-    {
-      id: 4,
-      name: "Omar S.",
-      city: "Lübnan",
-      message: "Atatürk'ün gösterdiği yolda mazlum milletlerin dayanışması devam ediyor. Şükürler olsun.",
-      date: "2 gün önce",
-      approved: true,
-      likes: 91
-    }
-  ];
+  // Use real API data with proper type checking
+  const entries = Array.isArray(feedbackData) ? feedbackData : [];
 
+  // Create stats from real data with safe checks
   const stats = [
-    { icon: <Users className="w-6 h-6" />, number: "1,247", label: "Aktif Katılımcı" },
-    { icon: <MessageSquare className="w-6 h-6" />, number: "3,891", label: "Halk Mesajı" },
-    { icon: <Heart className="w-6 h-6" />, number: "28,493", label: "Dayanışma" },
-    { icon: <Flag className="w-6 h-6" />, number: "67", label: "Ülke Temsili" }
+    { 
+      icon: <Users className="w-6 h-6" />, 
+      number: ((statsData as any)?.participants || 0).toString(), 
+      label: "Aktif Katılımcı" 
+    },
+    { 
+      icon: <MessageSquare className="w-6 h-6" />, 
+      number: entries.length.toString(), 
+      label: "Halk Mesajı" 
+    },
+    { 
+      icon: <Heart className="w-6 h-6" />, 
+      number: ((statsData as any)?.volunteers || 0).toString(), 
+      label: "Gönüllü" 
+    },
+    { 
+      icon: <Flag className="w-6 h-6" />, 
+      number: ((statsData as any)?.activeCities || 0).toString(), 
+      label: "Aktif Şehir" 
+    }
   ];
 
   return (
@@ -266,39 +264,49 @@ export default function HalkDefteriPage() {
               </div>
               
               <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
-                {entries.filter(entry => entry.approved).map((entry, index) => (
-                  <motion.div 
-                    key={entry.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-gradient-to-r from-black/40 to-red-950/20 border border-red-600/20 rounded-xl p-6 hover:border-red-500/40 transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-red-950/30 border border-red-600/30 rounded-full flex items-center justify-center">
-                          <Users className="w-5 h-5 text-red-400" />
+                {feedbackLoading ? (
+                  <div className="text-center py-8 text-gray-400">Halk mesajları yükleniyor...</div>
+                ) : entries.length > 0 ? (
+                  entries.map((entry: any, index: number) => (
+                    <motion.div 
+                      key={entry.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-gradient-to-r from-black/40 to-red-950/20 border border-red-600/20 rounded-xl p-6 hover:border-red-500/40 transition-all duration-300"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-red-950/30 border border-red-600/30 rounded-full flex items-center justify-center">
+                            <Users className="w-5 h-5 text-red-400" />
+                          </div>
+                          <div>
+                            <p className="text-red-400 font-semibold">{entry.name || "Anonim"}</p>
+                            <p className="text-gray-500 text-sm">{entry.city || "Bilinmiyor"}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-red-400 font-semibold">{entry.name}</p>
-                          <p className="text-gray-500 text-sm">{entry.city}</p>
+                        <div className="text-right">
+                          <p className="text-gray-500 text-xs">
+                            {entry.createdAt ? new Date(entry.createdAt).toLocaleDateString("tr-TR") : ""}
+                          </p>
+                          <div className="flex items-center gap-1 mt-1">
+                            <Heart className="w-3 h-3 text-red-400" />
+                            <span className="text-xs text-gray-400">0</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-gray-500 text-xs">{entry.date}</p>
-                        <div className="flex items-center gap-1 mt-1">
-                          <Heart className="w-3 h-3 text-red-400" />
-                          <span className="text-xs text-gray-400">{entry.likes}</span>
-                        </div>
+                      
+                      <div className="relative">
+                        <Quote className="w-5 h-5 text-red-400/30 absolute -top-1 -left-1" />
+                        <p className="text-gray-300 leading-relaxed pl-6">{entry.content || entry.message}</p>
                       </div>
-                    </div>
-                    
-                    <div className="relative">
-                      <Quote className="w-5 h-5 text-red-400/30 absolute -top-1 -left-1" />
-                      <p className="text-gray-300 leading-relaxed pl-6">{entry.message}</p>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))
+                ) : (
+                  <div className="text-center py-8 text-gray-400">
+                    Henüz halk mesajı bulunmuyor. İlk mesajı siz gönderin!
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
