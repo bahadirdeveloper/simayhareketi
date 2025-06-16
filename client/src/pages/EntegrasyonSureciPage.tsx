@@ -42,7 +42,7 @@ export default function EntegrasyonSureciPage() {
       status: 'active',
       progress: 75,
       color: 'from-emerald-500 to-teal-600',
-      link: '/egitim-entegrasyonu'
+      link: '/gorevler'
     },
     {
       id: 'halk-entegrasyonu',
@@ -62,7 +62,7 @@ export default function EntegrasyonSureciPage() {
       status: 'active',
       progress: 60,
       color: 'from-purple-500 to-indigo-600',
-      link: '/is-yeri-entegrasyonu'
+      link: '/halk-defteri'
     },
     {
       id: 'devlet-kurumlari',
@@ -72,7 +72,7 @@ export default function EntegrasyonSureciPage() {
       status: 'pending',
       progress: 30,
       color: 'from-blue-500 to-cyan-600',
-      link: '/devlet-entegrasyonu'
+      link: '/turkiye'
     }
   ];
 
@@ -279,19 +279,19 @@ export default function EntegrasyonSureciPage() {
                 <div className="space-y-3 text-slate-300">
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>İlkokul, ortaokul ve lise müfredatına entegrasyon</span>
+                    <span>100 görevin eğitim sistemlerine entegrasyonu</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Üniversite düzeyinde araştırma ve akademik çalışmalar</span>
+                    <span>Medeniyet ışığında çağdaş eğitim anlayışı</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Öğretmen eğitimi ve pedagojik yaklaşımlar</span>
+                    <span>Milli değerlerin eğitim programlarında yer alması</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Dijital eğitim platformları ve içerik geliştirme</span>
+                    <span>Gençlik üzerinde pozitif dönüşüm etkisi</span>
                   </div>
                 </div>
               </CardContent>
@@ -309,19 +309,19 @@ export default function EntegrasyonSureciPage() {
                 <div className="space-y-3 text-slate-300">
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Mahalle komiteleri ve sivil toplum örgütlenmesi</span>
+                    <span>Halk koordinasyon merkezleri kurulumu</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Toplumsal dayanışma ağları kurulumu</span>
+                    <span>Mazlum halklar arası dayanışma ağları</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Yerel yönetimler ile koordinasyon</span>
+                    <span>Demokratik katılım ve halk defteri sistemi</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Kültürel etkinlikler ve toplumsal bilinç</span>
+                    <span>Medeniyet bilinciyle toplumsal uyanış</span>
                   </div>
                 </div>
               </CardContent>
@@ -339,15 +339,15 @@ export default function EntegrasyonSureciPage() {
                 <div className="space-y-3 text-slate-300">
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Özel sektör şirketleri ve işletmeler</span>
+                    <span>İş yerlerinde demokratik değerler</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>Çalışan hakları ve sosyal sorumluluk</span>
+                    <span>Çalışan hakları ve adil ücret politikaları</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>İş etiği ve adil ticaret uygulamaları</span>
+                    <span>Toplumsal katkı ve sosyal sorumluluk</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
@@ -369,19 +369,19 @@ export default function EntegrasyonSureciPage() {
                 <div className="space-y-3 text-slate-300">
                   <div className="flex items-start space-x-2">
                     <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <span>Resmi kurumlar ile protokol geliştirme</span>
+                    <span>Milli egemenlik ilkesiyle devlet dönüşümü</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <span>Yasal mevzuat ve düzenleme çalışmaları</span>
+                    <span>Cumhuriyet değerleriyle kurumsal reform</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <span>Kamu politikaları ve stratejik planlama</span>
+                    <span>Laiklik ve çağdaş yönetim anlayışı</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
-                    <span>Uluslararası diplomasi ve işbirliği</span>
+                    <span>Türkiye'nin küresel liderlik vizyonu</span>
                   </div>
                 </div>
               </CardContent>
