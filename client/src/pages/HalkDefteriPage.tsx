@@ -24,7 +24,7 @@ interface FeedbackEntry {
 }
 
 export default function HalkDefteriPage() {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
   const [isPlaying, setIsPlaying] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -288,7 +288,7 @@ export default function HalkDefteriPage() {
               <Button 
                 variant="outline"
                 className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => navigate("/")}
+                onClick={() => setLocation("/")}
               >
                 ◀ Ana Sayfa
               </Button>
@@ -296,7 +296,7 @@ export default function HalkDefteriPage() {
               <Button 
                 variant="outline"
                 className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => navigate("/gorevler")}
+                onClick={() => setLocation("/gorevler")}
               >
                 Görevler
               </Button>
