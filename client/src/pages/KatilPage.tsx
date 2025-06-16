@@ -136,7 +136,7 @@ export default function KatilPage() {
       if (response.ok) {
         const data = await response.json();
         setStats({
-          totalMembers: data.uniqueVisitors || 0,
+          totalMembers: data.participants || 0, // Gerçek katılımcı sayısı (üye)
           activeTasks: data.activeProjects || 0,
           completedTasks: data.volunteers || 0,
           totalDonations: data.totalAmount || 0

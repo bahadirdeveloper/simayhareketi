@@ -200,8 +200,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const uniqueVisitors = new Set(visits.map(v => v.visitorIp)).size;
       const activeProjects = gorevler.length;
       
-      // Count actual participants from feedback submissions
-      const participants = feedbacks.length;
+      // Count actual registered members (starts at 0, will grow with real registrations)
+      const participants = 0;
       
       // Calculate total donations from real transactions
       const totalAmount = transactions.reduce((sum, transaction) => {
