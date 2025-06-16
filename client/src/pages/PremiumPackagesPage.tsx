@@ -95,17 +95,17 @@ export default function PremiumPackagesPage() {
       <div className="container mx-auto max-w-7xl">
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-6">
+        <div className="text-center mb-8 md:mb-12 px-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6">
             Premium Paketler
           </h1>
-          <p className="text-red-100 text-xl max-w-3xl mx-auto">
+          <p className="text-red-100 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Paket satın alımında otomatik olarak gerçek verilerinizle TC Kimlik Belgesi oluşturulur
           </p>
         </div>
 
         {/* Packages Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
           {packages.map((pkg, index) => (
             <Card 
               key={pkg.id}
@@ -176,28 +176,30 @@ export default function PremiumPackagesPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="ad">Ad *</Label>
+                  <Label htmlFor="ad" className="text-sm font-medium">Ad *</Label>
                   <Input
                     id="ad"
                     value={userProfile.ad}
                     onChange={(e) => setUserProfile({...userProfile, ad: e.target.value})}
                     placeholder="Adınız"
+                    className="mt-1"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="soyad">Soyad *</Label>
+                  <Label htmlFor="soyad" className="text-sm font-medium">Soyad *</Label>
                   <Input
                     id="soyad"
                     value={userProfile.soyad}
                     onChange={(e) => setUserProfile({...userProfile, soyad: e.target.value})}
                     placeholder="Soyadınız"
+                    className="mt-1"
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="dogumTarihi">Doğum Tarihi *</Label>
                   <Input

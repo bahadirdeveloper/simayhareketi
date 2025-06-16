@@ -233,7 +233,7 @@ export default function DijitalKimlikPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div>
                         <label className="text-sm font-medium text-slate-400 mb-1 block">
@@ -344,10 +344,10 @@ export default function DijitalKimlikPage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col gap-4 pt-6">
                     <Button 
                       onClick={handleDownloadIdentity}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                       size="lg"
                     >
                       <Download className="mr-2 h-4 w-4" />
@@ -357,7 +357,7 @@ export default function DijitalKimlikPage() {
                     <Button 
                       onClick={() => setLocation('/premium-paketler')}
                       variant="outline"
-                      className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700"
+                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-700"
                       size="lg"
                     >
                       Premium Paketleri Görüntüle
