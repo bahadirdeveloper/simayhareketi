@@ -44,7 +44,7 @@ const initStripe = async () => {
       
       return true;
     } catch (error) {
-      console.error("Failed to load Stripe:", error);
+      // Silent Stripe loading error
       return false;
     }
   }
@@ -318,7 +318,7 @@ export default function PaymentForm({
         });
       }
     } catch (error) {
-      console.error("Payment intent error:", error);
+      // Silent payment intent error
       toast({
         title: "Hata",
         description: "Ödeme başlatılırken bir hata oluştu.",

@@ -130,7 +130,7 @@ const ModernLayout = ({
       } catch (error) {
         // Silent fail for visit tracking
         if ((error as Error).name !== 'AbortError') {
-          console.debug('Visit tracking failed:', error);
+          // Silent visit tracking error
         }
       }
     };

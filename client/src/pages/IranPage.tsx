@@ -32,7 +32,7 @@ export default function IranPage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     
