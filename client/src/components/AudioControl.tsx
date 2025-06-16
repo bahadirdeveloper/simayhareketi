@@ -14,6 +14,8 @@ export default function AudioControl({
   showLabel = false 
 }: AudioControlProps) {
   
+  const [playing, setPlaying] = useState(false);
+  
   // Ses durumunu takip et
   useEffect(() => {
   }, []);

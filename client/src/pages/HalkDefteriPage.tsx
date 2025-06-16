@@ -173,8 +173,6 @@ export default function HalkDefteriPage() {
   ]);
   
   useEffect(() => {
-    // Initialize audio system
-    
     // Record visitor stats
     const recordVisit = async () => {
       try {
@@ -224,19 +222,6 @@ export default function HalkDefteriPage() {
       });
       return;
     }
-    
-    // Create a new entry
-    const newEntry: FeedbackEntry = {
-      id: entries.length + 1,
-      name: formData.name,
-      city: formData.city,
-      message: formData.message,
-      date: new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }),
-      approved: false // İncelendikten sonra onaylanır
-    };
-    
-    // Add to entries (in a real app, this would be sent to backend)
-    //setEntries(prev => [newEntry, ...prev]);
     
     // Success message
     toast({
@@ -364,196 +349,193 @@ export default function HalkDefteriPage() {
               </div>
             </motion.div>
             
-            <div className="flex justify-center mt-8 mb-2">
-              <Tabs defaultValue="manifesto" className="w-full max-w-4xl">
-                <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-black/60 to-red-950/50 backdrop-blur-sm border border-red-500/30">
-                  <TabsTrigger value="manifesto" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Manifestolar</TabsTrigger>
-                  <TabsTrigger value="halkdefteri" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Halk Defteri</TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-          </motion.div>
-          
-          <TabsContent value="manifesto" className="mt-6">
-            <div className="space-y-6">
-              {/* Manifestolar */}
-              <motion.div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                <h3 className="text-2xl font-bold text-white mb-6 text-center">HALKIN SON SÖZÜ MANİFESTOSU</h3>
-                
-                <p className="text-white/80 text-center italic mb-6">
-                  "Bu bir belge değil, bir başlangıçtır. Manifesto burada biter, ama görev şimdi başlar."
-                </p>
-                
-                <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
-                  {manifestoEntries.map(entry => (
-                    <motion.div 
-                      key={entry.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.05 * entry.id }}
-                      className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-5 rounded-lg border border-red-600/30 hover:border-red-500/50 transition-all duration-300 shadow-md"
-                    >
-                      <h4 className="text-xl font-bold text-gradient bg-gradient-to-r from-red-600 to-white text-transparent bg-clip-text tracking-wide mb-3">
-                        {entry.id}. {entry.title}
-                      </h4>
-                      <p className="text-white/90 leading-relaxed">
-                        {entry.content}
-                      </p>
-                    </motion.div>
-                  ))}
+            {/* Tabs Container */}
+            <Tabs defaultValue="manifesto" className="w-full max-w-4xl mx-auto">
+              <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-black/60 to-red-950/50 backdrop-blur-sm border border-red-500/30">
+                <TabsTrigger value="manifesto" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Manifestolar</TabsTrigger>
+                <TabsTrigger value="halkdefteri" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-900/40 data-[state=active]:to-black/60 data-[state=active]:text-white data-[state=active]:shadow-sm">Halk Defteri</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="manifesto" className="mt-6">
+                <div className="space-y-6">
+                  {/* Manifestolar */}
+                  <motion.div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                    <h3 className="text-2xl font-bold text-white mb-6 text-center">HALKIN SON SÖZÜ MANİFESTOSU</h3>
+                    
+                    <p className="text-white/80 text-center italic mb-6">
+                      "Bu bir belge değil, bir başlangıçtır. Manifesto burada biter, ama görev şimdi başlar."
+                    </p>
+                    
+                    <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+                      {manifestoEntries.map(entry => (
+                        <motion.div 
+                          key={entry.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.05 * entry.id }}
+                          className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-5 rounded-lg border border-red-600/20 shadow-[0_0_15px_rgba(220,38,38,0.1)]"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center shadow-sm">
+                              <span className="text-white text-sm font-bold">{entry.id}</span>
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="text-red-400 font-bold text-lg mb-3">{entry.title}</h4>
+                              <p className="text-white/90 leading-relaxed">{entry.content}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-8 pt-6 border-t border-red-600/30">
+                      <p className="text-white/90 text-center text-lg font-semibold">Bu manifesto yalnızca okunan bir metin değil, yaşanan bir gerçektir.</p>
+                      <p className="text-white/70 text-sm mt-1 text-center">Bu belge yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı.</p>
+                    </div>
+                  </motion.div>
                 </div>
-                
-                <div className="mt-6 text-center">
-                  <p className="text-red-500 font-bold">ZİNCİRİN SON HALKASI SENSİN</p>
-                  <p className="text-white/70 text-sm mt-1">Bu belge yalnız okunmak için yazılmadı. Uygulamak, yaymak, yaşatmak için kodlandı.</p>
-                </div>
-              </motion.div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="halkdefteri" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Message Form Section */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="order-2 lg:order-1"
-              >
-                <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Mesajınızı Bırakın</h3>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-white text-lg">Adınız Soyadınız:</Label>
-                      <Input 
-                        id="name" 
-                        name="name" 
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                        placeholder="Adınız ve soyadınız"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="city" className="text-white text-lg">Şehriniz:</Label>
-                      <Input 
-                        id="city" 
-                        name="city" 
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                        placeholder="Yaşadığınız şehir"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-white text-lg">Mesajınız:</Label>
-                      <Textarea 
-                        id="message" 
-                        name="message" 
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={6}
-                        className="bg-black/60 border-2 border-red-600/40 text-white py-2 px-4 placeholder:text-white/40 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                        placeholder="Düşüncelerinizi ve önerilerinizi yazın..."
-                      />
-                      <p className="text-white/60 text-sm italic">
-                        En az 20 karakter yazınız. Mesajınız incelendikten sonra Halk Defteri'ne eklenecektir.
-                      </p>
-                    </div>
-                    
-                    <div className="flex justify-center mt-6">
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              </TabsContent>
+              
+              <TabsContent value="halkdefteri" className="mt-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Message Form Section */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="order-2 lg:order-1"
+                  >
+                    <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Düşüncelerinizi Paylaşın</h3>
+                      
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                          <Label htmlFor="name" className="text-white/90">Adınız Soyadınız</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Örn: Ahmet Yılmaz"
+                            className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50"
+                          />
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="city" className="text-white/90">Şehriniz</Label>
+                          <Input
+                            id="city"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                            placeholder="Örn: İstanbul"
+                            className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50"
+                          />
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="message" className="text-white/90">Mesajınız</Label>
+                          <Textarea
+                            id="message"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleInputChange}
+                            placeholder="Düşüncelerinizi, önerilerinizi veya vizyonunuzu paylaşın..."
+                            rows={4}
+                            className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 resize-none"
+                          />
+                        </div>
+                        
                         <Button 
                           type="submit"
-                          className="bg-gradient-to-r from-red-700 to-red-500 hover:from-red-600 hover:to-red-800 text-white px-10 py-5 rounded-lg shadow-lg font-bold text-lg"
+                          className="w-full bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 border border-red-500/30 text-white font-semibold py-3 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-all duration-300"
                         >
-                          MESAJI GÖNDER
+                          Mesajı Gönder
                         </Button>
-                      </motion.div>
+                      </form>
+                      
+                      <p className="text-white/60 text-sm mt-4 text-center">
+                        Mesajınız incelendikten sonra Halk Defteri'nde yayınlanacaktır.
+                      </p>
                     </div>
-                  </form>
+                  </motion.div>
+                  
+                  {/* Entries Section */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="order-1 lg:order-2"
+                  >
+                    <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Halk Defteri</h3>
+                      
+                      <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                        {entries.filter(entry => entry.approved).map(entry => (
+                          <motion.div 
+                            key={entry.id}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 * entry.id }}
+                            className="bg-gradient-to-r from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-600/20 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
+                          >
+                            <div className="flex justify-between items-start mb-2">
+                              <div>
+                                <p className="text-red-400 font-semibold">{entry.name}</p>
+                                <p className="text-white/60 text-sm">{entry.city}</p>
+                              </div>
+                              <p className="text-white/50 text-xs">{entry.date}</p>
+                            </div>
+                            <p className="text-white/90 leading-relaxed">{entry.message}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </TabsContent>
+              
+              {/* Bottom Quote */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-12 text-center"
+              >
+                <div className="bg-gradient-to-r from-red-950/30 to-black/60 backdrop-blur-sm border-2 border-red-600/30 rounded-lg p-6 shadow-[0_0_20px_rgba(220,38,38,0.15)]">
+                  <p className="text-xl font-bold text-white italic">
+                    "Egemenlik kayıtsız şartsız milletindir."
+                  </p>
+                  <p className="text-lg text-red-500 mt-2">
+                    Mustafa Kemal Atatürk
+                  </p>
                 </div>
               </motion.div>
               
-              {/* Entries Display Section */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="order-1 lg:order-2"
-              >
-                <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Vatandaş Mesajları</h3>
-                  
-                  <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                    {entries.map(entry => (
-                      <motion.div 
-                        key={entry.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 * entry.id }}
-                        className="bg-gradient-to-r from-black/80 to-red-950/40 backdrop-blur-sm p-4 rounded-lg border border-red-600/30 hover:border-red-500/50 transition-all duration-300 shadow-md"
-                      >
-                        <div className="flex justify-between items-start mb-3">
-                          <div>
-                            <p className="text-lg font-bold text-white">{entry.name}</p>
-                            <p className="text-sm text-red-400">{entry.city}</p>
-                          </div>
-                          <p className="text-xs text-white/60">{entry.date}</p>
-                        </div>
-                        <p className="text-white/90 leading-relaxed">
-                          {entry.message}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </TabsContent>
-          
-          {/* Bottom Quote */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-12 text-center"
-          >
-            <div className="bg-gradient-to-r from-red-950/30 to-black/60 backdrop-blur-sm border-2 border-red-600/30 rounded-lg p-6 shadow-[0_0_20px_rgba(220,38,38,0.15)]">
-              <p className="text-xl font-bold text-white italic">
-                "Egemenlik kayıtsız şartsız milletindir."
-              </p>
-              <p className="text-lg text-red-500 mt-2">
-                Mustafa Kemal Atatürk
-              </p>
-            </div>
+              {/* Navigation Buttons */}
+              <div className="flex justify-center mt-10 gap-4">
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
+                  <Button 
+                    variant="outline"
+                    className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
+                    onClick={() => navigate("/")}
+                  >
+                    ◀ Ana Sayfa
+                  </Button>
+                </motion.div>
+                
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
+                  <Button 
+                    variant="outline"
+                    className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
+                    onClick={() => navigate("/gorevler")}
+                  >
+                    Görevler
+                  </Button>
+                </motion.div>
+              </div>
+            </Tabs>
           </motion.div>
-          
-          {/* Navigation Buttons */}
-          <div className="flex justify-center mt-10 gap-4">
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => navigate("/")}
-              >
-                ◀ Ana Sayfa
-              </Button>
-            </motion.div>
-            
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => navigate("/gorevler")}
-              >
-                Görevler
-              </Button>
-            </motion.div>
-          </div>
         </div>
       </main>
       
