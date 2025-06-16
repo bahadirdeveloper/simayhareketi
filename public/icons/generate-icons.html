@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create app icon
+        function generateIcon(size) {
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#dc2626');
+            gradient.addColorStop(1, '#7f1d1d');
+            
+            // Rounded rectangle background
+            const radius = size * 0.125;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Turkish flag elements
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const flagRadius = size * 0.3;
+            
+            // White circle background
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, flagRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Red crescent
+            ctx.fillStyle = '#dc2626';
+            const crescentX = centerX + size * 0.08;
+            ctx.beginPath();
+            ctx.arc(crescentX, centerY, size * 0.15, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // White inner circle for crescent
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(crescentX + size * 0.03, centerY, size * 0.12, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Red star
+            ctx.fillStyle = '#dc2626';
+            const starX = centerX - size * 0.05;
+            const starY = centerY;
+            const starRadius = size * 0.06;
+            
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+                const x = starX + Math.cos(angle) * starRadius;
+                const y = starY + Math.sin(angle) * starRadius;
+                
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+                
+                const innerAngle = ((i + 0.5) * 4 * Math.PI) / 5 - Math.PI / 2;
+                const innerX = starX + Math.cos(innerAngle) * (starRadius * 0.4);
+                const innerY = starY + Math.sin(innerAngle) * (starRadius * 0.4);
+                ctx.lineTo(innerX, innerY);
+            }
+            ctx.closePath();
+            ctx.fill();
+            
+            // Text
+            if (size >= 144) {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `bold ${size * 0.08}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('HALK', centerX, size * 0.85);
+                ctx.fillText('SİSTEMİ', centerX, size * 0.93);
+            }
+            
+            return canvas.toDataURL('image/png');
+        }
+        
+        // Generate different sizes
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        sizes.forEach(size => {
+            const dataUrl = generateIcon(size);
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = `icon-${size}x${size}.png`;
+            link.click();
+        });
+    </script>
+</body>
+</html>

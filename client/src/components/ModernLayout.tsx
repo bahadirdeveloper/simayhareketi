@@ -5,6 +5,7 @@ import SimpleFuturisticTurkish from './SimpleFuturisticTurkish';
 import LanguageSelector from './LanguageSelector';
 import AccessibilityReader from './AccessibilityReader';
 import QuickNav from './QuickNav';
+import MobileHamburgerMenu from './MobileHamburgerMenu';
 import { ModernTechButton } from './ModernTechButton';
 
 import { navigateWithScrollReset, scrollToTop } from '@/lib/navigation';
