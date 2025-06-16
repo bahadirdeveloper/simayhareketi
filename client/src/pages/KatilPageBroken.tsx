@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
+import SimpleFuturisticTurkish from "@/components/SimpleFuturisticTurkish";
+import AccessibilityReader from "@/components/AccessibilityReader";
 import { initAudio, playSoundtrack } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
+import GlobalTranslator from "@/components/GlobalTranslator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -18,6 +21,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Tabs,
   TabsContent,
@@ -38,23 +48,28 @@ import {
   Phone,
   Clock,
   TrendingUp,
-  User,
-  Plus,
-  Shield,
+  Volume2,
+  VolumeX,
+  ArrowLeft,
+  CheckCircle,
   CreditCard,
-  Crown,
-  Star
+  Plus,
+  User,
+  MessageSquare,
+  Globe,
+  Calendar,
+  Shield,
+  Crown
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ModernLayout from "@/components/ModernLayout";
-import AccessibilityReader from "@/components/AccessibilityReader";
 
 const formSchema = z.object({
   ad: z.string().min(2, {
     message: "Ad en az 2 karakter olmalıdır.",
   }),
   email: z.string().email({
-    message: "Geçerli bir e-posta adresi giriniz.",
+    message: "Geçerli bir email adresi giriniz.",
   }),
   telefon: z.string().min(10, {
     message: "Telefon numarası en az 10 karakter olmalıdır.",
@@ -62,7 +77,9 @@ const formSchema = z.object({
   sehir: z.string().min(2, {
     message: "Şehir en az 2 karakter olmalıdır.",
   }),
-  katilimTipi: z.string().optional(),
+  katilimTipi: z.string().min(1, {
+    message: "Katılım tipi seçiniz.",
+  }),
   mesaj: z.string().optional(),
 });
 
@@ -84,24 +101,26 @@ export default function KatilPage() {
 
   const handlePackageSelect = async (packageType: string, amount: number) => {
     try {
+      // Set the selected package and update form
       setSelectedPackage(packageType);
       form.setValue('katilimTipi', packageType);
       
+      // Scroll to form section
       const formElement = document.querySelector('#participation-form');
       if (formElement) {
         formElement.scrollIntoView({ behavior: 'smooth' });
       }
       
       toast({
-        title: "Katkı Seçildi",
-        description: `₺${amount} katkı miktarı seçildi. Lütfen formu doldurun.`,
+        title: "Paket Seçildi",
+        description: `${packageType.toUpperCase()} paketi seçildi. Lütfen formu doldurun.`,
         variant: "default",
       });
     } catch (error) {
       console.error('Package selection error:', error);
       toast({
         title: "Hata",
-        description: "Katkı seçimi başarısız. Lütfen tekrar deneyin.",
+        description: "Paket seçimi başarısız. Lütfen tekrar deneyin.",
         variant: "destructive",
       });
     }
@@ -130,70 +149,84 @@ export default function KatilPage() {
           {
             language: i18n.language || "tr",
             hasInteracted: false,
-            metadata: {
-              source: "katil-page",
-              timestamp: new Date().toISOString()
-            }
+            page: "katil"
           }
         );
       } catch (error) {
-        console.error('Failed to record visit:', error);
+        console.error("Failed to record visit:", error);
       }
     };
-
+    
     recordVisit();
-    
-    const fetchStats = async () => {
-      try {
-        const statsResponse = await apiRequest("GET", "/api/stats/live");
-        if (statsResponse.ok) {
-          const statsData = await statsResponse.json();
-          setStats({
-            totalMembers: statsData.participants || 0,
-            activeTasks: statsData.activeProjects || 0,
-            completedTasks: statsData.completedTasks || 0,
-            totalDonations: statsData.totalAmount || 0
-          });
-        }
-      } catch (error) {
-        console.error('Failed to fetch stats:', error);
-      }
-    };
-
-    const fetchTransactions = async () => {
-      try {
-        const transResponse = await apiRequest("GET", "/api/transactions");
-        if (transResponse.ok) {
-          const transData = await transResponse.json();
-          setTransactions(transData.transactions || []);
-        }
-      } catch (error) {
-        console.error('Failed to fetch transactions:', error);
-      }
-    };
-
-    fetchStats();
-    fetchTransactions();
-    
-    const interval = setInterval(fetchStats, 5000);
-    return () => clearInterval(interval);
   }, [i18n.language]);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('tr-TR', {
-      style: 'currency',
-      currency: 'TRY'
-    }).format(amount);
+  const fetchLiveData = async () => {
+    try {
+      const response = await fetch("/api/stats/live", {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setStats({
+          totalMembers: data.participants || 0, // Gerçek katılımcı sayısı (üye)
+          activeTasks: data.activeProjects || 0,
+          completedTasks: data.volunteers || 0,
+          totalDonations: data.totalAmount || 0
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch stats:", error);
+    }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('tr-TR', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+  const fetchTransactions = async () => {
+    try {
+      const response = await fetch("/api/transactions", {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.transactions && Array.isArray(data.transactions)) {
+          setTransactions(data.transactions.slice(0, 5));
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch transactions:", error);
+    }
+  };
+
+  // Live data updates every 5 seconds
+  useEffect(() => {
+    fetchLiveData(); // Initial fetch
+    fetchTransactions(); // Initial transaction fetch
+    
+    const interval = setInterval(() => {
+      fetchLiveData();
+    }, 5000); // Update every 5 seconds
+    
+    const transactionInterval = setInterval(() => {
+      fetchTransactions();
+    }, 30000); // Update transactions every 30 seconds
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(transactionInterval);
+    };
+  }, []);
+
+  // Format currency
+  const formatCurrency = (amount: number) => {
+    if (amount >= 1000000) {
+      return `${(amount / 1000000).toFixed(1)}M TL`;
+    } else if (amount >= 1000) {
+      return `${(amount / 1000).toFixed(0)}K TL`;
+    }
+    return `${amount.toLocaleString()} TL`;
+  };
+
+  // Calculate progress percentage
+  const calculateProgress = (current: number, target: number) => {
+    return Math.min((current / target) * 100, 100);
   };
 
   const handleToggleAudio = () => {
@@ -204,6 +237,7 @@ export default function KatilPage() {
     setIsSubmitting(true);
     
     try {
+      // If a package is selected, proceed with payment
       if (selectedPackage || values.katilimTipi) {
         const packageType = selectedPackage || values.katilimTipi;
         let amount = 0;
@@ -212,13 +246,20 @@ export default function KatilPage() {
           case 'dijital-kimlik':
             amount = 20;
             break;
-          case 'ozel-katki':
-            amount = customAmount ? parseInt(customAmount) : 20;
+          case 'temel':
+            amount = 50;
+            break;
+          case 'premium':
+            amount = 150;
+            break;
+          case 'elite':
+            amount = 300;
             break;
           default:
-            throw new Error('Geçersiz katkı seçimi');
+            throw new Error('Geçersiz paket seçimi');
         }
         
+        // Create payment intent
         const response = await apiRequest("POST", "/api/create-payment-intent", {
           amount: amount,
           packageType: packageType,
@@ -227,6 +268,7 @@ export default function KatilPage() {
         
         if (response.ok) {
           const data = await response.json();
+          // Store payment info and user data for checkout page
           localStorage.setItem('pendingPayment', JSON.stringify({
             clientSecret: data.clientSecret,
             amount: amount,
@@ -234,12 +276,14 @@ export default function KatilPage() {
             userInfo: values
           }));
           
+          // Navigate to checkout page
           navigate('/checkout');
           return;
         } else {
           throw new Error('Ödeme işlemi başlatılamadı');
         }
       } else {
+        // Regular participation without payment
         setShowConfetti(true);
         toast({
           title: "Harekete Hoş Geldiniz!",
@@ -255,16 +299,23 @@ export default function KatilPage() {
         }, 5000);
       }
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('Form submission error:', error);
       toast({
         title: "Hata",
-        description: "Katılım başarısız. Lütfen tekrar deneyin.",
+        description: error instanceof Error ? error.message : "Bir hata oluştu. Lütfen tekrar deneyin.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   }
+
+  const katilimTipleri = [
+    { value: "dijital-kimlik", label: "🟢 Dijital TC Kimlik - Güvenli dijital kimlik + 1 görev hakkı (₺20)" },
+    { value: "temel", label: "🔵 Temel Paket - Hareket üyeliği + Dijital kimlik belgesi (₺50)" },
+    { value: "premium", label: "🟡 Premium Paket - Otomatik TC kimlik doğrulama + Premium görevler (₺150)" },
+    { value: "elite", label: "🟣 Elite Paket - Liderlik görevleri + Organizatör yetkileri (₺300)" }
+  ];
 
   return (
     <ModernLayout 
@@ -299,7 +350,7 @@ export default function KatilPage() {
                   }}
                   transition={{
                     duration: Math.random() * 3 + 2,
-                    ease: "easeOut",
+                    ease: "linear",
                   }}
                 />
               ))}
@@ -307,27 +358,43 @@ export default function KatilPage() {
           )}
         </AnimatePresence>
 
-        {/* Stats Section */}
+        {/* Hero Section */}
+        <div className="text-center space-y-6 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl p-8 text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              HAREKETE KATIL
+            </h1>
+            <p className="text-xl md:text-2xl text-red-100 max-w-3xl mx-auto">
+              Türkiye'nin diriliş yolculuğunda sen de yer al. Birlikte daha güçlü bir gelecek inşa edelim.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Live Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gray-900 border-2 border-red-500/30 rounded-2xl p-6 text-center"
+            className="bg-gray-900 border-2 border-blue-500/30 rounded-2xl p-6 text-center"
           >
-            <Users className="w-8 h-8 text-red-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{stats.totalMembers}</div>
-            <div className="text-red-300 text-sm">Katılımcı</div>
+            <Users className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-white">{stats.totalMembers?.toLocaleString() || 0}</div>
+            <div className="text-blue-300 text-sm">Toplam Üye</div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="bg-gray-900 border-2 border-blue-500/30 rounded-2xl p-6 text-center"
+            className="bg-gray-900 border-2 border-orange-500/30 rounded-2xl p-6 text-center"
           >
-            <Target className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{stats.activeTasks}</div>
-            <div className="text-blue-300 text-sm">Aktif Görev</div>
+            <Target className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-white">{stats.activeTasks || 0}</div>
+            <div className="text-orange-300 text-sm">Aktif Görev</div>
           </motion.div>
 
           <motion.div
@@ -459,9 +526,157 @@ export default function KatilPage() {
                 </Card>
               </div>
             </div>
+              {/* Dijital Kimlik Paketi - 1 TL */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-gradient-to-r from-green-400 to-emerald-500 text-black px-4 py-1 rounded-full text-xs font-bold">
+                    EN UYGUN
+                  </span>
+                </div>
+                <Card className={`bg-gradient-to-br from-emerald-900 to-emerald-700 border-emerald-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 ${selectedPackage === 'dijital-kimlik' ? 'ring-4 ring-emerald-400 border-emerald-400' : ''}`}>
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <CreditCard className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-lg font-bold">DİJİTAL TC KİMLİK</CardTitle>
+                    <CardDescription className="text-emerald-200">
+                      Güvenli dijital kimlik + 1 görev hakkı
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺20</div>
+                    <ul className="text-emerald-200 space-y-2 text-sm mb-6">
+                      <li>✓ Güvenli dijital TC kimlik</li>
+                      <li>✓ QR doğrulama kodu</li>
+                      <li>✓ 1 görev seçme hakkı</li>
+                      <li>✓ Biyometrik güvenlik</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                      onClick={() => handlePackageSelect('dijital-kimlik', 20)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-            {/* Participation Form */}
-            <Card id="participation-form" className="bg-gray-900 border-gray-700">
+              {/* Temel Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
+                <Card className={`bg-gradient-to-br from-blue-900 to-blue-800 border-blue-600 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${selectedPackage === 'temel' ? 'ring-4 ring-blue-400 border-blue-400' : ''}`}>
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <User className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">TEMEL PAKET</CardTitle>
+                    <CardDescription className="text-blue-200">
+                      Harekete temel katılım + kimlik belgesi
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺50</div>
+                    <ul className="text-blue-200 space-y-2 text-sm mb-6">
+                      <li>✓ Hareket üyeliği</li>
+                      <li>✓ Dijital kimlik belgesi</li>
+                      <li>✓ Temel görevlere erişim</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                      onClick={() => handlePackageSelect('temel', 50)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Premium Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="relative"
+              >
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-1 rounded-full text-xs font-bold">
+                    ÖNERİLEN
+                  </span>
+                </div>
+                <Card className={`bg-gradient-to-br from-green-900 to-green-700 border-green-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 ${selectedPackage === 'premium' ? 'ring-4 ring-green-400 border-green-400' : ''}`}>
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">PREMİUM PAKET</CardTitle>
+                    <CardDescription className="text-green-200">
+                      Üyelik paketi + otomatik TC kimlik belgesi
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺150</div>
+                    <ul className="text-green-200 space-y-2 text-sm mb-6">
+                      <li>✓ Tüm temel özellikler</li>
+                      <li>✓ Otomatik TC kimlik doğrulama</li>
+                      <li>✓ Premium görevlere erişim</li>
+                      <li>✓ Öncelikli destek</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      onClick={() => handlePackageSelect('premium', 150)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Elite Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="relative"
+              >
+                <Card className={`bg-gradient-to-br from-purple-900 to-purple-700 border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${selectedPackage === 'elite' ? 'ring-4 ring-purple-400 border-purple-400' : ''}`}>
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Plus className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">ELİTE PAKET</CardTitle>
+                    <CardDescription className="text-purple-200">
+                      Liderlik paketi + özel yetkiler
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺300</div>
+                    <ul className="text-purple-200 space-y-2 text-sm mb-6">
+                      <li>✓ Tüm premium özellikler</li>
+                      <li>✓ Liderlik görevleri</li>
+                      <li>✓ Organizatör yetkileri</li>
+                      <li>✓ VIP destek</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                      onClick={() => handlePackageSelect('elite', 300)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
+            <Card className="bg-gray-900 border-gray-700" id="participation-form">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <HandHeart className="w-6 h-6 text-red-500" />
@@ -549,6 +764,8 @@ export default function KatilPage() {
                       />
                     </div>
 
+
+
                     <FormField
                       control={form.control}
                       name="mesaj"
@@ -614,18 +831,15 @@ export default function KatilPage() {
                         className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                            <Users className="w-5 h-5 text-white" />
-                          </div>
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                           <div>
-                            <p className="text-white font-medium">{transaction.name || "Anonim"}</p>
-                            <p className="text-gray-400 text-sm">{transaction.city || "Bilinmiyor"}</p>
+                            <div className="text-white font-medium">Yeni Katılımcı</div>
+                            <div className="text-gray-400 text-sm">Az önce katıldı</div>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="text-green-400 font-bold">{formatCurrency(transaction.amount)}</p>
-                          <p className="text-gray-400 text-xs">{formatDate(transaction.createdAt)}</p>
-                        </div>
+                        <Badge variant="secondary" className="bg-green-600/20 text-green-300">
+                          Aktif
+                        </Badge>
                       </motion.div>
                     ))}
                   </div>
@@ -635,29 +849,55 @@ export default function KatilPage() {
               <Card className="bg-gray-900 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
-                    <Target className="w-5 h-5 text-blue-400" />
-                    Güncel İstatistikler
+                    <Clock className="w-5 h-5 text-blue-400" />
+                    Günlük Hedefler
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Toplam Katılımcı</span>
-                      <Badge variant="secondary" className="bg-red-600 text-white">
-                        {stats.totalMembers}
-                      </Badge>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Yeni Üye Hedefi</span>
+                        <span className="text-white">127/200</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(127, 200)}%` }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                        />
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Aktif Görevler</span>
-                      <Badge variant="secondary" className="bg-blue-600 text-white">
-                        {stats.activeTasks}
-                      </Badge>
+                    
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Görev Tamamlama</span>
+                        <span className="text-white">89/150</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(89, 150)}%` }}
+                          transition={{ duration: 1, delay: 0.4 }}
+                        />
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300">Toplam Destek</span>
-                      <Badge variant="secondary" className="bg-green-600 text-white">
-                        {formatCurrency(stats.totalDonations)}
-                      </Badge>
+                    
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-300">Topluluk Etkileşimi</span>
+                        <span className="text-white">234/300</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${calculateProgress(234, 300)}%` }}
+                          transition={{ duration: 1, delay: 0.6 }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -665,8 +905,8 @@ export default function KatilPage() {
             </div>
           </TabsContent>
         </Tabs>
+
       </div>
-      <AccessibilityReader />
     </ModernLayout>
   );
 }
