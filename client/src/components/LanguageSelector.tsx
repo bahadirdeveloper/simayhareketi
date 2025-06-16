@@ -27,12 +27,12 @@ export default function LanguageSelector() {
     // Tarayıcıda dil tercihini kalıcı olarak sakla (localStorage)
     try {
       localStorage.setItem('userLanguage', langCode);
-      console.log(`Dil tercihi kaydedildi: ${langCode}`);
+      // Language preference saved
       
       // Ayrıca bir çerez oluştur (bazı tarayıcılar için yedek)
       document.cookie = `userLanguage=${langCode}; expires=Fri, 31 Dec 2030 23:59:59 GMT; path=/`;
     } catch (e) {
-      console.error('Dil tercihi saklanamadı:', e);
+      // Silent storage error
     }
     
     // Mevcut sayfanın dilini güncellemeyi sağla
@@ -58,7 +58,7 @@ export default function LanguageSelector() {
         hasInteracted: true
       }),
     }).catch(error => {
-      console.error('Failed to record language change visit', error);
+      // Silent visit tracking error
     });
   };
 

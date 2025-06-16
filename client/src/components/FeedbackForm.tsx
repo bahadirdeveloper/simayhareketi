@@ -50,7 +50,7 @@ export default function FeedbackForm({ onSubmit }: FeedbackFormProps) {
       setFeedback("");
       if (onSubmit) onSubmit();
     } catch (error) {
-      console.error("Failed to submit feedback:", error);
+      // Silent feedback submission error
       toast({
         title: t('feedback.error'),
         description: t('feedback.submit_error'),

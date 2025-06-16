@@ -69,14 +69,14 @@ export default function LanguagePage() {
         audioElement.volume = 0.3;
         audioElement.play()
           .then(() => {
-            console.log("Audio started successfully");
+            // Audio started successfully
           })
           .catch(err => {
             // Silent audio error handling
           });
       }
     } catch (error) {
-      console.error("Audio play error:", error);
+      // Silent error handling
     }
     
     // Record selected language

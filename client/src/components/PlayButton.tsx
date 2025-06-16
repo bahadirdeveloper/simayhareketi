@@ -18,13 +18,13 @@ const PlayButton = () => {
       playPromise
         .then(() => {
           // Başarılı
-          console.log('Müzik başarıyla çalınıyor!');
+          // Audio started successfully
           setIsPlaying(true);
           document.body.appendChild(audioElement);
         })
         .catch((error) => {
           // Başarısız - kullanıcı etkileşimi sınırlaması olabilir
-          console.error('Müzik çalma hatası:', error);
+          // Silent audio error
           
           // Farklı bir yöntem dene - bir button oluştur ve ona tıkla
           const button = document.createElement('button');
@@ -41,7 +41,9 @@ const PlayButton = () => {
                 setIsPlaying(true);
                 document.body.appendChild(audioElement);
               })
-              .catch(err => console.error('Son girişim de başarısız oldu:', err));
+              .catch(err => {
+                // Final attempt failed silently
+              });
           };
           
           document.body.appendChild(button);

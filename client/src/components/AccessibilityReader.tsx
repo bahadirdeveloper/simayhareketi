@@ -68,7 +68,7 @@ export default function AccessibilityReader({ pageContent, pageName }: Accessibi
     
     // Error handling
     newUtterance.onerror = (event) => {
-      console.error("Speech synthesis error:", event);
+      // Silent speech synthesis error
       setIsReading(false);
       setIsPaused(false);
     };
