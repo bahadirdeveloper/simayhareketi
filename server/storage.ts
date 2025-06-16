@@ -1,10 +1,10 @@
 import { users, type User, type InsertUser, userSessions, visitorStats, feedback, transactions,
   type InsertUserSession, type UserSession, type InsertVisitorStat, type VisitorStat, 
   type InsertFeedback, type Feedback, type InsertTransaction, type Transaction,
-  gorevler, gorevBasvurulari, ulkeBasvurulari, premiumUyelikler, odemeler,
+  gorevler, gorevBasvurulari, ulkeBasvurulari, premiumUyelikler, odemeler, dijitalKimlikler,
   type Gorev, type InsertGorev, type GorevBasvuru, type InsertGorevBasvuru,
   type UlkeBasvuru, type InsertUlkeBasvuru, type PremiumUyelik, type InsertPremiumUyelik,
-  type Odeme, type InsertOdeme } from "@shared/schema";
+  type Odeme, type InsertOdeme, type DijitalKimlik, type InsertDijitalKimlik } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
 
@@ -63,6 +63,13 @@ export interface IStorage {
   
   // User Stripe info update
   updateUserStripeInfo(userId: number, stripeCustomerId: string, stripeSubscriptionId?: string): Promise<User>;
+  
+  // Digital identity methods
+  createDijitalKimlik(kimlik: InsertDijitalKimlik): Promise<DijitalKimlik>;
+  getDijitalKimlik(userId: number): Promise<DijitalKimlik | undefined>;
+  getDijitalKimlikByTcNo(tcNo: string): Promise<DijitalKimlik | undefined>;
+  updateDijitalKimlikDurum(id: number, aktif: boolean): Promise<DijitalKimlik>;
+  getAllDijitalKimlikler(): Promise<DijitalKimlik[]>;
 }
 
 export class DatabaseStorage implements IStorage {

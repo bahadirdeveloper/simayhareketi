@@ -142,6 +142,7 @@ export const usersRelations = relations(users, ({ many }) => ({
   gorevBasvurulari: many(gorevBasvurulari),
   premiumUyelikler: many(premiumUyelikler),
   odemeler: many(odemeler),
+  dijitalKimlikler: many(dijitalKimlikler),
 }));
 
 export const gorevlerRelations = relations(gorevler, ({ many }) => ({

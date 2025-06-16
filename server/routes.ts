@@ -12,6 +12,7 @@ import {
   getPaymentPrices
 } from "./routes/stripe";
 import { seedTasks } from "./seed-tasks";
+import { registerDigitalIdentityRoutes } from "./routes/digital-identity";
 
 // SQL Enjeksiyon Koruma Middleware
 function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
@@ -485,6 +486,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: "Failed to seed tasks" });
     }
   });
+
+  // Register digital identity routes
+  registerDigitalIdentityRoutes(app);
 
   const httpServer = createServer(app);
 
