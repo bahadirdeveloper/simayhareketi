@@ -34,26 +34,85 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
     event.preventDefault();
 
     if (!stripe || !elements) {
+      toast({
+        title: "Ödeme Sistemi Hatası",
+        description: "Ödeme sistemi yüklenirken hata oluştu. Lütfen sayfayı yenileyip tekrar deneyin.",
+        variant: "destructive",
+      });
       return;
     }
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/katil/success`,
-      },
-    });
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/katil/success`,
+        },
+        redirect: 'if_required'
+      });
 
-    if (error) {
+      if (error) {
+        let errorMessage = "Ödeme işlemi tamamlanamadı.";
+        
+        // Specific error handling for Turkish users
+        switch (error.type) {
+          case 'card_error':
+            errorMessage = "Kart bilgilerinizi kontrol edin. " + (error.message || "");
+            break;
+          case 'validation_error':
+            errorMessage = "Lütfen tüm alanları doğru şekilde doldurun.";
+            break;
+          case 'api_connection_error':
+            errorMessage = "İnternet bağlantınızı kontrol edin ve tekrar deneyin.";
+            break;
+          case 'api_error':
+            errorMessage = "Ödeme sistemi geçici olarak kullanılamıyor. Lütfen birkaç dakika sonra tekrar deneyin.";
+            break;
+          case 'authentication_error':
+            errorMessage = "Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.";
+            break;
+          case 'rate_limit_error':
+            errorMessage = "Çok fazla deneme yapıldı. Lütfen bir süre bekleyip tekrar deneyin.";
+            break;
+          default:
+            errorMessage = error.message || errorMessage;
+        }
+        
+        toast({
+          title: "Ödeme Başarısız",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      } else {
+        // Payment succeeded
+        if (paymentIntent.status === 'succeeded') {
+          toast({
+            title: "Ödeme Başarılı!",
+            description: "Ödemeniz başarıyla işlendi. Yönlendiriliyorsunuz...",
+            variant: "default",
+          });
+          onSuccess();
+        } else if (paymentIntent.status === 'processing') {
+          toast({
+            title: "Ödeme İşleniyor",
+            description: "Ödemeniz işleniyor. Lütfen bekleyin...",
+            variant: "default",
+          });
+          // Check status after a delay
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      }
+    } catch (err: any) {
       toast({
-        title: "Ödeme Başarısız",
-        description: error.message || "Ödeme işlemi tamamlanamadı.",
+        title: "Beklenmeyen Hata",
+        description: "Ödeme işlemi sırasında beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
         variant: "destructive",
       });
-    } else {
-      onSuccess();
+      console.error('Payment error:', err);
     }
 
     setIsLoading(false);
@@ -120,23 +179,40 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
               />
             </div>
             
+            {/* Payment Security Notice */}
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+              <p className="text-blue-200 text-sm flex items-center gap-2">
+                <CreditCard className="w-4 h-4" />
+                Güvenli SSL şifrelemesi ile korunmaktadır. Kart bilgileriniz güvende.
+              </p>
+            </div>
+
             <Button
               type="submit"
               disabled={!stripe || isLoading}
-              className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-bold"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all duration-300"
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  İşleniyor...
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Ödeme İşleniyor...
                 </>
               ) : (
                 <>
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  ₺{paymentData.amount} Öde
+                  <CreditCard className="w-4 h-4 mr-2" />
+                  ₺{paymentData.amount} Güvenli Ödeme
                 </>
               )}
             </Button>
+            
+            {/* Error state helper */}
+            {!stripe && (
+              <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
+                <p className="text-yellow-200 text-sm">
+                  Ödeme sistemi yükleniyor... Eğer bu mesaj devam ederse, sayfayı yenileyin.
+                </p>
+              </div>
+            )}
           </form>
         </CardContent>
       </Card>
