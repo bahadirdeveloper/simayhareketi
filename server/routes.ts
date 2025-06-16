@@ -424,34 +424,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe payment routes
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
-      const { amount, currency = "try" } = req.body;
+      const { amount, currency = "try", packageType, userInfo } = req.body;
       
-      if (!amount || amount < 1) {
-        return res.status(400).json({ error: "Geçersiz tutar" });
+      // Enhanced validation
+      if (!amount || amount < 20) {
+        return res.status(400).json({ error: "Minimum tutar 20 TL olmalıdır" });
       }
 
-      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2025-05-28.basil',
-      });
+      if (amount > 100000) {
+        return res.status(400).json({ error: "Maksimum tutar 100.000 TL olabilir" });
+      }
+
+      if (!process.env.STRIPE_SECRET_KEY) {
+        console.error("STRIPE_SECRET_KEY is not configured");
+        return res.status(500).json({ error: "Ödeme sistemi yapılandırma hatası" });
+      }
+
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
       
+      // Create payment intent with metadata
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents/kuruş
         currency: currency,
         automatic_payment_methods: {
           enabled: true,
         },
+        metadata: {
+          package_type: packageType || 'ozel-katki',
+          user_email: userInfo?.email || '',
+          user_name: userInfo?.ad || '',
+          platform: 'halk-sistemi'
+        },
+        description: `Halk Sistemi - ${packageType === 'dijital-kimlik' ? 'Dijital Kimlik' : 'Özel Katkı'} - ₺${amount}`,
       });
+
+      console.log(`[PAYMENT] Created payment intent for ₺${amount} - ${packageType} - ${userInfo?.email}`);
 
       res.json({ 
         clientSecret: paymentIntent.client_secret,
         amount: amount,
-        currency: currency
+        currency: currency,
+        paymentIntentId: paymentIntent.id
       });
     } catch (error: any) {
       console.error("Payment intent creation error:", error);
       res.status(500).json({ 
         error: "Ödeme sistemi hatası",
-        message: error.message 
+        message: error.message || "Ödeme işlemi başlatılamadı",
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
       });
     }
   });
