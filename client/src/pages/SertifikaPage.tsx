@@ -110,11 +110,7 @@ export default function SertifikaPage() {
           <div className="relative z-10">
             <div className="flex items-center justify-center mb-8">
               <div className="w-24 h-24 bg-gradient-to-br from-red-600/20 to-red-800/20 rounded-2xl border-2 border-red-600/40 flex items-center justify-center p-2">
-                <img 
-                  src="@assets/image_1750060866461.png" 
-                  alt="Halk Sistemi Logo" 
-                  className="w-full h-full object-contain"
-                />
+                <Award className="w-12 h-12 text-red-400" />
               </div>
             </div>
             
