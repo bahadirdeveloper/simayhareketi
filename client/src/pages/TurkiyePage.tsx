@@ -65,10 +65,41 @@ export default function TurkiyePage() {
               <div className="w-full h-full bg-gradient-to-r from-red-500/20 to-transparent"></div>
             </div>
             
-            {/* Flag */}
+            {/* VIP Turkish Flag */}
             <div className="mb-8 flex justify-center">
-              <div className="w-32 h-32 bg-red-600 rounded-2xl flex items-center justify-center text-5xl border-4 border-red-400 shadow-lg">
-                🇹🇷
+              <div className="relative w-40 h-28 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 hover:scale-105 transition-transform duration-300">
+                {/* Flag background */}
+                <div className="w-full h-full bg-gradient-to-br from-red-600 via-red-700 to-red-800 relative">
+                  {/* Subtle texture overlay */}
+                  <div className="absolute inset-0 opacity-10" style={{
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)',
+                    backgroundSize: '20px 20px'
+                  }}></div>
+                  
+                  {/* Star and Crescent */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative">
+                      {/* Crescent Moon */}
+                      <div className="relative w-12 h-12">
+                        <div className="absolute w-10 h-10 bg-white rounded-full left-1 top-1"></div>
+                        <div className="absolute w-8 h-8 bg-red-700 rounded-full left-3 top-1"></div>
+                      </div>
+                      
+                      {/* Five-pointed Star */}
+                      <div className="absolute -right-4 top-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                          <path d="M12 2L14.09 8.26L22 9L16 14.74L17.18 22.5L12 19.77L6.82 22.5L8 14.74L2 9L9.91 8.26L12 2Z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5"></div>
+                </div>
+                
+                {/* Premium border shine */}
+                <div className="absolute inset-0 rounded-2xl border border-white/30 pointer-events-none"></div>
               </div>
             </div>
             
