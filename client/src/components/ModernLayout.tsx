@@ -247,8 +247,23 @@ const ModernLayout = ({
     if (!showBackButton) return null;
     
     const handleBackClick = () => {
-      navigateWithScrollReset(navigate, "/");
+      // Check if we're on a Turkey section page
+      const currentPath = window.location.pathname;
+      const isTurkeySection = currentPath === '/turknedir' || 
+                             currentPath === '/anayasalar' || 
+                             currentPath === '/turkdetay';
+      
+      if (isTurkeySection) {
+        navigateWithScrollReset(navigate, "/turkiye");
+      } else {
+        navigateWithScrollReset(navigate, "/");
+      }
     };
+    
+    const currentPath = window.location.pathname;
+    const isTurkeySection = currentPath === '/turknedir' || 
+                           currentPath === '/anayasalar' || 
+                           currentPath === '/turkdetay';
     
     return (
       <button 
@@ -256,7 +271,7 @@ const ModernLayout = ({
         className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-black/80 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-lg floating-element text-white hover:text-red-100 nav-button touch-friendly mobile-nav-optimized gpu-accelerated"
       >
         <ArrowLeft className="h-4 w-4" />
-        <span className="hidden sm:inline">Ana Sayfa</span>
+        <span className="hidden sm:inline">{isTurkeySection ? "Türkiye" : "Ana Sayfa"}</span>
       </button>
     );
   }, [showBackButton, navigate]);
