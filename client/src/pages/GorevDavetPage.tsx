@@ -369,7 +369,7 @@ export default function GorevDavetPage() {
                 onClick={() => navigate("/gorevler")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-gold to-red-600 hover:from-gold/90 hover:to-red-600/90 text-black font-bold text-xl px-12 py-4 rounded-2xl shadow-[0_0_30px_rgba(251,191,36,0.4)] hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] transition-all duration-300"
+                className="bg-gradient-to-r from-gold to-red-600 hover:from-gold/90 hover:to-red-600/90 text-black font-bold text-xl px-12 py-4 rounded-2xl shadow-[0_0_30px_rgba(251,191,36,0.4)] hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] transition-all duration-300 [text-shadow:1px_1px_2px_rgba(0,0,0,0.8)]"
               >
                 <span className="flex items-center space-x-2">
                   <span>GÖREVLERE GİT</span>
