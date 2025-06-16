@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import PageLayout from "@/components/PageLayout";
 import { 
-  Certificate, 
+  GraduationCap, 
   Users, 
-  Database, 
+  Building, 
   ArrowRight, 
   CheckCircle, 
   Clock,
@@ -35,62 +35,62 @@ export default function EntegrasyonSureciPage() {
   
   const integrationSteps: IntegrationStep[] = [
     {
-      id: 'sertifika',
-      title: 'SERTİFİKA',
-      description: 'Dijital sertifika ve belgelendirme',
-      icon: Certificate,
+      id: 'egitim-sistemleri',
+      title: 'EĞİTİM SİSTEMLERİ',
+      description: 'Okul ve üniversitelerde entegrasyon',
+      icon: GraduationCap,
       status: 'active',
       progress: 75,
       color: 'from-emerald-500 to-teal-600',
-      link: '/sertifika'
+      link: '/egitim-entegrasyonu'
     },
     {
-      id: 'koordinasyon',
-      title: 'HALK KOORDİNASYON',
-      description: 'Toplumsal koordinasyon ve yönetim',
+      id: 'halk-entegrasyonu',
+      title: 'HALK ENTEGRASYONu',
+      description: 'Mahalle ve toplum bazlı entegrasyon',
       icon: Users,
       status: 'active',
-      progress: 65,
+      progress: 85,
       color: 'from-amber-500 to-orange-600',
       link: '/halk-koordinasyon'
     },
     {
-      id: 'gelir-gider',
-      title: 'CANLI GELİR-GİDER',
-      description: 'Şeffaf mali durum ve harcama takibi',
-      icon: Database,
+      id: 'is-yerleri',
+      title: 'İŞ YERLERİ',
+      description: 'Özel sektör ve işletme entegrasyonu',
+      icon: Building,
       status: 'active',
-      progress: 80,
-      color: 'from-emerald-600 to-green-700',
-      link: '/mali-seffaflik'
+      progress: 60,
+      color: 'from-purple-500 to-indigo-600',
+      link: '/is-yeri-entegrasyonu'
     },
     {
-      id: 'dijital-kimlik',
-      title: 'DİJİTAL KİMLİK',
-      description: 'Benzersiz dijital kimlik oluşturma',
+      id: 'devlet-kurumlari',
+      title: 'DEVLET KURUMLARI',
+      description: 'Kamu kurumları ve resmi entegrasyon',
       icon: Shield,
       status: 'pending',
-      progress: 40,
-      color: 'from-blue-500 to-indigo-600',
-      link: '/dijital-kimlik'
+      progress: 30,
+      color: 'from-blue-500 to-cyan-600',
+      link: '/devlet-entegrasyonu'
     }
   ];
 
   const processFeatures = [
     {
       icon: Target,
-      title: 'Hedefli Entegrasyon',
-      description: 'Her aşama önceki deneyimlere dayanarak tasarlanmıştır'
+      title: 'Çok Boyutlu Entegrasyon',
+      description: 'Eğitim, iş dünyası, kamu ve toplum tüm alanlarda koordineli entegrasyon'
     },
     {
       icon: Globe,
-      title: 'Küresel Erişim',
-      description: 'Dünyanın her yerinden katılım imkanı'
+      title: 'Toplumsal Dönüşüm',
+      description: 'Sistemik değişim için tüm toplumsal katmanları kapsayan yaklaşım'
     },
     {
       icon: Star,
-      title: 'Kaliteli Süreç',
-      description: 'Kanıtlanmış metodoloji ve standartlar'
+      title: 'Sürdürülebilir Süreç',
+      description: 'Uzun vadeli toplumsal dönüşüm için sağlam temeller'
     }
   ];
 
@@ -118,8 +118,8 @@ export default function EntegrasyonSureciPage() {
             Entegrasyon Sürecimiz
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Platformumuza katılım süreciniz şeffaf, güvenli ve adım adım gerçekleşir. 
-            Her aşamada size rehberlik ederiz.
+            Toplumsal dönüşüm için dört temel alanda kapsamlı entegrasyon süreçlerimiz: 
+            Eğitim sistemleri, halk düzeyinde örgütlenme, iş dünyası ve devlet kurumları.
           </p>
         </motion.div>
 
@@ -257,26 +257,159 @@ export default function EntegrasyonSureciPage() {
           </Card>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Detailed Integration Areas */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="space-y-12"
+        >
+          <h2 className="text-3xl font-bold text-white text-center mb-8">Entegrasyon Alanları Detayları</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Eğitim Sistemleri */}
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <GraduationCap className="h-8 w-8 text-emerald-400" />
+                  <CardTitle className="text-xl text-white">Eğitim Sistemleri Entegrasyonu</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3 text-slate-300">
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>İlkokul, ortaokul ve lise müfredatına entegrasyon</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Üniversite düzeyinde araştırma ve akademik çalışmalar</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Öğretmen eğitimi ve pedagojik yaklaşımlar</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Dijital eğitim platformları ve içerik geliştirme</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Halk Entegrasyonu */}
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <Users className="h-8 w-8 text-amber-400" />
+                  <CardTitle className="text-xl text-white">Halk Düzeyinde Entegrasyon</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3 text-slate-300">
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Mahalle komiteleri ve sivil toplum örgütlenmesi</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Toplumsal dayanışma ağları kurulumu</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Yerel yönetimler ile koordinasyon</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Kültürel etkinlikler ve toplumsal bilinç</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* İş Yerleri */}
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <Building className="h-8 w-8 text-purple-400" />
+                  <CardTitle className="text-xl text-white">İş Dünyası Entegrasyonu</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3 text-slate-300">
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Özel sektör şirketleri ve işletmeler</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Çalışan hakları ve sosyal sorumluluk</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>İş etiği ve adil ticaret uygulamaları</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>Teknoloji ve inovasyon ortaklıkları</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Devlet Kurumları */}
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <Shield className="h-8 w-8 text-blue-400" />
+                  <CardTitle className="text-xl text-white">Devlet Kurumları Entegrasyonu</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3 text-slate-300">
+                  <div className="flex items-start space-x-2">
+                    <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                    <span>Resmi kurumlar ile protokol geliştirme</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                    <span>Yasal mevzuat ve düzenleme çalışmaları</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                    <span>Kamu politikaları ve stratejik planlama</span>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Clock className="h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                    <span>Uluslararası diplomasi ve işbirliği</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
           className="text-center space-y-6"
         >
-          <h2 className="text-3xl font-bold text-white">Hazır mısınız?</h2>
+          <h2 className="text-3xl font-bold text-white">Entegrasyon Sürecine Katılın</h2>
           <p className="text-slate-300 max-w-2xl mx-auto">
-            Entegrasyon sürecine bugün başlayın ve global dayanışma hareketinin bir parçası olun.
+            Toplumsal dönüşümün parçası olun. Her alanda sürdürülebilir değişim için 
+            bizimle birlikte çalışın.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/katil">
               <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                Süreci Başlat
+                Entegrasyon Başvurusu
               </Button>
             </Link>
-            <Link href="/hakkimizda">
+            <Link href="/halk-koordinasyon">
               <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800">
-                Daha Fazla Bilgi
+                Koordinasyon Merkezi
               </Button>
             </Link>
           </div>

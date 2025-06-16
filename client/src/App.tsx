@@ -37,6 +37,7 @@ import { CagriPage } from "@/pages/CagriPage";
 import { AnayasalarPage } from "@/pages/AnayasalarPage";
 import SertifikaPage from "@/pages/SertifikaPage";
 import EntegrasyonPage from "@/pages/EntegrasyonPage";
+import EntegrasyonSureciPage from "@/pages/EntegrasyonSureciPage";
 import HalkKoordinasyonPage from "@/pages/HalkKoordinasyonPage";
 import BirlesikManifestoPage from "@/pages/BirlesikManifestoPage";
 import UlkeEklePage from "@/pages/UlkeEklePage";
@@ -84,6 +85,7 @@ function Router() {
       <Route path="/halkmanifestolari" component={HalkManifestolarPage} />
       <Route path="/sertifika" component={SertifikaPage} />
       <Route path="/entegrasyon" component={EntegrasyonPage} />
+      <Route path="/entegrasyon-sureci" component={EntegrasyonSureciPage} />
       <Route path="/halk-koordinasyon" component={HalkKoordinasyonPage} />
       <Route path="/dijital-kimlik" component={DijitalKimlikPage} />
       <Route path="/premium-paketler" component={PremiumPackagesPage} />
