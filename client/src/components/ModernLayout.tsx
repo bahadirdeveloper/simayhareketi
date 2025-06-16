@@ -217,6 +217,9 @@ const ModernLayout = ({
         {/* Language Selector */}
         {languageSelector}
         
+        {/* Navigation Breadcrumb */}
+        <NavigationBreadcrumb />
+        
         {/* Main Content */}
         <main className="relative z-10">
           {children}
