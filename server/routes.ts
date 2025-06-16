@@ -189,22 +189,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get live participation statistics
   app.get("/api/stats/live", async (req, res) => {
     try {
-      // Get real participation data from storage
-      const visits = await storage.getVisitStats(10000); // Get recent visits
-      const feedbacks = await storage.getAllFeedback(1000); // Get recent feedbacks
+      // Get authentic data from database
+      const visits = await storage.getVisitStats(10000);
+      const feedbacks = await storage.getAllFeedback(1000);
+      const gorevler = await storage.getAllGorevler();
+      const transactions = await storage.getTransactions(1000);
       
-      // Calculate real stats based on actual data
+      // Calculate real statistics from database
       const totalVisits = visits.length;
       const uniqueVisitors = new Set(visits.map(v => v.visitorIp)).size;
-      const activeCities = 0; // Will be calculated from actual city data when available
+      const activeProjects = gorevler.length;
       
-      // Real participation stats (start from zero, grow with actual usage)
+      // Count actual participants from feedback submissions
+      const participants = feedbacks.length;
+      
+      // Calculate total donations from real transactions
+      const totalAmount = transactions.reduce((sum, transaction) => {
+        return sum + (transaction.amount || 0);
+      }, 0);
+      
+      // Count volunteers from task applications
+      let volunteers = 0;
+      try {
+        const allApplications = await Promise.all(
+          gorevler.map(async (gorev) => {
+            return await storage.getGorevBasvuruCount(gorev.id);
+          })
+        );
+        volunteers = allApplications.reduce((sum, count) => sum + count, 0);
+      } catch (error) {
+        console.log("Could not fetch volunteer count");
+      }
+      
+      // Count cities from visitor IP geolocation (future enhancement)
+      const uniqueCities = new Set();
+      // Future: Extract cities from IP geolocation data
+      
       const stats = {
-        participants: 0, // Start from zero - will grow with real registrations
-        totalAmount: 0, // Start from zero - will grow with real payments
-        activeCities: 0, // Start from zero - will grow with real city participation
-        activeProjects: 101, // We have 101 mission tasks available on the platform
-        volunteers: 0, // Start from zero - will grow with real volunteer registrations
+        participants: participants,
+        totalAmount: totalAmount,
+        activeCities: uniqueCities.size,
+        activeProjects: activeProjects,
+        volunteers: volunteers,
         totalVisits: totalVisits,
         uniqueVisitors: uniqueVisitors,
         lastUpdated: new Date().toISOString()

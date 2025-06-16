@@ -86,10 +86,10 @@ export default function KatilPage() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stats, setStats] = useState({
-    totalMembers: 1247,
-    activeTasks: 100,
-    completedTasks: 73,
-    totalDonations: 45000
+    totalMembers: 0,
+    activeTasks: 0,
+    completedTasks: 0,
+    totalDonations: 0
   });
   const [transactions, setTransactions] = useState<any[]>([]);
   const { toast } = useToast();
@@ -136,10 +136,10 @@ export default function KatilPage() {
       if (response.ok) {
         const data = await response.json();
         setStats({
-          totalMembers: data.participants || data.uniqueVisitors || 1247,
-          activeTasks: data.activeProjects || 100,
-          completedTasks: data.volunteers || 73,
-          totalDonations: data.totalAmount || 45000
+          totalMembers: data.uniqueVisitors || 0,
+          activeTasks: data.activeProjects || 0,
+          completedTasks: data.volunteers || 0,
+          totalDonations: data.totalAmount || 0
         });
       }
     } catch (error) {
