@@ -264,7 +264,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
       // Calculate monthly figures
       const monthlyTransactions = transactions.filter(t => {
-        const tDate = new Date(t.createdAt);
+        const tDate = new Date(t.transactionDate);
         return tDate.getMonth() === currentMonth && tDate.getFullYear() === currentYear;
       });
       
@@ -311,12 +311,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
           filterDate.setMonth(now.getMonth() - 1);
         }
         
-        transactions = transactions.filter(t => new Date(t.createdAt) >= filterDate);
+        transactions = transactions.filter(t => new Date(t.transactionDate) >= filterDate);
       }
       
       // Sort by date (newest first) and limit
       transactions = transactions
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime())
         .slice(0, limit);
 
       // Format transactions for frontend
@@ -326,7 +326,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         amount: Math.abs(t.amount),
         description: t.description,
         category: t.category || 'Genel',
-        date: t.createdAt,
+        date: t.transactionDate,
         verified: true // All transactions in system are verified
       }));
 
