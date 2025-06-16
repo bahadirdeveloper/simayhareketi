@@ -15,6 +15,7 @@ const pageMap: Record<string, { title: string; parent?: string }> = {
   '/halk-manifestolar': { title: 'Halk Manifestoları', parent: '/' },
   '/kurucunun-eksikleri': { title: 'Kurucunun Eksikleri', parent: '/gorevler' },
   '/dijital-kimlik': { title: 'Dijital Kimlik', parent: '/' },
+  '/entegrasyon-sureci': { title: 'Entegrasyon Sürecimiz', parent: '/turkiye' },
 };
 
 export function NavigationBreadcrumb() {
@@ -24,7 +25,7 @@ export function NavigationBreadcrumb() {
   if (!currentPage) return null;
 
   const breadcrumbs = [];
-  let current = location;
+  let current: string | undefined = location;
   
   while (current && pageMap[current]) {
     breadcrumbs.unshift({
