@@ -466,11 +466,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Create task application record
       const basvuru = await storage.createGorevBasvuru({
+        userId: Math.floor(Math.random() * 1000000), // Generate unique user ID
         gorevId: taskId,
-        notlar: `Dijital kimlik ile seçilen görev - Paket: ${paymentData.packageType}`,
-        userId: paymentData.userInfo?.email || 'anonymous',
-        userEmail: paymentData.userInfo?.email || '',
-        durum: 'secildi'
+        notlar: `Dijital kimlik ile seçilen görev - Paket: ${paymentData.packageType} - Email: ${paymentData.userInfo?.email || 'anonymous'}`
       });
 
       res.json({ 

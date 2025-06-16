@@ -167,16 +167,28 @@ export default function CheckoutPage() {
 
   const handlePaymentSuccess = () => {
     setIsSuccess(true);
+    
+    // Store completed payment data for task selection
+    if (paymentData) {
+      localStorage.setItem('completedPayment', JSON.stringify(paymentData));
+    }
     localStorage.removeItem('pendingPayment');
     
     toast({
       title: "Ödeme Başarılı!",
-      description: "Üyeliğiniz aktifleştirildi. Hoş geldiniz!",
+      description: paymentData?.packageType === 'dijital-kimlik' 
+        ? "Dijital kimliğiniz oluşturuldu. Görev seçimi yapabilirsiniz!" 
+        : "Üyeliğiniz aktifleştirildi. Hoş geldiniz!",
       variant: "default",
     });
 
     setTimeout(() => {
-      navigate('/turkiye');
+      // Redirect to task selection for digital ID, otherwise to main page
+      if (paymentData?.packageType === 'dijital-kimlik') {
+        navigate('/task-selection');
+      } else {
+        navigate('/turkiye');
+      }
     }, 3000);
   };
 
