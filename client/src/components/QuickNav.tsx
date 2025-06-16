@@ -8,7 +8,9 @@ import {
   Users, 
   Plus,
   Menu,
-  X
+  X,
+  ArrowRightLeft,
+  TrendingUp
 } from 'lucide-react';
 
 const QuickNav = () => {
@@ -30,6 +32,8 @@ const QuickNav = () => {
     { path: '/turkiye', icon: MapPin, label: 'Türkiye', color: 'text-red-400' },
     { path: '/gorevler', icon: Target, label: 'Görevler', color: 'text-orange-400' },
     { path: '/katil', icon: Users, label: 'Katıl', color: 'text-green-400' },
+    { path: '/canli-gelir-gider', icon: TrendingUp, label: 'Canlı Gelir-Gider', color: 'text-yellow-400' },
+    { path: '/entegrasyon-sureci', icon: ArrowRightLeft, label: 'Entegrasyon Sürecimiz', color: 'text-emerald-400' },
     { path: '/ulke-ekle', icon: Plus, label: 'Ülke Ekle', color: 'text-purple-400' },
   ];
 
