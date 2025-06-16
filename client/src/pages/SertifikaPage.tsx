@@ -76,8 +76,14 @@ export default function SertifikaPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 bg-red-950/30 border border-red-600/40 rounded-full px-6 py-2 mb-6">
-            <Sparkles className="w-4 h-4 text-red-400" />
+          <div className="inline-flex items-center gap-3 bg-red-950/30 border border-red-600/40 rounded-full px-6 py-2 mb-6">
+            <div className="w-8 h-8 bg-red-600/20 rounded-lg flex items-center justify-center p-1">
+              <img 
+                src="@assets/image_1750060866461.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             <span className="text-red-400 font-medium text-sm">Halk Sistemi Sertifikası</span>
           </div>
           
@@ -109,8 +115,12 @@ export default function SertifikaPage() {
           {/* Certificate Content */}
           <div className="relative z-10">
             <div className="flex items-center justify-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center">
-                <Award className="w-10 h-10 text-white" />
+              <div className="w-24 h-24 bg-gradient-to-br from-red-600/20 to-red-800/20 rounded-2xl border-2 border-red-600/40 flex items-center justify-center p-2">
+                <img 
+                  src="@assets/image_1750060866461.png" 
+                  alt="Halk Sistemi Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
             
@@ -188,32 +198,53 @@ export default function SertifikaPage() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-red-950/20 to-black/40 border border-red-600/20 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Sertifikanızı Alın
-            </h3>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Halk Sistemi'ne katılarak dijital sertifikanızı hemen alın ve 
-              mazlum halkların dayanışma ağının bir parçası olun.
-            </p>
+          <div className="bg-gradient-to-r from-red-950/20 to-black/40 border border-red-600/20 rounded-2xl p-8 relative overflow-hidden">
+            {/* Background Logo Pattern */}
+            <div className="absolute inset-0 opacity-[0.02] flex items-center justify-center">
+              <img 
+                src="@assets/image_1750060866461.png" 
+                alt="Background Pattern" 
+                className="w-64 h-64 object-contain"
+              />
+            </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => navigate("/katil")}
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Hemen Katıl
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <div className="w-6 h-6 bg-red-600/20 rounded flex items-center justify-center">
+                  <img 
+                    src="@assets/image_1750060866461.png" 
+                    alt="Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-white">
+                  Sertifikanızı Alın
+                </h3>
+              </div>
               
-              <Button
-                variant="outline"
-                onClick={() => navigate("/gorevler")}
-                className="border-red-600/30 text-red-400 hover:bg-red-950/20 px-8 py-3 rounded-lg"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Örnek Sertifika
-              </Button>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Halk Sistemi'ne katılarak dijital sertifikanızı hemen alın ve 
+                mazlum halkların dayanışma ağının bir parçası olun.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={() => navigate("/katil")}
+                  className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-12"
+                >
+                  Hemen Katıl
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  onClick={() => navigate("/gorevler")}
+                  className="border-red-600/30 text-red-400 hover:bg-red-950/20 px-8 py-3 rounded-lg h-12"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Örnek Sertifika
+                </Button>
+              </div>
             </div>
           </div>
         </motion.div>
