@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useLocation } from "wouter";
-import AudioControl from "@/components/AudioControl";
+import { useNavigate } from "wouter";
+import { AudioControl } from "@/components/AudioControl";
 
 interface ManifestoEntry {
   id: number;
