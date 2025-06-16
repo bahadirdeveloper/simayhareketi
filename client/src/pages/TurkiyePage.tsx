@@ -133,7 +133,7 @@ export default function TurkiyePage() {
         </div>
 
         {/* Modern Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-20">
           
           {/* TÜRK NEDİR */}
           <div
@@ -236,6 +236,27 @@ export default function TurkiyePage() {
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-green-200 transition-colors">KATIL</h3>
                 <p className="text-green-200 text-base leading-relaxed mb-4">Milli birlik ve toplumsal dayanışma</p>
                 <div className="w-full h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-full group-hover:from-green-400 group-hover:to-green-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* AMAÇLAR & SAVAŞLAR */}
+          <div
+            onClick={() => navigateToPage("/amac-savas")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-800 via-indigo-900 to-indigo-950 border border-indigo-500/30 hover:border-indigo-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-indigo-400 rounded-full group-hover:bg-indigo-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-indigo-200 transition-colors">AMAÇLAR & SAVAŞLAR</h3>
+                <p className="text-indigo-200 text-base leading-relaxed mb-4">Hedeflerimiz ve mücadele alanlarımız</p>
+                <div className="w-full h-1 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full group-hover:from-indigo-400 group-hover:to-indigo-500 transition-colors"></div>
               </div>
             </div>
           </div>
