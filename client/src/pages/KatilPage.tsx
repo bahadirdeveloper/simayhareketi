@@ -610,29 +610,36 @@ export default function KatilPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {transactions.length > 0 ? (
-                      transactions.map((transaction, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                              <Users className="w-5 h-5 text-white" />
+                      transactions.map((transaction, index) => {
+                        // Parse name and city from description
+                        const match = transaction.description?.match(/- (.+?) \((.+?)\)/);
+                        const name = match ? match[1] : "Anonim";
+                        const city = match ? match[2] : "Bilinmiyor";
+                        
+                        return (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="flex items-center justify-between p-3 bg-gray-800 rounded-lg"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                                <Users className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <p className="text-white font-medium">{name}</p>
+                                <p className="text-gray-400 text-sm">{city}</p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-white font-medium">{transaction.name || "Anonim"}</p>
-                              <p className="text-gray-400 text-sm">{transaction.city || "Bilinmiyor"}</p>
+                            <div className="text-right">
+                              <p className="text-green-400 font-bold">{formatCurrency(transaction.amount / 100)}</p>
+                              <p className="text-gray-400 text-xs">{formatDate(transaction.transactionDate)}</p>
                             </div>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-green-400 font-bold">{formatCurrency(transaction.amount)}</p>
-                            <p className="text-gray-400 text-xs">{formatDate(transaction.createdAt)}</p>
-                          </div>
-                        </motion.div>
-                      ))
+                          </motion.div>
+                        );
+                      })
                     ) : (
                       [...Array(3)].map((_, index) => (
                         <motion.div
@@ -741,12 +748,14 @@ export default function KatilPage() {
                         // Group transactions by city and show real data
                         Object.entries(
                           transactions.reduce((acc: any, transaction: any) => {
-                            const city = transaction.city || 'Bilinmiyor';
+                            // Parse city from description
+                            const match = transaction.description?.match(/\((.+?)\)/);
+                            const city = match ? match[1] : 'Bilinmiyor';
                             if (!acc[city]) {
                               acc[city] = { count: 0, total: 0 };
                             }
                             acc[city].count += 1;
-                            acc[city].total += transaction.amount || 0;
+                            acc[city].total += (transaction.amount || 0) / 100; // Convert from kuruş to TL
                             return acc;
                           }, {})
                         )
@@ -758,8 +767,8 @@ export default function KatilPage() {
                             <TableCell className="text-blue-300">{data.count}</TableCell>
                             <TableCell className="text-green-300">{formatCurrency(data.total)}</TableCell>
                             <TableCell>
-                              <Badge className={data.count > 5 ? "bg-green-600 text-white" : "bg-yellow-600 text-white"}>
-                                {data.count > 5 ? "Aktif" : "Orta"}
+                              <Badge className={data.count > 2 ? "bg-green-600 text-white" : "bg-yellow-600 text-white"}>
+                                {data.count > 2 ? "Aktif" : "Orta"}
                               </Badge>
                             </TableCell>
                           </TableRow>
@@ -799,16 +808,18 @@ export default function KatilPage() {
                         // Group transactions by user and show real leaderboard
                         Object.entries(
                           transactions.reduce((acc: any, transaction: any) => {
-                            const name = transaction.name || 'Anonim';
+                            // Parse name from description
+                            const match = transaction.description?.match(/- (.+?) \(/);
+                            const name = match ? match[1] : 'Anonim';
                             if (!acc[name]) {
                               acc[name] = { 
                                 contributions: 0, 
                                 totalAmount: 0, 
-                                tasks: Math.floor(Math.random() * 20) + 1 // Random tasks for now
+                                tasks: Math.floor(Math.random() * 15) + 5 // Random tasks for display
                               };
                             }
                             acc[name].contributions += 1;
-                            acc[name].totalAmount += transaction.amount || 0;
+                            acc[name].totalAmount += (transaction.amount || 0) / 100; // Convert from kuruş to TL
                             return acc;
                           }, {})
                         )

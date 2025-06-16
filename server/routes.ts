@@ -352,14 +352,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { name, email, phone, city, amount, packageType } = req.body;
       
       const transaction = await storage.createTransaction({
-        name: name || "Test User",
-        email: email || "test@example.com", 
-        phone: phone || "5551234567",
-        city: city || "Istanbul",
-        amount: amount || 50,
-        packageType: packageType || "destek",
-        paymentIntentId: "test_" + Date.now(),
-        status: "completed"
+        type: "income",
+        category: packageType || "bağış",
+        description: `${packageType || "Destek"} katkısı - ${name || "Anonim"} (${city || "Bilinmiyor"})`,
+        amount: (amount || 50) * 100, // Convert to kuruş
+        currency: "TRY",
+        isPublic: true,
+        reference: `test_${Date.now()}`
       });
 
       res.json(transaction);
