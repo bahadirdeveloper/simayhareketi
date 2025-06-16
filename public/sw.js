@@ -7,8 +7,6 @@ const urlsToCache = [
   '/manifesto',
   '/entegrasyon-sureci',
   '/canli-gelir-gider',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json'
 ];
 
