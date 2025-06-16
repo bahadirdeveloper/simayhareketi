@@ -13,7 +13,9 @@ import {
   Settings,
   Globe,
   Smartphone,
-  Download
+  Download,
+  Scale,
+  UserPlus
 } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { navigateWithScrollReset } from '@/lib/navigation';
@@ -22,15 +24,96 @@ interface MobileHamburgerMenuProps {
   className?: string;
 }
 
+// Sistematik navigasyon yapısı - öncelik sırasına göre
 const menuItems = [
-  { id: 'home', label: 'Ana Sayfa', path: '/home', icon: Home, color: 'text-blue-400' },
-  { id: 'turkiye', label: 'Türkiye', path: '/turkiye', icon: Flag, color: 'text-red-400' },
-  { id: 'manifesto', label: 'Manifesto', path: '/manifesto', icon: FileText, color: 'text-purple-400' },
-  { id: 'gorevler', label: '100 Görev', path: '/gorevler', icon: Target, color: 'text-yellow-400' },
-  { id: 'entegrasyon', label: 'Entegrasyon', path: '/entegrasyon-sureci', icon: Users, color: 'text-green-400' },
-  { id: 'katil', label: 'Katıl', path: '/katil', icon: CreditCard, color: 'text-orange-400' },
-  { id: 'gelir-gider', label: 'Mali Durum', path: '/canli-gelir-gider', icon: Database, color: 'text-cyan-400' },
-  { id: 'dijital-kimlik', label: 'Dijital Kimlik', path: '/dijital-kimlik', icon: Settings, color: 'text-indigo-400' }
+  // Ana bölümler
+  { 
+    id: 'home', 
+    label: 'Ana Sayfa', 
+    path: '/home', 
+    icon: Home, 
+    color: 'text-blue-400',
+    description: 'Platform ana sayfası',
+    category: 'main'
+  },
+  { 
+    id: 'turkiye', 
+    label: 'Türkiye', 
+    path: '/turkiye', 
+    icon: Flag, 
+    color: 'text-red-400',
+    description: 'Türkiye Cumhuriyeti merkezi',
+    category: 'main'
+  },
+  
+  // İçerik bölümleri
+  { 
+    id: 'gorevler', 
+    label: '100 Görev', 
+    path: '/gorevler', 
+    icon: Target, 
+    color: 'text-yellow-400',
+    description: 'Atatürk\'ün Medeniyet Işığında görevler',
+    category: 'content'
+  },
+  { 
+    id: 'manifesto', 
+    label: 'Manifesto', 
+    path: '/manifesto', 
+    icon: FileText, 
+    color: 'text-purple-400',
+    description: 'Birleşik halk manifestosu',
+    category: 'content'
+  },
+  { 
+    id: 'anayasa', 
+    label: 'Anayasa', 
+    path: '/anayasa', 
+    icon: FileText, 
+    color: 'text-emerald-400',
+    description: 'Cumhuriyet anayasası',
+    category: 'content'
+  },
+  
+  // Sistem bölümleri  
+  { 
+    id: 'entegrasyon', 
+    label: 'Entegrasyon Süreci', 
+    path: '/entegrasyon-sureci', 
+    icon: Users, 
+    color: 'text-green-400',
+    description: 'Halk koordinasyon sistemi',
+    category: 'system'
+  },
+  { 
+    id: 'dijital-kimlik', 
+    label: 'Dijital Kimlik', 
+    path: '/dijital-kimlik', 
+    icon: CreditCard, 
+    color: 'text-indigo-400',
+    description: 'Dijital vatandaşlık sistemi',
+    category: 'system'
+  },
+  { 
+    id: 'gelir-gider', 
+    label: 'Mali Şeffaflık', 
+    path: '/canli-gelir-gider', 
+    icon: Database, 
+    color: 'text-cyan-400',
+    description: 'Canlı gelir-gider takibi',
+    category: 'system'
+  },
+  
+  // Katılım bölümü
+  { 
+    id: 'katil', 
+    label: 'Platforma Katıl', 
+    path: '/katil', 
+    icon: Users, 
+    color: 'text-orange-400',
+    description: 'Halk sistemine katılım',
+    category: 'participation'
+  }
 ];
 
 const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
@@ -166,30 +249,143 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                 </motion.button>
               )}
 
-              {/* Navigation Items */}
-              <nav className="space-y-2">
-                {menuItems.map((item, index) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      onClick={() => handleNavigation(item.path)}
-                      className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
-                    >
-                      <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className={`h-5 w-5 ${item.color}`} />
-                      </div>
-                      <div>
-                        <div className="text-white font-medium group-hover:text-gray-100 transition-colors">
-                          {item.label}
-                        </div>
-                      </div>
-                    </motion.button>
-                  );
-                })}
+              {/* Navigation Items - Kategorilere göre gruplandırılmış */}
+              <nav className="space-y-6">
+                {/* Ana Bölümler */}
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                    Ana Bölümler
+                  </h3>
+                  <div className="space-y-2">
+                    {menuItems.filter(item => item.category === 'main').map((item, index) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <motion.button
+                          key={item.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          onClick={() => handleNavigation(item.path)}
+                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                        >
+                          <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                            <IconComponent className={`h-5 w-5 ${item.color}`} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white font-medium group-hover:text-gray-100 transition-colors">
+                              {item.label}
+                            </div>
+                            <div className="text-gray-400 text-xs mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* İçerik Bölümleri */}
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                    İçerik & Dokümanlar
+                  </h3>
+                  <div className="space-y-2">
+                    {menuItems.filter(item => item.category === 'content').map((item, index) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <motion.button
+                          key={item.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (index + 2) * 0.05 }}
+                          onClick={() => handleNavigation(item.path)}
+                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                        >
+                          <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                            <IconComponent className={`h-5 w-5 ${item.color}`} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white font-medium group-hover:text-gray-100 transition-colors">
+                              {item.label}
+                            </div>
+                            <div className="text-gray-400 text-xs mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Sistem Bölümleri */}
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                    Sistem & Araçlar
+                  </h3>
+                  <div className="space-y-2">
+                    {menuItems.filter(item => item.category === 'system').map((item, index) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <motion.button
+                          key={item.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (index + 5) * 0.05 }}
+                          onClick={() => handleNavigation(item.path)}
+                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                        >
+                          <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                            <IconComponent className={`h-5 w-5 ${item.color}`} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white font-medium group-hover:text-gray-100 transition-colors">
+                              {item.label}
+                            </div>
+                            <div className="text-gray-400 text-xs mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Katılım Bölümü */}
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                    Katılım
+                  </h3>
+                  <div className="space-y-2">
+                    {menuItems.filter(item => item.category === 'participation').map((item, index) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <motion.button
+                          key={item.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (index + 8) * 0.05 }}
+                          onClick={() => handleNavigation(item.path)}
+                          className="w-full text-left p-4 rounded-xl bg-gradient-to-r from-orange-600/20 to-orange-700/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 group flex items-center gap-4"
+                        >
+                          <div className={`w-10 h-10 rounded-lg bg-orange-600/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                            <IconComponent className={`h-5 w-5 ${item.color}`} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white font-medium group-hover:text-gray-100 transition-colors">
+                              {item.label}
+                            </div>
+                            <div className="text-orange-200 text-xs mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
               </nav>
 
               {/* Language Selector */}

@@ -28,13 +28,12 @@ const QuickNav = () => {
   }, []);
 
   const navItems = [
-    { path: '/', icon: Home, label: 'Ana Sayfa', color: 'text-blue-400' },
-    { path: '/turkiye', icon: MapPin, label: 'Türkiye', color: 'text-red-400' },
-    { path: '/gorevler', icon: Target, label: 'Görevler', color: 'text-orange-400' },
-    { path: '/katil', icon: Users, label: 'Katıl', color: 'text-green-400' },
-    { path: '/canli-gelir-gider', icon: TrendingUp, label: 'Canlı Gelir-Gider', color: 'text-yellow-400' },
-    { path: '/entegrasyon-sureci', icon: ArrowRightLeft, label: 'Entegrasyon Sürecimiz', color: 'text-emerald-400' },
-    { path: '/ulke-ekle', icon: Plus, label: 'Ülke Ekle', color: 'text-purple-400' },
+    { path: '/home', icon: Home, label: 'Ana Sayfa', color: 'text-blue-400', priority: 1 },
+    { path: '/turkiye', icon: MapPin, label: 'Türkiye', color: 'text-red-400', priority: 1 },
+    { path: '/gorevler', icon: Target, label: '100 Görev', color: 'text-yellow-400', priority: 2 },
+    { path: '/manifesto', icon: Users, label: 'Manifesto', color: 'text-purple-400', priority: 2 },
+    { path: '/canli-gelir-gider', icon: TrendingUp, label: 'Mali Şeffaflık', color: 'text-cyan-400', priority: 3 },
+    { path: '/katil', icon: Plus, label: 'Katıl', color: 'text-orange-400', priority: 3 }
   ];
 
   if (!isVisible) return null;
