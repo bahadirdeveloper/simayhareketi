@@ -94,35 +94,31 @@ export default function KatilPage() {
     totalDonations: 0
   });
   const [transactions, setTransactions] = useState<any[]>([]);
+  const [selectedPackage, setSelectedPackage] = useState<string>('');
   const { toast } = useToast();
 
   const handlePackageSelect = async (packageType: string, amount: number) => {
     try {
-      // Create payment intent for the selected package
-      const response = await apiRequest("POST", "/api/create-payment-intent", {
-        amount: amount,
-        packageType: packageType
-      });
+      // Set the selected package and update form
+      setSelectedPackage(packageType);
+      form.setValue('katilimTipi', packageType);
       
-      if (response.ok) {
-        const data = await response.json();
-        // Store payment info in localStorage for checkout page
-        localStorage.setItem('pendingPayment', JSON.stringify({
-          clientSecret: data.clientSecret,
-          amount: amount,
-          packageType: packageType
-        }));
-        
-        // Navigate to checkout page
-        navigate('/checkout');
-      } else {
-        throw new Error('Payment initialization failed');
+      // Scroll to form section
+      const formElement = document.querySelector('#participation-form');
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth' });
       }
-    } catch (error) {
-      console.error('Payment error:', error);
+      
       toast({
-        title: "Ödeme Hatası",
-        description: "Ödeme işlemi başlatılamadı. Lütfen tekrar deneyin.",
+        title: "Paket Seçildi",
+        description: `${packageType.toUpperCase()} paketi seçildi. Lütfen formu doldurun.`,
+        variant: "default",
+      });
+    } catch (error) {
+      console.error('Package selection error:', error);
+      toast({
+        title: "Hata",
+        description: "Paket seçimi başarısız. Lütfen tekrar deneyin.",
         variant: "destructive",
       });
     }
@@ -235,31 +231,84 @@ export default function KatilPage() {
     playSoundtrack();
   };
   
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     
-    setTimeout(() => {
-      setShowConfetti(true);
+    try {
+      // If a package is selected, proceed with payment
+      if (selectedPackage || values.katilimTipi) {
+        const packageType = selectedPackage || values.katilimTipi;
+        let amount = 0;
+        
+        switch (packageType) {
+          case 'temel':
+            amount = 50;
+            break;
+          case 'premium':
+            amount = 150;
+            break;
+          case 'elite':
+            amount = 300;
+            break;
+          default:
+            throw new Error('Geçersiz paket seçimi');
+        }
+        
+        // Create payment intent
+        const response = await apiRequest("POST", "/api/create-payment-intent", {
+          amount: amount,
+          packageType: packageType,
+          userInfo: values
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          // Store payment info and user data for checkout page
+          localStorage.setItem('pendingPayment', JSON.stringify({
+            clientSecret: data.clientSecret,
+            amount: amount,
+            packageType: packageType,
+            userInfo: values
+          }));
+          
+          // Navigate to checkout page
+          navigate('/checkout');
+          return;
+        } else {
+          throw new Error('Ödeme işlemi başlatılamadı');
+        }
+      } else {
+        // Regular participation without payment
+        setShowConfetti(true);
+        toast({
+          title: "Harekete Hoş Geldiniz!",
+          description: "Katılımınız başarıyla kaydedildi. Cumhuriyetin geleceğine hoş geldiniz!",
+          variant: "default",
+        });
+        
+        form.reset();
+        setSelectedPackage('');
+        
+        setTimeout(() => {
+          setShowConfetti(false);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       toast({
-        title: "🎉 Harekete Hoş Geldiniz!",
-        description: "Katılımınız başarıyla kaydedildi. Cumhuriyetin geleceğine hoş geldiniz!",
-        variant: "default",
+        title: "Hata",
+        description: error instanceof Error ? error.message : "Bir hata oluştu. Lütfen tekrar deneyin.",
+        variant: "destructive",
       });
-      
-      form.reset();
+    } finally {
       setIsSubmitting(false);
-      
-      setTimeout(() => {
-        setShowConfetti(false);
-      }, 5000);
-    }, 2000);
+    }
   }
 
   const katilimTipleri = [
-    { value: "destekci", label: "Destekçi - Temel Katılım" },
-    { value: "gonullu", label: "Gönüllü - Aktif Katılım" },
-    { value: "organizator", label: "Organizatör - Liderlik" },
-    { value: "koordinator", label: "Koordinatör - Yönetim" }
+    { value: "temel", label: "🔵 Temel Paket - Hareket üyeliği + Dijital kimlik belgesi (₺50)" },
+    { value: "premium", label: "🟢 Premium Paket - Otomatik TC kimlik doğrulama + Premium görevler (₺150)" },
+    { value: "elite", label: "🟣 Elite Paket - Liderlik görevleri + Organizatör yetkileri (₺300)" }
   ];
 
   return (
@@ -388,7 +437,7 @@ export default function KatilPage() {
                 transition={{ delay: 0.1 }}
                 className="relative"
               >
-                <Card className="bg-gradient-to-br from-blue-900 to-blue-800 border-blue-600 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <Card className={`bg-gradient-to-br from-blue-900 to-blue-800 border-blue-600 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${selectedPackage === 'temel' ? 'ring-4 ring-blue-400 border-blue-400' : ''}`}>
                   <CardHeader className="text-center pb-4">
                     <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <User className="w-8 h-8 text-white" />
@@ -427,7 +476,7 @@ export default function KatilPage() {
                     ÖNERİLEN
                   </span>
                 </div>
-                <Card className="bg-gradient-to-br from-green-900 to-green-700 border-green-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2">
+                <Card className={`bg-gradient-to-br from-green-900 to-green-700 border-green-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 ${selectedPackage === 'premium' ? 'ring-4 ring-green-400 border-green-400' : ''}`}>
                   <CardHeader className="text-center pb-4">
                     <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-white" />
@@ -462,7 +511,7 @@ export default function KatilPage() {
                 transition={{ delay: 0.3 }}
                 className="relative"
               >
-                <Card className="bg-gradient-to-br from-purple-900 to-purple-700 border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <Card className={`bg-gradient-to-br from-purple-900 to-purple-700 border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${selectedPackage === 'elite' ? 'ring-4 ring-purple-400 border-purple-400' : ''}`}>
                   <CardHeader className="text-center pb-4">
                     <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Plus className="w-8 h-8 text-white" />
@@ -491,7 +540,7 @@ export default function KatilPage() {
               </motion.div>
             </div>
 
-            <Card className="bg-gray-900 border-gray-700">
+            <Card className="bg-gray-900 border-gray-700" id="participation-form">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <HandHeart className="w-6 h-6 text-red-500" />
