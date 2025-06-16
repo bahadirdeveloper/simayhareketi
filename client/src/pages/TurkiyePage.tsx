@@ -96,8 +96,8 @@ export default function TurkiyePage() {
                 <div className="text-red-300 text-sm">Görev</div>
               </div>
               <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
-                <div className="text-2xl font-bold text-white">2023</div>
-                <div className="text-red-300 text-sm">Cumhuriyet</div>
+                <div className="text-2xl font-bold text-white">2025</div>
+                <div className="text-red-300 text-sm">Yeni Dönem</div>
               </div>
               <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold text-white">∞</div>
