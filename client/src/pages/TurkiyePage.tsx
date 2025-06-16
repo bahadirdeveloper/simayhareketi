@@ -65,74 +65,84 @@ export default function TurkiyePage() {
               <div className="w-full h-full bg-gradient-to-r from-red-500/20 to-transparent"></div>
             </div>
             
-            {/* Professional Turkish Flag */}
+            {/* Official Turkish Flag SVG */}
             <div className="mb-8 flex justify-center">
-              <div className="relative w-48 h-32 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/30 hover:scale-105 transition-all duration-500 group">
-                {/* Flag background with official red */}
-                <div className="w-full h-full bg-red-600 relative" style={{ backgroundColor: '#E30A17' }}>
+              <div className="relative hover:scale-105 transition-all duration-500 group">
+                <svg 
+                  width="240" 
+                  height="160" 
+                  viewBox="0 0 360 240" 
+                  className="rounded-2xl shadow-2xl border-4 border-white/30"
+                  style={{ filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))' }}
+                >
+                  {/* Flag background - Official Turkish Red */}
+                  <rect width="360" height="240" fill="#E30A17" rx="16" ry="16" />
                   
-                  {/* High-quality fabric texture */}
-                  <div className="absolute inset-0 opacity-20" style={{
-                    backgroundImage: `
-                      linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%),
-                      linear-gradient(-45deg, transparent 25%, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.05) 50%, transparent 50%, transparent 75%, rgba(0,0,0,0.05) 75%)
-                    `,
-                    backgroundSize: '4px 4px'
-                  }}></div>
+                  {/* Fabric texture overlay */}
+                  <defs>
+                    <pattern id="fabricTexture" patternUnits="userSpaceOnUse" width="8" height="8">
+                      <rect width="8" height="8" fill="#E30A17"/>
+                      <circle cx="2" cy="2" r="0.5" fill="rgba(255,255,255,0.1)"/>
+                      <circle cx="6" cy="6" r="0.5" fill="rgba(0,0,0,0.05)"/>
+                    </pattern>
+                    
+                    {/* Gradient for depth */}
+                    <linearGradient id="depthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+                      <stop offset="50%" stopColor="rgba(255,255,255,0.05)" />
+                      <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
+                    </linearGradient>
+                    
+                    {/* Shadow filter */}
+                    <filter id="shadow">
+                      <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="rgba(0,0,0,0.3)"/>
+                    </filter>
+                  </defs>
                   
-                  {/* Star and Crescent with perfect proportions */}
-                  <div className="absolute inset-0 flex items-center" style={{ paddingLeft: '28%' }}>
-                    <div className="relative flex items-center">
-                      {/* Crescent Moon - precise Turkish flag proportions */}
-                      <div className="relative w-16 h-16">
-                        {/* Outer circle (white) */}
-                        <div 
-                          className="absolute bg-white rounded-full shadow-lg" 
-                          style={{
-                            width: '60px',
-                            height: '60px',
-                            left: '2px',
-                            top: '2px'
-                          }}
-                        ></div>
-                        {/* Inner circle (red) - creates crescent */}
-                        <div 
-                          className="absolute rounded-full"
-                          style={{
-                            width: '48px',
-                            height: '48px',
-                            backgroundColor: '#E30A17',
-                            left: '10px',
-                            top: '2px'
-                          }}
-                        ></div>
-                      </div>
-                      
-                      {/* Five-pointed Star - perfect positioning */}
-                      <div className="absolute" style={{ left: '44px', top: '12px' }}>
-                        <svg width="28" height="28" viewBox="0 0 100 100" className="drop-shadow-lg">
-                          <path 
-                            d="M50 10 L61.8 38.2 L92.7 38.2 L69.1 57.4 L80.9 85.6 L50 66.4 L19.1 85.6 L30.9 57.4 L7.3 38.2 L38.2 38.2 Z" 
-                            fill="white"
-                            stroke="rgba(255,255,255,0.3)"
-                            strokeWidth="1"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Texture overlay */}
+                  <rect width="360" height="240" fill="url(#fabricTexture)" opacity="0.3" rx="16" ry="16" />
                   
-                  {/* Subtle wave animation */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-pulse"></div>
+                  {/* Crescent Moon - exact Turkish flag proportions */}
+                  <g transform="translate(108, 120)" filter="url(#shadow)">
+                    {/* Outer white circle */}
+                    <circle cx="0" cy="0" r="48" fill="white" />
+                    {/* Inner red circle to create crescent */}
+                    <circle cx="16" cy="0" r="38.4" fill="#E30A17" />
+                  </g>
                   
-                  {/* Professional shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"></div>
-                </div>
+                  {/* Five-pointed Star - exact positioning */}
+                  <g transform="translate(204, 120)" filter="url(#shadow)">
+                    <path 
+                      d="M0,-30 L8.82,-9.27 L30,-9.27 L12.36,5.73 L21.18,26.46 L0,11.46 L-21.18,26.46 L-12.36,5.73 L-30,-9.27 L-8.82,-9.27 Z" 
+                      fill="white"
+                    />
+                  </g>
+                  
+                  {/* Depth gradient overlay */}
+                  <rect width="360" height="240" fill="url(#depthGradient)" opacity="0.6" rx="16" ry="16" />
+                  
+                  {/* Subtle wave animation for group hover */}
+                  <g className="opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                    <rect width="360" height="240" fill="url(#waveGradient)" opacity="0.1" rx="16" ry="16" />
+                  </g>
+                  
+                  <defs>
+                    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="transparent" />
+                      <stop offset="50%" stopColor="rgba(255,255,255,0.2)" />
+                      <stop offset="100%" stopColor="transparent" />
+                      <animateTransform 
+                        attributeName="gradientTransform" 
+                        type="translate" 
+                        values="-360 0; 360 0; -360 0" 
+                        dur="3s" 
+                        repeatCount="indefinite"
+                      />
+                    </linearGradient>
+                  </defs>
+                </svg>
                 
-                {/* Premium metallic border */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-gradient-to-r from-yellow-400/50 via-white/50 to-yellow-400/50 pointer-events-none"></div>
-                
-                {/* Flag pole effect */}
+                {/* Flag pole */}
                 <div className="absolute -left-2 top-0 w-1 h-full bg-gradient-to-b from-gray-300 to-gray-600 rounded-full shadow-lg"></div>
               </div>
             </div>
