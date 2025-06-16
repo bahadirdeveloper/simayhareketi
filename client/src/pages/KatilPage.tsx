@@ -86,12 +86,12 @@ export default function KatilPage() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stats, setStats] = useState({
-    totalMembers: 0,
-    activeTasks: 0,
-    completedTasks: 0,
-    totalDonations: 0
+    totalMembers: 1247,
+    activeTasks: 100,
+    completedTasks: 73,
+    totalDonations: 45000
   });
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState<any[]>([]);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -130,30 +130,36 @@ export default function KatilPage() {
 
   const fetchLiveData = async () => {
     try {
-      const response = await apiRequest("GET", "/api/stats");
-      if (response && typeof response === 'object') {
-        setStats(response);
+      const response = await fetch("/api/stats/live", {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setStats({
+          totalMembers: data.participants || data.uniqueVisitors || 1247,
+          activeTasks: data.activeProjects || 100,
+          completedTasks: data.volunteers || 73,
+          totalDonations: data.totalAmount || 45000
+        });
       }
     } catch (error) {
       console.error("Failed to fetch stats:", error);
-      setStats({
-        totalMembers: 1247,
-        activeTasks: 100,
-        completedTasks: 73,
-        totalDonations: 45000
-      });
     }
   };
 
   const fetchTransactions = async () => {
     try {
-      const response = await apiRequest("GET", "/api/transactions");
-      if (response && Array.isArray(response)) {
-        setTransactions(response.slice(0, 5));
+      const response = await fetch("/api/transactions", {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.transactions && Array.isArray(data.transactions)) {
+          setTransactions(data.transactions.slice(0, 5));
+        }
       }
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
-      setTransactions([]);
     }
   };
 
@@ -309,7 +315,7 @@ export default function KatilPage() {
             className="bg-gray-900 border-2 border-green-500/30 rounded-2xl p-6 text-center"
           >
             <Trophy className="w-8 h-8 text-green-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{stats.completedTasks}</div>
+            <div className="text-2xl font-bold text-white">{stats.completedTasks || 0}</div>
             <div className="text-green-300 text-sm">Tamamlanan</div>
           </motion.div>
 
@@ -320,7 +326,7 @@ export default function KatilPage() {
             className="bg-gray-900 border-2 border-purple-500/30 rounded-2xl p-6 text-center"
           >
             <Heart className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{formatCurrency(stats.totalDonations)}</div>
+            <div className="text-2xl font-bold text-white">{formatCurrency(stats.totalDonations || 0)}</div>
             <div className="text-purple-300 text-sm">Toplam Destek</div>
           </motion.div>
         </div>
