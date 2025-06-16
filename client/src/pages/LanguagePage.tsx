@@ -91,7 +91,7 @@ export default function LanguagePage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record language selection:", error);
+        // Failed to record language selection
       }
     };
     

@@ -54,7 +54,7 @@ export default function Home() {
           }
         );
       } catch (error) {
-        console.error("Failed to record interaction:", error);
+        // Silent interaction tracking error
       }
     };
     

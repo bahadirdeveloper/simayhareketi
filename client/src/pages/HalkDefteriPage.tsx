@@ -63,7 +63,7 @@ export default function HalkDefteriPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // Form submitted successfully
     setFormData({ name: "", city: "", message: "" });
   };
 

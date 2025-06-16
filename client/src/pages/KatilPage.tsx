@@ -102,7 +102,7 @@ export default function KatilPage() {
         variant: "default",
       });
     } catch (error) {
-      console.error('Package selection error:', error);
+      // Package selection error
       toast({
         title: "Hata",
         description: "Katkı seçimi başarısız. Lütfen tekrar deneyin.",
@@ -124,7 +124,7 @@ export default function KatilPage() {
   });
   
   useEffect(() => {
-    console.log('Audio initialized for katil page with Turkish ambient music');
+    // Audio initialized for katil page
     
     const recordVisit = async () => {
       try {
@@ -160,7 +160,7 @@ export default function KatilPage() {
           });
         }
       } catch (error) {
-        console.error('Failed to fetch stats:', error);
+        // Failed to fetch stats
       }
     };
 
@@ -172,7 +172,7 @@ export default function KatilPage() {
           setTransactions(transData.transactions || []);
         }
       } catch (error) {
-        console.error('Failed to fetch transactions:', error);
+        // Failed to fetch transactions
       }
     };
 
@@ -257,7 +257,7 @@ export default function KatilPage() {
         }, 5000);
       }
     } catch (error) {
-      console.error('Submission error:', error);
+      // Submission error
       toast({
         title: "Hata",
         description: "Katılım başarısız. Lütfen tekrar deneyin.",

@@ -54,7 +54,7 @@ export default function GorevlerPage() {
         throw new Error('Failed to load tasks');
       }
     } catch (error) {
-      console.error('Failed to load tasks:', error);
+      // Failed to load tasks
       toast({
         title: "Hata",
         description: "Görevler yüklenirken bir hata oluştu.",
