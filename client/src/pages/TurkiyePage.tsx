@@ -66,16 +66,18 @@ export default function TurkiyePage() {
             </div>
             
             {/* Flag with Glow */}
-            <div className="mb-8 relative">
-              <div className="w-32 h-32 mx-auto bg-red-600 rounded-2xl flex items-center justify-center text-5xl border-4 border-red-400 shadow-2xl shadow-red-500/50 relative z-10">
-                🇹🇷
+            <div className="mb-8 relative flex justify-center">
+              <div className="relative">
+                <div className="w-32 h-32 bg-red-600 rounded-2xl flex items-center justify-center text-5xl border-4 border-red-400 shadow-2xl shadow-red-500/50 relative z-10">
+                  🇹🇷
+                </div>
+                <div className="absolute top-0 left-0 w-32 h-32 bg-red-500/30 rounded-2xl blur-xl animate-pulse"></div>
               </div>
-              <div className="absolute inset-0 w-32 h-32 mx-auto bg-red-500 rounded-2xl blur-xl opacity-50 animate-pulse"></div>
             </div>
             
             {/* Title with Animation */}
             <div className="mb-12 relative z-10">
-              <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-wider bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
+              <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-wider drop-shadow-2xl">
                 TÜRKİYE
               </h1>
               <div className="flex justify-center gap-2 mb-4">
@@ -88,19 +90,19 @@ export default function TurkiyePage() {
             
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 relative z-10">
-              <div className="bg-black/30 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm">
+              <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold text-white">84M</div>
                 <div className="text-red-300 text-sm">Vatandaş</div>
               </div>
-              <div className="bg-black/30 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm">
+              <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold text-white">100</div>
                 <div className="text-red-300 text-sm">Görev</div>
               </div>
-              <div className="bg-black/30 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm">
+              <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold text-white">2023</div>
                 <div className="text-red-300 text-sm">Cumhuriyet</div>
               </div>
-              <div className="bg-black/30 border border-red-500/30 rounded-xl p-4 backdrop-blur-sm">
+              <div className="bg-black/40 border border-red-500/30 rounded-xl p-4">
                 <div className="text-2xl font-bold text-white">∞</div>
                 <div className="text-red-300 text-sm">Gelecek</div>
               </div>
@@ -108,7 +110,7 @@ export default function TurkiyePage() {
             
             {/* Quote */}
             <div className="max-w-4xl mx-auto mb-12 relative z-10">
-              <div className="bg-black/40 border border-red-500/30 rounded-2xl p-8 backdrop-blur-md">
+              <div className="bg-black/50 border border-red-500/30 rounded-2xl p-8">
                 <Star className="h-8 w-8 text-red-400 mx-auto mb-4" />
                 <p className="text-xl md:text-2xl font-light text-white mb-6 italic leading-relaxed">
                   "Türk, atasının mirasına sahip çıkamazsa,<br />
@@ -344,7 +346,7 @@ export default function TurkiyePage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                       
                       <div className="relative z-10 text-center">
-                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4 mx-auto backdrop-blur-sm border border-white/30 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4 mx-auto border border-white/30 group-hover:scale-110 transition-transform duration-300">
                           <IconComponent className="h-8 w-8 text-white" />
                         </div>
                         
@@ -366,7 +368,7 @@ export default function TurkiyePage() {
 
             {/* Bottom Quote */}
             <div className="mt-16 text-center relative z-10">
-              <div className="max-w-3xl mx-auto bg-black/30 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
+              <div className="max-w-3xl mx-auto bg-black/40 border border-white/10 rounded-2xl p-8">
                 <p className="text-white/90 text-lg italic leading-relaxed">
                   "Bu değerler, Türk milletinin bin yıllık medeniyetinin özüdür ve geleceğe taşıyacağımız en değerli mirasımızdır."
                 </p>
