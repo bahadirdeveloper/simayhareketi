@@ -71,6 +71,10 @@ export interface IStorage {
   getDijitalKimlikByTcNo(tcNo: string): Promise<DijitalKimlik | undefined>;
   updateDijitalKimlikDurum(id: number, aktif: boolean): Promise<DijitalKimlik>;
   getAllDijitalKimlikler(): Promise<DijitalKimlik[]>;
+  
+  // Premium user authentication methods
+  getPremiumUser(identifier: string): Promise<any | undefined>;
+  getPremiumUserByEmail(email: string): Promise<any | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {

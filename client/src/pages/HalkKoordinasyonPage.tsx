@@ -141,6 +141,53 @@ export default function HalkKoordinasyonPage() {
             </div>
           </div>
           
+          {/* Entegrasyon Sürecimiz Kartı */}
+          <div className="bg-gradient-to-br from-emerald-600/20 to-teal-700/20 backdrop-blur-sm rounded-xl border border-emerald-500/30 p-6 sm:p-8 shadow-lg">
+            <div className="space-y-6">
+              <div className="text-center space-y-3">
+                <div className="h-16 w-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-white">Entegrasyon Sürecimiz</h2>
+                <p className="text-emerald-200">
+                  Toplumsal dönüşüm için dört temel alanda kapsamlı entegrasyon süreçlerimizi keşfedin
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-emerald-400"></div>
+                    <span className="text-white">Eğitim Sistemleri</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-amber-400"></div>
+                    <span className="text-white">Halk Entegrasyonu</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-purple-400"></div>
+                    <span className="text-white">İş Dünyası</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400"></div>
+                    <span className="text-white">Devlet Kurumları</span>
+                  </div>
+                </div>
+              </div>
+              
+              <Button 
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3"
+                onClick={() => navigate("/entegrasyon-sureci")}
+              >
+                Entegrasyon Süreçlerini İncele
+              </Button>
+            </div>
+          </div>
+
           {/* Alt Bilgi Kartı */}
           <div className="text-center bg-black/40 backdrop-blur-sm rounded-lg border border-red-600/10 p-4">
             <p className="text-gray-400 text-sm">

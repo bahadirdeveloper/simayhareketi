@@ -47,6 +47,8 @@ import CheckoutPage from "@/pages/CheckoutPage";
 import TaskSelectionPage from "@/pages/TaskSelectionPage";
 import ForumRegistrationPage from "@/pages/ForumRegistrationPage";
 import CanliGelirGiderPage from "@/pages/CanliGelirGiderPage";
+import PremiumLoginPage from "@/pages/PremiumLoginPage";
+import PremiumDashboardPage from "@/pages/PremiumDashboardPage";
 
 function Router() {
   return (
@@ -89,6 +91,8 @@ function Router() {
       <Route path="/halk-koordinasyon" component={HalkKoordinasyonPage} />
       <Route path="/dijital-kimlik" component={DijitalKimlikPage} />
       <Route path="/premium-paketler" component={PremiumPackagesPage} />
+      <Route path="/premium-login" component={PremiumLoginPage} />
+      <Route path="/premium-dashboard" component={PremiumDashboardPage} />
       <Route path="/matrix" component={Home} />
       <Route path="/simay" component={SimayHome} />
       <Route path="/simay2" component={SimayHome2} />

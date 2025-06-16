@@ -426,6 +426,112 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Premium login endpoint
+  app.post("/api/premium-login", async (req, res) => {
+    try {
+      const { identifier, password } = req.body;
+      
+      if (!identifier || !password) {
+        return res.status(400).json({ message: "Kullanıcı adı ve şifre gerekli" });
+      }
+
+      // Check if user exists in our contributors
+      const user = await storage.getPremiumUser(identifier);
+      if (!user || user.password !== password) {
+        return res.status(401).json({ message: "Kullanıcı adı veya şifre hatalı" });
+      }
+
+      // Generate token
+      const token = `premium_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      res.json({ 
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          membershipType: user.membershipType
+        }
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Giriş hatası: " + error.message });
+    }
+  });
+
+  // Send verification code to email
+  app.post("/api/send-verification", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({ message: "E-posta adresi gerekli" });
+      }
+
+      // Check if email exists in premium users
+      const user = await storage.getPremiumUserByEmail(email);
+      if (!user) {
+        return res.status(404).json({ message: "Bu e-posta adresi ile kayıtlı premium hesap bulunamadı" });
+      }
+
+      // Generate 6-digit verification code
+      const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+      
+      // Store verification code temporarily (in real app, use Redis or database)
+      global.verificationCodes = global.verificationCodes || {};
+      global.verificationCodes[email] = {
+        code: verificationCode,
+        expires: Date.now() + 10 * 60 * 1000 // 10 minutes
+      };
+
+      // In real app, send email here
+      // For now, just return success
+      res.json({ message: "Doğrulama kodu gönderildi" });
+    } catch (error: any) {
+      res.status(500).json({ message: "E-posta gönderim hatası: " + error.message });
+    }
+  });
+
+  // Verify email login
+  app.post("/api/verify-email-login", async (req, res) => {
+    try {
+      const { email, verificationCode } = req.body;
+      
+      if (!email || !verificationCode) {
+        return res.status(400).json({ message: "E-posta ve doğrulama kodu gerekli" });
+      }
+
+      // Check verification code
+      const storedData = global.verificationCodes?.[email];
+      if (!storedData || storedData.code !== verificationCode || Date.now() > storedData.expires) {
+        return res.status(401).json({ message: "Geçersiz veya süresi dolmuş doğrulama kodu" });
+      }
+
+      // Get user
+      const user = await storage.getPremiumUserByEmail(email);
+      if (!user) {
+        return res.status(404).json({ message: "Kullanıcı bulunamadı" });
+      }
+
+      // Clear verification code
+      delete global.verificationCodes[email];
+
+      // Generate token
+      const token = `premium_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      res.json({ 
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          membershipType: user.membershipType
+        }
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Doğrulama hatası: " + error.message });
+    }
+  });
+
   // Test endpoint to create sample transactions for development
   app.post("/api/test-transaction", async (req, res) => {
     try {
@@ -443,7 +549,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json(transaction);
     } catch (error: any) {
-      console.error("Test transaction error:", error);
       res.status(500).json({ 
         error: "Test transaction failed: " + error.message 
       });
