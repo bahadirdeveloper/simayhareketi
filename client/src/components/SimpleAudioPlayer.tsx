@@ -25,10 +25,10 @@ export function SimpleAudioPlayer({ className = '' }: SimpleAudioPlayerProps) {
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Audio started playing');
+              // Audio started successfully
             })
             .catch(error => {
-              console.error('Audio play failed:', error);
+              // Silent audio fail
             });
         }
       }

@@ -24,18 +24,7 @@ export default function LanguagePage() {
     // Ensure scroll starts at top on page load
     scrollToTop();
     
-    // Initialize audio system with immediate playback
-    try {
-      console.log("Audio initialization started for language page...");
-      
-      // Küçük bir gecikme ile ses çalmayı zorla
-      const playTimer = setTimeout(() => {
-        console.log("Forcing audio playback...");
-      }, 500);
-      
-    } catch (error) {
-      console.error("Audio initialization failed:", error);
-    }
+    // Audio initialization removed
     
     // Record visit
     const recordVisit = async () => {
@@ -72,7 +61,7 @@ export default function LanguagePage() {
     
     // Kullanıcı etkileşimi ile direkt ses çalma (tarayıcı kısıtlamalarını aşar)
     try {
-      console.log("Attempting to play audio directly");
+      // Audio direct play attempt
       
       // Direkt DOM elemanını kullanarak çal
       const audioElement = document.getElementById("background-music") as HTMLAudioElement;
@@ -83,7 +72,7 @@ export default function LanguagePage() {
             console.log("Audio started successfully");
           })
           .catch(err => {
-            console.error("Audio play failed:", err);
+            // Silent audio error handling
           });
       }
     } catch (error) {
@@ -602,7 +591,7 @@ export default function LanguagePage() {
                     animate={{ opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    Scroll testi için ek içerik - Yukarı aşağı kaydırabilirsiniz
+                    Dil seçim sayfasında milli değerlerimizi koruyoruz
                   </motion.p>
                 </div>
               </motion.div>

@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
-import AudioControl from "@/components/AudioControl";
-
-interface ManifestoEntry {
-  id: number;
-  title: string;
-  content: string;
-}
+import ModernLayout from "@/components/ModernLayout";
+import { apiRequest } from "@/lib/queryClient";
+import { useTranslation } from 'react-i18next';
+import { 
+  Users, 
+  MessageSquare, 
+  Heart, 
+  Send, 
+  Star,
+  Quote,
+  ArrowRight,
+  Sparkles,
+  Flag
+} from "lucide-react";
 
 interface FeedbackEntry {
   id: number;
@@ -21,16 +27,34 @@ interface FeedbackEntry {
   message: string;
   date: string;
   approved: boolean;
+  likes: number;
 }
 
 export default function HalkDefteriPage() {
-  const [location, setLocation] = useLocation();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { t, i18n } = useTranslation();
+  const [, navigate] = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     city: "",
     message: ""
   });
+
+  const pageContent = "Halk Koordinasyonu - Mazlum halkların sesini duyurduğu demokratik platform. Egemenlik kayıtsız şartsız halktadır.";
+
+  useEffect(() => {
+    const recordVisit = async () => {
+      try {
+        await apiRequest("POST", "/api/visits", {
+          language: i18n.language || "tr",
+          hasInteracted: false,
+          page: "halk-defteri"
+        });
+      } catch (error) {
+        console.error("Failed to record visit:", error);
+      }
+    };
+    recordVisit();
+  }, [i18n.language]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -40,299 +64,298 @@ export default function HalkDefteriPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Form submission logic here
     setFormData({ name: "", city: "", message: "" });
   };
-
-  const handleToggleAudio = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  const manifestoEntries: ManifestoEntry[] = [
-    {
-      id: 1,
-      title: "Cumhuriyet İdeali",
-      content: "Cumhuriyet, halkın egemenliğini temel alan demokratik bir yönetim biçimidir. Bu sistem, tüm vatandaşların eşit haklara sahip olduğu, adaletin hâkim olduğu bir toplum düzeni kurmayı amaçlar."
-    },
-    {
-      id: 2,
-      title: "Laiklik İlkesi",
-      content: "Laiklik, din ve devlet işlerinin birbirinden ayrı tutulması ilkesidir. Bu yaklaşım, tüm inanç gruplarının eşit muamele görmesini ve devletin hiçbir dine ayrıcalık tanımamasını sağlar."
-    },
-    {
-      id: 3,
-      title: "Milliyetçilik Anlayışı",
-      content: "Türk milliyetçiliği, ırkçılığa dayalı değil, ortak vatan, tarih ve kültür değerleri etrafında birleşen bir anlayıştır. Bu milliyetçilik, tüm vatandaşları kucaklayan kapsayıcı bir karaktere sahiptir."
-    }
-  ];
 
   const entries: FeedbackEntry[] = [
     {
       id: 1,
-      name: "Mehmet Demir",
-      city: "Ankara",
-      message: "Cumhuriyet değerlerimizi korumak için hep birlikte çalışmalıyız. Atatürk'ün gösterdiği yolda ilerlemeye devam edelim.",
-      date: "15 Ocak 2024",
-      approved: true
+      name: "Zehra K.",
+      city: "Diyarbakır",
+      message: "Mazlum halkların sesini duyuran bu platform çok değerli. Tüm dünyadan kardeşlerimizle dayanışma içinde olmak umut veriyor.",
+      date: "2 saat önce",
+      approved: true,
+      likes: 47
     },
     {
       id: 2,
-      name: "Ayşe Kaya",
-      city: "İzmir",
-      message: "Eğitim sistemimizi çağdaş medeniyetler seviyesine çıkarmak için daha fazla çaba göstermeliyiz.",
-      date: "12 Ocak 2024",
-      approved: true
+      name: "Ahmed M.",
+      city: "Filistin",
+      message: "Türkiye'nin mazlum halklara verdiği destek tarihi bir sorumluluktur. Bu platformda birlik olmak güç demektir.",
+      date: "5 saat önce", 
+      approved: true,
+      likes: 82
     },
     {
       id: 3,
-      name: "Ali Özkan",
+      name: "Fatma Y.",
       city: "İstanbul",
-      message: "Gençlerimize daha fazla fırsat sunarak ülkemizin geleceğini daha da güçlendirebiliriz.",
-      date: "10 Ocak 2024",
-      approved: true
+      message: "Halkın koordinasyonu demokrasinin temelidir. Bu sistemle sesimizi birleştiriyoruz.",
+      date: "1 gün önce",
+      approved: true,
+      likes: 34
+    },
+    {
+      id: 4,
+      name: "Omar S.",
+      city: "Lübnan",
+      message: "Atatürk'ün gösterdiği yolda mazlum milletlerin dayanışması devam ediyor. Şükürler olsun.",
+      date: "2 gün önce",
+      approved: true,
+      likes: 91
     }
   ];
 
+  const stats = [
+    { icon: <Users className="w-6 h-6" />, number: "1,247", label: "Aktif Katılımcı" },
+    { icon: <MessageSquare className="w-6 h-6" />, number: "3,891", label: "Halk Mesajı" },
+    { icon: <Heart className="w-6 h-6" />, number: "28,493", label: "Dayanışma" },
+    { icon: <Flag className="w-6 h-6" />, number: "67", label: "Ülke Temsili" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-red-950/20 to-black relative overflow-hidden">
-      {/* Background Effects */}
-      <motion.div 
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(220,38,38,0.1),transparent_70%)]"
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{ 
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      {/* Floating Stars */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-red-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-      
-      <main className="container mx-auto px-4 pb-24 pt-16 z-10 relative">
-        <div className="max-w-5xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-white to-red-600 mb-4">
-              HALK DEFTERİ
-            </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              "Egemenlik kayıtsız şartsız milletindir" ilkesiyle, halkın sesini duyurduğu demokrasi platformu
-            </p>
+    <ModernLayout 
+      audioKey="turkiye" 
+      showBackButton={true}
+      pageContent={pageContent}
+      pageName="Halk Koordinasyonu"
+    >
+      <div className="w-full max-w-7xl mx-auto">
+        
+        {/* Hero Section */}
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="inline-flex items-center gap-3 bg-red-950/30 border border-red-600/40 rounded-full px-6 py-2 mb-6">
+            <div className="w-8 h-8 bg-red-600/20 rounded-lg flex items-center justify-center">
+              <img 
+                src="@assets/image_1750060866461.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-red-400 font-medium text-sm">Halk Koordinasyonu</span>
           </div>
+          
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
+            HALK
+            <span className="block bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+              KOORDİNASYONU
+            </span>
+          </h1>
+          
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Mazlum halkların sesini birleştiren demokratik platform
+            <span className="block text-red-400 font-medium mt-2">"Egemenlik kayıtsız şartsız halktadır"</span>
+          </p>
+        </motion.div>
 
-          {/* Tabs Container */}
-          <Tabs defaultValue="manifesto" className="w-full max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-red-950/40 to-black/60 border border-red-600/30">
-              <TabsTrigger 
-                value="manifesto" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-800 data-[state=active]:text-white text-white/70 border-r border-red-600/30"
-              >
-                Cumhuriyet Manifestosu
-              </TabsTrigger>
-              <TabsTrigger 
-                value="halkdefteri" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-800 data-[state=active]:text-white text-white/70"
-              >
-                Halk Defteri
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="manifesto" className="mt-8">
-              <div className="space-y-6">
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-4">Cumhuriyet Manifestosu</h2>
-                  <p className="text-white/70">Atatürk'ün çizdiği medeniyet yolunda ilkelerimiz</p>
-                </div>
-                
-                <div className="grid gap-6">
-                  {manifestoEntries.map((entry) => (
-                    <div 
-                      key={entry.id}
-                      className="bg-gradient-to-r from-black/60 to-red-950/30 backdrop-blur-sm p-6 rounded-lg border border-red-600/30 shadow-[0_0_15px_rgba(220,38,38,0.1)]"
-                    >
-                      <h3 className="text-xl font-bold text-red-400 mb-3">{entry.title}</h3>
-                      <p className="text-white/90 leading-relaxed">{entry.content}</p>
-                    </div>
-                  ))}
-                </div>
+        {/* Stats Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+        >
+          {stats.map((stat, index) => (
+            <div key={index} className="bg-gradient-to-r from-black/40 to-red-950/20 border border-red-600/20 rounded-xl p-6 text-center">
+              <div className="flex justify-center mb-3 text-red-400">
+                {stat.icon}
               </div>
-            </TabsContent>
-            
-            <TabsContent value="halkdefteri" className="mt-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                {/* Message Form Section */}
-                <div className="order-2 lg:order-1">
-                  <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                    <h3 className="text-2xl font-bold text-white mb-6 text-center">Düşüncelerinizi Paylaşın</h3>
-                    
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div>
-                        <Label htmlFor="name" className="text-white/90">Adınız Soyadınız</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Örn: Ahmet Yılmaz"
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12 text-base"
-                          required
-                        />
-                      </div>
-                      
-                      <div>
-                        <Label htmlFor="city" className="text-white/90">Şehriniz</Label>
-                        <Input
-                          id="city"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          placeholder="Örn: İstanbul"
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12 text-base"
-                          required
-                        />
-                      </div>
-                      
-                      <div>
-                        <Label htmlFor="message" className="text-white/90">Mesajınız</Label>
-                        <Textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          placeholder="Düşüncelerinizi, fikirlerinizi paylaşın..."
-                          rows={4}
-                          className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 resize-none min-h-[120px] text-base"
-                          required
-                        />
-                      </div>
-                      
-                      <Button 
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 border border-red-500/30 text-white font-semibold py-3 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-all duration-300"
-                      >
-                        Mesajı Gönder
-                      </Button>
-                    </form>
-                    
-                    <p className="text-white/60 text-sm mt-4 text-center">
-                      Mesajınız incelendikten sonra Halk Defteri'nde yayınlanacaktır.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Entries Section */}
-                <div className="order-1 lg:order-2">
-                  <div className="bg-gradient-to-b from-black/70 to-red-950/30 backdrop-blur-sm border-2 border-red-600/50 rounded-lg p-6 shadow-[0_0_25px_rgba(220,38,38,0.2)]">
-                    <h3 className="text-2xl font-bold text-white mb-6 text-center">Halk Defteri</h3>
-                    
-                    <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                      {entries.filter(entry => entry.approved).map(entry => (
-                        <div 
-                          key={entry.id}
-                          className="bg-gradient-to-r from-black/60 to-red-950/30 backdrop-blur-sm p-4 rounded-lg border border-red-600/20 shadow-[0_0_10px_rgba(220,38,38,0.1)]"
-                        >
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="text-red-400 font-semibold">{entry.name}</p>
-                              <p className="text-white/60 text-sm">{entry.city}</p>
-                            </div>
-                            <p className="text-white/50 text-xs">{entry.date}</p>
-                          </div>
-                          <p className="text-white/90 leading-relaxed">{entry.message}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
-            
-            {/* Bottom Quote */}
-            <div className="mt-12 text-center">
-              <div className="bg-gradient-to-r from-red-950/30 to-black/60 backdrop-blur-sm border-2 border-red-600/30 rounded-lg p-6 shadow-[0_0_20px_rgba(220,38,38,0.15)]">
-                <p className="text-xl font-bold text-white italic">
-                  "Egemenlik kayıtsız şartsız milletindir."
-                </p>
-                <p className="text-lg text-red-500 mt-2">
-                  Mustafa Kemal Atatürk
-                </p>
-              </div>
+              <div className="text-2xl font-bold text-white mb-1">{stat.number}</div>
+              <div className="text-sm text-gray-400">{stat.label}</div>
             </div>
-            
-            {/* Navigation Buttons */}
-            <div className="flex justify-center mt-10 gap-4">
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => setLocation("/")}
-              >
-                ◀ Ana Sayfa
-              </Button>
+          ))}
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Message Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="bg-gradient-to-br from-black/60 via-red-950/10 to-black/60 border-2 border-red-600/30 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-red-950/30 border border-red-600/30 rounded-lg flex items-center justify-center">
+                  <Send className="w-6 h-6 text-red-400" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">Sesinizi Duyurun</h2>
+                  <p className="text-gray-400 text-sm">Halk koordinasyonuna katkıda bulunun</p>
+                </div>
+              </div>
               
-              <Button 
-                variant="outline"
-                className="border-2 border-red-600/60 text-red-500 hover:bg-red-950/20 hover:text-white"
-                onClick={() => setLocation("/gorevler")}
-              >
-                Görevler
-              </Button>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name" className="text-white/90 mb-2 block">Adınız</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Örn: Ahmet Y."
+                      className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="city" className="text-white/90 mb-2 block">Şehir/Ülke</Label>
+                    <Input
+                      id="city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="Örn: İstanbul"
+                      className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 h-12"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="message" className="text-white/90 mb-2 block">Mesajınız</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Düşüncelerinizi, önerilerinizi paylaşın..."
+                    rows={5}
+                    className="bg-black/40 border-red-600/30 text-white placeholder:text-white/50 resize-none"
+                    required
+                  />
+                </div>
+                
+                <Button 
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 h-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Mesajı Gönder
+                </Button>
+                
+                <p className="text-gray-400 text-sm text-center">
+                  Mesajınız incelendikten sonra halk defterinde yayınlanacaktır
+                </p>
+              </form>
             </div>
-          </Tabs>
+          </motion.div>
+
+          {/* Messages Feed */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="bg-gradient-to-br from-black/60 via-red-950/10 to-black/60 border-2 border-red-600/30 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-red-950/30 border border-red-600/30 rounded-lg flex items-center justify-center">
+                  <MessageSquare className="w-6 h-6 text-red-400" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">Halk Defteri</h2>
+                  <p className="text-gray-400 text-sm">Mazlum halkların sesi</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                {entries.filter(entry => entry.approved).map((entry, index) => (
+                  <motion.div 
+                    key={entry.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-gradient-to-r from-black/40 to-red-950/20 border border-red-600/20 rounded-xl p-6 hover:border-red-500/40 transition-all duration-300"
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-red-950/30 border border-red-600/30 rounded-full flex items-center justify-center">
+                          <Users className="w-5 h-5 text-red-400" />
+                        </div>
+                        <div>
+                          <p className="text-red-400 font-semibold">{entry.name}</p>
+                          <p className="text-gray-500 text-sm">{entry.city}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-gray-500 text-xs">{entry.date}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Heart className="w-3 h-3 text-red-400" />
+                          <span className="text-xs text-gray-400">{entry.likes}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative">
+                      <Quote className="w-5 h-5 text-red-400/30 absolute -top-1 -left-1" />
+                      <p className="text-gray-300 leading-relaxed pl-6">{entry.message}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      
-      {/* Bottom animation */}
-      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 text-white/70 text-xl font-semibold tracking-wide animate-pulse z-10 mb-2">
-        CUMHURİYET GÜNCELLENİYOR
+
+        {/* Atatürk Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <div className="bg-gradient-to-r from-red-950/20 to-black/40 border border-red-600/20 rounded-2xl p-8 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5">
+              <div className="w-full h-full bg-gradient-to-br from-red-600 to-transparent" />
+            </div>
+            
+            <div className="relative z-10">
+              <div className="flex justify-center mb-4">
+                <Star className="w-8 h-8 text-red-400" />
+              </div>
+              <blockquote className="text-2xl md:text-3xl font-bold text-white italic mb-4">
+                "Egemenlik kayıtsız şartsız halktadır."
+              </blockquote>
+              <p className="text-red-400 text-lg font-medium">
+                Mustafa Kemal Atatürk
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+        >
+          <Button
+            onClick={() => navigate("/gorevler")}
+            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold px-8 py-3 rounded-lg h-12"
+          >
+            100 Görevi İncele
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+          
+          <Button
+            variant="outline"
+            onClick={() => navigate("/anayasa")}
+            className="border-red-600/30 text-red-400 hover:bg-red-950/20 px-8 py-3 rounded-lg h-12"
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            Anayasa Önerileri
+          </Button>
+        </motion.div>
+
       </div>
-      
-      <AudioControl onToggle={handleToggleAudio} />
-      
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(0, 0, 0, 0.3);
-          border-radius: 10px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(220, 38, 38, 0.6);
-          border-radius: 10px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(220, 38, 38, 0.8);
-        }
-        `
-      }} />
-    </div>
+    </ModernLayout>
   );
 }
