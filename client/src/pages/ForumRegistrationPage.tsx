@@ -74,7 +74,7 @@ export default function ForumRegistrationPage() {
         throw new Error('Forum hesabı oluşturulamadı');
       }
     } catch (error) {
-      console.error('Forum account creation error:', error);
+      // Forum account creation error
       toast({
         title: "Hata",
         description: error instanceof Error ? error.message : "Forum hesabı oluşturulamadı",

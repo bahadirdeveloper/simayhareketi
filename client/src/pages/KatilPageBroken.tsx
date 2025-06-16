@@ -116,7 +116,7 @@ export default function KatilPage() {
         variant: "default",
       });
     } catch (error) {
-      console.error('Package selection error:', error);
+      // Package selection error
       toast({
         title: "Hata",
         description: "Paket seçimi başarısız. Lütfen tekrar deneyin.",
@@ -151,7 +151,7 @@ export default function KatilPage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     
@@ -173,7 +173,7 @@ export default function KatilPage() {
         });
       }
     } catch (error) {
-      console.error("Failed to fetch stats:", error);
+      // Failed to fetch stats
     }
   };
 
@@ -189,7 +189,7 @@ export default function KatilPage() {
         }
       }
     } catch (error) {
-      console.error("Failed to fetch transactions:", error);
+      // Failed to fetch transactions
     }
   };
 
@@ -296,7 +296,7 @@ export default function KatilPage() {
         }, 5000);
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      // Form submission error
       toast({
         title: "Hata",
         description: error instanceof Error ? error.message : "Bir hata oluştu. Lütfen tekrar deneyin.",

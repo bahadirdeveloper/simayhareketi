@@ -93,7 +93,7 @@ export default function TaskSelectionPage() {
         throw new Error('Görev seçimi başarısız');
       }
     } catch (error) {
-      console.error('Task selection error:', error);
+      // Task selection error
       toast({
         title: "Hata",
         description: error instanceof Error ? error.message : "Görev seçimi başarısız",

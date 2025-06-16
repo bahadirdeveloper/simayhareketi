@@ -151,7 +151,7 @@ export default function DijitalKimlikPage() {
         throw new Error('Ödeme işlemi başlatılamadı');
       }
     } catch (error) {
-      console.error('Digital ID creation error:', error);
+      // Digital ID creation error
       toast({
         title: "Hata",
         description: error instanceof Error ? error.message : "Bir hata oluştu",

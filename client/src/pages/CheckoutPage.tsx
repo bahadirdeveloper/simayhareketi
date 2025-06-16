@@ -157,7 +157,7 @@ export default function CheckoutPage() {
         const data = JSON.parse(storedPayment);
         setPaymentData(data);
       } catch (error) {
-        console.error('Invalid payment data:', error);
+        // Invalid payment data error
         navigate('/katil');
       }
     } else {
