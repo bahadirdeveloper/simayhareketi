@@ -1,5 +1,6 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
+import Stripe from 'stripe';
 import { storage } from "./storage";
 import path from "path";
 import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema, insertTransactionSchema, 
@@ -295,7 +296,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Geçersiz tutar" });
       }
 
-      const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+        apiVersion: '2023-10-16',
+      });
       
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents/kuruş
