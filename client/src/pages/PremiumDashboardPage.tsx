@@ -14,7 +14,8 @@ import {
   LogOut,
   Crown,
   CheckCircle,
-  Lock
+  Lock,
+  ArrowRightLeft
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
@@ -272,6 +273,13 @@ export default function PremiumDashboardPage() {
                     >
                       <Settings className="h-4 w-4 mr-2 text-green-400" />
                       Analitik Rapor
+                    </Button>
+                    <Button 
+                      onClick={() => navigate("/entegrasyon-sureci")}
+                      className="w-full justify-start bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30"
+                    >
+                      <ArrowRightLeft className="h-4 w-4 mr-2 text-emerald-400" />
+                      Entegrasyon Sürecimiz
                     </Button>
                   </CardContent>
                 </Card>
