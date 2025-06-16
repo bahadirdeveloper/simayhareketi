@@ -16,7 +16,15 @@ import {
   Globe,
   Shield,
   Sparkles,
-  Star
+  Star,
+  Settings,
+  Database,
+  CreditCard,
+  Award,
+  Network,
+  UserPlus,
+  MapPin,
+  Wrench
 } from "lucide-react";
 import { navigateWithScrollReset } from "@/lib/navigation";
 import GlobalTranslator from "@/components/GlobalTranslator";
@@ -284,6 +292,132 @@ export default function TurkiyePage() {
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-200 transition-colors">PREMİUM PAKETLER</h3>
                 <p className="text-emerald-200 text-base leading-relaxed mb-4">Üyelik paketi + otomatik TC kimlik belgesi</p>
                 <div className="w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full group-hover:from-emerald-400 group-hover:to-emerald-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* KURUCU EKSİKLERİ */}
+          <div
+            onClick={() => navigateToPage("/kurucu-eksikleri")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 border border-gray-500/30 hover:border-gray-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-gray-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Wrench className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-gray-400 rounded-full group-hover:bg-gray-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">KURUCU EKSİKLERİ</h3>
+                <p className="text-gray-200 text-base leading-relaxed mb-4">Sistem eksikleri ve destek alanları</p>
+                <div className="w-full h-1 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full group-hover:from-gray-400 group-hover:to-gray-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* HALK DEFTERİ */}
+          <div
+            onClick={() => navigateToPage("/halk-defteri")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-800 via-cyan-900 to-cyan-950 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Database className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-cyan-400 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-200 transition-colors">HALK DEFTERİ</h3>
+                <p className="text-cyan-200 text-base leading-relaxed mb-4">Halk kayıtları ve belge sistemi</p>
+                <div className="w-full h-1 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full group-hover:from-cyan-400 group-hover:to-cyan-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* DİJİTAL KİMLİK */}
+          <div
+            onClick={() => navigateToPage("/dijital-kimlik")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-800 via-violet-900 to-violet-950 border border-violet-500/30 hover:border-violet-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-violet-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-violet-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <CreditCard className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-violet-400 rounded-full group-hover:bg-violet-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-violet-200 transition-colors">DİJİTAL KİMLİK</h3>
+                <p className="text-violet-200 text-base leading-relaxed mb-4">Dijital kimlik ve vatandaşlık sistemi</p>
+                <div className="w-full h-1 bg-gradient-to-r from-violet-500 to-violet-600 rounded-full group-hover:from-violet-400 group-hover:to-violet-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* SERTİFİKA */}
+          <div
+            onClick={() => navigateToPage("/sertifika")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-teal-800 via-teal-900 to-teal-950 border border-teal-500/30 hover:border-teal-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-teal-400 rounded-full group-hover:bg-teal-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-teal-200 transition-colors">SERTİFİKA</h3>
+                <p className="text-teal-200 text-base leading-relaxed mb-4">Dijital sertifika ve belgelendirme</p>
+                <div className="w-full h-1 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full group-hover:from-teal-400 group-hover:to-teal-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* HALK KOORDİNASYON */}
+          <div
+            onClick={() => navigateToPage("/halk-koordinasyon")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-800 via-amber-900 to-amber-950 border border-amber-500/30 hover:border-amber-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Settings className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-amber-400 rounded-full group-hover:bg-amber-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors">HALK KOORDİNASYON</h3>
+                <p className="text-amber-200 text-base leading-relaxed mb-4">Toplumsal koordinasyon ve yönetim</p>
+                <div className="w-full h-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full group-hover:from-amber-400 group-hover:to-amber-500 transition-colors"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* FORUM KAYIT */}
+          <div
+            onClick={() => navigateToPage("/forum-kayit")}
+            className="group cursor-pointer relative overflow-hidden rounded-3xl bg-gradient-to-br from-pink-800 via-pink-900 to-pink-950 border border-pink-500/30 hover:border-pink-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="relative p-8 h-64 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <UserPlus className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-6 h-6 border-2 border-pink-400 rounded-full group-hover:bg-pink-400 transition-colors duration-300"></div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors">FORUM KAYIT</h3>
+                <p className="text-pink-200 text-base leading-relaxed mb-4">Forum topluluk kaydı ve üyelik</p>
+                <div className="w-full h-1 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full group-hover:from-pink-400 group-hover:to-pink-500 transition-colors"></div>
               </div>
             </div>
           </div>
