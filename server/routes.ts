@@ -3,17 +3,9 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from "path";
 import { insertUserSchema, insertVisitorStatSchema, insertFeedbackSchema, insertTransactionSchema, 
-  insertGorevSchema, insertGorevBasvuruSchema, insertUlkeBasvuruSchema, insertPremiumUyelikSchema, insertOdemeSchema } from "@shared/schema";
+  insertGorevSchema, insertGorevBasvuruSchema, insertUlkeBasvuruSchema } from "@shared/schema";
 import { z } from "zod";
-import { 
-  handleCreatePaymentIntent, 
-  handleCreateSubscription, 
-  handleWebhook,
-  getPaymentPrices
-} from "./routes/stripe";
 import { seedTasks } from "./seed-tasks";
-import { registerDigitalIdentityRoutes } from "./routes/digital-identity";
-import { registerPremiumRoutes } from "./routes/premium";
 
 // SQL Enjeksiyon Koruma Middleware
 function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
@@ -471,28 +463,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Stripe payments
-  app.post("/api/create-payment-intent", handleCreatePaymentIntent);
-  app.post("/api/create-subscription", handleCreateSubscription);
-  app.post("/api/webhook", handleWebhook);
-  app.get("/api/payment-prices", getPaymentPrices);
-
   // Database seeding endpoint
   app.post("/api/seed-tasks", async (req, res) => {
     try {
       await seedTasks();
-      res.json({ success: true, message: "101 görev başarıyla veritabanına eklendi" });
+      res.json({ success: true, message: "100 görev başarıyla veritabanına eklendi" });
     } catch (error) {
       console.error("Task seeding error:", error);
       res.status(500).json({ error: "Failed to seed tasks" });
     }
   });
-
-  // Register digital identity routes
-  registerDigitalIdentityRoutes(app);
-  
-  // Register premium package routes
-  registerPremiumRoutes(app);
 
   const httpServer = createServer(app);
 
