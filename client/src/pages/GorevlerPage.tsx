@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
 import ModernLayout from "@/components/ModernLayout";
 import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ interface Gorev {
 export default function GorevlerPage() {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const [, navigate] = useLocation();
   const [gorevler, setGorevler] = useState<Gorev[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -134,7 +136,7 @@ export default function GorevlerPage() {
             {/* Kurucunun Eksikleri Button */}
             <div className="mt-6">
               <Button
-                onClick={() => window.open('/attached_assets/kurucu.html', '_blank')}
+                onClick={() => navigate('/kurucu-eksikleri')}
                 className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg border-2 border-yellow-500"
               >
                 📋 Kurucunun Eksikleri
