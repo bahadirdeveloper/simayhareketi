@@ -35,7 +35,6 @@ export default function GorevlerPage() {
   const [gorevler, setGorevler] = useState<Gorev[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -69,8 +68,7 @@ export default function GorevlerPage() {
   const filteredGorevler = gorevler.filter(gorev => {
     const matchesSearch = gorev.baslik?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          gorev.aciklama?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || gorev.kategori === selectedCategory;
-    return matchesSearch && matchesCategory;
+    return matchesSearch;
   });
 
   // Sayfalama
@@ -162,23 +160,10 @@ export default function GorevlerPage() {
             
             <div className="flex gap-2">
               <Button
-                variant={selectedCategory === "all" ? "default" : "outline"}
-                onClick={() => setSelectedCategory("all")}
+                variant="default"
                 className="bg-red-700 hover:bg-red-600"
               >
-                Tümü
-              </Button>
-              <Button
-                variant={selectedCategory === "kritik" ? "default" : "outline"}
-                onClick={() => setSelectedCategory("kritik")}
-              >
-                Kritik
-              </Button>
-              <Button
-                variant={selectedCategory === "normal" ? "default" : "outline"}
-                onClick={() => setSelectedCategory("normal")}
-              >
-                Normal
+                Tümü (100 Görev)
               </Button>
             </div>
           </div>
