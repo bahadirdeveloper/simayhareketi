@@ -203,7 +203,7 @@ export default function EntegrasyonPage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     

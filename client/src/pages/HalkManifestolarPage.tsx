@@ -175,7 +175,7 @@ O, milyon kişiyi tek tuşla silebilir. Biz, bir kişinin hayatı için milyon k
           page: "halk-manifestolar"
         });
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     recordVisit();

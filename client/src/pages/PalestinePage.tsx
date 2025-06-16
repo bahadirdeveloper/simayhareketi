@@ -32,7 +32,7 @@ export default function PalestinePage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     

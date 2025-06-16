@@ -24,7 +24,7 @@ export default function TurkNedirPage() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
       }
     };
     

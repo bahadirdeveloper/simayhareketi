@@ -32,7 +32,7 @@ export default function Home() {
           }
         );
       } catch (error) {
-        console.error("Failed to record visit:", error);
+        // Silent visit tracking error
         // Don't show errors to the user for analytics
       }
     };
