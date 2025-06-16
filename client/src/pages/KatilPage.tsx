@@ -56,7 +56,9 @@ import {
   User,
   MessageSquare,
   Globe,
-  Calendar
+  Calendar,
+  Shield,
+  Crown
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ModernLayout from "@/components/ModernLayout";
@@ -345,6 +347,118 @@ export default function KatilPage() {
           </TabsList>
 
           <TabsContent value="katil" className="space-y-6">
+            {/* Premium Paketler Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+              {/* Temel Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
+                <Card className="bg-gradient-to-br from-blue-900 to-blue-800 border-blue-600 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <User className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">TEMEL PAKET</CardTitle>
+                    <CardDescription className="text-blue-200">
+                      Harekete temel katılım + kimlik belgesi
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺50</div>
+                    <ul className="text-blue-200 space-y-2 text-sm mb-6">
+                      <li>✓ Hareket üyeliği</li>
+                      <li>✓ Dijital kimlik belgesi</li>
+                      <li>✓ Temel görevlere erişim</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                      onClick={() => handlePackageSelect('temel', 50)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Premium Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="relative"
+              >
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-1 rounded-full text-xs font-bold">
+                    ÖNERİLEN
+                  </span>
+                </div>
+                <Card className="bg-gradient-to-br from-green-900 to-green-700 border-green-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2">
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">PREMİUM PAKET</CardTitle>
+                    <CardDescription className="text-green-200">
+                      Üyelik paketi + otomatik TC kimlik belgesi
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺150</div>
+                    <ul className="text-green-200 space-y-2 text-sm mb-6">
+                      <li>✓ Tüm temel özellikler</li>
+                      <li>✓ Otomatik TC kimlik doğrulama</li>
+                      <li>✓ Premium görevlere erişim</li>
+                      <li>✓ Öncelikli destek</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      onClick={() => handlePackageSelect('premium', 150)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Elite Paket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="relative"
+              >
+                <Card className="bg-gradient-to-br from-purple-900 to-purple-700 border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Plus className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-white text-xl font-bold">ELİTE PAKET</CardTitle>
+                    <CardDescription className="text-purple-200">
+                      Liderlik paketi + özel yetkiler
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <div className="text-3xl font-bold text-white mb-4">₺300</div>
+                    <ul className="text-purple-200 space-y-2 text-sm mb-6">
+                      <li>✓ Tüm premium özellikler</li>
+                      <li>✓ Liderlik görevleri</li>
+                      <li>✓ Organizatör yetkileri</li>
+                      <li>✓ VIP destek</li>
+                    </ul>
+                    <Button 
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                      onClick={() => handlePackageSelect('elite', 300)}
+                    >
+                      Seç
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
             <Card className="bg-gray-900 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
