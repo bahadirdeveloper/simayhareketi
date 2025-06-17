@@ -453,7 +453,7 @@ export default function KurucuEksikleriPage() {
                         <SelectTrigger className="bg-black/50 border-orange-500/30 text-white focus:border-orange-400">
                           <SelectValue placeholder="Alanınızı seçin" />
                         </SelectTrigger>
-                        <SelectContent className="bg-black/90 border-orange-500/30">
+                        <SelectContent className="bg-black/90 border-orange-500/30 z-[100]">
                           <SelectItem value="yazilim">Yazılım Geliştirme</SelectItem>
                           <SelectItem value="pazarlama">Pazarlama & İletişim</SelectItem>
                           <SelectItem value="guvenlik">Güvenlik & Altyapı</SelectItem>
@@ -474,7 +474,7 @@ export default function KurucuEksikleriPage() {
                         <SelectTrigger className="bg-black/50 border-orange-500/30 text-white focus:border-orange-400">
                           <SelectValue placeholder="Haftalık süre" />
                         </SelectTrigger>
-                        <SelectContent className="bg-black/90 border-orange-500/30">
+                        <SelectContent className="bg-black/90 border-orange-500/30 z-[100]">
                           <SelectItem value="5-10">5-10 saat/hafta</SelectItem>
                           <SelectItem value="10-20">10-20 saat/hafta</SelectItem>
                           <SelectItem value="20-40">20-40 saat/hafta</SelectItem>
