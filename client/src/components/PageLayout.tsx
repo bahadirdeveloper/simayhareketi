@@ -57,7 +57,7 @@ export default function PageLayout({
       
       <div className="min-h-screen text-white relative overflow-x-hidden">
         {/* Sayfa içeriği */}
-        <main className={`container mx-auto px-3 sm:px-4 z-10 relative flex flex-col items-center justify-center min-h-screen ${className}`}>
+        <main className={`container mx-auto px-3 sm:px-4 z-10 relative flex flex-col items-center justify-center min-h-screen mobile-container mobile-optimized ${className}`}>
           {showBackNavigation && (
             <motion.div 
               className="fixed top-4 left-4 z-50"
@@ -67,7 +67,7 @@ export default function PageLayout({
             >
               <button 
                 onClick={() => navigate("/")}
-                className="flex items-center space-x-1 sm:space-x-2 bg-black/60 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300"
+                className="flex items-center space-x-1 sm:space-x-2 bg-black/60 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-red-500/30 hover:border-red-500/60 transition-all duration-300 touch-target mobile-button"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
