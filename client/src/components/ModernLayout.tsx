@@ -50,11 +50,11 @@ const LanguageButton = () => {
 const FloatingSupportButton = memo(() => (
   <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-40">
     <a 
-      href="https://discord.gg/halkkoordinasyon" 
+      href="https://www.simayhareketi.com" 
       target="_blank" 
       rel="noopener noreferrer"
-      className="group bg-gradient-to-r from-purple-600 to-blue-600 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:from-purple-500 hover:to-blue-500 transition-all duration-300 transform hover:scale-110"
-      aria-label="Discord Destek"
+      className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:from-green-500 hover:to-emerald-500 transition-all duration-300 transform hover:scale-110"
+      aria-label="Halk Koordinasyon Merkezi"
     >
       <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
     </a>
@@ -74,7 +74,7 @@ const Footer = memo(() => (
         </div>
         
         <a 
-          href="https://discord.gg/halkkoordinasyon" 
+          href="https://www.simayhareketi.com" 
           target="_blank" 
           rel="noopener noreferrer"
           className="group flex items-center gap-2 text-xs sm:text-sm"
@@ -82,7 +82,7 @@ const Footer = memo(() => (
           <ModernTechButton 
             variant="outline" 
             size="sm"
-            className="border-purple-500/30 text-purple-400 hover:bg-purple-500/20 hover:border-purple-400 transition-all duration-300 transform group-hover:scale-105"
+            className="border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-400 transition-all duration-300 transform group-hover:scale-105"
           >
             <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
             Halk Koordinasyon Merkezi
@@ -198,8 +198,7 @@ const ModernLayout = ({
         {/* Accessibility Reader */}
         <AccessibilityReader pageContent={pageContent} pageName={pageName} />
         
-        {/* Quick Navigation */}
-        <QuickNav />
+
       </div>
     </>
   );

@@ -28,12 +28,9 @@ const QuickNav = () => {
   }, []);
 
   const navItems = [
-    { path: '/home', icon: Home, label: 'Ana Sayfa', color: 'text-blue-400', priority: 1 },
     { path: '/turkiye', icon: MapPin, label: 'Türkiye', color: 'text-red-400', priority: 1 },
-    { path: '/gorevler', icon: Target, label: '100 Görev', color: 'text-yellow-400', priority: 2 },
-    { path: '/manifesto', icon: Users, label: 'Manifesto', color: 'text-purple-400', priority: 2 },
-    { path: '/canli-gelir-gider', icon: TrendingUp, label: 'Mali Şeffaflık', color: 'text-cyan-400', priority: 3 },
-    { path: '/katil', icon: Plus, label: 'Katıl', color: 'text-orange-400', priority: 3 }
+    { path: '/gorevler', icon: Target, label: '100 Görev', color: 'text-yellow-400', priority: 1 },
+    { path: 'https://www.simayhareketi.com', icon: Users, label: 'Halk Koordinasyon', color: 'text-green-400', priority: 1, external: true }
   ];
 
   if (!isVisible) return null;
@@ -57,7 +54,11 @@ const QuickNav = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => {
-                      navigate(item.path);
+                      if (item.external || item.path.startsWith('http')) {
+                        window.open(item.path, '_blank', 'noopener,noreferrer');
+                      } else {
+                        navigate(item.path);
+                      }
                       setIsOpen(false);
                     }}
                     onTouchStart={(e) => {
