@@ -9,8 +9,13 @@ import { useToast } from "@/hooks/use-toast";
 import ModernLayout from "@/components/ModernLayout";
 import { CheckCircle, CreditCard, ArrowLeft, Loader2 } from "lucide-react";
 
-// Initialize Stripe
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+// Initialize Stripe with error handling
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY).then((stripe) => {
+  if (!stripe) {
+    console.error('Stripe failed to load');
+  }
+  return stripe;
+});
 
 interface PaymentData {
   clientSecret: string;
@@ -172,11 +177,39 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="p-4 border border-gray-600 rounded-lg bg-gray-800">
-              <PaymentElement 
-                options={{
-                  layout: "tabs"
-                }}
-              />
+              {!stripe ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin text-blue-400 mr-2" />
+                  <span className="text-gray-300">Ödeme sistemi yükleniyor...</span>
+                </div>
+              ) : (
+                <PaymentElement 
+                  options={{
+                    layout: "tabs",
+                    defaultValues: {
+                      billingDetails: {
+                        name: paymentData.userInfo.ad,
+                        email: paymentData.userInfo.email,
+                        phone: paymentData.userInfo.telefon,
+                        address: {
+                          city: paymentData.userInfo.sehir,
+                          country: 'TR'
+                        }
+                      }
+                    },
+                    fields: {
+                      billingDetails: {
+                        name: 'auto',
+                        email: 'auto',
+                        phone: 'auto',
+                        address: {
+                          country: 'TR'
+                        }
+                      }
+                    }
+                  }}
+                />
+              )}
             </div>
             
             {/* Payment Security Notice */}
