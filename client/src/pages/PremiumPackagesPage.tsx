@@ -248,7 +248,7 @@ export default function PremiumPackagesPage() {
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[9999]">
                       <SelectItem value="E">Erkek</SelectItem>
                       <SelectItem value="K">Kadın</SelectItem>
                     </SelectContent>
@@ -260,7 +260,7 @@ export default function PremiumPackagesPage() {
                     <SelectTrigger>
                       <SelectValue placeholder="Kan grubunuz" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="z-[9999]">
                       <SelectItem value="A+">A+</SelectItem>
                       <SelectItem value="A-">A-</SelectItem>
                       <SelectItem value="B+">B+</SelectItem>
