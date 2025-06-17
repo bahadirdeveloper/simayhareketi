@@ -30,10 +30,10 @@ const menuItems = [
   { 
     id: 'home', 
     label: 'Ana Sayfa', 
-    path: '/home', 
+    path: '/', 
     icon: Home, 
     color: 'text-blue-400',
-    description: 'Platform ana sayfası',
+    description: 'Dil seçimi ana sayfası',
     category: 'main'
   },
   { 
