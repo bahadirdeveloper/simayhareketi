@@ -9,8 +9,29 @@ import { useToast } from "@/hooks/use-toast";
 import ModernLayout from "@/components/ModernLayout";
 import { CheckCircle, CreditCard, ArrowLeft, Loader2 } from "lucide-react";
 
-// Initialize Stripe
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+// Initialize Stripe with validation
+const getStripePromise = () => {
+  const publicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+  
+  if (!publicKey) {
+    console.error('VITE_STRIPE_PUBLIC_KEY is not set');
+    return null;
+  }
+  
+  if (publicKey.startsWith('sk_')) {
+    console.error('Invalid public key: secret key provided instead of public key');
+    return null;
+  }
+  
+  if (!publicKey.startsWith('pk_')) {
+    console.error('Invalid public key format: must start with pk_');
+    return null;
+  }
+  
+  return loadStripe(publicKey);
+};
+
+const stripePromise = getStripePromise();
 
 interface PaymentData {
   clientSecret: string;
@@ -237,6 +258,37 @@ export default function CheckoutPageNew() {
       <ModernLayout showBackButton={false} pageName="Yükleniyor">
         <div className="flex items-center justify-center min-h-[50vh]">
           <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+        </div>
+      </ModernLayout>
+    );
+  }
+
+  if (!stripePromise) {
+    return (
+      <ModernLayout showBackButton={false} pageName="Ödeme Sistemi Hatası">
+        <div className="w-full max-w-4xl mx-auto space-y-8 p-4">
+          <Card className="bg-red-900/20 border-red-500/30">
+            <CardHeader>
+              <CardTitle className="text-red-400 flex items-center gap-2">
+                <CreditCard className="w-5 h-5" />
+                Ödeme Sistemi Yapılandırma Hatası
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-red-200">
+                Ödeme sistemi doğru yapılandırılmamış. Stripe public key eksik veya hatalı.
+              </p>
+              <p className="text-gray-300 text-sm">
+                Lütfen sistem yöneticisiyle iletişime geçin veya birkaç dakika sonra tekrar deneyin.
+              </p>
+              <Button 
+                onClick={() => navigate('/katil')} 
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                Geri Dön
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </ModernLayout>
     );
