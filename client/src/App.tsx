@@ -44,6 +44,8 @@ import UlkeEklePage from "@/pages/UlkeEklePage";
 import DijitalKimlikPage from "@/pages/DijitalKimlikPage";
 import PremiumPackagesPage from "@/pages/PremiumPackagesPage";
 import CheckoutPageNew from "@/pages/CheckoutPageNew";
+import PaymentMethodSelectionPage from "@/pages/PaymentMethodSelectionPage";
+import IyzicoCheckoutPage from "@/pages/IyzicoCheckoutPage";
 import TaskSelectionPage from "@/pages/TaskSelectionPage";
 import ForumRegistrationPage from "@/pages/ForumRegistrationPage";
 import CanliGelirGiderPage from "@/pages/CanliGelirGiderPage";
@@ -72,7 +74,9 @@ function Router() {
       <Route path="/halk-defteri" component={HalkDefteriPage} />
       <Route path="/katil" component={KatilPage} />
       <Route path="/katil/success" component={KatilPage} />
+      <Route path="/payment-method-selection" component={PaymentMethodSelectionPage} />
       <Route path="/checkout" component={CheckoutPageNew} />
+      <Route path="/iyzico-checkout" component={IyzicoCheckoutPage} />
       <Route path="/task-selection" component={TaskSelectionPage} />
       <Route path="/forum-kayit" component={ForumRegistrationPage} />
       <Route path="/canli-gelir-gider" component={CanliGelirGiderPage} />

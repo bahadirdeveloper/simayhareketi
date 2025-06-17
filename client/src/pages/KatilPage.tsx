@@ -272,27 +272,15 @@ export default function KatilPage() {
           throw new Error('Başvuru kaydedilemedi');
         }
         
-        // Then proceed to payment
-        const paymentResponse = await apiRequest("POST", "/api/create-payment-intent", {
+        // Store payment data and show payment method selection
+        localStorage.setItem('pendingPayment', JSON.stringify({
           amount: amount,
           packageType: packageType,
           userInfo: values
-        });
+        }));
         
-        if (paymentResponse.ok) {
-          const data = await paymentResponse.json();
-          localStorage.setItem('pendingPayment', JSON.stringify({
-            clientSecret: data.clientSecret,
-            amount: amount,
-            packageType: packageType,
-            userInfo: values
-          }));
-          
-          navigate('/checkout');
-          return;
-        } else {
-          throw new Error('Ödeme işlemi başlatılamadı');
-        }
+        // Navigate to payment method selection
+        navigate('/payment-method-selection');
       } else {
         // Free participation
         const response = await apiRequest("POST", "/api/applications", {

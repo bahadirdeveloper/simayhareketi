@@ -421,6 +421,158 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // İyzico payment routes
+  app.post("/api/iyzico/initialize", async (req, res) => {
+    try {
+      const { amount, packageType, userInfo } = req.body;
+      
+      if (!amount || amount < 20) {
+        return res.status(400).json({ error: "Minimum tutar 20 TL olmalıdır" });
+      }
+
+      if (!process.env.IYZICO_API_KEY || !process.env.IYZICO_SECRET_KEY) {
+        console.error("İyzico credentials not configured");
+        return res.status(500).json({ error: "İyzico ödeme sistemi yapılandırma hatası" });
+      }
+
+      const Iyzipay = require('iyzipay');
+      
+      const iyzipay = new Iyzipay({
+        apiKey: process.env.IYZICO_API_KEY,
+        secretKey: process.env.IYZICO_SECRET_KEY,
+        uri: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com'
+      });
+
+      const request = {
+        locale: Iyzipay.LOCALE.TR,
+        conversationId: `conv_${Date.now()}`,
+        price: amount.toString(),
+        paidPrice: amount.toString(),
+        currency: Iyzipay.CURRENCY.TRY,
+        basketId: `basket_${Date.now()}`,
+        paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
+        callbackUrl: `${req.protocol}://${req.get('host')}/api/iyzico/callback`,
+        enabledInstallments: [2, 3, 6, 9],
+        buyer: {
+          id: 'BY' + Date.now(),
+          name: userInfo.ad.split(' ')[0] || 'Ad',
+          surname: userInfo.ad.split(' ').slice(1).join(' ') || 'Soyad',
+          gsmNumber: userInfo.telefon,
+          email: userInfo.email,
+          identityNumber: '74300864791',
+          lastLoginDate: new Date().toISOString().split('T')[0] + ' 12:00:00',
+          registrationDate: new Date().toISOString().split('T')[0] + ' 12:00:00',
+          registrationAddress: userInfo.sehir + ', Türkiye',
+          ip: req.ip,
+          city: userInfo.sehir,
+          country: 'Turkey',
+          zipCode: '34732'
+        },
+        shippingAddress: {
+          contactName: userInfo.ad,
+          city: userInfo.sehir,
+          country: 'Turkey',
+          address: userInfo.sehir + ', Türkiye',
+          zipCode: '34732'
+        },
+        billingAddress: {
+          contactName: userInfo.ad,
+          city: userInfo.sehir,
+          country: 'Turkey',
+          address: userInfo.sehir + ', Türkiye',
+          zipCode: '34732'
+        },
+        basketItems: [
+          {
+            id: 'BI' + Date.now(),
+            name: packageType === 'dijital-kimlik' ? 'Dijital Kimlik' : 'Özel Katkı',
+            category1: 'Dijital Hizmetler',
+            category2: 'Platform Üyelikleri',
+            itemType: Iyzipay.BASKET_ITEM_TYPE.VIRTUAL,
+            price: amount.toString()
+          }
+        ]
+      };
+
+      iyzipay.checkoutFormInitialize.create(request, function (err: any, result: any) {
+        if (err) {
+          console.error("İyzico error:", err);
+          return res.status(500).json({ 
+            error: "İyzico ödeme başlatılamadı",
+            message: err.errorMessage || "Ödeme sistemi hatası"
+          });
+        }
+
+        if (result.status === 'success') {
+          console.log(`[IYZICO] Payment initialized for ₺${amount} - ${packageType} - ${userInfo.email}`);
+          
+          res.json({
+            success: true,
+            checkoutFormContent: result.checkoutFormContent,
+            token: result.token,
+            paymentPageUrl: result.paymentPageUrl
+          });
+        } else {
+          console.error("İyzico initialization failed:", result);
+          res.status(400).json({ 
+            error: "İyzico ödeme başlatılamadı",
+            message: result.errorMessage || "Ödeme sistemi hatası"
+          });
+        }
+      });
+
+    } catch (error: any) {
+      console.error("İyzico payment error:", error);
+      res.status(500).json({ 
+        error: "İyzico ödeme sistemi hatası",
+        message: error.message || "Ödeme işlemi başlatılamadı"
+      });
+    }
+  });
+
+  app.post("/api/iyzico/callback", async (req, res) => {
+    try {
+      const { token } = req.body;
+      
+      if (!token) {
+        return res.status(400).json({ error: "Token eksik" });
+      }
+
+      const Iyzipay = require('iyzipay');
+      
+      const iyzipay = new Iyzipay({
+        apiKey: process.env.IYZICO_API_KEY,
+        secretKey: process.env.IYZICO_SECRET_KEY,
+        uri: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com'
+      });
+
+      const request = {
+        locale: Iyzipay.LOCALE.TR,
+        conversationId: `callback_${Date.now()}`,
+        token: token
+      };
+
+      iyzipay.checkoutForm.retrieve(request, function (err: any, result: any) {
+        if (err) {
+          console.error("İyzico callback error:", err);
+          return res.redirect('/katil?error=payment_failed');
+        }
+
+        if (result.status === 'success') {
+          console.log(`[IYZICO] Payment completed successfully - ${result.paymentId}`);
+          res.redirect('/katil/success?payment=success');
+        } else {
+          console.error("İyzico payment failed:", result);
+          res.redirect('/katil?error=payment_failed');
+        }
+      });
+
+    } catch (error: any) {
+      console.error("İyzico callback error:", error);
+      res.redirect('/katil?error=system_error');
+    }
+  });
+
   // Stripe payment routes
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
