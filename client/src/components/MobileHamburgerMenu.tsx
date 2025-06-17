@@ -155,7 +155,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
   const handleNavigation = (path: string) => {
     console.log('Hamburger Navigation:', path);
     setIsOpen(false);
-    navigateWithScrollReset(navigate, path);
+    navigate(path);
   };
 
   const toggleMenu = () => {
