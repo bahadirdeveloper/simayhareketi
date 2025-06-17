@@ -228,6 +228,28 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
+  
+  /* Enhanced scrolling for mobile */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize form inputs for mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevent zoom on focus */
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav-item {
+    min-height: 56px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* Ultra-small devices (phones in portrait) */
