@@ -118,10 +118,10 @@ const menuItems = [
   { 
     id: 'forum', 
     label: 'Yardımlaşma Forumu', 
-    path: 'https://simayhareketi.com', 
+    path: 'https://www.simayhareketi.com', 
     icon: MessageSquare, 
     color: 'text-green-400',
-    description: 'simayhareketi.com dayanışma platformu',
+    description: 'www.simayhareketi.com dayanışma platformu',
     category: 'participation',
     external: true
   }

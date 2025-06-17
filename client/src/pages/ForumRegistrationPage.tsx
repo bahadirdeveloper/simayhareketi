@@ -68,7 +68,7 @@ export default function ForumRegistrationPage() {
         
         toast({
           title: "Yardımlaşma Platformu Erişimi!",
-          description: "simayhareketi.com dayanışma platformuna erişim hazır.",
+          description: "www.simayhareketi.com dayanışma platformuna erişim hazır.",
         });
       } else {
         throw new Error('Forum hesabı oluşturulamadı');
@@ -87,13 +87,13 @@ export default function ForumRegistrationPage() {
 
   const handleForumLogin = () => {
     if (forumCredentials) {
-      // Open simayhareketi.com forum in new tab
-      const forumUrl = `https://simayhareketi.com`;
+      // Open www.simayhareketi.com forum in new tab
+      const forumUrl = `https://www.simayhareketi.com`;
       window.open(forumUrl, '_blank');
       
       toast({
         title: "Yardımlaşma Platformu Açıldı",
-        description: "simayhareketi.com dayanışma platformuna yönlendirildiniz.",
+        description: "www.simayhareketi.com dayanışma platformuna yönlendirildiniz.",
       });
     }
   };
@@ -112,7 +112,7 @@ export default function ForumRegistrationPage() {
           </motion.div>
           <h1 className="text-3xl font-bold text-white">Simay Hareketi Yardımlaşma Platformu</h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Dayanışma ve yardımlaşma platformumuza hoş geldiniz! simayhareketi.com'da toplulukla bir araya gelin ve birbirimize destek olalım.
+            Dayanışma ve yardımlaşma platformumuza hoş geldiniz! www.simayhareketi.com'da toplulukla bir araya gelin ve birbirimize destek olalım.
           </p>
         </div>
 
