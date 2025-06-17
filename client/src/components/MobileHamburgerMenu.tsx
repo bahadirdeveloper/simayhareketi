@@ -153,7 +153,6 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
   };
 
   const handleNavigation = (path: string) => {
-    console.log('Hamburger Navigation:', path);
     setIsOpen(false);
     navigate(path);
   };
