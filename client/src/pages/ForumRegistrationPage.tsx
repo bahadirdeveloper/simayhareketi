@@ -87,13 +87,13 @@ export default function ForumRegistrationPage() {
 
   const handleForumLogin = () => {
     if (forumCredentials) {
-      // Open forum in new tab with auto-login
-      const forumUrl = `https://forum.turkiye-cumhuriyeti.digital/auto-login?token=${forumCredentials.loginToken}`;
+      // Open simayhareketi.com forum in new tab
+      const forumUrl = `https://simayhareketi.com`;
       window.open(forumUrl, '_blank');
       
       toast({
         title: "Forum Açıldı",
-        description: "Yeni sekmede topluluk platformuna yönlendirildiniz.",
+        description: "simayhareketi.com yardımlaşma forumuna yönlendirildiniz.",
       });
     }
   };
@@ -110,9 +110,9 @@ export default function ForumRegistrationPage() {
           >
             <Users className="w-10 h-10 text-white" />
           </motion.div>
-          <h1 className="text-3xl font-bold text-white">Topluluk Platformu</h1>
+          <h1 className="text-3xl font-bold text-white">Simay Hareketi Forum</h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Ödemeniz tamamlandı! Artık özel topluluk forumumuza katılabilir ve diğer üyelerle etkileşime geçebilirsiniz.
+            Yardımlaşma ve dayanışma platformumuza hoş geldiniz! simayhareketi.com forumumuzda toplulukla bir araya gelin.
           </p>
         </div>
 
@@ -153,24 +153,24 @@ export default function ForumRegistrationPage() {
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <MessageSquare className="w-10 h-10 text-blue-500 mx-auto mb-3" />
-              <h3 className="text-white font-bold mb-2">Tartışma Forumu</h3>
-              <p className="text-gray-300 text-sm">Güncel konular üzerine üyelerle tartışın</p>
+              <h3 className="text-white font-bold mb-2">Yardımlaşma Forumu</h3>
+              <p className="text-gray-300 text-sm">Topluluk üyeleriyle yardımlaşın ve dayanışma içinde olun</p>
             </CardContent>
           </Card>
           
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <Shield className="w-10 h-10 text-green-500 mx-auto mb-3" />
-              <h3 className="text-white font-bold mb-2">Güvenli Ortam</h3>
-              <p className="text-gray-300 text-sm">Moderatörlü ve güvenli topluluk alanı</p>
+              <h3 className="text-white font-bold mb-2">Güvenli Dayanışma</h3>
+              <p className="text-gray-300 text-sm">Moderatörlü ve güvenli yardımlaşma ortamı</p>
             </CardContent>
           </Card>
           
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <Star className="w-10 h-10 text-purple-500 mx-auto mb-3" />
-              <h3 className="text-white font-bold mb-2">Özel İçerikler</h3>
-              <p className="text-gray-300 text-sm">Üyelere özel paylaşımlar ve duyurular</p>
+              <h3 className="text-white font-bold mb-2">Topluluk Desteği</h3>
+              <p className="text-gray-300 text-sm">Simay Hareketi üyeleri için özel destek ve yardım</p>
             </CardContent>
           </Card>
         </div>
@@ -186,8 +186,8 @@ export default function ForumRegistrationPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-blue-200">
-                Topluluk forumumuza katılmak için otomatik hesap oluşturun. 
-                Bilgileriniz güvenli bir şekilde aktarılacak ve anında erişim sağlayacaksınız.
+                simayhareketi.com yardımlaşma forumumuza katılmak için otomatik hesap oluşturun. 
+                Dayanışma platformumuzda toplulukla birlikte güçlü olun.
               </p>
               
               <div className="flex items-start space-x-3 text-sm">
@@ -244,9 +244,9 @@ export default function ForumRegistrationPage() {
                 </div>
                 
                 <div className="border-t border-green-800/50 pt-3">
-                  <span className="text-green-200 text-sm">Erişim Linki:</span>
+                  <span className="text-green-200 text-sm">Forum Adresi:</span>
                   <p className="text-blue-300 break-all text-sm">
-                    https://forum.turkiye-cumhuriyeti.digital
+                    simayhareketi.com
                   </p>
                 </div>
               </div>
@@ -257,7 +257,7 @@ export default function ForumRegistrationPage() {
                   className="w-full bg-green-600 hover:bg-green-700 text-white py-3"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
-                  Foruma Git (Otomatik Giriş)
+                  simayhareketi.com Foruma Git
                 </Button>
                 
                 <Button

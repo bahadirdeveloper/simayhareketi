@@ -15,7 +15,7 @@ export default function HalkKoordinasyonPage() {
   }, []);
   
   const handleRedirect = () => {
-    window.open("https://forum.simayhareketi.org", "_blank");
+    window.open("https://simayhareketi.com", "_blank");
   };
   
   return (
@@ -29,10 +29,10 @@ export default function HalkKoordinasyonPage() {
           {/* Başlık Bölümü */}
           <div className="text-center space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-              Halk Koordinasyon Merkezi
+              Simay Hareketi Yardımlaşma Platformu
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-              Cumhuriyet Güncelleme sürecinde halkın birlikte çalışma platformu
+              simayhareketi.com'da dayanışma ve yardımlaşma toplulugu olarak birlikte çalışıyoruzformu
             </p>
           </div>
           
