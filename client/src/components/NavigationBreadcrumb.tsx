@@ -12,10 +12,11 @@ const NavigationBreadcrumb = () => {
 
   // Define page hierarchy and breadcrumb structure
   const getBreadcrumbPath = (pathname: string): BreadcrumbItem[] => {
-    const basePath = [{ label: 'Ana Sayfa', path: '/home' }];
+    const basePath = [{ label: 'Ana Sayfa', path: '/' }];
     
     const pathMappings: Record<string, BreadcrumbItem[]> = {
-      '/home': [{ label: 'Ana Sayfa', path: '/home' }],
+      '/home': [{ label: 'Ana Sayfa', path: '/' }],
+      '/': [{ label: 'Ana Sayfa', path: '/' }],
       '/turkiye': [...basePath, { label: 'Türkiye', path: '/turkiye' }],
       '/turknedir': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }],
       '/turkdetay': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }, { label: 'Detay', path: '/turkdetay' }],

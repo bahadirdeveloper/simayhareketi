@@ -55,9 +55,9 @@ import PremiumDashboardPage from "@/pages/PremiumDashboardPage";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={LanguagePage} />
       <Route path="/dil-secimi" component={LanguagePage} />
       <Route path="/ulke-ekle" component={UlkeEklePage} />
+      <Route path="/" component={SimayHomeModern} />
       <Route path="/home" component={SimayHomeModern} />
       <Route path="/professional" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
