@@ -15,7 +15,8 @@ import {
   Smartphone,
   Download,
   Scale,
-  UserPlus
+  UserPlus,
+  MessageSquare
 } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { navigateWithScrollReset } from '@/lib/navigation';
@@ -113,6 +114,16 @@ const menuItems = [
     color: 'text-orange-400',
     description: 'Halk sistemine katılım',
     category: 'participation'
+  },
+  { 
+    id: 'forum', 
+    label: 'Yardımlaşma Forumu', 
+    path: 'https://simayhareketi.com', 
+    icon: MessageSquare, 
+    color: 'text-green-400',
+    description: 'simayhareketi.com dayanışma platformu',
+    category: 'participation',
+    external: true
   }
 ];
 
@@ -152,9 +163,13 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
     setDeferredPrompt(null);
   };
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = (path: string, external = false) => {
     setIsOpen(false);
-    navigate(path);
+    if (external || path.startsWith('http')) {
+      window.open(path, '_blank', 'noopener,noreferrer');
+    } else {
+      navigate(path);
+    }
   };
 
   const toggleMenu = () => {
@@ -367,7 +382,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: (index + 8) * 0.05 }}
-                          onClick={() => handleNavigation(item.path)}
+                          onClick={() => handleNavigation(item.path, item.external)}
                           className="w-full text-left p-4 rounded-xl bg-gradient-to-r from-orange-600/20 to-orange-700/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 group flex items-center gap-4"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-orange-600/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>

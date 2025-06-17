@@ -32,7 +32,7 @@ export default function HalkKoordinasyonPage() {
               Simay Hareketi Yardımlaşma Platformu
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-              simayhareketi.com'da dayanışma ve yardımlaşma toplulugu olarak birlikte çalışıyoruzformu
+              simayhareketi.com'da dayanışma ve yardımlaşma topluluğu olarak birlikte çalışıyoruz
             </p>
           </div>
           
@@ -127,7 +127,7 @@ export default function HalkKoordinasyonPage() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  Forum'a Git
+                  simayhareketi.com'a Git
                 </Button>
                 
                 <Button 
