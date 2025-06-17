@@ -194,7 +194,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
       {/* Hamburger Button */}
       <button
         onClick={toggleMenu}
-        className="fixed top-4 left-4 z-50 bg-gray-900/90 backdrop-blur-sm border border-gray-700 rounded-xl p-3 shadow-lg hover:bg-gray-800/90 transition-all duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center"
+        className="fixed top-4 left-4 z-50 bg-gray-900/90 backdrop-blur-sm border border-gray-700 rounded-xl p-3 shadow-lg hover:bg-gray-800/90 transition-all duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center touch-target mobile-optimized"
         aria-label="Menü"
       >
         <motion.div
@@ -231,7 +231,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '-100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-gray-900/95 backdrop-blur-xl border-r border-gray-700/50 shadow-2xl z-45 overflow-y-auto"
+            className="fixed top-0 left-0 h-full w-80 max-w-[90vw] sm:max-w-[85vw] bg-gray-900/95 backdrop-blur-xl border-r border-gray-700/50 shadow-2xl z-45 overflow-y-auto"
           >
             <div className="p-6 pt-20">
               {/* Logo/Title */}
@@ -281,7 +281,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
                           onClick={() => handleNavigation(item.path)}
-                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                          className="w-full text-left p-3 sm:p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-3 sm:gap-4 touch-target mobile-optimized"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className={`h-5 w-5 ${item.color}`} />
@@ -315,7 +315,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: (index + 2) * 0.05 }}
                           onClick={() => handleNavigation(item.path)}
-                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                          className="w-full text-left p-3 sm:p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-3 sm:gap-4 touch-target mobile-optimized"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className={`h-5 w-5 ${item.color}`} />
@@ -349,7 +349,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: (index + 5) * 0.05 }}
                           onClick={() => handleNavigation(item.path)}
-                          className="w-full text-left p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-4"
+                          className="w-full text-left p-3 sm:p-4 rounded-xl bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700/30 hover:border-gray-600 transition-all duration-300 group flex items-center gap-3 sm:gap-4 touch-target mobile-optimized"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className={`h-5 w-5 ${item.color}`} />
@@ -383,7 +383,7 @@ const MobileHamburgerMenu = ({ className = '' }: MobileHamburgerMenuProps) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: (index + 8) * 0.05 }}
                           onClick={() => handleNavigation(item.path, item.external)}
-                          className="w-full text-left p-4 rounded-xl bg-gradient-to-r from-orange-600/20 to-orange-700/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 group flex items-center gap-4"
+                          className="w-full text-left p-3 sm:p-4 rounded-xl bg-gradient-to-r from-orange-600/20 to-orange-700/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 group flex items-center gap-3 sm:gap-4 touch-target mobile-optimized"
                         >
                           <div className={`w-10 h-10 rounded-lg bg-orange-600/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className={`h-5 w-5 ${item.color}`} />

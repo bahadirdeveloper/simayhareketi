@@ -195,8 +195,78 @@ body {
 }
 
 .touch-target {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 48px;
+  min-width: 48px;
+  padding: 12px;
+  touch-action: manipulation;
+}
+
+/* Enhanced mobile viewport handling */
+@media screen and (max-width: 768px) {
+  .mobile-optimized {
+    font-size: 16px; /* Prevent zoom on iOS */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  .mobile-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .mobile-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .mobile-button {
+    min-height: 48px;
+    font-size: 16px;
+    padding: 12px 24px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Ultra-small devices (phones in portrait) */
+@media screen and (max-width: 480px) {
+  .xs-text {
+    font-size: 12px;
+  }
+  
+  .xs-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .xs-button {
+    min-height: 44px;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+/* Large phones and small tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .sm-optimized {
+    font-size: 15px;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .tablet-optimized {
+    font-size: 16px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1025px) {
+  .desktop-optimized {
+    font-size: 18px;
+  }
 }
 
 .btn-mobile-optimized {
