@@ -59,7 +59,6 @@ function Router() {
       <Route path="/dil-secimi" component={LanguagePage} />
       <Route path="/ulke-ekle" component={UlkeEklePage} />
       <Route path="/home" component={SimayHomeModern} />
-      <Route path="/anasayfa" component={SimayHomeModern} />
       <Route path="/professional" component={SimayHomeProfessional} />
       <Route path="/turkiye" component={TurkiyePage} />
       <Route path="/turknedir" component={TurkNedirPage} />

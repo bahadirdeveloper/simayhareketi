@@ -12,13 +12,12 @@ const NavigationBreadcrumb = () => {
 
   // Define page hierarchy and breadcrumb structure
   const getBreadcrumbPath = (pathname: string): BreadcrumbItem[] => {
-    const basePath = [{ label: 'Ana Sayfa', path: '/anasayfa' }];
+    const basePath = [{ label: 'Ana Sayfa', path: '/home' }];
     
     const pathMappings: Record<string, BreadcrumbItem[]> = {
       '/': [{ label: 'Dil Seçimi', path: '/' }],
       '/dil-secimi': [{ label: 'Dil Seçimi', path: '/' }],
-      '/home': [{ label: 'Ana Sayfa', path: '/anasayfa' }],
-      '/anasayfa': [{ label: 'Ana Sayfa', path: '/anasayfa' }],
+      '/home': [{ label: 'Ana Sayfa', path: '/home' }],
       '/turkiye': [...basePath, { label: 'Türkiye', path: '/turkiye' }],
       '/turknedir': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }],
       '/turkdetay': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Türk Nedir?', path: '/turknedir' }, { label: 'Detay', path: '/turkdetay' }],
@@ -37,7 +36,6 @@ const NavigationBreadcrumb = () => {
       '/amac-savas': [...basePath, { label: 'Türkiye', path: '/turkiye' }, { label: 'Amaçlar & Savaşlar', path: '/amac-savas' }],
       '/premium-login': [...basePath, { label: 'Premium Giriş', path: '/premium-login' }],
       '/premium-dashboard': [...basePath, { label: 'Premium Giriş', path: '/premium-login' }, { label: 'Premium Panel', path: '/premium-dashboard' }],
-      '/dil-secimi': [{ label: 'Dil Seçimi', path: '/dil-secimi' }],
       '/ulke-ekle': [...basePath, { label: 'Ülke Ekle', path: '/ulke-ekle' }]
     };
 
