@@ -9,13 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import ModernLayout from "@/components/ModernLayout";
 import { CheckCircle, CreditCard, ArrowLeft, Loader2 } from "lucide-react";
 
-// Initialize Stripe with error handling
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY).then((stripe) => {
-  if (!stripe) {
-    console.error('Stripe failed to load');
-  }
-  return stripe;
-});
+// Initialize Stripe
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 interface PaymentData {
   clientSecret: string;
@@ -41,7 +36,7 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
     if (!stripe || !elements) {
       toast({
         title: "Ödeme Sistemi Hatası",
-        description: "Ödeme sistemi yüklenirken hata oluştu. Lütfen sayfayı yenileyip tekrar deneyin.",
+        description: "Stripe yüklenirken hata oluştu. Lütfen sayfayı yenileyip tekrar deneyin.",
         variant: "destructive",
       });
       return;
@@ -59,77 +54,30 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
       });
 
       if (error) {
-        let errorMessage = "Ödeme işlemi tamamlanamadı.";
-        
-        // Specific error handling for Turkish users
-        switch (error.type) {
-          case 'card_error':
-            errorMessage = "Kart bilgilerinizi kontrol edin. " + (error.message || "");
-            break;
-          case 'validation_error':
-            errorMessage = "Lütfen tüm alanları doğru şekilde doldurun.";
-            break;
-          case 'api_connection_error':
-            errorMessage = "İnternet bağlantınızı kontrol edin ve tekrar deneyin.";
-            break;
-          case 'api_error':
-            errorMessage = "Ödeme sistemi geçici olarak kullanılamıyor. Lütfen birkaç dakika sonra tekrar deneyin.";
-            break;
-          case 'authentication_error':
-            errorMessage = "Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.";
-            break;
-          case 'rate_limit_error':
-            errorMessage = "Çok fazla deneme yapıldı. Lütfen bir süre bekleyip tekrar deneyin.";
-            break;
-          default:
-            errorMessage = error.message || errorMessage;
-        }
-        
         toast({
           title: "Ödeme Başarısız",
-          description: errorMessage,
+          description: error.message || "Ödeme işlemi tamamlanamadı.",
           variant: "destructive",
         });
       } else {
-        // Payment succeeded
         if (paymentIntent.status === 'succeeded') {
           toast({
             title: "Ödeme Başarılı!",
-            description: "Ödemeniz başarıyla işlendi. Yönlendiriliyorsunuz...",
+            description: "Ödemeniz başarıyla işlendi.",
             variant: "default",
           });
           onSuccess();
-        } else if (paymentIntent.status === 'processing') {
-          toast({
-            title: "Ödeme İşleniyor",
-            description: "Ödemeniz işleniyor. Lütfen bekleyin...",
-            variant: "default",
-          });
-          // Check status after a delay
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
         }
       }
     } catch (err: any) {
       toast({
         title: "Beklenmeyen Hata",
-        description: "Ödeme işlemi sırasında beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+        description: "Ödeme işlemi sırasında hata oluştu.",
         variant: "destructive",
       });
-      console.error('Payment error:', err);
     }
 
     setIsLoading(false);
-  };
-
-  const getPackageName = (type: string) => {
-    switch (type) {
-      case 'temel': return 'Temel Paket';
-      case 'premium': return 'Premium Paket';
-      case 'elite': return 'Elite Paket';
-      default: return 'Paket';
-    }
   };
 
   return (
@@ -144,7 +92,9 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex justify-between items-center text-white">
-            <span>{getPackageName(paymentData.packageType)}</span>
+            <span>
+              {paymentData.packageType === 'dijital-kimlik' ? 'Dijital Kimlik' : 'Özel Katkı'}
+            </span>
             <span className="font-bold">₺{paymentData.amount}</span>
           </div>
           <div className="border-t border-gray-700 pt-4">
@@ -176,33 +126,21 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="p-4 border border-gray-600 rounded-lg bg-gray-800">
-              {!stripe ? (
-                <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-6 h-6 animate-spin text-blue-400 mr-2" />
-                  <span className="text-gray-300">Ödeme sistemi yükleniyor...</span>
-                </div>
-              ) : (
-                <PaymentElement 
-                  options={{
-                    layout: "tabs"
-                  }}
-                />
-              )}
+            <div className="p-4 border border-gray-600 rounded-lg bg-white">
+              <PaymentElement />
             </div>
             
-            {/* Payment Security Notice */}
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
               <p className="text-blue-200 text-sm flex items-center gap-2">
                 <CreditCard className="w-4 h-4" />
-                Güvenli SSL şifrelemesi ile korunmaktadır. Kart bilgileriniz güvende.
+                Güvenli SSL şifrelemesi ile korunmaktadır.
               </p>
             </div>
 
             <Button
               type="submit"
               disabled={!stripe || isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all duration-300"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-lg"
             >
               {isLoading ? (
                 <>
@@ -212,19 +150,10 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
               ) : (
                 <>
                   <CreditCard className="w-4 h-4 mr-2" />
-                  ₺{paymentData.amount} Güvenli Ödeme
+                  ₺{paymentData.amount} Öde
                 </>
               )}
             </Button>
-            
-            {/* Error state helper */}
-            {!stripe && (
-              <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-3">
-                <p className="text-yellow-200 text-sm">
-                  Ödeme sistemi yükleniyor... Eğer bu mesaj devam ederse, sayfayı yenileyin.
-                </p>
-              </div>
-            )}
           </form>
         </CardContent>
       </Card>
@@ -232,7 +161,7 @@ function CheckoutForm({ paymentData, onSuccess }: { paymentData: PaymentData; on
   );
 }
 
-export default function CheckoutPage() {
+export default function CheckoutPageNew() {
   const [, navigate] = useLocation();
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -245,7 +174,6 @@ export default function CheckoutPage() {
         const data = JSON.parse(storedPayment);
         setPaymentData(data);
       } catch (error) {
-        // Invalid payment data error
         navigate('/katil');
       }
     } else {
@@ -256,7 +184,6 @@ export default function CheckoutPage() {
   const handlePaymentSuccess = () => {
     setIsSuccess(true);
     
-    // Store completed payment data for task selection
     if (paymentData) {
       localStorage.setItem('completedPayment', JSON.stringify(paymentData));
     }
@@ -265,23 +192,18 @@ export default function CheckoutPage() {
     toast({
       title: "Ödeme Başarılı!",
       description: paymentData?.packageType === 'dijital-kimlik' 
-        ? "Dijital kimliğiniz oluşturuldu. Görev seçimi yapabilirsiniz!" 
-        : "Üyeliğiniz aktifleştirildi. Hoş geldiniz!",
+        ? "Dijital kimliğiniz oluşturuldu." 
+        : "Üyeliğiniz aktifleştirildi.",
       variant: "default",
     });
 
     setTimeout(() => {
-      // Redirect to task selection for digital ID, otherwise to main page
       if (paymentData?.packageType === 'dijital-kimlik') {
         navigate('/task-selection');
       } else {
         navigate('/turkiye');
       }
     }, 3000);
-  };
-
-  const handleGoBack = () => {
-    navigate('/katil');
   };
 
   if (isSuccess) {
@@ -297,20 +219,14 @@ export default function CheckoutPage() {
             <CheckCircle className="w-12 h-12 text-white" />
           </motion.div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-4"
-          >
-            <h1 className="text-4xl font-bold text-green-400">Ödeme Başarılı!</h1>
-            <p className="text-xl text-gray-300">
-              Üyeliğiniz başarıyla aktifleştirildi. Türkiye'nin geleceğine hoş geldiniz!
+          <div className="space-y-4">
+            <h1 className="text-3xl font-bold text-white">Ödeme Başarılı!</h1>
+            <p className="text-gray-300">
+              {paymentData?.packageType === 'dijital-kimlik' 
+                ? "Dijital kimliğiniz oluşturuldu. Görev seçimi sayfasına yönlendiriliyorsunuz..." 
+                : "Üyeliğiniz aktifleştirildi. Anasayfaya yönlendiriliyorsunuz..."}
             </p>
-            <p className="text-gray-400">
-              3 saniye içinde anasayfaya yönlendirileceksiniz...
-            </p>
-          </motion.div>
+          </div>
         </div>
       </ModernLayout>
     );
@@ -319,7 +235,7 @@ export default function CheckoutPage() {
   if (!paymentData) {
     return (
       <ModernLayout showBackButton={false} pageName="Yükleniyor">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center min-h-[50vh]">
           <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
         </div>
       </ModernLayout>
@@ -328,40 +244,21 @@ export default function CheckoutPage() {
 
   return (
     <ModernLayout showBackButton={false} pageName="Ödeme">
-      <div className="w-full max-w-4xl mx-auto space-y-8">
-        {/* Header */}
+      <div className="w-full max-w-4xl mx-auto space-y-8 p-4">
         <div className="text-center space-y-4">
-          <Button
-            variant="ghost"
-            onClick={handleGoBack}
-            className="text-gray-400 hover:text-white mb-4"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Geri Dön
-          </Button>
-          
-          <h1 className="text-3xl font-bold text-white">Ödeme Sayfası</h1>
+          <h1 className="text-3xl font-bold text-white">Güvenli Ödeme</h1>
           <p className="text-gray-300">
-            Güvenli ödeme işleminizi tamamlayın
+            Ödeme işleminizi güvenle tamamlayın
           </p>
         </div>
 
-        {/* Stripe Elements Provider */}
         <Elements 
           stripe={stripePromise} 
           options={{ 
             clientSecret: paymentData.clientSecret,
             appearance: {
-              theme: 'stripe',
-              variables: {
-                colorPrimary: '#3b82f6',
-                colorBackground: '#ffffff',
-                colorText: '#1f2937',
-                fontFamily: 'system-ui, sans-serif',
-                borderRadius: '8px',
-              }
-            },
-            loader: 'auto'
+              theme: 'stripe'
+            }
           }}
         >
           <CheckoutForm 

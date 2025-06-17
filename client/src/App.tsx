@@ -43,7 +43,7 @@ import BirlesikManifestoPage from "@/pages/BirlesikManifestoPage";
 import UlkeEklePage from "@/pages/UlkeEklePage";
 import DijitalKimlikPage from "@/pages/DijitalKimlikPage";
 import PremiumPackagesPage from "@/pages/PremiumPackagesPage";
-import CheckoutPage from "@/pages/CheckoutPage";
+import CheckoutPageNew from "@/pages/CheckoutPageNew";
 import TaskSelectionPage from "@/pages/TaskSelectionPage";
 import ForumRegistrationPage from "@/pages/ForumRegistrationPage";
 import CanliGelirGiderPage from "@/pages/CanliGelirGiderPage";
@@ -72,7 +72,7 @@ function Router() {
       <Route path="/halk-defteri" component={HalkDefteriPage} />
       <Route path="/katil" component={KatilPage} />
       <Route path="/katil/success" component={KatilPage} />
-      <Route path="/checkout" component={CheckoutPage} />
+      <Route path="/checkout" component={CheckoutPageNew} />
       <Route path="/task-selection" component={TaskSelectionPage} />
       <Route path="/forum-kayit" component={ForumRegistrationPage} />
       <Route path="/canli-gelir-gider" component={CanliGelirGiderPage} />
