@@ -67,8 +67,8 @@ export default function ForumRegistrationPage() {
         setForumCredentials(data);
         
         toast({
-          title: "Forum Hesabı Oluşturuldu!",
-          description: "Topluluk platformuna erişim bilgileriniz hazır.",
+          title: "Yardımlaşma Platformu Erişimi!",
+          description: "simayhareketi.com dayanışma platformuna erişim hazır.",
         });
       } else {
         throw new Error('Forum hesabı oluşturulamadı');
@@ -92,8 +92,8 @@ export default function ForumRegistrationPage() {
       window.open(forumUrl, '_blank');
       
       toast({
-        title: "Forum Açıldı",
-        description: "simayhareketi.com yardımlaşma forumuna yönlendirildiniz.",
+        title: "Yardımlaşma Platformu Açıldı",
+        description: "simayhareketi.com dayanışma platformuna yönlendirildiniz.",
       });
     }
   };
@@ -110,9 +110,9 @@ export default function ForumRegistrationPage() {
           >
             <Users className="w-10 h-10 text-white" />
           </motion.div>
-          <h1 className="text-3xl font-bold text-white">Simay Hareketi Forum</h1>
+          <h1 className="text-3xl font-bold text-white">Simay Hareketi Yardımlaşma Platformu</h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Yardımlaşma ve dayanışma platformumuza hoş geldiniz! simayhareketi.com forumumuzda toplulukla bir araya gelin.
+            Dayanışma ve yardımlaşma platformumuza hoş geldiniz! simayhareketi.com'da toplulukla bir araya gelin ve birbirimize destek olalım.
           </p>
         </div>
 
@@ -169,8 +169,8 @@ export default function ForumRegistrationPage() {
           <Card className="bg-gray-900 border-gray-700">
             <CardContent className="p-6 text-center">
               <Star className="w-10 h-10 text-purple-500 mx-auto mb-3" />
-              <h3 className="text-white font-bold mb-2">Topluluk Desteği</h3>
-              <p className="text-gray-300 text-sm">Simay Hareketi üyeleri için özel destek ve yardım</p>
+              <h3 className="text-white font-bold mb-2">Topluluk Dayanışması</h3>
+              <p className="text-gray-300 text-sm">Simay Hareketi üyeleri arasında güçlü dayanışma ağı</p>
             </CardContent>
           </Card>
         </div>
